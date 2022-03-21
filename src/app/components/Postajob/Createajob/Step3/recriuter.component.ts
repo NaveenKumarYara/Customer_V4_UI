@@ -69,6 +69,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   Addform: FormGroup;
   userId: any;
   isSuggsted: any;
+  dstatus:any;
   selectedInput = new Subject<string> ();
   selectInput = new Subject<string> ();
   selectJInput = new Subject<string> ();
@@ -79,7 +80,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   suggestManagers: RecrutingTeam[] = [];
   isuggestManagers: RecrutingTeam[] = [];
   sManagers: RecrutingTeam[] = [];
-  statusVal:any;
+  statusVal:boolean=false;
   JstatusVal:any;
   sslist=[];
   imsList=[];
@@ -169,7 +170,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
     this.statusVal = val;
     if(val === false)
     {
-      let v = this.JobStatus.filter(x=>x.ReferralStatusId == 10)
+      let v = this.dstatus.filter(x=>x.ReferralStatusId == 10)
       this.updateCStaus(v[0]);
     }
    
@@ -268,7 +269,10 @@ export class recriuterComponent implements OnInit, OnDestroy {
     .subscribe(
       data => {
       this.statusVal = data[0].IsRequired;
-      this.JstatusVal = data[0].ReferralStatus;
+      if(this.statusVal === true)
+      {
+        this.JstatusVal = data[0].ReferralStatus;
+      }
       this.saveCandidate = new SaveJobProcess();
       });
    }
@@ -410,7 +414,8 @@ export class recriuterComponent implements OnInit, OnDestroy {
     this._service.GetService('ReferralAPI/api/JobReferralStatus', '')
     .subscribe(
       data => {
-        this.JobStatus = data.filter(x=>x.ReferralStatusId > 3 && x.ReferralStatusId < 12);
+        this.dstatus = data;
+        this.JobStatus = data.filter(x=>x.ReferralStatusId > 3 && x.ReferralStatusId < 12 && x.ReferralStatusId!=6 && x.ReferralStatusId!=10 && x.ReferralStatusId!=9);
       });
   }
 
