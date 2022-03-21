@@ -103,7 +103,7 @@
   <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
       <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
-      <!-- <div class="row flex flex-wrap"> -->
+       <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
             <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4> 
@@ -381,40 +381,48 @@
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditE">
-                  <div class="question">
-                    If you want to update Experience   
-                    <span class="col-md-2 col-sm-2">
-                   
-                        <input class="form-control" [(ngModel)]="expYearExp" type="text"
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          (input)="onYearChnage($event.target.value)" value="Year" required>
-                        <span class="highlight"></span>
-                        <!-- <span class="bar"></span>
-                                      <label>Exp. in Years</label> -->
-                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
-                        </span>
-                        <label *ngIf="yearerror==0">
-                          Yrs
-                        </label>
-                        <label *ngIf="yearerror==1" style="color: red;">
-                          Yrs less than 50 valid.
-                        </label>
-                      </span>
-                    <span class="col-md-2 col-sm-2">
-                        <input  class="form-control" [(ngModel)]="expMonthExp" type="text"  (input)="onChnage($event.target.value)" 
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          value="Month" required>
-                        <span class="highlight"></span>
-                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
-                        <label *ngIf="errorText==0">Months</label>
-                        <label *ngIf="errorText==1" style="color: red;">
-                          Months less than 12 valid.
-                        </label>
-                      </span>
-                    <div class="buttons">
-                      <button class="btn btn-filled" (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
-                      <!-- <button class="btn btn-default" (click)="EditE=!EditE">No</button> -->
-                      <button class="btn btn-default" (click)="EditE=!EditE">Skip</button>
+                  <div class="question with-float">
+                    <div class="row flex flex-wrap flex-align-center">
+                      <div class="col-sm-8">
+                        If you want to update Experience   
+                        <div class="buttons">
+                          <button class="btn btn-filled" (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
+                          <!-- <button class="btn btn-default" (click)="EditE=!EditE">No</button> -->
+                          <button class="btn btn-default" (click)="EditE=!EditE">Skip</button>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span>
+                              <input class="form-control" [(ngModel)]="expYearExp" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }"></span>
+                                <label *ngIf="yearerror==0">
+                                  Yrs
+                                </label>
+                                <label *ngIf="yearerror==1" style="color: red;">
+                                  Yrs less than 50 valid.
+                                </label>
+                            </span>
+                          </div>
+                          <div class="col-sm-6">
+                            <span>
+                              <input  class="form-control" [(ngModel)]="expMonthExp" type="text"  (input)="onChnage($event.target.value)" 
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -448,40 +456,45 @@
                     </div>
                   </div>
                   <div class="col-sm-12 question_col" *ngIf="EditDomain && selectedDomain === sdk">
-                    <div class="question">
-                      <span class="col-md-2 col-sm-2">
-                   
-                        <input class="form-control" [(ngModel)]="expYear" type="text"
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          (input)="onYearChnage($event.target.value)" value="Year" required>
-                        <span class="highlight"></span>
-                        <!-- <span class="bar"></span>
-                                      <label>Exp. in Years</label> -->
-                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
-                        </span>
-                        <label *ngIf="yearerror==0">
-                          Yrs
-                        </label>
-                        <label *ngIf="yearerror==1" style="color: red;">
-                          Yrs less than 50 valid.
-                        </label>
-                      </span>
-                       <span class="col-md-2 col-sm-2">
-                        <input  class="form-control" [(ngModel)]="expMonth" type="text"  (input)="onChnage($event.target.value)" 
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          value="Month" required>
-                        <span class="highlight"></span>
-                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
-                        <label *ngIf="errorText==0">Months</label>
-                        <label *ngIf="errorText==1" style="color: red;">
-                          Months less than 12 valid.
-                        </label>
-                      </span>
-                      If you want to update Experience
-                      <div class="buttons">
-                        <button class="btn btn-filled" (click)="updateList(skill)">Update</button>
-                        <!-- <button class="btn btn-default" (click)="EditDomain=!EditDomain">No</button> -->
-                        <button class="btn btn-default" (click)="EditDomain=!EditDomain">Skip</button>
+                    <div class="question with-float">
+                      <div class="row flex flex-wrap flex-align-center">
+                        <div class="col-sm-8">
+                          If you want to update Experience
+                          <div class="buttons">
+                            <button class="btn btn-filled" (click)="updateList(skill)">Update</button>
+                            <!-- <button class="btn btn-default" (click)="EditDomain=!EditDomain">No</button> -->
+                            <button class="btn btn-default" (click)="EditDomain=!EditDomain">Skip</button>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <span class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expYear" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                              </span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </span>
+                            <span class="col-sm-6">
+                              <input  class="form-control" [(ngModel)]="expMonth" type="text"  (input)="onChnage($event.target.value)" 
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -684,41 +697,47 @@
                     </div>
                   </div>
                   <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
-                    <div class="question">
-                      <span class="col-md-2 col-sm-2">
-                   
-                        <input class="form-control" [(ngModel)]="expsYear" type="text"
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          (input)="onYearChnage($event.target.value)" value="Year" required>
-                        <span class="highlight"></span>
-                        <!-- <span class="bar"></span>
-                                      <label>Exp. in Years</label> -->
-                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
-                        </span>
-                        <label *ngIf="yearerror==0">
-                          Yrs
-                        </label>
-                        <label *ngIf="yearerror==1" style="color: red;">
-                          Yrs less than 50 valid.
-                        </label>
-                      </span>
-                       <span class="col-md-2 col-sm-2">
-                        <input  class="form-control" [(ngModel)]="expsMonth" type="text"  (input)="onChnage($event.target.value)" 
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
-                          value="Month" required>
-                        <span class="highlight"></span>
-                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
-                        <label *ngIf="errorText==0">Months</label>
-                        <label *ngIf="errorText==1" style="color: red;">
-                          Months less than 12 valid.
-                        </label>
-                      </span>
-                      If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
-                      <div class="buttons">
-                        <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
-                        <!-- <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button> -->
-                        <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                    <div class="question with-float">
+                      <div class="row flex felx-wrap flex-align-center">
+                        <div class="col-sm-8">
+                          If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
+                          <div class="buttons">
+                            <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
+                            <!-- <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button> -->
+                            <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expsYear" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                              </span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </div>
+                            <div class="col-sm-6">
+                              <input  class="form-control" [(ngModel)]="expsMonth" type="text"  (input)="onChnage($event.target.value)" 
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
