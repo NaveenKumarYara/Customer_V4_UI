@@ -688,17 +688,18 @@
             </div>
             <ng-container *ngIf="profile?.InterviewRounds?.length>0">
               <ng-container *ngIf="profile?.InterviewRounds?.length===1">
-                <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
+                <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
                   <h4>Interviewed</h4>
                 </div>
               </ng-container>
              <ng-container *ngIf="profile?.InterviewRounds?.length===2">
-              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li><li>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
                 <h4>Interviewed</h4>
               </div>
              </ng-container>
              <ng-container *ngIf="profile?.InterviewRounds?.length===3">
-              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li><li>{{profile?.InterviewRounds[1]}}</li><li>{{profile?.InterviewRounds[2]}}</li></ul>" html="true">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li></ul>" html="true">
                 <h4>Interviewed</h4>
               </div>
              </ng-container>
