@@ -392,3 +392,15 @@
   margin: 0;
   padding: 0;
 }
+
+.custom-tooltip-list li {
+  position: relative;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.custom-tooltip-list li i {
+  position: absolute;
+  left: 0;
+  top:0;
+}
