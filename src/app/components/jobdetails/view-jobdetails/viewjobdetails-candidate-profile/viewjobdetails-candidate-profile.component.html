@@ -406,7 +406,7 @@
           </a>
 
           <ng-container  *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)">
-            <a href="javascript:void(0)" class="active" title="Reference">
+            <a href="javascript:void(0)" class="active" title="Reference"  (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
               <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
               <span>Reference</span>
             </a>
@@ -420,10 +420,24 @@
           </ng-container>
       
 
-          <a href="javascript:void(0)" title="Work Authroization">
-            <span class="jdv-smart-icon jdv-icon-authroization">Icon</span>
-            <span>Work Auth</span>
+        <ng-container *ngIf="profile?.BackGroundCheck == false">
+          <a href="javascript:void(0)"  title="Background Need to be Verified"
+          (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+          <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+          height="50" alt="verfied-badge" />
+          <span>BackGround</span>
           </a>
+        </ng-container>
+
+        <ng-container  *ngIf="profile?.BackGroundCheck == true">
+          <a href="javascript:void(0)" title="Background Verified Profile"
+          (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+                height="50" alt="verfied-badge" />
+                <span>BackGround</span>
+          </a>
+        </ng-container>
+       
 
           <a href="javascript:void(0)"  title="WFH">
             <span class="jdv-smart-icon jdv-icon-wfh">Icon</span>

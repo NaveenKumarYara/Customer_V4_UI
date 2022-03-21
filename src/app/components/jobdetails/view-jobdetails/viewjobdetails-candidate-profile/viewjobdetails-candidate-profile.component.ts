@@ -492,6 +492,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenReferDialogCheck(profileId, userId, profile) {
+    debugger
     this.RequestReference(profile);
   }
 
