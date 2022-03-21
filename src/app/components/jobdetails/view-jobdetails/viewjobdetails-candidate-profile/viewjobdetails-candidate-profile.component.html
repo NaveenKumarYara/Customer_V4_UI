@@ -673,7 +673,7 @@
               <h4>Shortlisted</h4>
             </div>
             <div class="col-sm-3 col">
-              <h4>Interviewed</h4>
+              <h4>Interview</h4>
             </div>
             <div class="col-sm-3 col">
               <h4>Hired/Rejected</h4>
@@ -687,7 +687,7 @@
               <h4>Shortlisted</h4>
             </div>
             <div class="col-sm-3 col">
-              <h4>Interviewed</h4>
+              <h4>Interview</h4>
             </div>
             <div class="col-sm-3 col">
               <h4>Hired/Rejected</h4>
@@ -703,18 +703,35 @@
             <ng-container *ngIf="profile?.InterviewRounds?.length>0">
               <ng-container *ngIf="profile?.InterviewRounds?.length===1">
                 <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
-                  <h4>Interviewed</h4>
+                  <h4>Interview</h4>
                 </div>
               </ng-container>
              <ng-container *ngIf="profile?.InterviewRounds?.length===2">
               <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
-                <h4>Interviewed</h4>
+                <h4>Interview</h4>
               </div>
              </ng-container>
              <ng-container *ngIf="profile?.InterviewRounds?.length===3">
               <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
                 {{profile?.InterviewRounds[2]}}</li></ul>" html="true">
-                <h4>Interviewed</h4>
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===4">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+              </ul>" html="true">
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===5">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[4]}}</li>
+              </ul>" html="true">
+                <h4>Interview</h4>
               </div>
              </ng-container>
               
@@ -732,7 +749,7 @@
               <h4>Shortlisted</h4>
             </div>
             <div class="col-sm-3 col active">
-              <h4>Interviewed</h4>
+              <h4>Interview</h4>
             </div>
             <div class="col-sm-3 col in-progress">
               <h4>Hired/Rejected</h4>
