@@ -267,9 +267,12 @@ export class ScheduleInterviewComponent implements OnInit {
 ScheduleInterview() {
 if(this.schedule.invalid)
 {
-    this.toastr.error('Please provide the valid details','Oops')
+    this.loading = false;
+    this.toastr.error('Please provide the valid details','Oops');
+
 }
 if (this.schedule.valid) {
+this.loading = true;
 this.schIntw.UserId = null;
 this.schIntw.JobId = this.data.jobId;
 this.schIntw.ProfileId = this.data.ProfileId;

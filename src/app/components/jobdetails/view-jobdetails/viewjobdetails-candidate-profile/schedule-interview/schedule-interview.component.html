@@ -672,6 +672,7 @@
                           type="text"
                           class="form-control"
                           [(ngModel)]="dailInNumber"
+                          [ngModelOptions]="{standalone: true}"
                           placeholder="e.g. 852477231"
                         />
                       </div>
@@ -683,6 +684,7 @@
                           type="text"
                           placeholder="e.g. 852477231"
                           [(ngModel)]="skypeId"
+                          [ngModelOptions]="{standalone: true}"
                           name="skype"
                         />
                       </div>
@@ -809,8 +811,7 @@
             mat-button
             type="submit"
             (click)="ScheduleInterview()"
-            [class.spinner]="loading"
-            (click)="loginstyle()"
+            [ngClass]="loading === true ? 'spinner' : ' '"          
             c000dkFocusInitial
             class="btn btn-filled btn__spinner"
           >

@@ -203,11 +203,11 @@
         <div class="col-xs-12 col-sm-6 form-sub-cols">
           <div class="form-group">
               <label for="" class="t-p">
-                Key Requirements  <span class="red">*</span>
+                Key Responsibilities  <span class="red">*</span>
               </label>
               <div>
                 <ng-select class="custom-style" [items]="KeyResponses"
-                (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Requirements"  placeholder="Select (or) Add Key Requirements"
+                (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
                 [virtualScroll]="true"  [(ngModel)]="SelectKey"
                 name="key"  #Key="ngModel" required minlength="3" maxlength="25">
                 <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
