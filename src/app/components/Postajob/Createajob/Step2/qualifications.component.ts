@@ -64,6 +64,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
 
       const check = this.educationExists(this.selectedQualification, this.qualificationList);
       if (check === false) {
+
       this.appService.addQualifications(this.selectedQualification);
     }
     this.selectedqualificationName = 0; // new Qualifications();
@@ -97,7 +98,9 @@ add3Dots(string, limit) {
     return string;
 }
 educationExists(education, list) {​
-  return list.some(function(elem) {
+  const ids = list.map(o => o.QualificationId);
+  const filtered = list.filter(({QualificationId}, index) => !ids.includes(QualificationId, index + 1));
+  return filtered.some(function(elem) {
        return elem.QualificationId === education.QualificationId;
   });
 }
