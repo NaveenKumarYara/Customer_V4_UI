@@ -50,7 +50,7 @@
               </ul>
               <div class="inline__icon__listing">
                 <ul>
-                  <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length!=0">
+                  <!-- <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length!=0">
                     <li class="icon__department">
                       <ng-container *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
                         {{dept?.Code | titlecase}}
@@ -60,7 +60,7 @@
 
                   <li class="icon__department" *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length==0">
                     N/A
-                  </li>
+                  </li> -->
                   <li class="icon__date">{{jobdetailscustomer?.JobInfo?.ModifiedDate
                     | date:'mediumDate'}}</li>
                   <li class="icon__position">Number of Positions <span>
@@ -589,7 +589,7 @@
                                   <input  readonly type="checkbox"    name="Employement" [checked]="Employement"  value="Employement" />
                                   <span class="btn btn-link">
                                     <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
-                                    Employement
+                                    Employment
                                   </span>
                                 </label>
                               </li>
@@ -948,7 +948,7 @@
                     <div class="col-sm-3">
                       <div class="box__container">
                         <span class="icon icon__manager">Icon</span>
-                        <h4>Job Assigne</h4>
+                        <h4>Job Assignee</h4>
                         <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
                           <h5 *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
                             {{rpt?.FirstName | titlecase}} {{rpt?.LastName | titlecase}}
