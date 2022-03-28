@@ -665,7 +665,7 @@
                 <h4>{{i}}</h4>
               </div>
             </ng-container> -->
-           <ng-container *ngIf="profile?.ResponseStatusId > 12">
+           <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 8">
             <div class="col-sm-3 col in-progress">
               <h4>Under Review</h4>
             </div>
