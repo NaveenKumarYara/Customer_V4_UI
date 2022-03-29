@@ -52,6 +52,22 @@ export class ApiService {
         return Observable.throw(error.json());
       });
   }
+
+  UploadSovrenJob(body) {
+    const url = 'https://rest.resumeparsing.com/v10/parser/joborder';
+    const headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Sovren-AccountId', '25863506');
+    headers.append('Sovren-ServiceKey','WmukTR4CElDGRQQa717FE3Lc1crg9Xxrc2YjifGT');
+    return this._http.post(url, body, { headers: headers} )
+    .map((res: Response) => res.json())
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
   pushFileToStorage(file: File, body, url: string): Observable<HttpEvent<{}>> {
     let request = '';
     if (body !== '') {

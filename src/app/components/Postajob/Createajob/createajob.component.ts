@@ -322,7 +322,6 @@ editMode: string;
 
       this.appService.JobLocations = this.jobdetailscustomer.JobLocation;
       this.appService.JobLocationsChanged.next(this.appService.JobLocations);
-
       //if (this.jobdetailscustomer.JobLocation.length > 0) {
         // this.jobdetailscustomer.JobLocation.forEach(element => {
         //   this.ejLocations.PreferredLocationId = element.PreferredLocationId;
