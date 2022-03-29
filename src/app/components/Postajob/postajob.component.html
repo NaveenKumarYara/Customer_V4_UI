@@ -36,10 +36,12 @@
         </div>
         <div class="col-md-3 card">
           <a class="card" style="cursor:default">
-            <div>
+            <div (click)="photo.click()">
               <img src="../../../assets/images/jd-parser-icon.svg" width="103px" height="91.5px" alt="">
               <h4>Parser</h4>
-              <small><i>(Coming Soon..!)</i></small>
+                <input class="hidden" id="whitepapers_input" type="file" #photo (click)="photo.value = null"
+                  value="" (change)="getFileDetails($event)">
+              <small><i>Parser may not provide accurate details.</i></small>
             </div>
           </a>
         </div>
