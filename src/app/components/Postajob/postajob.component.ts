@@ -113,10 +113,10 @@ export class PostajobComponent implements OnInit {
           {
             if(val.EmployerNames.MainEmployerName!=null)
             {
-              let eJclient = new ClientModel();
-              eJclient.ClientId = 0;
-              eJclient.ClientName = val.EmployerNames.MainEmployerName;
-              this.appService.clientModel.next(eJclient);
+                  let eJclient = new ClientModel();
+                  eJclient.ClientName = val.EmployerNames.MainEmployerName;
+                this.appService.updateClient(eJclient);
+                this.appService.clientModel.next(eJclient);            
             }
           }
           if(val.JobTitles!=null)
