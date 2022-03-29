@@ -49,8 +49,8 @@
           </div>
           <div class="stats-col col-md-3 col-xs-4">
             <h4 class="title">Date of Establishment</h4>
-            <h1  *ngIf="companyprofileotherinfo?.EstablishedIn!=null" >{{companyprofileotherinfo?.EstablishedIn}}</h1>
-            <h1 *ngIf="companyprofileotherinfo?.EstablishedIn==null">
+            <h1  *ngIf="Date!=null" >{{Date | date:'yyyy'}}</h1>
+            <h1 *ngIf="Date===null">
             N/A
             </h1>
           </div>
@@ -110,7 +110,8 @@
           </div>
           <div class="form-group col-md-3">
             <label>Date of Establishment</label>
-            <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn}}" id="EstablishedIn">
+            <input [(ngModel)]="Date" autocomplete="off" class="form-control" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY'}" (onShown)="onOpenCalendar($event)">
+            <!-- <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn}}" > -->
           </div>
           <!-- <div class="form-group col-md-3">
             <label>Company type</label>

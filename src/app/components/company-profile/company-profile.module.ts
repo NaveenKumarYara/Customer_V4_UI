@@ -42,6 +42,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { duplicatePipe } from "./duplicates.pipe";
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import {  NgbModule } from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   imports: [
     CommonModule,
@@ -54,8 +56,10 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     ReactiveFormsModule,
     NgSelectModule,
     MatSnackBarModule,
+    NgbModule.forRoot(),
     HttpClientModule,
     SharedModule,
+    BsDatepickerModule.forRoot(),
     NgxMaskModule.forRoot(),
     ImageCropperModule,
     NgxImgModule,

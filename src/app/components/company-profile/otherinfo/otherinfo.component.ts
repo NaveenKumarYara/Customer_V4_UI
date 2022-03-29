@@ -18,6 +18,7 @@ export class OtherinfoComponent implements OnInit {
  customerId:any;
  userId:any;
  sizeid:any;
+ Date:any;
  iseditOther: any = false;
  sizelist:companysize[]=[];
 companyTypeId:any;
@@ -32,12 +33,21 @@ dateOfEstablishment:any;
       this.userId = this.customer.UserId;
      }
 
+
+     onOpenCalendar(container) {
+      container.yearSelectHandler = (event: any): void => {
+        container._store.dispatch(container._actions.select(event.date));
+      };     
+      container.setViewMode('year');
+    }
+
   ngOnInit() {
     this.GetCompany();
+    this.populateCompanyProfileOtherInfo(this.customerId);
   }
   saveOtherInfo()
   {
-    this.dateOfEstablishment=$("#EstablishedIn").val();
+    this.dateOfEstablishment=this.Date.getFullYear().toString();
     this.numberOfEmployees=this.sizeid;
     this.numberOfOffices=$("#NumberOfOffices").val();
     this.companyTypeId=$("#company-type").val();
@@ -75,6 +85,7 @@ onchange(id)
   populateCompanyProfileOtherInfo(customerId) {
     return this.companyprofileservice.getCompanyProfileOtherInfo(customerId).subscribe(res => {
         this.companyprofileotherinfo = res;
+        this.Date = new Date(res.EstablishedIn);
         this.numberOfEmployees = res.NumberOfEmployees;
     });
 }
