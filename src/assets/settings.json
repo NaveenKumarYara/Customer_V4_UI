@@ -129,7 +129,7 @@
   "ForgotPasswordurl": "https://dev.arytic.com/ForgotPassword",
   "CandidateSignUp": "https://dev.arytic.com/candidatesignup",
   "NewCandidateSignUp": "https://dev.arytic.com/candidatesignuppublic",
-  "CandidateLogin": "https://dev.arytic.com/candidatelogin",
+  "CandidateLogin": "https://candidate-dev.arytic.com/login",
   "JobMatchingParameter": "https://jobsapi-dev.arytic.com/api/JobSearchMatchingParameters",
   "Arytic": "https://dev.arytic.com",
   "QuestionbaseUrl": "https://questionnaireapi-dev.arytic.com",
