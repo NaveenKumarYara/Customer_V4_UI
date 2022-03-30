@@ -127,7 +127,7 @@
     "ForgotPasswordurl": "${Main_URL}/ForgotPassword",
     "CandidateSignUp": "${Main_URL}/candidatesignup",
     "NewCandidateSignUp": "${Main_URL}/candidatesignuppublic",
-    "CandidateLogin": "${Main_URL}/candidatelogin",
+    "CandidateLogin": "${CaMain_URL}/login",
     "GetInviteList": "${Profile_URL}/api/GetCustomerInvitedProfiles?",
     "JobMatchingParameter": "${Jobs_URL}/api/JobSearchMatchingParameters",
     "GetInterviewDetails": "${Jobs_URL}/api/GetJobInterviewByProfileId?",
