@@ -364,6 +364,7 @@ Job = {
 
   editExp(dat,e)
   {
+    document.querySelector('.primary__col').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     this.selectedIndex = e;   
     this.editWorkExperience = true;
     this.expForm = this.fb.group({
