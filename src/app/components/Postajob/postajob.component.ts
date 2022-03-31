@@ -168,7 +168,7 @@ export class PostajobComponent implements OnInit {
           {
             this.appService.minExperience.next(val.MinimumYears.Value * 12);
           }
-
+          this.appService.showskills = false;
           this.createJob();
         }
      
@@ -212,6 +212,7 @@ export class PostajobComponent implements OnInit {
   localStorage.removeItem('draftItem');
   localStorage.removeItem('Item');
   this.appService.personTypes = [];
+  this.appService.showskills = true;
   this.appService.Locationswithpositions=[];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
   this.appService.customerUsers = [];

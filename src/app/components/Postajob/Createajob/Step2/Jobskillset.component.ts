@@ -30,7 +30,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   skillType  = false;
 
   private subscription: Subscription;
-
+  showexp:boolean=true;
   skilllist: Observable<string[]>;
   selectedSkillName;
   skilltitleloading = false;
@@ -221,6 +221,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.getSkills();
+    this.showexp = this.appService.showskills;
      //this.getExpYears();
     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
     this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();

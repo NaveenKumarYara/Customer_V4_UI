@@ -142,7 +142,7 @@ export class AppService {
   // ];
 
   ResponseList: AddResp[] = [];
-
+  showskills:boolean = true;
   contractDuration = new BehaviorSubject("");
   currentContractDuration = this.contractDuration.asObservable();
 

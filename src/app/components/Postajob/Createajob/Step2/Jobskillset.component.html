@@ -118,15 +118,18 @@
 					<div class="col-xs-12 col-sm-4 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
 						<div class="col-container">
 							<h5 class="skill-title">{{ add3Dots(primaryjobskill.SkillName,25) }}</h5>
-							<h6 class="skill-year" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
-								{{(primaryjobskill.MinimumExp) | skillmonths}} -
-								{{(primaryjobskill.MaximumExp) | skillmonths}} Yrs
-							</h6>
-							<ng-template #noPrimaryExperience>
-								<h6 class="skill-year"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
-									Yrs
+							<ng-container *ngIf="showexp === true">
+								<h6 class="skill-year" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
+									{{(primaryjobskill.MinimumExp) | skillmonths}} -
+									{{(primaryjobskill.MaximumExp) | skillmonths}} Yrs
 								</h6>
-							</ng-template>
+								<ng-template #noPrimaryExperience>
+									<h6 class="skill-year"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
+										Yrs
+									</h6>
+								</ng-template>
+							</ng-container>
+						
 							<span class="close" (click)="deletePrimarySkills(i)">&times;</span>
 						</div>
 					</div>
