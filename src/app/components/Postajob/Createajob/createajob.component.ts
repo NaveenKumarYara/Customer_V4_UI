@@ -168,7 +168,7 @@ editMode: string;
     // localStorage.removeItem('clientName');
     localStorage.setItem('jobId', jobId);
    localStorage.setItem('EditMode', 'Yes');
-
+   this.appService.showskills = true;
     const workAuthorization = new WorkAuthorization();
     if(jobId == 1001705)
     {

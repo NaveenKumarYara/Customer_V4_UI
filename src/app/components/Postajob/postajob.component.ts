@@ -20,7 +20,7 @@ declare var $: any;
 })
 export class PostajobComponent implements OnInit {
 
-
+parser : boolean =false;
 
   constructor(private route: ActivatedRoute, private toastr: ToastsManager,private _service:ApiService,
     private router: Router, private appService: AppService, private location: Location, private zone: NgZone) {
@@ -58,6 +58,7 @@ export class PostajobComponent implements OnInit {
   }
 
   processResumes(file) {
+    this.parser = true;
      let dta:any;
      this.getBase64(file).then(
       data => 
@@ -168,7 +169,7 @@ export class PostajobComponent implements OnInit {
           {
             this.appService.minExperience.next(val.MinimumYears.Value * 12);
           }
-
+          this.appService.showskills = false;
           this.createJob();
         }
      
@@ -212,6 +213,7 @@ export class PostajobComponent implements OnInit {
   localStorage.removeItem('draftItem');
   localStorage.removeItem('Item');
   this.appService.personTypes = [];
+  this.appService.showskills = true;
   this.appService.Locationswithpositions=[];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
   this.appService.customerUsers = [];

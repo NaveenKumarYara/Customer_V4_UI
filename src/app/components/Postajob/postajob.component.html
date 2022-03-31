@@ -42,6 +42,7 @@
                 <input class="hidden" id="whitepapers_input" type="file" #photo (click)="photo.value = null"
                   value="" (change)="getFileDetails($event)">
               <small><i>Parser may not provide accurate details.</i></small>
+              <div class="loading" data-loading-text="Loading..." *ngIf="parser === true"></div>
             </div>
           </a>
         </div>
