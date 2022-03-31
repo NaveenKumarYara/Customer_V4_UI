@@ -20,7 +20,7 @@ declare var $: any;
 })
 export class PostajobComponent implements OnInit {
 
-
+parser : boolean =false;
 
   constructor(private route: ActivatedRoute, private toastr: ToastsManager,private _service:ApiService,
     private router: Router, private appService: AppService, private location: Location, private zone: NgZone) {
@@ -58,6 +58,7 @@ export class PostajobComponent implements OnInit {
   }
 
   processResumes(file) {
+    this.parser = true;
      let dta:any;
      this.getBase64(file).then(
       data => 
