@@ -312,28 +312,34 @@
 												<span class="profile-note">Candidate yet to provide the Skills.</span>
 											</ng-container>
 											<ng-container *ngIf="skilllist.length > 0">
+
 												<ng-container *ngFor="let skill of skilllist | removeduplicates">
-													<div class="col-sm-6" [ngClass]="{
-								fimiliar: skill.split('|')[3] === 1,
-								beginner: skill.split('|')[3] === 2,
-								good: skill.split('|')[3] === 3,
-								professional: skill.split('|')[3] === 4,
-								master: skill.split('|')[3] === 5
-							  }">
-														<div class="col-container">
-															<h5>{{ skill.split("|")[0] }}</h5>
-															<h6>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
-																}} years</h6>
-															<div class="star-rating">
-																<star-rating
-																	value="{{ skill.split('|')[3] | slice: 0:1 }}"
-																	totalstars="5" checkedcolor="#2260C3"
-																	uncheckedcolor="#9EABC0" size="16px"
-																	readonly="true">
-																</star-rating>
-															</div>
-														</div>
-													</div>
+													<ng-container *ngIf="skill != ''">
+														<div class="col-sm-6" [ngClass]="{
+															fimiliar: skill.split('|')[3] === 1,
+															beginner: skill.split('|')[3] === 2,
+															good: skill.split('|')[3] === 3,
+															professional: skill.split('|')[3] === 4,
+															master: skill.split('|')[3] === 5
+														  }">
+																					<div class="col-container">
+																						<h5>{{ skill.split("|")[0] }}</h5>
+																						<h6>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
+																							}} years</h6>
+																						<div class="star-rating">
+																							<star-rating
+																								value="{{ skill.split('|')[3] | slice: 0:1 }}"
+																								totalstars="5" checkedcolor="#2260C3"
+																								uncheckedcolor="#9EABC0" size="16px"
+																								readonly="true">
+																							</star-rating>
+																						</div>
+																					</div>
+																				</div>
+													</ng-container>
+													<ng-container *ngIf="skill === ''">
+														<span class="profile-note">Candidate yet to provide the Skills.</span>
+														</ng-container>
 												</ng-container>
 											</ng-container>
 										</div>
