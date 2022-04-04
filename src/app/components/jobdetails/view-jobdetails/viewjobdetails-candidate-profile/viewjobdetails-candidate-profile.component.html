@@ -760,7 +760,7 @@
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
           <div class="">
-            <div class="row" *ngIf="profile?.PrimarySkills != null; else noSkillTemplate">
+            <div class="row" *ngIf="profile?.PrimarySkills != null && profile?.PrimarySkills != ''; else noSkillTemplate">
               <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
                 (click)="prevSkills(profile?.PrimarySkills, i)">
                 < </a>

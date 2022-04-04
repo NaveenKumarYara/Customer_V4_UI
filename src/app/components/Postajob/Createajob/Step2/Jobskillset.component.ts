@@ -142,6 +142,20 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
+
+      if (check === true&&newskills.SkillName!=null) {
+        let Id = this.primaryjobskills.findIndex(x=>x.SkillName === newskills.SkillName);
+        this.deletePrimarySkills(Id);
+        this.deleteSecondarySkills(Id);
+        this.appService.addJobSkill(newskills);
+        this.selectedSkillName=undefined;
+        this.minexperience = 0;
+        this.maxexperience = 0;
+        newskills = new Jobskills();
+        localStorage.removeItem('skill');
+        this.form.reset();
+    }
+     
       if (check === false&&newskills.SkillName!=null) {
           this.appService.addJobSkill(newskills);
           this.selectedSkillName=undefined;
@@ -164,7 +178,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
 }
   }
-  skillExists(skill, list) {​
+  skillExists(skill, list) {​   
     return list.some(function(elem) {
          return elem.SkillName === skill.SkillName;
     });
@@ -176,13 +190,28 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     }
     return this.expYears;
 }
-  private deletePrimarySkills(index: number) {
+   deletePrimarySkills(index: number) {
     this.appService.deletePrimarySkills(index);
   }
 
-  private deleteSecondarySkills(index: number) {
+   deleteSecondarySkills(index: number) {
     this.appService.deleteSecondarySkills(index);
   }
+
+   EditPrimarySkills(Skill) {
+    this.maxexperience= Skill.MaximumExp/12;
+    this.minexperience = Skill.MinimumExp/12;
+    this.selectedSkillName=Skill.SkillName;
+    this.skillType = Skill.SkillType;
+  }
+
+   EditSecondarySkills(Skill) {
+    this.maxexperience= Skill.MaximumExp/12;
+    this.minexperience = Skill.MinimumExp/12;
+    this.selectedSkillName=Skill.SkillName;
+    this.skillType = Skill.SkillType;
+  }
+
 
   private getSkills() {
     this.skilllist = concat(
