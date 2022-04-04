@@ -676,6 +676,13 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
   margin-top: -12px;
 }
 
+.jdv-skill-list .col-container .edit {
+  position: absolute;
+  right: 44px;
+  top: 50%;
+  margin-top: -7px;
+}
+
 .jdv-skill-list .col {
   padding: 0 7px;
   margin: 0 0 14px;

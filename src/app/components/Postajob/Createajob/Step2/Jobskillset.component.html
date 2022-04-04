@@ -7,7 +7,7 @@
 				<div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
 					<label for="">Skill Name <span class="red">*</span></label>
 					<ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
-						bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
+					bindLabel="name"  [typeahead]="selectedskillinput" [hideSelected]="true"
 						[loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
 						#skill="ngModel" [addTag]="addSkill" addTagText="Add Skill" [virtualScroll]="true" required>
 					</ng-select>
@@ -129,7 +129,7 @@
 									</h6>
 								</ng-template>
 							</ng-container>
-						
+							<span  class="edit" (click)="EditPrimarySkills(primaryjobskill,i)"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 							<span class="close" (click)="deletePrimarySkills(i)">&times;</span>
 						</div>
 					</div>
@@ -168,6 +168,7 @@
 									Yrs
 								</h6>
 							</ng-template>
+							<span  class="edit" (click)="EditSecondarySkills(secondaryjobskill,i)"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 							<span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
 						</div>
 					</div>
