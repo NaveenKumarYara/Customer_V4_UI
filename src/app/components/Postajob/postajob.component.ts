@@ -120,6 +120,34 @@ parser : boolean =false;
                 this.appService.clientModel.next(eJclient);            
             }
           }
+          let ejQualificationIdList:any=[];
+          let ejQualificationList:any=[];
+          if(val.Degrees!=null)
+          {
+            for (const s of val.Degrees)
+            {
+              const qual = new Qualifications();
+              const ejQualificationSingle = new PjEducationDetails();
+                this.appService.getQualificationDetails().subscribe(dat=>{
+                  ejQualificationSingle.QualificationId = dat.find(x=> x.QualificationName === s.Name).QualificationId;
+                  ejQualificationSingle.IsActive = true;         
+                  if(ejQualificationSingle.QualificationId>0)
+                  {
+                    ejQualificationIdList.push( ejQualificationSingle);
+                    qual.QualificationId = dat.find(x=> x.QualificationName === s.Name).QualificationId;
+                    qual.QualificationName = dat.find(x=> x.QualificationName === s.Name).QualificationName;      
+                    ejQualificationList.push(qual);     
+                    this.appService.qualifications = ejQualificationList // this.ejQualificationList;
+                    this.appService.qualificationsChanged.next(this.appService.qualifications);
+                    this.appService.addqualifications = ejQualificationIdList;
+                    this.appService.addqualificationsChanged.next(this.appService.addqualifications);
+                  }                  
+                })
+               
+               
+            }
+          }
+
           if(val.JobTitles!=null)
           {
             if(val.JobTitles.MainJobTitle!=null)
