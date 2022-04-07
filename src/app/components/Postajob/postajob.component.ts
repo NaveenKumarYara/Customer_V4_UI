@@ -170,12 +170,16 @@ parser : boolean =false;
                 {
                   for (const skill of sa.Skills)
                     {
-                   const ejSkills = new PjSkill();
-                   ejSkills.SkillName = skill.Name;
-                   ejSkills.SkillType = true;
-                   ejSkills.MinimumExp = 1*12;
-                   ejSkills.MaximumExp = 5*12;
-                   ejPrimarySkills.push(ejSkills);
+                    if(skill.ExistsInText === true)
+                    {
+                      const ejSkills = new PjSkill();
+                      ejSkills.SkillName = skill.Name;
+                      ejSkills.SkillType = true;
+                      ejSkills.MinimumExp = 1*12;
+                      ejSkills.MaximumExp = 5*12;
+                      ejPrimarySkills.push(ejSkills);
+                    }
+                 
                   }
                 }
                }
