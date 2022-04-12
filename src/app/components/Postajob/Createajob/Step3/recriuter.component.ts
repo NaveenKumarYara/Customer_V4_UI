@@ -20,7 +20,8 @@ declare var $: any;
 
 @Component({
   selector: 'app-steps-step3-recriuter',
-  templateUrl: './recriuter.component.html'
+  templateUrl: './recriuter.component.html',
+  styleUrls: ["./recriuter.component.css"]
 })
 
 export class recriuterComponent implements OnInit, OnDestroy {
