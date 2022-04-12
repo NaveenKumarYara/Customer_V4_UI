@@ -45,6 +45,93 @@
       </ul>
     </div>
   </div>
+
+
+  <div class="form-group education-group">
+
+    <div class="col-sm-12 form-cols  single-form-cols">
+      <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
+        <div class="row flex flex-wrap flex-align-end form-sub-rows">
+          <div class="col-xs-12 col-sm-8 form-sub-cols">
+            <div class="form-group">
+                <label for="" class="t-p">
+                  Key Responsibilities  <span class="red">*</span>
+                </label>
+                <div>
+                  <ng-select class="custom-style" [items]="KeyResponses"
+                  (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
+                  [virtualScroll]="true"  [(ngModel)]="SelectKey"
+                  name="key"  #Key="ngModel" required minlength="3" maxlength="25">
+                  <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
+                  <small class="error1" *ngIf="Key.minlength">Min 3 Characters required.</small> 
+                  <small class="error1" *ngIf="Key.maxlength">Max 25 Characters required.</small> 
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-8 form-sub-cols">
+            <label for="" class="t-p">
+              Experience  <span class="red">*</span>
+            </label>
+            <div class="row form-sub-rows">
+              <div class="col-xs-5 col-sm-5 form-sub-cols">
+                <div class="form-group xs-padding">
+                  <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+                </div>
+                <div>
+                  <small class="error1 error__required" *ngIf="Minexp.invalid && Minexp.touched">         
+                    *Required
+                  </small>
+                   <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
+                    It can't be greater than Max Experience!
+                  </small> 
+                </div>
+              </div>
+              <div class="col-xs-5 col-sm-5 form-sub-cols">
+                <div class="form-group xs-padding">
+                  <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">  
+                </div>
+                <div>
+                  <small class="error1 error__required"*ngIf="Maxexp.invalid && Maxexp.touched">         
+                    *Required
+                  </small>
+                   <small class="error1" *ngIf="MaximumExperience<MinimumExperience">
+                    It can't be less than Min Experience!
+                  </small> 
+                </div>
+              </div>
+            </div>
+        
+          </div> 
+          <div class="col-xs-2 col-sm-2 add-key-btn add__btn">
+            <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading && keyslist.length<10">+</button>
+          </div>
+        </div>
+      </form>
+      
+      <div class="lists row form-sub-rows">
+        <div class="col-md-10 form-sub-cols" *ngIf="keyslist.length>0">
+          <p class="description">Key Responsibilities</p>
+          <div class="form-check-list">
+            <ul class="flex flex-wrap flex-align-equal">
+              <li *ngFor="let domain of keyslist; let i = index">   
+                <div class="col__container">
+                  <span class="name">
+                    {{domain.DCode}}
+                  </span>
+                  <span class="experience">
+                    {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs
+                  </span>
+                  <span class="close" (click)="deleteDomain(i)">&times;</span>
+                </div>    
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
   
   <!--<div class="form-group domain-exp-group">
    <label for="" class="question">Are you seriously considering that the candidate have the required domain experience? <small>(Optional)</small></label>

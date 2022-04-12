@@ -223,14 +223,14 @@ export class Step1Component implements OnInit, AfterViewChecked {
         return false;
    }
 
-   if ( this.jobProfile.addkeyList.length === 0) {
-    this.toastr.error('Please Select And Add Key Responsibilities!', 'Oops!');
-    setTimeout(() => {
-        this.toastr.dismissToast;
-    }, 3000);
-    window.scrollTo(700, 700);
-     return false;
-   }
+  //  if ( this.jobProfile.addkeyList.length === 0) {
+  //   this.toastr.error('Please Select And Add Key Responsibilities!', 'Oops!');
+  //   setTimeout(() => {
+  //       this.toastr.dismissToast;
+  //   }, 3000);
+  //   window.scrollTo(700, 700);
+  //    return false;
+  //  }
 
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
    if ( // && (this.jobProfile.jobPositionId!== '' || null || undefined)
@@ -374,7 +374,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.PositionType = '';
   this.insertJob.Category = '';
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
-  this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
+  // this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
   if(this.appService.RemoteWork == true)
   {
     // if( this.locations.locationwisejobs.length==1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
