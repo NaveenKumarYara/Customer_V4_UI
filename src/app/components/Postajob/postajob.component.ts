@@ -200,6 +200,7 @@ parser : boolean =false;
           if(val.MinimumYears!=null)
           {
             this.appService.minExperience.next(val.MinimumYears.Value * 12);
+            this.appService.maxExperience.next(val.MinimumYears.Value * 12);
           }
           this.appService.showskills = false;
           this.createJob();

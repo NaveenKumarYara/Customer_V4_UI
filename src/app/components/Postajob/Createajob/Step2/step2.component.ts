@@ -16,6 +16,7 @@ import { JobprofileComponent } from '../Step1/Jobprofile.component';
 import { JobResponsibilitiesComponent } from '../Step2/Jobresponsibilities.component';
 import { JobskillsetComponent } from '../Step2/Jobskillset.component';
 import { StepsComponent } from '../steps.component';
+import swal from "sweetalert2";
 import { ImmigrationComponent } from './immi.component';
 declare var $: any;
 declare var jQuery: any;
@@ -91,6 +92,7 @@ isDrafted: boolean;
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
+      const swal = require('sweetalert2');
       this.disable =  localStorage.getItem('Item');
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -184,189 +186,380 @@ isDrafted: boolean;
   }
 
   postJob(step, exit?) {
-  //  this.appService.updateStepNumber(step);
-    // this.insertJob.JobCategoryId =  this.appService.jobcategory.value.JobCategoryId;
-    // this.insertJob.CustomerId = 1;
-    // this.insertJob.UserId = 5;
-    // this.insertJob.JobPositionId = '';
-    // this.insertJob.JobTitle = this.appService.jobtitle.value;
-    // // this.insertJob.MinExperienceId = this.step1.jobDetail.minExperience;
-    // // this.insertJob.MaxExperienceId = this.step1.jobDetail.maxExperience;
-    // // this.insertJob.CompleteDescription = this.step1.jobProfile.hasCompleteDescription;
-    // // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
-    //  this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
-    // // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
-    if (
-       // this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
-      this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0) {
-    this.insertJob.CustomerId = this.customerId;
-    this.insertJob.UserId = this.userId;
-    this.insertJob.JobPositionId = this.jobPositionId;
-    if(this.disable == "true")
-    {  
-      this.insertJob.JobId = 0;
-    }
-    else 
+    if(this.qualification.addkeyList.length===0)
     {
-     const res = localStorage.getItem('jobId');
-     // if (res != null) {
-     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+        swal(
+          {
+            title: 'Are you sure?',
+            text: 'Key Responsibilities not yet provided',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, go ahead.',
+            cancelButtonText: 'No, let me think',
+            showConfirmButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            cancelButtonColor: '#FF0000'
+          }).then((result) => {
+            if (result.value === true) {
+              if (
+                // this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
+               this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0) {
+             this.insertJob.CustomerId = this.customerId;
+             this.insertJob.UserId = this.userId;
+             this.insertJob.JobPositionId = this.jobPositionId;
+             if(this.disable == "true")
+             {  
+               this.insertJob.JobId = 0;
+             }
+             else 
+             {
+              const res = localStorage.getItem('jobId');
+              // if (res != null) {
+              this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+             }
+             this.insertJob.HideSalary = this.appService.HideSalary;
+             this.insertJob.BonusOffered = this.appService.BonusOffered;
+             this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
+             this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
+             this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;
+             this.insertJob.MaxExperienceId = Math.round(this.jobMaxExp);  // this.appService.maxExperience.value;
+             this.insertJob.XmlRoleId =  this.appService.addedresponsibilities; // this.jobResponsibility ;
+             this.insertJob.CompleteDescription = this.jobHasDescription; // this.appService.hasDescription.value;
+             this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
+             this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+             this.insertJob.ClientId = this.client.ClientId;
+             this.insertJob.XmlKeyResponses = this.qualification.addkeyList;
+           
+         
+             this.insertJob.SaveAsTemplate = 0;
+             this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
+             // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
+             // this.insertJob.ClientName = localStorage.getItem('clientName');
+             this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
+            
+             // this.insertJob.DepartmentId = this.appService.addeddepartments;
+         
+         
+             //  this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
+         
+             // step2
+             // moved to step2
+             // this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
+             // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
+             this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
+             this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+             //debugger
+             // end moved to step2
+             this.insertJob.XmlQualifications = this.qualification.addqualificationList;
+             
+             if(this.domain != undefined)
+             {
+               this.insertJob.XmlDomains = this.domain.addDomainList;
+             }
+              
+             this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
+              if(this.immi.selectedItems.length>0)
+             {
+               this.immi.AddStatus();
+             }  
+             // this.insertJob.IsDrafted = true;
+             // this.insertJob.StepNumber = 2;
+             // this.insertJob.EmploymentTypeId = 1;
+             //  this.insertJob.SalaryTypeId = 1;
+             // this.insertJob.MinimumSalary = this.salaryMinRate.toString();
+             // this.insertJob.MaximumSalary = this.salaryMaxRate.toString();
+         
+             if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+               this.appService.currentEmploymentType.subscribe((data) => {
+                 this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
+               });
+               this.appService.currentSalaryTYpe.subscribe((data) => {
+                 this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
+               });
+               if (this.insertJob.EmploymentTypeId === 2) {
+                 this.appService.currentContractExtension.subscribe((data) => {
+                   this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString(); // And he have data here too!
+                 });
+                 this.appService.currentContractDuration.subscribe((data) => {
+                   this.insertJob.ContractDuration = data; // And he have data here too!
+                 });
+               }
+             // this.insertJob.EmploymentTypeId = 1;
+             // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+             if (this.insertJob.SalaryTypeId === 2) {
+               this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+               this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+             } else if (this.insertJob.SalaryTypeId === 1) {
+               this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+               this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+               // this.insertJob.ContractExtended = true;
+             }
+             // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
+             // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+             this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+             // this.insertJob.StepNumber = 4;
+             } else {
+             this.insertJob.EmploymentTypeId = 1;
+             this.insertJob.SalaryTypeId = 1;
+             this.insertJob.MinimumSalary = '1';
+             this.insertJob.MaximumSalary = '200';
+             this.insertJob.IsDrafted = true;
+           }
+             this.insertJob.StepNumber = step;
+             if (this.appService.stepNumber.value <= step) {
+               this.appService.updateStepNumber(step);
+               }
+             if (this.appService.isDrafted.value != null) {
+               this.appService.updateJobDraft(this.insertJob.IsDrafted);
+               }
+               if(this.JobIds&&this.JobIds.length>0)
+               {
+                 var res = new Promise<void>((resolve, reject) => {
+                   this.JobIds.forEach((value, index, array) => {
+               //  let requests =  this.JobIds.map((item) => {
+                     this.insertJob.JobId = value;
+                     this.appService.postjob(this.insertJob).subscribe(data => {
+                   if (data) {
+                     // this.insertJob.JobId = data;
+                     if (exit === 0) {
+                       this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+                       this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+                       this.appService.resetJob();
+                     } else {
+                     if (this.complete > 0) {
+                       this.steps.step3toggleClass(this.complete);
+                     } else {
+                       this.steps.step3toggleClass(2);
+                     }
+             
+                     //this.router.navigate(['/app-createajob/app-steps-step4']);
+                   }
+                   }
+                 });
+                 if (index === array.length -1) 
+                 
+                 resolve();
+                });
+                 });
+           
+                 res.then(() => {
+                     this.router.navigate(['/app-createajob/app-steps-step3']);    
+                 });
+               }
+                if(this.JobIds.length==0 || this.JobIds == undefined)
+               {
+                 this.appService.postjob(this.insertJob).subscribe(data => {
+                   if (data) {
+                     // this.insertJob.JobId = data;
+                     if (exit === 0) {
+                       this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+                       this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+                       this.appService.resetJob();
+                     } else {
+                     if (this.complete > 0) {
+                       this.steps.step3toggleClass(this.complete);
+                     } else {
+                       this.steps.step3toggleClass(2);
+                     }
+                     this.router.navigate(['/app-createajob/app-steps-step3']);
+                   }
+                 }
+                 });
+               }
+              
+          
+           } else {
+             this.toastr.error('Please Add/Select Skills!', 'Oops!');
+             setTimeout(() => {
+                 this.toastr.dismissToast;
+             }, 3000);
+             window.scrollTo(300, 300);
+             return false;
+           }
+            }
+          });
     }
-    this.insertJob.HideSalary = this.appService.HideSalary;
-    this.insertJob.BonusOffered = this.appService.BonusOffered;
-    this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
-    this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
-    this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;
-    this.insertJob.MaxExperienceId = Math.round(this.jobMaxExp);  // this.appService.maxExperience.value;
-    this.insertJob.XmlRoleId =  this.appService.addedresponsibilities; // this.jobResponsibility ;
-    this.insertJob.CompleteDescription = this.jobHasDescription; // this.appService.hasDescription.value;
-    this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
-    this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
-    this.insertJob.ClientId = this.client.ClientId;
-    this.insertJob.SaveAsTemplate = 0;
-    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
-    // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
-    // this.insertJob.ClientName = localStorage.getItem('clientName');
-    this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
+    else
+    {
+      if (
+        // this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
+       this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0) {
+     this.insertJob.CustomerId = this.customerId;
+     this.insertJob.UserId = this.userId;
+     this.insertJob.JobPositionId = this.jobPositionId;
+     if(this.disable == "true")
+     {  
+       this.insertJob.JobId = 0;
+     }
+     else 
+     {
+      const res = localStorage.getItem('jobId');
+      // if (res != null) {
+      this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+     }
+     this.insertJob.HideSalary = this.appService.HideSalary;
+     this.insertJob.BonusOffered = this.appService.BonusOffered;
+     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
+     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
+     this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;
+     this.insertJob.MaxExperienceId = Math.round(this.jobMaxExp);  // this.appService.maxExperience.value;
+     this.insertJob.XmlRoleId =  this.appService.addedresponsibilities; // this.jobResponsibility ;
+     this.insertJob.CompleteDescription = this.jobHasDescription; // this.appService.hasDescription.value;
+     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
+     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+     this.insertJob.ClientId = this.client.ClientId;
+     this.insertJob.XmlKeyResponses = this.qualification.addkeyList;
    
-    // this.insertJob.DepartmentId = this.appService.addeddepartments;
-
-
-    //  this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
-
-    // step2
-    // moved to step2
-    // this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
-    // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
-    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
-    this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
-    //debugger
-    // end moved to step2
-    this.insertJob.XmlQualifications = this.qualification.addqualificationList;
-    if(this.domain != undefined)
-    {
-      this.insertJob.XmlDomains = this.domain.addDomainList;
-    }
-     
-    this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
-     if(this.immi.selectedItems.length>0)
-    {
-      this.immi.AddStatus();
-    }  
-    // this.insertJob.IsDrafted = true;
-    // this.insertJob.StepNumber = 2;
-    // this.insertJob.EmploymentTypeId = 1;
-    //  this.insertJob.SalaryTypeId = 1;
-    // this.insertJob.MinimumSalary = this.salaryMinRate.toString();
-    // this.insertJob.MaximumSalary = this.salaryMaxRate.toString();
-
-    if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
-      this.appService.currentEmploymentType.subscribe((data) => {
-        this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
-      });
-      this.appService.currentSalaryTYpe.subscribe((data) => {
-        this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
-      });
-      if (this.insertJob.EmploymentTypeId === 2) {
-        this.appService.currentContractExtension.subscribe((data) => {
-          this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString(); // And he have data here too!
-        });
-        this.appService.currentContractDuration.subscribe((data) => {
-          this.insertJob.ContractDuration = data; // And he have data here too!
-        });
-      }
-    // this.insertJob.EmploymentTypeId = 1;
-    // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
-    if (this.insertJob.SalaryTypeId === 2) {
-      this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
-      this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    } else if (this.insertJob.SalaryTypeId === 1) {
-      this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
-      this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-      // this.insertJob.ContractExtended = true;
-    }
-    // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
-    // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
-    this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
-    // this.insertJob.StepNumber = 4;
-    } else {
-    this.insertJob.EmploymentTypeId = 1;
-    this.insertJob.SalaryTypeId = 1;
-    this.insertJob.MinimumSalary = '1';
-    this.insertJob.MaximumSalary = '200';
-    this.insertJob.IsDrafted = true;
-  }
-    this.insertJob.StepNumber = step;
-    if (this.appService.stepNumber.value <= step) {
-      this.appService.updateStepNumber(step);
-      }
-    if (this.appService.isDrafted.value != null) {
-      this.appService.updateJobDraft(this.insertJob.IsDrafted);
-      }
-      if(this.JobIds&&this.JobIds.length>0)
-      {
-        var res = new Promise<void>((resolve, reject) => {
-          this.JobIds.forEach((value, index, array) => {
-      //  let requests =  this.JobIds.map((item) => {
-            this.insertJob.JobId = value;
-            this.appService.postjob(this.insertJob).subscribe(data => {
-          if (data) {
-            // this.insertJob.JobId = data;
-            if (exit === 0) {
-              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-              this.appService.resetJob();
-            } else {
-            if (this.complete > 0) {
-              this.steps.step3toggleClass(this.complete);
-            } else {
-              this.steps.step3toggleClass(2);
-            }
-    
-            //this.router.navigate(['/app-createajob/app-steps-step4']);
-          }
-          }
-        });
-        if (index === array.length -1) 
-        
-        resolve();
-       });
-        });
-  
-        res.then(() => {
-            this.router.navigate(['/app-createajob/app-steps-step3']);    
-        });
-      }
-       if(this.JobIds.length==0 || this.JobIds == undefined)
-      {
-        this.appService.postjob(this.insertJob).subscribe(data => {
-          if (data) {
-            // this.insertJob.JobId = data;
-            if (exit === 0) {
-              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-              this.appService.resetJob();
-            } else {
-            if (this.complete > 0) {
-              this.steps.step3toggleClass(this.complete);
-            } else {
-              this.steps.step3toggleClass(2);
-            }
-            this.router.navigate(['/app-createajob/app-steps-step3']);
-          }
-        }
-        });
-      }
-     
  
-  } else {
-    this.toastr.error('Please Add/Select Skills!', 'Oops!');
-    setTimeout(() => {
-        this.toastr.dismissToast;
-    }, 3000);
-    window.scrollTo(300, 300);
-    return false;
-  }
+     this.insertJob.SaveAsTemplate = 0;
+     this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
+     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
+     // this.insertJob.ClientName = localStorage.getItem('clientName');
+     this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
+    
+     // this.insertJob.DepartmentId = this.appService.addeddepartments;
+ 
+ 
+     //  this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
+ 
+     // step2
+     // moved to step2
+     // this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
+     // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
+     this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
+     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+     //debugger
+     // end moved to step2
+     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
+     
+     if(this.domain != undefined)
+     {
+       this.insertJob.XmlDomains = this.domain.addDomainList;
+     }
+      
+     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
+      if(this.immi.selectedItems.length>0)
+     {
+       this.immi.AddStatus();
+     }  
+     // this.insertJob.IsDrafted = true;
+     // this.insertJob.StepNumber = 2;
+     // this.insertJob.EmploymentTypeId = 1;
+     //  this.insertJob.SalaryTypeId = 1;
+     // this.insertJob.MinimumSalary = this.salaryMinRate.toString();
+     // this.insertJob.MaximumSalary = this.salaryMaxRate.toString();
+ 
+     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+       this.appService.currentEmploymentType.subscribe((data) => {
+         this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
+       });
+       this.appService.currentSalaryTYpe.subscribe((data) => {
+         this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
+       });
+       if (this.insertJob.EmploymentTypeId === 2) {
+         this.appService.currentContractExtension.subscribe((data) => {
+           this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString(); // And he have data here too!
+         });
+         this.appService.currentContractDuration.subscribe((data) => {
+           this.insertJob.ContractDuration = data; // And he have data here too!
+         });
+       }
+     // this.insertJob.EmploymentTypeId = 1;
+     // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+     if (this.insertJob.SalaryTypeId === 2) {
+       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+     } else if (this.insertJob.SalaryTypeId === 1) {
+       this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+       this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+       // this.insertJob.ContractExtended = true;
+     }
+     // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
+     // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+     this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+     // this.insertJob.StepNumber = 4;
+     } else {
+     this.insertJob.EmploymentTypeId = 1;
+     this.insertJob.SalaryTypeId = 1;
+     this.insertJob.MinimumSalary = '1';
+     this.insertJob.MaximumSalary = '200';
+     this.insertJob.IsDrafted = true;
+   }
+     this.insertJob.StepNumber = step;
+     if (this.appService.stepNumber.value <= step) {
+       this.appService.updateStepNumber(step);
+       }
+     if (this.appService.isDrafted.value != null) {
+       this.appService.updateJobDraft(this.insertJob.IsDrafted);
+       }
+       if(this.JobIds&&this.JobIds.length>0)
+       {
+         var res = new Promise<void>((resolve, reject) => {
+           this.JobIds.forEach((value, index, array) => {
+       //  let requests =  this.JobIds.map((item) => {
+             this.insertJob.JobId = value;
+             this.appService.postjob(this.insertJob).subscribe(data => {
+           if (data) {
+             // this.insertJob.JobId = data;
+             if (exit === 0) {
+               this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+               this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+               this.appService.resetJob();
+             } else {
+             if (this.complete > 0) {
+               this.steps.step3toggleClass(this.complete);
+             } else {
+               this.steps.step3toggleClass(2);
+             }
+     
+             //this.router.navigate(['/app-createajob/app-steps-step4']);
+           }
+           }
+         });
+         if (index === array.length -1) 
+         
+         resolve();
+        });
+         });
+   
+         res.then(() => {
+             this.router.navigate(['/app-createajob/app-steps-step3']);    
+         });
+       }
+        if(this.JobIds.length==0 || this.JobIds == undefined)
+       {
+         debugger
+         this.appService.postjob(this.insertJob).subscribe(data => {
+           if (data) {
+             // this.insertJob.JobId = data;
+             if (exit === 0) {
+               this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+               this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+               this.appService.resetJob();
+             } else {
+             if (this.complete > 0) {
+               this.steps.step3toggleClass(this.complete);
+             } else {
+               this.steps.step3toggleClass(2);
+             }
+             this.router.navigate(['/app-createajob/app-steps-step3']);
+           }
+         }
+         });
+       }
+      
+  
+   } else {
+     this.toastr.error('Please Add/Select Skills!', 'Oops!');
+     setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
+     window.scrollTo(300, 300);
+     return false;
+   }
+    }
+
+   
   }
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));

@@ -1,7 +1,14 @@
 <div class="form-rows row form-main-rows single-form-rows">
   <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
-      <label class="question">Select the Verification required for Candidate</label>
+      <label class="question">Select the Verification required for Candidate
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">Select the specific Verification required for Candidate. </span>
+          </span>
+        </a>
+      </label>
       <div class="smart-job-card xs-padding">
         <div class="jdv-button-grid-icon"> 
           <ul>
@@ -56,7 +63,9 @@
     </div>
   </div>
   <div class="col-sm-6 form-cols single-form-cols">
-    <label for="" class="question">Do you want to intiate the Verification, if Candidate is not verified</label>
+    <label for="" class="question">Do you want to intiate the Verification, if Candidate is not verified
+     
+    </label>
     <div class="options">
       <div class="checkbox">
         <label><input type="radio" name="verificationStatus" [(ngModel)]="statusVal"  [value]="true" [checked]="statusVal==true"  (change)="setValue(statusVal)"><span class="box">
@@ -82,8 +91,15 @@
     </div>
   </div>
   <div class="col-sm-12 form-cols single-form-cols step3-single-question">
-      <label for="" class="question no-margin">what are the interview rounds for this job? .</label>
-      
+      <label for="" class="question no-margin">what are the interview rounds for this job? .
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">How many interview rounds need to initiated and who will be an Interviewer.</span>
+          </span>
+        </a>
+      </label>
+    
   </div>
   <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
