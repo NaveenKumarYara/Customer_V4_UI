@@ -27334,3 +27334,7 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
         height: auto;
     }
 }
+
+.page main.vendor-main-details-container {
+  background: #fff;
+}

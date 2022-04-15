@@ -61,6 +61,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { CmModule } from './components/candidatemanager/cm.module';
+import { VmModule } from './components/vendor-manager/vm.module';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { RecaptchaModule } from 'angular5-google-recaptcha';
 // import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
@@ -74,6 +76,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { CandidatedetailviewComponent } from './components/CandidateProfile-details/candidatedetailview/candidatedetailview.component';
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
 import { SpinnerInterceptor } from './shared/interceptors/spinner-interceptor';
+import { VendorManagerComponent } from './components/vendor-manager/vendor-manager.component';;
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -102,6 +105,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     GetCandidateprofileComponent,
     CandidatedetailviewComponent,
     SafeHtmlNewPipe,
+    VendorManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -153,6 +157,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     CKEditorModule,
     NgxImgModule.forRoot(),
     CmModule,
+    VmModule,
     routing
   ],
   providers: [
