@@ -123,11 +123,20 @@ import { sendnotificationdialogComponent } from "./components/jobdetails/view-jo
 import { CandidatemanagerComponent } from "./components/candidatemanager/candidatemanager.component";
 import { DetailsComponent } from "./components/candidatemanager/details/details.component";
 import { CmModule } from "../app/components/candidatemanager/cm.module";
+import { VendorManagerComponent } from './components/vendor-manager/vendor-manager.component';
+import { VmModule } from "./components/vendor-manager/vm.module";
+import { VendorDetailComponent } from "./components/vendor-manager/vendor-detail/vendor-detail.component";
 import { CandidatedetailviewComponent } from "./components/CandidateProfile-details/candidatedetailview/candidatedetailview.component";
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
+  {
+    path: "vendor-manager",
+    component: VendorManagerComponent,
+    loadChildren: "./components/vendor-manager/vm.module#VmModule",
+    // loadChildren: () => import("./components/dashboard/dashboard.module").then((m) => m.DashboardModule),
+  },
   { path: "home", component: HomeComponent },
   { path: "signup", component: SignUpComponent },
   { path: "login", component: dLoginComponent },
@@ -218,7 +227,7 @@ const appRoutes: Routes = [
     // ],
   },
   {
-    path: "search",
+    path: "CandidatemanagerComponent",
     loadChildren: "./components/candidatemanager/cm.module#CmModule",
     // loadChildren: () => import("../app/components/candidatemanager/cm.module").then((m) => CmModule),
     // component: CandidatemanagerComponent,
@@ -303,6 +312,7 @@ const appRoutes: Routes = [
   },
   { path: "", redirectTo: "/home", pathMatch: "full", canActivate: [AuthGuard] },
   { path: "**", component: HomeComponent },
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: false });
