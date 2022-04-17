@@ -505,7 +505,7 @@
 }
 
 .revamp__vendor__details__info {
-  margin: 30px 0 0;
+  margin: 0;
   padding: 0 0 30px;
 }
 
@@ -764,8 +764,8 @@
 }
 
 .profile__info__box__bottom .bottom__listing {
-  padding-left: 135px;
-  margin: -20px 0 0px;
+  padding-left: 160px;
+  margin: -48px 0 0px;
 }
 
 .profile__info__box__bottom .bottom__content.show {
@@ -773,7 +773,7 @@
 }
 
 .revmap__profile__top .top__listing ul {
-  margin-left: auto;
+  margin: 10px 0 0 24px;
 }
 
 .revmap__profile__top .top__listing ul ul li {
@@ -893,7 +893,7 @@
 
 .profile__info__box__bottom .bottom__listing li:first-child {
   margin: 0;
-  padding: 0 10px 0 22px;
+  padding: 0 10px 0 26px;
 }
 
 .profile__info__box__bottom .bottom__listing li.mail {
@@ -1004,3 +1004,8 @@
   background: #6b9be8
 }
 
+
+
+.revamp__vendor__details__info .container { 
+  padding-top:  0;
+}
