@@ -227,7 +227,7 @@ const appRoutes: Routes = [
     // ],
   },
   {
-    path: "CandidatemanagerComponent",
+    path: "search",
     loadChildren: "./components/candidatemanager/cm.module#CmModule",
     // loadChildren: () => import("../app/components/candidatemanager/cm.module").then((m) => CmModule),
     // component: CandidatemanagerComponent,
