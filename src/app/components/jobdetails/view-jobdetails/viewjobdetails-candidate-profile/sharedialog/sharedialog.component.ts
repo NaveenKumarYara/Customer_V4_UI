@@ -59,6 +59,7 @@ export class SharedialogComponent {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
+    this.teamchange(false,0);
   }
 
   ngOnInit() {
@@ -66,8 +67,7 @@ export class SharedialogComponent {
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
-    this.AddUser = false;
-    this.info = 0;
+    this.teamchange(false,0);
     this.shareUrl=this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
     //this.GetInterView();
     //this.GetType();
@@ -278,9 +278,11 @@ export class SharedialogComponent {
 
   
   ShareProfile() {
+    debugger
     this.isSharingStarted = true;
     this.profileSharing.FromUser = this.customer.FirstName +' ' + this.customer.LastName;
-    if (this.info = 0) {
+    debugger
+    if (this.info == 0) {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
@@ -289,7 +291,7 @@ export class SharedialogComponent {
       this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
       this.profileSharing.Comments = this.selectedComments;
     }
-    if (this.info = 1) {
+    if (this.info == 1) {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = "0";
@@ -311,7 +313,7 @@ export class SharedialogComponent {
       }, 3000);
     }
     if (this.profileSharing.ToEmailId != "" && this.profileSharing.Comments != "") {
-      if(this.info = 1 )
+      if(this.info == 1 )
       {
         this.arr =this.inviteform.value.inviteEmail.split(',');
         this.arr.forEach(element => {
@@ -343,6 +345,7 @@ export class SharedialogComponent {
       }
       else
       {
+        debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
