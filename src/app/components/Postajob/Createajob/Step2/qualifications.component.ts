@@ -238,9 +238,7 @@ educationExists(education, list) {​
 
 GetKeyRespones(Id)
 {
-  debugger
   this.appService.GetJobKeyResponses(Id).subscribe(res3 => {
-    debugger
     this.KeyResponses = res3; 
 });
 }
@@ -351,7 +349,6 @@ public addkeyRole() {
     {
       if(this.getDomain.CustomerKeyResponsebility > 0 && this.getDomain.CustomerKeyMinExperienceId != 0)
       {
-      debugger
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();

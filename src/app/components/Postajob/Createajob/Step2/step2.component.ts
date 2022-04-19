@@ -528,7 +528,6 @@ isDrafted: boolean;
        }
         if(this.JobIds.length==0 || this.JobIds == undefined)
        {
-         debugger
          this.appService.postjob(this.insertJob).subscribe(data => {
            if (data) {
              // this.insertJob.JobId = data;
