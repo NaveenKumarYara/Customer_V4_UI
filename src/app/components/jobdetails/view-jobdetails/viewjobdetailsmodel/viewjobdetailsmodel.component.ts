@@ -17,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
 const html2canvas: any = _html2canvas;
+var htmlToImage = require('html-to-image');
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -192,14 +193,14 @@ changeJobStat(job, val) {
 check(val)
   {
     this.profileImage = ! this.profileImage;
-    let secondsRemaining = 2
+    let secondsRemaining = 1
     const interval = setInterval(() => {
     if (secondsRemaining === 0) {
      this.clickme(val);
      clearInterval(interval);
      }
      secondsRemaining--;
-    }, 2000);
+    }, 1000);
   }
 
    dataURLtoFile(dataurl, filename) {
@@ -217,14 +218,16 @@ check(val)
     return new File([u8arr], filename, {type:mime});
 }
 
-//Usage example:
 
 
 
 
   clickme(val) {
+    this.profileImage = true;
     let request = '';
     const formData = new FormData();
+  //   htmlToImage.toJpeg(document.getElementById('aaa' + val), { quality: 0.95 })
+  // .then(function (canvas) {
     html2canvas(document.getElementById('aaa' + val),{
       useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
       logging: true }).then(canvas => {
@@ -243,7 +246,7 @@ check(val)
         this._service.byteStorage(this.filedata, 'IdentityAPI/api/SaveJobCard').subscribe(data => {
           let res = data;
           console.log(res);
-          this.profileImage = this.profileImage;
+          this.profileImage = false;
      });  
 
 

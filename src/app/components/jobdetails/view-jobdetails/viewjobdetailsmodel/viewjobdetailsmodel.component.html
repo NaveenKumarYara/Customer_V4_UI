@@ -658,7 +658,7 @@
                                 class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
                               | date:'mediumDate'}}</li> -->
                             <li>
-                              <button class="btn btn-link" (click)="OpenShareJobDialog()">
+                              <button class="btn btn-link" (click)="OpenShareJobDialog()" *ngIf="!profileImage">
                                 <span class="jdv-smart-icon jdv-share-icon" title="Share">Icon</span>
                                 Share
                               </button>
