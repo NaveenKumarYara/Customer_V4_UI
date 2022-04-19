@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../../../../../shared/services';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -54,13 +55,14 @@ export class SharedialogComponent {
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
   arr: any=[];
-  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService,private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
   }
 
   ngOnInit() {
+    this.GetProfileCard();
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
@@ -83,6 +85,15 @@ export class SharedialogComponent {
         }
       );
   }
+
+ GetProfileCard()
+ {
+  
+  return this._service.GetService('IdentityAPI/api/GetSmartCard?jobId='+  this.data.jobId + '&profileId=',this.data.ProfileId)
+  .subscribe(res => {
+         this.profileSharing.Image = res;
+  });
+ }
 
   copyToClipboard() {
     // var copyText = <HTMLInputElement>document.querySelector('.rjobLink');
@@ -268,7 +279,7 @@ export class SharedialogComponent {
   
   ShareProfile() {
     this.isSharingStarted = true;
-
+    this.profileSharing.FromUser = this.customer.FirstName +' ' + this.customer.LastName;
     if (this.info = 0) {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
@@ -305,6 +316,7 @@ export class SharedialogComponent {
         this.arr =this.inviteform.value.inviteEmail.split(',');
         this.arr.forEach(element => {
           this.profileSharing.ToEmailId = element;
+          debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
@@ -372,6 +384,8 @@ export class ProfileShare {
   AppLink: string;
   ToEmailId: string;
   FromEmailId: string;
+  FromUser:string;
+  Image:string;
   ApplicationName: string;
   readonly modules: ReadonlyArray<{}> = []
 }

@@ -36,6 +36,8 @@ import { CustomerSubscription } from '../../../../../models/CustomerSubscription
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 import swal from "sweetalert2";
 import * as _html2canvas from "html2canvas";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { title } from "process";
 const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -64,6 +66,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
+  checkSmart:any;
   notes = new EditNotes();
   notify = new Notification();
   subdetails: CustomerSubscription;
@@ -102,6 +105,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   schIntw = new ScheduleInterview();
   wsList = new WishList();
   TotalCount: any;
+  fileUploadForm: FormGroup;
+  filedata=new FormData();
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
@@ -206,6 +211,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     private appService: AppService,
     private spinner: NgxSpinnerService,
     private router: Router,
+    private fb: FormBuilder,
     private jobdetailsservice: JobdetailsService,
     private alertService: AlertService,
     private settingsService: SettingsService,
@@ -221,6 +227,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.GetCustomerSubscription();
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem("jobId"));
+    this.fileUploadForm = this.fb.group({ 
+      'CustomerId': ['', Validators.required],
+      'ProfileId': [0, Validators.nullValidator],
+      'JobId': [0, Validators.nullValidator],
+      'SmartCard':[null, Validators.nullValidator],
+      'JobSmartCard': ['', Validators.nullValidator],
+      'Url': ['', Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],
+    });
   }
 
   toggle() {
@@ -293,23 +308,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenShareDialog(title, jobResponseId, profileId) {
-    if (this.jobStatus !== "InActive") {
-      const shareddialogRef = this.dialog.open(SharedialogComponent, {
-        // width: '1000px',
-        position: { right: "0px" },
-        // height : '750px',
-        data: {
-          animal: "panda",
-          Title: title,
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-        },
-      });
-      shareddialogRef.afterClosed().subscribe((result) => {
-        console.log("share Dialog result: ${result}");
-      });
-    }
+    this.GetProfileCard(profileId,title,jobResponseId);
+   
+   
+  
   }
 
   prevSkills(data, index) {
@@ -882,6 +884,43 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   //     });
   //     return this.matchingParameterDetails;
   //   }
+
+  GetProfileCard(profileId,title,jobResponseId)
+ {
+  
+  return this._service.GetService('IdentityAPI/api/GetSmartCard?jobId='+  this.jobid + '&profileId=',profileId)
+  .subscribe(res => {
+         this.checkSmart = res;
+         if (this.jobStatus !== "InActive") {
+          if(res != "No data")
+          {
+            this.spinner.show();
+            this.check(profileId,title,jobResponseId);
+          }
+          else
+          {
+            
+              const shareddialogRef = this.dialog.open(SharedialogComponent, {
+                // width: '1000px',
+                position: { right: "0px" },
+                // height : '750px',
+                data: {
+                  animal: "panda",
+                  Title: title,
+                  jobResponseId: jobResponseId,
+                  jobId: this.jobid,
+                  ProfileId: profileId,
+                },
+              });
+              shareddialogRef.afterClosed().subscribe((result) => {
+                console.log("share Dialog result: ${result}");
+              });
+          }
+        }
+  });
+ }
+
+
   GetJobFeedback(profileId, jobId) {
     this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
       this.CandidateFeedback = datr6;
@@ -1161,38 +1200,82 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  check(val)
+  check(val,title,Jd)
   {
-    this.profileImage = ! this.profileImage;
-    let secondsRemaining = 2
+    this.profileImage = true;
+    let secondsRemaining = 1
     const interval = setInterval(() => {
     if (secondsRemaining === 0) {
-     this.clickme(val);
+     this.clickme(val,title,Jd);
      clearInterval(interval);
      }
      secondsRemaining--;
-    }, 2000);
+    }, 1000);
   }
 
 
-  clickme(val) {
-    
+  clickme(val,title,Jd) {
+    let request = '';
+    const formData = new FormData();
     html2canvas(document.getElementById('aa' + val),{
       useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
       logging: true }).then(canvas => {
-      document.querySelector(".result").appendChild(canvas);
-        var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-        var link = document.createElement('a');
-        link.download = val+".png";
-        link.href = image;
-        link.click();
-        document.querySelector(".result").removeChild;
+      // document.querySelector(".result").appendChild(canvas);
+        var image = canvas.toDataURL();
+        var file = this.dataURLtoFile(image,val+'.png');
+        this.fileUploadForm.value.Url = '';
+        this.fileUploadForm.value.customerId = this.customerId;
+        this.fileUploadForm.value.JobId = this.jobid;
+        this.fileUploadForm.value.ProfileId = val;
+        this.fileUploadForm.value.JobSmartCard = file.name;
+        this.fileUploadForm.value.FileExtension = '.png';
+        request = JSON.stringify(this.fileUploadForm.value);
+        formData.append('SmartCard', file);
+        formData.append('Model', request);
+        this.filedata= formData;
+        this._service.byteStorage(this.filedata, 'IdentityAPI/api/SaveSmartCard').subscribe(data => {
+          let res = data;
+          this.spinner.hide();
+          console.log(res);
+          this.profileImage = false;
+          if (this.jobStatus !== "InActive") {
+            const shareddialogRef = this.dialog.open(SharedialogComponent, {
+              // width: '1000px',
+              position: { right: "0px" },
+              // height : '750px',
+              data: {
+                animal: "panda",
+                Title: title,
+                jobResponseId: Jd,
+                jobId: this.jobid,
+                ProfileId: val,
+              },
+            });
+            shareddialogRef.afterClosed().subscribe((result) => {
+              console.log("share Dialog result: ${result}");
+            });
+          }
+     });  
 
-
+      
     });
   }
 
 
+  dataURLtoFile(dataurl, filename) {
+ 
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), 
+        n = bstr.length, 
+        u8arr = new Uint8Array(n);
+        
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, {type:mime});
+}
 
 
 
