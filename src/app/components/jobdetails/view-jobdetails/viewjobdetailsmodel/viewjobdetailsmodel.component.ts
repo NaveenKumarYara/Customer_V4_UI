@@ -73,7 +73,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
    OpenShareJobDialog() {
     //this.check(this.jobid);
    
-  
+   this.dialog.closeAll();
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
          // width: '1000px',
