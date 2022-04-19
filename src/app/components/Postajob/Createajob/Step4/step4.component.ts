@@ -11,7 +11,9 @@ import { GetJobDetailCustomer } from "../../../../../models/GetJobDetailCustomer
 import { JobdetailsService } from "../../../jobdetails/jobdetails.service";
 import { JobCompletenessInfo } from "../../../jobdetails/models/jobdetailsbasicinfo";
 import { ApiService } from "../../../../shared/services";
-
+import { FormBuilder,FormGroup, Validators } from "@angular/forms";
+import * as _html2canvas from "html2canvas";
+const html2canvas: any = _html2canvas;
 @Component({
   selector: "app-steps-step4",
   templateUrl: "./step4.component.html",
@@ -26,7 +28,7 @@ export class Step4Component implements OnInit {
   loading = false;
   Education:any;
   srlist:any=[];
-
+  fileUploadForm: FormGroup;
   Employement:any;
   Reference:any;
   WFH:any;
@@ -58,6 +60,7 @@ export class Step4Component implements OnInit {
   draftItem: any;
   JobIds = [];
   // step3
+  profileImage:boolean=false;
   contractDuration: any;
   contractExtension: any;
   empType: any;
@@ -66,6 +69,7 @@ export class Step4Component implements OnInit {
   intwType: any;
   reporting: any;
   customer: any;
+  filedata=new FormData();
   disable: any;
   userId: any;
   customerId: any;
@@ -80,6 +84,7 @@ export class Step4Component implements OnInit {
     private router: Router,
     private jobdetailsservice: JobdetailsService,
     private appService: AppService,
+    private fb: FormBuilder,
     private location: Location,
     private steps: StepsComponent,
     public matDialog: MatDialog
@@ -144,7 +149,15 @@ export class Step4Component implements OnInit {
     this.appService.addqualificationsChanged.subscribe((data) => {
       this.qualification = data; // And he have data here too!
     });
-
+    this.fileUploadForm = this.fb.group({ 
+      'CustomerId': ['', Validators.required],
+      'ProfileId': [0, Validators.nullValidator],
+      'JobId': [0, Validators.nullValidator],
+      'SmartCard':[null, Validators.nullValidator],
+      'JobSmartCard': ['', Validators.nullValidator],
+      'Url': ['', Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],
+    });
     // step3:
 
     this.appService.currentEmploymentType.subscribe((data) => {
@@ -250,6 +263,7 @@ export class Step4Component implements OnInit {
   {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
+      this.check(jobId);
       this.PopulateJobCompleteness(jobId);
     });
   }
@@ -260,6 +274,71 @@ export class Step4Component implements OnInit {
     });
   
   }
+
+  
+check(val)
+{
+  this.profileImage = ! this.profileImage;
+  let secondsRemaining = 1
+  const interval = setInterval(() => {
+  if (secondsRemaining === 0) {
+   this.clickme(val);
+   clearInterval(interval);
+   }
+   secondsRemaining--;
+  }, 1000);
+}
+
+ dataURLtoFile(dataurl, filename) {
+
+  var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), 
+      n = bstr.length, 
+      u8arr = new Uint8Array(n);
+      
+  while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+  }
+  
+  return new File([u8arr], filename, {type:mime});
+}
+
+
+
+
+
+clickme(val) {
+  this.profileImage = true;
+  let request = '';
+  const formData = new FormData();
+//   htmlToImage.toJpeg(document.getElementById('aaa' + val), { quality: 0.95 })
+// .then(function (canvas) {
+  html2canvas(document.getElementById('aap' + val),{
+    useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
+    logging: true }).then(canvas => {
+    // document.querySelector(".results").appendChild(canvas);
+      var image = canvas.toDataURL();
+      var file = this.dataURLtoFile(image,val+'.png');
+      this.fileUploadForm.value.Url = '';
+      this.fileUploadForm.value.customerId = this.customerId;
+      this.fileUploadForm.value.JobId = val;
+      this.fileUploadForm.value.JobSmartCard = file.name;
+      this.fileUploadForm.value.FileExtension = '.png';
+      request = JSON.stringify(this.fileUploadForm.value);
+      formData.append('SmartCard', file);
+      formData.append('Model', request);
+      this.filedata= formData;
+      this._service.byteStorage(this.filedata, 'IdentityAPI/api/SaveJobCard').subscribe(data => {
+        let res = data;
+        console.log(res);
+        this.profileImage = false;
+   });  
+
+
+  });
+}
+
 
   postJob(step) {
     // this.appService.updateJobIndustry(" ");

@@ -171,11 +171,11 @@
         <div class="tab-content">
 
           <div id="job-card"   class="tab-pane fade in active">
-            <!-- <button (click)="check(jobdetailscustomer?.JobInfo?.JobId)"><i class="fa fa-camera" aria-hidden="true"></i></button> -->
+           <!-- <button (click)="check(jobdetailscustomer?.JobInfo?.JobId)"><i class="fa fa-camera" aria-hidden="true"></i></button>  -->
             <div class="jdv-listing lg__paading smart-job-card">
               <div class="row no__margin">
                 <div class="col-sm-6 col-md-6">
-                  <div class="job-leftcard" id="aa{{jobdetailscustomer?.JobInfo?.JobId}}">
+                  <div class="job-leftcard" id="aaa{{jobdetailscustomer?.JobInfo?.JobId}}">
                     <div class="col-container">
                       <!--Old Code-->
                       <div class="top-container hidden">
@@ -658,7 +658,7 @@
                                 class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
                               | date:'mediumDate'}}</li> -->
                             <li>
-                              <button class="btn btn-link" (click)="OpenShareJobDialog()">
+                              <button class="btn btn-link" (click)="OpenShareJobDialog()" *ngIf="!profileImage">
                                 <span class="jdv-smart-icon jdv-share-icon" title="Share">Icon</span>
                                 Share
                               </button>
@@ -677,8 +677,8 @@
                     </div>
                     <!--/.col-container-->
                   </div>
-                  <div class="result">
-                  </div>
+                  <!-- <div class="results">
+                  </div> -->
                   <!--/.job-leftcard-->
                 </div>
                 <div class="col-sm-6 col-md-6">

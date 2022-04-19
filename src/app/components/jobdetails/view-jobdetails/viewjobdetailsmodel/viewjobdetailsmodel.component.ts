@@ -7,14 +7,17 @@ import { JobComments } from '../../models/JobComments';
 import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import {ShareJobComponent} from '../share-job/sharejob.component';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
 const html2canvas: any = _html2canvas;
+var htmlToImage = require('html-to-image');
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -31,6 +34,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   complete: any;
   customerId: any;
   userId: any;
+  fileUploadForm: FormGroup;
  jobid: number;
  Education:any;
  srlist:any=[];
@@ -40,6 +44,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  WFH:any;
  Background:any;
  customer: any;
+ filedata=new FormData();
  viewJobDetails:any;
  deactivate = new deactivate();
  getjobCompleteinfo :JobCompletenessInfo;
@@ -47,17 +52,28 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
   profileImage:boolean=false;
-  constructor(private dialog: MatDialog ,private toastr: ToastsManager,
+  constructor(private dialog: MatDialog ,private toastr: ToastsManager,private fb: FormBuilder,private _sanitizer: DomSanitizer,
         private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,
      private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.jobid = this.data.JobId;
+      this.fileUploadForm = this.fb.group({ 
+        'CustomerId': ['', Validators.required],
+        'ProfileId': [0, Validators.nullValidator],
+        'JobId': [0, Validators.nullValidator],
+        'SmartCard':[null, Validators.nullValidator],
+        'JobSmartCard': ['', Validators.nullValidator],
+        'Url': ['', Validators.nullValidator],
+        'FileExtension': ['', Validators.nullValidator],
+      });
    }
 
 
    OpenShareJobDialog() {
-    this.dialog.closeAll(); 
+    //this.check(this.jobid);
+   
+   this.dialog.closeAll();
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
          // width: '1000px',
@@ -82,6 +98,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       this.jobdetailscustomer = res;
       this.GetInterviewStatus(this.jobid);
       this.GetJobStatus(this.jobid);
+      this.check(this.jobid);
       let params = new HttpParams();
       params = params.append('jobId', this.jobid.toString());
       params = params.append('userId', '3');
@@ -176,29 +193,61 @@ changeJobStat(job, val) {
 check(val)
   {
     this.profileImage = ! this.profileImage;
-    let secondsRemaining = 2
+    let secondsRemaining = 1
     const interval = setInterval(() => {
     if (secondsRemaining === 0) {
      this.clickme(val);
      clearInterval(interval);
      }
      secondsRemaining--;
-    }, 2000);
+    }, 1000);
   }
+
+   dataURLtoFile(dataurl, filename) {
+ 
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), 
+        n = bstr.length, 
+        u8arr = new Uint8Array(n);
+        
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, {type:mime});
+}
+
+
+
 
 
   clickme(val) {
-    
-    html2canvas(document.getElementById('aa' + val),{
+    this.profileImage = true;
+    let request = '';
+    const formData = new FormData();
+  //   htmlToImage.toJpeg(document.getElementById('aaa' + val), { quality: 0.95 })
+  // .then(function (canvas) {
+    html2canvas(document.getElementById('aaa' + val),{
       useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
       logging: true }).then(canvas => {
-      document.querySelector(".result").appendChild(canvas);
-        var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-        var link = document.createElement('a');
-        link.download = val+".png";
-        link.href = image;
-        link.click();
-       
+      // document.querySelector(".results").appendChild(canvas);
+        var image = canvas.toDataURL();
+        var file = this.dataURLtoFile(image,val+'.png');
+        this.fileUploadForm.value.Url = '';
+        this.fileUploadForm.value.customerId = this.customerId;
+        this.fileUploadForm.value.JobId = val;
+        this.fileUploadForm.value.JobSmartCard = file.name;
+        this.fileUploadForm.value.FileExtension = '.png';
+        request = JSON.stringify(this.fileUploadForm.value);
+        formData.append('SmartCard', file);
+        formData.append('Model', request);
+        this.filedata= formData;
+        this._service.byteStorage(this.filedata, 'IdentityAPI/api/SaveJobCard').subscribe(data => {
+          let res = data;
+          console.log(res);
+          this.profileImage = false;
+     });  
 
 
     });

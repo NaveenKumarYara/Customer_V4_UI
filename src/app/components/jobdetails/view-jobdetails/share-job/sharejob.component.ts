@@ -199,7 +199,7 @@ public share(val) {
     this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
     if(this.inviteinfo.ToEmailId == "")
     {
-      
+      this.isSharingStarted = false;
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -268,18 +268,21 @@ public share(val) {
     this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';JobId=' + this.data.JobId + ';CId=' + this.customerId;
     this.Sharing.Comments = this.selectedComments;
     if (this.Sharing.ToEmailID == "" && this.Sharing.Comments == undefined) {
+      this.isSharingStarted = false;
       this.toastr.error('Please provide the valid details!', 'Oops!');
       setTimeout(() => {
         this.toastr.dismissToast;
       }, 3000);
     }
     else if (this.teammemberslist.length === 0) {
+      this.isSharingStarted = false;
       this.toastr.error('Please Select and Add Team Member!', 'Oops!');
       setTimeout(() => {
         this.toastr.dismissToast;
       }, 3000);
     }
     else if (this.Sharing.Comments == undefined) {
+      this.isSharingStarted = false;
       this.toastr.error('Please provide Comments!', 'Oops!');
       setTimeout(() => {
         this.toastr.dismissToast;
