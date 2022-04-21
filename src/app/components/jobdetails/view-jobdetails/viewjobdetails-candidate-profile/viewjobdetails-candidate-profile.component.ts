@@ -892,7 +892,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   .subscribe(res => {
          this.checkSmart = res;
          if (this.jobStatus !== "InActive") {
-          if(res != "No data")
+          if(res === "No data")
           {
             this.spinner.show();
             this.check(profileId,title,jobResponseId);
@@ -1217,6 +1217,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   clickme(val,title,Jd) {
     let request = '';
     const formData = new FormData();
+    debugger
     html2canvas(document.getElementById('aa' + val),{
       useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
       logging: true }).then(canvas => {
