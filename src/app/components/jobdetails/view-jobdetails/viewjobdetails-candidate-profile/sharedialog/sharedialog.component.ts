@@ -208,9 +208,13 @@ export class SharedialogComponent {
   getcustomerusers() {
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
       this.customercontacts = res;
-      this.customercontacts = this.customercontacts.filter(
-        name => name.FirstName != "Invited" && name.IsRemove === false);
-    });
+      this.customercontacts = res.filter((i) => {
+        if (i.FirstName != "Invited" && i.FirstName != this.customer.FirstName && i.IsRemove!=true) {
+          return (i.FirstName = i.FirstName + " " + i.LastName + " - " + i.RoleName);
+        }
+      })
+    })
+    
   }
 
   private createNavigationUrl() {
