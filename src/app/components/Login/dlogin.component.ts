@@ -9,6 +9,7 @@ import { AlertService } from '../../shared/alerts/alerts.service';
 import { GetCandidateprofileComponent } from '../GetProfileDetails/GetProfile.component';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { SettingsService } from '../../../settings/settings.service';
+import { ApiService } from '../../shared/services';
 declare var $: any;
 @Component({
 
@@ -25,6 +26,8 @@ export class dLoginComponent {
 
   currentURL = '';
   loginform: any;
+  ResendMail: boolean = false;
+  resendEmail = new EmailInputsNewUserReg();
   customerId: any;
   captchahide:boolean=false;
   myRecaptcha = new FormControl(false);
@@ -42,7 +45,7 @@ export class dLoginComponent {
   CId: any;
 
   constructor(private dialog: MatDialog, private toastr: ToastsManager, private _vcr: ViewContainerRef, private route: ActivatedRoute,
-    private fb: FormBuilder, private router: Router, private appService: AppService, private alertService: AlertService, private settingsService: SettingsService) {
+    private fb: FormBuilder, private router: Router,private _service: ApiService, private appService: AppService, private alertService: AlertService, private settingsService: SettingsService) {
     this.route.params.subscribe(params => {
       if (params['Uid'] > 0) {
         this.ActivatetheUser(params['Uid']);
@@ -95,6 +98,27 @@ export class dLoginComponent {
     window.location.href = this.settingsService.settings.Arytic;
   }
 
+  Resend() {
+    this.resendEmail.ClientLogo = ' ';
+    this.resendEmail.ApplicationName = 'Arytic';
+    this._service
+      .PostService(
+        this.resendEmail,
+        "EmailAPI/api/RegisterCustomer"
+      )
+      .subscribe(
+        (ta) => {
+          this.toastr.success("Activation link sent to Email!", "Success!", {
+            position: "bottom-left",
+          });
+          setTimeout(() => {
+            this.toastr.dismissToast;
+          }, 3000);
+          this.resendEmail = new EmailInputsNewUserReg();
+          this.ResendMail = false;
+        })
+  }
+
   login() {
     this.loading = true;
     if (!this.loginform.valid && this.myRecaptcha.value === false) {
@@ -125,6 +149,7 @@ export class dLoginComponent {
         .subscribe(
           data2 => {
             this.result = data2;
+            this.ResendMail = false;
             if (data2 != 5 && data2 != 2) {
 
               this.appService.Login(this.loginform.value)
@@ -134,6 +159,10 @@ export class dLoginComponent {
                     // let Name =
 
                     if (data.IsActive == false) {
+                      this.ResendMail = true;
+                      this.resendEmail.AppLink = this.settingsService.settings.Login + ';Uid=' + data.UserId;
+                      this.resendEmail.ToEmailId = this.loginform.value.Email;
+                      this.resendEmail.FullName = data.FirstName + ' ' + data.LastName;
                       this.loading = false;
                       this.toastr.error('Please activate the link to login!', 'Oops!');
                       setTimeout(() => {
@@ -386,3 +415,10 @@ export class dLoginComponent {
   }
 }
 
+export class EmailInputsNewUserReg {
+  public FullName: string;
+  public ToEmailId: string;
+  public AppLink: string;
+  public ApplicationName: string;
+  public ClientLogo: string;
+}

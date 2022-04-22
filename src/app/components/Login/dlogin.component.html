@@ -57,11 +57,19 @@
                            <recaptcha [formControl]="myRecaptcha"></recaptcha>
                         </div>
                         <br />
+                        <div class="text-left">
+                           <div class="d-flex justify-content-between" *ngIf="ResendMail === true">
+                              <small><span><a href="javascript:void(0)" (click)="Resend()">Resend Activation Email</a>
+                              </span></small>
+                            </div>
+                        </div>
+                     
                         <div class="text-right">
                            <div class="d-flex justify-content-between">
                               <small> <a href="javascript:void(0)" (click)="forgot()">Forgot password</a></small>
                               <small><span><a href="javascript:void(0)" (click)="SignUp()">I don't have an
                                        account?</a></span></small>
+                                     
                            </div>
                            <div class="spt-2">
                               <button *ngIf="!loading" class="btn2 pull-right" (click)="login()">Login</button>
