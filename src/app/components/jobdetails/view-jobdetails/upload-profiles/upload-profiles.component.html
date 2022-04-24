@@ -1,127 +1,130 @@
 <!-- <div class="upload__resume__container" *ngIf="haveProfiles"> -->
-  <div class="upload__resume__container" *ngIf="haveProfiles">
-   <div class="top__container">
+<div class="upload__resume__container" *ngIf="haveProfiles">
+  <div class="top__container">
     <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">×</span>
     </button>
     <span class="profile__count">{{processedProfiles.length}} Profiles</span>
     <h3>Upload Profiles</h3>
     <section id="slider">
-      <span class="slider_prev" *ngIf="currentRecordIndex>=0" (click)="selectPreviousCandidate()"><span class="sr-only">Previous</span></span>
+      <span class="slider_prev" *ngIf="currentRecordIndex>=0" (click)="selectPreviousCandidate()"><span
+          class="sr-only">Previous</span></span>
       <ng-container *ngFor="let c of  processedProfiles;let j = index">
-    
-      <input type="radio" name="slider" id="{{'s'+[j+1]}}" *ngIf="j === currentRecordIndex" checked>
-      <input type="radio" name="slider" id="{{'s'+[j+1]}}" *ngIf="j != currentRecordIndex">
+
+        <input type="radio" name="slider" id="{{'s'+[j+1]}}" *ngIf="j === currentRecordIndex" checked>
+        <input type="radio" name="slider" id="{{'s'+[j+1]}}" *ngIf="j != currentRecordIndex">
       </ng-container>
       <label for="{{'s'+[k+1]}}" id="{{'slide'+[k+1]}}" *ngFor="let cand of  uploadRes;let k = index">
         <div class="info__label" (click)="GetProfileId(cand?.MailId)">
-          <h4 >{{cand?.FirstName | titlecase}} {{cand?.LastName | titlecase}}</h4>
+          <h4>{{cand?.FirstName | titlecase}} {{cand?.LastName | titlecase}}</h4>
           <h5>{{cand?.MailId}}</h5>
-          <h4 >{{cand?.ProfileTitle  | titlecase}}</h4>
-           <!-- <h6 *ngFor="let tel of cand?.ContactInformation?.Telephones">{{tel?.Normalized}};</h6>   -->
-            <!-- <ng-container *ngFor="let t of checks;let f = index">
+          <h4>{{cand?.ProfileTitle | titlecase}}</h4>
+          <!-- <h6 *ngFor="let tel of cand?.ContactInformation?.Telephones">{{tel?.Normalized}};</h6>   -->
+          <!-- <ng-container *ngFor="let t of checks;let f = index">
               <h6 *ngIf="t.split(',')[0] === 'Arytic'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Existing Arytic profile.</h6>      
               <h6 *ngIf="t.split(',')[0] === 'true'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Please review profile associated before saving.</h6>  
             </ng-container> -->
         </div>
         <div class="status__box" *ngIf="uploadRes.length===0">
           <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="70"
-            aria-valuemin="0" aria-valuemax="100" style="width:70%">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+              style="width:70%">
               <span class="sr-only">70% Complete</span>
             </div>
           </div>
           <span class="notes">InProgress</span>
         </div>
       </label>
-      <span class="slider_next"  (click)="selectNextCandidate()"><span class="sr-only">Next</span></span>
+      <span class="slider_next" (click)="selectNextCandidate()"><span class="sr-only">Next</span></span>
     </section>
-    <div class="question-section xs-margin"  *ngIf="uploadRes.length>0">
-    <!-- <div class="question-section xs-margin"> -->
+    <div class="question-section xs-margin" *ngIf="uploadRes.length>0">
+      <!-- <div class="question-section xs-margin"> -->
       <ng-container *ngFor="let data of uploadRes; let i = index">
         <ng-container *ngIf="data!=null && data?.ProfileId === CProfileId">
-        <div class="progress">
-          <div class="progress-bar progress-striped progress-bar-success" role="progressbar" aria-valuenow="100"
-          aria-valuemin="0" aria-valuemax="100" style="width:100%">
-            <span class="sr-only">100% Complete</span>
+          <div class="progress">
+            <div class="progress-bar progress-striped progress-bar-success" role="progressbar" aria-valuenow="100"
+              aria-valuemin="0" aria-valuemax="100" style="width:100%">
+              <span class="sr-only">100% Complete</span>
+            </div>
           </div>
-        </div>
-        <!-- <div *ngIf="data.ResumeStatus == null">
+          <!-- <div *ngIf="data.ResumeStatus == null">
           <span  class="notes text-success m-0">{{profileStatus[i].text}}...</span>
         </div> -->
-        <div *ngIf="data?.ResumeStatus === 'Successful'">
-          <span class="notes text-success m-0">Profile Parsed and Fetched details Successfully!!!</span>
-        </div>
-        <div *ngIf="data.ResumeStatus === 'Error'">
+          <div *ngIf="data?.ResumeStatus === 'Successful'">
+            <span class="notes text-success m-0">Profile Parsed and Fetched details Successfully!!!</span>
+          </div>
+          <div *ngIf="data.ResumeStatus === 'Error'">
             <p class="notes text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
           </div>
-        <div *ngIf="data.ResumeStatus === 'Associated'">
-          <p class="notes text-primary m-0">Already Associated for Same Job!!!</p>
-          <button type="button" class="btn btn-sm"  (click)="CanceledAction(data,i)" *ngIf="!Inprogress"  aria-label="Close">
-            <span aria-hidden="true">Skip</span>
-          </button>
-        </div>
-        <div *ngIf="data.ResumeStatus == 'Canceled'">
-          <p class="notes text-danger m-0">Profile is Skipped for Same Job!!!</p>
-        </div>
-        <div *ngIf="data.ResumeStatus === 'ProfileAsscociated'">
-          <p class="notes text-success m-0">Existing Profile is Associated for Other Job!!!</p>
-        </div>
-        <!-- <div *ngIf="data.ResumeStatus == 'Arytic'">
+          <div *ngIf="data.ResumeStatus === 'Associated'">
+            <p class="notes text-primary m-0">Already Associated for Same Job!!!</p>
+            <button type="button" class="btn btn-sm" (click)="CanceledAction(data,i)" *ngIf="!Inprogress"
+              aria-label="Close">
+              <span aria-hidden="true">Skip</span>
+            </button>
+          </div>
+          <div *ngIf="data.ResumeStatus == 'Canceled'">
+            <p class="notes text-danger m-0">Profile is Skipped for Same Job!!!</p>
+          </div>
+          <div *ngIf="data.ResumeStatus === 'ProfileAsscociated'">
+            <p class="notes text-success m-0">Existing Profile is Associated for Other Job!!!</p>
+          </div>
+          <!-- <div *ngIf="data.ResumeStatus == 'Arytic'">
           <p class="notes text-success m-0"> Profile is Converted to Private and Associated for Same Job!!!</p>
         </div> -->
-        <div *ngIf="data.ResumeStatus === 'Requested'">
-          <p class="text-primary m-0"> Your request is processed Successfully!!!</p>
-        </div>
-        <div *ngIf="data.ResumeStatus === 'Other'">
-          <p class="text-danger m-0">Profile is already existed and submitted for other job. Do you want to
-            attach
-            or submit to this job?</p>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,1)" *ngIf="!Inprogress">
-            <span class="badge badge-light ptb-3rl-10">Yes</span>
-          </a>
-          <a href="javascript:void(0)" (click)="CanceledAction(data,i)" *ngIf="!Inprogress">
-            <span class="badge badge-light ptb-3rl-10">No</span>
-          </a>
-        </div>
-        <div *ngIf="data.ResumeStatus == 'Arytic'">
-          <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
-            profile from Arytic?</p>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,3)" *ngIf="!Inprogress">
-            <span class="badge badge-light ptb-3rl-10">Send Request</span>
-          </a>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,2)" *ngIf="this.sdetails?.planId ===  'enterprise' && !Inprogress">
-            <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
-          </a>
-        </div>
+          <div *ngIf="data.ResumeStatus === 'Requested'">
+            <p class="text-primary m-0"> Your request is processed Successfully!!!</p>
+          </div>
+          <div *ngIf="data.ResumeStatus === 'Other'">
+            <p class="text-danger m-0">Profile is already existed and submitted for other job. Do you want to
+              attach
+              or submit to this job?</p>
+            <a href="javascript:void(0)" (click)="UploadAction(i,data,1)" *ngIf="!Inprogress">
+              <span class="badge badge-light ptb-3rl-10">Yes</span>
+            </a>
+            <a href="javascript:void(0)" (click)="CanceledAction(data,i)" *ngIf="!Inprogress">
+              <span class="badge badge-light ptb-3rl-10">No</span>
+            </a>
+          </div>
+          <div *ngIf="data.ResumeStatus == 'Arytic'">
+            <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
+              profile from Arytic?</p>
+            <a href="javascript:void(0)" (click)="UploadAction(i,data,3)" *ngIf="!Inprogress">
+              <span class="badge badge-light ptb-3rl-10">Send Request</span>
+            </a>
+            <a href="javascript:void(0)" (click)="UploadAction(i,data,2)"
+              *ngIf="this.sdetails?.planId ===  'enterprise' && !Inprogress">
+              <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
+            </a>
+          </div>
+        </ng-container>
       </ng-container>
-         </ng-container>
 
     </div>
-  </div> 
+  </div>
   <div class="main__section" *ngIf="uploadRes.length>0">
-  <!-- <div class="main__section"> -->
+    <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
-       <!-- <div class="row flex flex-wrap"> -->
+      <!-- <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId"> -->
+        <div class="row flex flex-wrap">
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
-            <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4> 
+            <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4>
             <ul>
-             <li [ngClass]="showThis == 'JobFit'? 'active': null">
+              <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
                   Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
                   <ng-container *ngIf="FitDetails!=null">
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
                 </a>
-              </li> 
+              </li>
               <li [ngClass]="showThis == 'SkillsFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'SkillsFit'">
                   Skills Fit ({{matchingParameterData?.Skillfit_Total}}%)
                   <ng-container *ngIf="skillfitcheck.length>0">
                     <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
-                    
+
                   </ng-container>
                   <ng-container *ngIf="skillfitcheck.length===0">
                     <div class="no__data__found">
@@ -129,9 +132,9 @@
                     </div>
                   </ng-container>
                 </a>
-              </li> 
-             
-           
+              </li>
+
+
               <li class="with__icon" [ngClass]="showThis == 'Personal Details'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'Personal Details'">
                   <span class="icon icon__interest"><span class="sr-only">Icon</span></span>
@@ -202,8 +205,12 @@
                   <div class="box__table">can be <strong>10%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got <strong>{{matchingParameterData?.Role}}%</strong></div>
-                  <div class="box__table" *ngIf="matchingParameterData?.Role > 0 " >you got <strong>{{matchingParameterData?.Role/10}}%</strong></div>
+                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got
+                    <strong>{{matchingParameterData?.Role}}%</strong>
+                  </div>
+                  <div class="box__table" *ngIf="matchingParameterData?.Role > 0 ">you got
+                    <strong>{{matchingParameterData?.Role/10}}%</strong>
+                  </div>
                 </div>
               </div>
               <div class="row strip__row flex flex-wrap">
@@ -213,7 +220,7 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Job Details</div>
-                  <div class="box__table">  {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}</div>
+                  <div class="box__table"> {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}</div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
@@ -222,7 +229,7 @@
 
                   </div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
-                    N/A
+                    Not Available
                     <button class="btn btn__edit" (click)="editBd()">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
@@ -231,16 +238,17 @@
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditBD">
                   <div class="question">
-                    If you want to update Industry  {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}?
+                    If you want to update Industry {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}?
                     <div class="buttons">
-                      <button class="btn btn-filled" (click)="updateBD(roleFitDetails?.CustomerJobIndustries[0])">Update</button>
+                      <button class="btn btn-filled"
+                        (click)="updateBD(roleFitDetails?.CustomerJobIndustries[0])">Update</button>
                       <!-- <button class="btn btn-default" (click)="EditBD=!EditBD">No</button> -->
                       <button class="btn btn-default" (click)="EditBD=!EditBD">Skip</button>
                     </div>
                   </div>
                 </div>
               </div>
-           
+
               <div class="row strip__row flex flex-wrap">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
@@ -248,26 +256,28 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Job Details</div>
-                  <div class="box__table">  {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}</div>
+                  <div class="box__table"> {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}</div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
-                    <ng-container  *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
-                      {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }} 
-                    </ng-container>   
+                    <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
+                      {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }}
+                    </ng-container>
                     <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
-                      N/A
-                      <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                      Not Available
+                      <button class="btn btn__edit" (click)="editt()"
+                        *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
                       </button>
-                    </ng-container>   
-                              
+                    </ng-container>
+
                   </div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
-                    N/A
-                    <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                    Not Available
+                    <button class="btn btn__edit" (click)="editt()"
+                      *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
                     </button>
@@ -275,7 +285,7 @@
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditT">
                   <div class="question">
-                    If you want to update Title  {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}?
+                    If you want to update Title {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}?
                     <div class="buttons">
                       <button class="btn btn-filled" (click)="updateTitle(r)">Update</button>
                       <!-- <button class="btn btn-default" (click)="EditT=!EditT">No</button> -->
@@ -285,12 +295,13 @@
                 </div>
               </div>
               <ng-container *ngIf="roleFitDetails?.CustomerJobKeyResponses?.length>0">
-                <div class="row strip__row flex flex-wrap" *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
+                <div class="row strip__row flex flex-wrap"
+                  *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
                     <div class="th__heading">Title</div>
-                   
-                    <div class="box__table"  *ngIf="srk === 0">Key Requirements</div>
-                   
+
+                    <div class="box__table" *ngIf="srk === 0">Key Requirements</div>
+
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
@@ -301,7 +312,7 @@
                         {{r?.Code | titlecase}}
                         </ng-container>
                       </span>             -->
-                   </div>
+                    </div>
                   </div>
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length>0">
                     <div class="col-sm-3 strip__col strip__col__td">
@@ -313,22 +324,23 @@
                           {{r?.Code | titlecase}}
                           </ng-container>
                         </span>             -->
-                     </div>
+                      </div>
                     </div>
                   </ng-container>
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length===0">
                     <div class="col-sm-3 strip__col strip__col__td">
                       <div class="th__heading">Resume Details</div>
                       <div class="box__table">
-                        N/A
-                        <button class="btn btn__edit" (click)="editk(0)" *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
+                        Not Available
+                        <button class="btn btn__edit" (click)="editk(0)"
+                          *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                           <span class="sr-only">edit</span>
                         </button>
                       </div>
                     </div>
                   </ng-container>
-                  
+
                   <div class="col-sm-12 question_col" *ngIf="EditKey && srk<1">
                     <div class="question">
                       If you want to update Key requirements related to Job?
@@ -340,8 +352,8 @@
                     </div>
                   </div>
                 </div>
-                </ng-container>
-               
+              </ng-container>
+
             </div>
             <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -352,8 +364,12 @@
                   <div class="box__table">can be <strong>30%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">you got <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong></div>
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">you got <strong>30%</strong></div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">you got
+                    <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong>
+                  </div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">you got
+                    <strong>30%</strong>
+                  </div>
                 </div>
               </div>
               <div class="row strip__row flex flex-wrap">
@@ -372,7 +388,7 @@
                       {{profileDetails?.TotalExperience}}
                     </ng-container>
                     <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
-                      N/A
+                      Not Available
                     </ng-container>
                     <button class="btn btn__edit" (click)="edite()">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -384,9 +400,10 @@
                   <div class="question with-float">
                     <div class="row flex flex-wrap flex-align-center">
                       <div class="col-sm-8">
-                        If you want to update Experience   
+                        If you want to update Experience
                         <div class="buttons">
-                          <button class="btn btn-filled" (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
+                          <button class="btn btn-filled"
+                            (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
                           <!-- <button class="btn btn-default" (click)="EditE=!EditE">No</button> -->
                           <button class="btn btn-default" (click)="EditE=!EditE">Skip</button>
                         </div>
@@ -400,17 +417,18 @@
                                 (input)="onYearChnage($event.target.value)" value="Year" required>
                               <span class="highlight"></span>
                               <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }"></span>
-                                <label *ngIf="yearerror==0">
-                                  Yrs
-                                </label>
-                                <label *ngIf="yearerror==1" style="color: red;">
-                                  Yrs less than 50 valid.
-                                </label>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
                             </span>
                           </div>
                           <div class="col-sm-6">
                             <span>
-                              <input  class="form-control" [(ngModel)]="expMonthExp" type="text"  (input)="onChnage($event.target.value)" 
+                              <input class="form-control" [(ngModel)]="expMonthExp" type="text"
+                                (input)="onChnage($event.target.value)"
                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
                                 value="Month" required>
                               <span class="highlight"></span>
@@ -427,13 +445,13 @@
                   </div>
                 </div>
               </div>
-              <ng-container *ngIf="Jdomains.length > 0" >
+              <ng-container *ngIf="Jdomains.length > 0">
                 <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jdomains;let sdk = index">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
                     <div class="th__heading">Domain</div>
-                   
-                    <div class="box__table" >{{skill?.Code}}</div>
-                   
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
@@ -446,9 +464,9 @@
                         {{skill?.ExpInYears}}
                       </ng-container>
                       <ng-container *ngIf="skill?.ExpInYears ===  0">
-                        N/A
+                        Not Available
                       </ng-container>
-                    
+
                       <button class="btn btn__edit" (click)="editd(sdk,skill.JExpInYears)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
@@ -483,7 +501,8 @@
                               </label>
                             </span>
                             <span class="col-sm-6">
-                              <input  class="form-control" [(ngModel)]="expMonth" type="text"  (input)="onChnage($event.target.value)" 
+                              <input class="form-control" [(ngModel)]="expMonth" type="text"
+                                (input)="onChnage($event.target.value)"
                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
                                 value="Month" required>
                               <span class="highlight"></span>
@@ -499,33 +518,33 @@
                     </div>
                   </div>
                 </div>
-                </ng-container>
-                <ng-container *ngIf="Jdomains.length===0">
-                  <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
-                    <div class="col-sm-6 strip__col strip__col__td title__col">
-                      <div class="th__heading">Domain</div>
-                     
-                      <div class="box__table" >{{skill?.Code}}</div>
-                     
-                    </div>
-                    <div class="col-sm-3 strip__col strip__col__td">
-                      <div class="th__heading">Job Details</div>
-                      <div class="box__table">{{skill?.JExpInYears}}</div>
-                    </div>
-                    <div class="col-sm-3 strip__col strip__col__td">
-                      <div class="th__heading">Resume Details</div>
-                      <div class="box__table">
-                        <ng-container *ngIf="skill?.ExpInYears > 0">
-                          {{skill?.ExpInYears}}
-                        </ng-container>
-                   
-                      </div>
-                    </div>
-                
+              </ng-container>
+              <ng-container *ngIf="Jdomains.length===0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Domain</div>
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
                   </div>
-                  </ng-container>
-              
-            
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+
+                    </div>
+                  </div>
+
+                </div>
+              </ng-container>
+
+
             </div>
             <!-- <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -669,13 +688,13 @@
                   </div>
                 </div>
               </div>
-              <ng-container *ngIf="Jskills.length > 0" >
+              <ng-container *ngIf="Jskills.length > 0">
                 <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jskills;let sk = index">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
                     <div class="th__heading">Title</div>
-                   
-                    <div class="box__table" >{{skill?.Code}}</div>
-                   
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
@@ -688,7 +707,7 @@
                         {{skill?.ExpInYears}}
                       </ng-container>
                       <ng-container *ngIf="skill?.ExpInYears ===  0">
-                        N/A
+                        Not Available
                       </ng-container>
                       <button class="btn btn__edit" (click)="edits(sk,skill.JExpInYears)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -724,7 +743,8 @@
                               </label>
                             </div>
                             <div class="col-sm-6">
-                              <input  class="form-control" [(ngModel)]="expsMonth" type="text"  (input)="onChnage($event.target.value)" 
+                              <input class="form-control" [(ngModel)]="expsMonth" type="text"
+                                (input)="onChnage($event.target.value)"
                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
                                 value="Month" required>
                               <span class="highlight"></span>
@@ -737,18 +757,18 @@
                           </div>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
-                </ng-container>
+              </ng-container>
               <ng-container *ngIf="Jskills.length === 0">
                 <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
                     <div class="th__heading">Title</div>
-                   
-                    <div class="box__table" >{{skill?.Code}}</div>
-                   
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
@@ -759,9 +779,9 @@
                     <div class="box__table">
                       <ng-container *ngIf="skill?.ExpInYears > 0">
                         {{skill?.ExpInYears}}
-                      </ng-container>                     
+                      </ng-container>
                     </div>
-                  </div>            
+                  </div>
                 </div>
               </ng-container>
               <div class="row strip__button__row strip__row flex flex-wrap" *ngIf="editSkills">
@@ -1138,10 +1158,10 @@
               </div>
             </div> -->
           </ng-container>
-         
+
           <ng-container *ngIf="showThis == 'Personal Details'">
             <div class="personal__details">
-           
+
               <ng-container>
                 <div class="stripped__table no__margin">
                   <div class="row strip__row flex flex-wrap">
@@ -1151,7 +1171,8 @@
                     <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
                       <ng-container *ngIf="!editPersonalDetails">
                         <div class="box__table">
-                          <button class="btn btn__edit" (click)="editPesonalDetailHandler();EditProfile(profileDetails)">
+                          <button class="btn btn__edit"
+                            (click)="editPesonalDetailHandler();EditProfile(profileDetails)">
                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                             <span class="sr-only">Edit</span>
                           </button>
@@ -1166,70 +1187,75 @@
                     </div>
                   </div>
                   <form class="row" [formGroup]="proForm">
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">First Name</div>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">First Name</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table"> {{profileDetails?.FirstName | titlecase}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table">
+                            <input type="text" formControlName="FirstName" id="FirstName" placeholder="FirstName"
+                              value="{{profileDetails?.FirstName | titlecase}}" class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
                     </div>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
-                      <ng-container *ngIf="!editPersonalDetails">
-                        <div class="box__table"> {{profileDetails?.FirstName | titlecase}}</div>
-                      </ng-container>
-                      <ng-container *ngIf="editPersonalDetails">
-                        <div class="box__table">
-                          <input type="text" formControlName="FirstName" id="FirstName" placeholder="FirstName" value="{{profileDetails?.FirstName | titlecase}}" class="form-control">
-                        </div>
-                      </ng-container>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">Last Name</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table">{{profileDetails?.LastName | titlecase}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table">
+                            <input type="text" formControlName="LastName" id="LastName" placeholder="LastName"
+                              value="{{profileDetails?.LastName | titlecase}}" class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">Last Name</div>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">Email</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table">{{profileDetails?.UserName}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) === 'noemail'">
+                            <input type="text" formControlName="Email" value="{{profileDetails?.UserName}}"
+                              class="form-control">
+                          </div>
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">
+                            <input type="text" formControlName="Email" value="{{profileDetails?.UserName}}" readonly
+                              class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
                     </div>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
-                      <ng-container *ngIf="!editPersonalDetails">
-                        <div class="box__table">{{profileDetails?.LastName | titlecase}}</div>
-                      </ng-container>
-                      <ng-container  *ngIf="editPersonalDetails">
-                        <div class="box__table">
-                          <input type="text" formControlName="LastName" id="LastName" placeholder="LastName" value="{{profileDetails?.LastName | titlecase}}" class="form-control">
-                        </div>
-                      </ng-container>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">Current Role</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table">{{profileDetails?.ProfileTitle}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table">
+                            <input type="text" formControlName="ProfileTitle" id="ProfileTitle"
+                              placeholder="ProfileTitle" value="{{profileDetails?.ProfileTitle}}" class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">Email</div>
-                    </div>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                      <ng-container *ngIf="!editPersonalDetails">
-                        <div class="box__table">{{profileDetails?.UserName}}</div>
-                      </ng-container>
-                      <ng-container *ngIf="editPersonalDetails">
-                        <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) === 'noemail'">
-                          <input type="text"  formControlName="Email"  value="{{profileDetails?.UserName}}" class="form-control">
-                        </div>
-                        <div class="box__table"  *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">
-                          <input type="text"  formControlName="Email"  value="{{profileDetails?.UserName}}" readonly class="form-control">
-                        </div>
-                      </ng-container>
-                    </div>
-                  </div>
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">Current Role</div>
-                    </div>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                      <ng-container *ngIf="!editPersonalDetails">
-                        <div class="box__table">{{profileDetails?.ProfileTitle}}</div>
-                      </ng-container>
-                      <ng-container *ngIf="editPersonalDetails">
-                        <div class="box__table">
-                          <input type="text" formControlName="ProfileTitle" id="ProfileTitle" placeholder="ProfileTitle" value="{{profileDetails?.ProfileTitle}}" class="form-control">
-                        </div>
-                      </ng-container>
-                    </div>
-                  </div>
-                  <!-- <div class="row strip__row flex flex-wrap">
+                    <!-- <div class="row strip__row flex flex-wrap">
                     <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                       <div class="box__table">Mobile No.</div>
                     </div>
@@ -1401,8 +1427,8 @@
                       </ng-container>
                     </div>
                   </div> -->
-                 
-                  
+
+
                   <!-- <div class="row strip__row flex flex-wrap">
                     <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                       <div class="box__table">Address</div>
@@ -1444,7 +1470,7 @@
                     </div>
                   </div> -->
                 </div>
-            
+
               </ng-container>
             </div>
           </ng-container>
@@ -1467,7 +1493,7 @@
                           <span class="sr-only">Delete</span>
                         </button>
                       </ng-container>
-                    
+
                     </div>
                   </div>
                 </div>
@@ -1476,11 +1502,11 @@
                     <div class="box__table">Job Title</div>
                   </div>
                   <ng-container>
-                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col" >
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                       <div class="box__table">{{exp?.JobTitle}}</div>
                     </div>
                   </ng-container>
-                 
+
                 </div>
                 <div class="row strip__row flex flex-wrap">
                   <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
@@ -1488,9 +1514,10 @@
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                     <ng-container>
-                      <div class="box__table">{{exp?.StartDate | date: 'MM-yyyy'}} to {{exp?.EndDate | date: 'MM-yyyy'}}</div>
+                      <div class="box__table">{{exp?.StartDate | date: 'MM-yyyy'}} to {{exp?.EndDate | date: 'MM-yyyy'}}
+                      </div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -1501,19 +1528,19 @@
                     <ng-container *ngIf="showInput != 'editWorkExperience'">
                       <div class="box__table">{{exp?.CompanyName}}</div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
                   <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">Company Location</div>
+                    <div class="box__table">Company Location</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                     <div class="th__heading">&nbsp;</div>
                     <ng-container *ngIf="showInput != 'editWorkExperience'">
-                      <div class="box__table">{{exp?.JobLocation || 'N/A'}}</div>
+                      <div class="box__table">{{exp?.JobLocation || 'Not Available'}}</div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -1522,123 +1549,129 @@
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                     <ng-container *ngIf="showInput != 'editWorkExperience'">
-                      <div class="box__table">   <p [innerHTML]="exp?.Description | slice:0:100">
-    
-                      </p>
-                      <ng-container *ngIf="moreShow">
-                        <p [innerHTML]="exp?.Description| slice:100:15000">
-    
+                      <div class="box__table">
+                        <p [innerHTML]="exp?.Description | slice:0:100">
+
                         </p>
-                       </ng-container> 
-                       <a href="javascript:void(0)" *ngIf="exp?.Description?.length>100" (click)="moreContent(i)" class="show__more">
-                        <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
-                      </a>
+                        <ng-container *ngIf="moreShow">
+                          <p [innerHTML]="exp?.Description| slice:100:15000">
+
+                          </p>
+                        </ng-container>
+                        <a href="javascript:void(0)" *ngIf="exp?.Description?.length>100" (click)="moreContent(i)"
+                          class="show__more">
+                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                        </a>
                       </div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
               </div>
               <div class="stripped__table no__margin" *ngIf="editWorkExperience && selectedIndex == e">
                 <form [formGroup]="expForm">
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
-                    <div class="box__table">Job Details</div>
-                  </div>
-                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
-                    <div class="box__table">
-                      <ng-container>
-                        <button class="btn btn-default" (click)="editWorkExperience=!editWorkExperience">Cancel</button>
-                        <button class="btn btn-primary"  (click)="SaveExperience()">Save</button>
-                      </ng-container>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Job Details</div>
                     </div>
-                  </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">Job Title</div>
-                  </div>
-                  <ng-container>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                      <div class="th__heading">&nbsp;</div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
                       <div class="box__table">
-                        <input type="text" formControlName="JobTitle" aria-label="text"
-                        placeholder="Job Title / Role / Designation" class="form-control" value="{{exp?.JobTitle}}">
+                        <ng-container>
+                          <button class="btn btn-default"
+                            (click)="editWorkExperience=!editWorkExperience">Cancel</button>
+                          <button class="btn btn-primary" (click)="SaveExperience()">Save</button>
+                        </ng-container>
                       </div>
                     </div>
-                  </ng-container>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">From - To</div>
                   </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-  
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Job Title</div>
+                    </div>
                     <ng-container>
-                      <div class="box__table">
-                        <div class="row form__sub__row flex flex-wrap flex-align-center">
-                          <div class="col-sm-5 form__sub__col">
-                            <input type="text" class="form-control" aria-label="text" bsDatepicker   [bsConfig]="{dateInputFormat: 'MM-YYYY' ,adaptivePosition: true}" (onShown)="onOpenCalendar($event)"  formControlName="StartDate"
-                            placeholder="Start" value="{{exp?.StartDate | date: 'MM-yyyy'}}">
-                          </div>
-                          <div class="col-sm-2 form__sub__col text-center">
-                            To
-                          </div>
-                          <div class="col-sm-5 form__sub__col">
-                            <input type="text" formControlName="EndDate" aria-label="text" bsDatepicker   [bsConfig]="{dateInputFormat: 'MM-YYYY',adaptivePosition: true }" (onShown)="onOpenCalendar($event)"
-                            placeholder="End" class="form-control" value="{{exp?.EndDate | date: 'MM-yyyy'}}">
-                          </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <div class="th__heading">&nbsp;</div>
+                        <div class="box__table">
+                          <input type="text" formControlName="JobTitle" aria-label="text"
+                            placeholder="Job Title / Role / Designation" class="form-control" value="{{exp?.JobTitle}}">
                         </div>
                       </div>
                     </ng-container>
                   </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">Company Name</div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">From - To</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
+                      <ng-container>
+                        <div class="box__table">
+                          <div class="row form__sub__row flex flex-wrap flex-align-center">
+                            <div class="col-sm-5 form__sub__col">
+                              <input type="text" class="form-control" aria-label="text" bsDatepicker
+                                [bsConfig]="{dateInputFormat: 'MM-YYYY' ,adaptivePosition: true}"
+                                (onShown)="onOpenCalendar($event)" formControlName="StartDate" placeholder="Start"
+                                value="{{exp?.StartDate | date: 'MM-yyyy'}}">
+                            </div>
+                            <div class="col-sm-2 form__sub__col text-center">
+                              To
+                            </div>
+                            <div class="col-sm-5 form__sub__col">
+                              <input type="text" formControlName="EndDate" aria-label="text" bsDatepicker
+                                [bsConfig]="{dateInputFormat: 'MM-YYYY',adaptivePosition: true }"
+                                (onShown)="onOpenCalendar($event)" placeholder="End" class="form-control"
+                                value="{{exp?.EndDate | date: 'MM-yyyy'}}">
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-                    <ng-container>
-                      <div class="box__table">
-                        <input type="text"  formControlName="CompanyName"
-                        placeholder="Company Name" required value="{{exp?.CompanyName}}" class="form-control">
-                      </div>
-                    </ng-container>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Company Name</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="CompanyName" placeholder="Company Name" required
+                            value="{{exp?.CompanyName}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                       <div class="box__table">Company Location</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <div class="th__heading">&nbsp;</div>
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="JobLocation" placeholder="Location"
+                            value="{{exp?.JobLocation}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-                    <div class="th__heading">&nbsp;</div>
-                    <ng-container>
-                      <div class="box__table">
-                        <input type="text" formControlName="JobLocation"
-                        placeholder="Location" value="{{exp?.JobLocation}}" class="form-control">
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">Description</div>
-                  </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-  
-                    <ng-container>
-                      <div class="box__table">
-                        <textarea class="form-control" formControlName="Description" 
-                        placeholder="Summary">{{exp?.Description}}
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Description</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
+                      <ng-container>
+                        <div class="box__table">
+                          <textarea class="form-control" formControlName="Description" placeholder="Summary">{{exp?.Description}}
                         </textarea>
-                      </div>
-                    </ng-container>
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
                 </form>
               </div>
             </ng-container>
-        
+
           </ng-container>
           <ng-container *ngIf="showThis == 'Education'">
             <ng-container *ngFor="let study of education;let ed= index;">
@@ -1659,7 +1692,7 @@
                           <span class="sr-only">Delete</span>
                         </button>
                       </ng-container>
-                    
+
                     </div>
                   </div>
                 </div>
@@ -1668,11 +1701,11 @@
                     <div class="box__table">Qualification</div>
                   </div>
                   <ng-container>
-                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col" >
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                       <div class="box__table">{{study?.QualificationName}}</div>
                     </div>
                   </ng-container>
-                 
+
                 </div>
                 <div class="row strip__row flex flex-wrap">
                   <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
@@ -1682,7 +1715,7 @@
                     <ng-container>
                       <div class="box__table">{{study?.FromYear}} to {{study?.ToYear}}</div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -1693,107 +1726,107 @@
                     <ng-container *ngIf="showInput != 'editWorkExperience'">
                       <div class="box__table">{{study?.Specialization}}</div>
                     </ng-container>
-                  
+
                   </div>
                 </div>
-                
+
               </div>
               <div class="stripped__table no__margin" *ngIf="editEducation && selectedeIndex == ed">
                 <form [formGroup]="eduForm">
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
-                    <div class="box__table">Qualification</div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Qualification</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                      <div class="box__table">
+                        <ng-container>
+                          <button class="btn btn-default" (click)="editEducation=!editEducation">Cancel</button>
+                          <button class="btn btn-primary" (click)="SaveEducation()">Save</button>
+                        </ng-container>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
-                    <div class="box__table">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Qualification</div>
+                    </div>
+                    <ng-container>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <div class="th__heading">&nbsp;</div>
+                        <div class="box__table">
+                          <div class="custom-select">
+                            <select class="form-control" required formControlName="QualificationId">
+                              <option label="Graduation"></option>
+                              <option *ngFor="let degree of degreeList" [value]="degree.QualificationId">
+                                {{degree.QualificationName | titlecase}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">From - To</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
                       <ng-container>
-                        <button class="btn btn-default" (click)="editEducation=!editEducation">Cancel</button>
-                        <button class="btn btn-primary"  (click)="SaveEducation()">Save</button>
+                        <div class="box__table">
+                          <div class="row form__sub__row flex flex-wrap flex-align-center">
+                            <div class="col-sm-5 form__sub__col">
+                              <select class="form-control" required formControlName="FromYear">
+                                <option label="From Year"></option>
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                              </select>
+                            </div>
+                            <div class="col-sm-2 form__sub__col text-center">
+                              To
+                            </div>
+                            <div class="col-sm-5 form__sub__col">
+                              <select class="form-control" required formControlName="ToYear">
+                                <option label="To Year"></option>
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
                       </ng-container>
                     </div>
                   </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">Qualification</div>
-                  </div>
-                  <ng-container>
-                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                      <div class="th__heading">&nbsp;</div>
-                      <div class="box__table">
-                        <div class="custom-select">
-                          <select class="form-control"  required formControlName="QualificationId">
-                            <option label="Graduation"></option>
-                            <option *ngFor="let degree of degreeList" [value]="degree.QualificationId">
-                              {{degree.QualificationName | titlecase}}
-                            </option>
-                          </select>
-                        </div>
-                      </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Specialization</div>
                     </div>
-                  </ng-container>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">From - To</div>
-                  </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-  
-                    <ng-container>
-                      <div class="box__table">
-                        <div class="row form__sub__row flex flex-wrap flex-align-center">
-                          <div class="col-sm-5 form__sub__col">
-                            <select class="form-control" required  formControlName="FromYear">
-                              <option label="From Year"></option>
-                              <option *ngFor="let year of years" [value]="year">{{year}}</option>
-                            </select>
-                          </div>
-                          <div class="col-sm-2 form__sub__col text-center">
-                            To
-                          </div>
-                          <div class="col-sm-5 form__sub__col">
-                            <select class="form-control"  required  formControlName="ToYear">
-                              <option label="To Year"></option>
-                              <option *ngFor="let year of years" [value]="year">{{year}}</option>
-                            </select>
-                          </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="Specialization" placeholder="Specialization"
+                            aria-label="text" placeholder="Specialization" required class="form-control">
                         </div>
-                      </div>
-                    </ng-container>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">Specialization</div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">School/University</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="InstituteOrUniversity" id="School_university"
+                            placeholder="School/University" aria-label="text" placeholder="Specialization" required
+                            class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-                    <ng-container>
-                      <div class="box__table">
-                        <input type="text"  formControlName="Specialization" placeholder="Specialization" aria-label="text" 
-                        placeholder="Specialization" required  class="form-control">
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                    <div class="box__table">School/University</div>
-                  </div>
-                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
-                    <ng-container>
-                      <div class="box__table">
-                        <input type="text"  formControlName="InstituteOrUniversity"
-                        id="School_university" placeholder="School/University" aria-label="text" 
-                        placeholder="Specialization" required  class="form-control">
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                
+
                 </form>
               </div>
             </ng-container>
-           
+
           </ng-container>
           <ng-container *ngIf="showThis == 'Certification'">
             <ng-container *ngIf="certificate.length>0">
@@ -1815,7 +1848,7 @@
                             <span class="sr-only">Delete</span>
                           </button>
                         </ng-container>
-                      
+
                       </div>
                     </div>
                   </div>
@@ -1824,52 +1857,54 @@
                       <div class="box__table">CertificationName</div>
                     </div>
                     <ng-container>
-                      <div class="col-sm-6 strip__col strip__col__td text-left lg__col" >
+                      <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
                         <div class="box__table">{{certified?.CertificationName}}</div>
                       </div>
                     </ng-container>
-                   
+
                   </div>
-                  
-                
-                  
+
+
+
                 </div>
                 <div class="stripped__table no__margin" *ngIf="editCertification && selectedcIndex == cd">
                   <form [formGroup]="certForm">
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
-                      <div class="box__table">Certification</div>
-                    </div>
-                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
-                      <div class="box__table">
-                        <ng-container>
-                          <button class="btn btn-default" (click)="editCertification=!editCertification">Cancel</button>
-                          <button class="btn btn-primary"  (click)="SaveCertification()">Save</button>
-                        </ng-container>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                        <div class="box__table">Certification</div>
                       </div>
-                    </div>
-                  </div>
-                
-                
-                 
-    
-                  <div class="row strip__row flex flex-wrap">
-                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                      <div class="box__table">CertificationName</div>
-                    </div>
-                    <ng-container>
-                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                        <div class="th__heading">&nbsp;</div>
+                      <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
                         <div class="box__table">
-                            <input placeholder="Certification Provider" class="form-control" aria-label="text"  formControlName='CertificationName' required>
+                          <ng-container>
+                            <button class="btn btn-default"
+                              (click)="editCertification=!editCertification">Cancel</button>
+                            <button class="btn btn-primary" (click)="SaveCertification()">Save</button>
+                          </ng-container>
                         </div>
                       </div>
-                    </ng-container>
-                  </div>
-    
-                  
-                  
-                  
+                    </div>
+
+
+
+
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">CertificationName</div>
+                      </div>
+                      <ng-container>
+                        <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                          <div class="th__heading">&nbsp;</div>
+                          <div class="box__table">
+                            <input placeholder="Certification Provider" class="form-control" aria-label="text"
+                              formControlName='CertificationName' required>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+
+
+
+
                   </form>
                 </div>
               </ng-container>
@@ -2045,7 +2080,8 @@
                 <div class="row strip__row flex flex-wrap" *ngFor="let a of achievements;let a= index">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
                     <div class="th__heading">Title</div>
-                    <div class="box__table ach" title="{{a?.Achievement | titlecase}}">{{a?.Achievement | titlecase}}</div>
+                    <div class="box__table ach" title="{{a?.Achievement | titlecase}}">{{a?.Achievement | titlecase}}
+                    </div>
                   </div>
                   <!-- <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">&nbsp;</div>
@@ -2072,7 +2108,7 @@
                   <p class="no__data">No Achievements Provided</p>
                 </div>
               </ng-container>
-           
+
               <!-- <div class="row strip__row flex flex-wrap">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
@@ -2403,28 +2439,29 @@
 
   </div>
   <div class="main__section" *ngIf="uploadRes.length===0">
-   <span>Fetching Details Please wait ...</span>
+    <span>Fetching Details Please wait ...</span>
   </div>
 </div>
 
 <!--Old Code Start-->
-<div class="upload__resume__container"   *ngIf="!haveProfiles">
+<div class="upload__resume__container" *ngIf="!haveProfiles">
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
   </ngx-spinner>
   <div class="top__container__before flex flex-wrap flex-align-center">
     <h3 mat-dialog-title class="modal-title">Upload Profiles</h3>
-    
+
     <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">×</span>
     </button>
-   
+
   </div>
   <mat-dialog-content class="mat-typography vh-100 s-none" *ngIf="loaddata">
     <!--Tab View-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ptb-24">
       <div class="card manage-uploads manage-upload-custom clearfix">
-        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Tips for Electronic Resumes Do's and Dont's</a>
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Tips for Electronic Resumes Do's and
+          Dont's</a>
         <div class="tab-content">
           <div id="uploadProfiles" class="tab-pane fade active in">
             <div class="upload-border">
@@ -2432,9 +2469,8 @@
                 <div class="d-block">
                   <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
                   <div class="file">
-                    <input matInput type="file" ng2FileSelect
-                    [uploader]="uploader" #browse multiple (click)="browse.value = null" value=""
-                      (change)="onFileSelected($event)">
+                    <input matInput type="file" ng2FileSelect [uploader]="uploader" #browse multiple
+                      (click)="browse.value = null" value="" (change)="onFileSelected($event)">
                   </div>
                   <div>Browse & Upload</div>
                   <h5>Please upload maximum of 2 profiles </h5>
@@ -2442,13 +2478,13 @@
                 </div>
               </div>
             </div>
-  
+
             <!-- <div class="file btn btn-lg btn-primary"> -->
             <!-- Browse & Upload -->
             <!-- <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)"> -->
             <!-- </div> -->
-  
-  
+
+
             <div class="d-flex justify-content-between mb-3 w-100">
               <div class="p-2 upload-input">
                 <!-- <label class="radio checkbox">
@@ -2462,7 +2498,7 @@
                   <span>Make it Public</span>
                 </label> -->
               </div>
-  
+
               <div class="p-2 upload-alerts">
                 <a href="javascript:void(0)">
                   <span class="alert-success">
@@ -2480,23 +2516,23 @@
             </div>
             <div>
               <table class="table custom-upload-profile-table table-hover table-bordered table-striped"
-             *ngIf="selectedFiles.length>0">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Size</th>
-                  <th *ngIf="!isProcessing">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of uploader.queue;let i=index">
-                  <td>
-                    {{ item?.file?.name }}
-                  </td>
-                  <td>
-                    {{ item?.file?.size/1024/1024 | number:'.2' }} MB
-                  </td>
-                  <!-- <td *ngIf="uploader.options.isHTML5">
+                *ngIf="selectedFiles.length>0">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th *ngIf="!isProcessing">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of uploader.queue;let i=index">
+                    <td>
+                      {{ item?.file?.name }}
+                    </td>
+                    <td>
+                      {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                    </td>
+                    <!-- <td *ngIf="uploader.options.isHTML5">
                     <div class="progress" style="margin-bottom: 0;">
                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
@@ -2504,55 +2540,67 @@
                       </div>
                     </div>
                   </td> -->
-                  <td *ngIf="!isProcessing">
-                    <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DeleteRecord(i)">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                  </td>
-                  <!-- <td>
+                    <td *ngIf="!isProcessing">
+                      <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DeleteRecord(i)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </td>
+                    <!-- <td>
                     <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="processResumes()">
                       <span class="fa fa-send-o"></span>
                     </button>
                   </td> -->
-                </tr>
-              </tbody>
-            </table>
-            <button class="btn btn-primary pull-right" *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<3" (click)="processResumes()">Proceed</button>
-            <button class="btn btn-primary pull-right" *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<3">           
-              <span>Processing...</span>
-            </button>
-            <span *ngIf="uploader.queue.length>=3">
-              <h5 style="color: red
+                  </tr>
+                </tbody>
+              </table>
+              <button class="btn btn-primary pull-right"
+                *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<3"
+                (click)="processResumes()">Proceed</button>
+              <button class="btn btn-primary pull-right"
+                *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<3">
+                <span>Processing...</span>
+              </button>
+              <span *ngIf="uploader.queue.length>=3">
+                <h5 style="color: red
               ;" class="pull-right"> *Please upload maximum of 2 profiles </h5>
-            </span>
+              </span>
             </div>
             <!--Upload Profile alerts starts here-->
             <div class="uploaded-list" style="display: none;">
               <div class="media uploaded-files" *ngFor="let data of tempuploadResponse; let i = index">
-                  <div class="profile-pic" *ngIf="data.UserProfilePictureUrl != null">
-                      <img [src]="data.UserProfilePictureUrl" id="headerProfilePic" alt="" class="user-profile-pic">
-                    </div>
+                <div class="profile-pic" *ngIf="data.UserProfilePictureUrl != null">
+                  <img [src]="data.UserProfilePictureUrl" id="headerProfilePic" alt="" class="user-profile-pic">
+                </div>
                 <!-- <img class="align-self-center mr-3" *ngIf="data.UserProfilePictureUrl == null" src="../../../../../assets/images/customer-parser-icon.svg" alt="parser"> -->
                 <!--Parser Loader Status Icons/ Show & hide below image tags based on the conditions-->
                 <div *ngIf="data.UserProfilePictureUrl == null">
-                <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == null"
-                  src="../../../../../assets/images/parser-loader.gif" alt="parser-loader">
-                <img class="align-self-center mr-3" *ngIf="data.ResumeStatus != null && data.ResumeStatus != 'Successful'"
-                  src="../../../../../assets/images/parser-alert.svg" alt="parser-alert">
-                <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == 'Successful'"
-                  src="../../../../../assets/images/parser-success.svg" alt="parser-success">
-                  </div>
+                  <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == null"
+                    src="../../../../../assets/images/parser-loader.gif" alt="parser-loader">
+                  <img class="align-self-center mr-3"
+                    *ngIf="data.ResumeStatus != null && data.ResumeStatus != 'Successful'"
+                    src="../../../../../assets/images/parser-alert.svg" alt="parser-alert">
+                  <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == 'Successful'"
+                    src="../../../../../assets/images/parser-success.svg" alt="parser-success">
+                </div>
                 <!--Parser Loader Status Icons-->
                 <div class="media-body">
-                  <h3 class="m-0">{{data.FirstName}}&nbsp;{{data.LastName}}&nbsp;<span *ngIf="data.ResumeStatus != null">(Email:&nbsp;{{data.MailId}})</span></h3>
+                  <h3 class="m-0">{{data.FirstName}}&nbsp;{{data.LastName}}&nbsp;<span
+                      *ngIf="data.ResumeStatus != null">(Email:&nbsp;{{data.MailId}})</span></h3>
                   <div class="progress h-5">
-                   <div class="progress-bar progress-bar-info progress-bar-striped active"  *ngIf="data.ResumeStatus == null" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  <div class="progress-bar progress-bar-warning  progress-bar-striped active" *ngIf="data.ResumeStatus != null
+                    <div class="progress-bar progress-bar-info progress-bar-striped active"
+                      *ngIf="data.ResumeStatus == null" [style.width.%]="profileStatus[i].percentage" role="progressbar"
+                      aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar-warning  progress-bar-striped active" *ngIf="data.ResumeStatus != null
                    && data.ResumeStatus != 'Successful' && data.ResumeStatus != 'Error'
-                    && data.ResumeStatus != 'ProfileAsscociated'" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  <div class="progress-bar progress-bar-success  progress-bar-striped active"  *ngIf="data.ResumeStatus == 'Successful' 
-                  || data.ResumeStatus == 'ProfileAsscociated' || data.ResumeStatus == 'Arytic_prof'" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  <div class="progress-bar progress-bar-danger progress-bar-striped active"  *ngIf="data.ResumeStatus == 'Error'" [style.width.%]="profileStatus[i].percentage"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    && data.ResumeStatus != 'ProfileAsscociated'" [style.width.%]="profileStatus[i].percentage"
+                      role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar-success  progress-bar-striped active" *ngIf="data.ResumeStatus == 'Successful' 
+                  || data.ResumeStatus == 'ProfileAsscociated' || data.ResumeStatus == 'Arytic_prof'"
+                      [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar-danger progress-bar-striped active"
+                      *ngIf="data.ResumeStatus == 'Error'" [style.width.%]="profileStatus[i].percentage"
+                      role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div *ngIf="data.ResumeStatus == null">
                     <p class="text-success m-0">{{profileStatus[i].text}}...</p>
@@ -2561,8 +2609,8 @@
                     <p class="text-success m-0">Profile Parsed and Uploaded Successfully!!!</p>
                   </div>
                   <div *ngIf="data.ResumeStatus == 'Error'">
-                      <p class="text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
-                    </div>
+                    <p class="text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
+                  </div>
                   <div *ngIf="data.ResumeStatus == 'Associated'">
                     <p class="text-primary m-0">Already Associated for Same Job!!!</p>
                   </div>
@@ -2595,19 +2643,20 @@
                       attach
                       or submit to this job?</p>
                     <a href="javascript:void(0)" (click)="UploadAction(i,data,1)" *ngIf="!Inprogress">
-                      <span class="badge badge-light ptb-3rl-10">Yes</span>                      
+                      <span class="badge badge-light ptb-3rl-10">Yes</span>
                     </a>
                     <a href="javascript:void(0)" (click)="CanceledAction(data,i)">
                       <span class="badge badge-light ptb-3rl-10">No</span>
                     </a>
                   </div>
-                  <div *ngIf="data.ResumeStatus == 'Arytic'" >
+                  <div *ngIf="data.ResumeStatus == 'Arytic'">
                     <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
                       profile from Arytic?</p>
                     <a href="javascript:void(0)" (click)="UploadAction(i,data,3)" *ngIf="!Inprogress">
                       <span class="badge badge-light ptb-3rl-10">Send Request</span>
                     </a>
-                    <a href="javascript:void(0)" (click)="UploadAction(i,data,2)" *ngIf="this.sdetails?.planId ===  'enterprise' && !Inprogress">
+                    <a href="javascript:void(0)" (click)="UploadAction(i,data,2)"
+                      *ngIf="this.sdetails?.planId ===  'enterprise' && !Inprogress">
                       <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
                     </a>
                   </div>
@@ -2615,8 +2664,8 @@
               </div>
             </div>
             <!--Upload Profile alerts ends here-->
-  
-  
+
+
             <input type="hidden" id="jobId" [value]=data.JobId>
             <div class="col-md-12 manage-profiles-card" *ngIf="selectedFileNames.Count > 0">
               <ul class="list--empty">
@@ -2655,7 +2704,7 @@
             <!--End of Empty View-->
           </div>
         </div>
-    
+
         <!-- .tab-content -->
       </div>
       <!-- .card.statistics -->
@@ -2663,7 +2712,7 @@
 
     <div class="modal fade" id="myModal" role="dialog" data-backdrop="false">
       <div class="modal-dialog">
-      
+
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -2672,51 +2721,78 @@
           </div>
           <div class="modal-body">
             <div>
-               <ol class="list linkable">
-                  <li id="never-use-pdf">
-                     <h4 class="bold">NEVER USE PDF. NEVER USE APPLE PAGES.</h4>
-                     <p class="bold">Your resume should be in Microsoft™ Word format.</p>
-                     <p>Recruiters want resumes in Microsoft Word, and they hate PDF resumes. Why? BECAUSE PDF RESUMES CANNOT BE EDITED. Many resume systems cannot convert PDF, HTML, Open Office, Apple Pages resumes and will discard them. If you do not want to use Microsoft Word, use RTF or &quot;Save as Text&quot; instead.</p>
-                     <p>The PDF standard is a &quot;broken&quot; standard. Text cannot be correctly extracted from MANY, MANY PDF files. As a result, if you use a PDF resume, there is a non-trivial chance that your resume will be unusable.</p>
-                     <p>If you use PDF so that a recruiter will not be able to edit your resume, you are guilty of incredibly bad thinking. Why? Because if a recruiter can sharpen up your resume and help you get hired, isn’t that a good thing?</p>
-                  </li>
-                  <li id="looks-are-deceiving">
-                     <h4 class="bold">Looks are deceiving.</h4>
-                     <p>Plain is good. Fancy is bad. Therefore:</p>
-                     <ol class="list" type="a">
-                        <li id="no-headers-or-footers">
-                           <h5 class="bold">Do not use document Headers or Footers. Do not put <i>anything</i> into Headers or Footers.</h5>
-                           <p>Many resume software programs cannot read information in headers. If you put your contact information into a header, it may never get read by the software, and your resume will not contain information about who you are and how you can be reached.</p>
-                           <p>Headers and Footers also present another serious problem. The problem with footers is that when the computer reads your resume, the footer data gets inserted into the middle of whatever text spans the two pages. That means that the footer text may be inserted as garbage into critical parts of your resume.</p>
-                           <p>If you think about it, Headers and Footers are really a throwback to the days of paper resumes and black and white televisions. The purpose of Headers and Footers on a paper resume was to make sure that a recruiter always could put the pages together in order, and to make it obvious that there were supposed to be X number of pages. But that concept is completely unnecessary for electronic documents: unnecessary, and in the case of resumes, harmful.</p>
-                        </li>
-                        <li id="no-data-graphics">
-                           <h5 class="bold">Do not use graphics to represent data.</h5>
-                           <p>At best, graphics (clip art, photos, logos, anything that is a .bmp or .gif or .jpg or .png, etc.) will be ignored. Oftentimes, people put important contact data into a graphic. This data is invisible to parsing software, so their resume is useless.</p>
-                           <p>Do not use pictures or graphics to convey any textual information. (If you are a graphic artist or other artistic type, you should definitely have your electronic resume created by a non-creative type. Yes, you want to keep the stunning isual gem of a resume that you created, but remember that it is for direct human consumption and not for submission to an automatic resume processing process.)</p>
-                        </li>
-                        <li id="no-tables">
-                           <h5 class="bold">Do not use &quot;tables&quot; or multi-column formats.</h5>
-                           <p>Tables are neat and pretty. <i>To humans.</i> Unfortunately, most document conversion software cannot handle tables and will either scramble the text into an undecipherable mess, or it will space the data with extra lines that may confuse the software. Or, worst of all, all the data in the leftmost column will appear at the top of the converted resume. So this:</p>
-                           <table class="table left cell-borders indent">
-                              <tbody>
-                                 <tr>
-                                    <td>
-                                       <div>2010-2017</div>
-                                       <div>2005-2010</div>
-                                       <div>2000-2005</div>
-                                    </td>
-                                    <td>
-                                       <div>Manager, Smith Corp.</div>
-                                       <div>Assistant Vice President, NotSmith Corp.</div>
-                                       <div>Officer, Big Bank</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                           <p>will become this:</p>
-                           <span style="line-height:normal;white-space:normal">
-                              <pre class="codeblock" style="display:block;overflow-x:auto;padding:0.5em;color:#383a42;background:#fafafa"><code style="white-space:pre-wrap"><span><span>2010-2017
+              <ol class="list linkable">
+                <li id="never-use-pdf">
+                  <h4 class="bold">NEVER USE PDF. NEVER USE APPLE PAGES.</h4>
+                  <p class="bold">Your resume should be in Microsoft™ Word format.</p>
+                  <p>Recruiters want resumes in Microsoft Word, and they hate PDF resumes. Why? BECAUSE PDF RESUMES
+                    CANNOT BE EDITED. Many resume systems cannot convert PDF, HTML, Open Office, Apple Pages resumes and
+                    will discard them. If you do not want to use Microsoft Word, use RTF or &quot;Save as Text&quot;
+                    instead.</p>
+                  <p>The PDF standard is a &quot;broken&quot; standard. Text cannot be correctly extracted from MANY,
+                    MANY PDF files. As a result, if you use a PDF resume, there is a non-trivial chance that your resume
+                    will be unusable.</p>
+                  <p>If you use PDF so that a recruiter will not be able to edit your resume, you are guilty of
+                    incredibly bad thinking. Why? Because if a recruiter can sharpen up your resume and help you get
+                    hired, isn’t that a good thing?</p>
+                </li>
+                <li id="looks-are-deceiving">
+                  <h4 class="bold">Looks are deceiving.</h4>
+                  <p>Plain is good. Fancy is bad. Therefore:</p>
+                  <ol class="list" type="a">
+                    <li id="no-headers-or-footers">
+                      <h5 class="bold">Do not use document Headers or Footers. Do not put <i>anything</i> into Headers
+                        or Footers.</h5>
+                      <p>Many resume software programs cannot read information in headers. If you put your contact
+                        information into a header, it may never get read by the software, and your resume will not
+                        contain information about who you are and how you can be reached.</p>
+                      <p>Headers and Footers also present another serious problem. The problem with footers is that when
+                        the computer reads your resume, the footer data gets inserted into the middle of whatever text
+                        spans the two pages. That means that the footer text may be inserted as garbage into critical
+                        parts of your resume.</p>
+                      <p>If you think about it, Headers and Footers are really a throwback to the days of paper resumes
+                        and black and white televisions. The purpose of Headers and Footers on a paper resume was to
+                        make sure that a recruiter always could put the pages together in order, and to make it obvious
+                        that there were supposed to be X number of pages. But that concept is completely unnecessary for
+                        electronic documents: unnecessary, and in the case of resumes, harmful.</p>
+                    </li>
+                    <li id="no-data-graphics">
+                      <h5 class="bold">Do not use graphics to represent data.</h5>
+                      <p>At best, graphics (clip art, photos, logos, anything that is a .bmp or .gif or .jpg or .png,
+                        etc.) will be ignored. Oftentimes, people put important contact data into a graphic. This data
+                        is invisible to parsing software, so their resume is useless.</p>
+                      <p>Do not use pictures or graphics to convey any textual information. (If you are a graphic artist
+                        or other artistic type, you should definitely have your electronic resume created by a
+                        non-creative type. Yes, you want to keep the stunning isual gem of a resume that you created,
+                        but remember that it is for direct human consumption and not for submission to an automatic
+                        resume processing process.)</p>
+                    </li>
+                    <li id="no-tables">
+                      <h5 class="bold">Do not use &quot;tables&quot; or multi-column formats.</h5>
+                      <p>Tables are neat and pretty. <i>To humans.</i> Unfortunately, most document conversion software
+                        cannot handle tables and will either scramble the text into an undecipherable mess, or it will
+                        space the data with extra lines that may confuse the software. Or, worst of all, all the data in
+                        the leftmost column will appear at the top of the converted resume. So this:</p>
+                      <table class="table left cell-borders indent">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div>2010-2017</div>
+                              <div>2005-2010</div>
+                              <div>2000-2005</div>
+                            </td>
+                            <td>
+                              <div>Manager, Smith Corp.</div>
+                              <div>Assistant Vice President, NotSmith Corp.</div>
+                              <div>Officer, Big Bank</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>will become this:</p>
+                      <span style="line-height:normal;white-space:normal">
+                        <pre class="codeblock"
+                          style="display:block;overflow-x:auto;padding:0.5em;color:#383a42;background:#fafafa"><code style="white-space:pre-wrap"><span><span>2010-2017
 </span></span><span>2005-2010
 </span><span>2000-2005
 </span><span> 
@@ -2724,85 +2800,108 @@
 </span><span>Assistant Vice President, NotSmith Corp.
 </span><span>Officer, Big Bank
 </span></code></pre>
-                           </span>
-                        </li>
-                        <li id="no-fields-microsoft-word">
-                           <h5 class="bold">Do not use &quot;fields&quot; in Microsoft Word.</h5>
-                           <p>Most resume conversion software cannot read anything contained in &quot;fields&quot;. So we don’t want to use &quot;fields&quot;. (If you do not know what a &quot;field&quot; is in Microsoft Word, don’t worry, you are safe.)</p>
-                        </li>
-                        <li id="no-resumes-templates">
-                           <h5 class="bold">DO NOT USE ANY RESUME TEMPLATE, ESPECIALLY ANY RESUME TEMPLATE FROM MICROSOFT.</h5>
-                           <p>Virtually all resume templates contain severe flaws such as tables (see &quot;c.&quot; above) that will render your resume an undecipherable mess.</p>
-                        </li>
-                     </ol>
-                  </li>
-                  <li id="no-different-fonts">
-                     <h4 class="bold">Never mix different font types or font sizes for data.</h4>
-                     <div class="indent">
-                        <p class="bold">WRONG:</p>
-                        <p><span style="font-size:25px">J</span>eff <span style="font-size:25px">P</span>erry</p>
-                     </div>
-                     <p>Never use small caps for lowercase letters. In Microsoft Word™, it is easy to do this by selecting &quot;small caps&quot; from the Format =&gt; Fonts menu. Do NOT do that.</p>
-                     <div class="indent">
-                        <p class="bold">WRONG:</p>
-                        <p><span style="font-variant:small-caps">Jeff Perry</span></p>
-                     </div>
-                     <p>And, never use E X P A N D E D S T Y L E S for anything, unless you want it to be a secret.</p>
-                     <p>Do not use WingDings or other clever symbols. For instance, most document converters convert this:</p>
-                     <pre>📪	phil@gmail.com</pre>
-                     <p></p>
-                     <p>as this:</p>
-                     <pre>,	phil@gmail.com</pre>
-                  </li>
-                  <li id="capitalization-matters">
-                     <h4 class="bold">Capitalization does matter.</h4>
-                     <p>Do not use all caps unless there is a good reason to do so. A good reason to do so is when writing the section headers. A bad reason to do so is when writing a city name. Capitalize your name, your employer, your job title, school names, degree names, locations (city, region, country) etc.</p>
-                  </li>
-                  <li id="formatting-matters">
-                     <h4 class="bold">EXTREMELY IMPORTANT: Change the font size to 8 point or less and see if it still reads correctly. Now, save your resume as plain text (&quot;.txt&quot;), and see if it still reads correctly.</h4>
-                     <p>Resume systems do NOT read resumes directly. They first convert the resumes into plain text, and then they read and process that plain text. So, ALWAYS make sure that you save a copy of your resume as plain text and then open that plain text and make sure that it still reads like it should, with no funky formatting problems. You may be surprised<span>…</span></p>
-                  </li>
-                  <li id="contact-info-first">
-                     <h4 class="bold">Contact info comes first.</h4>
-                     <p>If you want a job, put your contact info FIRST.</p>
-                     <p>Contact info should never be placed on just one or two lines, nor placed into columns.</p>
-                     <div class="indent">
-                        <p class="bold">WRONG:</p>
-                        <pre>Robert H. Smith • 13003 Myrtlea Lane • Houston, Texas 77099 • 713.562.7009</pre>
-                        <p class="bold">RIGHT:</p>
-                        <pre>Robert H. Smith
+                      </span>
+                    </li>
+                    <li id="no-fields-microsoft-word">
+                      <h5 class="bold">Do not use &quot;fields&quot; in Microsoft Word.</h5>
+                      <p>Most resume conversion software cannot read anything contained in &quot;fields&quot;. So we
+                        don’t want to use &quot;fields&quot;. (If you do not know what a &quot;field&quot; is in
+                        Microsoft Word, don’t worry, you are safe.)</p>
+                    </li>
+                    <li id="no-resumes-templates">
+                      <h5 class="bold">DO NOT USE ANY RESUME TEMPLATE, ESPECIALLY ANY RESUME TEMPLATE FROM MICROSOFT.
+                      </h5>
+                      <p>Virtually all resume templates contain severe flaws such as tables (see &quot;c.&quot; above)
+                        that will render your resume an undecipherable mess.</p>
+                    </li>
+                  </ol>
+                </li>
+                <li id="no-different-fonts">
+                  <h4 class="bold">Never mix different font types or font sizes for data.</h4>
+                  <div class="indent">
+                    <p class="bold">WRONG:</p>
+                    <p><span style="font-size:25px">J</span>eff <span style="font-size:25px">P</span>erry</p>
+                  </div>
+                  <p>Never use small caps for lowercase letters. In Microsoft Word™, it is easy to do this by selecting
+                    &quot;small caps&quot; from the Format =&gt; Fonts menu. Do NOT do that.</p>
+                  <div class="indent">
+                    <p class="bold">WRONG:</p>
+                    <p><span style="font-variant:small-caps">Jeff Perry</span></p>
+                  </div>
+                  <p>And, never use E X P A N D E D S T Y L E S for anything, unless you want it to be a secret.</p>
+                  <p>Do not use WingDings or other clever symbols. For instance, most document converters convert this:
+                  </p>
+                  <pre>📪	phil@gmail.com</pre>
+                  <p></p>
+                  <p>as this:</p>
+                  <pre>,	phil@gmail.com</pre>
+                </li>
+                <li id="capitalization-matters">
+                  <h4 class="bold">Capitalization does matter.</h4>
+                  <p>Do not use all caps unless there is a good reason to do so. A good reason to do so is when writing
+                    the section headers. A bad reason to do so is when writing a city name. Capitalize your name, your
+                    employer, your job title, school names, degree names, locations (city, region, country) etc.</p>
+                </li>
+                <li id="formatting-matters">
+                  <h4 class="bold">EXTREMELY IMPORTANT: Change the font size to 8 point or less and see if it still
+                    reads correctly. Now, save your resume as plain text (&quot;.txt&quot;), and see if it still reads
+                    correctly.</h4>
+                  <p>Resume systems do NOT read resumes directly. They first convert the resumes into plain text, and
+                    then they read and process that plain text. So, ALWAYS make sure that you save a copy of your resume
+                    as plain text and then open that plain text and make sure that it still reads like it should, with
+                    no funky formatting problems. You may be surprised<span>…</span></p>
+                </li>
+                <li id="contact-info-first">
+                  <h4 class="bold">Contact info comes first.</h4>
+                  <p>If you want a job, put your contact info FIRST.</p>
+                  <p>Contact info should never be placed on just one or two lines, nor placed into columns.</p>
+                  <div class="indent">
+                    <p class="bold">WRONG:</p>
+                    <pre>Robert H. Smith • 13003 Myrtlea Lane • Houston, Texas 77099 • 713.562.7009</pre>
+                    <p class="bold">RIGHT:</p>
+                    <pre>Robert H. Smith
 13003 Myrtlea Lane
 Houston, Texas 77099
 713-562-7009
 smithy@soupandmore.com</pre>
-                     </div>
-                     <br/>
-                     <div class="indent">
-                        <p class="bold">WRONG:</p>
-                        <pre>Robert H. Smith			        Phone: 713.562.7009
+                  </div>
+                  <br />
+                  <div class="indent">
+                    <p class="bold">WRONG:</p>
+                    <pre>Robert H. Smith			        Phone: 713.562.7009
 13003 Myrtlea Lane			Email: smithman@gmail.com
 Houston, Texas 77099 			Male, unmarried, no children</pre>
-                        <p class="bold">RIGHT:</p>
-                        <pre>Robert H. Smith
+                    <p class="bold">RIGHT:</p>
+                    <pre>Robert H. Smith
 13003 Myrtlea Lane
 Houston, Texas 77099
 713-562-7009
 smithman@gmail.com</pre>
-                     </div>
-                     <p>Also, NEVER provide more than one email address or one physical address or one phone number! ONE of each is all you need. More than that makes it LESS LIKELY that you will be reached by a recruiter.</p>
-                  </li>
-                  <li id="use-common-headers">
-                     <h4 class="bold">Use common header terms to start resume sections, and put them on separate lines.</h4>
-                     <p>There is one exception to this rule: contact info. Contact info does not need a header. Everything else gets a header.</p>
-                     <p>Your job objective section should start with a header that says: <code class="nohighlight">JOB OBJECTIVE</code></p>
-                     <p>Your Work History section should start with a header that says: <code class="nohighlight">WORK HISTORY</code></p>
-                     <p>Your education section should start with a header that says: <code class="nohighlight">EDUCATION</code></p>
-                     <p>If you went to college, omit your High School data -- and regardless of your education level, listing your pre- High School experience is always a bad idea.</p>
-                     <p>IMPORTANT: Do not use strange, unusual, or overly long headers. For instance, never use a header like &quot;COMMUNITY INFUSION&quot;. Is that a new type of instant coffee, or is it something important?</p>
-                     <p>SUPER IMPORTANT: Do not use other headers within a section.</p>
-                     <div class="indent">
-                        <p class="bold">WRONG:</p>
-                        <pre>WORK EXPERIENCE
+                  </div>
+                  <p>Also, NEVER provide more than one email address or one physical address or one phone number! ONE of
+                    each is all you need. More than that makes it LESS LIKELY that you will be reached by a recruiter.
+                  </p>
+                </li>
+                <li id="use-common-headers">
+                  <h4 class="bold">Use common header terms to start resume sections, and put them on separate lines.
+                  </h4>
+                  <p>There is one exception to this rule: contact info. Contact info does not need a header. Everything
+                    else gets a header.</p>
+                  <p>Your job objective section should start with a header that says: <code
+                      class="nohighlight">JOB OBJECTIVE</code></p>
+                  <p>Your Work History section should start with a header that says: <code
+                      class="nohighlight">WORK HISTORY</code></p>
+                  <p>Your education section should start with a header that says: <code
+                      class="nohighlight">EDUCATION</code></p>
+                  <p>If you went to college, omit your High School data -- and regardless of your education level,
+                    listing your pre- High School experience is always a bad idea.</p>
+                  <p>IMPORTANT: Do not use strange, unusual, or overly long headers. For instance, never use a header
+                    like &quot;COMMUNITY INFUSION&quot;. Is that a new type of instant coffee, or is it something
+                    important?</p>
+                  <p>SUPER IMPORTANT: Do not use other headers within a section.</p>
+                  <div class="indent">
+                    <p class="bold">WRONG:</p>
+                    <pre>WORK EXPERIENCE
 2016-present	VP, Johnson Controls, Inc., Dallas, TX. Managed a small group of highly skilled installers.
 Achievements:
 Reduced costs 20%
@@ -2812,9 +2911,9 @@ Won &quot;Best Coffee Maker&quot; three months in a row
 Achievements:
 First place in &quot;Job Well Done&quot; contest
 Perfect attendance</pre>
-                        <br/>
-                        <p class="bold">Right:</p>
-                        <pre>WORK EXPERIENCE
+                    <br />
+                    <p class="bold">Right:</p>
+                    <pre>WORK EXPERIENCE
 2016-present	VP, Johnson Controls, Inc., Dallas, TX. Managed a small group of highly skilled installers. 
 •	Reduced costs 20% 
 •	Won &quot;Best Coffee Maker&quot; three months in a row.
@@ -2822,44 +2921,48 @@ Perfect attendance</pre>
 2012-2016	Intern, VP, Johnson Controls, Inc., Dallas, TX.  Trained as an installer, then moved into an inside sales position for three months.
 •	First place in &quot;Job Well Done&quot; contest
 •	Perfect attendance</pre>
-                     </div>
-                  </li>
-                  <li id="no-columns">
-                     <h4 class="bold">Do not use &quot;columns&quot; or &quot;tables&quot; for formatting anything. (related to 2. c. above, but important enough that it deserves a second treatment). IOW, all data must read straight across the page.</h4>
-                     <p>NEVER use columns or tables to format your education or work history or any other Important piece of data on your resume. (And by the way, if it’s not important, it should not be on your resume.)</p>
-                     <p class="bold">WRONG:</p>
-                     <table class="table left cell-borders indent">
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <div>Jan. 2013 – Present</div>
-                              </td>
-                              <td>
-                                 <div>Superb Products, Inc. Parts Manager.</div>
-                                 <div>Reduced parts inventory by 10% while eliminating most out-of-stocks.</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <div>Mar. 2010 – Dec. 2012</div>
-                              </td>
-                              <td>
-                                 <div>Doug’s Truck Sales, Inc. Repairman.</div>
-                                 <div>Fixed trucks and managed the parts inventory.</div>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <p>Here’s how the computer may read that:</p>
-                     <pre>Jan. 2013 – Present
+                  </div>
+                </li>
+                <li id="no-columns">
+                  <h4 class="bold">Do not use &quot;columns&quot; or &quot;tables&quot; for formatting anything.
+                    (related to 2. c. above, but important enough that it deserves a second treatment). IOW, all data
+                    must read straight across the page.</h4>
+                  <p>NEVER use columns or tables to format your education or work history or any other Important piece
+                    of data on your resume. (And by the way, if it’s not important, it should not be on your resume.)
+                  </p>
+                  <p class="bold">WRONG:</p>
+                  <table class="table left cell-borders indent">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div>Jan. 2013 – Present</div>
+                        </td>
+                        <td>
+                          <div>Superb Products, Inc. Parts Manager.</div>
+                          <div>Reduced parts inventory by 10% while eliminating most out-of-stocks.</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>Mar. 2010 – Dec. 2012</div>
+                        </td>
+                        <td>
+                          <div>Doug’s Truck Sales, Inc. Repairman.</div>
+                          <div>Fixed trucks and managed the parts inventory.</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>Here’s how the computer may read that:</p>
+                  <pre>Jan. 2013 – Present
 Mar. 2010 – Dec. 2012
 Superb Products, Inc.   Parts Manager.
 Reduced parts inventory by 10% while eliminating most out-of-stocks.
 Dougs Truck Sales, Inc.   Repairman.
 Fixed trucks and managed the parts inventory.
 </pre>
-                     <p><b>RIGHT:</b> (uses tabs instead of columns or tables):</p>
-                     <pre>Jan. 2013 – Present
+                  <p><b>RIGHT:</b> (uses tabs instead of columns or tables):</p>
+                  <pre>Jan. 2013 – Present
 Superb Products, Inc.   Parts Manager.
 Reduced parts inventory by 10% while eliminating most out-of-stocks.
 
@@ -2867,16 +2970,16 @@ Mar. 2010 – Dec. 2012
 Doug’s Truck Sales, Inc.   Repairman.
 Fixed trucks and managed the parts inventory.
 </pre>
-                     <p>And never, ever use newspaper column format, like this:</p>
-                     <pre>REFERENCES
+                  <p>And never, ever use newspaper column format, like this:</p>
+                  <pre>REFERENCES
 
 Bill Smith					Jane Dough
 Customer Service Manager			Store Manager
 Dillard’s Department Stores			Fredo’s Groceries, Inc.
 713-888-0998					765-999-9988
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>REFERENCES
+                  <p class="bold">RIGHT:</p>
+                  <pre>REFERENCES
 
 Bill Smith
 Customer Service Manager
@@ -2888,23 +2991,24 @@ Store Manager
 Fredo’s Groceries, Inc.
 765-999-9988
 </pre>
-                  </li>
-                  <li id="use-consistent-formatting">
-                     <h4 class="bold">Keep like data in like order.</h4>
-                     <p>Each job that you list should be described in the same order. If one job is described as<span>…</span></p>
-                     <pre>[Dates] [Position title] [Company][City], [State]
+                </li>
+                <li id="use-consistent-formatting">
+                  <h4 class="bold">Keep like data in like order.</h4>
+                  <p>Each job that you list should be described in the same order. If one job is described
+                    as<span>…</span></p>
+                  <pre>[Dates] [Position title] [Company][City], [State]
 [Description]
 </pre>
-                     <p><span>…</span> then all of the other jobs should be written in the same style.</p>
-                  </li>
-                  <li id="dont-combine-sections">
-                     <h4 class="bold">Do not combine sections.</h4>
-                     <p>Never combine several topics or sections into a single section. This is really important!</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>PROFESSIONAL AFFILIATIONS, COMMUNITY SERVICE, AWARDS, TRAINING
+                  <p><span>…</span> then all of the other jobs should be written in the same style.</p>
+                </li>
+                <li id="dont-combine-sections">
+                  <h4 class="bold">Do not combine sections.</h4>
+                  <p>Never combine several topics or sections into a single section. This is really important!</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>PROFESSIONAL AFFILIATIONS, COMMUNITY SERVICE, AWARDS, TRAINING
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>PROFESSIONAL AFFILIATIONS
+                  <p class="bold">RIGHT:</p>
+                  <pre>PROFESSIONAL AFFILIATIONS
 I was involved with…
 
 COMMUNITY SERVICE
@@ -2916,17 +3020,27 @@ President’s Quarterly Salesmanship Award, 2014
 TRAINING
 YMCA CPR Training for Frogs and Small Reptiles, Level I, 2016
 </pre>
-                  </li>
-                  <li id="use-company-name-words">
-                     <h4 class="bold">Always end company names with common company name words.</h4>
-                     <p><i>You</i> know that J.M. Huber is an employer company name. Unfortunately, the computer probably does not know that. The solution is to always end a company name with a company word like &quot;Inc.&quot; or &quot;Co.&quot; or &quot;Company&quot; or &quot;LLC&quot; or &quot;LLP&quot; or &quot;GmbH&quot;. So, write J.M. Huber as J.M. Huber, Inc. or J.M. Huber Co. You are not applying for a job at J.M. Huber, so they will not care.</p>
-                     <p>And yes, this rule applies to big companies as well as little companies. If you worked for IBM, write IBM Corp. &quot;Procter &amp; Gamble&quot; should be written as Procter &amp; Gamble, Inc.</p>
-                  </li>
-                  <li id="utilize-blank-lines-between-sections">
-                     <h4 class="bold">Use blank lines between sections/paragraphs, but do not use blank lines within paragraphs.</h4>
-                     <p>Always separate each Work History job and each Education school record with a blank line, and do not put blank lines within logical paragraphs. &quot;Blank line&quot; means an actual blank line placed there by your word processor program, not just visual spacing that looks like a blank line but really is not. Also, never use tables or the space bar to move to the next line. Always use the Enter key.</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>Systems Integrator / Senior Systems Administrator (Contract)
+                </li>
+                <li id="use-company-name-words">
+                  <h4 class="bold">Always end company names with common company name words.</h4>
+                  <p><i>You</i> know that J.M. Huber is an employer company name. Unfortunately, the computer probably
+                    does not know that. The solution is to always end a company name with a company word like
+                    &quot;Inc.&quot; or &quot;Co.&quot; or &quot;Company&quot; or &quot;LLC&quot; or &quot;LLP&quot; or
+                    &quot;GmbH&quot;. So, write J.M. Huber as J.M. Huber, Inc. or J.M. Huber Co. You are not applying
+                    for a job at J.M. Huber, so they will not care.</p>
+                  <p>And yes, this rule applies to big companies as well as little companies. If you worked for IBM,
+                    write IBM Corp. &quot;Procter &amp; Gamble&quot; should be written as Procter &amp; Gamble, Inc.</p>
+                </li>
+                <li id="utilize-blank-lines-between-sections">
+                  <h4 class="bold">Use blank lines between sections/paragraphs, but do not use blank lines within
+                    paragraphs.</h4>
+                  <p>Always separate each Work History job and each Education school record with a blank line, and do
+                    not put blank lines within logical paragraphs. &quot;Blank line&quot; means an actual blank line
+                    placed there by your word processor program, not just visual spacing that looks like a blank line
+                    but really is not. Also, never use tables or the space bar to move to the next line. Always use the
+                    Enter key.</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>Systems Integrator / Senior Systems Administrator (Contract)
 
 May 2016 – Jun 2017
 Ablest Technologies
@@ -2942,8 +3056,8 @@ Internal Revenue Service, Enterprise Systems Management Center, Austin TX &amp;a
 
 Provided security process and methodology, product analysis, and product implementation to comply with Treasury and IRS data security policies.
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>Systems Integrator / Senior Systems Administrator (Contract)
+                  <p class="bold">RIGHT:</p>
+                  <pre>Systems Integrator / Senior Systems Administrator (Contract)
 May 2016 – Jun 2017
 Ablest Technologies
 Integrated Criminal Justice Info Systems, Maricopa County AZ
@@ -2957,12 +3071,16 @@ Internal Revenue Service, Enterprise Systems Management Center, Austin TX &amp;a
 
 Provided security process and methodology, product analysis, and product implementation to comply with Treasury and IRS data security policies.
 </pre>
-                  </li>
-                  <li id="omit-page-numbers">
-                     <h4 class="bold">Omit page numbers.</h4>
-                     <p>Page numbers can show up as garbage text in your resume, right in the middle of important data. The computer does not need page numbers. People that read your resume do not need page numbers. Your resume does not need page numbers, either. <i>Your electronic resume is not going to blow off the desk and scatter into disordered pages on the floor.</i></p>
-                     <p>Here’s a typical way that page numbers look in your resume after it is converted (bold added for emphasis):</p>
-                     <pre>May 2016 – Jun 2017
+                </li>
+                <li id="omit-page-numbers">
+                  <h4 class="bold">Omit page numbers.</h4>
+                  <p>Page numbers can show up as garbage text in your resume, right in the middle of important data. The
+                    computer does not need page numbers. People that read your resume do not need page numbers. Your
+                    resume does not need page numbers, either. <i>Your electronic resume is not going to blow off the
+                      desk and scatter into disordered pages on the floor.</i></p>
+                  <p>Here’s a typical way that page numbers look in your resume after it is converted (bold added for
+                    emphasis):</p>
+                  <pre>May 2016 – Jun 2017
 Ablest Technologies
 Integrated Criminal Justice Info Systems, Maricopa County, AZ
 
@@ -2974,13 +3092,18 @@ methodology, education, product research and recommendations for Department of P
 
 Systems Integrator / Senior Systems Administrator (Contract)
 </pre>
-                     <p>See how your name pops up inside the job paragraph? Don’t do that.</p>
-                  </li>
-                  <li id="put-skills-in-work-history-descriptions">
-                     <h4 class="bold">Put skills into Work History descriptions.</h4>
-                     <p>Why? Because really good resume systems can actually match your skills to the job dates and compute your total years of experience for each skill and the date that you last used each skill, and that is extremely important information. Should you put your skills into a separate SKILLS section? Sure, if you want to. But even if you do, make sure that you also put those same skills into the individual job position history descriptions.</p>
-                     <p class="bold">NOTE: Do NOT put skills in work history sections under separate headers inside each job. Just list the skills as part of the narrative. So, do not do this:</p>
-                     <pre>May 2016 – Jun 2017
+                  <p>See how your name pops up inside the job paragraph? Don’t do that.</p>
+                </li>
+                <li id="put-skills-in-work-history-descriptions">
+                  <h4 class="bold">Put skills into Work History descriptions.</h4>
+                  <p>Why? Because really good resume systems can actually match your skills to the job dates and compute
+                    your total years of experience for each skill and the date that you last used each skill, and that
+                    is extremely important information. Should you put your skills into a separate SKILLS section? Sure,
+                    if you want to. But even if you do, make sure that you also put those same skills into the
+                    individual job position history descriptions.</p>
+                  <p class="bold">NOTE: Do NOT put skills in work history sections under separate headers inside each
+                    job. Just list the skills as part of the narrative. So, do not do this:</p>
+                  <pre>May 2016 – Jun 2017
 Ablest Technologies
 Integrated Criminal Justice Info Systems, Maricopa County, AZ
 Systems Integrator / Senior Systems Administrator (Contract)
@@ -2989,42 +3112,51 @@ Provided Enterprise Systems Security and Audit needs analysis, methodology, educ
 Achievements:  blah blah blah
 Skills:  blah blah blah
 Software:  blah blah blah</pre>
-                  </li>
-                  <li id="never-omit-dates-work-history">
-                     <h4 class="bold">Never omit dates on your work history! <i>EVER!</i></h4>
-                     <p>A resume that omits dates of jobs held is NOT going to get you hired. That type of resume is called a<i>functional resume</i>, and functional resumes have a very bad reputation in the recruiting community, because they are often designed that way in order to hide things.</p>
-                     <p>If you have been unemployed for a significant stretch, it is understandably painful and scary to list dates of employment, but it is still the right thing to do, because otherwise your resume will NOT be taken seriously. Just go ahead and list the dates and explain the unemployment either in the resume, in a cover letter, or in an interview.</p>
-                     <p>Dates should be written as Month YEAR. Omit the day of the month because <i>no one cares.</i></p>
-                     <p>Dates should be on the same line. NEVER split start and end dates onto two lines.</p>
-                     <p>Do NOT omit the start or end date of the most current job. For instance:</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>May 2015 –
+                </li>
+                <li id="never-omit-dates-work-history">
+                  <h4 class="bold">Never omit dates on your work history! <i>EVER!</i></h4>
+                  <p>A resume that omits dates of jobs held is NOT going to get you hired. That type of resume is called
+                    a<i>functional resume</i>, and functional resumes have a very bad reputation in the recruiting
+                    community, because they are often designed that way in order to hide things.</p>
+                  <p>If you have been unemployed for a significant stretch, it is understandably painful and scary to
+                    list dates of employment, but it is still the right thing to do, because otherwise your resume will
+                    NOT be taken seriously. Just go ahead and list the dates and explain the unemployment either in the
+                    resume, in a cover letter, or in an interview.</p>
+                  <p>Dates should be written as Month YEAR. Omit the day of the month because <i>no one cares.</i></p>
+                  <p>Dates should be on the same line. NEVER split start and end dates onto two lines.</p>
+                  <p>Do NOT omit the start or end date of the most current job. For instance:</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>May 2015 –
 Ablest Technologies, Maricopa County AZ</pre>
-                     <p class="bold">WRONG:</p>
-                     <pre>Since May 2015 
+                  <p class="bold">WRONG:</p>
+                  <pre>Since May 2015 
 Ablest Technologies, Maricopa County AZ</pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>May 2015 – Present
+                  <p class="bold">RIGHT:</p>
+                  <pre>May 2015 – Present
 Ablest Technologies, Maricopa County AZ</pre>
-                     <p>Do not use all-number dates. Resumes may be processed in locales that differ from the locale that the resume was written in. In the US, 06/07 means June of 2007, but in many locales, it means July of 06. Oh, wait: maybe it actually means 2006/2007. Who knows? So, avoid all-number dates and use written months and four-digit years.</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>05/06 - Present
+                  <p>Do not use all-number dates. Resumes may be processed in locales that differ from the locale that
+                    the resume was written in. In the US, 06/07 means June of 2007, but in many locales, it means July
+                    of 06. Oh, wait: maybe it actually means 2006/2007. Who knows? So, avoid all-number dates and use
+                    written months and four-digit years.</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>05/06 - Present
 Ablest Technologies, Maricopa County AZ</pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>May 2006 – Present
+                  <p class="bold">RIGHT:</p>
+                  <pre>May 2006 – Present
 Ablest Technologies, Maricopa County AZ</pre>
-                     <p>Do not use unusual terms as substitutes for &quot;current&quot; or &quot;present&quot;.</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>Since 2005 Ablest Technologies, Maricopa County AZ</pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>2005 – Present
+                  <p>Do not use unusual terms as substitutes for &quot;current&quot; or &quot;present&quot;.</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>Since 2005 Ablest Technologies, Maricopa County AZ</pre>
+                  <p class="bold">RIGHT:</p>
+                  <pre>2005 – Present
 Ablest Technologies, Maricopa County AZ</pre>
-                  </li>
-                  <li id="dont-nest-company-names">
-                     <h4 class="bold">Do not nest data or omit company names on consecutive positions.</h4>
-                     <p>If you held several different positions for ABC Company, treat each position as if it were a separate, standalone position.</p>
-                     <p class="bold">WRONG:</p>
-                     <pre>Ablest Technologies, Maricopa County AZ
+                </li>
+                <li id="dont-nest-company-names">
+                  <h4 class="bold">Do not nest data or omit company names on consecutive positions.</h4>
+                  <p>If you held several different positions for ABC Company, treat each position as if it were a
+                    separate, standalone position.</p>
+                  <p class="bold">WRONG:</p>
+                  <pre>Ablest Technologies, Maricopa County AZ
 
 Dec 2014 - Present
 Systems Integrator / Senior Systems Administrator	
@@ -3036,33 +3168,27 @@ Programmer/Analyst
 
 Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I was promoted to Programmer/Analyst.
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>Dec 2014 - Present
-Ablest Technologies, Maricopa County AZ		
-Systems Integrator / Senior Systems Administrator
-
-Provided data integration services, blah, blah, blah.
-
-May 2010 – Nov 2014
-Ablest Technologies, Maricopa County AZ
-Programmer/Analyst
-
+                  <p class="bold">RIGHT:</p>
+                  <pre>Dec 2014 - Present Ablest Technologies, Maricopa County AZ	Systems Integrator / Senior Systems Administrator
+Provided data integration services, blah, blah, blah. May 2010 – Nov 2014 Ablest Technologies, Maricopa County AZ Programmer/Analyst
 Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I sprang forward and was promoted to Programmer/Analyst.
 </pre>
-                     <p>OR, at least provide an encompassing date range that helps us understand that all the jobs in that date range were for that employer:</p>
-                     <p class="bold">ALSO RIGHT:</p>
-                     <pre>Dec 2010 – Present	Ablest Technologies, Maricopa County AZ
+                  <p>OR, at least provide an encompassing date range that helps us understand that all the jobs in that
+                    date range were for that employer:</p>
+                  <p class="bold">ALSO RIGHT:</p>
+                  <pre>Dec 2010 – Present	Ablest Technologies, Maricopa County AZ
 Dec 2014 – Present	Systems Integrator / Senior Systems Administrator	
 Provided data integration services, blah, blah, blah.
 
 May 2010 – Nov 2014	Programmer/Analyst
 Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I sprang forward and was promoted to Programmer/Analyst.
 </pre>
-                  </li>
-                  <li id="dates-go-with-company-data">
-                     <h4 class="bold">Do not write explanatory data or company-specific data until AFTER you have listed dates, company name and job title.</h4>
-                     <p class="bold">WRONG:</p>
-                     <pre>May 2015 – Nov 2017
+                </li>
+                <li id="dates-go-with-company-data">
+                  <h4 class="bold">Do not write explanatory data or company-specific data until AFTER you have listed
+                    dates, company name and job title.</h4>
+                  <p class="bold">WRONG:</p>
+                  <pre>May 2015 – Nov 2017
 
 Plaza Technology Solutions, LLC.
 
@@ -3070,45 +3196,55 @@ Plaza is a $500 million VC-funded venture that provides best of breed accounting
 
 As Chief Technology Officer of PTS, I was responsible for ensuring that no snow cone was left behind.
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>May 2015 – Nov 2017
+                  <p class="bold">RIGHT:</p>
+                  <pre>May 2015 – Nov 2017
 Chief Technology Officer, Plaza Technology Solutions, LLC.
 
 As CTO of PTS, I was responsible for ensuring that no snow cone was left behind.  Plaza is a $500 million VC-funded venture that provides best of breed accounting and POS solutions directly to companies who sell snow cones.  PTS received its second round of capital in March of this year.
 </pre>
-                  </li>
-                  <li id="company-addresses">
-                     <h4 class="bold">Do not put employer street addresses, or supervisor or reference information, into your work history. Put the city and state after the employer name, but NEVER put any other employer info (such as street address, postal code, phone numbers, supervisor names, etc.). That level of detail should be reserved for references.</h4>
-                     <p class="bold">WRONG:</p>
-                     <pre>May 2017 – Nov 2017
+                </li>
+                <li id="company-addresses">
+                  <h4 class="bold">Do not put employer street addresses, or supervisor or reference information, into
+                    your work history. Put the city and state after the employer name, but NEVER put any other employer
+                    info (such as street address, postal code, phone numbers, supervisor names, etc.). That level of
+                    detail should be reserved for references.</h4>
+                  <p class="bold">WRONG:</p>
+                  <pre>May 2017 – Nov 2017
 
 Chief Technology Officer, Plaza Technology Solutions, LLC., 2000 S Dairy Ashford, Suite 425, Houston, Texas 77077 USA. Supervisor: Mary Collins, 276-098-8765. Blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah.
 </pre>
-                     <p class="bold">RIGHT:</p>
-                     <pre>May 2017 – Nov 2017
+                  <p class="bold">RIGHT:</p>
+                  <pre>May 2017 – Nov 2017
 Chief Technology Officer, Plaza Technology Solutions, LLC.
 
 As CTO of PTS, I was responsible for ensuring that no snow cone was left behind.  Plaza is a $500 million VC-funded venture that provides best of breed accounting and POS solutions directly to companies who sell snow cones.  PTS received its second round of capital in March of this year.
 </pre>
-                  </li>
-                  <li id="omit-references">
-                     <h4 class="bold">Do not put references on your resume.</h4>
-                     <p>DON’T DO IT! References are unnecessary unless asked for by a HUMAN. Why?</p>
-                     <ul>
-                        <li>Because if someone wants to hire you, they will ask you at that time to submit references.</li>
-                        <li>Because they will call your previous employers regardless of whether you gave them as a reference.</li>
-                        <li>Because it is rude to the people who are your references to send their contact information to 10,000 places.</li>
-                        <li>Because they raise the chance that your own contact info will be confused with that of one of your references.</li>
-                        <li>Because your resume will live in data banks and the internet until long after you have retired, and your references may go stale long before then.</li>
-                     </ul>
-                  </li>
-                  <p>If you want, you may simply state, as the last line of your resume, &quot;References available on request.&quot; But really, that is not informative, so why not just omit that line, too? And if you really, really want, or have been asked to do so, send a <i>separate</i>references document. But in any case, only send references to a HUMAN, never to a machine.</p>
-               </ol>
+                </li>
+                <li id="omit-references">
+                  <h4 class="bold">Do not put references on your resume.</h4>
+                  <p>DON’T DO IT! References are unnecessary unless asked for by a HUMAN. Why?</p>
+                  <ul>
+                    <li>Because if someone wants to hire you, they will ask you at that time to submit references.</li>
+                    <li>Because they will call your previous employers regardless of whether you gave them as a
+                      reference.</li>
+                    <li>Because it is rude to the people who are your references to send their contact information to
+                      10,000 places.</li>
+                    <li>Because they raise the chance that your own contact info will be confused with that of one of
+                      your references.</li>
+                    <li>Because your resume will live in data banks and the internet until long after you have retired,
+                      and your references may go stale long before then.</li>
+                  </ul>
+                </li>
+                <p>If you want, you may simply state, as the last line of your resume, &quot;References available on
+                  request.&quot; But really, that is not informative, so why not just omit that line, too? And if you
+                  really, really want, or have been asked to do so, send a <i>separate</i>references document. But in
+                  any case, only send references to a HUMAN, never to a machine.</p>
+              </ol>
             </div>
           </div>
-<div class="modal-footer">
-      
-           </div> 
+          <div class="modal-footer">
+
+          </div>
         </div>
       </div>
     </div>
