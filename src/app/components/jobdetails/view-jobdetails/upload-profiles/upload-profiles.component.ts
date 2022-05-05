@@ -899,6 +899,10 @@ onFileSelected(event) {
       let file: File = this.uploader.queue[i]._file;
        this.selectedFiles.push(file);
     }
+    if(this.uploader.queue.length > 2)
+    {
+      this.toastr.warning('Please upload maximum of 2 profiles.','Oh no!!!');
+    }
   }
 }
 
