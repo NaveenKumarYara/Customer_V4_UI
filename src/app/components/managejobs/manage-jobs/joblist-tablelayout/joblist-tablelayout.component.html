@@ -1,5 +1,6 @@
 <header>
     <div class="job-details tablelayoutview">
+        <h6  class="status Active mlr-9 pull-right">Arytic Id : {{job?.JobId}}</h6>
         <h3 class="medium" (click)="ViewJobdetails(job?.JobId)">{{add3Dots(job?.JobTitle.split('|')[0],30)}}</h3>
         <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
         <div class="meta h-19">
