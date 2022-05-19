@@ -54,7 +54,7 @@ export class UploadProfilesComponent implements OnInit {
   errorText: number = 0;
   editCertification:boolean=false;
   fileUploadForm: FormGroup;
-  moreShow: boolean = false;
+  moreShow: number;
   totalFile: number = 0;
   pprofiles = new processProfiles();
   searchprofilesFrom: FormGroup;
@@ -853,8 +853,12 @@ Job = {
   }
 
 
-  moreContent() {
-    this.moreShow = !this.moreShow;
+  moreContent(e) {
+    this.moreShow = e;
+  }
+
+  lessContent() {
+    this.moreShow = -1;
   }
 
 GetCustomerSubscription()
