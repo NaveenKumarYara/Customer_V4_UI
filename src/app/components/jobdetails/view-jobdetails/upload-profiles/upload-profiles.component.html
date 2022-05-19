@@ -105,8 +105,8 @@
   <div class="main__section" *ngIf="uploadRes.length>0">
     <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
-      <!-- <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId"> -->
-        <div class="row flex flex-wrap">
+      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
+        <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
             <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4>
@@ -1553,16 +1553,19 @@
                         <p [innerHTML]="exp?.Description | slice:0:100">
 
                         </p>
-                        <ng-container *ngIf="moreShow">
+                        <ng-container *ngIf="moreShow == e">
                           <p [innerHTML]="exp?.Description| slice:100:15000">
-
                           </p>
                         </ng-container>
-                        <a href="javascript:void(0)" *ngIf="exp?.Description?.length>100" (click)="moreContent(i)"
+                        <a href="javascript:void(0)" *ngIf="exp?.Description?.length>100 && moreShow!=e" (click)="moreContent(e)"
                           class="show__more">
-                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                         <span>Show More</span>
                         </a>
                       </div>
+                      <a href="javascript:void(0)"  *ngIf="exp?.Description?.length>100 && moreShow==e"  (click)="lessContent()"
+                        class="show__more">
+                        <span>Show Less</span>
+                      </a>
                     </ng-container>
 
                   </div>
