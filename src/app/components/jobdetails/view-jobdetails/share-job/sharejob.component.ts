@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -15,6 +15,7 @@ import { of } from 'rxjs/observable/of';
 import { forEach } from '@angular/router/src/utils/collection';
 import { SettingsService } from '../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../../../../shared/services';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -24,7 +25,7 @@ export interface DialogData {
   templateUrl: './sharejob.component.html',
   styleUrls: ['./sharejob.component.css']
 })
-export class ShareJobComponent {
+export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
   referLink:any;
@@ -64,12 +65,28 @@ export class ShareJobComponent {
   type:string;
   @Input() shareUrl: string;
   navUrl: string;
-  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  CompanyName: any;
+  Title: any;
+  Image:any;
+  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
-  
+    this.GetLink();
+    this.GetjobCard();
+  }
+
+  GetLink()
+  {
+    let body = <HTMLDivElement>document.body;
+    let script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = '../assets/js/oneall_script.js';
+    script.async = true;
+    script.defer = true;
+    // script.append("val", "abcbcbc");
+    body.appendChild(script);
   }
 
   copyToClipboard() {
@@ -162,6 +179,23 @@ public share(val) {
   Whatsapp() {
     this.whatsapp = undefined;
     this.whatsappform.reset();
+  }
+
+  GetjobCard()
+  {
+    this._service.GetService('IdentityAPI/api/GetJobCard?jobId=', this.data.JobId)
+    .subscribe(res => {
+      if (res != 'No data') {
+        this.Image = res;
+      }
+      else {
+        this.Image = " ";
+      }
+      this.Image=res;
+      this.CompanyName= 'Job Details Preview';
+      this.Title=this.customer.FirstName.toUpperCase();
+
+    });
   }
 
   WhatsappShare() {

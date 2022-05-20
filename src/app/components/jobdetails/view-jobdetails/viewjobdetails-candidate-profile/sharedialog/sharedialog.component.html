@@ -130,23 +130,67 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button
+                                <div id="social-login-container"></div>
+<input type="hidden" id="Company_Name" [(ngModel)]="CompanyName"  [ngModelOptions]="{standalone: true}" />
+<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
+<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
+<style>
+    .hide-pby {
+      position: relative;
+    }
+
+    aside.hide-pby::before {
+      position: absolute;
+      width: 200px;
+      height: 15px;
+      content: "";
+      left: 0;
+      bottom: 0;
+      background-color: #fff;
+    }
+  </style>
+  <div class="hide-pby">
+    <div id="login_container" class="hide-pby"></div>
+  </div>
+                                <div id="hiddenTag">
+                                    <div class="text-center">
+                                      <span class=" icon">
+                                        <!-- <div id="share-dialog-linkedin"></div> -->
+                                        <a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; " (click)="GetLink()">
+                                          <img src="assets/images/linkedin-icon.png" id="share-dialog-linkedin" alt="linkedin">
+                                        </a>
+                                      </span>
+                                      <span class="icon">
+                                        <a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; " (click)="GetLink()">
+                                          <img src="assets/images/fb-icon.png" id="share-dialog-facebook" alt="facebook">
+                                        </a>
+                                      </span>
+                                      <span class="icon">
+                                        <a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; " (click)="GetLink()">
+                                          <img src="assets/images/twitter-icon.png" alt="twitter">
+                                        </a>
+                                      </span>
+                                      <span class="icon">
+                                        <a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
+                                            src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                <!-- <button
                                 (click)="share('facebook')">
                                 <img src="../../../../../assets/images/fb-icon.svg" alt="">
-                              </button>
+                              </button> -->
                               
                               <!-- <button
                                 (click)="share('linkedin')">
                                 <img src="../../../../../assets/images/linkedin-icon.svg" alt="">
                               </button> -->
-                              <button
+                              <!-- <button
                               (click)="share('twitter')">
                               <img src="../../../../../assets/images/twitter-icon.svg" alt="">
-                            </button>
-                            <span class="icon">
-                                <a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
-                                    src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
-                              </span>
+                            </button> -->
+                         
                             </div>
                             <div class="form-group">
 								

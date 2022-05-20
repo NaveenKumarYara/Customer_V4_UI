@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -24,7 +24,7 @@ export interface DialogData {
   templateUrl: './sharedialog.component.html',
   styleUrls: ['./sharedialog.component.css']
 })
-export class SharedialogComponent {
+export class SharedialogComponent implements OnInit{
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
   GetContactsList: contactInfo[];
@@ -51,19 +51,54 @@ export class SharedialogComponent {
   selectedComments: any;
   userId: number;
   type:string;
+  CompanyName: any;
+  Title: any;
+  Image:any;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
   arr: any=[];
-  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService,private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private elementRef:ElementRef,private _service: ApiService,private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
     this.teamchange(false,0);
+    this.GetProfileCard();
+    this.GetLink();
   }
 
+
+  GetLink()
+  {
+    let body = <HTMLDivElement>document.body;
+    let script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = '../assets/js/oneall_script.js';
+    script.async = true;
+    script.defer = true;
+    // script.append("val", "abcbcbc");
+    body.appendChild(script);
+  }
+
+  
+
+  // ngAfterViewInit() {
+  //   this.CompanyName=this.customer.FirstName;
+  //   this.Title=this.data.Title;
+  //   let body = <HTMLDivElement>document.body;
+  //   let script = document.createElement('script');
+  //   script.innerHTML = '';
+  //   script.src = '../assets/js/oneall_script.js';
+  //   script.async = true;
+  //   script.defer = true;
+  //   // script.append("val", "abcbcbc");
+  //   body.appendChild(script);
+
+  // }
+
+
   ngOnInit() {
-    this.GetProfileCard();
+   
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
@@ -92,6 +127,10 @@ export class SharedialogComponent {
   return this._service.GetService('IdentityAPI/api/GetSmartCard?jobId='+  this.data.jobId + '&profileId=',this.data.ProfileId)
   .subscribe(res => {
          this.profileSharing.Image = res;
+         this.Image=res;
+         this.CompanyName='Profile Details Preview';
+         this.Title=this.data.Title.toUpperCase();
+         //this.GetLink();
   });
  }
 
