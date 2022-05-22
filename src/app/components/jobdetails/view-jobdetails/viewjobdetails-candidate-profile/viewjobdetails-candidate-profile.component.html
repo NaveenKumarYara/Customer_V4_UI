@@ -568,88 +568,7 @@
             </a> -->
           </div>
         </div>
-        <ng-container>
-          <div class="matching-details h-a" id="sizzleVideo-{{ profile.ProfileId }}">
-            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
-
-            <div class="details">
-              <!-- <div *ngIf="" -->
-              <div class="video-scroll">
-                <div class="w-75 m-auto d-block cls-rel">
-                  <h6 class="video-tittle">Sizzle Video</h6>
-                  <!-- <video controls="">
-                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                  </video>-->
-                  <div *ngIf="profileFlipVideo?.VideoSizzle === null">
-                    <img src="../../../assets/images/no-video.png" class="icon" alt="." />
-                  </div>
-                  <div *ngIf="profileFlipVideo?.VideoSizzle != null">
-                    <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4"
-                      #videoPlayer></video>
-                  </div>
-                  <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
-                  <div class="status shortlisted pull-right">
-                    <a class="show-matching-details"
-                      (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, false)"
-                      data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a>
-                  </div>
-                </div>
-                <!--
-            <div class="col-md-6">
-                <h6>Video Sizzle</h6>
-                <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-            </div> -->
-              </div>
-            </div>
-          </div>
-          <div class="matching-details h-a" id="profileVideo-{{ profile.ProfileId }}">
-            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
-
-            <div class="details">
-              <!-- <div *ngIf="" -->
-              <div class="video-scroll">
-                <div class="w-75 m-auto d-block cls-rel">
-                  <!--Commented as it is not working *ngIf="profileFlipVideo?.VideoProfile!=null"> -->
-                  <h6 class="video-tittle">Candidate Profile</h6>
-                  <!-- <video controls="">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                </video>-->
-                  <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
-                  <div *ngIf="profileFlipVideo?.VideoProfile === null">
-                    <img src="../../../assets/images/no-video.png" class="icon" alt="." />
-                  </div>
-                  <div *ngIf="profileFlipVideo?.VideoProfile != null">
-                    <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4"
-                      #videoPlayer></video>
-                  </div>
-                  <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null">
-                    <a class="show-matching-details" data-toggle="matching-details"
-                      (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
-                      href="javascript:void(0)">Sizzle Video</a>
-                  </div>
-                </div>
-                <!--
-                  <div class="col-md-6">
-                      <h6>Video Sizzle</h6>
-                      <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                  </div> -->
-              </div>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="profileFlipVideo?.VideoSizzle == null && profileFlipVideo?.VideoProfile == null">
-          <div class="matching-details h-a" id="sizzleVideo-{{ profile.ProfileId }}">
-            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
-            <div class="details">
-              <div class="video-scroll">
-                <div class="w-75 m-auto d-block cls-rel">
-                  <h6 class="video-tittle">Video</h6>
-                  <img src="../../../assets/images/no-video.png" class="icon" alt="." />
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
+       
         <!-- <div class="smart-card-progress-bar  no-interview-status flex flex-align-center flex-justify-center" *ngIf="profile?.ResponseStatusId != 7">
           <img src="../../../../../assets/images/interview-status.png" alt="">
           No Interview Status Available
@@ -900,6 +819,7 @@
           </div>
         </owl-carousel> -->
       </div>
+     
       <div class="footer">
         <ul class="actions">
           <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
@@ -1476,6 +1396,88 @@
         </ul>
       </div>
     </div>
+    <ng-container>
+      <div class="matching-details h-a sizzlevideo-matching-details" id="sizzleVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+
+        <div class="details">
+          <!-- <div *ngIf="" -->
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <h6 class="video-tittle">Sizzle Video</h6>
+              <!-- <video controls="">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>-->
+              <div *ngIf="profileFlipVideo?.VideoSizzle === null">
+                <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+              </div>
+              <div *ngIf="profileFlipVideo?.VideoSizzle != null">
+                <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4"
+                  #videoPlayer></video>
+              </div>
+              <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+              <div class="status shortlisted pull-right">
+                <a class="show-matching-details"
+                  (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, false)"
+                  data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a>
+              </div>
+            </div>
+            <!--
+        <div class="col-md-6">
+            <h6>Video Sizzle</h6>
+            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+        </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="matching-details h-a sizzlevideo-matching-details" id="profileVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+
+        <div class="details">
+          <!-- <div *ngIf="" -->
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <!--Commented as it is not working *ngIf="profileFlipVideo?.VideoProfile!=null"> -->
+              <h6 class="video-tittle">Candidate Profile</h6>
+              <!-- <video controls="">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>-->
+              <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+              <div *ngIf="profileFlipVideo?.VideoProfile === null">
+                <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+              </div>
+              <div *ngIf="profileFlipVideo?.VideoProfile != null">
+                <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4"
+                  #videoPlayer></video>
+              </div>
+              <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null">
+                <a class="show-matching-details" data-toggle="matching-details"
+                  (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
+                  href="javascript:void(0)">Sizzle Video</a>
+              </div>
+            </div>
+            <!--
+              <div class="col-md-6">
+                  <h6>Video Sizzle</h6>
+                  <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+              </div> -->
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="profileFlipVideo?.VideoSizzle == null && profileFlipVideo?.VideoProfile == null">
+      <div class="matching-details h-a sizzlevideo-matching-details" id="sizzleVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+        <div class="details">
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <h6 class="video-tittle">Video</h6>
+              <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
     <div class="matching-details bg-fff revamp__arytic__fit" id="matchingDetailRadar-{{ profile.ProfileId }}">
       <a _ngcontent-c21="" class="revamp__close tooltip1" href="javascript:void(0)"
         (click)="closeDetails(profile.ProfileId, 1)">×
