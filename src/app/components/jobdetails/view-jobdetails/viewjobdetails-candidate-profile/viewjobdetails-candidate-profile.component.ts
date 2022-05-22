@@ -1365,6 +1365,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
     // $('.matching-details').removeClass('open');
     // $('#matchingDetails-' + profileId).toggleClass('open');
+    this.ProfileId = profileId;
+    this.iconHide = true;
     if (profileOrSizzle === true) {
       $(".matching-details").removeClass("open");
       $("#profileVideo-" + profileId).toggleClass("open");
@@ -1427,6 +1429,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
     //   this.profileVideo = res[0]; });
     // profile.VideoSizzle,profile.VideoProfile
+    this.ProfileId = profileId;
+    this.iconHide = true;
     this.profileFlipVideo.VideoProfile = videoProfile;
     this.profileFlipVideo.VideoSizzle = videoSizzle;
     // $('.matching-details').removeClass('open');

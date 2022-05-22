@@ -404,3 +404,7 @@
   left: 0;
   top:0;
 }
+
+.sizzlevideo-matching-details {
+  height: 100% !important;
+}
