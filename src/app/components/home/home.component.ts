@@ -82,7 +82,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger
     this.router.navigateByUrl('/login' , { replaceUrl: true });
     this.spinner.show();
   }

@@ -30,3 +30,12 @@ export class companysize
     CompanySizeId:number;
     CompanySize:string;
 }
+
+export class ConfigurePassword {
+    // public ShowForgotPassword: boolean;
+    // public ShowRegisterPassword: boolean;
+    public Id: boolean;
+    // public Display: boolean;
+    public Code: string;
+    public IsEnabled: boolean;
+}

@@ -60,7 +60,7 @@ import { XmlJobResponse } from "./components/jobdetails/view-jobdetails/upload-p
 import { ParseResponsibilities } from "./components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component";
 import { SkillDetails, SkillData, SkillPostData } from "../models/skill.model";
 import { SettingsService } from "../settings/settings.service";
-import { CompanyProfile } from "../models/companyprofile";
+import { CompanyProfile, companysize, ConfigurePassword } from "../models/companyprofile";
 import { billEstimates } from "../models/billEstimates";
 import { invoiceEstimates } from "../models/GetBillingEstimates";
 import { getBillingContactDetails } from "../models/getBillingContactDetails";
@@ -1225,6 +1225,22 @@ export class AppService {
     const url = this.settingsService.settings.GetCustomerUsers + "customerId=" + customerId;
     return this.http.get<string[]>(url).catch(this.handleError);
   }
+
+  GetCompanySize(): Observable<companysize[]>
+  {
+    const url = this.settingsService.settings.GetCompanySize;
+    return this.http.get<companysize[]>(url).catch(this.handleError);
+        
+  }
+
+  AddSubscription(body) :any {
+    return this.http.post(this.settingsService.settings.AddSubscription, body).catch(this.handleError);
+  }
+
+  configurePassword(): Observable<ConfigurePassword[]> {
+    const url = this.settingsService.settings.configurePassword; 
+    return this.http.get<ConfigurePassword[]>(url).catch(this.handleError);
+  } 
 
   getReortingTeam(customerId: number): Observable<CustomerUsers[]> {
     const url = this.settingsService.settings.GetReportingTeamList + "customerId=" + customerId;

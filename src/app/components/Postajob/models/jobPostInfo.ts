@@ -164,6 +164,14 @@ export class DiscResult {
         }
   // related
 
+
+  export class companysize
+{
+    CompanySizeId:number;
+    CompanySize:string;
+}
+
+
   export class CustomerUsers {
       public  UserId: number;
       public FirstName: string;

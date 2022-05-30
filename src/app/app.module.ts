@@ -76,7 +76,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { CandidatedetailviewComponent } from './components/CandidateProfile-details/candidatedetailview/candidatedetailview.component';
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
 import { SpinnerInterceptor } from './shared/interceptors/spinner-interceptor';
-import { VendorManagerComponent } from './components/vendor-manager/vendor-manager.component';;
+import { VendorManagerComponent } from './components/vendor-manager/vendor-manager.component';import { NgxDocViewerModule } from 'ngx-doc-viewer';
+;
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -116,6 +117,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     ImageCropperModule,
     NgSelectModule,
     HttpClientModule,
+    NgxDocViewerModule,
     AngularMultiSelectModule,
     RecaptchaModule.forRoot({
       siteKey: '6Ld6CWobAAAAAGUdYvl8v1vRb0g6PGzCuaVp8jWB',

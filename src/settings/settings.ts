@@ -10,6 +10,7 @@ export class Settings {
   jobTitleEndpoint: string;
   getskillsEndpoint: string;
   addSkillsEndpoint: string;
+  AddSubscription:string;
   GetPersonTypeEndPoint: string;
   GetInterViewList: string;
   JobShareInvite: string;
@@ -180,6 +181,7 @@ export class Settings {
   GetCertificationProvider:string;
   GetCertificationName:string;
   listofAllTitles: string;
+  configurePassword:string;
   GetDeafultTemplates: string;
   GetCustomerWeekReport: string;
   GetCustomerMonthReport: string;

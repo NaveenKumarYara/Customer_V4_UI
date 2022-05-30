@@ -83,12 +83,14 @@ export class dLoginComponent {
     console.log('Google reCAPTCHA loaded and is ready for use!')
   }
 
+
+
   onScriptError() {
     console.log('Something went long when loading the Google reCAPTCHA')
   }
   SignUp() {
-    //this.router.navigateByUrl('signup'); 
-    window.location.href = this.settingsService.settings.customerSignUp;
+    this.router.navigateByUrl('signup'); 
+    //window.location.href = this.settingsService.settings.customerSignUp;
   }
   forgot() {
     //this.router.navigateByUrl('ForgotPassword'); 
