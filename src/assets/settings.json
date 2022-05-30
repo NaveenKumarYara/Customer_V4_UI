@@ -128,7 +128,6 @@
   "GetTechinicalTeamList": "https://profileapi-dev.arytic.com/api/GetTechinicalTeamList?",
   "AddDepartment": "https://profileapi-dev.arytic.com/api/InsertCustomerDepartments",
   "customerLogin": "https://dev.arytic.com/customerlogin",
-  
   "customerSignUp": "https://customer-dev.arytic.com/signup",
   "ForgotPasswordurl": "https://dev.arytic.com/ForgotPassword",
   "CandidateSignUp": "https://dev.arytic.com/candidatesignup",
