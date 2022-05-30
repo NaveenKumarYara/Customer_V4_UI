@@ -125,7 +125,7 @@
     "GetCustomerUsers": "${Profile_URL}/api/GetCustomerUsers?",
     "AddDepartment": "${Profile_URL}/api/InsertCustomerDepartments",
     "customerLogin": "${CuMain_URL}/customerlogin",
-    "customerSignUp": "${Main_URL}/signup",
+    "customerSignUp": "${CuMain_URL}/signup",
     "ForgotPasswordurl": "${Main_URL}/ForgotPassword",
     "CandidateSignUp": "${Main_URL}/candidatesignup",
     "NewCandidateSignUp": "${Main_URL}/candidatesignuppublic",
