@@ -27338,3 +27338,19 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
 .page main.vendor-main-details-container {
   background: #fff;
 }
+
+.page--manage-jobs .card .artyic-id {
+    position: absolute;
+    top: 125px;
+    background: #93a2bb;
+    left: 0;
+    margin: 0 auto !important;
+    right: 0;
+    width: 140px !important;
+    text-align: center;
+    padding: 2px 6px  !important;
+}
+
+.page--manage-jobs .tablelayoutview .artyic-id {
+    top: 104px;
+}
