@@ -1,5 +1,5 @@
 <div class="card">
-       <h6  class="status Active mlr-9 pull-right">Arytic Id : {{job?.JobId}}</h6>
+      
     <div class="dropdown card-dropdown">
         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
             <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
@@ -26,7 +26,7 @@
             <h3 class="medium"><span class="job-title" title="{{job?.JobTitle}}"
                     (click)="ViewJobdetails(job?.JobId)">{{add3Dots(job?.JobTitle.split('|')[0],20)}}</span> <span
                     class="status {{job?.JobStatus}} mlr-9">{{job?.JobStatus}}</span></h3>
-
+            <h6  class="status mlr-9 pull-right artyic-id">Arytic Id : {{job?.JobId}}</h6>
             <div class="meta h-19">
 
                 <!--Condition based border line starts-->
@@ -97,7 +97,7 @@
                     <h5 class="jobbl-1">Job Id : {{job?.JobPositionId}}</h5>
                 </ng-container>
             </div>
-
+            
         </header>
         <div class="card-body">
             <div class="row">
