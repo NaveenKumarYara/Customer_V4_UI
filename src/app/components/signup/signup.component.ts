@@ -1278,6 +1278,11 @@ export class SignUpComponent  implements OnInit{
     window.location.href = this.settingsService.settings.CandidateLogin; 
   }
 
+  LayoutR()
+  {
+    window.location.href = 'https://arytic.co.in'; 
+  }
+
 
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
