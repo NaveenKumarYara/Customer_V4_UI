@@ -105,7 +105,7 @@
           <div class="edit-group password-group">
             <ng-container *ngIf="iseditPwd">
             <form [formGroup]="passForm"  action="" (ngSubmit)="UpdatePass()"  class="form-inline">
-              <div class="form-group">
+              <div class="form-group mb-0">
                 <label for="password">Password</label>
                 <div class="editable-input">
                     <input type="password" id="oldPassword" formControlName="OldPassword" placeholder="Old Password" class="form-control" (keypress)="MissClear()"

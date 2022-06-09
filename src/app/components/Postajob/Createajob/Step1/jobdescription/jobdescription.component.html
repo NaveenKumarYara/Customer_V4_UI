@@ -11,7 +11,7 @@
       <span>No</span>
     </label> -->
   </div>
-  <div class="options">
+  <!-- <div class="options">
     <div class="checkbox">
         <label>
             <input  type="radio" name="desc" [(ngModel)]="hasCompleteDescription" [value]="true"  [checked]="hasCompleteDescription==true"
@@ -24,9 +24,10 @@
              (change)="setValue(hasCompleteDescription)"><span class="box">No</span>
         </label>
     </div>
-</div>
+  </div> -->
   <div class="clearfix">&nbsp;</div>
-  <div *ngIf="hasCompleteDescription">
+  <!-- <div *ngIf="hasCompleteDescription"> -->
+  <div>
     <ckeditor  [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
  
     <!-- <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>

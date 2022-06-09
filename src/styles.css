@@ -15021,6 +15021,27 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     width: 56%;
 }
 
+
+.page--account-settings .right .editable-input .form-control {
+    height: 40px;
+    border: 1px solid #E0E3EF;
+    border-radius: 6px;
+    background: #fff;
+    border-left: 3px solid #66DAB5;
+}
+
+.page--account-settings .right .form-inline {
+    margin: 0 0 30px;
+}
+
+.page--account-settings .form-group .glyphicon.glyphicon-eye-open {
+    position: absolute !important;
+    left: auto !important;
+    right: 15px!important;
+    top: 50% !important;
+    margin-top: -2px !important;
+}
+
 .page--account-settings .right .edit-btn {
     padding-top: 10px;
     display: inline-block;
