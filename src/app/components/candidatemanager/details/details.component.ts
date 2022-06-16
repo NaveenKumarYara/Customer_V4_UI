@@ -1255,7 +1255,7 @@ export class DetailsComponent implements OnInit {
 					confirmButtonText: 'OK',
 					cancelButtonText: 'No'
 				}).then((result) => {
-					this.initInitialState();
+					// this.initInitialState();
 				});
 		}
 	}
