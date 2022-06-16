@@ -500,11 +500,11 @@
 									<button class="btn btn-cross" (click)="fullGridViewHide()">Close</button>
 									<h4 class="text-center">View profile details</h4>
 								
-									<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+									<div id="carouselExampleIndicators"  class="carousel slide" data-ride="carousel">
 										<div class="carousel-inner">
 											<ng-container *ngFor="let candidate of candidates;let g = index">
 												<div class="item active" *ngIf="selectcard === g">
-													<div class="page--job-details">
+													<div class="page--job-details" id="aas{{ candidate.ProfileId }}">
 														<div class="smart-card">
 															<div class="card candidate">
 																<header class="p-rel">
@@ -554,7 +554,7 @@
 																	</div>
 																	<div class="card-profile-image-container flex flex-wrap flex-align-end">
 																		<figure class="flex flex-wrap flex-align-center flex-justify-center">
-																			<img alt="" src="https://identityapi.arytic.com/home/EsolvitImages?id=professional.png" width="66" height="66">
+																			<img alt="" src="../../../../../assets/images/Pro.png" width="66" height="66">
 																		</figure>
 																		<h1 class="title">
 																			<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,pmatching?.ProfilePercentage)">
@@ -888,7 +888,7 @@
 																			</li>
 																			<li>
 																				<a  
-																					href="javascript:void(0)" data-toggle="modal" (click)="shareSidePanel()">
+																					href="javascript:void(0)" data-toggle="modal" (click)="shareSidePanel(candidate.ProfileId)">
 																					<svg fill="#9eabc0" height="21" width="25"
 																						xmlns="http://www.w3.org/2000/svg">
 																						<path

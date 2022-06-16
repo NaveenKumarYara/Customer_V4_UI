@@ -27,6 +27,10 @@ import { MapsAPILoader } from '@agm/core';
 import { StartConversation } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as Chart from "chart.js";
+import * as _html2canvas from "html2canvas";
+import { FormBuilder, Validators } from "@angular/forms";
+import { title } from "process";
+const html2canvas: any = _html2canvas;
 
 @Component({
 	selector: 'cm-details',
@@ -39,6 +43,8 @@ export class DetailsComponent implements OnInit {
 	showFilterNavBar: boolean = false;
 	showMenu: boolean = false;
 	customer: any = null;
+	fileUploadForm: FormGroup;
+	filedata=new FormData();
 	mins:number = 0;
 	maxs:number = 3;
 	EDetails:any=[];
@@ -260,7 +266,7 @@ export class DetailsComponent implements OnInit {
 	selectedCompanyCount: number;
 	selectedEdcationCount: number;
 	selectedCertificationCount: number;
-
+	Image:any;
 	@ViewChild('locationSearch') public locationSearchElement: ElementRef;
 	@Output() childEvent = new EventEmitter<any>();
 	selectedLocation: any;
@@ -271,7 +277,7 @@ export class DetailsComponent implements OnInit {
 	isGridShown: boolean;
 	isTableShown: boolean;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
-		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager,  private fb: FormBuilder, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
 		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
 		private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private spinner: NgxSpinnerService
@@ -289,6 +295,68 @@ export class DetailsComponent implements OnInit {
 		this.body = 'Join hands with us and make your goals achieved!.';
 		this.subject = 'Please submit the consent';
 	}
+
+	GetProfileCard(PId)
+	{
+	 return this.apiService.GetService('IdentityAPI/api/GetSmartCard?jobId=0'+ '&profileId=',PId)
+	 .subscribe(res => {debugger
+
+		if(res != "No data")
+		{
+		    this.profileSharing.Image = res;
+			this.Image=res;
+		
+		}
+		else
+		{
+			this.clickme(PId);
+		}
+	 });
+	}
+
+	dataURLtoFile(dataurl, filename) {
+ 
+		var arr = dataurl.split(','),
+			mime = arr[0].match(/:(.*?);/)[1],
+			bstr = atob(arr[1]), 
+			n = bstr.length, 
+			u8arr = new Uint8Array(n);
+			
+		while(n--){
+			u8arr[n] = bstr.charCodeAt(n);
+		}
+		
+		return new File([u8arr], filename, {type:mime});
+	}
+
+	clickme(val) {
+		let request = '';
+		const formData = new FormData();
+		html2canvas(document.getElementById('aas' + val),{
+		  useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
+		  logging: true }).then(canvas => {
+		  // document.querySelector(".result").appendChild(canvas);
+			var image = canvas.toDataURL();
+			var file = this.dataURLtoFile(image,val+'.png');
+			this.fileUploadForm.value.Url = '';
+			this.fileUploadForm.value.customerId = this.customerId;
+			this.fileUploadForm.value.JobId = 0;
+			this.fileUploadForm.value.ProfileId = val;
+			this.fileUploadForm.value.JobSmartCard = file.name;
+			this.fileUploadForm.value.FileExtension = '.png';
+			request = JSON.stringify(this.fileUploadForm.value);
+			formData.append('SmartCard', file);
+			formData.append('Model', request);
+			this.filedata= formData;
+			this.apiService.byteStorage(this.filedata, 'IdentityAPI/api/SaveSmartCard').subscribe(data => {
+			  let res = data;
+			  this.spinner.hide();
+			  this.GetProfileCard(val);	
+		 });  
+	
+		  
+		});
+	  }
 
 	ngOnInit() {
 		this.spinner.show();
@@ -323,7 +391,15 @@ export class DetailsComponent implements OnInit {
 		this.initInitialState();
 		this.isGridShown = true;
 		this.currentView = 'Grid';
-
+		this.fileUploadForm = this.fb.group({ 
+			'CustomerId': ['', Validators.required],
+			'ProfileId': [0, Validators.nullValidator],
+			'JobId': [0, Validators.nullValidator],
+			'SmartCard':[null, Validators.nullValidator],
+			'JobSmartCard': ['', Validators.nullValidator],
+			'Url': ['', Validators.nullValidator],
+			'FileExtension': ['', Validators.nullValidator],
+		  });
 	}
 
 	closeSidebarHandler() {
@@ -617,11 +693,12 @@ export class DetailsComponent implements OnInit {
 		this.applyJobSidePanelShow = true;
 	}
 
-	shareSidePanel() {
+	shareSidePanel(Pid) {
 		this.GetContacts();
 		this.clearTeamMemebers();
 		this.getcustomerusers();
 		this.shareJobSidepanel = true;
+		this.GetProfileCard(Pid);
 	}
 
 	sendEmail() {
@@ -1115,7 +1192,7 @@ export class DetailsComponent implements OnInit {
 		let emailAddresses = this.emailAddresses;
 		let message = this.emailMessage;
 		let candidates = this.candidates.filter(x => x.IsSelected);
-
+        
 		if (candidates.length > 0) {
 			let loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
 			let customerId = loggedInUser.CustomerId;
@@ -1128,7 +1205,7 @@ export class DetailsComponent implements OnInit {
 			this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid={0};Id=0;Cid=' + customerId;
 			this.profileSharing.Comments = message != null ? message : 'Please review the profile shared to you';
 			this.profileSharing.SelectedCandidates = candidates;
-			this.jobdetailsservice.ShareProfile(this.profileSharing).subscribe(data => {
+	    	this.jobdetailsservice.ShareProfile(this.profileSharing).subscribe(data => {
 				//this.inviteform.reset();
 				this.teammemberslist = [];
 				$('#teamMbr').val('');
@@ -1164,6 +1241,8 @@ export class DetailsComponent implements OnInit {
 				this.isSharingStarted = false;
 				console.log('error:', JSON.stringify(error));
 			});
+			
+		
 		} else {
 			swal(
 				{
@@ -1173,7 +1252,7 @@ export class DetailsComponent implements OnInit {
 					type: "error",
 					confirmButtonColor: '#66dab5',
 					cancelButtonColor: '#FF0000',
-					confirmButtonText: 'View',
+					confirmButtonText: 'OK',
 					cancelButtonText: 'No'
 				}).then((result) => {
 					this.initInitialState();
@@ -1767,6 +1846,7 @@ export class ProfileShare {
 	ToEmailId: string;
 	FromEmailId: string;
 	ApplicationName: string;
+	Image:string;
 	SelectedCandidates: CandidateInformation[];
 	readonly modules: ReadonlyArray<{}> = []
 }
