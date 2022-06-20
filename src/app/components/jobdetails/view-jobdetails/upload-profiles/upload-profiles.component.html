@@ -2472,12 +2472,12 @@
                 <div class="d-block">
                   <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
                   <div class="file">
-                    <input matInput type="file" ng2FileSelect [uploader]="uploader" #browse multiple
+                    <input matInput type="file" ng2FileSelect [uploader]="uploader" #browse 
                       (click)="browse.value = null" value="" (change)="onFileSelected($event)">
                   </div>
                   <div>Browse & Upload</div>
-                  <h5>Please upload maximum of 2 profiles </h5>
-                  <h6>We recommended to use Microsoft Word.</h6>
+                  <h5>We recommended to use Microsoft Word. </h5>
+                  <!-- <h6>We recommended to use Microsoft Word.</h6> -->
                 </div>
               </div>
             </div>
@@ -2557,16 +2557,16 @@
                 </tbody>
               </table>
               <button class="btn btn-primary pull-right"
-                *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<3"
+                *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<2"
                 (click)="processResumes()">Proceed</button>
               <button class="btn btn-primary pull-right"
-                *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<3">
+                *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<2">
                 <span>Processing...</span>
               </button>
-              <span *ngIf="uploader.queue.length>=3">
+              <!-- <span *ngIf="uploader.queue.length>=3">
                 <h5 style="color: red
-              ;" class="pull-right"> *Please upload maximum of 2 profiles </h5>
-              </span>
+              ;" class="pull-right"> *Please upload maximum of 1 profiles </h5>
+              </span> -->
             </div>
             <!--Upload Profile alerts starts here-->
             <div class="uploaded-list" style="display: none;">
