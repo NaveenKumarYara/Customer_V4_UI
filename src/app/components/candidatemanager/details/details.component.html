@@ -439,8 +439,14 @@
 			</div>
 			<span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
 			<div *ngIf="!candidatesLoading">
-				<div>
-					<ul class="horizontal-list">
+				<div class="cds">
+
+					<select name="cview" class="styled-select-box " (change)="Filter($event.target.value)" [(ngModel)]="sortBY">
+						<option selected value="0"><a  href="javascript:void(0)">All</a></option>
+						<option  value="1"><a  href="javascript:void(0)">Private</a></option>
+						<option  value="2"><a  href="javascript:void(0)">Public</a></option>
+					</select>
+					<!-- <ul class="horizontal-list">
 						<li>
 							<a  href="javascript:void(0)" (click)="Filter(0)">Home</a>
 						  </li>
@@ -451,7 +457,7 @@
 							<a  href="javascript:void(0)" (click)="Filter(2)">Public</a>
 						  </li>
 					
-					</ul>
+					</ul> -->
 				</div>
 				<ng-container *ngIf="candidates.length > 0">
 					<div class="data-grid-view" *ngIf="currentView == 'Grid'"
