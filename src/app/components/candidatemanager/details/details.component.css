@@ -9609,3 +9609,26 @@ margin-top: 0px;
         border-bottom: 1px solid #eee;
     }
   }
+
+  ul.horizontal-list {
+    list-style: none;
+    background-color: #48abe0;
+    color: white;
+    display: inline-block;
+    padding: 0rem 0rem;
+    margin-top: 3rem;
+    float: right;
+  }
+  
+  ul.horizontal-list li {
+    display: inline-block;
+    padding: 0 0.5rem;
+    min-width: 7rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  ul.horizontal-list li:not(:last-child) {
+    border-right: 1px solid white;
+  }
+

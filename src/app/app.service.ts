@@ -1721,7 +1721,7 @@ export class AppService {
   }
 
   getCandidates(params: any): Observable<any> {
-    const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
+    const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidatesNew';
     return this.http.post(apiUrl, params).pipe();
     //return this.http.get<any>(apiUrl, { params }).pipe();
   }

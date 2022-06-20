@@ -241,6 +241,7 @@ export class DetailsComponent implements OnInit {
 	];
 	closeResult: string;
 	data: any;
+	sortBY:any=0;
 	selectedSkills: any;
 	isJobTitleShown: boolean;
 	jobTitle: any;
@@ -510,9 +511,10 @@ export class DetailsComponent implements OnInit {
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
 		this.showDetail = false;
+		this.Filter(0);
 		this.getSkills();
 		this.getDomains();
-		this.getCandidates();
+		this.getCandidates();	
 		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 		// 	.subscribe(res => {
 		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -1681,6 +1683,22 @@ export class DetailsComponent implements OnInit {
 		this.cancel();
 		this.getCandidates();
 	}
+
+   Filter(Sort)
+   {
+	this.sortBY = Sort;
+	if(Sort === undefined)
+	{
+		this.sortBY=0;
+	}
+	else
+	{
+		this.sortBY = Sort;
+	}
+	this.getCandidates();
+   }
+
+
 	getCandidates() {
 		//debugger;
 		this.candidatesLoading = true;
@@ -1702,8 +1720,8 @@ export class DetailsComponent implements OnInit {
 		candidateSearch.SelectedDomains = this.selectedDomains;
 		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
-
-
+        candidateSearch.SortBy = this.sortBY;
+        debugger
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
@@ -1835,6 +1853,7 @@ export class CandidateSearch {
 	SelectedDomains: any;
 	CustomerId: any;
 	SelectedLocation: any;
+	SortBy:any;
 }
 
 export class ProfileShare {
