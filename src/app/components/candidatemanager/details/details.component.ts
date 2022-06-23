@@ -1721,7 +1721,6 @@ export class DetailsComponent implements OnInit {
 		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
-        debugger
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
