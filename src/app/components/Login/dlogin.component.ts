@@ -51,13 +51,15 @@ export class dLoginComponent {
         this.ActivatetheUser(params['Uid']);
       }
       if (params['Preid'] > 0) {
-        sessionStorage.setItem('Preid', params['Preid']);
-        sessionStorage.setItem('jobId', params['Id']);
-        sessionStorage.setItem('Cid', params['Cid'])
+        this.preId = sessionStorage.setItem('Preid', params['Preid']);
+         sessionStorage.setItem('jobId', params['Id']);
+        this.JobId = sessionStorage.setItem('JobId', params['Id']);
+        this.cid = sessionStorage.setItem('CId', params['Cid']);
       }
       if (params['JobId'] > 0) {
-        sessionStorage.setItem('JobId', params['JobId']);
-        sessionStorage.setItem('CId', params['CId'])
+        sessionStorage.setItem('jobId', params['JobId']);
+        this.JobId =  sessionStorage.setItem('JobId', params['JobId']);
+        this.CId =  sessionStorage.setItem('CId', params['CId']);
       }
 
     });
@@ -183,21 +185,20 @@ export class dLoginComponent {
                         this.userId = data.UserId;
                         if (this.preId != null) {
                           if (this.cid == this.customerId) {
-
                             this.router.navigateByUrl('app-view-jobdetails');
-                            const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
-                              {
-                                width: '750',
-                                position: { right: '0px' },
-                                height: '750px',
-                                data: {
-                                  animal: 'panda'
-                                }
-                              }
-                            );
-                            chatboxdialogRef.afterClosed().subscribe(result => {
-                              console.log('Chatbox Dialog result: ${result}');
-                            });
+                            // const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                            //   {
+                            //     width: '750',
+                            //     position: { right: '0px' },
+                            //     height: '750px',
+                            //     data: {
+                            //       animal: 'panda'
+                            //     }
+                            //   }
+                            // );
+                            // chatboxdialogRef.afterClosed().subscribe(result => {
+                            //   console.log('Chatbox Dialog result: ${result}');
+                            // });
                           }
                           else {
                             this.router.navigateByUrl('app-dashboardview');
@@ -232,21 +233,20 @@ export class dLoginComponent {
                         this.userId = data.UserId;
                         if (this.preId != null) {
                           if (this.cid == this.customerId) {
-
                             this.router.navigateByUrl('app-view-jobdetails');
-                            const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
-                              {
-                                width: '750',
-                                position: { right: '0px' },
-                                height: '750px',
-                                data: {
-                                  animal: 'panda'
-                                }
-                              }
-                            );
-                            chatboxdialogRef.afterClosed().subscribe(result => {
-                              console.log('Chatbox Dialog result: ${result}');
-                            });
+                            // const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                            //   {
+                            //     width: '750',
+                            //     position: { right: '0px' },
+                            //     height: '750px',
+                            //     data: {
+                            //       animal: 'panda'
+                            //     }
+                            //   }
+                            // );
+                            // chatboxdialogRef.afterClosed().subscribe(result => {
+                            //   console.log('Chatbox Dialog result: ${result}');
+                            // });
                           }
                           else {
                             this.router.navigateByUrl('app-dashboardview');
@@ -281,21 +281,21 @@ export class dLoginComponent {
                         this.userId = data.UserId;
                         if (this.preId != null) {
                           if (this.cid == this.customerId) {
-
+                      
                             this.router.navigateByUrl('app-view-jobdetails');
-                            const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
-                              {
-                                width: '750',
-                                position: { right: '0px' },
-                                height: '750px',
-                                data: {
-                                  animal: 'panda'
-                                }
-                              }
-                            );
-                            chatboxdialogRef.afterClosed().subscribe(result => {
-                              console.log('Chatbox Dialog result: ${result}');
-                            });
+                            // const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                            //   {
+                            //     width: '750',
+                            //     position: { right: '0px' },
+                            //     height: '750px',
+                            //     data: {
+                            //       animal: 'panda'
+                            //     }
+                            //   }
+                            // );
+                            // chatboxdialogRef.afterClosed().subscribe(result => {
+                            //   console.log('Chatbox Dialog result: ${result}');
+                            // });
                           }
                           else {
                             this.router.navigateByUrl('app-dashboardview');
@@ -393,7 +393,7 @@ export class dLoginComponent {
      this.myRecaptcha=new FormControl(true);
     }
     this.preId = sessionStorage.getItem('Preid');
-    this.cid = sessionStorage.getItem('Cid');
+    this.cid = sessionStorage.getItem('CId');
     this.CId = sessionStorage.getItem('CId');
     this.JobId = sessionStorage.getItem('JobId');
     this.loginform = this.fb.group({

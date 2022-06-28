@@ -78,6 +78,7 @@ export class ViewJobdetailsComponent implements OnInit {
   viewJobJobId: any;
   statusid = 4;
   sortBy = 1;
+  preId:any;
   wishid = 0;
   loadMore = false;
   // loadMoreStat:number;
@@ -98,6 +99,11 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
+    this.preId = JSON.parse(sessionStorage.getItem("Preid"));
+    if(this.preId!=null)
+    {
+      this.GetProfileDetails();
+    }
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     let vjobId = JSON.parse(localStorage.getItem('vjobId'));
     if(vjobId !=undefined && vjobId!=null)
@@ -214,8 +220,16 @@ export class ViewJobdetailsComponent implements OnInit {
   {
     this.jobdetailsservice.getRecentApplicants(this.customerId,this.userId,5).subscribe(res => {
       this.recentapplicantlist = res;
-      this.OpenCandidateDialog(this.ProfileId);
-      localStorage.removeItem('rprofileId');       
+      if(this.preId!=null)
+      {
+        this.OpenCandidateDialog(this.preId);
+      }
+      else
+      {
+        this.OpenCandidateDialog(this.ProfileId);
+        localStorage.removeItem('rprofileId');  
+      }
+          
    });
   }
 
@@ -223,22 +237,32 @@ export class ViewJobdetailsComponent implements OnInit {
  
      let candidateProfile = this.recentapplicantlist.find(item => item.ProfileId === Number(profileId));
      sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
-        const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
-          {
-            width: '750',
-            position: { right: '0px' },
-            height: '750px',
-            data: {
-              ProfileId: profileId,
-              jobId: this.jobid,
-              profile: candidateProfile
-              // status : this.statusid
-            }
+     if(candidateProfile!=null&&candidateProfile!=undefined)
+     {
+      const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
+        {
+          width: '750',
+          position: { right: '0px' },
+          height: '750px',
+          data: {
+            ProfileId: profileId,
+            jobId: this.jobid,
+            profile: candidateProfile
+            // status : this.statusid
           }
-        );
-        viewCandidatedialogRef.afterClosed().subscribe(result => {
-          console.log('candidate Dialog result: ${result}');
-        });
+        }
+      );
+      viewCandidatedialogRef.afterClosed().subscribe(result => {
+        console.log('candidate Dialog result: ${result}');
+      });
+     }
+     else
+     {
+      this.toastr.info('Oh no!', 'Profile not found!!');
+      sessionStorage.removeItem('Preid');
+      this.ngOnInit();
+     }
+     
     // }
   }
 
