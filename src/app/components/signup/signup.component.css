@@ -6476,3 +6476,10 @@ a.btn2:hover, .btn2:hover {
   background-position: center;
   background-size: 10px;
 }
+
+.content-left{
+  background-color: #97e4cd;
+}
+.content-left-wrapper{
+  background: transparent;
+}
