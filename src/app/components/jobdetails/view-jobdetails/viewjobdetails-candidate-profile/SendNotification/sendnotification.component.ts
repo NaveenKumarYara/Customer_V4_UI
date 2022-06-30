@@ -15,6 +15,8 @@ import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { ApiService } from '../../../../../shared/services/api.service';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { Http } from '@angular/http';
 
 
 const URL = 'http://localhost:4300/fileupload/';
@@ -78,7 +80,7 @@ selectedFileNames: string[] = [];
 
   uploader:FileUploader;
 
-  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,private fb: FormBuilder,private _service: ApiService,private detector: ChangeDetectorRef,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
+  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,private _http: Http,private fb: FormBuilder,private _service: ApiService,private detector: ChangeDetectorRef,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -336,7 +338,6 @@ getcustomerusers()
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
-  this.SendEmail();
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
   this.savenote.OtherInfo = ' ';
 
@@ -347,7 +348,6 @@ getcustomerusers()
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
-  this.SendEmail();
   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
  }
 
@@ -356,6 +356,7 @@ getcustomerusers()
 
  
  let Ids = Array.from(this.savenote.toUserId.split(','));
+ debugger
  var res = new Promise<void>((resolve, reject) => { 
  Ids.forEach((value, index, array)=>
  {
@@ -416,9 +417,10 @@ res.then(() => {
         data.append('fileSeq', 'seq'+j);
         data.append('Model', request);
         this.uploadFile(data);
-      }
-      
+      }      
     }
+    this.emailNote.NotesId = element; 
+    this.SendEmail();
   });
 
 
@@ -541,10 +543,11 @@ this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subsc
 
 SendEmail()
 {
-  this.emailNote.FullName = this.data.FullName;
   this.emailNote.Body =this.selectedComments;
-  this.emailNote.ToEmailID = this.data.Email;
-  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotes').subscribe(
+  this.emailNote.ToUserId = 0; 
+  this.emailNote.FullName = "";
+  debugger
+  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNew').subscribe(
     check=>
     {
   
@@ -667,4 +670,6 @@ export class SendNoteEmail
   public FullName :string
   public Body :string
   public ToEmailID :string
+  public NotesId:number
+  public ToUserId:number
 }
