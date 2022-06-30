@@ -356,7 +356,6 @@ getcustomerusers()
 
  
  let Ids = Array.from(this.savenote.toUserId.split(','));
- debugger
  var res = new Promise<void>((resolve, reject) => { 
  Ids.forEach((value, index, array)=>
  {
