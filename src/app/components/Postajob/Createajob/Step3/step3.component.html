@@ -2,10 +2,10 @@
   <div class="tab-inner">
    
     <div>
-      <label for="" class="question">Arytic Job Matching criteria  <a  href="javascript:void(0)"  class="tooltip__link">
+      <label for="" class="question">Select the profile matching criteria you want to include to get the right candidate for this job  <a  href="javascript:void(0)"  class="tooltip__link">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <span class="custom__tooltip">
-          <span class="step__01">Job criteria based on Skills,Domain,Experience & Title</span>
+          <span class="step__01">Profile matching for a job is based on skill match and job match</span>
         </span>
       </a></label>
       <div>
@@ -13,7 +13,13 @@
           <h4>
             
             <div class="col-sm-4">
-              <label><b> Skill Criteria: </b></label>
+              <label><b> Skill Criteria:
+                <a  href="javascript:void(0)"  class="tooltip__link">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="custom__tooltip">
+                    <span class="step__01">Skill match depends on skill name and total experience of a particular skill</span>
+                  </span>
+                </a> </b></label>
               <circle-progress  [percent]="minValue" [radius]="40"
                 [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#50C878'"
                 [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
@@ -30,7 +36,14 @@
           <h4>
           
           <div class="col-sm-4">
-            <label><b> Job Criteria: </b></label>
+            <label><b> Job Criteria:
+              <a  href="javascript:void(0)"  class="tooltip__link">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="custom__tooltip">
+                  <span class="step__01">Job match depends on Job title, experience and domain.</span>
+                </span>
+              </a>
+             </b></label>
             <circle-progress [percent]="maxValue - minValue" [radius]="40"
               [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
               [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
@@ -40,11 +53,7 @@
           
           </h4>     
          </div>
-        <div class="custom-slider">   
-          <span class="al">
-            <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">  
-          </span>
-             
+        <div class="custom-slider">                    
           <ngx-slider [(value)]="minValue"  [options]="options"></ngx-slider>
         </div>
       </div>
