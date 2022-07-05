@@ -1,5 +1,47 @@
 <div id="step3" class="tab-pane">
   <div class="tab-inner">
+   
+    <div>
+      <label for="" class="question">Job Matching criteria  <a  href="javascript:void(0)"  class="tooltip__link">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <span class="custom__tooltip">
+          <span class="step__01">Job criteria based on Skills,Domain,Experience & Title</span>
+        </span>
+      </a></label>
+      <div>
+        <div class="pull-left">
+          <h4>
+            
+            <div class="col-sm-4">
+              <label><b> Skill Criteria: </b></label>
+              <circle-progress  [percent]="minValue" [radius]="40"
+                [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#50C878'"
+                [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+              </circle-progress>
+              
+            </div>      
+          </h4>
+         </div>
+         <div class="pull-right">
+          <h4>
+          
+          <div class="col-sm-4">
+            <label><b> Job Criteria: </b></label>
+            <circle-progress [percent]="maxValue - minValue" [radius]="40"
+              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+             
+          </div>
+          
+          </h4>     
+         </div>
+        <div class="custom-slider">         
+          <ngx-slider [(value)]="minValue"  [options]="options"></ngx-slider>
+        </div>
+      </div>
+    </div>
+   
     <!-- <app-steps-step3-employmenttype (myEmploymentType)="changeEmploymentType()"> 
       
     </app-steps-step3-employmenttype> -->

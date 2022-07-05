@@ -26,6 +26,7 @@ import { MatDialog } from '@angular/material';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { SalarysliderComponent } from './salaryslider.component';
 import { recriuterComponent } from './recriuter.component';
+import { Options, LabelType  } from '@angular-slider/ngx-slider';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -43,6 +44,18 @@ export class Step3Component implements OnInit,AfterViewChecked {
   // @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   // @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  minValue: number = 60;
+  maxValue: number = 100;
+
+
+  options: Options = {
+    ceil: 100,
+    floor: 0,
+    step: 5,
+    showSelectionBar: true,
+    showTicks: true
+  };
+  
   disable1:any;
   disableLoc = false;
   isDrafted: boolean;

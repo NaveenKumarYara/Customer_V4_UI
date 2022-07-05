@@ -17,6 +17,7 @@ import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { ApiService } from '../../../../../shared/services/api.service';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Http } from '@angular/http';
+import { async } from '@angular/core/testing';
 
 
 const URL = 'http://localhost:4300/fileupload/';
@@ -359,7 +360,7 @@ getcustomerusers()
  var res = new Promise<void>((resolve, reject) => { 
  Ids.forEach((value, index, array)=>
  {
-    this.savenote.toUserId = value;
+   this.savenote.toUserId = value;
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -377,7 +378,7 @@ getcustomerusers()
      //this.SaveNotes(this.selectedComments);
      if (index === array.length -1)
      {
-    
+      
         resolve();
       }  
     
@@ -388,9 +389,26 @@ getcustomerusers()
  }) 
       });
 	  
-res.then(() => {
 
-  this.NId.forEach(element => {
+
+  // if(this.isShown2=true)
+  // {
+  //   this.SendEmail();
+  //   this.selectedComments = "";
+  //   this.EmailId = " ";
+  // }  
+}
+
+
+  changeTeam(val) {
+    this.getTeammember = val;
+    //this.GetJobAssigned(val.UserId,val.Email);
+  }
+
+ async upload()
+ {
+  this.NId.forEach(async element => {
+    debugger
     if(this.uploader.queue.length>0)
     {
       for (let i = 0; i < this.uploader.queue.length; i++) {
@@ -415,15 +433,17 @@ res.then(() => {
         data.append('Attachment', fileItem);
         data.append('fileSeq', 'seq'+j);
         data.append('Model', request);
-        this.uploadFile(data);
+       await this.uploadFile(data);
       }      
     }
+
     this.emailNote.NotesId = element; 
-    this.SendEmail();
+    await this.SendEmail();
   });
 
 
   this.uploader.clearQueue();
+ 
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
@@ -431,25 +451,7 @@ res.then(() => {
     //this.savenote = new Notes();
     this.dialogRef.close();
   }, 3000);
-  
- 
-  });
-
-  // if(this.isShown2=true)
-  // {
-  //   this.SendEmail();
-  //   this.selectedComments = "";
-  //   this.EmailId = " ";
-  // }  
-}
-
-
-  changeTeam(val) {
-    this.getTeammember = val;
-    //this.GetJobAssigned(val.UserId,val.Email);
-  }
-
-
+ }
 
 
   clearTeamMemebers() {

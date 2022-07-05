@@ -54,6 +54,7 @@ import { MatDialogModule } from "@angular/material";
 import { ConverttoMonthPipe } from "./Createajob/Step4/months.pipe";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
 @NgModule({
   imports: [
     CommonModule,
@@ -67,6 +68,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     NgSelectModule,
     NgCircleProgressModule.forRoot({}),
     NgDatepickerModule,
+    NgxSliderModule,
     TooltipModule,
     RouterModule.forChild([
       {
