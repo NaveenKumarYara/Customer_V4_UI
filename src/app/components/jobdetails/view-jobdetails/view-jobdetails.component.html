@@ -89,13 +89,21 @@
 					</div>
 
 				</header>
-				<div class="card-body mob-btn">
+				<div class="card-body mob-btn flex-wrap">
 					<div class="sm-d-inline">
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 							<button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive"
 								(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
 								Inactive</button>
 						</ng-container>
+						<button class="btn btn-border">
+							<span class="icon-forward">Icon</span>
+							Invite
+						</button>
+						<button class="btn btn-border">
+							<span class="icon-wishlist">Icon</span>
+							Wishlist
+						</button>
 						<ng-template #isactive>
 							<button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
@@ -108,6 +116,10 @@
 						</ng-template> -->
 					</div>
 					<div class="sm-d-inline sm-f-r">
+						<button class="btn btn-filled" (click)="openCandidateUploadDialog()">
+							<span class="icon-upload">Icon</span>
+							Upload
+						</button>
 						<button class="btn btn-filled mr-5" mat-button
 							(click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit
 							Job Detail</button>
@@ -115,10 +127,115 @@
 						<button class="btn btn-filled" mat-button (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View
 							Job Detail</button>
 					</div>
+					<div class="funnel-graph-row">
+						<div class="row flex flex-wrap flex-align-end">
+							<div class="col-sm-6 funnel-graph-col">
+								<div class="funnel-graph-container">
+									<div class="funnel-tabbing">
+										<div class="row flex flex-wrap">
+											<div class="col-sm-2 col">
+												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
+													<span class="icon icon-01">Icon</span>
+													<h4>{{SuggestedCount||'0'}}</h4>
+													<h6>View All Profile</h6>
+												</div>
+											</div>
+											<div class="col-sm-2 col blue">
+												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
+													<span class="icon icon-02">Icon</span>
+													<h4>{{jobstatistics?.Applied}}</h4>
+													<h6>Arytic Profile</h6>
+												</div>
+											</div>
+											<div class="col-sm-2 col red">
+												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
+													<span class="icon icon-03">Icon</span>
+													<h4>{{jobstatistics?.InProgress}}</h4>
+													<h6>Application</h6>
+												</div>
+											</div>
+											<div class="col-sm-2 col light-blue">
+												<div class="col-container">
+													<span class="icon icon-04">Icon</span>
+													<h4>20</h4>
+													<h6>Invite Upload</h6>
+												</div>
+											</div>
+											<div class="col-sm-2 col yellow">
+												<div class="col-container">
+													<span class="icon icon-05">Icon</span>
+													<h4>5</h4>
+													<h6>Vendor Share</h6>
+												</div>
+											</div>
+										</div>
+									</div>					
+									<div class="funnel-graph">
+										<span class="funnel-text funnel-text-01" data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+												Screening Process
+												<em>{{jobstatistics?.Screening}}</em>
+												<em class="reject">01</em>
+										</span>
+										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+											Short Listed
+											<em>{{jobstatistics?.ShortListed}}</em>
+											<em class="reject">02</em>
+										</span>
+										<span class="funnel-text funnel-text-03">
+											Client Submitted
+											<em>08</em>
+											<em class="reject">04</em>
+										</span>
+										<span class="funnel-text funnel-text-04" data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+											Interviewed
+											<em>{{jobstatistics?.Interviewed}}</em>
+											<em class="reject">01</em>
+										</span>
+										<span class="funnel-text funnel-text-05" data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+											Hired
+											<em>{{jobstatistics?.Hired}}</em>
+										</span>
+										<span class="funnel-text funnel-text-06" data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+											Rejected
+										</span>
+									</div>
 
+									<div class="funnel-graph funnel-graph-01 hidden">
+										<span class="funnel-text funnel-text-01" data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+												Screening Process
+												<em>{{jobstatistics?.Screening}}</em>
+												<em class="reject">01</em>
+										</span>
+										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+											Short Listed
+											<em>{{jobstatistics?.ShortListed}}</em>
+											<em class="reject">02</em>
+										</span>
+										<span class="funnel-text funnel-text-04" data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+											Interviewed
+											<em>{{jobstatistics?.Interviewed}}</em>
+											<em class="reject">01</em>
+										</span>
+										<span class="funnel-text funnel-text-05" data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+											Hired
+											<em>{{jobstatistics?.Hired}}</em>
+										</span>
+										<span class="funnel-text funnel-text-06" data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+											Rejected
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 search-filter-col">
+								<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
+					[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
+							</div>
+						</div>
+					</div>
 				</div>
 				<alert></alert>
-				<div class="funnel__section">
+				<!--Funnel old code-->
+				<div class="funnel__section hidden">
 					<ul class="nav nav-tabs nav-justified row flex flex-wrap flex-align-equal">
 						<ng-container *ngIf="jobstatistics?.AryticSuggested<=jobstatistics?.Applied">
 							<li class="col-sm-4 first__col">
@@ -224,7 +341,7 @@
 						</li> -->
 					</ul>
 				</div>
-				<div class="funnel__sub__footer" *ngIf="inprogressprofile==true">
+				<div class="funnel__sub__footer hidden" *ngIf="inprogressprofile==true">
 					<div class="row flex flex-wrap flex-align-center">
 						<div class="col-sm-6 first__sub__col">
 							<ul>
@@ -281,6 +398,7 @@
 						</div>
 					</div>
 				</div>
+				<!--Funnel old code-->
 				<div class="card-footer">
 					<!-- <ul class="nav nav-tabs nav__tabs"> -->
 						<!--As per new design modifying the same-->
@@ -405,8 +523,7 @@
 				<!---->
 				<!-- .selected .job-card -->
 			</div>
-			<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
-				[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
+		
 			<div *ngIf="showDetailadvancesearch">
 				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
 			</div>

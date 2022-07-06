@@ -1,0 +1,132 @@
+.top-container h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #495f75;
+  margin: 0;
+}
+.col-container {
+  margin: 30px 0 0;
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, 0.20);
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.icon {
+  background: url(../../../../../assets/images/document-sprites.png) 0 0 no-repeat;
+  display: inline-block;
+  font-size: 0;
+  background-size: 600px auto;
+}
+.icon.icon-add {
+  background-position: -271px -8px;
+  width: 14px;
+  height: 15px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.icon.icon-clock {
+  width: 16px;
+  height: 16px;
+  background-position: -14px -12px;
+}
+.icon.icon-star {
+  width: 18px;
+  height: 16px;
+  background-position: -37px -12px;
+}
+.icon.icon-small-folder {
+  width: 20px;
+  height: 14px;
+  background-position: -62px -13px;
+}
+.btn.btn-primary {
+  background: #66dab5;
+  border-color: #66dab5;
+  color: #495f75;
+}
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background: #2fc495;
+  color: #fff;
+  border-color: #2fc495;
+}
+.btn.btn-primary:hover .icon.icon-add, .btn.btn-primary:focus .icon.icon-add {
+  background-position: -288px -9px;
+}
+.activity-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.activity-nav li:not(:first-child) {
+  margin-top: 10px;
+}
+.activity-nav li a {
+  display: block;
+  padding-left: 34px;
+  position: relative;
+  color: #495f75;
+  font-size: 16px;
+  text-decoration: none;
+}
+.activity-nav li a .icon {
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.module-box {
+  margin: 26px 0 0;
+}
+.module-box h4 {
+  font-size: 16px;
+  color: #495f75;
+}
+.module-box h4 span {
+  font-weight: 400;
+  color: #90a4ad;
+}
+.pinned-module-box ul {
+  margin: 5px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pinned-module-box ul li {
+  margin: 15px 0 0;
+}
+.pinned-module-box ul li .btn.btn-link {
+  padding: 0 0 0 30px;
+  color: #495f75;
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+}
+.pinned-module-box ul li .btn.btn-link:focus, .pinned-module-box ul li .btn.btn-link:active {
+  box-shadow: none;
+  outline: none;
+}
+.pinned-module-box ul li .btn.btn-link .icon {
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.pinned-module-box ul li.active .btn.btn-link {
+  color: #448afa;
+}
+.pinned-module-box ul li.active .btn.btn-link .icon.icon-small-folder {
+  background-position: -62px -34px;
+}
+.btn.btn-plus-circle {
+  width: 16px;
+  height: 16px;
+  background: url(../../../../../assets/images/document-sprites.png) -90px -13px no-repeat;
+  background-size: 600px auto;
+  display: block;
+  font-size: 0;
+  padding: 0;
+}
+.btn.btn-primary {
+  padding: 6px 12px !important;
+}
+.ml-auto {
+  margin-left: auto !important;
+}

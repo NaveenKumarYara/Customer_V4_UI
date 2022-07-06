@@ -1,0 +1,205 @@
+.document-section {
+  padding: 40px 0;
+}
+.documents-container {
+  min-height: 100vh;
+}
+.documents-container .left-sidebar-col, .documents-container .right-sidebar-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+@media only screen and (max-width: 1199px) {
+  .documents-container .left-sidebar-col, .documents-container .right-sidebar-col {
+    flex: 0 0 25%;
+    max-width: 25%;
+ }
+}
+@media only screen and (max-width: 1023px) {
+  .documents-container .left-sidebar-col, .documents-container .right-sidebar-col {
+    flex: 0 0 30%;
+    max-width: 30%;
+ }
+}
+@media only screen and (max-width: 991px) {
+  .documents-container .left-sidebar-col, .documents-container .right-sidebar-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+ }
+}
+.documents-container .middle-col {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+@media only screen and (max-width: 1199px) {
+  .documents-container .middle-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+ }
+}
+@media only screen and (max-width: 1023px) {
+  .documents-container .middle-col {
+    flex: 0 0 40%;
+    max-width: 40%;
+ }
+}
+@media only screen and (max-width: 991px) {
+  .documents-container .middle-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+ }
+}
+.col-container {
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, 0.20);
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  height: calc(100% - 70px);
+  background: #fff;
+}
+.middle-col h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #495f75;
+  font-weight: 400;
+  margin: 0 0 15px;
+}
+/*File Listing ---------------------------------------------------------*/
+.icon {
+  background: url(../../../../assets/images/document-sprites.png) 0 0 no-repeat;
+  font-size: 0;
+  display: inline-block;
+  background-size: 600px auto;
+}
+.icon.icon-pdf {
+  width: 63px;
+  height: 70px;
+  background-position: -93px -86px;
+}
+.icon.icon-doc {
+  width: 68px;
+  height: 70px;
+  background-position: -14px -86px;
+}
+.icon.icon-psd {
+  width: 53px;
+  height: 70px;
+  background-position: -175px -86px;
+}
+.icon.icon-ppt {
+  width: 64px;
+  height: 70px;
+  background-position: -243px -86px;
+}
+.file-listing .icon {
+  display: block;
+  margin: 0 auto 15px;
+}
+.file-listing .col-container {
+  box-shadow: none;
+  height: 100%;
+}
+.file-listing .row {
+  margin: 0 -7px;
+}
+.file-listing .col {
+  margin-bottom: 14px;
+  padding: 0 7px;
+}
+@media only screen and (max-width: 1170px) {
+  .file-listing .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+ }
+}
+@media only screen and (max-width: 568px) {
+  .file-listing .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+ }
+}
+.file-listing h4 {
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+  margin: 0;
+}
+.file-listing .col-container {
+  margin: 0 0 14px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.file-listing .col-container .info-box {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.folder-listing {
+  margin: 0 0 20px;
+}
+.folder-listing .col-container {
+  padding: 10px 20px 10px 45px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.folder-listing .col-container .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.folder-listing .icon {
+  background: url(../../../../assets/images/document-sprites.png) 0 0 no-repeat;
+  display: inline-block;
+  font-size: 0;
+  background-size: 600px auto;
+}
+.folder-listing .icon.icon-folder {
+  width: 25px;
+  height: 17px;
+  background-position: -16px -41px;
+}
+.folder-listing .row {
+  margin: 0 -7px;
+}
+.folder-listing .row .folder-col {
+  padding: 0 7px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #495f75;
+}
+.folder-listing .row .folder-col.recent-col {
+  position: relative;
+}
+.folder-listing .row .folder-col.recent-col:before {
+  width: 10px;
+  height: 10px;
+  background: #448afa;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  border-radius: 50%;
+  content: "";
+}
+@media only screen and (max-width: 1170px) {
+  .folder-listing .row .folder-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+ }
+}
+@media only screen and (max-width: 568px) {
+  .folder-listing .row .folder-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+ }
+}

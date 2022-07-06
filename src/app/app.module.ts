@@ -77,6 +77,9 @@ import { CandidatedetailviewComponent } from './components/CandidateProfile-deta
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
 import { SpinnerInterceptor } from './shared/interceptors/spinner-interceptor';
 import { VendorManagerComponent } from './components/vendor-manager/vendor-manager.component';import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { DocumentManagerComponent } from './components/Postajob/document-manager/document-manager.component';
+import { LeftSidebarComponent } from './components/Postajob/document-manager/left-sidebar/left-sidebar.component';
+import { FilterDocumentComponent } from './components/Postajob/document-manager/filter-document/filter-document.component';
 ;
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
@@ -106,7 +109,10 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     GetCandidateprofileComponent,
     CandidatedetailviewComponent,
     SafeHtmlNewPipe,
-    VendorManagerComponent
+    VendorManagerComponent,
+    DocumentManagerComponent,
+    LeftSidebarComponent,
+    FilterDocumentComponent
   ],
   imports: [
     BrowserModule,

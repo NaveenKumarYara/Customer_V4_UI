@@ -1,182 +1,184 @@
 <div class="filters">
-    <div class="col-md-12 prl-0 mb-2">
-        <form action="" class="form-inline">
-            <ng-container *ngIf="customer?.AccessDetails?.UploadnInviteProfile==true">
-                <div class="form-group quick-sort" *ngIf="displayQuick==1">
-                    <!-- <label for="title">Quick Sort Options</label> -->
-                    <div class="options">
-                        <div class="checkbox upload-combo sm-m-2">
-                            <label>
-                                <ng-container *ngIf="Count?.Uploaded>0 && closedjob!=2">
-                                    <input type="checkbox" name="contract-duration" [(ngModel)]="UploadedFlag"
-                                        [checked]="UploadedFlag"
-                                        (change)="viewby(2, $event.target.checked,$event.target.value)">
-                                    <span class="box sm-w " tooltip=" Upload profiles from database to join prospect profiles" placement="top">Uploaded
-                                        <span class="badge badge-light ">{{Count?.Uploaded||0}}
-                                           
-                                        </span>
-                                    </span>
-                                </ng-container>
-                                <ng-container *ngIf="Count?.Uploaded==0||closedjob==2">
-                                    <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w"  tooltip=" Upload profiles from database to join prospect profiles" placement="top">Uploaded
-                                        <span class="badge badge-light ">{{Count?.Uploaded||0}}
-                                          
-                                        </span>
-                                    </span>
-                                </ng-container>
-                            </label>
-                            <!--New Combo design Check-box & Button-->
-                            <a href="javascript:void(0)" (click)="updatestatus()" title="Upload Profiles"
-                            *ngIf="displayQuick==1"> <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
-                            <!---->
-                        </div>
-                   
-                        <div class="checkbox upload-combo sm-m-2">
-                            <label>
-                                <ng-container *ngIf="Count?.Invited>0 && closedjob!=2">
-                                    <input type="checkbox" name="contract-duration" [(ngModel)]="InvitedFlag"
-                                        [checked]="InvitedFlag"
-                                        (change)="viewby(4, $event.target.checked,$event.target.value)">
-                                    <span class="box sm-w " tooltip="Invite profiles to apply for the job posting" placement="top">Invited
-                                        <span class="badge badge-light">{{Count?.Invited||0}}
-                                        
-                                        </span>
-                                    </span>
-                                </ng-container>
-                                <ng-container *ngIf="Count?.Invited==0||closedjob==2">
-                                    <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w" tooltip="Invite profiles to apply for the job posting" placement="top">Invited
-                                        <span class="badge badge-light">{{Count?.Invited||0}}
-                                        </span>
-                                    </span>
-                                </ng-container>
-                            </label>
-                            <!--New Combo design Check-box & Button-->
-                            <a href="javascript:void(0)"  (click)="OpenInviteProfileDialog()" title="Invite Profiles"
-                            *ngIf="displayQuick==1"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
-                            <!---->
-                        </div>
-                        <div class="checkbox sm-m-2 upload-combo" *ngIf="statusid>0">
-                            <label>
-                                <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
-                                    <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"
-                                        [checked]="AryticFlag" (change)="viewby(5,$event.target.checked,$event.target.value)">
-                                    <span class="box sm-w" tooltip="Applied profiles for the job through  Arytic's Crowdsourcing" placement="top">Arytic
-                                        <span class="badge badge-light" >{{Count?.AryticProfiles||0}}                  
-                                        </span>
-                                       
-                                    </span>
-                                </ng-container>
-                                <ng-container *ngIf="Count?.AryticProfiles==0||closedjob==2">
-                                    <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w " tooltip="Applied profiles for the job through  Arytic's Crowdsourcing" placement="top">Arytic
-                                        <span class="badge badge-light">{{Count?.AryticProfiles||0}}
-                                        </span>
-                                     
-                                    </span>
-                                </ng-container>
-                            </label>
-                                <!--New Combo design Check-box & Button-->
-                                <a href="javascript:void(0)"  title="Arytic Profile Search">
-                                    <img src="../../../../../assets/images/arytic-circle-logo.png" alt="arytic-profile" width="30">
-                                </a>
-                                <!---->
-                          
-                        </div>
-                        <!-- <div class="checkbox sm-m-0">
-                            <label>
-                                <ng-container *ngIf="Count?.Suggested>0 && closedjob!=2">
-                                    <input type="checkbox" name="contract-duration" [(ngModel)]="SuggestedFlag"
-                                        [checked]="SuggestedFlag"
-                                        (change)="viewby(3, $event.target.checked,$event.target.value)">
-                                    <span class="box sm-w">Suggested
-                                        <span class="badge badge-light">{{Count?.Suggested||0}}</span>
-                                    </span>
-                                </ng-container>
-                                <ng-container *ngIf="Count?.Suggested==0||closedjob==2">
-                                    <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w">Suggested
-                                        <span class="badge badge-light">{{Count?.Suggested||0}}</span>
-                                    </span>
-                                </ng-container>
-                            </label>
-                        </div> -->
-                        <div class="checkbox upload-combo sm-m-2">
-                            <label>
-                                <ng-container *ngIf="Count?.Wishlist>0 && closedjob!=2">
-                                    <input type="checkbox" name="contract-duration" [(ngModel)]="WishlistFlag"
-                                        [checked]="WishlistFlag"
-                                        (change)="viewby(1, $event.target.checked,$event.target.value)">
-                                        <span class="box  sm-w " tooltip=" Labelled/Saved profiles for future utilization or contact" placement="top">Wishlisted     
-                                       
-                                            <span class="badge badge-light">{{Count?.Wishlist||0}}
-                                            </span>
-                                            </span>
-                              
-                                </ng-container>
-                                <ng-container *ngIf="Count?.Wishlist==0||closedjob==2">
-                                    <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w" tooltip=" Labelled/Saved profiles for future utilization or contact" placement="top">Wishlisted     
-                                       
-                                        <span class="badge badge-light">{{Count?.Wishlist||0}}
-                                        </span>
-                                      
-                                    </span>
-                                </ng-container>
-                              
-                            </label>
-                         
-                              <!--New Combo design Check-box & Button-->
-                              <a href="javascript:void(0)"  title="Manage Wishlisht Profiles">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </a>
-                           
-                            <!---->
-                           
-                        </div>
-    
-                    </div>
-                </div>  
-            </ng-container>          
-            <div class="pull-right r-s-f" style="display: contents;">
-                <div class="sm-f-none flex-container">
-                    <!--Upload & Invite PlaceHolder buttons Starts-->
-                    <!-- <div class="adv-filters-btn btn flex-item" (click)="updatestatus()" title="Upload Profiles"
-                        *ngIf="displayQuick==1">
-                        <a href="javascript:void(0)"> <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
-                    </div> -->
-    
-                    <!-- <div class="adv-filters-btn btn ml-2 flex-item" (click)="OpenInviteProfileDialog()" title="Invite Profiles"
-                        *ngIf="displayQuick==1">
-                        <a href="javascript:void(0)"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
-                    </div> -->
-                    <!--Upload & Invite Placeholder buttons ends-->
-    
-    
-                    <div class="search-toggle cls-rel flex-item">
-                        <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
-                            <ng-container *ngIf="closedjob!=2">
-                                <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
-                                    placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)"
-                                    id="searchStr">
-                                <div class="searchList l22" *ngIf="SearchList.length>0">
-                                    <ul class="searchList-dropdown">
-                                        <li class="searchList-options" *ngFor="let slist of SearchList"
-                                            (click)="SetSearch(slist?.slice(0, -3))">{{slist?.slice(0, -3)}}</li>
-                                    </ul>
-                                </div>
-                                <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
-                            </ng-container>
-                            <ng-container *ngIf="closedjob==2">
-                                <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
-                                    placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)"
-                                    id="searchStr" disabled>
-                            </ng-container>
-                        </form>
-                    </div>
-                    <!--search-->
-                    <!--
+	<div class="col-md-12 prl-0 mb-2">
+		<form action="" class="form-inline">
+			<div class="hidden">
+				<ng-container *ngIf="customer?.AccessDetails?.UploadnInviteProfile==true">
+					<div class="form-group quick-sort" *ngIf="displayQuick==1">
+						<!-- <label for="title">Quick Sort Options</label> -->
+						<div class="options">
+							<div class="checkbox upload-combo sm-m-2">
+								<label>
+									<ng-container *ngIf="Count?.Uploaded>0 && closedjob!=2">
+										<input type="checkbox" name="contract-duration" [(ngModel)]="UploadedFlag" [checked]="UploadedFlag"
+											(change)="viewby(2, $event.target.checked,$event.target.value)">
+										<span class="box sm-w " tooltip=" Upload profiles from database to join prospect profiles"
+											placement="top">Uploaded
+											<span class="badge badge-light ">{{Count?.Uploaded||0}}
+	
+											</span>
+										</span>
+									</ng-container>
+									<ng-container *ngIf="Count?.Uploaded==0||closedjob==2">
+										<input type="checkbox" name="contract-duration" disabled>
+										<span class="box disabled sm-w" tooltip=" Upload profiles from database to join prospect profiles"
+											placement="top">Uploaded
+											<span class="badge badge-light ">{{Count?.Uploaded||0}}
+	
+											</span>
+										</span>
+									</ng-container>
+								</label>
+								<!--New Combo design Check-box & Button-->
+								<a href="javascript:void(0)" (click)="updatestatus()" title="Upload Profiles" *ngIf="displayQuick==1"> <i
+										class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
+								<!---->
+							</div>
+	
+							<div class="checkbox upload-combo sm-m-2">
+								<label>
+									<ng-container *ngIf="Count?.Invited>0 && closedjob!=2">
+										<input type="checkbox" name="contract-duration" [(ngModel)]="InvitedFlag" [checked]="InvitedFlag"
+											(change)="viewby(4, $event.target.checked,$event.target.value)">
+										<span class="box sm-w " tooltip="Invite profiles to apply for the job posting" placement="top">Invited
+											<span class="badge badge-light">{{Count?.Invited||0}}
+	
+											</span>
+										</span>
+									</ng-container>
+									<ng-container *ngIf="Count?.Invited==0||closedjob==2">
+										<input type="checkbox" name="contract-duration" disabled>
+										<span class="box disabled sm-w" tooltip="Invite profiles to apply for the job posting"
+											placement="top">Invited
+											<span class="badge badge-light">{{Count?.Invited||0}}
+											</span>
+										</span>
+									</ng-container>
+								</label>
+								<!--New Combo design Check-box & Button-->
+								<a href="javascript:void(0)" (click)="OpenInviteProfileDialog()" title="Invite Profiles"
+									*ngIf="displayQuick==1"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
+								<!---->
+							</div>
+							<div class="checkbox sm-m-2 upload-combo" *ngIf="statusid>0">
+								<label>
+									<ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
+										<input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag" [checked]="AryticFlag"
+											(change)="viewby(5,$event.target.checked,$event.target.value)">
+										<span class="box sm-w" tooltip="Applied profiles for the job through  Arytic's Crowdsourcing"
+											placement="top">Arytic
+											<span class="badge badge-light">{{Count?.AryticProfiles||0}}
+											</span>
+	
+										</span>
+									</ng-container>
+									<ng-container *ngIf="Count?.AryticProfiles==0||closedjob==2">
+										<input type="checkbox" name="contract-duration" disabled>
+										<span class="box disabled sm-w "
+											tooltip="Applied profiles for the job through  Arytic's Crowdsourcing" placement="top">Arytic
+											<span class="badge badge-light">{{Count?.AryticProfiles||0}}
+											</span>
+	
+										</span>
+									</ng-container>
+								</label>
+								<!--New Combo design Check-box & Button-->
+								<a href="javascript:void(0)" title="Arytic Profile Search">
+									<img src="../../../../../assets/images/arytic-circle-logo.png" alt="arytic-profile" width="30">
+								</a>
+								<!---->
+	
+							</div>
+							<!-- <div class="checkbox sm-m-0">
+								<label>
+										<ng-container *ngIf="Count?.Suggested>0 && closedjob!=2">
+												<input type="checkbox" name="contract-duration" [(ngModel)]="SuggestedFlag"
+														[checked]="SuggestedFlag"
+														(change)="viewby(3, $event.target.checked,$event.target.value)">
+												<span class="box sm-w">Suggested
+														<span class="badge badge-light">{{Count?.Suggested||0}}</span>
+												</span>
+										</ng-container>
+										<ng-container *ngIf="Count?.Suggested==0||closedjob==2">
+												<input type="checkbox" name="contract-duration" disabled>
+												<span class="box disabled sm-w">Suggested
+														<span class="badge badge-light">{{Count?.Suggested||0}}</span>
+												</span>
+										</ng-container>
+								</label>
+						</div> -->
+							<div class="checkbox upload-combo sm-m-2">
+								<label>
+									<ng-container *ngIf="Count?.Wishlist>0 && closedjob!=2">
+										<input type="checkbox" name="contract-duration" [(ngModel)]="WishlistFlag" [checked]="WishlistFlag"
+											(change)="viewby(1, $event.target.checked,$event.target.value)">
+										<span class="box  sm-w " tooltip=" Labelled/Saved profiles for future utilization or contact"
+											placement="top">Wishlisted
+	
+											<span class="badge badge-light">{{Count?.Wishlist||0}}
+											</span>
+										</span>
+	
+									</ng-container>
+									<ng-container *ngIf="Count?.Wishlist==0||closedjob==2">
+										<input type="checkbox" name="contract-duration" disabled>
+										<span class="box disabled sm-w" tooltip=" Labelled/Saved profiles for future utilization or contact"
+											placement="top">Wishlisted
+	
+											<span class="badge badge-light">{{Count?.Wishlist||0}}
+											</span>
+	
+										</span>
+									</ng-container>
+	
+								</label>
+	
+								<!--New Combo design Check-box & Button-->
+								<a href="javascript:void(0)" title="Manage Wishlisht Profiles">
+									<i class="fa fa-star" aria-hidden="true"></i>
+								</a>
+								<!---->
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</div>
+			
+			<div class="r-s-f">
+				<div class="sm-f-none flex-container">
+					<!--Upload & Invite PlaceHolder buttons Starts-->
+					<!-- <div class="adv-filters-btn btn flex-item" (click)="updatestatus()" title="Upload Profiles"
+						*ngIf="displayQuick==1">
+						<a href="javascript:void(0)"> <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
+					</div> -->
+
+					<!-- <div class="adv-filters-btn btn ml-2 flex-item" (click)="OpenInviteProfileDialog()" title="Invite Profiles"
+							*ngIf="displayQuick==1">
+							<a href="javascript:void(0)"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
+					</div> -->
+					<!--Upload & Invite Placeholder buttons ends-->
+
+
+					<div class="search-toggle cls-rel flex-item">
+						<form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
+							<ng-container *ngIf="closedjob!=2">
+								<input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
+									placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">
+								<div class="searchList l22" *ngIf="SearchList.length>0">
+									<ul class="searchList-dropdown">
+										<li class="searchList-options" *ngFor="let slist of SearchList"
+											(click)="SetSearch(slist?.slice(0, -3))">{{slist?.slice(0, -3)}}</li>
+									</ul>
+								</div>
+								<button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
+							</ng-container>
+							<ng-container *ngIf="closedjob==2">
+								<input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
+									placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" disabled>
+							</ng-container>
+						</form>
+					</div>
+					<!--search-->
+					<!--
                     <div class="search_area">
                         <input type="checkbox" id="toggle-1" style="display:none">
                         <input list="search_items" class="search_f" type="text" placeholder="search">
@@ -192,20 +194,20 @@
                       </label>
                     </div>
                     -->
-                    <!--#search-->
-    
-    
-                    <div class="adv-filters-btn btn ml-2 ml-r flex-item" (click)="updateDetailAdvanceSearch()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="19.3" height="24.8">
-                            <path
-                                d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="sm-w-100">
-                    <div class="form-group">
-                        <!--
+					<!--#search-->
+
+
+					<div class="adv-filters-btn btn ml-2 ml-r flex-item" (click)="updateDetailAdvanceSearch()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="19.3" height="24.8">
+							<path
+								d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z">
+							</path>
+						</svg>
+					</div>
+				</div>
+				<div class="sm-w-100">
+					<div class="form-group">
+						<!--
                         <label for="view">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="21.7" height="14.4">
                   <path d="M11.4 14.4C5 14.4 2.1 10.1 2 9.9c-.3-.3-.2-.9.2-1.1.4-.3.9-.2 1.1.2.1.1 2.6 3.7 8 3.7 4.7 0 7.7-4.4 8.5-5.7-.6-1.2-3.1-5.3-9-5.3-6.8 0-9.3 5.8-9.3 5.9-.1.4-.5.6-1 .4s-.6-.7-.5-1.1C.1 6.9 2.9 0 10.9 0s10.7 6.6 10.7 6.7c.1.2.1.5 0 .7-.2.3-3.8 7-10.2 7z" />
@@ -215,7 +217,7 @@
                 
               </label>
               -->
-                        <!-- <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
+						<!-- <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
                             (change)="changeViewby($event.target.value)">
                             <option default value="1">Highest Matching</option>
                             <option value="2">Least Matching</option>
@@ -223,35 +225,35 @@
                             <option value="4">Uploaded By Customer</option>
                             <option value="5">Applied By Candidate</option>
                         </select> -->
-                        <ng-container *ngIf="closedjob!=2">
-                            <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
-                                (change)="viewby(0, $event.target.checked,$event.target.value)">
-                                <ng-container *ngFor="let sortyBy of sortByOrder">
-                                    <option *ngIf="sortyBy.SortById!=5" value={{sortyBy.SortById}}>
-                                        {{sortyBy.SortBy}}
-                                    </option>
-                                </ng-container>
-                            </select>
-                        </ng-container>
-                        <ng-container *ngIf="closedjob==2">
-                            <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
-                                (change)="viewby(0, $event.target.checked,$event.target.value)" disabled>
-                                <!-- <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}}  >
+						<ng-container *ngIf="closedjob!=2">
+							<select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
+								(change)="viewby(0, $event.target.checked,$event.target.value)">
+								<ng-container *ngFor="let sortyBy of sortByOrder">
+									<option *ngIf="sortyBy.SortById!=5" value={{sortyBy.SortById}}>
+										{{sortyBy.SortBy}}
+									</option>
+								</ng-container>
+							</select>
+						</ng-container>
+						<ng-container *ngIf="closedjob==2">
+							<select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
+								(change)="viewby(0, $event.target.checked,$event.target.value)" disabled>
+								<!-- <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}}  >
                                     <ng-container *ngIf="sortyBy.SortById!=5">
                                         {{sortyBy.SortBy}}
                                       </ng-container>  
                                 </option> -->
-                                <ng-container *ngFor="let sortyBy of sortByOrder">
-                                    <option *ngIf="sortyBy.SortById!=5" value={{sortyBy.SortById}} disabled>
-                                        {{sortyBy.SortBy}}
-                                    </option>
-                                </ng-container>
-                            </select>
-                        </ng-container>
-    
-                    </div>
-                </div>
-            </div>       
-        </form>
-    </div>
+								<ng-container *ngFor="let sortyBy of sortByOrder">
+									<option *ngIf="sortyBy.SortById!=5" value={{sortyBy.SortById}} disabled>
+										{{sortyBy.SortBy}}
+									</option>
+								</ng-container>
+							</select>
+						</ng-container>
+
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>

@@ -25,6 +25,9 @@ import { StepSalarysliderComponent } from './salaryslider.component';
 import { StepContractExtensionComponent } from './contractextension.component';
 import { StepContractDurationComponent } from './contractduration.component';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material"
+import { DocumentManagerComponent } from '../../document-manager/document-manager.component';
+
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -81,7 +84,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   pjDepartments: PjDepartments[] = [];
   constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, public appService: AppService, private creteComponent: CreateajobComponent
-    , private steps: StepsComponent, private alertService: AlertService) {
+    , private steps: StepsComponent, private alertService: AlertService, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.disable =  localStorage.getItem('Item');
@@ -102,6 +105,16 @@ export class Step1Component implements OnInit, AfterViewChecked {
       });
       this.toastr.setRootViewContainerRef(_vcr);
   }
+
+  documentManagerDialog() {
+    this.dialog.open(DocumentManagerComponent, {
+      width: "80vw",
+      position: { right: "0px" },
+      height: "750px",
+      panelClass: 'candiateModalPop'
+    });
+  }
+
   ngOnInit() {
     this.alertService.clear();
     //window.addEventListener('scroll', this.scrolling, true);

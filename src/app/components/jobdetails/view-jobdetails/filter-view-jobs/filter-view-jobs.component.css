@@ -312,6 +312,10 @@ input::-webkit-input-placeholder {
 /*QuickSort Css*/
 
 /*Upload & Invite Buttons CSS starts*/
+.adv-filters.mrll0-tb8 {
+    margin-top: 20px;
+}
+
 .adv-filters-btn i.fa{
     color: #9eabc0;
     font-size:25px;
