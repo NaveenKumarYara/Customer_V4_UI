@@ -26,6 +26,16 @@
     background-color: #ebf5ff;
 }
 
+.adv-filters {
+    box-shadow: 4px 4px 5px -1px rgb(158 171 192 / 45%);
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+}
+
+.adv-filters.mrll0-tb8 {
+    margin-top: 20px;
+}
+
 .adv-filters .form-group .form-control {
     height: 50px !important;
     border: 1px solid #E0E3EF;

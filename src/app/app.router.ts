@@ -128,6 +128,7 @@ import { VmModule } from "./components/vendor-manager/vm.module";
 import { VendorDetailComponent } from "./components/vendor-manager/vendor-detail/vendor-detail.component";
 import { CandidatedetailviewComponent } from "./components/CandidateProfile-details/candidatedetailview/candidatedetailview.component";
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+import { DocumentManagerComponent } from "./components/Postajob/document-manager/document-manager.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -146,6 +147,7 @@ const appRoutes: Routes = [
   { path: "ActivateAndResetPassword", component: AboutComponent },
   { path: "features", component: FeaturesComponent },
   { path: "app-postajob", component: PostajobComponent },
+  { path: "app-document-manager", component:  DocumentManagerComponent },
   { path: "app-editdraft", component: EditDraftComponent },
   { path: "app-jobtemplate", component: JobTemplateComponent },
   { path: "app-Getcandidateprofile", component: GetCandidateprofileComponent },
