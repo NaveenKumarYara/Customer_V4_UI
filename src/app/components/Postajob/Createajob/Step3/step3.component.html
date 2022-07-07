@@ -44,18 +44,54 @@
                 </span>
               </a>
              </b></label>
-            <circle-progress [percent]="maxValue - minValue" [radius]="40"
+            <circle-progress [percent]="JobFitval" [radius]="40"
               [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
               [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
+           
              
           </div>
           
           </h4>     
          </div>
         <div class="custom-slider">                    
-          <ngx-slider [(value)]="minValue"  [options]="options"></ngx-slider>
+          <ngx-slider [(value)]="minValue"  [options]="options"  (valueChange)="onValueChange($event)"></ngx-slider>
         </div>
+        <div>
+          <label><b> Job Criteria:</b></label>
+          <div class="col-12">
+            <ul>
+              
+             <li>
+                <label class="container">TotalExperience
+                  <input type="checkbox" name="TotalExperience" [checked]="TotalExperience" (change)="checkTotalExperience(TotalExperience?false:true)">
+                  <span class="checkmark"></span>
+                </label>
+             </li>
+              
+             <li>
+                <label class="container">Title
+                  <input type="checkbox" name="Title"  [checked]="Title" (change)="checkTitle(Title?false:true)">
+                  <span class="checkmark"></span>
+                </label>
+             </li>
+              
+             <li>
+                <label class="container">Domain
+                  <input type="checkbox" name="Domain"   [checked]="Domain" (change)="checkDomain(Domain?false:true)">
+                  <span class="checkmark"></span>
+                </label>
+             </li>
+              
+            
+              
+             
+               
+             
+      
+             </ul>
+          </div>
+          </div>
       </div>
     </div>
    

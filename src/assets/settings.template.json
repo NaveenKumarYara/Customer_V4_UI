@@ -229,5 +229,7 @@
     "CheckCustProfile": "${Profile_URL}/api/GetCustomerStatusCheck?",
     "SearchSkills": "${Profile_URL}/api/SearchSkills",
     "GetCertificationProvider":"${Profile_URL}/api/GetCertificationProvider",
-    "GetCertificationName":"${Profile_URL}/api/GetCertificationName"
+    "GetCertificationName":"${Profile_URL}/api/GetCertificationName",
+    "PostJobMatching": "${Identity_URL}/api/InsertMatchingWeightage",
+    "GetJobMatching": "${Identity_URL}/api/GetMatchingWeightage?"
 }

@@ -1327,6 +1327,21 @@ export class AppService {
         return Observable.throw(error);
       });
   }
+
+  postjobMatching(body) {
+    return this.http
+      .post(this.settingsService.settings.PostJobMatching, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
+  }
+
+  GetJobMatching(JobId: number) {
+    const url = this.settingsService.settings.GetJobMatching + "jobId=" + JobId;
+    return this.http.get<GetCompanyLogo>(url).catch(this.handleError);
+  }
+
   getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
     const url = this.settingsService.settings.GetCompanyLogo + "customerId=" + customerId;
     return this.http.get<GetCompanyLogo>(url).catch(this.handleError);

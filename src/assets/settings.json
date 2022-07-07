@@ -231,5 +231,7 @@
   "ActiveJobs": "https://jobsapi-dev.arytic.com/api/GetActiveJobs",
   "CheckCustProfile": "https://profileapi-dev.arytic.com/api/GetCustomerStatusCheck?",
   "GetCertificationProvider":"https://profileapi-dev.arytic.com/api/GetCertificationProvider",
-  "GetCertificationName":"https://profileapi-dev.arytic.com/api/GetCertificationName"
+  "GetCertificationName":"https://profileapi-dev.arytic.com/api/GetCertificationName",
+  "PostJobMatching": "https://identityapi-dev.arytic.com/api/InsertMatchingWeightage",
+  "GetJobMatching": "https://identityapi-dev.arytic.com/api/GetMatchingWeightage?"
 }

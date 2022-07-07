@@ -48,6 +48,8 @@ export class Settings {
   UpdateStatusOnEmailConversation: string;
   signUp: string;
   postjob: string;
+  PostJobMatching: string;
+  GetJobMatching: string;
   addRoles: string;
   getRoles: string;
   bulkResponsibilities: string;

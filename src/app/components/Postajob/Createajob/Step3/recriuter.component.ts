@@ -269,12 +269,16 @@ export class recriuterComponent implements OnInit, OnDestroy {
     this._service.GetService('ProfileAPI/api/GetCandidateVerification?jobId=', JId)
     .subscribe(
       data => {
-      this.statusVal = data[0].IsRequired;
-      if(this.statusVal === true)
-      {
-        this.JstatusVal = data[0].ReferralStatus;
-      }
-      this.saveCandidate = new SaveJobProcess();
+        if(data.length>=0)
+        {
+          this.statusVal = data[0].IsRequired;
+          if(this.statusVal === true)
+          {
+            this.JstatusVal = data[0].ReferralStatus;
+          }
+          this.saveCandidate = new SaveJobProcess();
+         
+        }
       });
    }
 
@@ -347,7 +351,6 @@ export class recriuterComponent implements OnInit, OnDestroy {
    deleteI(I)
    {
      this.srlist.splice(I,1)
-     debugger
      this._service.DeleteService('ProfileAPI/api/DeleteInterviewer?Id=',I).subscribe(data=>{
      })
    }

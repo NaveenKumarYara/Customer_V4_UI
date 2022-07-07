@@ -43,4 +43,10 @@
     padding: 12px 3px 179px 235px;
   }
 
+  ul {
+    column-count: 3;
+    column-gap: 0rem;
+    list-style: none;
+  }
+
   ::ng-deep .custom-slider .ngx-slider .ngx-slider-bar{background:#91d6ed;height:2px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-selection{background:rgb(64, 207, 48);}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer{width:8px;height:16px;/* to remove the default positioning */top:auto;bottom:0;background-color:#333;border-top-left-radius:3px;border-top-right-radius:3px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer:after{display:none;}::ng-deep .custom-slider .ngx-slider .ngx-slider-bubble{bottom:14px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-limit{font-weight:bold;color:#50C878;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick{width:1px;height:10px;margin-left:4px;border-radius:0;background:#ffe4d1;top:-1px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected{background:#50C878;}

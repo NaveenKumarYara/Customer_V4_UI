@@ -27,6 +27,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { SalarysliderComponent } from './salaryslider.component';
 import { recriuterComponent } from './recriuter.component';
 import { Options, LabelType  } from '@angular-slider/ngx-slider';
+import { MatchingDetails } from '../../../jobdetails/models/matchingDetails';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -46,7 +47,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
   // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
   minValue: number = 60;
   maxValue: number = 100;
-
+  JobFitval: number = 40;
 
   options: Options = {
     ceil: 100,
@@ -55,7 +56,9 @@ export class Step3Component implements OnInit,AfterViewChecked {
     showSelectionBar: true,
     showTicks: true
   };
-  
+  TotalExperience:boolean=true;
+  Title:boolean=true;
+  Domain:boolean=true;
   disable1:any;
   disableLoc = false;
   isDrafted: boolean;
@@ -84,6 +87,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
   scroll:boolean=false;
   personalityType: any;
   qualification: any;
+  match = new MatchingWeightage();
   @ViewChild(ContractDurationComponent) contractDuration: ContractDurationComponent;
   @ViewChild(ContractExtensionComponent) contractExtension: ContractExtensionComponent;
   @ViewChild(EmploymentTypeComponent) empType: EmploymentTypeComponent;
@@ -198,6 +202,12 @@ export class Step3Component implements OnInit,AfterViewChecked {
     // });
   }
 
+  onValueChange(event: any)
+  {
+    this.minValue = event;
+    this.JobFitval = this.maxValue-this.minValue;
+  }
+
   OpenScheduleInterviewDialog() {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
@@ -225,6 +235,13 @@ export class Step3Component implements OnInit,AfterViewChecked {
     // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.changeEmploymentType();
     this.JobIds = this.appService.JobIds;
+    this.JobFitval = this.maxValue-this.minValue;    
+    let JId = localStorage.getItem('JobId');
+    if(JId != null)
+    {
+      this.GetJobMatching(JId); 
+    }
+   
     //window.addEventListener('scroll', this.scrolling, true);
     // $(window).scroll(function(event) {
     //   function footer()
@@ -262,6 +279,52 @@ export class Step3Component implements OnInit,AfterViewChecked {
     } else {
       this.show = false;
     }
+  }
+
+  SaveMatching(JobId)
+  {
+    this.JobFitval = Math.round(this.maxValue - this.minValue)
+    this.match.jobFit = this.JobFitval;
+    this.match.skillFit = this.minValue;
+    this.match.domain = this.Domain;
+    this.match.role = this.Title;
+    this.match.totalExp = this.TotalExperience;
+    this.match.jobId=JobId;
+    this.match.userId = this.customer.UserId;
+    debugger
+    this.appService.postjobMatching(this.match).subscribe(data => {
+      if (data>=0) {
+            this.match = new MatchingWeightage();
+            this.GetJobMatching(JobId);
+      }
+      })
+
+  }
+
+  GetJobMatching(JId)
+  {
+    this.appService.GetJobMatching(JId).subscribe(data => {
+      if (data != "No records found") {
+         this.minValue = data.SkillFit;
+         this.JobFitval = data.JobFit;
+         this.Domain  = data.JobDomain;
+         this.TotalExperience = data.JobTotalExp;
+         this.Title = data.JobRole;
+
+      }
+      })
+  }
+
+  checkTotalExperience(event: any) {
+    this.TotalExperience = event;
+  }
+
+  checkTitle(event: any) {
+    this.Title = event;
+  }
+
+  checkDomain(event: any) {
+    this.Domain = event;
   }
 
   postJob(step, exit?) {
@@ -418,6 +481,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
         this.JobIds.forEach((value, index, array) => {
     //  let requests =  this.JobIds.map((item) => {
           this.insertJob.JobId = value;
+          this.SaveMatching(this.insertJob.JobId);
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;
@@ -446,6 +510,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
     }
      if(this.JobIds.length==0 || this.JobIds == undefined)
     {
+      this.SaveMatching(this.insertJob.JobId);
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;
@@ -477,7 +542,8 @@ export class Step3Component implements OnInit,AfterViewChecked {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-    this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      
+    this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;   
+     
   }
 
   ViewJobdetails(jobId) {
@@ -500,4 +566,15 @@ export class Step3Component implements OnInit,AfterViewChecked {
     }, 3000);
   }
 
+}
+
+
+export class MatchingWeightage {
+  jobId: number | null;
+  userId: number | null;
+  jobFit: number | null;
+  skillFit: number | null;
+  domain: boolean | null;
+  totalExp: boolean | null;
+  role: boolean | null;
 }
