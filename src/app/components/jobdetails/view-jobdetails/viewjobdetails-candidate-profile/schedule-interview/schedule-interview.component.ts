@@ -37,9 +37,8 @@ export interface DialogData {
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;
-  selectedOption:Options = new Options(1, 'Skype' );
+  selectedOption:Options = new Options(3, 'Zoom Link');
   options = [
-    new Options(1, 'Skype' ),
      new Options(2, 'WebEX' ),
      new Options(3, 'Zoom Link'),
       new Options(4, 'Other' )
@@ -71,7 +70,7 @@ export class ScheduleInterviewComponent implements OnInit {
   hourStep = 1;
   minuteStep = 30;
   secondStep = 1;
-  duration: NgbTimeStruct = {hour: 0, minute: 0, second: 0};
+  duration: NgbTimeStruct = {hour: 14, minute: 30, second: 0};
   durationHourStep = 1;
   durationMinuteStep = 30;
   DuarionSecondStep = 1;
@@ -290,6 +289,18 @@ else
   time = this.time.minute;
 }
   this.schIntw.StartTime = this.time.hour + ':' + time;
+
+  let duration;
+if(this.duration.minute === 0)
+{
+  duration = '00'; 
+}
+else
+{
+  duration = this.duration.minute;
+}
+  this.schIntw.EndTime = this.duration.hour + ':' + duration;
+  
 // this.schIntw.EndTime=this.userId;
 // skype or anytype
 // this.schIntw.PhoneNumber=this.userId;
@@ -552,15 +563,7 @@ SendStatusEmail()
   } 
   else if (this.processSelection === 3) {
     this.status.InterviewType = "Video-Conference";
-    if(this.skypeId != undefined && this.skypeId != '')
-    {
-      this.status.InterviewDetails =  this.skypeId;
-    }
-    else
-    {
-      this.status.InterviewDetails =  this.dailInNumber + this.bridgeUrl;
-    }
-   
+    this.status.InterviewDetails =  this.skypeId;     
    } 
   this.status.FromEmail = this.customer.Email;
   this.status.ToEmailID = this.data.Email;

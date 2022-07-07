@@ -113,7 +113,7 @@
                   ></ngb-timepicker>
                   <span class="help-block" *ngIf="timePickr.invalid && timePickr.touched">Required.</span>
                 </div>
-                <!-- <div class="form-group interview-time-group col-sm-12">
+                <div class="form-group interview-time-group col-sm-12">
                   <label for="">Duration</label>
                   <ngb-timepicker
                     [(ngModel)]="duration"
@@ -124,7 +124,7 @@
                     #durationPickr="ngModel"
                   ></ngb-timepicker>
                   <span class="help-block" *ngIf="durationPickr.invalid && durationPickr.touched">Required.</span>
-                </div> -->
+                </div>
               </div>
               <div class="form-row row add-new-user">
                 <div>
@@ -661,12 +661,12 @@
                         <span class="radio-text">{{ option.name }}</span>
                       </label>
                     </ng-container>
-                    <div class="form-group" *ngIf="selectedOption?.id == 1">
+                    <!-- <div class="form-group" *ngIf="selectedOption?.id == 1">
                       <label for="link">Skype Name</label>
                       <input class="form-control" id="link" type="text" [(ngModel)]="skypeId" name="skype" />
-                    </div>
+                    </div> -->
                     <div class="row" *ngIf="selectedOption?.id != 1">
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label for="">Dial-in number</label>
                         <input
                           type="text"
@@ -675,14 +675,14 @@
                           [ngModelOptions]="{standalone: true}"
                           placeholder="e.g. 852477231"
                         />
-                      </div>
-                      <div class="col-md-6">
-                        <label for="">Meeting ID / Conference Code</label>
+                      </div> -->
+                      <div class="col-md-12">
+                        <label for="">Meeting Link</label>
                         <input
                           class="form-control"
                           id="link"
                           type="text"
-                          placeholder="e.g. 852477231"
+                          placeholder="e.g. https://us06web.zoom.us/j/83702472318?pwd=Qy9MMHhzbkxXWEVoZlduaWRUWkZCQT09"
                           [(ngModel)]="skypeId"
                           [ngModelOptions]="{standalone: true}"
                           name="skype"
