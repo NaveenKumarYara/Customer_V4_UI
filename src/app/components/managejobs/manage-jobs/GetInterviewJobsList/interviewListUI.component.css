@@ -1,0 +1,455 @@
+
+.inteview-schedule-section {
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  background-color: var(--white);
+  overflow: hidden;
+  margin: 0 10px;
+}
+/*Commont Tabs
+---------------------------------------------------------------------------*/
+.nav > li {
+  border: 0;
+  float: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--gray-900);
+  text-align: center;
+  margin-bottom: -3px;
+}
+
+.nav-tabs > li > a {
+  padding: 15px 15px 0;
+  border: 0;
+  margin-right: 0;
+}
+
+.nav-tabs > li:last-child > a {
+  padding: 15px;
+}
+
+.nav-tabs > li> a:hover {
+  border: 0
+}
+
+.nav-tabs > li.active> a {
+  border: 0;
+  background-color: transparent;
+}
+
+.tab-content {
+  padding: 30px;
+  background-color: var(--green-100);
+  border-right: 1px solid var(--gray-100);
+  width: 35%;
+}
+
+.custom-checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox .checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+
+.custom-checkbox .checkmark:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: 4px;
+  border: 1px solid #a6aab3;
+}
+
+.custom-checbox input:checked~.checkmark {
+  background-color: #FFF;
+}
+
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked~.checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #a6aab3;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.custom-checkbox.lg-select .checkmark {
+  padding-left: 25px;
+  font-size: 14px;
+  width: auto;
+  height: auto;
+}
+
+
+/*Vertical Tab Starts
+---------------------------------------------------------------------------*/
+.inteview-schedule-section .verticalTab {
+  border-radius: 4px;
+  border-right: 1px solid var(--gray-100);
+  border-bottom: 0;
+  box-shadow: 5px 0 15px rgba(158,171,192,0.20);
+  width: 95px;
+  position: relative;
+  z-index: 10;
+}
+
+.inteview-schedule-section .verticalTab .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 5px;
+  font-size: 0;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) 0 0 no-repeat var(--green-100);
+  background-size: 600px auto;
+}
+
+.inteview-schedule-section .verticalTab .icon.icon-week {
+  background-position: -15px -16px;
+}
+
+.inteview-schedule-section .verticalTab .icon.icon-upcoming {
+  background-position: -73px -16px;
+}
+
+.inteview-schedule-section .verticalTab .icon.icon-completed {
+  background-position: -131px -16px;
+}
+
+.inteview-schedule-section .verticalTab .icon.icon-calendar {
+  background-position: -189px -16px;
+}
+
+.inteview-schedule-section .verticalTab .icon.icon-comment {
+  background-position: -247px -16px;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon {
+  background-color: var(--green-900);
+  position: relative;
+  overflow: hidden;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon::before {
+  content: "";
+  position: absolute;
+  right: -16px;
+  top: -20px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background-color: var(--green-600);
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon.icon-week {
+  background-position: -15px -74px;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon.icon-upcoming {
+  background-position: -73px -74px;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon.icon-completed {
+  background-position: -131px -74px;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon.icon-calendar {
+  background-position: -189px -74px;
+}
+
+.inteview-schedule-section .verticalTab > li.active .icon.icon-comment {
+  background-position: -247px -74px;
+}
+
+/*Horizontal Tabs
+---------------------------------------------------------------------*/
+.horizontalTabs .nav-tabs {
+  display: flex;
+  border-bottom: 0;
+}
+
+.horizontalTabs .nav-tabs > li > a,
+.horizontalTabs .nav-tabs > li:last-child > a {
+  padding: 10px 16px 15px;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+.horizontalTabs .nav-tabs > li.active > a {
+  background-color: var(--white);
+}
+
+.interview-detail-section {
+  width: 65%;
+}
+
+.horizontalTabs .tab-content {
+  width: 100%;
+  background: var(--white);
+  border: 0;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.inteview-schedule-box {
+  width: calc(100% - 95px);
+}
+
+.interview-detail-section {
+  padding: 30px;
+}
+
+.interview-detail-section h4 {
+  color: var(--gray-blue);
+  margin: 0 0 15px;
+}
+
+/*Interview Detail Section
+---------------------------------------------------------------------*/
+.interview-detail-section .inline-listing {
+  margin: 0 -10px 20px;
+  padding: 0;
+  list-style: none;
+  display: inline-flex;
+}
+
+.interview-detail-section .inline-listing li {
+  font-size: 14px;
+  padding: 0 10px;
+}
+
+.interview-detail-section .inline-listing li:not(:first-child) {
+  border-left: 1px solid var(--gray-light-100);
+}
+
+.interview-detail-section .grid-table-section .image-container img {
+  border-radius: 0;
+}
+
+.interview-detail-section .buttons {
+  margin: 20px 0 0;
+}
+
+.grid-table-section .grid-row:not(:first-child) {
+  margin-top: 20px;
+}
+
+.grid-table-section .grid-row.full-grid-row {
+  margin: 20px 0 0;
+}
+
+.grid-table-section .grid-row .grid-left-col {
+  font-weight: 600;
+  position: relative;
+}
+
+.grid-table-section .grid-row .grid-left-col::before {
+  content: ":";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/*Listing Grid CSS
+---------------------------------------------------------------------*/
+.listing-col {
+  padding: 20px 20px 20px 70px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.listing-col:not(:first-child) {
+  border-top-color: var(--gray-light-200);
+}
+
+.listing-col.active {
+  border-color: var(--green-900);
+  background-color: var(--green-100);
+}
+
+.listing-col .date {
+  position: absolute;
+  width: 40px;
+  text-align: center;
+  left: 20px;
+  top: 20px;
+  background-color: var(--green-900);
+  color: var(--white);
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.listing-col .date .month,
+.listing-col .date .year {
+  font-size: 10px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.listing-col .date .day {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  line-height: 1;
+  margin: 2px 0;
+}
+
+.listing-grid .time {
+  font-size: 12px;
+  color: var(--green-900);
+  display: block;
+  margin: 0 0 5px;
+}
+
+.listing-grid h4 {
+  font-size: 14px;
+  color: var(--gray-blue-400);
+  margin: 0 0 5px;
+  font-weight: 600;
+}
+
+.listing-grid h5 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--gray-blue-500);
+  margin: 0 0 5px;
+  font-weight: 400;
+}
+
+.listing-grid h6 {
+  font-size: 12px;
+  color: var(--gray-blue-400);
+  margin: 0 0 5px;
+  font-weight: 600;
+}
+
+.listing-grid .address {
+  text-align: right;
+  border-top: 1px solid var(--gray-light-200);
+  padding-top: 10px;
+  margin-top: 10px;
+  display: flex;
+  font-size: 12px;
+}
+
+.listing-grid .address::before {
+  content: "";
+  width: 17px;
+  height: 19px;
+  display: block;
+  margin-right: 5px;
+  margin-left: auto;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -62px -135px no-repeat;
+  background-size: 600px auto;
+}
+
+.btn.btn-zoom {
+  font-size: 0;
+  border: 0;
+  padding: 0;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -15px -135px no-repeat var(--green-900);
+  background-size: 600px auto;
+  width: 37px;
+  height: 34px;
+  border-radius: 6px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.icon-navigation ul {
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  font-size: 0;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light-200);
+}
+
+.icon-navigation li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-navigation li:not(:first-child) {
+  border-left: 1px solid var(--gray-light-200);
+}
+
+.icon-navigation .icon {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -15px -179px no-repeat;
+  background-size: 600px auto;
+  display: block;
+  width: 49px;
+  height: 48px;
+}
+
+.icon-navigation .icon.icon-list {
+  background-position: -129px -179px;
+}
+
+.icon-navigation .icon.icon-document {
+  background-position: -188px -179px;
+}
+
+.icon-navigation li.active .icon {
+  background-color: var(--green-900);
+}
+
+.icon-navigation li.active .icon.icon-summary {
+  background-position: -15px -237px;
+}
+
+.icon-navigation li.active .icon.icon-list {
+  background-position: -129x -237px;
+}
+
+.icon-navigation li.active .icon.icon-document {
+  background-position: -188px -237px;
+}
+
+.grid-row.full-grid-row .icon-navigation {
+  display: inline-block;
+  margin: 10px 0 0;
+}

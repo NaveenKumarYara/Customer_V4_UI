@@ -14,10 +14,11 @@ import {ValueArrayPipe} from '../../../managejobs/manage-jobs/ValueArrayPipe.pip
 declare var $: any;
 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { idLocale } from 'ngx-bootstrap';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
-  styleUrls: ['./interviewList.component.css'],
+  styleUrls: ['./interviewList.component.css','./interviewListUI.component.css'],
   providers: [ ValueArrayPipe ]
 })
 export class InterviewListComponent implements OnInit {
@@ -37,20 +38,157 @@ export class InterviewListComponent implements OnInit {
     joblist= new GetInterviewSortList();
     userId: any;
     listSort:any;
+    setActive:  number = null;
     jobs: any;
+
+    invetviewListArray:any = [
+      {
+        id: 1,
+        title: 'JavaScript Interview',
+        time: '11:30 To 12:30',
+        date: 'Monday, March 10, 2022',
+        round: 'Technical Round',
+        company:'Esolvit Solutions PVT. LTD.',
+        type: 'zoom',
+        subtype: 'In Sofa Meeting Room',
+        address: 'Atlanta, GA, USA',
+        jobDetails:[
+          {
+            name: 'Jenifer Lyonnais',
+            interviewers:[
+              'Murphy Jakubovic',
+              'Joshua Monsef'
+            ],
+            position:'Product Designer',
+            department: 'Design',
+            status: 'Agreed on Sceduled',
+            zoomLink: 'yes'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: 'Python Interview',
+        time: '1:30 To 2:30',
+        date: 'Monday, March 9, 2021',
+        round: 'HR Round',
+        company:'3M PVT. LTD.',
+        type: 'In Person',
+        subtype: 'In Sofa Meeting Room',
+        address: '',
+        jobDetails:[
+          {
+            name: 'Jhon Doe',
+            interviewers:[
+              'Murphy Jakubovic',
+              'Lissa Ray'
+            ],
+            position:'UI Designer',
+            department: 'Design',
+            status: 'Agreed on Sceduled',
+            zoomLink: ''
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: 'UI Designer Interview',
+        time: '1:30 To 2:30',
+        date: 'Monday, March 9, 2021',
+        round: 'Practical Round',
+        company:'Google.',
+        type: 'In Person',
+        subtype: 'In Sofa Meeting Room',
+        address: '',
+        jobDetails:[
+          {
+            name: 'Kinjal Mehta',
+            interviewers:[
+              'Jhon Doe',
+              'Lissa Day'
+            ],
+            position:'UI UX Designer',
+            department: 'Design',
+            status: 'Agreed on Sceduled',
+            zoomLink: ''
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: 'Wordpress Developer Interview',
+        time: '1:30 To 2:30',
+        date: 'Monday, March 8, 2020',
+        round: 'HR Round',
+        company:'ABC PVT. LTD.',
+        type: 'In Person',
+        subtype: 'In Sofa Meeting Room',
+        address: '',
+        jobDetails:[
+          {
+            name: 'Jhon Doe',
+            interviewers:[
+              'Murphy Jakubovic',
+              'Lissa Ray'
+            ],
+            position:'Wordpress Developer',
+            department: 'Developer',
+            status: 'Agreed on Sceduled',
+            zoomLink: ''
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: 'Front End Developer Interview',
+        time: '11:30 To 12:30',
+        date: 'Monday, March 8, 2021',
+        round: 'HR Round',
+        company:'PVC PVT. LTD.',
+        type: 'In Person',
+        subtype: 'In Sofa Meeting Room',
+        address: '',
+        jobDetails:[
+          {
+            name: 'Jhon Doe',
+            interviewers:[
+              'Murphy Jakubovic',
+              'Lissa Ray'
+            ],
+            position:'Front End Developer',
+            department: 'Front End Developer',
+            status: 'Agreed on Sceduled',
+            zoomLink: ''
+          }
+        ]
+      }
+    ];
+    filterInterviewDetail:any = [];
+     
     viewscheduleInterviewDialgoref: MatDialogRef<UpdateInterviewComponent>;
     constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
-        private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
-        this.customer = JSON.parse(sessionStorage.getItem('userData'));
-        this.customerId = this.customer.CustomerId;
-        this.userId = this.customer.UserId;
-        this.toastr.setRootViewContainerRef(_vcr);
-       }
-  ngOnInit() {
+    private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
+      this.toastr.setRootViewContainerRef(_vcr);
+    }
+
+    detailIntviewHandler(invterviweId, index) {
+      this.setActive = index;
+      let filterData = this.invetviewListArray.filter(function(obj) {
+        return obj['id'] === invterviweId;
+      });
+      
+      this.filterInterviewDetail = [...filterData];
+    }
+
+    ngOnInit() {
      this.spinner.show();
      this.managejobservice.updateListCount(6);
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
      this.populateJobInterViewlist(4,0,'');
+     this.detailIntviewHandler(1,0);  
   }
 
   titleCaseWord(word: string) {

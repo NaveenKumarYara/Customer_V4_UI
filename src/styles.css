@@ -19,6 +19,19 @@
 @import './assets/styles/css/form-custom.css';
 @import './assets/styles/css/smart-card.css';
 
+:root {
+  --white: #fff;
+	--gray-light-100: #dadada;
+	--gray-light-200: #e8e9ec;
+  --gray-100: #ccc;
+	--green-100: #f6f8ff;
+	--green-600: #66dab5;
+	--green-900: #2fc495;
+	--gray-900: #485c67;
+	--gray-blue-500: #90a4ad;
+	--gray-blue-400: #6e819e;
+}
+
 html {
 	font-family: sans-serif;
 	-ms-text-size-adjust: 100%;
