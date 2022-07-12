@@ -314,7 +314,7 @@
           </div>
           <div class="row grid-row">
             <div class="col-sm-3 grid-col grid-left-col">
-              Interviewers
+              Interviewer
             </div>
             <div class="col-sm-9 grid-col grid-right-col">
               <p *ngIf="job?.HiringLeaderFirstName != null">
@@ -326,20 +326,21 @@
           </div>
           <div class="row grid-row">
             <div class="col-sm-3 grid-col grid-left-col">
-              Mode of Interview
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              {{ job?.InterviewType | titlecase }}
-            </div>
-          </div>
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
              Interview Round
             </div>
             <div class="col-sm-9 grid-col grid-right-col">
              {{ job?.BridgeUrl  || 'TECHNICAL'}}
             </div>
           </div>
+          <div class="row grid-row">
+            <div class="col-sm-3 grid-col grid-left-col">
+              Mode of Interview
+            </div>
+            <div class="col-sm-9 grid-col grid-right-col">
+              {{ job?.InterviewType | titlecase }}
+            </div>
+          </div>
+         
          
            <div class="row grid-row">
             <div class="col-sm-3 grid-col grid-left-col">
