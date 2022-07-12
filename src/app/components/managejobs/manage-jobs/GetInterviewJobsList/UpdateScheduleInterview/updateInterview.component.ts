@@ -55,8 +55,12 @@ export class UpdateInterviewComponent implements OnInit {
   bridgeUrl: string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
-  minuteStep = 1;
+  minuteStep = 30;
   secondStep = 1;
+  duration: NgbTimeStruct = {hour: 14, minute: 30, second: 0};
+  durationHourStep = 1;
+  durationMinuteStep = 30;
+  DuarionSecondStep = 1;
   CurrentTime:any;
   // typeId: number;
   InterviewDate: any;
@@ -75,6 +79,12 @@ export class UpdateInterviewComponent implements OnInit {
   usersloading: boolean;
   selectedUserName :number;
   teammembers: '';
+  selectedOption:Options = new Options(3, 'Zoom Link');
+  options = [
+     new Options(2, 'WebEX' ),
+     new Options(3, 'Zoom Link'),
+      new Options(4, 'Other' )
+  ];
   list:boolean=false;
   uploader:FileUploader;
   teammemberslist: CustomerUsers[];
@@ -107,11 +117,8 @@ export class UpdateInterviewComponent implements OnInit {
       day: current.getDate()
     };
     let d: Date = new Date(this.data.iDate);
-    this.InterviewDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};  
-    this.CurrentTime = this.data.iTime.split(':') ;
-    let ti = this.CurrentTime[0];
-    let mi = this.CurrentTime[1];
-    this.time  = {hour: ti, minute: mi, second:0}    
+    this.InterviewDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};    
+    this.skypeId = this.data.sComment;
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -181,10 +188,19 @@ export class UpdateInterviewComponent implements OnInit {
  {
    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
      this.customercontacts = res;
-     this.customercontacts = this.customercontacts.filter(
-      name=> name.FirstName !="Invited" && name.IsRemove == false);
+     this.customercontacts =  res.filter((i) => { 
+
+      if(i.FirstName !="Invited"  && i.FirstName != this.customer.FirstName && i.IsRemove!=true)
+      {
+        return i.FirstName=i.FirstName + ' ' + i.LastName ; 
+      }                      
+     })
       this.selectedUserName= this.customercontacts[0].UserId;
  });
+ }
+
+ getValue(optionid) {
+  this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
  }
 
   ngOnInit() {
@@ -271,6 +287,16 @@ else
   time = this.time.minute;
 }
   this.schIntw.StartTime = this.time.hour + ':' + time;
+  let duration;
+  if(this.duration.minute === 0)
+  {
+    duration = '00'; 
+  }
+  else
+  {
+    duration = this.duration.minute;
+  }
+    this.schIntw.EndTime = this.duration.hour + ':' + duration;
 // this.schIntw.EndTime=this.userId;
 // skype or anytype
 // this.schIntw.PhoneNumber=this.userId;
@@ -302,6 +328,7 @@ if (this.processSelection === 1) {
   // this.schIntw.RequiredFurtherInterview = this.skypeRI;
   // this.schIntw.PhoneNumber=this.userId;
 } else if (this.processSelection === 4) {
+  this.schIntw.SkypeId = this.skypeId;
   this.schIntw.AccessId = this.dailInNumber;
   this.schIntw.BridgeUrl = this.bridgeUrl;
   // this.schIntw.RequiredFurtherInterview = this.webxRI;
@@ -320,7 +347,6 @@ else
 }
 
 this.schIntw.Comments = this.Comment;
-
   this.managejobservice.UpdateinterviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
@@ -426,7 +452,6 @@ GetInterView() {
  Ids.forEach((value, index, array)=>
  {
     this.savenote.toUserId = value;
-    debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -594,4 +619,9 @@ export class ScheduleInterview {
     public StatusChangedByUserId: number;
     public IsUploaded: boolean;
     public IsInvited: boolean;
+}
+
+
+export class Options {
+  constructor(public id: number, public name: string) { }
 }

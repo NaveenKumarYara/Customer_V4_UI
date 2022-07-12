@@ -174,21 +174,17 @@ export class InterviewListComponent implements OnInit {
       this.toastr.setRootViewContainerRef(_vcr);
     }
 
-    detailIntviewHandler(invterviweId, index) {
-      this.setActive = index;
-      let filterData = this.invetviewListArray.filter(function(obj) {
-        return obj['id'] === invterviweId;
-      });
-      
-      this.filterInterviewDetail = [...filterData];
+    detailIntviewHandler(index) {
+      this.setActive = index;    
+      // this.filterInterviewDetail.indexOf(index);
     }
 
     ngOnInit() {
      this.spinner.show();
      this.managejobservice.updateListCount(6);
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
-     this.populateJobInterViewlist(4,0,'');
-     this.detailIntviewHandler(1,0);  
+     this.populateJobInterViewlist(3,0,'');
+     this.detailIntviewHandler(0);  
   }
 
   titleCaseWord(word: string) {
@@ -202,11 +198,15 @@ export class InterviewListComponent implements OnInit {
     if(val!=null||val!=undefined)
     {
       this.sort =val
+      this.detailIntviewHandler(0); 
+      this.joblistcount = 6; 
       this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
     }
     else
     {
-      this.sort=4
+      this.sort=3;
+      this.detailIntviewHandler(0);  
+      this.joblistcount = 6;
       this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
     }
   }
@@ -225,10 +225,10 @@ export class InterviewListComponent implements OnInit {
     }
   }
 
-  populateJobInterViewlist(sort=4,listsort=0,search='') { 
+  populateJobInterViewlist(sort=3,listsort=0,search='') { 
     if(this.sort==undefined)
     {
-      this.sort=4;
+      this.sort=3;
     }
     else
     {
@@ -246,6 +246,7 @@ export class InterviewListComponent implements OnInit {
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
+      this.filterInterviewDetail = res.Jobs;
       this.spinner.hide();
     }); 
   }
@@ -264,7 +265,7 @@ export class InterviewListComponent implements OnInit {
     this.managejobservice.InterviewAccept(this.InterviewAcceptance)
     .subscribe(
     data => {
-    this.populateJobInterViewlist(4,1,'');
+    this.populateJobInterViewlist(this.sort,1,'');
   })
    }
  }
@@ -319,7 +320,7 @@ export class InterviewListComponent implements OnInit {
   }
 
 
-  OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId,date,time) {
+  OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId,date,time,etime,Comment) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     if(profileId>0)
@@ -336,13 +337,15 @@ export class InterviewListComponent implements OnInit {
          ProfileId: profileId,
          userId: userId,
          iDate:date,
-         iTime:time
+         iTime:time,
+         Etime:etime,
+         sComment:Comment
         }
       }
     );
     scheduleIntwdialogRef.afterClosed().subscribe(result => {
       if (result === 'submit') {
-        this.populateJobInterViewlist(4,0,'');
+        this.populateJobInterViewlist(this.sort,0,'');
       }
     
      // this.jobDetails.populateJobsStaticInfo(this.jobid);
