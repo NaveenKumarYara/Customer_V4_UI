@@ -179,6 +179,14 @@ export class InterviewListComponent implements OnInit {
       // this.filterInterviewDetail.indexOf(index);
     }
 
+    GetRedirect(jobId,profileId)  {
+      sessionStorage.setItem('jobId', JSON.stringify(jobId));
+      localStorage.setItem('rprofileId', JSON.stringify(profileId));;
+      this.router.navigateByUrl('app-view-jobdetails');
+      //let candidateProfile = this.recentapplicantlist.find(item => item.ProfileId === profileId);
+      //sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
+        }
+
     ngOnInit() {
      this.spinner.show();
      this.managejobservice.updateListCount(6);

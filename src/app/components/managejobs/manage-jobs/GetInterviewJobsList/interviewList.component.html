@@ -61,31 +61,33 @@
           <div class="tab-content" id="thisWeekContent">
             <!--This Week Interview Tab-->
             <div class="tab-pane fade active in" id="this-week-interview" role="tabpanel" aria-labelledby="this-week-interview-tab">
-              <div class="listing-grid" *ngIf="joblist.Jobs.length>0">
-                <div class="listing-col" *ngFor="let job of joblist.Jobs | valueArray;let i=index" [class.active]="setActive === i" (click)="detailIntviewHandler(i);">
-                  <span class="date">
-                    <span class="month">{{job?.InterviewDate  | date: 'MMM'}}</span>
-                    <span class="day">{{job?.InterviewDate  | date: 'dd'}}</span>
-                    <span class="year">{{job?.InterviewDate  | date: 'yyyy'}}</span>
-                  </span>
-                  <span class="time">{{job?.StartTime}}</span>
-                  <h4>{{ job?.JobTitle | titlecase }}</h4>
-                  <h5>  <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
-                    width="32" alt=""> {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-                  {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h5>
-                 
-                  <h5><i class="fa fa-hand-o-right"></i> {{ job?.BridgeUrl  || 'TECHNICAL'}}</h5>
-               
-                  <h6> <i class="fa fa-university"></i> {{ job?.AccessId | titlecase }}</h6>
-                  <button class="btn btn-zoom" *ngIf="job?.InterviewTypeId == 3">{{job?.InterviewType}}</button>
-                  <div class="address">
+              <div class="listing-grid" *ngIf="joblist?.Jobs?.length>0">
+                  <div class="listing-col" *ngFor="let job of joblist.Jobs | valueArray;let i=index" [class.active]="setActive === i" (click)="detailIntviewHandler(i);">
+                    <span class="date">
+                      <span class="month">{{job?.InterviewDate  | date: 'MMM'}}</span>
+                      <span class="day">{{job?.InterviewDate  | date: 'dd'}}</span>
+                      <span class="year">{{job?.InterviewDate  | date: 'yyyy'}}</span>
+                    </span>
+                    <span class="time">{{job?.StartTime}}</span>
+                    <h4>{{ job?.JobTitle | titlecase }}</h4>
+                    <h5>  <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                      width="32" alt=""> {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                    {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h5>
                    
-                      {{job?.JobLocations.split('|')[0]}}
-                    
-                  </div>
-               
+                    <h5><i class="fa fa-hand-o-right"></i> {{ job?.BridgeUrl  || 'TECHNICAL'}}</h5>
                  
-                </div>
+                    <h6> <i class="fa fa-university"></i> {{ job?.AccessId | titlecase }}</h6>
+                    <button class="btn btn-zoom" *ngIf="job?.InterviewTypeId == 3">{{job?.InterviewType}}</button>
+                    <div class="address">
+                     
+                        {{job?.JobLocations.split('|')[0]}}
+                      
+                    </div>
+                 
+                   
+                  </div>
+              
+              
                 <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
                   <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateListCount()">
                     Load More
@@ -264,8 +266,14 @@
     <ng-container *ngIf="filterInterviewDetail.length>0">
     <ng-container *ngFor="let job of filterInterviewDetail;let j=index" >
       <div class="interview-detail-section" *ngIf="j === setActive">
+
         <div class="top-title flex flex-wrap" >
-          <h4 (click)="ViewJobdetails(job?.JobId)">{{ job?.JobTitle | titlecase }}</h4>
+          <a href="javascript:void(0)" (click)="ViewJobdetails(job?.JobId)">
+          <h4 >{{ job?.JobTitle | titlecase }}
+            <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>
+          </h4>
+      
+          </a>
           <div class="icon-navigation ml-auto">
             <ul>
               <li><a href="javascript:void(0)"><span class="icon icon-summary">Icon</span></a></li>
@@ -293,12 +301,16 @@
             <div class="col-sm-3 grid-col grid-left-col">
               Candiate Name
             </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
-              width="32" alt="">
-              {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-              {{job?.ProfileBasicInfo?.LastName  | titlecase }}
-            </div>
+            <a href="javascript:void(0)" (click)="GetRedirect(job?.JobId,job?.ProfileId)">
+              <div class="col-sm-9 grid-col grid-right-col" >
+                <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                width="32" alt="">
+                {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                {{job?.ProfileBasicInfo?.LastName  | titlecase }}
+                <i class="fa fa-info-circle" tooltip="View the profile details." placement="right"></i>
+              </div>
+            </a>
+            
           </div>
           <div class="row grid-row">
             <div class="col-sm-3 grid-col grid-left-col">
@@ -355,14 +367,14 @@
               </div>
             </div>
           </div> 
-          <div class="row grid-row full-grid-row">
+          <!-- <div class="row grid-row full-grid-row">
             <div class="icon-navigation">
               <ul>
                 <li><a href="javascript:void(0)"><span class="icon icon-detail">Icon</span></a></li>
                 <li><a href="javascript:void(0)"><span class="icon icon-chat">Icon</span></a></li>
               </ul>
             </div>  
-          </div>
+          </div> -->
           
         </div>
         <div class="buttons">
