@@ -44,3 +44,9 @@
     height: 65%;
     padding: 0px 40px 25px 10px;
   }
+
+  
+
+  .add-btn-minus {
+    margin-left: -2px;
+  }

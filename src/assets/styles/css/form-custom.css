@@ -121,6 +121,12 @@
   margin-top: 15px;
 }
 
+.page--create-a-job .form-steps .form-rows .checkbox em {
+  font-size: 8px;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
 .page--create-a-job .form-steps .form-rows .checkbox .box {
   padding: 5px 15px;
 }
@@ -1004,9 +1010,14 @@ body .error__required.lg {
   position: relative;
 }
 
+.single-form-cols  .form-check-list li {
+  width: 16.667%;
+}
+
 .form-check-list li .col__container{
   position: relative;
   padding: 5px 14px 5px 40px;
+  height: 100%;
   border: 1px solid #e0e3ef;
   box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
 }

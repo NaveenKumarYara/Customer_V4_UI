@@ -952,7 +952,6 @@
     left: 0;
   }
   
-  
   .funnel-graph-container .funnel-graph .funnel-text.funnel-text-05 {
     width: 218px;
     height: 88px;
@@ -964,8 +963,8 @@
   .funnel-graph-container .funnel-graph .funnel-text.funnel-text-06 {
     transform: rotate(45deg);
     transform-origin: left top;
-    left: 88px;
-    top: 50px;
+    left: 107px;
+    top: 60px;
   }
 
   .funnel-graph-container .funnel-graph .funnel-text.funnel-text-05 em {

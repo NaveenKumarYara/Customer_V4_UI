@@ -31621,3 +31621,35 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	display: flex;
 	justify-content: flex-end;
 }
+
+.select-multiple-grid .right-col {
+  flex: 0 0 46px;
+  max-width: 46px;
+	width: 46px;
+}
+
+.select-multiple-grid .left-col {
+  flex: 0 0 calc(100% - 46px);
+  max-width: calc(100% - 46px);
+	width: calc(100% - 46px);
+}
+
+.radio-grid-cols .checkbox {
+	flex: 0 0 20%;
+	max-width: 20%;
+	padding: 0 7px;
+	margin: 0 !important;
+}
+
+.radio-grid-cols .checkbox label {
+	width: 100%;
+	margin: 0 !important;
+}
+
+.form-group-bottom {
+	margin-bottom: 0 !important;
+}
+
+.ml-5-negative {
+	margin-left: -10px;
+}

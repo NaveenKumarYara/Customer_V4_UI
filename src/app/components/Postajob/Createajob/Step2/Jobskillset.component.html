@@ -2,7 +2,7 @@
 	<!-- <label for="" class="question">What  skill sets are you are looking for in the candidate? <span class="red">*</span></label> -->
 	<!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
 	<form novalidate (ngSubmit)="addSkills()" #f="ngForm">
-		<div class="form-row row form-sub-rows flex flex-wrap flex-align-start">
+		<div class="form-row row form-sub-rows flex flex-wrap flex-align-end">
 			<div class="col-xs-12 col-sm-4 form-sub-cols">
 				<div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
 					<label for="">Skill Name <span class="red">*</span></label>
@@ -27,9 +27,57 @@
 			</div>
 			<div class="col-xs-12 col-sm-8 form-sub-cols candidate-experience-cols">
 				<div class="row form-sub-rows">
-					<div class="col-xs-12 col-sm-8 form-sub-cols">
+					<div class="col-xs-12 col-sm-10 form-sub-cols">
 						<label for="">Experience <span class="red">*</span></label>
-						<div class="form-sub-rows row">
+						<div class="row form-sub-rows radio-grid-cols flex flex-wrap">
+							<div class="checkbox">
+								<label>
+									<input type="radio" name="skills-radio">
+									<span class="box">
+										0-2
+										<em>Yrs</em>
+									</span>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="radio" name="skills-radio">
+									<span class="box">
+										3-5
+										<em>Yrs</em>
+									</span>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="radio" name="skills-radio">
+									<span class="box">
+										6-8
+										<em>Yrs</em>
+									</span>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="radio" name="skills-radio">
+									<span class="box">
+										9-11
+										<em>Yrs</em>
+									</span>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="radio" name="skills-radio">
+									<span class="box">
+										12+
+										<em>Yrs</em>
+									</span>
+								</label>
+							</div>
+						</div>
+						<!--Old Code-->
+						<div class="form-sub-rows row hidden">
 							<div class="col-xs-6 form-sub-cols exp col-sm-6 col-md-6 pt-0">
 								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                	</ng-select>  -->
@@ -55,8 +103,10 @@
 								</small>
 							</div>
 						</div>
+						<!--Old Code-->
+
 					</div>
-					<div class="col-xs-12 col-sm-4 form-sub-cols form-primay-sub-cols">
+					<div class="col-xs-12 col-sm-2 form-sub-cols form-primay-sub-cols">
 						<label for="">Primary</label>
 						<div class="row form-sub-rows">
 							<div class="col-xs-6 col-sm-8 form-sub-cols">
@@ -67,7 +117,7 @@
 								</label>
 							</div>
 							<div class="col-xs-6 col-md-4 col-sm-4 form-sub-cols">
-								<button class="btn add-btn mt-0" type="submit">+</button>
+								<button class="btn add-btn add-btn-minus mt-0" type="submit">+</button>
 							</div>
 						</div>
 					</div>
@@ -115,7 +165,7 @@
 			<div class="jdv-skill-list">
 				<h4 for="" class="light">Primary Skills</h4>
 				<div class="row flex flex-wrap flex-align-equal">
-					<div class="col-xs-12 col-sm-4 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
+					<div class="col-xs-12 col-sm-2 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
 						<div class="col-container">
 							<h5 class="skill-title">{{ add3Dots(primaryjobskill.SkillName,25) }}</h5>
 							<ng-container *ngIf="showexp === true">
