@@ -1,104 +1,168 @@
 <div id="step3" class="tab-pane">
   <div class="tab-inner">
-   
-    <div>
-      <label for="" class="question">Select the profile matching criteria you want to include to get the right candidate for this job  <a  href="javascript:void(0)"  class="tooltip__link">
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <span class="custom__tooltip">
-          <span class="step__01">Profile matching for a job is based on skill match and job match</span>
-        </span>
-      </a></label>
-      <div>
-        <div class="pull-left">
-          <h4>
-            
-            <div class="col-sm-4">
-              <label><b> Skill Criteria:
-                <a  href="javascript:void(0)"  class="tooltip__link">
-                  <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  <span class="custom__tooltip">
-                    <span class="step__01">Skill match depends on skill name and total experience of a particular skill</span>
-                  </span>
-                </a> </b></label>
-              <circle-progress  [percent]="minValue" [radius]="40"
-                [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#50C878'"
-                [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
-              </circle-progress>
-              
-            </div>    
 
-          </h4>
- 
-          
-         </div>
+    <div>
      
-         <div class="pull-right">
-          <h4>
-          
-          <div class="col-sm-4">
-            <label><b> Job Criteria:
-              <a  href="javascript:void(0)"  class="tooltip__link">
+      <div class="rang-slider-section">
+        <label for="" class="question">Select the profile matching criteria you want to include to get the right candidate
+          for this job 
+          <a href="javascript:void(0)" class="tooltip__link">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <span class="custom__tooltip">
+              <span class="step__01">Profile matching for a job is based on skill match and job match</span>
+            </span>
+          </a>
+        </label>
+        <div class="job-crietria-section flex flex-align-center">
+          <h4>Job Criteria</h4>
+          <ul>
+            <li>
+              <label class="custom-checkbox lg-select">
+                <input type="checkbox" name="TotalExperience" [checked]="TotalExperience"
+                  (change)="checkTotalExperience(TotalExperience?false:true)">
+                <span class="checkmark">
+                  Total Experience
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="custom-checkbox lg-select">
+                <input type="checkbox" name="Title" [checked]="Title" (change)="checkTitle(Title?false:true)">
+                <span class="checkmark">
+                  Title
+                </span>
+              </label>
+            </li>
+
+            <li>
+              <label class="custom-checkbox lg-select">
+                <input type="checkbox" name="Domain" [checked]="Domain" (change)="checkDomain(Domain?false:true)">
+                <span class="checkmark">
+                  Domain
+                </span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <!--Old Code-->
+        <div class="hidden">
+          <div class="pull-left">
+            <h4>
+              <div class="col-sm-4">
+                <label><b> Skill Criteria:
+                    <a href="javascript:void(0)" class="tooltip__link">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                      <span class="custom__tooltip">
+                        <span class="step__01">Skill match depends on skill name and total experience of a particular
+                          skill</span>
+                      </span>
+                    </a> </b></label>
+                <circle-progress [percent]="minValue" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+                  [outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+                  [showSubtitle]="false">
+                </circle-progress>
+  
+              </div>
+  
+            </h4>
+  
+  
+          </div>
+  
+          <div class="pull-right">
+            <h4>
+              <div class="col-sm-4">
+                <label><b> Job Criteria:
+                    <a href="javascript:void(0)" class="tooltip__link">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                      <span class="custom__tooltip">
+                        <span class="step__01">Job match depends on Job title, experience and domain.</span>
+                      </span>
+                    </a>
+                  </b></label>
+                <circle-progress [percent]="JobFitval" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+                  [outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+                  [showSubtitle]="false">
+                </circle-progress>
+              </div>
+            </h4>
+          </div>
+        </div>
+        
+        <div class="custom-slider">
+          <ngx-slider [(value)]="minValue" [options]="options" (valueChange)="onValueChange($event)"></ngx-slider>
+        </div>
+        <div class="percentage-slider flex flex-wrap">
+          <div class="skills-chart-left flex flex-align-center">
+            <h4>
+              Skill Criteria:
+              <a href="javascript:void(0)" class="tooltip__link">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="custom__tooltip">
+                  <span class="step__01">Skill match depends on skill name and total experience of a particular
+                    skill</span>
+                </span>
+              </a>
+            </h4>
+            <circle-progress [percent]="minValue" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+              [showSubtitle]="false">
+            </circle-progress>
+          </div>
+          <div class="skill-chart-right flex flex-align-center">
+            <h4>Job Criteria:
+              <a href="javascript:void(0)" class="tooltip__link">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                 <span class="custom__tooltip">
                   <span class="step__01">Job match depends on Job title, experience and domain.</span>
                 </span>
               </a>
-             </b></label>
-            <circle-progress [percent]="JobFitval" [radius]="40"
-              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
-              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
-            </circle-progress>
-           
-             
+            </h4>
+            <circle-progress [percent]="JobFitval" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+            [outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+            [showSubtitle]="false">
+          </circle-progress>
           </div>
-          
-          </h4>     
-         </div>
-        <div class="custom-slider">                    
-          <ngx-slider [(value)]="minValue"  [options]="options"  (valueChange)="onValueChange($event)"></ngx-slider>
         </div>
-        <div>
+        <!--Old Code-->
+        <div class="hidden">
           <label><b> Job Criteria:</b></label>
           <div class="col-12">
             <ul>
-              
-             <li>
+              <li>
                 <label class="container">TotalExperience
-                  <input type="checkbox" name="TotalExperience" [checked]="TotalExperience" (change)="checkTotalExperience(TotalExperience?false:true)">
+                  <input type="checkbox" name="TotalExperience" [checked]="TotalExperience"
+                    (change)="checkTotalExperience(TotalExperience?false:true)">
                   <span class="checkmark"></span>
                 </label>
-             </li>
-              
-             <li>
+              </li>
+
+              <li>
                 <label class="container">Title
-                  <input type="checkbox" name="Title"  [checked]="Title" (change)="checkTitle(Title?false:true)">
+                  <input type="checkbox" name="Title" [checked]="Title" (change)="checkTitle(Title?false:true)">
                   <span class="checkmark"></span>
                 </label>
-             </li>
-              
-             <li>
+              </li>
+
+              <li>
                 <label class="container">Domain
-                  <input type="checkbox" name="Domain"   [checked]="Domain" (change)="checkDomain(Domain?false:true)">
+                  <input type="checkbox" name="Domain" [checked]="Domain" (change)="checkDomain(Domain?false:true)">
                   <span class="checkmark"></span>
                 </label>
-             </li>
-              
-            
-              
-             
-               
-             
-      
-             </ul>
+              </li>
+            </ul>
           </div>
-          </div>
+        </div>
+        <!--Old Code-->
+
       </div>
     </div>
-   
+
     <!-- <app-steps-step3-employmenttype (myEmploymentType)="changeEmploymentType()"> 
       
     </app-steps-step3-employmenttype> -->
-   
+
     <!-- <div class="form-group contract-details-group" *ngIf="show">
         
       <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> 
@@ -114,15 +178,16 @@
       </div>
       <div class="col-sm-6 form-cols single-form-cols">
         <label for="" class="question">Video Sizzle <small>(Optional)</small>
-          <a  href="javascript:void(0)"  class="tooltip__link">
+          <a href="javascript:void(0)" class="tooltip__link">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <span class="custom__tooltip">
-              <span class="step__01">Create a video sizzle that details the job and gives profiles a glimpse into requirements and company culture. </span>
+              <span class="step__01">Create a video sizzle that details the job and gives profiles a glimpse into
+                requirements and company culture. </span>
             </span>
           </a>
           <small>Transform Your Recruitment Process with Video Job Descriptions.</small>
         </label>
-        <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
+        <button class="btn btn-small" (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
       </div>
     </div>
     <app-steps-step3-recriuter></app-steps-step3-recriuter>
@@ -134,13 +199,15 @@
   <div class="clearfix form-nav">
     <div class="pull-left">
       <div class="pull-right">
-        <a href="#" class="btn btn-border btn-prev" (click)="backtoStep2()"  routerLink="/app-createajob/app-steps-step2">Back</a>
+        <a href="#" class="btn btn-border btn-prev" (click)="backtoStep2()"
+          routerLink="/app-createajob/app-steps-step2">Back</a>
       </div>
     </div>
     <div class="pull-right">
-        <a href="javascript:void(0)"  (click)="postJob(3,0)" *ngIf="jobIdExists>0" class="btn btn-border btn-prev">Save & Close</a>
-        <a href="javascript:void(0)" (click)="postJob(3)"  class="btn btn-filled btn-next">Save & Next</a>
-        <!-- routerLink="/app-createajob/app-steps-step4" -->
+      <a href="javascript:void(0)" (click)="postJob(3,0)" *ngIf="jobIdExists>0" class="btn btn-border btn-prev">Save &
+        Close</a>
+      <a href="javascript:void(0)" (click)="postJob(3)" class="btn btn-filled btn-next">Save & Next</a>
+      <!-- routerLink="/app-createajob/app-steps-step4" -->
     </div>
   </div>
   <!-- <footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
