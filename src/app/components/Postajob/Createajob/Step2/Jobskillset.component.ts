@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { FormControl, NgForm } from '@angular/forms';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { ChangeContext, LabelType, Options } from 'ng5-slider';
+import { TOptions } from '../Step1/Jobprofile.component';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobskillset',
@@ -28,7 +29,14 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    minexpval:any;
   expYears: any = [];
   skillType  = false;
-
+  selectedOption:TOptions = new TOptions(2, ' 3-5');
+  options = [
+     new TOptions(1, '0-2' ),
+     new TOptions(2, '3-5' ),
+     new TOptions(3, '6-8' ),
+     new TOptions(4, '9-11'),
+     new TOptions(5, '12+')
+  ];
   private subscription: Subscription;
   showexp:boolean=true;
   skilllist: Observable<string[]>;
@@ -36,7 +44,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
   private selectedLink = 'Primary';
-  options: Options = {
+  doptions: Options = {
     floor: 1,
     ceil: 40,
     step : 0.1,
@@ -113,7 +121,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       // this.minexperience = 0;
       // this.maxexperience = 0;
       this.minexperience = 3;
-      this.maxexperience = 6;
+      this.maxexperience = 5;
       this.form.resetForm();
       localStorage.removeItem('skill');
      this.form.reset();
@@ -123,14 +131,19 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         this.toastr.info('Please provide valid Experience','Oh no!!!');
         return false;
       }
-
-      if (Number(this.minexperience) === 0) {
-        return false;
+      if(this.minexperience === undefined)
+      {
+        this.getValue(2);
       }
+     
 
-      if (Number(this.maxexperience) === 0) {
-        return false;
-      }
+      // if (Number(this.minexperience) === 0) {
+      //   return false;
+      // }
+
+      // if (Number(this.maxexperience) === 0) {
+      //   return false;
+      // }
       this.appService.addSkills(localStorage.getItem('skill'));
       let newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
@@ -149,8 +162,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         this.deleteSecondarySkills(Id);
         this.appService.addJobSkill(newskills);
         this.selectedSkillName=undefined;
-        this.minexperience = 0;
-        this.maxexperience = 0;
+        this.minexperience = 3;
+        this.maxexperience = 5;
         newskills = new Jobskills();
         localStorage.removeItem('skill');
         this.form.reset();
@@ -201,6 +214,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    EditPrimarySkills(Skill) {
     this.maxexperience= Skill.MaximumExp/12;
     this.minexperience = Skill.MinimumExp/12;
+    this.getval();
     this.selectedSkillName=Skill.SkillName;
     this.skillType = Skill.SkillType;
   }
@@ -208,6 +222,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    EditSecondarySkills(Skill) {
     this.maxexperience= Skill.MaximumExp/12;
     this.minexperience = Skill.MinimumExp/12;
+    this.getval();
     this.selectedSkillName=Skill.SkillName;
     this.skillType = Skill.SkillType;
   }
@@ -311,6 +326,64 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    
    }
  }
+
+ getValue(optionid) {
+  debugger
+  if(optionid>0)
+  {  
+  this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+  if(this.selectedOption.id === 1)
+  {
+    this.minexperience = 1;
+    this.maxexperience = 2; 
+  }
+  else if(this.selectedOption.id === 2)
+  {
+    this.minexperience = 3;
+    this.maxexperience = 5;  
+  }
+  else if(this.selectedOption.id === 3)
+  {
+    this.minexperience = 6;
+    this.maxexperience = 8;
+  
+  }
+  else if(this.selectedOption.id === 4)
+  {
+    this.minexperience = 9;
+    this.maxexperience = 11;  
+  }
+  else if(this.selectedOption.id === 5)
+  {
+    this.minexperience = 12;
+    this.maxexperience = 12;  
+  }
+}
+}
+
+getval()
+{
+     if(this.minexperience<3)
+      {
+        this.getValue(1);
+      }
+      else if(this.minexperience>=3 && this.maxexperience <=5)
+      {
+        this.getValue(2); 
+      }
+      else if(this.minexperience>5 && this.maxexperience <=8)
+      {
+        this.getValue(3); 
+      }
+      else if(this.minexperience>8 && this.maxexperience <=11)
+      {
+        this.getValue(4); 
+      }
+      else if(this.minexperience>11)
+      {
+        this.getValue(5); 
+      }       
+}
 
   minExperienceChangeStart(changeContext: ChangeContext): void {
     this.appService.updateMinExp(this.minexpval);

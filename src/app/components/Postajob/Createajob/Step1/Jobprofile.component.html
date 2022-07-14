@@ -73,7 +73,7 @@
       </div>
       <div class="col-xs-12 col-sm-8 form-sub-cols">
         <div class="form-group re-group">
-          <label for="requiredExperience" class="question">Experience <span class="red">*</span>
+          <label for="requiredExperience" class="question">Experience (Yrs)<span class="red">*</span>
             <!-- <a  href="javascript:void(0)"  class="tooltip__link">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <span class="custom__tooltip">
@@ -83,51 +83,18 @@
           </label>
           <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
           <div class="row form-sub-rows radio-grid-cols flex flex-wrap">
-            <div class="checkbox">
+            <div class="checkbox" *ngFor="let option of options">
               <label>
-                <input type="radio" name="experience-radio">
+                <input type="radio" name="price"  (click)="getValue(option.id)"
+                 [checked]="option.id == selectedOption.id"
+                  value= {{option.id}}>
                 <span class="box">
-                  0-2
-                  <em>Yrs</em>
+                  {{option.name}}
+                  <!-- <em>Yrs</em> -->
                 </span>
               </label>
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="radio" name="experience-radio">
-                <span class="box">
-                  3-5
-                  <em>Yrs</em>
-                </span>
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="radio" name="experience-radio">
-                <span class="box">
-                  6-8
-                  <em>Yrs</em>
-                </span>
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="radio" name="experience-radio">
-                <span class="box">
-                  9-11
-                  <em>Yrs</em>
-                </span>
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="radio" name="experience-radio">
-                <span class="box">
-                  12+
-                  <em>Yrs</em>
-                </span>
-              </label>
-            </div>
+       
           </div>
           <div class="row re-exp form-sub-rows hidden">
             <!-- <div class="styled-select-box block experience-output"></div> -->
@@ -135,12 +102,12 @@
               <div class="form-group">
                 <input class="form-control" #Min="ngModel" name="min-exp" [(ngModel)]="minExperience"
                   (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
+                <!-- <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
                   *Required
                 </small>
                 <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
                   It can't be greater than Max Experience!
-                </small>
+                </small> -->
               </div>
               <div>
               </div>
@@ -150,12 +117,12 @@
                 <input class="form-control" name="max-exp" #Max="ngModel" (keypress)="numberOnly($event)"
                   [(ngModel)]="maxExperience" required (input)="onMaxChange()" placeholder="Max years" type="text">
 
-                <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">
+                <!-- <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">
                   *Required
                 </small>
                 <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
                   It can't be less than Min Experience!
-                </small>
+                </small> -->
               </div>
               <div>
               </div>

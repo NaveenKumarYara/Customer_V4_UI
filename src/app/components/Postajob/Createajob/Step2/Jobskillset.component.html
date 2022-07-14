@@ -30,51 +30,17 @@
 					<div class="col-xs-12 col-sm-10 form-sub-cols">
 						<label for="">Experience <span class="red">*</span></label>
 						<div class="row form-sub-rows radio-grid-cols flex flex-wrap">
-							<div class="checkbox">
+						    <div class="checkbox" *ngFor="let option of options">
 								<label>
-									<input type="radio" name="skills-radio">
-									<span class="box">
-										0-2
-										<em>Yrs</em>
-									</span>
+								  <input type="radio" name="price"  (click)="getValue(option.id)"
+								   [checked]="option.id == selectedOption.id"
+									value= {{option.id}}>
+								  <span class="box">
+									{{option.name}}
+									<!-- <em>Yrs</em> -->
+								  </span>
 								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="radio" name="skills-radio">
-									<span class="box">
-										3-5
-										<em>Yrs</em>
-									</span>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="radio" name="skills-radio">
-									<span class="box">
-										6-8
-										<em>Yrs</em>
-									</span>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="radio" name="skills-radio">
-									<span class="box">
-										9-11
-										<em>Yrs</em>
-									</span>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="radio" name="skills-radio">
-									<span class="box">
-										12+
-										<em>Yrs</em>
-									</span>
-								</label>
-							</div>
+							  </div>
 						</div>
 						<!--Old Code-->
 						<div class="form-sub-rows row hidden">
@@ -82,25 +48,25 @@
 								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                	</ng-select>  -->
 								<input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience"
-									(keypress)="numberOnly($event)" required placeholder="Min years" type="text" required>
-								<small class="text-danger error1 error__required " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
+									(keypress)="numberOnly($event)" placeholder="Min years" type="text" >
+								<!-- <small class="text-danger error1 error__required " *ngIf="minExp.invalid && minExp.touched "> Required.</small> -->
 								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
                   Can't be > Max Exp!
                 </small> -->
-								<small class="text-danger error1" *ngIf="minExp.value==0">
+								<!-- <small class="text-danger error1" *ngIf="minExp.value==0">
 									Can't be 0 Exp!
-								</small>
+								</small> -->
 							</div>
 							<div class="col-xs-6 form-sub-cols exp col-sm-6 col-md-6 pt-0">
 								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
                 </ng-select>   -->
 								<input class="form-control" #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience"
-									(keypress)="numberOnly($event)" required placeholder="Max years" type="text" required>
-								<small class="text-danger error1 error__required" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
+									(keypress)="numberOnly($event)"  placeholder="Max years" type="text" >
+								<!-- <small class="text-danger error1 error__required" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small> -->
 								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small> -->
-								<small class="text-danger error1" *ngIf="maxExp.value==0">
+								<!-- <small class="text-danger error1" *ngIf="maxExp.value==0">
 									Can't be 0 Exp!
-								</small>
+								</small> -->
 							</div>
 						</div>
 						<!--Old Code-->

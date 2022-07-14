@@ -72,6 +72,14 @@ minExperience:number;
 maxExperience:number;
 MinimumExperience:number;
 MaximumExperience:number;
+selectedOption:TOptions = new TOptions(2, ' 3-5');
+options = [
+   new TOptions(1, '0-2' ),
+   new TOptions(2, '3-5' ),
+   new TOptions(3, '6-8' ),
+   new TOptions(4, '9-11'),
+   new TOptions(5, '12+')
+];
 jobtitlelist:any=[];
 IndustryId:any;
 Industry:any;
@@ -389,6 +397,73 @@ NewKeyResponse(val)
     this.appService.deletekeyRole(index);
   }
 
+  getValue(optionid) {
+    debugger
+    if(optionid>0)
+    {  
+    this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+    if(this.selectedOption.id === 1)
+    {
+      this.minExperience = 1;
+      this.maxExperience = 2;
+      this.onMinChange();
+      this.onMaxChange();
+    }
+    else if(this.selectedOption.id === 2)
+    {
+      this.minExperience = 3;
+      this.maxExperience = 5;
+      this.onMinChange();
+      this.onMaxChange();
+    }
+    else if(this.selectedOption.id === 3)
+    {
+      this.minExperience = 6;
+      this.maxExperience = 8;
+      this.onMinChange();
+      this.onMaxChange();
+    }
+    else if(this.selectedOption.id === 4)
+    {
+      this.minExperience = 9;
+      this.maxExperience = 11;
+      this.onMinChange();
+      this.onMaxChange();
+    }
+    else if(this.selectedOption.id === 5)
+    {
+      this.minExperience = 12;
+      this.maxExperience = 12;
+      this.onMinChange();
+      this.onMaxChange();
+    }
+  }
+  }
+
+  getval()
+  {
+       if(this.minExperience<3)
+        {
+          this.getValue(1);
+        }
+        else if(this.minExperience>=3 && this.maxExperience <=5)
+        {
+          this.getValue(2); 
+        }
+        else if(this.minExperience>5 && this.maxExperience <=8)
+        {
+          this.getValue(3); 
+        }
+        else if(this.minExperience>8 && this.maxExperience <=11)
+        {
+          this.getValue(4); 
+        }
+        else if(this.minExperience>11)
+        {
+          this.getValue(5); 
+        }       
+  }
+
 
 
   ngOnInit() {
@@ -423,10 +498,12 @@ NewKeyResponse(val)
       }
       if(value > 0)
       {
-        this.maxExperience = Number(value.toFixed(1));
+        this.maxExperience = Number(value.toFixed(1));        
       }
       
    } );
+
+ 
     this.keyslist = this.appService.getKeyRoleList();
    
     this.subscription = this.appService.keyroleChanged
@@ -494,8 +571,15 @@ NewKeyResponse(val)
       }
      
       );
-
-
+      if(this.minExperience>0 && this.maxExperience>0)
+      {
+        this.getval();
+      }
+      else
+      {
+        this.getValue(2);
+      }
+    
     this.GetJobPriority();
     this.GetCustomerIndustry();
 
@@ -737,7 +821,6 @@ public addkeyRole() {
   updateJobTitle(val) {
     if(val === undefined)
     {
-      debugger
       this.Title = undefined;
       this.TitleId = null;
       this.keyslist = [];
@@ -779,6 +862,10 @@ populatedescriptioncheck() {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    if(this.minExperience>0 && this.maxExperience>0)
+    {
+     this.getval();
+    }
     if(this.disable == "true")
     {
       this.disableLoc = false;
@@ -821,4 +908,8 @@ export class saveNewKeyRoles
 {
   RoleId: number;
   Name: string;
+}
+
+export class TOptions {
+  constructor(public id: number, public name: string) { }
 }
