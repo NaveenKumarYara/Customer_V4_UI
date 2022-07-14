@@ -1,0 +1,207 @@
+body {
+  border: 10px solid red;
+}
+
+.culture-modal-section {
+  padding: 20px 30px !important;
+  height: auto !important;
+}
+.culture-modal-section .top-container {
+  position: relative;
+}
+.culture-modal-section .icon {
+  display: block;
+  font-size: 0;
+  margin: 0 0 5px;
+  background: url(../../../../../../assets/images/personality-fit-sprites.png) 0 0 no-repeat;
+  background-size: 600px auto;
+}
+.culture-modal-section .icon-tolerance {
+  width: 48px;
+  height: 43px;
+  background-position: -18px -24px;
+}
+.culture-modal-section .icon-tolerance {
+  width: 48px;
+  height: 43px;
+  background-position: -18px -24px;
+}
+.culture-modal-section .icon-cooperative {
+  width: 47px;
+  height: 44px;
+  background-position: -79px -24px;
+}
+.culture-modal-section .icon-absorption {
+  width: 59px;
+  height: 42px;
+  background-position: -138px -24px;
+}
+.culture-modal-section .icon-intensity {
+  width: 23px;
+  height: 43px;
+  background-position: -210px -23px;
+}
+.culture-modal-section .icon-realization {
+  width: 48px;
+  height: 42px;
+  background-position: -252px -24px;
+}
+.culture-modal-section h4 {
+  font-size: 20px;
+  color: var(--gray-blue-400);
+  margin: 0;
+}
+.culture-modal-section .sprite {
+  position: absolute;
+  width: 13px;
+  height: 68px;
+  right: 0;
+  top: 50%;
+  margin-top: -34px;
+  background: url(../../../../../../assets/images/personality-fit-sprites.png) -72px -79px no-repeat;
+  background-size: 600px auto;
+}
+.culture-modal-section .sprite.sprite-01 {
+  background-position: -24px -79px;
+}
+.culture-modal-section .sprite.sprite-02 {
+  background-position: -48px -79px;
+}
+.culture-modal-section .sprite.sprite-03 {
+  background-position: -96px -79px;
+}
+.culture-modal-section .sprite.sprite-04 {
+  background-position: -119px -79px;
+}
+.culture-modal-section .btn.btn-close {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 16px;
+  border-radius: 0;
+  color: var(--gray-blue-400);
+}
+.culture-modal-section .cols-grid-container {
+  margin: 30px 0 0;
+}
+.culture-modal-section .cols-grid-container .sub-title {
+  font-size: 16px;
+  color: #90a4ad;
+}
+.culture-modal-section .cols-grid-container .cols-grid-row {
+  margin: 0 -7px;
+}
+.culture-modal-section .cols-grid-container .col-grid {
+  flex: 0 0 20%;
+  max-width: 20%;
+  width: 20%;
+  padding: 0 7px;
+  cursor: pointer;
+}
+.culture-modal-section .cols-grid-container .col-grid:first-child path {
+  stroke: var(--dark-blue-900);
+}
+.culture-modal-section .cols-grid-container .col-grid:nth-child(2) path {
+  stroke: var(--green-600);
+}
+.culture-modal-section .cols-grid-container .col-grid:nth-child(3) path {
+  stroke: var(--gray-blue-400);
+}
+.culture-modal-section .cols-grid-container .col-grid:nth-child(4) path {
+  stroke: #eea620;
+}
+.culture-modal-section .cols-grid-container .col-grid:nth-child(5) path {
+  stroke: #de3c63;
+}
+.culture-modal-section .cols-grid-container .shadow {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  top: 7px;
+  background-color: var(--purple-400);
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 15px 0 20px rgba(158, 171, 192, 0.40);
+}
+.culture-modal-section .cols-grid-container .col-container {
+  background-color: var(--gray-light-100);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+  height: 100%;
+}
+.culture-modal-section .cols-grid-container .col-container h5 {
+  font-size: 16px;
+  margin: 0;
+  color: #202230;
+}
+.culture-modal-section .cols-grid-container .active .col-container {
+  background: var(--gray-light-200);
+}
+.culture-modal-section .cols-grid-container .active .shadow {
+  background-color: var(--dark-blue);
+}
+.culture-modal-section .graph-grid-section {
+  margin: 40px 0 10px;
+}
+.culture-modal-section .graph-grid-section .row {
+  margin: 0 -7px;
+}
+.culture-modal-section .graph-grid-section .col {
+  padding: 0 7px;
+}
+.culture-modal-section .graph-grid-section .col:first-child .col-container:before {
+  content: "";
+  width: 155px;
+  height: 30px;
+  background: url(../../../../../../assets/images/personality-fit-sprites.png) -24px -167px no-repeat;
+  background-size: 600px auto;
+  margin: -20px auto 20px;
+  display: block;
+}
+.culture-modal-section .graph-grid-section canvas {
+  display: block;
+  margin: 0 auto;
+  width: 400px !important;
+  height: 400px !important;
+}
+.culture-modal-section .graph-grid-section .col-container {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 15px 0 20px rgba(158, 171, 192, 0.40);
+}
+.culture-modal-section .graph-grid-section .col-container h4 {
+  font-size: 16px;
+  color: var(--gray-blue-400);
+  margin: 0 0 10px;
+}
+.culture-modal-section .graph-grid-section .col-container p {
+  font-size: 14px;
+  color: #90a4ad;
+  margin: 0;
+  text-align: center;
+}
+.culture-modal-section .progress-wrapper {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.culture-modal-section .progress-wrapper .current {
+  font-size: 14px !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.radar-chart-container .chart-container.chart-display-block {
+  display: block !important;
+}
+

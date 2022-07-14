@@ -690,20 +690,62 @@
 									</div>
 								</ng-container>
 							</div>
-							<div *ngIf="selectedMenuItem == 'Personality Fit'">
-								<!-- <h4>Who Am I </h4>
-				  <p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.</p> -->
-							</div>
-							<div class="chart-container" *ngIf="selectedMenuItem == 'Personality Fit'">
-								<!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
+	
+							<div class="chart-container chart-display-block" *ngIf="selectedMenuItem == 'Personality Fit'">
+								
 								<ng-container *ngIf="checkPersonality.length===0">
 									<div class="no__data__found">
 										<h3>Candidate yet to provide</h3>
 									</div>
 								</ng-container>
-								<ng-container *ngIf="checkPersonality.length>0">
-									<app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
-									<div class="custom-legend">
+
+								<div class="culture-modal-section">
+									<div class="top-container">
+										<h4 class=" text-center">Personality Fit Results</h4>
+									</div>
+									<div class="cols-grid-container" *ngIf="checkPersonality.length>0">
+										<h5 class="sub-title">Navigate Charts</h5>
+										<div class="cols-grid-row row flex flex-wrap flex-align-equal">
+											<div class="col-sm-2 col-grid" *ngFor="let item of PersonalityFitLabels.labels; let i = index">
+												<div class="col-container">
+													<span class="icon icon-{{ item | lowercase }}">Icon</span>
+													<h5>{{ item }}</h5>
+													<span class="sprite sprite-0{{i}}">&nbsp;</span>
+													<div class="progress-wrapper">
+														<circle-progress data-toggle="matching-details"
+															[percent]="Personality.datasets[0].data[i]" [radius]="40"
+															[outerStrokeWidth]="8" [innerStrokeWidth]="3"
+															[outerStrokeColor]="'#6262ff'"
+															[innerStrokeColor]="'#c0c0c0'" [animation]="false"
+															[showSubtitle]="false">
+														</circle-progress>
+													</div>
+												</div>	
+												<span class="shadow">&nbsp;</span>											
+											</div>
+										</div>
+									</div>
+									<div class="graph-grid-section">
+										<div class="row flex flex-wrap flex-align-equal">
+											<div class="col-sm-6 col" *ngIf="checkPersonality.length>0">
+												<div class="col-container">
+													<app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
+												</div>
+											</div>
+											<div class="col-sm-6 col">
+												<div class="col-container text-center">
+													<h4>Who Am I </h4>
+				  								<p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.</p>
+													<app-bar-chart [barChartData]="Personality"></app-bar-chart>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<ng-container *ngIf="checkPersonality.length>0" class="hidden">
+									<!-- <app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large> -->
+									<div class="custom-legend hidden">
 										<ul class="list-group">
 											<li>
 												<p>Personality Fit</p>

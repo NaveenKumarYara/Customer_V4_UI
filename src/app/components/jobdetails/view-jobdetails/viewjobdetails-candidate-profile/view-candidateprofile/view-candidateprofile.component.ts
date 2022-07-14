@@ -26,7 +26,7 @@ export interface DialogData {
 @Component({
   selector: "app-view-candidateprofile",
   templateUrl: "./view-candidateprofile.component.html",
-  styleUrls: ["./view-candidateprofile.component.css"],
+  styleUrls: ["./view-candidateprofile.component.css","./view-candidateprofile-personality.component.css"],
   providers: [ApiService],
 })
 export class ViewCandidateprofileComponent implements OnInit {
