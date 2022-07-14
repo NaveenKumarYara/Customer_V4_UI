@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Qualifications, AddEducation } from '../../../../../models/qualifications.model';
 import { GetKeyRole, KeyRole, PjEducationDetails } from '../../models/jobPostInfo';
-import { saveNewKeyRoles } from '../Step1/Jobprofile.component';
+import { saveNewKeyRoles, TOptions } from '../Step1/Jobprofile.component';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-steps-step2-qualifications',
@@ -37,6 +37,14 @@ keyslist:any=[];
 SelectKey:any;
 domminval:any;
 dommaxval:any;
+selectedOption:TOptions = new TOptions(2, ' 3-5');
+options = [
+   new TOptions(1, '0-2' ),
+   new TOptions(2, '3-5' ),
+   new TOptions(3, '6-8' ),
+   new TOptions(4, '9-11'),
+   new TOptions(5, '12+')
+];
 MinimumExperience:number;
 MaximumExperience:number;
   qualifications: Observable<Qualifications[]>;
@@ -62,6 +70,39 @@ MaximumExperience:number;
   //      localStorage.setItem('edu', val);
   //     return { name: eduName.QualificationId , tag: true };
   // }
+
+  getValue(optionid) {
+    if(optionid>0)
+    {  
+    this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+    if(this.selectedOption.id === 1)
+    {
+      this.MinimumExperience = 1;
+      this.MaximumExperience = 2; 
+    }
+    else if(this.selectedOption.id === 2)
+    {
+      this.MinimumExperience = 3;
+      this.MaximumExperience = 5; 
+    }
+    else if(this.selectedOption.id === 3)
+    {
+      this.MinimumExperience = 6;
+      this.MaximumExperience = 8; 
+    
+    }
+    else if(this.selectedOption.id === 4)
+    {
+      this.MinimumExperience = 9;
+      this.MaximumExperience = 11;  
+    }
+    else if(this.selectedOption.id === 5)
+    {
+      this.MinimumExperience = 12;
+      this.MaximumExperience = 12;  
+    }
+  }
+  }
 
   deleteDomain(index: number) {
     this.appService.deletekeyRole(index);
@@ -301,35 +342,39 @@ public addkeyRole() {
       return false;
  
   }
-   if(Number(this.MinimumExperience) != 0)
-   {
+  if(this.MinimumExperience === undefined)
+  {
+    this.getValue(2);
+  }
+
     this.domainmaxCalculation(this.MaximumExperience);
     this.MaximumExperience= this.dommaxval;
     this.domainminCalculation(this.MinimumExperience);
     this.MinimumExperience = this.domminval;
 
-   }
+   
+
    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  
    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
    
-    
+    debugger
 
-    if(this.getDomain.CustomerKeyMinExperienceId === 0 )
-    {
-      this.toastr.error('Minimum experience should be greater than 0!', 'Oops!');
-      setTimeout(() => {
-          this.toastr.dismissToast;
-      }, 3000);
-       return false;
-    } 
-    if(this.getDomain.CustomerKeyMaxExperienceId === 0)
-    {
-      this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
-      setTimeout(() => {
-          this.toastr.dismissToast;
-      }, 3000);
-       return false;
-    }
+    // if(this.getDomain.CustomerKeyMinExperienceId === 0 )
+    // {
+    //   this.toastr.error('Minimum experience should be greater than 0!', 'Oops!');
+    //   setTimeout(() => {
+    //       this.toastr.dismissToast;
+    //   }, 3000);
+    //    return false;
+    // } 
+    // if(this.getDomain.CustomerKeyMaxExperienceId === 0)
+    // {
+    //   this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
+    //   setTimeout(() => {
+    //       this.toastr.dismissToast;
+    //   }, 3000);
+    //    return false;
+    // }
     if (this.getDomain.CustomerKeyMinExperienceId > this.getDomain.CustomerKeyMaxExperienceId && this.getDomain.CustomerKeyMinExperienceId != 0) {
       this.toastr.error('Minimum experience should not be greater than Maximum experience!', 'Oops!');
           setTimeout(() => {

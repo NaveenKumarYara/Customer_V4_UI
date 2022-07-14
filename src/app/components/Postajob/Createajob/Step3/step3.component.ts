@@ -291,7 +291,6 @@ export class Step3Component implements OnInit,AfterViewChecked {
     this.match.totalExp = this.TotalExperience;
     this.match.jobId=JobId;
     this.match.userId = this.customer.UserId;
-    debugger
     this.appService.postjobMatching(this.match).subscribe(data => {
       if (data>=0) {
             this.match = new MatchingWeightage();

@@ -131,11 +131,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         this.toastr.info('Please provide valid Experience','Oh no!!!');
         return false;
       }
-      if(this.minexperience === undefined)
+      if(this.minexperience === undefined || this.minexperience === null)
       {
         this.getValue(2);
       }
-     
 
       // if (Number(this.minexperience) === 0) {
       //   return false;
@@ -165,6 +164,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         this.minexperience = 3;
         this.maxexperience = 5;
         newskills = new Jobskills();
+        this.getValue(2);
         localStorage.removeItem('skill');
         this.form.reset();
     }
@@ -175,6 +175,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
           this.minexperience = 0;
           this.maxexperience = 0;
           newskills = new Jobskills();
+          this.getValue(2);
           localStorage.removeItem('skill');
           this.form.reset();
       }
@@ -328,7 +329,6 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
  }
 
  getValue(optionid) {
-  debugger
   if(optionid>0)
   {  
   this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];

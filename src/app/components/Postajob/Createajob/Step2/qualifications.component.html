@@ -73,57 +73,23 @@
           </div>
           <div class="col-xs-10 col-sm-8 form-sub-cols">
             <label for="" class="t-p">
-              Experience  <span class="red">*</span>
+              Experience (Yrs) <span class="red">*</span>
             </label>
             
             <div class="form-row row form-sub-rows select-multiple-grid flex flex-wrap flex-align-start">
               <div class="col-sm-11 form-sub-cols left-col">
                 <div class="row form-sub-rows radio-grid-cols flex flex-wrap">
-                  <div class="checkbox">
+                  <div class="checkbox" *ngFor="let option of options">
                     <label>
-                      <input type="radio" name="skills-radio">
+                      <input type="radio" name="price"  (click)="getValue(option.id)"
+                       [checked]="option.id == selectedOption.id"
+                      value= {{option.id}}>
                       <span class="box">
-                        0-2
-                        <em>Yrs</em>
+                      {{option.name}}
+                      <!-- <em>Yrs</em> -->
                       </span>
                     </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="radio" name="skills-radio">
-                      <span class="box">
-                        3-5
-                        <em>Yrs</em>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="radio" name="skills-radio">
-                      <span class="box">
-                        6-8
-                        <em>Yrs</em>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="radio" name="skills-radio">
-                      <span class="box">
-                        9-11
-                        <em>Yrs</em>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="radio" name="skills-radio">
-                      <span class="box">
-                        12+
-                        <em>Yrs</em>
-                      </span>
-                    </label>
-                  </div>
+                    </div>
                 </div>
               </div>
               <div class="col-xs-2 col-sm-1 add-key-btn add__btn right-col">
@@ -135,28 +101,28 @@
             <div class="form-row row form-sub-rows flex flex-wrap flex-align-start hidden">
               <div class="col-xs-5 col-sm-5 form-sub-cols">
                 <div class="form-group xs-padding">
-                  <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+                  <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)"   placeholder="Min years" type="text">
                 </div>
                 <div>
-                  <small class="error1 error__required" *ngIf="Minexp.invalid && Minexp.touched">         
+                  <!-- <small class="error1 error__required" *ngIf="Minexp.invalid && Minexp.touched">         
                     *Required
                   </small>
                    <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
                     It can't be greater than Max Experience!
-                  </small> 
+                  </small>  -->
                 </div>
               </div>
               <div class="col-xs-5 col-sm-5 form-sub-cols">
                 <div class="form-group xs-padding">
-                  <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">  
+                  <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)"  placeholder="Max years" type="text">  
                 </div>
                 <div>
-                  <small class="error1 error__required"*ngIf="Maxexp.invalid && Maxexp.touched">         
+                  <!-- <small class="error1 error__required"*ngIf="Maxexp.invalid && Maxexp.touched">         
                     *Required
                   </small>
                    <small class="error1" *ngIf="MaximumExperience<MinimumExperience">
                     It can't be less than Min Experience!
-                  </small> 
+                  </small>  -->
                 </div>
               </div>
               <div class="col-xs-2 col-sm-1 add-key-btn add__btn ">

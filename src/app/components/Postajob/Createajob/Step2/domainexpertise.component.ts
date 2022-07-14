@@ -11,6 +11,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { of } from 'rxjs/observable/of';
 import { ChangeContext, LabelType, Options } from 'ng5-slider';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { TOptions } from '../Step1/Jobprofile.component';
 @Component({
   selector: 'app-steps-step2-domainexpertise',
   templateUrl: './domainexpertise.component.html',
@@ -36,8 +37,16 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   domaintitleloading = false;
   selecteddomaininput = new Subject<string>();
   selecteddomainname;
+  selectedOption:TOptions = new TOptions(2, ' 3-5');
+  options = [
+     new TOptions(1, '0-2' ),
+     new TOptions(2, '3-5' ),
+     new TOptions(3, '6-8' ),
+     new TOptions(4, '9-11'),
+     new TOptions(5, '12+')
+  ];
    expYears: any = [];
-  options: Options = {
+  doptions: Options = {
     floor: 0,
     ceil: 40,
     step : 0.1,
@@ -79,6 +88,39 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
    }
  }
 
+ getValue(optionid) {
+  if(optionid>0)
+  {  
+  this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+  if(this.selectedOption.id === 1)
+  {
+    this.MinimumExperience = 1;
+    this.MaximumExperience = 2; 
+  }
+  else if(this.selectedOption.id === 2)
+  {
+    this.MinimumExperience = 3;
+    this.MaximumExperience = 5; 
+  }
+  else if(this.selectedOption.id === 3)
+  {
+    this.MinimumExperience = 6;
+    this.MaximumExperience = 8; 
+  
+  }
+  else if(this.selectedOption.id === 4)
+  {
+    this.MinimumExperience = 9;
+    this.MaximumExperience = 11;  
+  }
+  else if(this.selectedOption.id === 5)
+  {
+    this.MinimumExperience = 12;
+    this.MaximumExperience = 12;  
+  }
+}
+}
+
  domainmaxCalculation(exp)
  {
    var m=exp.toString();
@@ -108,6 +150,10 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     if (Number(this.MaximumExperience) < Number(this.MinimumExperience)) {
       this.toastr.info('Please provide valid Experience','Oh no!!!');
       return false;
+  }
+  if(this.MinimumExperience === undefined)
+  {
+    this.getValue(2);
   }
     // const newDomain = new GetDomain();
     // // newDomain.DomainName = this.selecteddomainname;
