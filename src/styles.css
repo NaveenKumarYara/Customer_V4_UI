@@ -27,9 +27,14 @@
 	--green-100: #f6f8ff;
 	--green-600: #66dab5;
 	--green-900: #2fc495;
+	--dark-blue-900: #028cba;
 	--gray-900: #485c67;
 	--gray-blue-500: #90a4ad;
 	--gray-blue-400: #6e819e;
+	--purple-400: #b6bcee;
+	--gray-light-100: #f0f2fe;
+	--gray-light-200: #edf0fc;
+	--dark-blue: #7418f6;
 }
 
 html {
@@ -31652,4 +31657,16 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 
 .ml-5-negative {
 	margin-left: -10px;
+}
+
+.graph-grid-section app-radar-chart-large canvas {
+  width: 100% !important;
+  height: 360px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+.culture-modal-section .progress-wrapper svg {
+  width: 56px !important;
+  height: 56px !important;
 }
