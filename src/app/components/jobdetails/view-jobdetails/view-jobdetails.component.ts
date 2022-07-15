@@ -27,6 +27,7 @@ import { Location } from '@angular/common';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
+import { InviteProfiledialogComponent } from './filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -141,6 +142,35 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('Dialog result: ${result}');
     });
   }
+
+  OpenInviteProfileDialog() {
+    // if (this.jobStatus !== 'InActive') {
+      if (this.closedjob === 2)
+      {
+       this.toastr.error('Job is Closed');
+     setTimeout(() => {
+       this.toastr.dismissToast;
+     }, 2000);
+   }
+   else{
+    const inviteProfiledialogRef = this.dialog.open(InviteProfiledialogComponent,
+      {
+        width: '750',
+        position: {right : '0px'},
+        height : '750px',
+        data: {
+          animal: 'panda',
+          jobId: this.jobid
+
+        }
+      }
+    );
+    inviteProfiledialogRef.afterClosed().subscribe(result => {
+      console.log('Chatbox Dialog result: ${result}');
+    });
+  // }
+}
+}
 
   inprogressview(val) {
     if (val == 0) {

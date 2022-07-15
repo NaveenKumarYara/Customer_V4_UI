@@ -71,7 +71,7 @@
           <!-- <i class="fa fa-info-circle"> Please add Business Domain, Department and  Category. 'Arytic' provides best profiles  <span class="red">*</span></i> -->
         </div>
       </div>
-      <div class="col-xs-12 col-sm-8 form-sub-cols">
+      <div class="col-xs-8 col-sm-6 form-sub-cols">
         <div class="form-group re-group">
           <label for="requiredExperience" class="question">Experience (Yrs)<span class="red">*</span>
             <!-- <a  href="javascript:void(0)"  class="tooltip__link">
@@ -90,16 +90,16 @@
                   value= {{option.id}}>
                 <span class="box">
                   {{option.name}}
+
+               
                   <!-- <em>Yrs</em> -->
                 </span>
               </label>
             </div>
-       
-          </div>
-          <div class="row re-exp form-sub-rows hidden">
-            <!-- <div class="styled-select-box block experience-output"></div> -->
-            <div class="col-xs-6 col-sm-6 form-sub-cols">
+            <div class="col-xs-3 col-sm-3 form-sub-cols">
+
               <div class="form-group">
+        
                 <input class="form-control" #Min="ngModel" name="min-exp" [(ngModel)]="minExperience"
                   (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
                 <!-- <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
@@ -112,8 +112,9 @@
               <div>
               </div>
             </div>
-            <div class="col-xs-6 col-sm-6 form-sub-cols">
+            <div class="col-xs-3 col-sm-3 form-sub-cols">
               <div class="form-group">
+
                 <input class="form-control" name="max-exp" #Max="ngModel" (keypress)="numberOnly($event)"
                   [(ngModel)]="maxExperience" required (input)="onMaxChange()" placeholder="Max years" type="text">
 
@@ -127,6 +128,11 @@
               <div>
               </div>
             </div>
+          </div>
+          
+          <div>
+            <!-- <div class="styled-select-box block experience-output"></div> -->
+            
             <div class="col-md-6">
               <div class="p-rel">
                 <!-- <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"

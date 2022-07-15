@@ -441,6 +441,7 @@ NewKeyResponse(val)
 
   getval()
   {
+    debugger
        if(this.minExperience<3)
         {
           this.getValue(1);
@@ -570,14 +571,9 @@ NewKeyResponse(val)
       }
      
       );
-      if(this.minExperience>0 && this.maxExperience>0)
-      {
-        this.getval();
-      }
-      else
-      {
+     
         this.getValue(2);
-      }
+      
     
     this.GetJobPriority();
     this.GetCustomerIndustry();
@@ -861,10 +857,7 @@ populatedescriptioncheck() {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-    if(this.minExperience>0 && this.maxExperience>0)
-    {
-     this.getval();
-    }
+   
     if(this.disable == "true")
     {
       this.disableLoc = false;
