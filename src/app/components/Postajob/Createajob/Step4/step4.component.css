@@ -118,6 +118,10 @@
   position: relative;
 }
 
+.smart-job-card .jdv-skills .blue  .col-container{
+  border-left-color: #6262ff
+} 
+
 .smart-job-card .jdv-skills .col-container {
   padding: 0 10px 4px 40px;
 }

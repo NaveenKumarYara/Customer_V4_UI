@@ -750,6 +750,7 @@
     flex: 0 0 20%;
     color: #fff;
     max-width: 20%;
+    cursor: pointer;
     position: relative;
   }
 
