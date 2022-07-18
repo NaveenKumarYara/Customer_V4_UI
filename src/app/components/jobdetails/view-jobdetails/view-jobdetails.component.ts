@@ -87,6 +87,7 @@ export class ViewJobdetailsComponent implements OnInit {
   profileLoader = false;
   uploadProfile = 0;
   ProfileId: any;
+  Percentweightage:any;
   fileUploadForm: FormGroup;
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
@@ -606,10 +607,26 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
 
+  GetJobMatching(JId)
+  {
+    this.appService.GetJobMatching(JId).subscribe(data => {
+      if (data != "No records found") {
+        //  this.minValue = data.SkillFit;
+        //  this.JobFitval = data.JobFit;
+        //  this.Domain  = data.JobDomain;
+        //  this.TotalExperience = data.JobTotalExp;
+        //  this.Title = data.JobRole;
+
+        this.Percentweightage = data;
+
+      }
+      })
+  }
+
   populateJobsStaticInfo(customerId, jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
-      debugger
+      this.GetJobMatching(this.jobid);
       this.SuggestedCount = res.AryticSuggested;
       this.Counts = this.child.TotalCount;
       if (onload === 1) {
