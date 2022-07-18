@@ -72,13 +72,14 @@ minExperience:number;
 maxExperience:number;
 MinimumExperience:number;
 MaximumExperience:number;
-selectedOption:TOptions = new TOptions(2, ' 3-5');
+selectedOption:TOptions = new TOptions(6,'Custom');
 options = [
    new TOptions(1, '0-2' ),
    new TOptions(2, '3-5' ),
    new TOptions(3, '6-8' ),
    new TOptions(4, '9-11'),
-   new TOptions(5, '12+')
+   new TOptions(5, '12+'),
+   new TOptions(6, 'Custom')
 ];
 jobtitlelist:any=[];
 IndustryId:any;
@@ -441,27 +442,30 @@ NewKeyResponse(val)
 
   getval()
   {
-    debugger
-       if(this.minExperience<3)
-        {
-          this.getValue(1);
-        }
-        else if(this.minExperience>=3 && this.maxExperience <=5)
-        {
-          this.getValue(2); 
-        }
-        else if(this.minExperience>5 && this.maxExperience <=8)
-        {
-          this.getValue(3); 
-        }
-        else if(this.minExperience>8 && this.maxExperience <=11)
-        {
-          this.getValue(4); 
-        }
-        else if(this.minExperience>11)
-        {
-          this.getValue(5); 
-        }       
+    if(this.minExperience<3)
+    {
+      this.getValue(1);
+    }
+    else if(this.minExperience>=3 && this.maxExperience <=5)
+    {
+      this.getValue(2); 
+    }
+    else if(this.minExperience>5 && this.maxExperience <=8)
+    {
+      this.getValue(3); 
+    }
+    else if(this.minExperience>8 && this.maxExperience <=11)
+    {
+      this.getValue(4); 
+    }
+    else if(this.minExperience>11 && this.maxExperience <=12 )
+    {
+      this.getValue(5); 
+    } 
+    else
+    {
+      this.getValue(6);
+    }
   }
 
 
@@ -503,7 +507,11 @@ NewKeyResponse(val)
       
    } );
 
- 
+    if(this.minExperience===undefined || this.minExperience === 0)
+    {
+      this.getValue(2);
+    }
+    
     this.keyslist = this.appService.getKeyRoleList();
    
     this.subscription = this.appService.keyroleChanged
@@ -572,7 +580,7 @@ NewKeyResponse(val)
      
       );
      
-        this.getValue(2);
+      
       
     
     this.GetJobPriority();
@@ -857,7 +865,7 @@ populatedescriptioncheck() {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-   
+    this.getval();
     if(this.disable == "true")
     {
       this.disableLoc = false;
