@@ -47,6 +47,7 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
+  wishcheck : boolean =false;
   SuggestedCount: any;
   wsList = new WishList();
   wishlistCount: WishlistCount;
@@ -608,6 +609,7 @@ export class ViewJobdetailsComponent implements OnInit {
   populateJobsStaticInfo(customerId, jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
+      debugger
       this.SuggestedCount = res.AryticSuggested;
       this.Counts = this.child.TotalCount;
       if (onload === 1) {
@@ -749,6 +751,23 @@ export class ViewJobdetailsComponent implements OnInit {
   //    }
   // }
 
+  GetWishlistSort(wish)
+  {
+   
+    let w ;
+    if(wish== true)
+    {
+       w= 1;
+    }
+    else
+    {
+      w = 0;
+    }
+    this.wishcheck =wish;
+    this.getParentApi().CallViewBy(0,0,w,0,0,0,undefined,this.profilecount);
+  }
+
+
   getParentApi(): ParentComponentApi {
     return {
       callfilterMethod: (exp, location, domain) => {
@@ -803,17 +822,17 @@ export class ViewJobdetailsComponent implements OnInit {
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
-      CallwishList: (event, profileId, jobId) => {
-        this.wsList.IsSaved = event.target.checked;
+      CallwishList: (ev, profileId, jobId) => {
+        this.wsList.IsSaved = ev;
         this.wsList.ProfileId = profileId;
-        this.wsList.JobId = jobId;
+        this.wsList.JobId = jobId; 
         this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
           console.log(res);
+          this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
           this.CallList(this.statusid);
         });
       },
       CallViewBy: (uploaded, suggested, wishlist, invited, arytic, sortBy, search, count) => {
-        // //debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);
@@ -831,14 +850,14 @@ export class ViewJobdetailsComponent implements OnInit {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
           } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited > 0 || arytic > 0) {
-            this.statistics = count;
+            this.statistics = this.jobstatistics.Applied;
           }
 
         } else if (this.statusid === 4) {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
           } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited > 0 || arytic > 0) {
-            this.statistics = count;
+            this.statistics = this.jobstatistics.Applied;
           }
         } else if (this.statusid === 7) {
           this.statistics = this.jobstatistics.Interviewed;
@@ -887,7 +906,7 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
-  CallwishList: (event, profileId, jobId) => void;
+  CallwishList: (ev, profileId, jobId) => void;
   CallViewBy: (uploaded, suggested, wishlist, invited, arytic, sortBy, search, count) => void;
 }
 

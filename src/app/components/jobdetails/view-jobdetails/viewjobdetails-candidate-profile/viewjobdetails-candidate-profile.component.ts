@@ -963,6 +963,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+ 
+
 
   // GetMatchingPercentageGraph(ProfileId,jobid)
   // {
@@ -994,6 +996,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     noofRows = 6,
     fstatus = 0
   ) {
+    debugger
     this.alertService.clear();
     // $('#searchStr').val('');
     this.spinner.show();
@@ -1025,7 +1028,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           fstatus
         )
         .subscribe((res) => {
-          this.jobdetailsprofiles = res;
+          this.jobdetailsprofiles = res;  
+          debugger        
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -1330,14 +1334,14 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   ngOnChange() {
     console.log("on change", this.jobid, this.statusid);
   }
-  updateWishlist(event, profileId) {
+  updateWishlist(ev, profileId) {
     // this.wsList.IsSaved = event.target.checked;
     // this.wsList.ProfileId = profileId;
     // this.wsList.JobId = this.jobid;
     // this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
     //   console.log(res);
     // });
-    this.parentApi.CallwishList(event, profileId, this.jobid);
+    this.parentApi.CallwishList(ev, profileId, this.jobid);
   }
 
   displayVideoProfile(profileId, profileOrSizzle) {

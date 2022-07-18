@@ -22,6 +22,17 @@
           <!-- <span class="counter">1</span> -->
         </button>
       </li>
+      <li>
+        <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <i class="fa fa-bookmark"></i>
+        </button>
+        <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <i class="fa fa-bookmark"></i>
+        </button>
+        <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <i class="fa fa-bookmark"></i>
+        </button>
+      </li>
     </ul>
   </div>
   
@@ -30,7 +41,7 @@
     <header class="p-rel">
       <div class="ptr">
         <div class="checkbox">
-          <label class="bookmark-c" *ngIf="statusid == 0 || statusid == 4">
+          <label class="bookmark-c" >
             <input type="checkbox" [checked]="profile?.IsSaved" (change)="updateWishlist($event, profile.ProfileId)"
               class="dnone" />
 

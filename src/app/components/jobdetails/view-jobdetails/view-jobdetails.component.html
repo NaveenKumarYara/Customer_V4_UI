@@ -96,18 +96,28 @@
 								(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
 								Inactive</button>
 						</ng-container>
-						<button class="btn btn-border" (click)="OpenInviteProfileDialog()">
-							<span class="icon-forward">Icon</span>
-							Invite
-						</button>
-						<button class="btn btn-border">
-							<span class="icon-wishlist">Icon</span>
-							Wishlist
-						</button>
 						<ng-template #isactive>
 							<button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
 						</ng-template>
+						<button class="btn btn-border" (click)="OpenInviteProfileDialog()">
+							<span class="icon-forward">Icon</span>
+							Invite
+						</button>
+
+
+						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+							<button *ngIf="wishcheck === true;else isact" class="btn btn-border btn-primary"
+							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Wishlisted
+								</button>
+						</ng-container>
+						<ng-template #isact>
+							<button  class="btn btn-border"
+							(click)="GetWishlistSort(true)">
+							<span class="icon-wishlist">Icon</span> Wishlist
+								</button>
+						</ng-template>
+					
 						<!-- <ng-container *ngIf="jobdetailsbasicinfo?.IsActive; else isnotActive">
 							<button class="btn btn-border" (click)="openCandidateUploadDialog()" *ngIf="displayQuick!=1">Manage Profiles</button>
 						</ng-container>
@@ -137,35 +147,35 @@
 												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
 													<span class="icon icon-01">Icon</span>
 													<h4>{{SuggestedCount||'0'}}</h4>
-													<h6>View All Profile</h6>
+													<h6>Arytic Profiles</h6>
 												</div>
 											</div>
 											<div class="col-sm-2 col blue">
 												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
 													<span class="icon icon-02">Icon</span>
 													<h4>{{jobstatistics?.Applied}}</h4>
-													<h6>Arytic Profile</h6>
+													<h6>Prospect Profiles</h6>
 												</div>
 											</div>
 											<div class="col-sm-2 col red">
 												<div class="col-container" data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
 													<span class="icon icon-03">Icon</span>
 													<h4>{{jobstatistics?.InProgress}}</h4>
-													<h6>Application</h6>
+													<h6>Application In-Progress</h6>
 												</div>
 											</div>
 											<div class="col-sm-2 col light-blue">
 												<div class="col-container">
 													<span class="icon icon-04">Icon</span>
-													<h4>20</h4>
-													<h6>Invite Upload</h6>
+													<h4>{{Count?.Invited||0}}</h4>
+													<h6>Invite </h6>
 												</div>
 											</div>
 											<div class="col-sm-2 col yellow">
 												<div class="col-container">
 													<span class="icon icon-05">Icon</span>
-													<h4>5</h4>
-													<h6>Vendor Share</h6>
+													<h4>{{Count?.Uploaded||0}}</h4>
+													<h6>Upload</h6>
 												</div>
 											</div>
 										</div>
@@ -174,17 +184,17 @@
 										<span class="funnel-text funnel-text-01" data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
 												Screening Process
 												<em>{{jobstatistics?.Screening}}</em>
-												<em class="reject">01</em>
+												<em class="reject">{{jobstatistics?.Screening}}</em>
 										</span>
 										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
 											Short Listed
 											<em>{{jobstatistics?.ShortListed}}</em>
-											<em class="reject">02</em>
+											<em class="reject">{{jobstatistics?.ShortListed}}</em>
 										</span>
 										<span class="funnel-text funnel-text-03">
 											Client Submitted
-											<em>08</em>
-											<em class="reject">04</em>
+											<em>0</em>
+											<em class="reject">0</em>
 										</span>
 										<span class="funnel-text funnel-text-04" data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
 											Interviewed
@@ -209,12 +219,12 @@
 										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
 											Short Listed
 											<em>{{jobstatistics?.ShortListed}}</em>
-											<em class="reject">02</em>
+											<em class="reject">{{jobstatistics?.ShortListed}}</em>
 										</span>
 										<span class="funnel-text funnel-text-04" data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
 											Interviewed
 											<em>{{jobstatistics?.Interviewed}}</em>
-											<em class="reject">01</em>
+											<em class="reject">{{jobstatistics?.Interviewed}}</em>
 										</span>
 										<span class="funnel-text funnel-text-05" data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
 											Hired
