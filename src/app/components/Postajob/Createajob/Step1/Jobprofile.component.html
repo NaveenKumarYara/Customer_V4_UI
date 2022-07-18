@@ -90,19 +90,22 @@
           </label>
           <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
           <div class="row form-sub-rows radio-grid-cols flex flex-wrap">
-            <div class="checkbox" *ngFor="let option of options">
-              <label>
-                <input type="radio" name="price"  (click)="getValue(option.id)"
-                 [checked]="option.id == selectedOption.id"
-                  value= {{option.id}}>
-                <span class="box">
-                  {{option.name}}
-
-               
-                  <!-- <em>Yrs</em> -->
-                </span>
-              </label>
-            </div>
+            <ng-container   *ngIf="!disableLoc">
+              <div class="checkbox" *ngFor="let option of options">
+                <label>
+                  <input type="radio" name="price"  (click)="getValue(option.id)"
+                   [checked]="option.id == selectedOption.id"
+                    value= {{option.id}}>
+                  <span class="box">
+                    {{option.name}}
+  
+                 
+                    <!-- <em>Yrs</em> -->
+                  </span>
+                </label>
+              </div>
+            </ng-container>
+            
             <div class="col-xs-3 col-sm-3 form-sub-cols">
 
               <div class="form-group">
