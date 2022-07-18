@@ -28,6 +28,7 @@ import { IfObservable } from 'rxjs/observable/IfObservable';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 import { InviteProfiledialogComponent } from './filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
+import { ShareJobComponent } from './share-job/sharejob.component';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -621,6 +622,26 @@ export class ViewJobdetailsComponent implements OnInit {
 
       }
       })
+  }
+
+  OpenShareJobDialog(jobid) {
+    const sharedRef = this.dialog.open(ShareJobComponent,
+      {
+        //width: '90vw',
+        position: {right : '0px'},
+         height : '750px',
+        panelClass:'shareModalPopup',
+        data: {
+          animal: 'panda',
+          JobId: jobid
+
+        }
+      }
+    );
+    sharedRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+    });
+  
   }
 
   populateJobsStaticInfo(customerId, jobid, onload?) {
