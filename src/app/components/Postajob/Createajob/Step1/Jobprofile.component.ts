@@ -872,7 +872,7 @@ populatedescriptioncheck() {
     }
     else 
     {
-      this.getValue(6);
+  
       this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
     }
    
