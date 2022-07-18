@@ -446,19 +446,19 @@ NewKeyResponse(val)
     {
       this.getValue(1);
     }
-    else if(this.minExperience>=3 && this.maxExperience <=5)
+    else if(this.maxExperience <6)
     {
       this.getValue(2); 
     }
-    else if(this.minExperience>5 && this.maxExperience <=8)
+    else if(this.maxExperience <9)
     {
       this.getValue(3); 
     }
-    else if(this.minExperience>8 && this.maxExperience <=11)
+    else if(this.maxExperience <12)
     {
       this.getValue(4); 
     }
-    else if(this.minExperience>11 && this.maxExperience <=12 )
+    else if(this.maxExperience ===12 )
     {
       this.getValue(5); 
     } 
@@ -865,13 +865,14 @@ populatedescriptioncheck() {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-    this.getval();
+    //this.getval();
     if(this.disable == "true")
     {
       this.disableLoc = false;
     }
     else 
     {
+      this.getValue(6);
       this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
     }
    
