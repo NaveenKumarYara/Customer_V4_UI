@@ -996,7 +996,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     noofRows = 6,
     fstatus = 0
   ) {
-    debugger
     this.alertService.clear();
     // $('#searchStr').val('');
     this.spinner.show();
@@ -1566,7 +1565,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           },
           data: {
             value: 35,
-            labels: ["Skill Fit", "Job Fit", "Personality-Fit"],
+            labels: ["Skill Fit", "Job Fit"],
             render: "labels",
             datasets: [
               {
@@ -1576,8 +1575,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                   this.matchingParameterData.Skillfit_Total > 0
                     ? Math.round(this.matchingParameterData.Skillfit_Total)
                     : 0,
-                  this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0,
-                  Math.round(this.matchingParameterData.Personalityfit_Total),
+                  this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0
+                  // ,
+                  // Math.round(this.matchingParameterData.Personalityfit_Total),
                 ],
                 backgroundColor: ["rgba(101,105, 169, 1)", "rgba(63, 184, 179, 1)", "rgba(236, 136, 133, 1)"],
               },
