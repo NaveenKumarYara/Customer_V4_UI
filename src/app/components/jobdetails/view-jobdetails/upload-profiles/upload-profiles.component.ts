@@ -48,6 +48,8 @@ export class UploadProfilesComponent implements OnInit {
   EditBD:boolean=false;
   EditT:boolean=false;
   EditKey:boolean=false;
+  roleweight:any;
+  expweight:any;
   selectedskill  = -1;
   selectedDomain  = -1;
   selectedkey  = -1;
@@ -192,6 +194,7 @@ Job = {
   expYear: number=0;
   expsMonth: number=0;
   expsYear: number=0;
+  Percentweightage: any;
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
@@ -281,6 +284,24 @@ Job = {
         error => console.log(error));
       }
      
+  }
+
+  GetJobMatching(JId)
+  {
+    this.appService.GetJobMatching(JId).subscribe(data => {
+      if (data != "No records found") {
+        //  this.minValue = data.SkillFit;
+        //  this.JobFitval = data.JobFit;
+        //  this.Domain  = data.JobDomain;
+        //  this.TotalExperience = data.JobTotalExp;
+        //  this.Title = data.JobRole;
+
+
+        this.Percentweightage = data;
+        this.roleweight = Math.round(data.JobFit / 3);
+        this.expweight = Math.round(data.JobFit - this.roleweight);
+      }
+      })
   }
 
   returnFn(user: Provider): number | undefined {
@@ -501,6 +522,7 @@ Job = {
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
       this.jobdetailscustomer = res;
+      this.GetJobMatching(this.data.jobId);
     });
 }
   getCandidateExperience(job,Pid) {

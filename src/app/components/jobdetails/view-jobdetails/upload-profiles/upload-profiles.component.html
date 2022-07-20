@@ -202,7 +202,7 @@
                   <div class="box__table">Role Fit</div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>10%</strong></div>
+                  <div class="box__table">can be <strong>{{roleweight}}  %</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got
@@ -361,15 +361,15 @@
                   <div class="box__table">Experience Fit</div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>30%</strong></div>
+                  <div class="box__table">can be <strong>{{expweight}}%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">you got
+                  <div class="box__table">you got
                     <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong>
                   </div>
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">you got
+                  <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
                     <strong>30%</strong>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="row strip__row flex flex-wrap">
@@ -676,7 +676,7 @@
                   <div class="box__table">Skills</div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>60%</strong></div>
+                  <div class="box__table">can be <strong>{{Percentweightage?.SkillFit}}%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">
