@@ -58,6 +58,7 @@
               <div class="call-to-action">
                 <a href="#" class="btn btn-border btn-prev show-in-mobile" (click)="backtoStep3()" routerLink="/app-createajob/app-steps-step3">Back</a>
                 <a class="btn btn-filled show-in-mobile " href="javascript:void(0)"  (click)="postJob(4)" *ngIf="!profileImage">Post Job</a>
+                <div class="loading btn btn-filled show-in-mobile " data-loading-text="Loading..." *ngIf="profileImage" ></div>
               </div>
               <div class="col-container"  id="aap{{jobdetailscustomer?.JobInfo?.JobId}}">
                 <!--Old Code-->
