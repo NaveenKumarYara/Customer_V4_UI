@@ -233,7 +233,7 @@ export class InterviewListComponent implements OnInit {
     }
   }
 
-  populateJobInterViewlist(sort=3,listsort=0,search='') { 
+  populateJobInterViewlist(sort=3,listsort=1,search='') { 
     if(this.sort==undefined)
     {
       this.sort=3;
@@ -244,11 +244,11 @@ export class InterviewListComponent implements OnInit {
     }
     if(this.listSort==undefined)
     {
-      this.listSort=0;
+      this.listSort=1;
     }
     else
     {
-      this.listSort=listsort;
+      this.listSort=1;
     }
     this.searchString=search;
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
