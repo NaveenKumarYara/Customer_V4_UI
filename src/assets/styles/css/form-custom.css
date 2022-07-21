@@ -89,6 +89,11 @@
   margin: 0 -7px;
 }
 
+.page--create-a-job .form-steps .form-sub-rows.xs-rows {
+  margin: 0;
+}
+
+
 .page--create-a-job .form-steps .form-rows .form-cols {
   padding: 0 30px;
 }
