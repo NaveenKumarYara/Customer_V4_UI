@@ -372,7 +372,7 @@
                         <div class="row flex flex-wrap flex-align-equal">
                           <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills;let i = index">
                             <ng-container *ngIf="i<6">
-                              <div class="col-sm-4 optional" *ngIf="skill?.SkillType === true">
+                              <div class="col-sm-4" *ngIf="skill?.SkillType === true">
                                 <div class="col-container" placement="top" tooltip="{{skill?.SkillName}}">
                                   <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
                                   <div class="info-container">
@@ -382,7 +382,7 @@
                                 </div>
                               </div>
 
-                              <div class="col-sm-4 master" *ngIf="skill?.SkillType === false">
+                              <div class="col-sm-4 optional" *ngIf="skill?.SkillType === false">
                                 <div class="col-container" placement="top" tooltip="{{skill?.SkillName}}">
                                   <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
                                   <div class="info-container">
