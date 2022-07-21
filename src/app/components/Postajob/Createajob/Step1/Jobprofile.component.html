@@ -16,8 +16,8 @@
 </div> -->
 <!---->
 
-<div class="row flex flex-wrap form-rows single-form-rows flex-align-end">
-  <div class="col-sm-4 form-cols single-form-cols">
+<div class="row flex flex-wrap form-rows single-form-rows flex-align-start">
+  <div class="col-sm-3 form-cols single-form-cols">
     <div class="form-group type-position">
       <label class="t-p" for="typeofindustry">
         <!-- Which Type of Business Domain does the job belong to? -->
@@ -39,7 +39,7 @@
       </small>
     </div>
   </div>
-  <div class="col-md-8 form-cols single-form-cols">
+  <div class="col-md-9 form-cols single-form-cols">
     <div class="row form-sub-rows flex flex-wrap flex-align-start">
       <div class="col-xs-12 col-sm-4 form-sub-cols">
         <div class="form-group job-title-group">
@@ -89,8 +89,8 @@
             </a> -->
           </label>
           <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
-          <div class="row form-sub-rows radio-grid-cols flex flex-wrap">
-            <ng-container   *ngIf="!disableLoc">
+          <div class="row form-sub-rows radio-grid-cols xs-cols flex flex-wrap">
+            <ng-container *ngIf="!disableLoc">
               <div class="checkbox" *ngFor="let option of options">
                 <label>
                   <input type="radio" name="price"  (click)="getValue(option.id)"
@@ -98,48 +98,69 @@
                     value= {{option.id}}>
                   <span class="box">
                     {{option.name}}
-  
-                 
                     <!-- <em>Yrs</em> -->
                   </span>
                 </label>
               </div>
+              <div class="row form-sub-rows xs-rows">
+                <div class="col-sm-6 form-sub-cols">
+                  <div class="form-group">
+                    <input class="form-control" #Min="ngModel" name="min-exp" [(ngModel)]="minExperience"
+                      (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
+                     <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
+                      *Required
+                    </small>
+                    <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
+                      It can't be greater than Max Experience!
+                    </small>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-sub-cols">
+                  <div class="form-group">
+                    <input class="form-control" name="max-exp" #Max="ngModel" (keypress)="numberOnly($event)"
+                      [(ngModel)]="maxExperience" required (input)="onMaxChange()" placeholder="Max years" type="text">
+                    <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">
+                      *Required
+                    </small>
+                    <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
+                      It can't be less than Min Experience!
+                    </small> 
+                  </div>
+                </div>
+              </div>
             </ng-container>
-            
-            <div class="col-xs-3 col-sm-3 form-sub-cols">
-
-              <div class="form-group">
-        
-                <input class="form-control" #Min="ngModel" name="min-exp" [(ngModel)]="minExperience"
-                  (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                 <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
-                  *Required
-                </small>
-                <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
-                  It can't be greater than Max Experience!
-                </small>
+            <ng-container *ngIf="disableLoc">
+              <div class="row form-sub-rows xs-rows flex flex-wrap flex-align-start">
+                <div class="col-sm-6 form-sub-cols">
+                  <div class="form-group" style="padding-top:0">
+                    <input class="form-control" style="margin-top: 0;" #Min="ngModel" name="min-exp" [(ngModel)]="minExperience"
+                      (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years"
+                      type="text">
+                    <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">
+                      *Required
+                    </small>
+                    <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
+                      It can't be greater than Max Experience!
+                    </small>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-sub-cols">
+                  <div class="form-group" style="padding-top:0">
+                    <input class="form-control" style="margin-top: 0;"  name="max-exp" #Max="ngModel" (keypress)="numberOnly($event)"
+                      [(ngModel)]="maxExperience" required (input)="onMaxChange()" placeholder="Max years" type="text">
+                    <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">
+                      *Required
+                    </small>
+                    <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
+                      It can't be less than Min Experience!
+                    </small>
+                  </div>
+                </div>
               </div>
-              <div>
-              </div>
-            </div>
-            <div class="col-xs-3 col-sm-3 form-sub-cols">
-              <div class="form-group">
-
-                <input class="form-control" name="max-exp" #Max="ngModel" (keypress)="numberOnly($event)"
-                  [(ngModel)]="maxExperience" required (input)="onMaxChange()" placeholder="Max years" type="text">
-
-                <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">
-                  *Required
-                </small>
-                <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
-                  It can't be less than Min Experience!
-                </small> 
-              </div>
-              <div>
-              </div>
-            </div>
+            </ng-container>
           </div>
-          
           <div>
             <!-- <div class="styled-select-box block experience-output"></div> -->
             

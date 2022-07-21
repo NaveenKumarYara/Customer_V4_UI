@@ -31646,6 +31646,11 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	margin: 0 !important;
 }
 
+.radio-grid-cols.xs-cols .checkbox {
+	flex: 0 0 auto;
+	max-width: auto;
+}
+
 .radio-grid-cols .checkbox label {
 	width: 100%;
 	margin: 0 !important;
