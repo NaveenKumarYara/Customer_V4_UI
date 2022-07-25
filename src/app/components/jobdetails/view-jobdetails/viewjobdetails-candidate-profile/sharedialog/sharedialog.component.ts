@@ -323,8 +323,7 @@ export class SharedialogComponent implements OnInit{
   ShareProfile() {
     debugger
     this.isSharingStarted = true;
-    this.profileSharing.FromUser = this.customer.FirstName +' ' + this.customer.LastName;
-    debugger
+    this.profileSharing.FromUser = this.customer.FirstName +'  '+ this.customer.LastName;
     if (this.info == 0) {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
@@ -361,7 +360,6 @@ export class SharedialogComponent implements OnInit{
         this.arr =this.inviteform.value.inviteEmail.split(',');
         this.arr.forEach(element => {
           this.profileSharing.ToEmailId = element;
-          debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
@@ -388,7 +386,6 @@ export class SharedialogComponent implements OnInit{
       }
       else
       {
-        debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
