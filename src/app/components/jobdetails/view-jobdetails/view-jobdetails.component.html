@@ -140,49 +140,6 @@
 						<!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
 						<button class="btn btn-filled" mat-button (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View
 							Job Detail</button>
-
-
-							
-								<h6>
-								  <div class="col-sm-4">
-									<label><b> Skill Criteria:
-										<a href="javascript:void(0)" class="tooltip__link">
-										  <i class="fa fa-info-circle" aria-hidden="true"></i>
-										  <span class="custom__tooltip">
-											<span class="step__01">Skill match depends on skill name and total experience of a particular
-											  skill</span>
-										  </span>
-										</a> </b></label>
-									<circle-progress [percent]="Percentweightage?.SkillFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
-									  [outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
-									  [showSubtitle]="false">
-									</circle-progress>
-					  
-								  </div>
-					  
-								</h6>
-					  
-					  
-							 
-					  
-							 
-								<h6>
-								  <div class="col-sm-4">
-									<label><b> Job Criteria:
-										<a href="javascript:void(0)" class="tooltip__link">
-										  <i class="fa fa-info-circle" aria-hidden="true"></i>
-										  <span class="custom__tooltip">
-											<span class="step__01">Job match depends on Job title, experience and domain.</span>
-										  </span>
-										</a>
-									  </b></label>
-									<circle-progress [percent]="Percentweightage?.JobFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
-									  [outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
-									  [showSubtitle]="false">
-									</circle-progress>
-								  </div>
-								</h6>
-							  
 					</div>
 					<div class="funnel-graph-row">
 						<div class="row flex flex-wrap flex-align-end">
@@ -284,6 +241,40 @@
 								</div>
 							</div>
 							<div class="col-sm-6 search-filter-col">
+								<div class="row flex flex-align-center flex-justify-end text-center">
+									<div class="col-sm-3">
+										<h6>
+											Skill Criteria:
+											<a href="javascript:void(0)" class="tooltip__link"> 
+												<i class="fa fa-info-circle" aria-hidden="true"></i>
+												<span class="custom__tooltip">
+												<span class="step__01">Skill match depends on skill name and total experience of a particular
+													skill</span>
+												</span>
+											</a> 
+										</h6>
+										<circle-progress [percent]="Percentweightage?.SkillFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+											[outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+											[showSubtitle]="false">
+										</circle-progress>
+									</div>
+									<div class="col-sm-3">
+										<h6>
+											Job Criteria:
+											<a href="javascript:void(0)" class="tooltip__link">
+												<i class="fa fa-info-circle" aria-hidden="true"></i>
+												<span class="custom__tooltip">
+												<span class="step__01">Job match depends on Job title, experience and domain.</span>
+												</span>
+											</a> 
+										</h6>
+										<circle-progress [percent]="Percentweightage?.JobFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+											[outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+											[showSubtitle]="false">
+										</circle-progress>
+									</div>
+								</div>
+
 								<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
 					[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
 							</div>

@@ -43,6 +43,10 @@
   <!--Interview Schedule Box-->
   <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
     <div class="tab-content" id="myTabContent">
+      <div class="search-box-container">
+        <input type="text" class="form-control" placeholder="Enter Search Here..."/>
+        <button class="btn btn-search">Search</button>
+      </div>
       <!--Week Tabs-->
       <div class="tab-pane fade active in" id="thisweek" role="tabpanel" aria-labelledby="thisweek-tab">
         <div class="horizontalTabs">
@@ -68,25 +72,26 @@
                       <span class="day">{{job?.InterviewDate  | date: 'dd'}}</span>
                       <span class="year">{{job?.InterviewDate  | date: 'yyyy'}}</span>
                     </span>
-                    <span class="time">{{job?.StartTime}}</span>
+                    <div class="top-box-container flex flex-align-center">
+                      <div class="profile-box flex flex-align-center">
+                        <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                      width="32" alt="">
+                      <h5>   {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                        {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h5>
+                      </div>
+                      <span class="time ml-auto">{{job?.StartTime}}</span>
+                    </div>
                     <h4>{{ job?.JobTitle | titlecase }}</h4>
-                    <h5>  <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
-                      width="32" alt=""> {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-                    {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h5>
-                   
-                    <h5><i class="fa fa-hand-o-right"></i> {{ job?.BridgeUrl  || 'TECHNICAL'}}</h5>
-                 
-                    <h6> <i class="fa fa-university"></i> {{ job?.AccessId | titlecase }}</h6>
+                    <ul class="icon-ul-list flex flex-align-center">
+                      <li><i class="fa fa-hand-o-right"></i> {{ job?.BridgeUrl  || 'TECHNICAL'}}</li>
+                      <li> <i class="fa fa-university"></i> {{ job?.AccessId | titlecase }}</li>
+                    </ul>
+                    
                     <button class="btn btn-zoom" *ngIf="job?.InterviewTypeId == 3">{{job?.InterviewType}}</button>
                     <div class="address">
-                     
                         {{job?.JobLocations.split('|')[0]}}
-                      
                     </div>
-                 
-                   
                   </div>
-              
               
                 <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
                   <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateListCount()">
@@ -95,7 +100,7 @@
                 </ng-container>
               </div>
               <ng-container *ngIf="joblist?.Jobs?.length===0">
-                  <p> No Upcoming Interviews found!!</p>
+                <p> No Upcoming Interviews found!!</p>
               </ng-container>
             </div>
             <!--This Week Interview Tab-->
@@ -276,120 +281,297 @@
           </a>
           <div class="icon-navigation ml-auto">
             <ul>
-              <li><a href="javascript:void(0)"><span class="icon icon-summary">Icon</span></a></li>
-              <li><a href="javascript:void(0)"><span class="icon icon-list">Icon</span></a></li>
-              <li><a href="javascript:void(0)"><span class="icon icon-document">Icon</span></a></li>
+              <li [ngClass]="this.subNavigationActive == 'Summary'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Summary'"><span class="icon icon-summary">Icon</span></a></li>
+              <li [ngClass]="this.subNavigationActive == 'History'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'History'"><span class="icon icon-list">Icon</span></a></li>
+              <li [ngClass]="this.subNavigationActive == 'Document'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Document'"><span class="icon icon-document">Icon</span></a></li>
             </ul>
           </div>
         </div>
-        <ul class="inline-listing">
-          <li>From <strong>{{job?.StartTime}} To {{job?.EndTime || "N/A"}}</strong></li>
-          <li>{{job?.InterviewDate  | date }}</li>
-          <li> <ng-container
-            *ngIf="job?.IsCandidateAccepted === 1 && job?.IsCPNewDate === null && job?.IsCPNewDate != 1">
-            Confirmed
-          </ng-container>
-          <ng-container *ngIf="job?.IsCandidateAccepted === 0 && job?.IsCPNewDate === null">
-            Not interested
-          </ng-container>
-          <ng-container *ngIf="job?.IsCPNewDate === 1">
-            New proposal ({{job?.CPDate | date:'mediumDate'}} @ {{job?.CPFromTime}})
-          </ng-container></li>
-        </ul>
-        <div class="grid-table-section">
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Candiate Name
-            </div>
-            <a href="javascript:void(0)" (click)="GetRedirect(job?.JobId,job?.ProfileId)">
-              <div class="col-sm-9 grid-col grid-right-col" >
-                <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
-                width="32" alt="">
-                {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-                {{job?.ProfileBasicInfo?.LastName  | titlecase }}
-                <i class="fa fa-info-circle" tooltip="View the profile details." placement="right"></i>
+        <ng-container *ngIf="this.subNavigationActive == 'Summary'">
+          <ul class="inline-listing">
+            <li>From <strong>{{job?.StartTime}} To {{job?.EndTime || "N/A"}}</strong></li>
+            <li>{{job?.InterviewDate  | date }}</li>
+            <li> <ng-container
+              *ngIf="job?.IsCandidateAccepted === 1 && job?.IsCPNewDate === null && job?.IsCPNewDate != 1">
+              Confirmed
+            </ng-container>
+            <ng-container *ngIf="job?.IsCandidateAccepted === 0 && job?.IsCPNewDate === null">
+              Not interested
+            </ng-container>
+            <ng-container *ngIf="job?.IsCPNewDate === 1">
+              New proposal ({{job?.CPDate | date:'mediumDate'}} @ {{job?.CPFromTime}})
+            </ng-container></li>
+          </ul>
+          <div class="grid-table-section">
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Candiate Name
               </div>
-            </a>
-            
-          </div>
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Interviewer
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              <p *ngIf="job?.HiringLeaderFirstName != null">
-                <img  class="align-self-center mr-10" src="{{job?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
-                  {{job?.HiringLeaderFirstName  | titlecase}} {{job?.HiringLeaderLastName  | titlecase}}
-                </p>
-              <p *ngIf="job?.HiringLeaderFirstName === null">Not Mentioned.</p>
-            </div>
-          </div>
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-             Interview Round
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-             {{ job?.BridgeUrl  || 'TECHNICAL'}}
-            </div>
-          </div>
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Mode of Interview
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              {{ job?.InterviewType | titlecase }}
-            </div>
-          </div>
-         
-         
-           <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Mode Details
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              {{job?.SkypeId || 'Not Provided'}}
-            </div>
-          </div>
-         <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Candidate Comments
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              {{job?.CandidateComments || 'No Comments Provided'}}
-            </div>
-          </div>
-          <div class="row grid-row">
-            <div class="col-sm-3 grid-col grid-left-col">
-              Customer Comments
-            </div>
-            <div class="col-sm-9 grid-col grid-right-col">
-              <div class="image-container">
-                {{job?.CandidateMiddleName || 'No Comments Provided'}}
-              </div>
-            </div>
-          </div> 
-          <!-- <div class="row grid-row full-grid-row">
-            <div class="icon-navigation">
-              <ul>
-                <li><a href="javascript:void(0)"><span class="icon icon-detail">Icon</span></a></li>
-                <li><a href="javascript:void(0)"><span class="icon icon-chat">Icon</span></a></li>
-              </ul>
-            </div>  
-          </div> -->
-          
-        </div>
-        <div class="buttons">
-          <button class="btn btn-border" *ngIf="job?.IsCPNewDate == 1">
-         
-              <a href="javascript:void(0)"
-                (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
-          </button>
-          <button class="btn btn-filled"> 
-
-            <a href="javascript:void(0)"
-              (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Re-Schedule
+              <a href="javascript:void(0)" (click)="GetRedirect(job?.JobId,job?.ProfileId)">
+                <div class="col-sm-8 grid-col grid-right-col" >
+                  <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                  width="32" alt="">
+                  {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                  {{job?.ProfileBasicInfo?.LastName  | titlecase }}
+                  <i class="fa fa-info-circle" tooltip="View the profile details." placement="right"></i>
+                </div>
               </a>
-            </button>
+              
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Interviewer
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <p *ngIf="job?.HiringLeaderFirstName != null">
+                  <img  class="align-self-center mr-10" src="{{job?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
+                    {{job?.HiringLeaderFirstName  | titlecase}} {{job?.HiringLeaderLastName  | titlecase}}
+                  </p>
+                <p *ngIf="job?.HiringLeaderFirstName === null">Not Mentioned.</p>
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+               Interview Round
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+               {{ job?.BridgeUrl  || 'TECHNICAL'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Mode of Interview
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                {{ job?.InterviewType | titlecase }}
+              </div>
+            </div>  
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Mode Details
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col more-detial-info">
+                {{job?.SkypeId || 'Not Provided'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Candidate Comments
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                {{job?.CandidateComments || 'No Comments Provided'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Customer Comments
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <div class="image-container">
+                  {{job?.CandidateMiddleName || 'No Comments Provided'}}
+                </div>
+              </div>
+            </div> 
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col no-left-col">
+                &nbsp;
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <a href="javascript:void(0)" class="btn btn-border">View job details</a>
+                <a href="javascript:void(0)" class="btn btn-filled">View Candidate Profile</a>
+              </div>
+             
+            </div>
+            <!-- <div class="row grid-row full-grid-row">
+              <div class="icon-navigation">
+                <ul>
+                  <li><a href="javascript:void(0)"><span class="icon icon-detail">Icon</span></a></li>
+                  <li><a href="javascript:void(0)"><span class="icon icon-chat">Icon</span></a></li>
+                </ul>
+              </div>  
+            </div> -->
+          </div>
+        </ng-container>
+        <ng-container *ngIf="this.subNavigationActive == 'History'">
+          <div class="horizontalTabs">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#history-activity">Activity</a></li>
+              <li><a data-toggle="tab" href="#history-feedback">Feedback</a></li>
+            </ul>
+            <div class="tab-content">
+              <div id="history-activity" class="tab-pane fade in active">
+                <h4>Activity</h4>
+                <div class="history-listing-grid">
+                  <div class="history-listing-col">
+                    <span class="icon icon-01">Icon</span>
+                    <div class="history-col-container">
+                      <p>May 16, 2022</p>
+                      <h5>Interview Scheduled</h5>
+                      <h6>By Aksh Klm</h6>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="history-listing-col">
+                    <span class="icon icon-02">Icon</span>
+                    <div class="history-col-container">
+                      <h5>Interview Scheduled</h5>
+                      <h6>By Aksh Klm</h6>
+                      <p>May 16, 2022</p>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="history-listing-col">
+                    <span class="icon icon-03">Icon</span>
+                    <div class="history-col-container">
+                      <h5>Interview Scheduled</h5>
+                      <h6>By Aksh Klm</h6>
+                      <p>May 16, 2022</p>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="history-listing-col">
+                    <span class="icon icon-04">Icon</span>
+                    <div class="history-col-container">
+                      <h5>Interview Scheduled</h5>
+                      <h6>By Aksh Klm</h6>
+                      <p>May 16, 2022</p>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="history-feedback" class="tab-pane fade">
+                <h4>Feedback</h4>
+                <div class="history-listing-grid">
+                  <div class="history-listing-col">
+                    <span class="icon icon-05">Icon</span>
+                    <div class="history-col-container">
+                      <p>May 16, 2022</p>
+                      <h5>Refer to Next Round</h5>
+                      <h6>By Aksh Klm</h6>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Good Profile
+                        <button class="btn btn-edit">Edit</button>
+                        <div class="listing-document">
+                          <ul>
+                            <li>document.docx</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="history-listing-col">
+                    <span class="icon icon-06">Icon</span>
+                    <div class="history-col-container">
+                      <p>May 16, 2022</p>
+                      <h5>Feedback to Candidate By Hr</h5>
+                      <h6>By Aksh Klm</h6>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                        <div class="listing-document">
+                          <ul>
+                            <li>document.docx</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="history-listing-col">
+                    <span class="icon icon-07">Icon</span>
+                    <div class="history-col-container">
+                      <p>May 16, 2022</p>
+                      <h5>Final Round</h5>
+                      <h6>By Aksh Klm</h6>
+                      <button class="btn btn-remove">Remove</button>
+                      <div class="summary">
+                        Please Provide The Availabilty
+                        <button class="btn btn-edit">Edit</button>
+                        <div class="listing-document">
+                          <ul>
+                            <li>document.docx</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </ng-container>
+        <ng-container *ngIf="this.subNavigationActive == 'Document'">
+          <h4>Documents</h4>
+          <div class="griding-document">
+            <div class="row flex flex-wrap flex-aling-equal">
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-pdf">Icon</span>
+                  <h5>PDF Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word">Icon</span>
+                  <h5>Word Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-notepad">Icon</span>
+                  <h5>Notepad Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word-01">Icon</span>
+                  <h5>Docx File</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-zip">Icon</span>
+                  <h5>Zip</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div class="buttons">
+          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
+          <a href="javascript:void(0)" class="btn btn-filled"
+            (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Re-Schedule
+          </a>
         </div>
       </div>
     </ng-container>

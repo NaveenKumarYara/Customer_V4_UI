@@ -35,61 +35,61 @@
 
   <div class="row form-rows ">
       
-     <form #eduForm="ngForm"> 
-       <!-- (ngSubmit)="addQualification()" -->
-    <div class="col-md-12 col-sm-12 form-cols ">
-        <label for="Clients" class="question">Please mention the client name, if applicable  <small>(Optional)</small>
-          <a  href="javascript:void(0)"  class="tooltip__link">
-            <i class="fa fa-info-circle" aria-hidden="true"></i>
-            <span class="custom__tooltip">
-              <span class="step__01">The specific company or organization under which the position is applicable. </span>
-            </span>
-          </a></label>
-        <!-- <ng-select class="custom-style" 
-         [items]="clientsList | async" 
-         bindLabel="ClientName"
-         bindValue="ClientName"
-         placeholder="Type and Select"  
-         [typeahead]="clientInput" 
-         [hideSelected]="true" 
-         [loading]="clientLoading"
-         [(ngModel)]="selectClient" 
-         [virtualScroll]="true" 
-         [addTag]="addClient"
-         required 
-         #Clients="ngModel" 
-         name="Client" 
-         (change)="updateClient($event)">
-         <ng-template ng-label-tmp let-item="clientsList">   
-                {{selectClient}} 
-       </ng-template>
-       </ng-select> -->
-       <ng-select class="custom-style" 
-  [items]="clientsList | async" 
-  placeholder="Type and Select" 
-  [addTag]="addClient"
-  addTagText="Add Client"
-  bindLabel="ClientName"
-  bindValue="ClientName" [typeahead]="clientInput" 
-  [hideSelected]="true" [loading]="clientLoading"
-  [(ngModel)]="selectClient" [virtualScroll]="true" #Clients="ngModel" name="Client" (change)="updateClient($event)">
-  <ng-template ng-label-tmp let-item="clientsList" let-index="index">  
-         <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
-         {{selectClient}}
-         <!-- {{selectClient.ClientName}} -->
-         <!-- {{selectClient.JobCategoryId}} -->
-         <!-- {{selectedClient.ClientName}} -->
-    <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
-</ng-template>  </ng-select>
-<!-- Value : {{ selectedClient.ClientName }}
-Value : {{selectClient}}  -->
-     <!-- <small class="text-danger error1" *ngIf="Clients.invalid && Clients.touched">Required.</small> -->
-    </div>
-   
-    <!-- <div class="col-md-2 col-sm-2">
-      <button class="btn add-btn form-control m-42" type="submit">+</button>
-    </div> -->
-  </form>
+      <form #eduForm="ngForm"> 
+        <!-- (ngSubmit)="addQualification()" -->
+        <div class="col-md-12 col-sm-12 form-cols ">
+            <label for="Clients" class="question">Please mention the client name, if applicable  <small>(Optional)</small>
+              <a  href="javascript:void(0)"  class="tooltip__link">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="custom__tooltip">
+                  <span class="step__01">The specific company or organization under which the position is applicable. </span>
+                </span>
+              </a></label>
+            <!-- <ng-select class="custom-style" 
+            [items]="clientsList | async" 
+            bindLabel="ClientName"
+            bindValue="ClientName"
+            placeholder="Type and Select"  
+            [typeahead]="clientInput" 
+            [hideSelected]="true" 
+            [loading]="clientLoading"
+            [(ngModel)]="selectClient" 
+            [virtualScroll]="true" 
+            [addTag]="addClient"
+            required 
+            #Clients="ngModel" 
+            name="Client" 
+            (change)="updateClient($event)">
+            <ng-template ng-label-tmp let-item="clientsList">   
+                    {{selectClient}} 
+          </ng-template>
+          </ng-select> -->
+          <ng-select class="custom-style" 
+      [items]="clientsList | async" 
+      placeholder="Type and Select" 
+      [addTag]="addClient"
+      addTagText="Add Client"
+      bindLabel="ClientName"
+      bindValue="ClientName" [typeahead]="clientInput" 
+      [hideSelected]="true" [loading]="clientLoading"
+      [(ngModel)]="selectClient" [virtualScroll]="true" #Clients="ngModel" name="Client" (change)="updateClient($event)">
+      <ng-template ng-label-tmp let-item="clientsList" let-index="index">  
+            <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
+            {{selectClient}}
+            <!-- {{selectClient.ClientName}} -->
+            <!-- {{selectClient.JobCategoryId}} -->
+            <!-- {{selectedClient.ClientName}} -->
+        <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
+    </ng-template>  </ng-select>
+    <!-- Value : {{ selectedClient.ClientName }}
+    Value : {{selectClient}}  -->
+        <!-- <small class="text-danger error1" *ngIf="Clients.invalid && Clients.touched">Required.</small> -->
+        </div>
+      
+        <!-- <div class="col-md-2 col-sm-2">
+          <button class="btn add-btn form-control m-42" type="submit">+</button>
+        </div> -->
+      </form>
     </div>
   </div>
  <!-- <div class="job-title-suggestions">
