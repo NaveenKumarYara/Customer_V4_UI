@@ -718,7 +718,7 @@
 }
 
 .revamp__view__job__details .middle__section .nav-tabs>li {
-  width: 33.33%;
+  width: 25%;
   margin: 0;
   text-align: center;
 }
@@ -3231,3 +3231,67 @@
     width: 100%;
   }
 }
+
+.griding-document {
+  padding: 20px 30px;
+}
+
+.griding-document .row {
+  margin: 0 -7px;
+}
+
+.griding-document .griding-col {
+  margin: 0 0 14px;
+  padding: 0 7px;
+}
+
+.griding-document .griding-col .col-container {
+  background-color: #f6f8ff;
+  border-radius: 8px;
+  padding: 20px 20px 20px 80px;
+  position: relative;
+  height: 100%;
+}
+
+.griding-document .griding-col .icon {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -468px -306px no-repeat var(--white);
+  background-size: 600px auto;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 0;
+  box-shadow: 0 3px 6px rgba(158,171,192,0.20);
+}
+
+.griding-document .griding-col h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6e819e;
+  margin: 0 0 5px;
+}
+
+.griding-document .griding-col h4 {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  color: #90a4ad;
+}
+
+.griding-document .btn-close {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -526px -247px no-repeat;
+  background-color: var(--green-900);
+  background-size: 600px auto;
+  width: 24px;
+  height: 24px !important;
+  position: absolute;
+  left: 7px;
+  top: 11px;
+  border-radius: 50%;
+  z-index: 10;
+  padding: 0;
+  font-size: 0;
+}
+

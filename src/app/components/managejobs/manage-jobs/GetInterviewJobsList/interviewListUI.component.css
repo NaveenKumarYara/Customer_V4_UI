@@ -216,6 +216,7 @@
 
 .interview-detail-section {
   width: 65%;
+  position: relative;
 }
 
 .horizontalTabs .tab-content {
@@ -232,7 +233,7 @@
 }
 
 .interview-detail-section {
-  padding: 30px;
+  padding: 30px 30px 120px;
 }
 
 .interview-detail-section h4 {
@@ -264,6 +265,13 @@
 
 .interview-detail-section .buttons {
   margin: 20px 0 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+  padding: 15px;
+  border-top: 1px solid #ccc;
 }
 
 .grid-table-section .grid-row:not(:first-child) {
@@ -286,6 +294,10 @@
   top: 0;
 }
 
+.grid-table-section .grid-row .grid-left-col.no-left-col::before {
+  display: none;
+}
+
 /*Listing Grid CSS
 ---------------------------------------------------------------------*/
 .listing-col {
@@ -303,6 +315,8 @@
   border-color: var(--green-900);
   background-color: var(--green-100);
 }
+
+.listing-col .top-box-container { margin: 0 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px;}
 
 .listing-col .date {
   position: absolute;
@@ -341,7 +355,7 @@
 .listing-grid h4 {
   font-size: 14px;
   color: var(--gray-blue-400);
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   font-weight: 600;
 }
 
@@ -349,8 +363,25 @@
   font-size: 12px;
   text-transform: uppercase;
   color: var(--gray-blue-500);
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   font-weight: 400;
+}
+
+.listing-col .fa-hand-o-right:before, .listing-col .fa-university:before {
+  display: none;
+}
+
+.listing-col .fa-hand-o-right, .listing-col .fa-university  {
+  width: 14px;
+  height: 12px;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -307px -179px no-repeat;
+  background-size: 600px auto;
+}
+
+.listing-col .fa-university {
+  background-position: -325px -180px;
+  width: 13px;
+  height: 11px;
 }
 
 .listing-grid h6 {
@@ -442,7 +473,7 @@
 }
 
 .icon-navigation li.active .icon.icon-list {
-  background-position: -129x -237px;
+  background-position: -129px -237px;
 }
 
 .icon-navigation li.active .icon.icon-document {
@@ -452,4 +483,308 @@
 .grid-row.full-grid-row .icon-navigation {
   display: inline-block;
   margin: 10px 0 0;
+}
+
+.interview-detail-section .horizontalTabs .tab-content {
+  background: var(--green-100);
+}
+
+.interview-detail-section .horizontalTabs .nav-tabs > li.active > a {
+  background: var(--green-100);
+}
+
+.interview-detail-section .tab-content>.active {
+  padding: 20px;
+}
+
+.history-listing-grid {
+  padding-left:  66px;
+  position: relative;
+}
+
+.history-listing-grid:before {
+  content:"";
+  position: absolute;
+  left: 25px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.history-listing-grid .icon {
+  width: 48px;
+  height: 48px;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) 0 0 no-repeat var(--white);
+  position: absolute;
+  background-size: 600px auto;
+  left: -65px;
+  top: 0;
+  text-indent: -999em;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(158,171,192,0.20);
+}
+
+.history-listing-grid .icon.icon-01 {
+  background-position: -355px -180px;
+}
+
+.history-listing-grid .icon.icon-02 {
+  background-position: -410px -180px;
+}
+
+.history-listing-grid .icon.icon-03 {
+  background-position: -466px -180px;
+}
+
+.history-listing-grid .icon.icon-04 {
+  background-position: -410px -244px;
+}
+
+.history-listing-grid .icon.icon-05 {
+  background-position: -466px -244px;
+}
+
+.history-listing-grid .icon.icon-06 {
+  background-position: -355px -304px;
+}
+
+.history-listing-grid .icon.icon-07 {
+  background-position: -411px -303px;
+}
+
+.history-listing-grid h5 {
+  font-size: 14px;
+  margin: 0 0 5px;
+  color: #6e819e;
+}
+
+.history-listing-col {
+  position: relative;
+}
+
+.history-listing-col:not(:first-child) {
+  margin: 20px 0 0;
+}
+
+.history-listing-grid h6, .history-listing-grid p {
+  font-size: 12px;
+  color: #90a4ad;
+  font-weight: 400;
+  margin: 0 0 5px;
+}
+
+
+.history-listing-grid .btn-remove, .history-listing-grid .btn-edit {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -385px -439px no-repeat;
+  background-size:  600px auto;
+  width: 9px;
+  height: 9px;
+  font-size: 0;
+  padding: 0;
+  position:absolute;
+  right: 12px;
+  top: 14px;
+  border: 0;
+  border-radius: 0;
+}
+
+.history-listing-grid .btn-edit {
+  width: 14px;
+  height: 14px;
+  background-position: -372px -261px;
+  right: 10px;
+  top: 10px;
+}
+
+.history-listing-grid .summary {
+  background-color: var(--gray-light-100);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0 0;
+  font-size: 14px;
+  position: relative;
+}
+
+.history-listing-grid p:nth-child(2) {
+  font-size: 12px;
+  color: #2fc495;
+}
+
+.history-col-container {
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.history-col-container:hover {
+  background-color: var(--green-100);
+}
+
+.history-listing-grid .history-col-container:hover .summary {
+  background-color: var(--white);
+}
+
+.history-col-container:hover * {
+  color: var(--gray-blue-400) !important;
+}
+
+.history-col-container .summary {
+  color: #6e819e !important;
+}
+
+.more-detial-info {
+  word-wrap: break-word;
+}
+
+.listing-document {
+  position: relative;
+}
+
+.listing-document:before {
+  content:"";
+  width: 19px;
+  height: 15px;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -555px -310px no-repeat;
+  background-size: 600px auto;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+
+.listing-document ul {
+  margin: 15px 0 0;
+  padding: 15px 0 0;
+  list-style: none;
+  border-top: 1px solid #ccc;
+}
+
+.listing-document li:first-child {
+  padding-right: 30px;
+}
+
+.history-col-container:hover .listing-document li {
+  color: #6e819e !important;
+}
+
+.listing-document:before  .listing-document:before  {
+  background-position: -556px -287px;
+}
+
+.griding-document .row {
+  margin: 0 -7px;
+}
+
+.griding-document .griding-col {
+  margin: 0 0 14px;
+  padding: 0 7px;
+}
+
+.griding-document .griding-col .col-container {
+  background-color: #f6f8ff;
+  border-radius: 8px;
+  padding: 20px 20px 20px 80px;
+  position: relative;
+  height: 100%;
+}
+
+.griding-document .griding-col .icon {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -468px -306px no-repeat var(--white);
+  background-size: 600px auto;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 0;
+  box-shadow: 0 3px 6px rgba(158,171,192,0.20);
+}
+
+.griding-document .griding-col h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6e819e;
+  margin: 0 0 5px;
+}
+
+.griding-document .griding-col h4 {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  color: #90a4ad;
+}
+
+.griding-document .btn-close {
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -526px -247px no-repeat;
+  background-color: var(--green-900);
+  background-size: 600px auto;
+  width: 24px;
+  height: 24px !important;
+  position: absolute;
+  left: 7px;
+  top: 11px;
+  border-radius: 50%;
+  z-index: 10;
+  padding: 0;
+  font-size: 0;
+}
+
+.inteview-schedule-box .search-box-container {
+  margin: -30px -30px 20px;
+  position: relative;
+  padding-right: 68px;
+  background-color: #f6f8ff;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 3px 6px rgba(158,171,192,0.20);
+  height: 48px;
+}
+
+.inteview-schedule-box .search-box-container .form-control {
+  height: 48px;
+  border: 0;
+  background: none;
+}
+
+.inteview-schedule-box .search-box-container .btn-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -361px -56px no-repeat;
+  background-size: 600px auto;
+  font-size: 0;
+}
+
+.icon-ul-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.icon-ul-list li {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-ul-list li .fa {
+  margin-right: 5px;
+}
+
+.icon-ul-list li:not(:first-child) {
+  margin-left: 10px;
+}
+
+.interview-detail-section .horizontalTabs .tab-content {
+  background-color: var(--white);
+}
+
+.interview-detail-section .horizontalTabs .nav-tabs {
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.interview-detail-section .horizontalTabs .nav-tabs > li.active > a {
+  border-radius: 8px 8px 0 0;
 }

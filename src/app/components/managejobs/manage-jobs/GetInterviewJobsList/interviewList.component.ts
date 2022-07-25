@@ -40,6 +40,7 @@ export class InterviewListComponent implements OnInit {
     listSort:any;
     setActive:  number = null;
     jobs: any;
+    subNavigationActive: string;
 
     invetviewListArray:any = [
       {
@@ -193,6 +194,7 @@ export class InterviewListComponent implements OnInit {
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
      this.populateJobInterViewlist(3,0,'');
      this.detailIntviewHandler(0);  
+     this.subNavigationActive = 'Summary'
   }
 
   titleCaseWord(word: string) {
