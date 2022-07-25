@@ -67,7 +67,7 @@ export class InviteProfiledialogComponent implements OnInit {
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = this.data.jobId;
     this.inviteinfo.userName = this.customer.FirstName;
-    this.inviteinfo.fullName = 'Arytic User';
+    this.inviteinfo.fullName = this.customer.FirstName +' '+this.customer.LastName ;
     this.inviteinfo.statusId = 0;
     this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
