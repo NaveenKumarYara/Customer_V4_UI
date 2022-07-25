@@ -114,11 +114,11 @@
               </li>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
                 <li><img src="../../../../../assets/images/icon__02.png" title="Salary"><span
-                    *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
+                   >
                     ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
                     ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
-                  <span *ngIf="viewJobDetails?.HideSalary === false">
-                    Not willing to reveal</span>
+                  <!-- <span *ngIf="viewJobDetails?.HideSalary === false">
+                    Not willing to reveal</span> -->
                   <!-- <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
                       On W2 </span>                      
                   <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
