@@ -88,9 +88,9 @@
                     </ul>
                     
                     <button class="btn btn-zoom" *ngIf="job?.InterviewTypeId == 3">{{job?.InterviewType}}</button>
-                    <div class="address">
+                    <!-- <div class="address">
                         {{job?.JobLocations.split('|')[0]}}
-                    </div>
+                    </div> -->
                   </div>
               
                 <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
@@ -320,6 +320,16 @@
             </div>
             <div class="row grid-row">
               <div class="col-sm-4 grid-col grid-left-col">
+                Location
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <p >
+                  {{job?.JobLocations.split('|')[0]}}
+                  </p>
+                
+              </div>
+             
+              <div class="col-sm-4 grid-col grid-left-col">
                 Interviewer
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
@@ -329,8 +339,7 @@
                   </p>
                 <p *ngIf="job?.HiringLeaderFirstName === null">Not Mentioned.</p>
               </div>
-            </div>
-            <div class="row grid-row">
+           
               <div class="col-sm-4 grid-col grid-left-col">
                Interview Round
               </div>
@@ -569,6 +578,7 @@
         </ng-container>
         <div class="buttons">
           <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
+          <a href="javascript:void(0)" class="btn btn-border">Cancel</a>
           <a href="javascript:void(0)" class="btn btn-filled"
             (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Re-Schedule
           </a>

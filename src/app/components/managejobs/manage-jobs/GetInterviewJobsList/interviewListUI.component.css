@@ -208,6 +208,7 @@
   padding: 10px 16px 15px;
   font-size: 14px;
   background-color: transparent;
+  font-weight: 500;
 }
 
 .horizontalTabs .nav-tabs > li.active > a {
@@ -304,7 +305,8 @@
   padding: 20px 20px 20px 70px;
   position: relative;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 3px solid transparent;
+  border-radius: 10px;
 }
 
 .listing-col:not(:first-child) {
@@ -313,7 +315,7 @@
 
 .listing-col.active {
   border-color: var(--green-900);
-  background-color: var(--green-100);
+  /*background-color: var(--green-100);*/
 }
 
 .listing-col .top-box-container { margin: 0 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px;}
@@ -350,6 +352,10 @@
   color: var(--green-900);
   display: block;
   margin: 0 0 5px;
+  background-color: var(--green-100);
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 1px 5px;
 }
 
 .listing-grid h4 {
@@ -360,11 +366,11 @@
 }
 
 .listing-grid h5 {
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
   color: var(--gray-blue-500);
-  margin: 0 0 10px;
-  font-weight: 400;
+  margin: 5px 0;
+  font-weight: 500;
 }
 
 .listing-col .fa-hand-o-right:before, .listing-col .fa-university:before {
