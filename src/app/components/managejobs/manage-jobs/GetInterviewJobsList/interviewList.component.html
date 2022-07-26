@@ -43,10 +43,10 @@
   <!--Interview Schedule Box-->
   <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
     <div class="tab-content" id="myTabContent">
-      <div class="search-box-container">
+      <!-- <div class="search-box-container">
         <input type="text" class="form-control" placeholder="Enter Search Here..."/>
         <button class="btn btn-search">Search</button>
-      </div>
+      </div> -->
       <!--Week Tabs-->
       <div class="tab-pane fade active in" id="thisweek" role="tabpanel" aria-labelledby="thisweek-tab">
         <div class="horizontalTabs">
@@ -279,13 +279,13 @@
           </h4>
       
           </a>
-          <div class="icon-navigation ml-auto">
+          <!-- <div class="icon-navigation ml-auto">
             <ul>
               <li [ngClass]="this.subNavigationActive == 'Summary'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Summary'"><span class="icon icon-summary">Icon</span></a></li>
               <li [ngClass]="this.subNavigationActive == 'History'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'History'"><span class="icon icon-list">Icon</span></a></li>
               <li [ngClass]="this.subNavigationActive == 'Document'?'active':''"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Document'"><span class="icon icon-document">Icon</span></a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
         <ng-container *ngIf="this.subNavigationActive == 'Summary'">
           <ul class="inline-listing">
@@ -386,8 +386,8 @@
                 &nbsp;
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-                <a href="javascript:void(0)" class="btn btn-border">View job details</a>
-                <a href="javascript:void(0)" class="btn btn-filled">View Candidate Profile</a>
+                <a href="javascript:void(0)" class="btn btn-border" (click)="ViewJobdetails(job?.JobId)">View job details</a>
+                <a href="javascript:void(0)" class="btn btn-filled" (click)="GetRedirect(job?.JobId,job?.ProfileId)">View Candidate Profile</a>
               </div>
              
             </div>
