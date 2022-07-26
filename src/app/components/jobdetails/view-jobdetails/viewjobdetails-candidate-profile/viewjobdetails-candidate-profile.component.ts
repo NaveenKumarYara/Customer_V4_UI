@@ -907,6 +907,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 data: {
                   animal: "panda",
                   Title: title,
+                  JobTitle:this.jobdetailscustomer.JobInfo.JobTitle,
                   jobResponseId: jobResponseId,
                   jobId: this.jobid,
                   ProfileId: profileId,

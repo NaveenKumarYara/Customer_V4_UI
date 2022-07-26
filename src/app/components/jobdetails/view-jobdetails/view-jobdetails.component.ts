@@ -805,6 +805,16 @@ export class ViewJobdetailsComponent implements OnInit {
     this.getParentApi().CallViewBy(0,0,w,0,0,0,undefined,this.profilecount);
   }
 
+  GetInvitedList()
+  {
+    this.getParentApi().CallViewBy(0,0,0,1,0,0,undefined,this.profilecount);
+  }
+
+  GetUploadList()
+  {
+    this.getParentApi().CallViewBy(1,0,0,0,0,0,undefined,this.profilecount);
+  }
+
 
   getParentApi(): ParentComponentApi {
     return {

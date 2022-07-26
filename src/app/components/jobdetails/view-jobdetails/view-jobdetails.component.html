@@ -108,7 +108,7 @@
 
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 							<button *ngIf="wishcheck === true;else isact" class="btn btn-border btn-primary"
-							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Wishlisted
+							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Wishlist
 								</button>
 						</ng-container>
 						<ng-template #isact>
@@ -169,14 +169,14 @@
 												</div>
 											</div>
 											<div class="col-sm-2 col light-blue">
-												<div class="col-container">
+												<div class="col-container" (click)="GetInvitedList()">
 													<span class="icon icon-04">Icon</span>
 													<h4>{{Count?.Invited||0}}</h4>
 													<h6>Invite </h6>
 												</div>
 											</div>
 											<div class="col-sm-2 col yellow">
-												<div class="col-container">
+												<div class="col-container" (click)="GetUploadList()">
 													<span class="icon icon-05">Icon</span>
 													<h4>{{Count?.Uploaded||0}}</h4>
 													<h6>Upload</h6>
@@ -186,14 +186,14 @@
 									</div>					
 									<div class="funnel-graph">
 										<span class="funnel-text funnel-text-01" data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-												Screening Process
+												Screening 
 												<em>{{jobstatistics?.Screening}}</em>
-												<em class="reject">{{jobstatistics?.Screening}}</em>
+												<em class="reject">0</em>
 										</span>
 										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-											Short Listed
+											Shortlisted
 											<em>{{jobstatistics?.ShortListed}}</em>
-											<em class="reject">{{jobstatistics?.ShortListed}}</em>
+											<em class="reject">0</em>
 										</span>
 										<span class="funnel-text funnel-text-03">
 											Client Submitted
@@ -203,7 +203,7 @@
 										<span class="funnel-text funnel-text-04" data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
 											Interviewed
 											<em>{{jobstatistics?.Interviewed}}</em>
-											<em class="reject">01</em>
+											<em class="reject">0</em>
 										</span>
 										<span class="funnel-text funnel-text-05" data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
 											Hired
@@ -216,12 +216,12 @@
 
 									<div class="funnel-graph funnel-graph-01 hidden">
 										<span class="funnel-text funnel-text-01" data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-												Screening Process
+												Screening 
 												<em>{{jobstatistics?.Screening}}</em>
-												<em class="reject">01</em>
+												<em class="reject">0</em>
 										</span>
 										<span class="funnel-text funnel-text-02" data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-											Short Listed
+											Shortlisted
 											<em>{{jobstatistics?.ShortListed}}</em>
 											<em class="reject">{{jobstatistics?.ShortListed}}</em>
 										</span>
