@@ -56,13 +56,16 @@
             <h4>
               <div class="col-sm-4">
                 <label><b> Skill Fit Weightage:
-                    <a href="javascript:void(0)" class="tooltip__link">
+                    <!-- <a href="javascript:void(0)" class="tooltip__link">
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                       <span class="custom__tooltip">
                         <span class="step__01">Skill match depends on skill name and total experience of a particular
                           skill</span>
                       </span>
-                    </a> </b></label>
+                    </a>  -->
+                    <i class="fa fa-info-circle" tooltip="Skill match depends on skill name and total experience of a particular
+                    skill" placement="bottom"></i>
+                  </b></label>
                 <circle-progress [percent]="minValue" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
                   [outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
                   [showSubtitle]="false">
@@ -79,12 +82,13 @@
             <h4>
               <div class="col-sm-4">
                 <label><b> Job Fit Weightage:
-                    <a href="javascript:void(0)" class="tooltip__link">
+                    <!-- <a href="javascript:void(0)" class="tooltip__link">
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                       <span class="custom__tooltip">
                         <span class="step__01">Job match depends on Job title, experience and domain.</span>
                       </span>
-                    </a>
+                    </a> -->
+                    <i class="fa fa-info-circle" tooltip="Job match depends on Job title, experience and domain." placement="bottom"></i>
                   </b></label>
                 <circle-progress [percent]="JobFitval" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
                   [outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"

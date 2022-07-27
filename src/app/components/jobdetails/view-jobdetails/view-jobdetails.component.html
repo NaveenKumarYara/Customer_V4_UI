@@ -244,14 +244,16 @@
 								<div class="row flex flex-align-center flex-justify-end text-center">
 									<div class="col-sm-3">
 										<h6>
-											Skill Fit Weightage:
-											<a href="javascript:void(0)" class="tooltip__link"> 
+											Skill Fit Weightage: 
+											<i class="fa fa-info-circle" tooltip="Skill match depends on skill name and total experience of a particular
+											skill" placement="bottom"></i>
+											<!-- <a href="javascript:void(0)" class="tooltip__link"> 
 												<i class="fa fa-info-circle" aria-hidden="true"></i>
 												<span class="custom__tooltip">
 												<span class="step__01">Skill match depends on skill name and total experience of a particular
 													skill</span>
 												</span>
-											</a> 
+											</a>  -->
 										</h6>
 										<circle-progress [percent]="Percentweightage?.SkillFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
 											[outerStrokeColor]="'#50C878'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
@@ -261,12 +263,13 @@
 									<div class="col-sm-3">
 										<h6>
 											Job Fit Weightage:
-											<a href="javascript:void(0)" class="tooltip__link">
+											<i class="fa fa-info-circle" tooltip="Job match depends on Job title, experience and domain." placement="bottom"></i>
+											<!-- <a href="javascript:void(0)" class="tooltip__link">
 												<i class="fa fa-info-circle" aria-hidden="true"></i>
 												<span class="custom__tooltip">
 												<span class="step__01">Job match depends on Job title, experience and domain.</span>
 												</span>
-											</a> 
+											</a>  -->
 										</h6>
 										<circle-progress [percent]="Percentweightage?.JobFit" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
 											[outerStrokeColor]="'#4489f9'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
