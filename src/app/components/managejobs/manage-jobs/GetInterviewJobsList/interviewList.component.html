@@ -577,8 +577,8 @@
           </div>
         </ng-container>
         <div class="buttons">
-          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
-          <a href="javascript:void(0)" class="btn btn-border">Cancel</a>
+          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.StartTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
+          <!-- <a href="javascript:void(0)" class="btn btn-border">Cancel</a> -->
           <a href="javascript:void(0)" class="btn btn-filled"
             (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Re-Schedule
           </a>

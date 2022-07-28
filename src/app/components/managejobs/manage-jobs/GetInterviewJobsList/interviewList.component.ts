@@ -256,6 +256,7 @@ export class InterviewListComponent implements OnInit {
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
+      debugger
       this.filterInterviewDetail = res.Jobs;
       this.spinner.hide();
     }); 
@@ -263,6 +264,7 @@ export class InterviewListComponent implements OnInit {
 
  UpdateInterviewAccept(userId,jobid,cdate,ctime,cpdate,cpaccept)
  {
+  debugger
    if(cpaccept == 1 && cpdate == 1 )
    {
     this.InterviewAcceptance.CustomerId = this.customerId;
