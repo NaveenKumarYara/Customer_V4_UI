@@ -380,8 +380,9 @@ getcustomerusers()
      {
       
         resolve();
+        this.upload();
       }  
-    
+  
   }
    }                
    );
@@ -391,12 +392,7 @@ getcustomerusers()
 	  
 
 
-  // if(this.isShown2=true)
-  // {
-  //   this.SendEmail();
-  //   this.selectedComments = "";
-  //   this.EmailId = " ";
-  // }  
+  
 }
 
 
@@ -408,7 +404,6 @@ getcustomerusers()
  async upload()
  {
   this.NId.forEach(async element => {
-    debugger
     if(this.uploader.queue.length>0)
     {
       for (let i = 0; i < this.uploader.queue.length; i++) {

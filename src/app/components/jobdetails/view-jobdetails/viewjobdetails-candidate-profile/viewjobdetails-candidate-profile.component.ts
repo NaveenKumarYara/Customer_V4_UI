@@ -1029,7 +1029,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;  
-          debugger        
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -1221,7 +1220,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   clickme(val,title,Jd) {
     let request = '';
     const formData = new FormData();
-    debugger
     html2canvas(document.getElementById('aa' + val),{
       useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
       logging: true }).then(canvas => {

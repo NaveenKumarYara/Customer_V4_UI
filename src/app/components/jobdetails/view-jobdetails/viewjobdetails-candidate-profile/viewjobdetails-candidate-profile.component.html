@@ -325,7 +325,7 @@
           <!--Candidate experience placeholder is in below div -->
           <div class="d-block text-center ptb-5 role-exp-loc">
             <h4 class="d-inline l_bl-1" title="{{ profile.ProfileTitle }}">
-              {{ profile.ProfileTitle ? add3Dots(profile.ProfileTitle, 10) : "N/A" }}
+              {{ profile.ProfileTitle ? add3Dots(profile.ProfileTitle, 10) : "" }}
               <ng-container *ngIf="profile?.TotalExperience != null">
                 <span class="experience">{{ profile?.TotalExperience | monthsPipe }} Yrs</span>
               </ng-container>
@@ -1246,7 +1246,7 @@
                         profile?.MatchingPercentage
                       )
                     ">
-                      <p class="p6">Feedback</p>
+                      <p class="p6">Not Interested</p>
                     </a>
                   </li>
                   <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
@@ -1287,7 +1287,7 @@
                         profile?.MatchingPercentage
                       )
                     ">
-                      <p class="p6">Feedback</p>
+                      <p class="p6">Not Interested</p>
                     </a>
                   </li>
                 </div>
