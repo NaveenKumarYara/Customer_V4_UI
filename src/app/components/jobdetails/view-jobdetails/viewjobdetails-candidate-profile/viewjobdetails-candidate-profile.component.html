@@ -355,6 +355,7 @@
                   profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
                 }}">
                 {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
+                <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status cannot be moved when profile is in uploaded and Waiting for response. Candidate need to approve the Job" placement="left" placement="top"></i>
               </div>
             </div>
 
