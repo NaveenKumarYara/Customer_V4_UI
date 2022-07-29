@@ -1,3 +1,7 @@
+:root {
+  --dark-blue-600: #6262ff;
+}
+
 .smart-card .card-profile-image-container {
   background: #f9fafb;
   margin: -10px -24px 30px;
@@ -10,6 +14,13 @@
 .smart-card .card-profile-image-container h1 {
   flex: 0 0 90%;
   max-width: 90%;
+}
+
+.smart-card .card-profile-image-container h1 button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--dark-blue-600);
 }
 
 .smart-card .card-profile-image-container figure {
@@ -43,7 +54,7 @@
   border-radius: 6px;
   background: #fff;
   position: absolute;
-  top: 50px;
+  top: 80px;
   z-index: 100;
   right: 0;
 }
@@ -67,6 +78,9 @@
   position: relative;
   background: none;
   border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .smart-sticky-navigation  li button.active {
@@ -91,7 +105,7 @@
 }
 
 .smart-card  .candidate .card-body {
-  height: 330px;
+  height: 260px;
 }
 
 .page--manage-jobs .smart-card  .candidate .card-body { 
@@ -99,14 +113,20 @@
 }
 
 .smart-card-progress-bar h3,
-.page--manage-jobs .card .smart-card-progress-bar h3 {
+.page--manage-jobs .card .smart-card-progress-bar h3,
+.skills-carousel-Changed h4,
+.smart-card .sub-title {
   font-size: 10px;
   text-align: center;
   text-transform: uppercase;
   color: #90a4ad;
-  margin: 0 0 20px;
+  margin: 0 0 10px;
   flex:  0 0 100%;
   max-width: 100%;
+}
+
+.smart-card .sub-title {
+  margin-bottom: 20px;
 }
 
 .page--manage-jobs .card .smart-card-progress-bar {
@@ -408,3 +428,247 @@
 .sizzlevideo-matching-details {
   height: 100% !important;
 }
+
+.icon-smart {
+  background: url(../../../assets/images/smart-card-new-sprites.png) 0 0 no-repeat;
+  background-size: 600px auto;
+  display: inline-block;
+  font-size: 0;
+}
+
+.icon-smart.icon-smart-email {
+  width: 22px;
+  height: 16px;
+  background-position: -22px -26px;
+}
+
+.page--job-details .matching-details {
+  z-index: 105;
+}
+
+
+.icon-smart.icon-smart-phone {
+  width: 18px;
+  height: 19px;
+  background-position: -49px -26px;
+}
+
+.icon-smart.icon-smart-notes {
+  width: 24px;
+  height: 24px;
+  background-position: -198px -26px;
+}
+
+.icon-smart.icon-smart-share {
+  width: 24px;
+  height: 20px;
+  background-position: -106px -27px;
+}
+
+.icon-smart.icon-smart-review {
+  width: 25px;
+  height: 33px;
+  background-position: -131px -185px;
+}
+
+.icon-smart.icon-smart-screening {
+  width: 37px;
+  height: 31px;
+  background-position: -289px -185px;
+}
+
+.icon-smart.icon-smart-shortlisted {
+  width: 32px;
+  height: 32px;
+  background-position: -169px -184px;
+}
+
+.icon-smart.icon-smart-interview {
+  width: 35px;
+  height: 32px;
+  background-position: -211px -184px;
+}
+
+.icon-smart.icon-smart-hired {
+  width: 27px;
+  height: 32px;
+  background-position: -252px -184px;
+}
+
+.icon-smart.icon-smart-certificate {
+  width: 24px;
+  height: 24px;
+  background-position: -143px -26px;
+}
+
+.icon-smart.icon-smart-domain {
+  width: 24px;
+  height: 24px;
+  background-position: -170px -26px;
+}
+
+.icon-smart.icon-smart-document {
+  width: 23px;
+  height: 18px;
+  background-position: -76px -26px;
+}
+
+.icon-smart.icon-smart-feedback {
+  width: 24px;
+  height: 24px;
+  background-position: -228px -26px;
+}
+
+
+div.dropup {
+  width:42px;
+  height: 42px;
+  background: url(../../../assets/images/smart-card-new-sprites.png) -333px -27px no-repeat;
+  background-size: 600px auto;
+  background-color: var(--green-600);
+  box-shadow: 0 3px 6px rgba(158,171,192,0.20);
+  border-radius: 50%;
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  z-index: 1000;
+}
+
+div.dropup > a {
+  font-size: 0;
+  height: 48px;
+  width: 48px;
+  display: block;
+}
+
+.smart-card .dropdown-menu.dropdown-menu-right {
+  bottom: auto !important;
+  top: 100%;
+  font-size: 13px;
+}
+
+.smart-card-status {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.smart-card-status .col {
+	width: 20%;
+  text-align: center;
+  padding: 7px;
+  border-top: 4px solid #e0e3ef;
+}
+
+.smart-card-status .col.blue {
+  border-top-color: #6262ff;
+}
+
+.smart-card-status .col.green {
+  border-top-color: #32c396;
+}
+
+
+.smart-card-status .col:not(:first-child) {
+  border-left: 1px solid #e0e3ef;
+}
+
+.smart-card-status .icon-smart {
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.smart-card-status .row {
+  margin: 0;
+}
+
+.smart-card-status h4 {
+	font-size: 12px;
+	color: #9eabc0;
+	margin: 0;
+  font-weight: 400;
+}
+
+.smart-card .dropdown-menu.dropdown-menu-right div li a {
+  padding: 0;
+}
+
+.smart-list-icons {
+  margin:0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.smart-list-icons li:not(:first-child) {
+  margin-left: 5px;
+}
+
+.smart-list-icons .btn {
+  padding: 0;
+  font-size: 0;
+  background: none;
+  border: 0;
+}
+
+.page--job-details .matching-details {
+  z-index: 1001 !important;
+}
+
+.smart-card .skills-carousel-Changed a.right-arrow,
+.smart-card .skills-carousel-Changed a.left-arrow {
+  bottom: 9rem !important;
+}
+
+.smart-card-status .col.in-progress {
+  border-top-color: #6262ff;
+}
+
+.smart-card-status .col.active {
+  border-top-color: #32c396;
+}
+
+.smart-card-status .col.in-progress .icon-smart.icon-smart-review {
+  background-position: -131px -272px;
+}
+
+.smart-card-status .col.in-progress .icon-smart.icon-smart-screening {
+  background-position: -289px -272px;
+}
+
+.smart-card-status .col.in-progress .icon-smart.icon-smart-shortlisted {
+  background-position: -169px -272px;
+}
+
+.smart-card-status .col.in-progress .icon-smart.icon-smart-interview {
+  background-position: -211px -271px;
+}
+
+.smart-card-status .col.in-progress .icon-smart.icon-smart-hired {
+  background-position: -251px -271px;
+}
+
+.smart-card-status .col.active .icon-smart.icon-smart-review {
+  background-position: -131px -234px;
+}
+
+.smart-card-status .col.active .icon-smart.icon-smart-screening {
+  background-position: -289px -234px;
+}
+
+.smart-card-status .col.active .icon-smart.icon-smart-shortlisted {
+  background-position: -169px -234px;
+}
+
+.smart-card-status .col.active .icon-smart.icon-smart-interview {
+  background-position: -211px -233px;
+}
+
+.smart-card-status .col.active .icon-smart.icon-smart-hired {
+  background-position: -251px -234px;
+} 
+
+.smart-card div.dropup.open ul:empty {
+  display: none;
+} 

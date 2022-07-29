@@ -1182,6 +1182,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         $("#matchingDetailRadar-" + profileId).toggleClass("open");
       });
     }
+    if (Val == 6) {
+      //debugger
+      this.GetJobFeedback(profileId, this.jobid);
+      $(".matching-details").removeClass("open");
+      $("#matchingDetailDocuments-" + profileId).toggleClass("open");
+    }
     // $detailsCloseBtn.on('click', function (e) {
     //   e.preventDefault();
     //   $detailsDiv.removeClass('open');
@@ -1197,6 +1203,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $("#matchingDetailNotes-" + profileId).removeClass("open");
       $("#matchingDetailFeedback-" + profileId).removeClass("open");
       $("#matchingDetailRadar-" + profileId).removeClass("open");
+      $("#matchingDetailDocuments-" + profileId).removeClass("open");
     } else {
       $("#sizzleVideo-" + profileId).removeClass("open");
       $("#profileVideo-" + profileId).removeClass("open");

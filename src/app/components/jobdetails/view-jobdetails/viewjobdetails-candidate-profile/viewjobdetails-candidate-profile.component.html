@@ -4,36 +4,392 @@
   </button> -->
   <!-- <button (click)="check(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button> -->
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
+  <div class="dropup" *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
+    <a href="javascript:void(0)" data-toggle="dropdown"
+      tooltip="Status cannot be moved when profile is in uploaded and Waiting for response." placement="left">
+      Tooltip
+    </a>
+    <ng-container *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
+      <ul role="menu" class="dropdown-menu dropdown-menu-right"></ul>
+    </ng-container>
+  </div>
+  <div class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+    <a href="javascript:void(0)" data-toggle="dropdown" tooltip="Processing profile from one stage to another."
+      placement="left">
+      Tooltip
+    </a>
+    <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+      <ul role="menu" class="dropdown-menu dropdown-menu-right">
+        <!-- applied -->
+        <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
+        <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+          <div *ngIf="
+            profile?.ResponseStatusId === 4 ||
+            profile?.ResponseStatusId === 13 ||
+            profile?.ResponseStatusId === 14
+          ">
+            <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
+            <div *ngIf="
+              profile?.ResponseStatusId <= 4 &&
+                profile?.ResponseStatusId > 0 &&
+                profile?.UserId > 0 &&
+                profile?.IsConfirmed == null;
+              else otherMenu
+            ">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenScreeningDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Screening</p>
+                </a>
+              </li>
+            </div>
+            <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
+            <ng-template #otherMenu>
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenScreeningDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Screening</p>
+                </a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenShortListedDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Shortlist</p>
+                </a>
+              </li>
+            </ng-template>
+            <!-- </div> -->
+            <!-- </div> -->
+            <!--start commented as it is not required now -->
+            <!-- <div *ngIf="profile?.IsConfirmed === false">
+                <li role="presentation" disabled>
+                  <p role="menuitem" href="javascript:void(0)"> Screening</p>
+                </li>
+            </div> -->
+            <!-- end -->
+            <!-- <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
+          </div>
+          <!-- shortlisted -->
+          <div *ngIf="profile?.ResponseStatusId == 8">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenShortListedDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Shortlist</p>
+              </a>
+            </li>
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Feedback</p>
+              </a>
+            </li>
+            <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
+          </div>
+          <!-- screening -->
+          <div *ngIf="profile?.ResponseStatusId == 5">
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Feedback</p>
+              </a>
+            </li>
+          </div>
+          <!-- interviewed -->
+          <div *ngIf="profile?.ResponseStatusId == 7">
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="
+              customer?.AccessDetails?.UserRoleId != 4 &&
+              customer?.AccessDetails?.UserRoleId != 8 &&
+              customer?.AccessDetails?.UserRoleId != 9
+            ">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenHireDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Hire</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Not Interested</p>
+              </a>
+            </li>
+          </div>
+          <!-- hired -->
+          <div *ngIf="profile?.ResponseStatusId == 11">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenWithdrawnDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">WithDrawn</p>
+              </a>
+            </li>
+          </div>
+          <div *ngIf="profile?.ResponseStatusId == null">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenScreeningDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Screening</p>
+              </a>
+            </li>
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenShortListedDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Shortlist</p>
+              </a>
+            </li>
+          </div>
+        </ng-container>
+      </ul>
+    </ng-container>
+  </div>
+
   <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <ul>
-      <li>
-        <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
-          <i class="fa fa-star"></i>
-        </button>
-      </li>
-      <li>
+    
+      <!--Old Code-->
+      <!-- <li>
         <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
           <i class="fa fa-lightbulb-o"></i>
+        </button>
+      </li> -->
+      <!--Old Code-->
+      <li>
+        <button tooltip="Documents" placement="left" (click)="callSkills(profile?.ProfileId, 6)">
+          <span class="icon-smart icon-smart-document">Icon</span>
+        </button>
+      </li>
+      
+      <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Feedback" placement="left">
+        <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
+        <button (click)="callSkills(profile?.ProfileId, 4)">
+          <span class="icon-smart icon-smart-feedback">Icon</span>
+          <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
+        </button>
+      </li>
+      <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Feedback"
+        placement="left">
+        <button href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)">
+          <span class="icon-smart icon-smart-feedback">Icon</span>
         </button>
       </li>
       <li>
         <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
-          <i class="fa fa-clipboard"></i>
+          <span class="icon-smart icon-smart-notes">Notes</span>
           <!-- <span class="counter">1</span> -->
         </button>
       </li>
-      <li>
-        <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="left">       
-          <i class="fa fa-bookmark"></i>
-        </button>
-        <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
-          <i class="fa fa-bookmark"></i>
-        </button>
-        <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
-          <i class="fa fa-bookmark"></i>
+      <li tooltip="Share the candidate to team members." placement="left">
+        <button class="active"  data-toggle="modal" data-target="#shareCandidate"
+        (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+          <span class="icon-smart icon-smart-share">Notes</span>
+          <!-- <span class="counter">1</span> -->
         </button>
       </li>
     </ul>
+  </div>
+
+  <div class="hidden">
+    <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+      <ul>
+        <li>
+          <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+            <i class="fa fa-star"></i>
+          </button>
+        </li>
+        <li>
+          <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+            <i class="fa fa-lightbulb-o"></i>
+          </button>
+        </li>
+        <li>
+          <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
+            <i class="fa fa-clipboard"></i>
+            <!-- <span class="counter">1</span> -->
+          </button>
+        </li>
+        <li>
+          <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+          <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+          <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
   
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
@@ -200,126 +556,175 @@
         <div class="meta a">
           <div class="d-block text-center">
             <!--Email-->
-            <div class="dropdown">
-              <div class="tooltip1">
-                <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'" class="dropdown-toggle info-dropdown"
-                  type="button" data-toggle="dropdown" >                  
-                  <img 
-                    src="../../../../../assets/images/Yes-Email.svg" 
-                    height="16" alt="email" placement="top"
-                    (click)="
-                      OpenSendEmailDialog(
-                        profile?.NoEmail,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.ResponseStatusId,
-                        profile?.CCPID,
-                        profile?.UserId
-                      )" 
-                  />
-                </ng-container>
-                <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
-                  <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email" />
-                </ng-container>
-                <div class="bottom1">
-                  <ul class="custom_dropdown-menu">
-                    <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'noemail'">
-                      <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" *ngIf="
-                          (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-                            profile?.UserId > 0 &&
-                            profile?.IsConfirmed == null;
-                          else firstelseBlock
-                        ">
-                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
-                          title="{{ profile?.Email }}" />
-                      </a>
-                      <ng-template #firstelseBlock>
-                        <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" >
+            <div class="hidden">
+              <div class="dropdown">
+                <div class="tooltip1">
+                  <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'" class="dropdown-toggle info-dropdown"
+                    type="button" data-toggle="dropdown" >                  
+                    <img 
+                      src="../../../../../assets/images/Yes-Email.svg" 
+                      height="16" alt="email" placement="top"
+                      (click)="
+                        OpenSendEmailDialog(
+                          profile?.NoEmail,
+                          profile?.Email,
+                          profile?.FirstName,
+                          profile?.LastName,
+                          profile?.JobResponseId,
+                          profile?.ProfileId,
+                          profile?.ResponseStatusId,
+                          profile?.CCPID,
+                          profile?.UserId
+                        )" 
+                    />
+                  </ng-container>
+                  <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
+                    <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email" />
+                  </ng-container>
+                  <div class="bottom1">
+                    <ul class="custom_dropdown-menu">
+                      <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'noemail'">
+                        <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" *ngIf="
+                            (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                              profile?.UserId > 0 &&
+                              profile?.IsConfirmed == null;
+                            else firstelseBlock
+                          ">
                           <img src="../../../../../assets/images/email-icon.svg" alt="email"
                             title="{{ profile?.Email }}" />
-                          {{ profile?.Email }}
                         </a>
-                      </ng-template>
-                    </li>
-                  </ul>
+                        <ng-template #firstelseBlock>
+                          <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" >
+                            <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                              title="{{ profile?.Email }}" />
+                            {{ profile?.Email }}
+                          </a>
+                        </ng-template>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- Email-->
+            <ul class="smart-list-icons">
+              <li>
+                <button class="btn" tooltip="Certificate" placement="top" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                  <span class="icon-smart icon-smart-certificate">Icon</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn" tooltip="Domain" placement="top" title="{{ profile.DomainName }}"  (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+                  <span class="icon-smart icon-smart-domain">Icon</span>
+                </button>
+              </li>
+              <li>
+                <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                  <i class="fa fa-star"></i>
+                </button> -->
+                <button class="btn" 
+                  tooltip="{{ profile?.Email }}" 
+                  placement="top"
+                  *ngIf="profile.Email.substring(0, 7) != 'noemail'"
+                  (click)="
+                  OpenSendEmailDialog(
+                    profile?.NoEmail,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.ResponseStatusId,
+                    profile?.CCPID,
+                    profile?.UserId
+                  )"
+                >
+                  <span class="icon-smart icon-smart-email">Icon</span>
+                </button>
+              </li>
+              <li *ngIf="profile?.MobilePhone != null; else false">
+                <button class="btn" tooltip="{{ profile.MobilePhone }}" placement="top">
+                  <a href="tel:{{ profile.MobilePhone }}"><span class="icon-smart icon-smart-phone">Icon</span></a>
+                </button>
+              </li>
+            </ul>
             <!--Graduation-->
-            <div class="dropdown">
-              <div class="tooltip1">
-                <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                  <img src="../../../../../assets/images/graduation.svg" style="width: 25px; height: 25px" />
-                </a>
-                <div class="bottom1">
-                  <ul class="custom_dropdown-menu">
-                    <li>
-                      <a href="javascript:void(0)">
-                        <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
-
-                        <div class="media">
-                          <ng-container
-                            *ngIf="profile?.QualificationName != null && profile?.Specialization; else EduTemplate">
-                            <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="" />
-                            <div class="media-body">
-                              <h5 class="mt-0" title="{{ profile.QualificationName }}">
-                                {{ add3Dots(profile?.QualificationName.split("|")[0], 20) }}
-                              </h5>
-                              {{ add3Dots(profile?.Specialization.split("|")[0], 20) }}
-                            </div>
-                          </ng-container>
-                          <ng-template #EduTemplate>
-                            <h5 align="center">N/A</h5>
-                          </ng-template>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
+            <div class="hidden">
+              <div class="dropdown">
+                <div class="tooltip1">
+                  <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                    <img src="../../../../../assets/images/graduation.svg" style="width: 25px; height: 25px" />
+                  </a>
+                  <div class="bottom1">
+                    <ul class="custom_dropdown-menu">
+                      <li>
+                        <a href="javascript:void(0)">
+                          <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
+  
+                          <div class="media">
+                            <ng-container
+                              *ngIf="profile?.QualificationName != null && profile?.Specialization; else EduTemplate">
+                              <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="" />
+                              <div class="media-body">
+                                <h5 class="mt-0" title="{{ profile.QualificationName }}">
+                                  {{ add3Dots(profile?.QualificationName.split("|")[0], 20) }}
+                                </h5>
+                                {{ add3Dots(profile?.Specialization.split("|")[0], 20) }}
+                              </div>
+                            </ng-container>
+                            <ng-template #EduTemplate>
+                              <h5 align="center">N/A</h5>
+                            </ng-template>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
+            
             <!--Graduation-->
             <!--Info Icon-->
-            <div class="dropdown info-icon">
-              <div class="tooltip1">
-                <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i </a>
-                <div class="bottom1" *ngIf="profile?.MobilePhone != null">
-                  <ul class="custom_dropdown-menu">
-                    <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
-                        <a class="email-overflow" href="javascript:void(0)"
-                            title="{{profile.Email}}">
-                            <img src="../../../../../assets/images/email-icon.svg" alt="email"
-                                title="{{profile?.Email}}"> {{profile?.Email}}
-                        </a>
-                    </li> -->
-                    <li>
-                      <ng-container *ngIf="profile?.MobilePhone != null; else false">
-                        <a href="javascript:void(0)" title="{{ profile.MobilePhone }}">
-                          <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number"
-                            title="{{ profile.MobilePhone }}" />
-                          &nbsp;&nbsp;&nbsp; {{ profile.MobilePhone }}
-                        </a>
-                      </ng-container>
-                    </li>
-                    <li>
-                      <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
-                    </li>
-                  </ul>
+            <div class="hidden">
+              <div class="dropdown info-icon">
+                <div class="tooltip1">
+                  <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i </a>
+                  <div class="bottom1" *ngIf="profile?.MobilePhone != null">
+                    <ul class="custom_dropdown-menu">
+                      <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
+                          <a class="email-overflow" href="javascript:void(0)"
+                              title="{{profile.Email}}">
+                              <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                  title="{{profile?.Email}}"> {{profile?.Email}}
+                          </a>
+                      </li> -->
+                      <li>
+                        <ng-container *ngIf="profile?.MobilePhone != null; else false">
+                          <a href="javascript:void(0)" title="{{ profile.MobilePhone }}">
+                            <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number"
+                              title="{{ profile.MobilePhone }}" />
+                            &nbsp;&nbsp;&nbsp; {{ profile.MobilePhone }}
+                          </a>
+                        </ng-container>
+                      </li>
+                      <li>
+                        <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
+            
             <!-- <div class="dropdown info-icon">
-                    <div class="tooltip1">
-                        <ng-container
-                        class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
-                        <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
-                        </ng-container>                          
-                    </div>
-                </div> -->
+                <div class="tooltip1">
+                    <ng-container
+                    class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
+                    <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
+                    </ng-container>                          
+                </div>
+            </div> -->
             <!--Info Icon-->
           </div>
           <!--Candidate experience placeholder is in below div -->
@@ -451,7 +856,7 @@
         </ng-container>
        
 
-          <a href="javascript:void(0)"  title="WFH">
+          <a href="javascript:void(0)"  title="Coming Soon">
             <span class="jdv-smart-icon jdv-icon-wfh">Icon</span>
             <span>WFH</span>
           </a>
@@ -585,7 +990,7 @@
           <img src="../../../../../assets/images/interview-status.png" alt="">
           No Interview Status Available
         </div> -->
-        <div class="smart-card-progress-bar">
+        <div class="smart-card-progress-bar hidden">
           <h3>Application Status</h3>
           <div class="row flex flex-justify-center flex-wrap">
             <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
@@ -690,6 +1095,7 @@
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
+          <h4>Skills</h4>
           <div class="">
             <div class="row" *ngIf="profile?.PrimarySkills != null && profile?.PrimarySkills != ''; else noSkillTemplate">
               <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
@@ -832,580 +1238,408 @@
         </owl-carousel> -->
       </div>
      
+      <h3 class="sub-title">Application Status</h3>
       <div class="footer">
-        <ul class="actions">
-          <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
-          <li *ngIf="
-              (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-                profile?.UserId > 0 &&
-                profile?.IsConfirmed == null;
-              else elseBlock">
-            <a 
-               
-              href="javascript:void(0)"
-              (click)="
-                OpenSendEmailDialog(
-                  profile?.NoEmail,
-                  profile?.Email,
-                  profile?.FirstName,
-                  profile?.LastName,
-                  profile?.JobResponseId,
-                  profile?.ProfileId,
-                  profile?.ResponseStatusId,
-                  profile?.CCPID,
-                  profile?.UserId
-                )
-              " 
-              tooltip="Start email Conversation with candidate." placement="top"
-              data-toggle="modal" data-target="#inbox">
-              <!--(click)="OpenChatboxDialog()"-->
-              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
-                viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
-                <g>
+        <div class="actions">
+          <div class="smart-card-status">
+            <div class="row flex flex-wrap">
+              <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
+                <div class="col-sm-3 col  active" *ngIf="i === 'Technical'">
+                  <h4>{{i}}</h4>
+                </div>
+                <div class="col-sm-3 col in-progress" *ngIf="i === 'Screening'">
+                  <h4>{{i}}</h4>
+                </div>
+              </ng-container> -->
+             <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 8">
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.ResponseStatusId === 5">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 7">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <ng-container *ngIf="profile?.InterviewRounds?.length>0">
+                <ng-container *ngIf="profile?.InterviewRounds?.length===1">
+                  <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
+                    <span class="icon-smart icon-smart-interview"></span>
+                    <h4>Interview</h4>
+                  </div>
+                </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===2">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===3">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li></ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===4">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                </ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===5">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[4]}}</li>
+                </ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+                
+              </ng-container>
+             
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 11">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hidden">
+          <ul class="actions">
+            <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
+            <li *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                  profile?.UserId > 0 &&
+                  profile?.IsConfirmed == null;
+                else elseBlock">
+              <a 
+                 
+                href="javascript:void(0)"
+                (click)="
+                  OpenSendEmailDialog(
+                    profile?.NoEmail,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.ResponseStatusId,
+                    profile?.CCPID,
+                    profile?.UserId
+                  )
+                " 
+                tooltip="Start email Conversation with candidate." placement="top"
+                data-toggle="modal" data-target="#inbox">
+                <!--(click)="OpenChatboxDialog()"-->
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                  viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                   <g>
                     <g>
                       <g>
-                        <path fill="#9EABC0"
-                          d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
-                        c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
-                      </g>
-                      <g>
-                        <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
-                        c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
-                        l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
-                        c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                        <g>
+                          <path fill="#9EABC0"
+                            d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                          c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                          c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                        </g>
+                        <g>
+                          <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                          c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                          l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                          c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                          l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                        </g>
                       </g>
                     </g>
                   </g>
-                </g>
-              </svg>
-            </a>
-          </li>
-          <ng-template #elseBlock>
-            <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
-              <li  tooltip="Email not yet provided to send email." placement="left">
-                <a
-                  href="javascript:void(0)"
-                  class="disabled"
-                   data-toggle="modal"
-                  data-target="#inbox" 
-                >
-                  <!--(click)="OpenChatboxDialog()"-->
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
-                    viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
-                    <g>
+                </svg>
+              </a>
+            </li>
+            <ng-template #elseBlock>
+              <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
+                <li  tooltip="Email not yet provided to send email." placement="left">
+                  <a
+                    href="javascript:void(0)"
+                    class="disabled"
+                     data-toggle="modal"
+                    data-target="#inbox" 
+                  >
+                    <!--(click)="OpenChatboxDialog()"-->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                      viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                       <g>
                         <g>
                           <g>
-                            <path fill="#9EABC0"
-                              d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
-                        c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
-                          </g>
-                          <g>
-                            <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
-                        c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
-                        l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
-                        c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            <g>
+                              <path fill="#9EABC0"
+                                d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                          c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                          c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                            </g>
+                            <g>
+                              <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                          c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                          l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                          c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                          l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            </g>
                           </g>
                         </g>
                       </g>
-                    </g>
-                  </svg>
-                </a>
-              </li>
-            </ng-container>
-            <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'">
-              <li tooltip="Start email Conversation with candidate." placement="left">
-                <a href="javascript:void(0)" (click)="
-                    OpenSendEmailDialog(
-                      profile?.NoEmail,
-                      profile?.Email,
-                      profile?.FirstName,
-                      profile?.LastName,
-                      profile?.JobResponseId,
-                      profile?.ProfileId,
-                      profile?.ResponseStatusId,
-                      profile?.CCPID,
-                      profile?.UserId,
-                      profile.IsUploaded
-                    )
-                  " data-toggle="modal" data-target="#inbox">
-                  <!--(click)="OpenChatboxDialog()"-->
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
-                    viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
-                    <g>
+                    </svg>
+                  </a>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'">
+                <li tooltip="Start email Conversation with candidate." placement="left">
+                  <a href="javascript:void(0)" (click)="
+                      OpenSendEmailDialog(
+                        profile?.NoEmail,
+                        profile?.Email,
+                        profile?.FirstName,
+                        profile?.LastName,
+                        profile?.JobResponseId,
+                        profile?.ProfileId,
+                        profile?.ResponseStatusId,
+                        profile?.CCPID,
+                        profile?.UserId,
+                        profile.IsUploaded
+                      )
+                    " data-toggle="modal" data-target="#inbox">
+                    <!--(click)="OpenChatboxDialog()"-->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                      viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                       <g>
                         <g>
                           <g>
-                            <path fill="#9EABC0"
-                              d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
-                    c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                    c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
-                          </g>
-                          <g>
-                            <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
-                    c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
-                    l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
-                    c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                    l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            <g>
+                              <path fill="#9EABC0"
+                                d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                      c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                      c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                            </g>
+                            <g>
+                              <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                      c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                      l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                      c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                      l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            </g>
                           </g>
                         </g>
                       </g>
-                    </g>
-                  </svg>
-                </a>
-              </li>
-            </ng-container>
-          </ng-template>
-
-          <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Provide valuable feedback to candidate." placement="top">
-            <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
-            <a href="javascript:void(0)" (click)="callSkills(profile?.ProfileId, 4)">
-              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="#9eabc0">
-           <g>
+                    </svg>
+                  </a>
+                </li>
+              </ng-container>
+            </ng-template>
+  
+            <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Provide valuable feedback to candidate." placement="top">
+              <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
+              <a href="javascript:void(0)" (click)="callSkills(profile?.ProfileId, 4)">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="#9eabc0">
              <g>
                <g>
-                 <path d="M117.333,149.333H352c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667H117.333
-                   c-5.896,0-10.667,4.771-10.667,10.667C106.667,144.563,111.438,149.333,117.333,149.333z"/>
-                 <path d="M245.333,256h-128c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h128
-                   c5.896,0,10.667-4.771,10.667-10.667C256,260.771,251.229,256,245.333,256z"/>
-                 <path d="M471.167,64c-0.618,0-1.217,0.155-1.833,0.184V64c0-23.531-19.146-42.667-42.667-42.667h-384
-                   C19.146,21.333,0,40.469,0,64v416c0,4.313,2.604,8.208,6.583,9.854c1.313,0.552,2.708,0.813,4.083,0.813
-                   c2.771,0,5.5-1.083,7.542-3.125L121.75,384h304.917c23.521,0,42.667-19.135,42.667-42.667V164.411l30.708-30.703c0,0,0,0,0-0.01
-                   c7.604-7.604,11.958-18.125,11.958-28.865C512,82.313,493.688,64,471.167,64z M448,341.333c0,11.76-9.563,21.333-21.333,21.333
-                   H117.333c-2.833,0-5.542,1.125-7.542,3.125L21.333,454.25V64c0-11.76,9.563-21.333,21.333-21.333h384
-                   C438.438,42.667,448,52.24,448,64v7.286c-2.025,1.392-3.962,2.923-5.708,4.672L326.232,192H117.333
-                   c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h191.785l-10.243,51.24
-                   c-0.708,3.5,0.396,7.115,2.917,9.635c2.021,2.021,4.75,3.125,7.542,3.125c0.688,0,1.396-0.073,2.083-0.208l53.313-10.667
-                   c2.083-0.417,3.979-1.427,5.458-2.917L448,185.742V341.333z M357.396,246.177l-34.458,6.896l6.896-34.5l96.828-96.828
-                   l27.587,27.587L357.396,246.177z M484.958,118.625l-15.625,15.625l-27.589-27.589l15.63-15.63
-                   c3.625-3.615,8.646-5.698,13.792-5.698c10.75,0,19.5,8.75,19.5,19.5C490.667,109.958,488.583,114.99,484.958,118.625z"/>
+                 <g>
+                   <path d="M117.333,149.333H352c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667H117.333
+                     c-5.896,0-10.667,4.771-10.667,10.667C106.667,144.563,111.438,149.333,117.333,149.333z"/>
+                   <path d="M245.333,256h-128c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h128
+                     c5.896,0,10.667-4.771,10.667-10.667C256,260.771,251.229,256,245.333,256z"/>
+                   <path d="M471.167,64c-0.618,0-1.217,0.155-1.833,0.184V64c0-23.531-19.146-42.667-42.667-42.667h-384
+                     C19.146,21.333,0,40.469,0,64v416c0,4.313,2.604,8.208,6.583,9.854c1.313,0.552,2.708,0.813,4.083,0.813
+                     c2.771,0,5.5-1.083,7.542-3.125L121.75,384h304.917c23.521,0,42.667-19.135,42.667-42.667V164.411l30.708-30.703c0,0,0,0,0-0.01
+                     c7.604-7.604,11.958-18.125,11.958-28.865C512,82.313,493.688,64,471.167,64z M448,341.333c0,11.76-9.563,21.333-21.333,21.333
+                     H117.333c-2.833,0-5.542,1.125-7.542,3.125L21.333,454.25V64c0-11.76,9.563-21.333,21.333-21.333h384
+                     C438.438,42.667,448,52.24,448,64v7.286c-2.025,1.392-3.962,2.923-5.708,4.672L326.232,192H117.333
+                     c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h191.785l-10.243,51.24
+                     c-0.708,3.5,0.396,7.115,2.917,9.635c2.021,2.021,4.75,3.125,7.542,3.125c0.688,0,1.396-0.073,2.083-0.208l53.313-10.667
+                     c2.083-0.417,3.979-1.427,5.458-2.917L448,185.742V341.333z M357.396,246.177l-34.458,6.896l6.896-34.5l96.828-96.828
+                     l27.587,27.587L357.396,246.177z M484.958,118.625l-15.625,15.625l-27.589-27.589l15.63-15.63
+                     c3.625-3.615,8.646-5.698,13.792-5.698c10.75,0,19.5,8.75,19.5,19.5C490.667,109.958,488.583,114.99,484.958,118.625z"/>
+                 </g>
                </g>
              </g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           <g>
-           </g>
-           </svg>
-           
-              <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
-            </a>
-          </li>
-          <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Provide valuable feedback to candidate."
-            placement="left">
-            <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
-            profile?.ProfileId,
-            profile?.Email,
-            profile?.FirstName,
-            profile?.LastName,
-            profile?.UserId,
-            profile?.MatchingPercentage)">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-                <path
-                  d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
-              </svg>
-            </a>
-          </li>
-          <!-- <li
-                        *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else loc">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-                                <path
-                                    d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
-                            </svg>
-                        </a>
-                    </li>
-                    <ng-template #loc> -->
-          <li tooltip="Share the candidate to team members." placement="top">
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
-              (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-                <path
-                  d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
-              </svg>
-            </a>
-          </li>
-          <!-- </ng-template> -->
-          <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
-          <li tooltip="Resume can download here." placement="top">
-            <!--Word doc-->
-            <ng-container>
-              <a href="javascript:void(0)" *ngIf="
-                  (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-                    profile?.ResponseStatusId > 0 &&
-                    profile?.UserId > 0 &&
-                    profile?.IsConfirmed == null;
-                  else fBlock
-                ">
-                <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
-                  title="Download Resume" />
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg>
+             
+                <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
               </a>
-              <ng-template #fBlock>
-                <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
-                  <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
-                    title="Download Resume" />
-                </a>
-                <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
-              </ng-template>
-            </ng-container>
-
-            <!--Show if Candidate Resume is in PDF-->
-            <!-- <a href="javascript:void(0)">
-                            <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"
-                            title="Download Resume" >
-                        </a>
-                      -->
-          </li>
-
-          <!---->
-
-          <li class="dropup" *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
-            <a href="javascript:void(0)" data-toggle="dropdown"
-              tooltip="Status cannot be moved when profile is in uploaded and Waiting for response." placement="left">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
-                <path
-                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
-              </svg>
-            </a>
-            <ul role="menu" class="dropdown-menu dropdown-menu-right"
-              *ngIf="jobStatus != 'Closed' && jobStatus != 'InActive'">
-              <!-- applied -->
-
-
-            </ul>
-          </li>
-          <li class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
-            <a href="javascript:void(0)" data-toggle="dropdown" tooltip="Processing profile from one stage to another."
+            </li>
+            <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Provide valuable feedback to candidate."
               placement="left">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
-                <path
-                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
-              </svg>
-            </a>
-            <ul role="menu" class="dropdown-menu dropdown-menu-right"
-              *ngIf="jobStatus != 'Closed' && jobStatus != 'InActive'">
-              <!-- applied -->
-              <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
-              <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
-                <div *ngIf="
-                  profile?.ResponseStatusId === 4 ||
-                  profile?.ResponseStatusId === 13 ||
-                  profile?.ResponseStatusId === 14
-                ">
-                  <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
-                  <div *ngIf="
-                    profile?.ResponseStatusId <= 4 &&
+              <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
+              profile?.ProfileId,
+              profile?.Email,
+              profile?.FirstName,
+              profile?.LastName,
+              profile?.UserId,
+              profile?.MatchingPercentage)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                  <path
+                    d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
+                </svg>
+              </a>
+            </li>
+            <!-- <li
+                *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else loc">
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                      <path
+                          d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
+                  </svg>
+                </a>
+            </li>
+            <ng-template #loc> -->
+            <li tooltip="Share the candidate to team members." placement="top">
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
+                (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                  <path
+                    d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
+                </svg>
+              </a>
+            </li>
+            <!-- </ng-template> -->
+            <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
+            <li tooltip="Resume can download here." placement="top">
+              <!--Word doc-->
+              <ng-container>
+                <a href="javascript:void(0)" *ngIf="
+                    (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                       profile?.ResponseStatusId > 0 &&
                       profile?.UserId > 0 &&
                       profile?.IsConfirmed == null;
-                    else otherMenu
+                    else fBlock
                   ">
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" (click)="
-                        OpenScreeningDialog(
-                          profile?.JobResponseId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.UserId,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Screening</p>
-                      </a>
-                    </li>
-                  </div>
-                  <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
-                  <ng-template #otherMenu>
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" (click)="
-                        OpenScreeningDialog(
-                          profile?.JobResponseId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.UserId,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Screening</p>
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" (click)="
-                        OpenShortListedDialog(
-                          profile?.JobResponseId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.UserId,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Shortlist</p>
-                      </a>
-                    </li>
-                  </ng-template>
-                  <!-- </div> -->
-                  <!-- </div> -->
-                  <!--start commented as it is not required now -->
-                  <!-- <div *ngIf="profile?.IsConfirmed === false">
-                                            <li role="presentation" disabled>
-                                                <p role="menuitem" href="javascript:void(0)"> Screening</p>
-                                            </li>
-                                        </div> -->
-                  <!-- end -->
-                  <!-- <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
-                </div>
-                <!-- shortlisted -->
-                <div *ngIf="profile?.ResponseStatusId == 8">
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenShortListedDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Shortlist</p>
-                    </a>
-                  </li>
-                  <ng-container
-                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
-                        (click)="
-                        OpenScheduleInterviewDialog(
-                          profile?.JobResponseId,
-                          profile.UserId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Schedule Interview</p>
-                      </a>
-                    </li>
-                  </ng-container>
-                  <!-- <li role="presentation" class="divider"></li> -->
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenRejectDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Not Interested</p>
-                    </a>
-                  </li>
-                  <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
-                </div>
-                <!-- screening -->
-                <div *ngIf="profile?.ResponseStatusId == 5">
-                  <ng-container
-                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
-                        (click)="
-                        OpenScheduleInterviewDialog(
-                          profile?.JobResponseId,
-                          profile.UserId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Schedule Interview</p>
-                      </a>
-                    </li>
-                  </ng-container>
-                  <!-- <li role="presentation" class="divider"></li> -->
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenRejectDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Not Interested</p>
-                    </a>
-                  </li>
-                </div>
-                <!-- interviewed -->
-                <div *ngIf="profile?.ResponseStatusId == 7">
-                  <ng-container
-                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
-                        (click)="
-                        OpenScheduleInterviewDialog(
-                          profile?.JobResponseId,
-                          profile.UserId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Schedule Interview</p>
-                      </a>
-                    </li>
-                  </ng-container>
-                  <ng-container *ngIf="
-                    customer?.AccessDetails?.UserRoleId != 4 &&
-                    customer?.AccessDetails?.UserRoleId != 8 &&
-                    customer?.AccessDetails?.UserRoleId != 9
-                  ">
-                    <li role="presentation">
-                      <a role="menuitem" href="javascript:void(0)" (click)="
-                        OpenHireDialog(
-                          profile?.JobResponseId,
-                          profile?.ProfileId,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.UserId,
-                          profile?.MatchingPercentage
-                        )
-                      ">
-                        <p class="p6">Hire</p>
-                      </a>
-                    </li>
-                  </ng-container>
-                  <!-- <li role="presentation" class="divider"></li> -->
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenRejectDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Not Interested</p>
-                    </a>
-                  </li>
-                </div>
-                <!-- hired -->
-                <div *ngIf="profile?.ResponseStatusId == 11">
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenWithdrawnDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">WithDrawn</p>
-                    </a>
-                  </li>
-                </div>
-                <div *ngIf="profile?.ResponseStatusId == null">
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenScreeningDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Screening</p>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a role="menuitem" href="javascript:void(0)" (click)="
-                      OpenShortListedDialog(
-                        profile?.JobResponseId,
-                        profile?.ProfileId,
-                        profile?.Email,
-                        profile?.FirstName,
-                        profile?.LastName,
-                        profile?.UserId,
-                        profile?.MatchingPercentage
-                      )
-                    ">
-                      <p class="p6">Shortlist</p>
-                    </a>
-                  </li>
-                </div>
+                  <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                    title="Download Resume" />
+                </a>
+                <ng-template #fBlock>
+                  <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
+                    <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                      title="Download Resume" />
+                  </a>
+                  <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
+                </ng-template>
               </ng-container>
-
-            </ul>
-          </li>
-        </ul>
+  
+              <!--Show if Candidate Resume is in PDF-->
+              <!-- <a href="javascript:void(0)">
+                  <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"
+                  title="Download Resume" >
+              </a>
+              -->
+            </li>
+            <!---->
+          </ul>
+        </div>
+       
       </div>
     </div>
     <ng-container>
@@ -2027,6 +2261,79 @@
             <h6>Feedback Yet to Add</h6>
           </ng-container>
         </div>
+      </div>
+    </div>
+
+     <!--Documents-->
+     <div class="matching-details bg-fff activities__box" id="matchingDetailDocuments-{{ profile.ProfileId }}">
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
+        <div class="bottom1 bottom1-close">Close</div>
+      </a>
+
+      <div class="top__container flex flex-align-center">
+        <h2>Documents</h2>
+        <!-- <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="OpenRejectDialog(  profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)">
+          <i class="fa fa-plus-circle"></i>
+          <div class="bottom1">Add</div>
+        </button> -->
+      </div>
+      <div class="middle__container">
+        <div class="griding-document">
+            <div class="row flex flex-wrap flex-aling-equal">
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-pdf">Icon</span>
+                  <h5>PDF Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word">Icon</span>
+                  <h5>Word Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-notepad">Icon</span>
+                  <h5>Notepad Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word-01">Icon</span>
+                  <h5>Docx File</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-zip">Icon</span>
+                  <h5>Zip</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <ng-container *ngIf="CandidateFeedback.length === 0">
+            <h6>Documents Yet to Add</h6>
+          </ng-container>
+       
       </div>
     </div>
 
