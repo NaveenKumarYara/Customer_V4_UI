@@ -111,12 +111,12 @@
 							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'">
 								<div *ngIf="showMaskedData">{{ details?.profileVal?.Email.charAt(0) }}<img
 										src="../../../../../assets/images/c_name_hide.png" /></div>
-								<div *ngIf="!showMaskedData">{{ details?.profileVal?.Email }}</div>
+								<div *ngIf="!showMaskedData"><a href="mailto:{{ details?.profileVal?.Email }}" target="_blank">{{ details?.profileVal?.Email }}</a></div>
 							</li>
 							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to
 								Provide</li>
 							<li class="mobile">
-								{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}
+								<a href='tel:{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}'  target="_blank">{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}</a>
 							</li>
 							<li class="location">
 								<ng-container *ngIf="details?.profileVal?.CityName != null">
@@ -303,6 +303,7 @@
 								<h4>Skills</h4>
 							</div>
 							<div class="col__container jdv-listing">
+								<img src="../../../../../../assets/images/chart_placeholder.png"  style="width: 100%;margin-bottom: 10px;"/>
 								<!--/.jdv-status-listing-->
 								<div class="jdv-skills">
 									<!-- <h4>Mandatory Skills</h4> -->
@@ -480,6 +481,7 @@
 								<h4>Arytic Check</h4>
 								<div class="row flex flex-wrap flex-align-equal arytic-check">
 									<div class="col-sm-12">
+										<img src="../../../../../../assets/images/arytic-check.png" style="width: 100%;margin-bottom: 10px;"/>
 										<h5>Coming Soon!!</h5>
 									</div>
 								</div>
