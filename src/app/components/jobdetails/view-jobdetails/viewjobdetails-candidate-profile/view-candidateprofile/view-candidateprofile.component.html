@@ -34,10 +34,15 @@
 																	src="../../../../../assets/images/c_name_hide.png" />{{
 																profile.LastName.charAt(0) }}<img
 																	src="../../../../../assets/images/c_name_hide.png" />
+																	<div class="status Hired">Hired</div>
 															</h4>
+															
 														</div>
 														<div *ngIf="!showMaskedData">
-															<h4>{{ profile.FirstName }} {{ profile.LastName }}</h4>
+															<h4>
+																{{ profile.FirstName }} {{ profile.LastName }}
+																<div class="status Hired">Hired</div>
+															</h4>
 														</div>
 														<h5>{{ details?.profileVal?.ProfileTitle }} - {{
 															profileview?.ProfileBasicInfo?.TotalExperience || 0 }} Exp.
@@ -482,7 +487,7 @@
 								<div class="row flex flex-wrap flex-align-equal arytic-check">
 									<div class="col-sm-12">
 										<img src="../../../../../../assets/images/arytic-check.png" style="width: 100%;margin-bottom: 10px;"/>
-										<h5>Coming Soon!!</h5>
+										<!-- <h5>Coming Soon!!</h5> -->
 									</div>
 								</div>
 							</div>

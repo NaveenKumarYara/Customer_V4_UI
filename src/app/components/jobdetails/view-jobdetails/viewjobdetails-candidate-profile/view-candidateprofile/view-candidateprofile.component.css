@@ -5095,6 +5095,7 @@ font-size: 11px;
 .culture-tile p{margin: 0;}
 .culture-tile:hover, .culture-tile h4:hover{background: #447afa;color: #fff;border-color: #447afa;}
 
+.revmap__profile__top .top__listing li.second__child h4 .status {	display: inline-block; vertical-align: middle; position: relative; top: -2px; margin-left: 5px; }
 
 @media only screen and (max-width:1360px) {
 	.detail__view__container .check__box__section p { font-size:12px; }
