@@ -23,6 +23,10 @@
   color: var(--dark-blue-600);
 }
 
+.smart-card .card-profile-image-container h1 button.active {
+  color: var(--green-600);
+}
+
 .smart-card .card-profile-image-container figure {
   width: 130px;
   height: 130px;
@@ -610,6 +614,13 @@ div.dropup > a {
   font-size: 0;
   background: none;
   border: 0;
+  margin: 0 3px;
+}
+
+.certificate-list{
+  border-left: 1px solid #c6c7ca;
+	border-width: medium;
+  padding: 0 0px 0 5px;
 }
 
 .page--job-details .matching-details {
