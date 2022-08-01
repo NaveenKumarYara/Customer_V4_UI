@@ -333,7 +333,7 @@ export class SharedialogComponent implements OnInit{
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
       this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
-      this.profileSharing.ApplicationName = this.data.JobTitle+' ' + ' #' +this.data.jobId + ' ' + '-Arytic';
+      this.profileSharing.ApplicationName = (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic';
       this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
       this.profileSharing.Comments = this.selectedComments;
     }
@@ -342,7 +342,7 @@ export class SharedialogComponent implements OnInit{
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = "0";
       this.profileSharing.ToEmailId = this.EmailId;
-      this.profileSharing.ApplicationName = this.data.JobTitle+' ' + ' #' +this.data.jobId + ' ' + '-Arytic';
+      this.profileSharing.ApplicationName = (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic';
       this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
       this.profileSharing.Comments = this.selectedComments!=null?this.selectedComments:'Please review the profile shared to you';
     }
@@ -364,7 +364,6 @@ export class SharedialogComponent implements OnInit{
         this.arr =this.inviteform.value.inviteEmail.split(',');
         this.arr.forEach(element => {
           this.profileSharing.ToEmailId = element;
-          debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
