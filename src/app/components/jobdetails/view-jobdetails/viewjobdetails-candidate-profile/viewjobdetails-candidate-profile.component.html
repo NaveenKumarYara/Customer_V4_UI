@@ -1023,7 +1023,7 @@
                 <h4>{{i}}</h4>
               </div>
             </ng-container> -->
-           <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 8">
+           <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
             <div class="col-sm-3 col in-progress">
               <h4>Under Review</h4>
             </div>
@@ -1273,7 +1273,7 @@
                   <h4>{{i}}</h4>
                 </div>
               </ng-container> -->
-             <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 8">
+             <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
               <div class="col-sm-2 col in-progress">
                 <span class="icon-smart icon-smart-review"></span>
                 <h4>Submitted</h4>
