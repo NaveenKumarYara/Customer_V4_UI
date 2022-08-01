@@ -1295,7 +1295,7 @@
                 <h4>Hired</h4>
               </div>
              </ng-container>
-             <ng-container *ngIf="profile?.ResponseStatusId === 5">
+             <ng-container *ngIf="profile?.ResponseStatusId === 8">
               <div class="col-sm-2 col active">
                 <span class="icon-smart icon-smart-review"></span>
                 <h4>Submitted</h4>
@@ -1311,6 +1311,32 @@
               <div class="col-sm-2 col">
                 <span class="icon-smart icon-smart-interview"></span>
                 <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+             <ng-container *ngIf="profile?.ResponseStatusId === 5">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
               </div>
             </ng-container>
             <ng-container *ngIf="profile?.ResponseStatusId === 7">
