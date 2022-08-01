@@ -309,7 +309,19 @@
 
   <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <ul>
-    
+      <li tooltip="Share the candidate to team members." placement="left">
+        <button class="active"  data-toggle="modal" data-target="#shareCandidate"
+        (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+          <span class="icon-smart icon-smart-share">Notes</span>
+          <!-- <span class="counter">1</span> -->
+        </button>
+      </li>
+      <li>
+        <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
+          <span class="icon-smart icon-smart-notes">Notes</span>
+          <!-- <span class="counter">1</span> -->
+        </button>
+      </li>
       <!--Old Code-->
       <!-- <li>
         <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
@@ -342,19 +354,8 @@
           <span class="icon-smart icon-smart-feedback">Icon</span>
         </button>
       </li>
-      <li>
-        <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
-          <span class="icon-smart icon-smart-notes">Notes</span>
-          <!-- <span class="counter">1</span> -->
-        </button>
-      </li>
-      <li tooltip="Share the candidate to team members." placement="left">
-        <button class="active"  data-toggle="modal" data-target="#shareCandidate"
-        (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
-          <span class="icon-smart icon-smart-share">Notes</span>
-          <!-- <span class="counter">1</span> -->
-        </button>
-      </li>
+      
+      
     </ul>
   </div>
 
@@ -2316,6 +2317,9 @@
                   <span class="icon icon-pdf">Icon</span>
                   <h5>Resume</h5>
                   <h4>By Arytic</h4>
+                  <button class="btn btn-download">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                  </button>
                 </div>
               </div>
               <!-- <div class="col-sm-6 griding-col">
