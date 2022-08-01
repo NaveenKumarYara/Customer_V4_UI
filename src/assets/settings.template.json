@@ -124,7 +124,7 @@
     "WishlistCount": "${Profile_URL}/api/GetWishlistCount?",
     "GetCustomerUsers": "${Profile_URL}/api/GetCustomerUsers?",
     "AddDepartment": "${Profile_URL}/api/InsertCustomerDepartments",
-    "customerLogin": "${CuMain_URL}/customerlogin",
+    "customerLogin": "${CuMain_URL}/login",
     "customerSignUp": "${CuMain_URL}/signup",
     "ForgotPasswordurl": "${Main_URL}/ForgotPassword",
     "CandidateSignUp": "${Main_URL}/candidatesignup",
