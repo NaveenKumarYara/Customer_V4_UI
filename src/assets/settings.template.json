@@ -126,7 +126,7 @@
     "AddDepartment": "${Profile_URL}/api/InsertCustomerDepartments",
     "customerLogin": "${CuMain_URL}/customerlogin",
     "customerSignUp": "${CuMain_URL}/signup",
-    "ForgotPasswordurl": "${CuMain_URL}/ForgotPassword",
+    "ForgotPasswordurl": "${Main_URL}/ForgotPassword",
     "CandidateSignUp": "${Main_URL}/candidatesignup",
     "NewCandidateSignUp": "${Main_URL}/candidatesignuppublic",
     "CandidateLogin": "${CaMain_URL}/login",

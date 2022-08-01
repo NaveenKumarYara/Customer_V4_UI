@@ -34,14 +34,18 @@
 																	src="../../../../../assets/images/c_name_hide.png" />{{
 																profile.LastName.charAt(0) }}<img
 																	src="../../../../../assets/images/c_name_hide.png" />
-																	<div class="status Hired">Hired</div>
+																	<div class="status {{
+																		profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
+																	  }}">{{profile?.JobStatus}}</div>
 															</h4>
 															
 														</div>
 														<div *ngIf="!showMaskedData">
 															<h4>
-																{{ profile.FirstName }} {{ profile.LastName }}
-																<div class="status Hired">Hired</div>
+																{{ profile?.FirstName }} {{ profile?.LastName }}
+																<div class="status {{
+																	profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
+																  }}">{{profile?.JobStatus}}</div>
 															</h4>
 														</div>
 														<h5>{{ details?.profileVal?.ProfileTitle }} - {{
