@@ -33,18 +33,44 @@ export class ViewCandidateprofileComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
+  setActive: number = null;
+  selectedSlice: number = -1;
+  BigStatementTitle: string;
+  BigStatementDesc: string;
   email: any;
   showMenu: boolean;
   jobStatus: any;
+  graphLabel1: any[] = [];
+  graphLabel2: any[] = [];
+  graphLabel3: any[] = [];
+  graphLabel4: any[] = [];
+  graphLabel5: any[] = [];
+  graphLabel6: any[] = [];
+  graphData1: any[] = [];
+  graphData2: any[] = [];
+  graphData3: any[] = [];
+  graphData4: any[] = [];
+  graphData5: any[] = [];
+  graphData6: any[] = [];
+  @ViewChild('testChart7') testChart7: ElementRef;
+  @ViewChild('testChart2') testChart2: ElementRef;
+  @ViewChild('testChart3') testChart3: ElementRef;
+  @ViewChild('testChart4') testChart4: ElementRef;
+  @ViewChild('testChart5') testChart5: ElementRef;
+  @ViewChild('testChart6') testChart6: ElementRef;
   selectedSkills: any = [];
   skillfitcheck: any = [];
   showShortDesciption = true;
   checkPersonality: any = [];
+  testGroupDesc: TestGroupDesc[] = [];
   CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
   aboutContent: any;
   FitDetails: any;
+  semicircle: boolean = false;
+  radius: number = 125;
+  graphLabelList: LegendList[] = [];
   MatchingPercentage: any;
   profileId: any;
   fileType = new Resume();
@@ -66,7 +92,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   };
   graphData: any[] = [];
   graphLabel: any[] = [];
-  graphLabelList: LegendList[] = [];
+  graphLabelList1: LegendList[] = [];
   @ViewChild("testChart") testChart: ElementRef;
   @ViewChild("testChart1") testChart1: ElementRef;
   skilllist: any = [];
@@ -366,6 +392,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     return bytes.buffer;
   }
   ngOnInit() {
+    this.getTestGroupDescription();
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
@@ -547,6 +574,442 @@ export class ViewCandidateprofileComponent implements OnInit {
     );
   }
 
+
+  parsedText(text) {
+    const dom = new DOMParser().parseFromString(
+    '<!doctype html><body>' + text,
+    'text/html');
+    const decodedString = dom.body.textContent;
+    return decodedString;
+  }
+
+  showSubGraph(index, groupId, percentage) {
+    this.setActive = index;
+    this.selectedSlice = index;
+    // console.log("graphLabelList--", this.graphLabelList);
+    var data = this.testGroupDesc.find(a => a.questionnaireGroupId == groupId && a.minPercentage <= percentage && a.maxPercentage >= percentage)
+    this.BigStatementTitle = data.code;
+    this.BigStatementDesc = data.description;
+    this.getGraph();
+  }
+
+  @ViewChild('testChart8') testChart8: ElementRef;
+  getGraph() {
+    var mail = this.profile.Email;
+
+
+    var responseList = [];
+
+
+
+    this._service.GetService('QuestionAPI/api/QuestionnaireResponses?mail=', mail + "&type=Personality"  + " " + "Test")
+      .subscribe(
+        data => {
+          var userResponse = data;
+          console.log("data");
+          console.log(data);
+
+        
+
+          if (this.selectedSlice == -1) {
+            this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetQuestionnaireGroupResult?mail=', mail)
+              .subscribe(
+                data => {
+                  this.graphData6 = [];
+                  this.graphLabel6 = [];
+                  var userResponse = data;
+                  this.graphLabelList1 = [];
+
+                  var count = 0;
+                  if (this.testChart8) {
+                    var testChartCanvas = this.testChart8.nativeElement.getContext('2d');
+                    userResponse.forEach((a, index) => {
+                      this.graphData6.push(a.response.toFixed(2));
+                      this.graphLabel6.push(a.groupName);
+                      this.graphLabelList1.push(new LegendList());
+                      this.graphLabelList1[index].GroupLabel = (a.groupName);
+                      this.graphLabelList1[index].GroupId = (a.questionnaireGroupId);
+                      this.graphLabelList1[index].GroupPer = (a.response.toFixed(2));
+                    });
+
+                    this.graphLabelList1[0].GroupColor = ('rgba(101,105, 169, 1)');
+                    this.graphLabelList1[1].GroupColor = ('rgba(63, 184, 179, 1)');
+                    this.graphLabelList1[2].GroupColor = ('rgba(236, 136, 133, 1)');
+                    this.graphLabelList1[3].GroupColor = ('rgba(235, 189, 78, 1)');
+                    this.graphLabelList1[4].GroupColor = ('rgba(100, 164, 137, 1)');
+
+                    var weekChart = new Chart(testChartCanvas, {
+                      type: 'doughnut',
+                      options: {
+                        title: {
+                          display: true,
+                          text: "Personality Test Chart"
+                        },
+                        legend: {
+                          display: false,
+                        },
+                      },
+                      data: {
+                        labels: this.graphLabel6,
+                        render: 'labels',
+                        datasets: [{
+                          labels: [
+                            'Red',
+                            'Yellow',
+                            'Blue',
+                            'pink',
+                            'black'
+                          ],
+                          label: '# of Votes',
+                          data: this.graphData6,
+                          backgroundColor: [
+                            'rgba(101,105, 169, 1)',
+                            'rgba(63, 184, 179, 1)',
+                            'rgba(236, 136, 133, 1)',
+                            'rgba(235, 189, 78, 1)',
+                            'rgba(100, 164, 137, 1)'
+                          ],
+
+                        }
+                        ]
+                      }
+                    });
+                  }
+                });
+          }
+        });
+
+    this._service.GetService('QuestionAPI/api/QuestionnaireResult?mail=', mail)
+      .subscribe(
+        data => {
+          this.graphData = [];
+          var userResponsedata = data;
+
+          var count = 0;
+
+
+          if (this.testChart7) {
+
+            var testChart7Canvas = this.testChart7.nativeElement.getContext('2d');
+            this.graphLabel1 = [];
+            this.graphData1 = [];
+            userResponsedata[0].questionnaireResultList.forEach(b => {
+
+              this.graphData1.push(b.response);
+              this.graphLabel1.push(b.groupName);
+            })
+            var weekChart = new Chart(testChart7Canvas, {
+              type: 'bar',
+              options: {
+
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                    }
+                  }]
+                },
+                title: {
+                  display: true,
+                  text: userResponsedata[0].groupName
+                },
+                legend: {
+                  display: false,
+                },
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    max: 100,
+                    min: 0,
+                    stepSize: 10
+                  }
+                }]
+              },
+              data: {
+                labels: this.graphLabel1,
+                datasets: [{
+                  labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                  ],
+                  data: this.graphData1,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                }
+                ]
+              }
+            });
+          }
+
+          if (this.testChart2) {
+
+            var testChart2Canvas = this.testChart2.nativeElement.getContext('2d');
+            this.graphLabel2 = [];
+            this.graphData2 = [];
+            userResponsedata[1].questionnaireResultList.forEach(a => {
+
+              this.graphData2.push(a.response);
+              this.graphLabel2.push(a.groupName);
+            })
+            var weekChart = new Chart(testChart2Canvas, {
+              type: 'bar',
+              options: {
+                title: {
+                  display: true,
+                  text: userResponsedata[1].groupName
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                    }
+                  }]
+                },
+                legend: {
+                  display: false,
+                },
+
+              },
+              data: {
+                labels: this.graphLabel2,
+                datasets: [{
+                  labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                  ],
+                  data: this.graphData2,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                }
+                ]
+              }
+            });
+          }
+
+          if (this.testChart3) {
+
+            var testChart3Canvas = this.testChart3.nativeElement.getContext('2d');
+            this.graphLabel3 = [];
+            this.graphData3 = [];
+            userResponsedata[2].questionnaireResultList.forEach(a => {
+
+              this.graphData3.push(a.response);
+              this.graphLabel3.push(a.groupName);
+            })
+            var weekChart = new Chart(testChart3Canvas, {
+              type: 'bar',
+              options: {
+                title: {
+                  display: true,
+                  text: userResponsedata[2].groupName
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                    }
+                  }]
+                },
+                legend: {
+                  display: false,
+                },
+
+              },
+              data: {
+                labels: this.graphLabel3,
+                datasets: [{
+                  labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                  ],
+                  data: this.graphData3,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                }
+                ]
+              }
+            });
+          }
+
+          if (this.testChart4) {
+
+            var testChart4Canvas = this.testChart4.nativeElement.getContext('2d');
+            this.graphLabel4 = [];
+            this.graphData4 = [];
+            userResponsedata[3].questionnaireResultList.forEach(a => {
+
+              this.graphData4.push(a.response);
+              this.graphLabel4.push(a.groupName);
+            })
+            var weekChart = new Chart(testChart4Canvas, {
+              type: 'bar',
+              options: {
+                title: {
+                  display: true,
+                  text: userResponsedata[3].groupName
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                    }
+                  }]
+                },
+                legend: {
+                  display: false,
+                },
+
+              },
+              data: {
+                labels: this.graphLabel4,
+                datasets: [{
+                  labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                  ],
+                  data: this.graphData4,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                }
+                ]
+              }
+            });
+          }
+          if (this.testChart5) {
+
+            var testChart5Canvas = this.testChart5.nativeElement.getContext('2d');
+            this.graphLabel5 = [];
+            this.graphData5 = [];
+            userResponsedata[4].questionnaireResultList.forEach(a => {
+
+              this.graphData5.push(a.response);
+              this.graphLabel5.push(a.groupName);
+            })
+            var weekChart = new Chart(testChart5Canvas, {
+              type: 'bar',
+              options: {
+                title: {
+                  display: true,
+                  text: userResponsedata[4].groupName
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                    }
+                  }]
+                },
+                legend: {
+                  display: false,
+                },
+
+              },
+              data: {
+                labels: this.graphLabel5,
+                datasets: [{
+                  labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                  ],
+                  data: this.graphData5,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(95, 102, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(235, 149, 164, 0.7)'
+                  ],
+                }
+                ]
+              }
+            });
+          }
+
+        });
+
+  }
+
   GetCandidatePersonalityResult() {
     this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
       this.email = email.UserName;
@@ -554,6 +1017,8 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.checkPersonality = data;
         if (data.length > 0) {
           data.forEach((a) => {
+            this.selectedSlice = -1;
+            this.getGraph();
             this.PersonalityFit.labels.push(a.groupName);
             this.PersonalityFit.datasets[0].data.push(a.response.toFixed(2));
             this.PersonalityFitLabels.labels.push(a.groupName);
@@ -562,6 +1027,28 @@ export class ViewCandidateprofileComponent implements OnInit {
         }
       });
     });
+  }
+
+  getOverlayStyle() {
+    let isSemi = this.semicircle;
+    let transform = (isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
+
+    return {
+      'top': isSemi ? 'auto' : '50%',
+      'bottom': isSemi ? '5%' : 'auto',
+      'left': '50%',
+      'transform': transform,
+      '-moz-transform': transform,
+      '-webkit-transform': transform,
+      'font-size': this.radius / 3.5 + 'px'
+    };
+  }
+
+  getTestGroupDescription() {
+    this._service.GetServiceCall('QuestionAPI/api/QuestionnaireGroup/GetTestGroupDescription').subscribe(data => {
+      this.testGroupDesc = data;
+      console.log("getTestGroupDescription----", this.testGroupDesc);
+    })
   }
 
   GetCandidateCultureResult() {
@@ -959,6 +1446,7 @@ export class addon {
 
 export class LegendList {
   GroupLabel: string;
+  GroupId:any;
   GroupColor: string;
   GroupPer: string;
   groupName: any;
@@ -1033,4 +1521,14 @@ export class RequestRefernce {
   public FromEmail: string;
   public CompanyName: string;
   public Comment: string;
+}
+
+
+export class TestGroupDesc {
+  id: number;
+  questionnaireGroupId: number;
+  code: string;
+  description: string;
+  minPercentage: number;
+  maxPercentage: number;
 }
