@@ -587,7 +587,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.setActive = index;
     this.selectedSlice = index;
     // console.log("graphLabelList--", this.graphLabelList);
-    var data = this.testGroupDesc.find(a => a.questionnaireGroupId == groupId && a.minPercentage <= percentage && a.maxPercentage >= percentage)
+    var data = this.testGroupDesc.find(a => a.questionnaireGroupId == groupId && a.minPercentage <= percentage )
     this.BigStatementTitle = data.code;
     this.BigStatementDesc = data.description;
     this.getGraph();

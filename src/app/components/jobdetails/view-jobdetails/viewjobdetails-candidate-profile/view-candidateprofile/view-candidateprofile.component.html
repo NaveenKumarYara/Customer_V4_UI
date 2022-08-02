@@ -758,8 +758,17 @@
 												  <div class="text-center whoami" *ngIf="BigStatementTitle!=null&&BigStatementDesc!=null">
 													<h4><span>Who Am I</span></h4>
 													<div>
-													  <p>Person places emphasis on accomplishing results</p>
-													  <p>Title - > {{BigStatementTitle}} Desc-> {{BigStatementDesc}}</p>
+													
+													  <span>
+														<p> <b>
+															Title - > 
+														</b>{{BigStatementTitle}} </p>
+													  </span>
+													  <span>
+														<p> <b>Desc-> </b> 
+															 {{BigStatementDesc}} </p>
+													  </span>
+													 
 													</div>
 												  </div>
 												  <div class="bar-chart-container" *ngIf="selectedSlice == 0">
