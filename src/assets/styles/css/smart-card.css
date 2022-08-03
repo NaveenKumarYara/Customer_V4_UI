@@ -16,6 +16,14 @@
   max-width: 90%;
 }
 
+.page--job-details .smart-card .title {
+  display: block;
+  width: 75%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .smart-card .card-profile-image-container h1 button {
   padding: 0;
   border: 0;
