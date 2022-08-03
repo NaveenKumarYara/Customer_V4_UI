@@ -794,3 +794,8 @@
 .interview-detail-section .horizontalTabs .nav-tabs > li.active > a {
   border-radius: 8px 8px 0 0;
 }
+
+.inteview-schedule-section .horizontalTabs .tab-content {
+  height: 75vh;
+  overflow-y: auto;
+}

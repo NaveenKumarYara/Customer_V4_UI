@@ -9136,6 +9136,11 @@ div .status.Invited {
 .btn.btn-cross:not(:disabled):not(.disabled).active, .btn.btn-cross:not(:disabled):not(.disabled):active { background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 
 .slider-col { position: relative; padding: 0 30px; width: 516px; flex: 0 0 516px; max-width: 516px; }
+.slider-col .skills-carousel-Changed { margin: 30px 0 10px; }
+
+.smart-card .skills-carousel-Changed a.right-arrow, .smart-card .skills-carousel-Changed a.left-arrow {
+    bottom: 8rem !important;
+}
 
 .carousel-control-prev,.carousel-control-next {
   width: 26px;
