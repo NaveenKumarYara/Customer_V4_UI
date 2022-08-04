@@ -14952,6 +14952,17 @@ a.ui-button:active,
 
 .page--job-details .title a {
 	color: #41536E;
+	height: 23px;
+    width: 160px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    margin: 0 1px 0 5px;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .page--job-details .title a:hover {
