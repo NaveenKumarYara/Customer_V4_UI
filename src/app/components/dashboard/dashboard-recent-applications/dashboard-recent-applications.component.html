@@ -84,6 +84,7 @@
                 </div>
                 <!---->
                 <div class="candidate-info">
+                    <ng-container  *ngIf="recentapplicants?.TopSkills?.length>0">
                     <ng-container *ngFor="let sk of recentapplicants?.TopSkills| removeduplicates ;let i=index">
                         <div class="skills-section col-md-4 col-xs-4" *ngIf="i<3">
                             <ng-container  *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseSkill">
@@ -106,6 +107,14 @@
                                 </progress-bar>   -->
                         </div>
                         <div class="v-divider"  *ngIf="i<3"></div>
+                    </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="recentapplicants?.TopSkills?.length===0" >
+                        <div class="domains">
+                            <label>Skills :</label>
+                            <span>Not Mentioned.</span>
+                        </div>
+                       
                     </ng-container>
 
 
