@@ -13,7 +13,7 @@ import { AppService } from '../../../../../app.service';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
-import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbDateParserFormatter, NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ManageJobService } from '../../../managejobs.service';
 import {getDetails} from '../../../models/getDetails';
 import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
@@ -29,13 +29,16 @@ import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { Notes } from '../../../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
 import { ApiService } from '../../../../../shared/services/api.service';
 import { element } from 'protractor';
+import { NgbDateFRParserFormatter } from '../../../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/dateformat';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
 @Component({
   selector: 'app-update-interview',
   templateUrl: './updateInterview.component.html',
-  styleUrls: ['./updateInterview.component.css']
+  styleUrls: ['./updateInterview.component.css'],
+  providers: [ApiService,  {  provide: NgbDateParserFormatter,
+    useClass: NgbDateFRParserFormatter}]
 })
 export class UpdateInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;

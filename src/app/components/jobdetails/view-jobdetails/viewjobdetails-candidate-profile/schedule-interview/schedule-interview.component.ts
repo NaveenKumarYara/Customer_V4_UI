@@ -14,7 +14,7 @@ import { ResetComponent } from '../../../../ResetPassword/resetpassword.componen
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
-import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbDateParserFormatter, NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
@@ -22,6 +22,7 @@ import {Options} from '../schedule-interview/options';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../../shared/services/api.service';
+import { NgbDateFRParserFormatter} from './dateformat';
 declare var $: any;
 const URL = 'http://localhost:4300/fileupload/';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
@@ -33,7 +34,8 @@ export interface DialogData {
   selector: 'app-schedule-interview',
   templateUrl: './schedule-interview.component.html',
   styleUrls: ['./schedule-interview.component.css'],
-  providers: [ApiService]
+  providers: [ApiService,  {  provide: NgbDateParserFormatter,
+    useClass: NgbDateFRParserFormatter}]
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;
