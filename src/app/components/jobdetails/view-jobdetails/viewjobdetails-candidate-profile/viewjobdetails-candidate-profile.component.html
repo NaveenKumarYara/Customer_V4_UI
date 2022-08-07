@@ -555,9 +555,10 @@
               
             </div>
             <ng-template #firstelseBlock>
-              <a href="javascript:void(0)"
+              <a href="javascript:void(0)" class="profileName" title="{{ profile.FirstName  + ' ' + profile.LastName }}"
                 (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
-                {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }} 
+                <!-- {{ profile.FirstName ? add3Dots(profile.FirstName, 8) : "" }} {{ profile.LastName ? add3Dots(profile.LastName, 5) : "" }} -->
+                 {{ profile.FirstName }} {{ profile.LastName }} 
               </a>
               <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="top">       
                 <i class="fa fa-bookmark"></i>

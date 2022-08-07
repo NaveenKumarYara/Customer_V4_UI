@@ -24,6 +24,11 @@
   white-space: nowrap;
 }
 
+.smart-card .card-profile-image-container h1.title a {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
 .smart-card .card-profile-image-container h1 button {
   padding: 0;
   border: 0;

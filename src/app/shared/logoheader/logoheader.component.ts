@@ -24,6 +24,7 @@ export class LogoHeaderComponent implements OnInit {
   addPricing = new payment();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
+  menuFixed:boolean = false;
   constructor( private appService: AppService,  private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.toastr.setRootViewContainerRef(_vcr);
@@ -160,6 +161,11 @@ GetSubscriptionDetails(sid)
     localStorage.clear();
     this.router.navigateByUrl('/login' , { replaceUrl: true });
     //window.location.href = environment.customerLogin;
+}
+
+expandMenu() {
+  this.menuFixed = !this.menuFixed;
+  console.log('hi');
 }
 
 ngOnInit()
