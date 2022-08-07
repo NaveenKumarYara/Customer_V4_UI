@@ -18,6 +18,7 @@
 @import './assets/styles/css/upload-resume.css';
 @import './assets/styles/css/form-custom.css';
 @import './assets/styles/css/smart-card.css';
+@import './assets/styles/css/maimenu.css';
 
 :root {
   --white: #fff;
@@ -14952,6 +14953,17 @@ a.ui-button:active,
 
 .page--job-details .title a {
 	color: #41536E;
+	height: 23px;
+    width: 160px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    margin: 0 1px 0 5px;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .page--job-details .title a:hover {
@@ -18963,7 +18975,7 @@ a.ui-button:active,
 }
 
 .page--dashboard .statistics.card .stats {
-	width: 185px;
+	width: 137px;
 	float: left;
 	padding-right: 1rem;
 }
@@ -31453,6 +31465,23 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 @media only screen and (max-width:1440px) {
 	.custom__user__option a {
 		padding: 0 5px !important;
+	}
+
+	.col-md-10.custom-filter-post-a-job {
+		width: 75%;
+	}
+
+	.col-md-10.custom-filter-post-a-job .manage-searchjobs {
+		justify-content: flex-start;
+	}
+
+	.col-md-2.custom-filter-navigation {
+		width: 25%;
+		display: flex;
+	}
+
+	.col-md-2.custom-filter-navigation app-manage-filterjobs {
+		margin-left: auto;
 	}
 }
 

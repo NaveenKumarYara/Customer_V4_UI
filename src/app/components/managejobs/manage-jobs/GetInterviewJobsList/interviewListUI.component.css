@@ -431,6 +431,34 @@
   top: 20px;
 }
 
+.btn.btn-phone {
+  font-size: 0;
+  border: 0;
+  padding: 0;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -15px -94px no-repeat var(--green-900);
+  background-size: 600px auto;
+  width: 37px;
+  height: 34px;
+  border-radius: 6px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.btn.btn-in-person {
+  font-size: 0;
+  border: 0;
+  padding: 0;
+  background: url(../../../../../assets/images/interview-scheduled-sprites.png) -311px -16px no-repeat var(--green-900);
+  background-size: 600px auto;
+  width: 37px;
+  height: 34px;
+  border-radius: 6px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
 .ml-auto {
   margin-left: auto;
 }
