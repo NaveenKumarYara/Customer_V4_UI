@@ -168,8 +168,14 @@ expandMenu() {
   console.log('hi');
 }
 
-ngOnInit()
-{
+ngOnInit() {
+    $(document).on('click touchend', function(e){
+      if (!$(".mainmenu-fixed").is(e.target) && $(".mainmenu-fixed").has(e.target).length==0)
+        {
+        $('.mainmenu-fixed').removeClass('open');
+        $('#nav-icon1').removeClass('open');
+      }
+    });
   
     if(localStorage.getItem('jobactive')!=null&&localStorage.getItem('jobactive')!=undefined)
     {
@@ -183,7 +189,8 @@ ngOnInit()
    //this.appService.resetJob();
     //this.active=false;
     //this.jobsactive=false;
-}
+  }
+  
 }
 
 
