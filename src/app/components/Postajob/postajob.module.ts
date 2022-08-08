@@ -50,11 +50,12 @@ import { ImmigrationComponent } from "./Createajob/Step2/immi.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobdescription.component';
 import { JobcardComponent } from './Createajob/Step4/jobcard/jobcard.component';
-import { MatDialogModule } from "@angular/material";
+import { MatButtonModule, MatDialogModule, MatInputModule } from "@angular/material";
 import { ConverttoMonthPipe } from "./Createajob/Step4/months.pipe";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
+import { FileUploadModule } from "ng2-file-upload";
 @NgModule({
   imports: [
     CommonModule,
@@ -63,6 +64,9 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
     ReactiveFormsModule,
     CKEditorModule,
     MatDialogModule,
+    FileUploadModule,
+    MatInputModule,
+    MatButtonModule,
     AngularDateTimePickerModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgSelectModule,

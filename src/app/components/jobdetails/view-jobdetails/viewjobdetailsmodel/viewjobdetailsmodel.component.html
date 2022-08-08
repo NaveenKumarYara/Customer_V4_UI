@@ -1126,46 +1126,25 @@
             <div class="griding-document">
               <h4>Documents</h4>
               <div class="row flex flex-wrap flex-aling-equal">
-                <div class="col-sm-4 griding-col">
-                  <div class="col-container">
-                    <button class="btn btn-close">Close</button>
-                    <span class="icon icon-pdf">Icon</span>
-                    <h5>PDF Document</h5>
-                    <h4>By Aksh Klm</h4>
+                <ng-container *ngIf="JobDocuments?.length === 0">
+                  <div class="col-sm-4 griding-col">
+                    <div class="col-container">
+                      <h5>No Attachments added.</h5>
+                      </div>
+                      </div>
+                </ng-container>
+                <ng-container *ngIf="JobDocuments?.length>0">
+                  <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
+                    <div class="col-container" (click)="DownloadDocument(d?.DocName)" >
+                      <!-- <button class="btn btn-close">Close</button> -->
+                      <span class="icon icon-pdf">Icon</span>
+                      <h5>{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
+                      <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-4 griding-col">
-                  <div class="col-container">
-                    <button class="btn btn-close">Close</button>
-                    <span class="icon icon-word">Icon</span>
-                    <h5>Word Document</h5>
-                    <h4>By Aksh Klm</h4>
-                  </div>
-                </div>
-                <div class="col-sm-4 griding-col">
-                  <div class="col-container">
-                    <button class="btn btn-close">Close</button>
-                    <span class="icon icon-notepad">Icon</span>
-                    <h5>Notepad Document</h5>
-                    <h4>By Aksh Klm</h4>
-                  </div>
-                </div>
-                <div class="col-sm-4 griding-col">
-                  <div class="col-container">
-                    <button class="btn btn-close">Close</button>
-                    <span class="icon icon-word-01">Icon</span>
-                    <h5>Docx File</h5>
-                    <h4>By Aksh Klm</h4>
-                  </div>
-                </div>
-                <div class="col-sm-4 griding-col">
-                  <div class="col-container">
-                    <button class="btn btn-close">Close</button>
-                    <span class="icon icon-zip">Icon</span>
-                    <h5>Zip</h5>
-                    <h4>By Aksh Klm</h4>
-                  </div>
-                </div>
+                </ng-container>
+              
+          
               </div>
             </div>
           </div>

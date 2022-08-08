@@ -1,77 +1,146 @@
 <div class="documents-container">
-  <div class="row flex flex-wrap">
-    <div class="col-sm-5 left-sidebar-col">
-      <app-left-sidebar></app-left-sidebar>
+  <div class="upload__resume__container">
+    <div class="top__container__before flex flex-wrap flex-align-center">
+      <h3 mat-dialog-title class="modal-title">Job Attachments</h3>
+  
+      <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+  
     </div>
-    <div class="col-sm-7 middle-col">
-      <app-filter-document></app-filter-document>
-      <div class="col-container">
-        <h4>Folders</h4>
-        <div class="folder-listing">
-          <div class="row">
-            <div class="col-sm-4 folder-col">
-              <div class="col-container">
-                <span class="icon icon-folder"></span>
-                Base Elements
+    <mat-dialog-content class="mat-typography vh-100 s-none">
+      <!--Tab View-->
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ptb-24">
+        <div class="card manage-uploads manage-upload-custom clearfix">
+      
+          <div class="tab-content">
+            <div id="uploadProfiles" class="tab-pane fade active in">
+              <div class="upload-border">
+                <div class="flex_items_center pointer" (click)="browse.click()">
+                  <div class="d-block">
+                    <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+                    <div class="file">
+                      <input  type="file" ng2FileSelect [uploader]="uploader" #browse 
+                        (click)="browse.value = null" value="" multiple (change)="onFileSelected($event)">
+                    </div>
+                    <div>Browse & Upload</div>
+                    <h5>Upload the documents required for these Job position. </h5>
+                    <!-- <h6>We recommended to use Microsoft Word.</h6> -->
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-4 folder-col recent-col">
-              <div class="col-container">
-                <span class="icon icon-folder"></span>
-                Base Elements
+  
+              <!-- <div class="file btn btn-lg btn-primary"> -->
+              <!-- Browse & Upload -->
+              <!-- <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)"> -->
+              <!-- </div> -->
+  
+  
+              <div class="d-flex justify-content-between mb-3 w-100">
+                <div class="p-2 upload-input">
+                  <!-- <label class="radio checkbox">
+                    <input type="checkbox" class="radio-input" checked [(ngModel)]="emailCheck">
+                    <span class="radio-btn"></span>
+                    <span>Notify</span>
+                  </label>
+                  <label class="radio checkbox">
+                    <input type="checkbox" [(ngModel)]="isPublic" class="radio-input">
+                    <span class="radio-btn l11"></span>
+                    <span>Make it Public</span>
+                  </label> -->
+                </div>
+  
+                <div class="p-2 upload-alerts">
+                  <a href="javascript:void(0)">
+                    <span class="alert-success">
+                      Uploaded
+                      <span class="badge badge-light">{{uploader.queue.length}}</span>
+                    </span>
+                  </a>
+                  <!-- <a href="javascript:void(0)">
+                    <span class="alert-warning">
+                      Issues
+                      <span class="badge badge-light">{{issueCount}}</span>
+                    </span>
+                  </a> -->
+                </div>
               </div>
-            </div>
-            <div class="col-sm-4 folder-col">
-              <div class="col-container">
-                <span class="icon icon-folder"></span>
-                Inspiration
+              <div>
+                <table class="table custom-upload-profile-table table-hover table-bordered table-striped"
+                  *ngIf="selectedFiles.length>0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Size</th>
+                      <th *ngIf="!isProcessing">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of uploader.queue;let i=index">
+                      <td>
+                        {{ item?.file?.name }}
+                      </td>
+                      <td>
+                        {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                      </td>
+                      <!-- <td *ngIf="uploader.options.isHTML5">
+                      <div class="progress" style="margin-bottom: 0;">
+                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                          <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                        </div>
+                      </div>
+                    </td> -->
+                      <td *ngIf="!isProcessing">
+                        <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DeleteRecord(i)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                      </td>
+                      <!-- <td>
+                      <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="processResumes()">
+                        <span class="fa fa-send-o"></span>
+                      </button>
+                    </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-primary pull-right"
+                  *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<6"
+                  (click)="processResumes()">Save</button>
+                <button class="btn btn-primary pull-right"
+                  *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<6">
+                  <span>Saving...</span>
+                </button>
+                <!-- <span *ngIf="uploader.queue.length>=3">
+                  <h5 style="color: red
+                ;" class="pull-right"> *Please upload maximum of 1 profiles </h5>
+                </span> -->
               </div>
-            </div>
-            <div class="col-sm-4 folder-col">
-              <div class="col-container">
-                <span class="icon icon-folder"></span>
-                New Folder
-              </div>
+     
+            
+  
+  
+  
+              
+              <!--Empty View-->
+              <div class="clearfix">&nbsp;</div>
+              <!-- <div class="jumbotron">
+                  <p class="lead text-center">Uploaded Profiles will be shown here!</p>
+                </div> -->
+              <alert></alert>
+              <!-- <h4>Uploaded Profiles will be shown here!</h4> -->
+              <!--End of Empty View-->
             </div>
           </div>
+  
+          <!-- .tab-content -->
         </div>
-        <div class="file-listing">
-          <div class="row">
-            <div class="col-sm-3 col">
-              <div class="col-container">
-                <div class="info-box">
-                  <span class="icon icon-doc">Icon</span>
-                  <h4>Koot_Proposal</h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3 col">
-              <div class="col-container">
-                <div class="info-box">
-                  <span class="icon icon-pdf">Icon</span>
-                  <h4>Koot_Projects</h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3 col">
-              <div class="col-container">
-                <div class="info-box">
-                  <span class="icon icon-psd">Icon</span>
-                  <h4>Koot_Desktop</h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3 col">
-              <div class="col-container">
-                <div class="info-box">
-                  <span class="icon icon-ppt">Icon</span>
-                  <h4>Koot_PPT</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- .card.statistics -->
       </div>
-    </div>
+  
+    
+      <!--Tab View End-->
+    </mat-dialog-content>
+    <!--END-->
   </div>
 </div>

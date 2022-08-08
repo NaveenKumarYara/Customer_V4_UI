@@ -18,6 +18,8 @@ import { JobskillsetComponent } from '../Step2/Jobskillset.component';
 import { StepsComponent } from '../steps.component';
 import swal from "sweetalert2";
 import { ImmigrationComponent } from './immi.component';
+import { MatDialog } from '@angular/material';
+import { DocumentManagerComponent } from '../../document-manager/document-manager.component';
 declare var $: any;
 declare var jQuery: any;
 
@@ -88,7 +90,7 @@ isDrafted: boolean;
   // pjEducationDetailsList: any = [];
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,private dialog: MatDialog,
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
@@ -145,6 +147,24 @@ isDrafted: boolean;
       this.departments = data; // And he have data here too!
     });
   }
+
+  documentManagerDialog() {
+    const res = localStorage.getItem('jobId');
+    let JID  = res != null ? parseInt(res, 10) : 0;
+    this.dialog.open(DocumentManagerComponent, {
+      width: "80vw",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        jobId: JID
+      },
+      panelClass: 'candiateModalPop'
+    });
+  }
+
+  
+
+
   ngOnInit() {
     this.alertService.clear();
     this.JobIds = this.appService.JobIds;

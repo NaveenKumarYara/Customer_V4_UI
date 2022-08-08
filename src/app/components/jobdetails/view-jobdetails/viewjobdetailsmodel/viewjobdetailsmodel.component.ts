@@ -16,6 +16,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
+import * as FileSaver from "file-saver";
 const html2canvas: any = _html2canvas;
 var htmlToImage = require('html-to-image');
 declare var $: any;
@@ -38,7 +39,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  jobid: number;
  Education:any;
  srlist:any=[];
-
+ JobDocuments:any=[];
  Employement:any;
  Reference:any;
  WFH:any;
@@ -98,6 +99,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       this.jobdetailscustomer = res;
       this.GetInterviewStatus(this.jobid);
       this.GetJobStatus(this.jobid);
+      this.PopulateJobDocuments();
       this.check(this.jobid);
       let params = new HttpParams();
       params = params.append('jobId', this.jobid.toString());
@@ -166,6 +168,75 @@ PopulateJobCompleteness() {
   });
 
 }
+
+PopulateJobDocuments() {
+  this._service.GetService('ProfileAPI/api/GetJobDocuments?jobId=', this.jobid)
+ .subscribe(
+   r => {
+    this.JobDocuments = r;
+  });
+
+}
+
+async getFileFromUrl(url, name, defaultType = 'application/pdf'){
+  const response = await fetch(url);
+  const data = await response.blob();
+  return new File([data], name, {
+    type: data.type || defaultType,
+  });
+}
+
+DownloadDocument(d)
+{
+  let fileDat = this.JobDocuments.find(x=>x.DocName === d);
+  let fileExt:any;
+  
+  this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
+    let exp = d.split("aryticDP")[0];
+    fileExt = exp.split(".").pop();
+    let Name = exp.split(".")[0];
+    this.toastr.success("Downloading!", "Success!");
+    setTimeout(() => {
+      this.toastr.dismissToast;
+    }, 3000);
+
+    if (fileExt == "pdf") {
+      let byteArr = this.base64ToArrayBuffer(fileData);
+      let blob = new Blob([byteArr], { type: "application/pdf" });
+      FileSaver.saveAs(blob, Name);
+    }
+    if (fileExt == "png" || fileExt == "jpeg") {
+      let byteArr = this.base64ToArrayBuffer(fileData);
+      let blob = new Blob([byteArr], { type: "application/image" });
+      FileSaver.saveAs(blob, Name);
+    } else if (fileExt == "doc" || fileExt == "docx") {
+      let byteArr = this.base64ToArrayBuffer(fileData);
+      let blob = new Blob([byteArr], { type: "application/pdf" });
+      FileSaver.saveAs(blob, exp);
+    }
+  });
+ 
+
+
+   
+  
+  
+ 
+
+}
+
+
+
+base64ToArrayBuffer(base64) {
+  const binary_string = window.atob(base64);
+  const len = binary_string.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binary_string.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
 PopulateJobComments () {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
     this.jobComments = res;
@@ -217,6 +288,22 @@ check(val)
     
     return new File([u8arr], filename, {type:mime});
 }
+
+dataURLtoFile1(dataurl, filename) {
+ 
+  var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), 
+      n = bstr.length, 
+      u8arr = new Uint8Array(n);
+      
+  while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+  }
+  
+  return new File([u8arr], filename, {type:mime});
+}
+
 
 
 
