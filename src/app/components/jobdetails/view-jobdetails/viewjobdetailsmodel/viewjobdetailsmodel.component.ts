@@ -186,6 +186,20 @@ async getFileFromUrl(url, name, defaultType = 'application/pdf'){
   });
 }
 
+DelDocument(d)
+{
+  this._service.DeleteService("ProfileAPI/api/DeleteCD?Id=", d).subscribe((dt) => {
+    if(dt==0)
+    { 
+      this.toastr.success("File Deleted!", "Success!");
+    setTimeout(() => {
+      this.toastr.dismissToast;
+    }, 3000);
+      this.PopulateJobDocuments();
+    }
+  })
+}
+
 DownloadDocument(d)
 {
   let fileDat = this.JobDocuments.find(x=>x.DocName === d);
