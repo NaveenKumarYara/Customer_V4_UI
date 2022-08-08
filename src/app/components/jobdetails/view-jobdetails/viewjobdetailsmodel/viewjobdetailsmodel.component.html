@@ -1137,7 +1137,8 @@
                   <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
                     <div class="col-container" (click)="DownloadDocument(d?.DocName)" >
                       <!-- <button class="btn btn-close">Close</button> -->
-                      <span class="icon icon-pdf">Icon</span>
+                      <span class="icon icon-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                      <span class="icon icon-word" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
                       <h5>{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
                       <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
                     </div>
