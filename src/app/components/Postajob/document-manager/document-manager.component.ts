@@ -219,7 +219,7 @@ export class DocumentManagerComponent implements OnInit {
       }
       if(this.uploader.queue.length > 5)
       {
-        this.toastr.warning('Please upload maximum of 5 profiles.','Oh no!!!');
+        this.toastr.warning('Please upload maximum of 5 files.','Oh no!!!');
       }
     }
   }
