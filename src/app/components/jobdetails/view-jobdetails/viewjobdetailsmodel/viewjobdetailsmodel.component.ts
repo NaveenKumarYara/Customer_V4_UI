@@ -17,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
 import * as FileSaver from "file-saver";
+import { DocumentManagerComponent } from '../../../Postajob/document-manager/document-manager.component';
 const html2canvas: any = _html2canvas;
 var htmlToImage = require('html-to-image');
 declare var $: any;
@@ -70,6 +71,44 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       });
    }
 
+
+   documentManagerDialog() {
+    this.dialog.closeAll();
+    const docRef = this.dialog.open(DocumentManagerComponent, {
+      width: "80vw",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        jobId:  this.jobid
+      },
+      panelClass: 'candiateModalPop'
+    });
+    docRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+      this.ViewJobdetailsModel(this.jobid);
+    });
+  }
+
+  ViewJobdetailsModel(viewJobJobId) {
+    const viewdialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
+      {
+        width: '1000px',
+        position: { right: '0px' },
+        height: '750px',
+        panelClass: 'revamp__view__job__swiper',
+        data: {
+          JobId: viewJobJobId,
+          // status : this.statusid
+        }
+      }
+    );
+    localStorage.removeItem('vjobId');
+    viewdialogRef.afterClosed().subscribe(result => {
+      //this.inprogressprofile = false;
+      console.log('Dialog result: ${result}');
+    });
+
+  }
 
    OpenShareJobDialog() {
     //this.check(this.jobid);
