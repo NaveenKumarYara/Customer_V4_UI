@@ -3272,6 +3272,10 @@
   font-weight: 600;
   color: #6e819e;
   margin: 0 0 5px;
+  width: 152px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .griding-document .griding-col h4 {

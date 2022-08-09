@@ -18,10 +18,12 @@ import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
 const fs = require('fs');
+import * as FileSaver from "file-saver";
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
+
 
 @Component({
   selector: 'app-document-manager',
@@ -31,6 +33,7 @@ export interface DialogData {
 export class DocumentManagerComponent implements OnInit {
   uploader:FileUploader;
   selectedFiles: any= [];
+  JobDocuments:any=[];
   isProcessing: boolean;
   fileUploadForm: FormGroup;
   formDAtaList: Array<FormData> = [];
@@ -70,6 +73,87 @@ export class DocumentManagerComponent implements OnInit {
       'FileExtension': ['', Validators.nullValidator],
       'JobId': [null, Validators.nullValidator]
     });
+    this.PopulateJobDocuments();
+  }
+
+  PopulateJobDocuments() {
+    this._service.GetService('ProfileAPI/api/GetJobDocuments?jobId=', this.data.jobId)
+   .subscribe(
+     r => {
+      this.JobDocuments = r;
+    });
+  
+  }
+  
+  async getFileFromUrl(url, name, defaultType = 'application/pdf'){
+    const response = await fetch(url);
+    const data = await response.blob();
+    return new File([data], name, {
+      type: data.type || defaultType,
+    });
+  }
+  
+  DelDocument(d)
+  {
+    this._service.DeleteService("ProfileAPI/api/DeleteCD?Id=", d).subscribe((dt) => {
+      if(dt==0)
+      { 
+        this.toastr.success("File Deleted!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+        this.PopulateJobDocuments();
+      }
+    })
+  }
+
+  base64ToArrayBuffer(base64) {
+    const binary_string = window.atob(base64);
+    const len = binary_string.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+  
+  DownloadDocument(d)
+  {
+    let fileDat = this.JobDocuments.find(x=>x.DocName === d);
+    let fileExt:any;
+    
+    this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
+      let exp = d.split("aryticDP")[0];
+      fileExt = exp.split(".").pop();
+      let Name = exp.split(".")[0];
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+  
+      if (fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, Name);
+      }
+      if (fileExt == "png" || fileExt == "jpeg") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/image" });
+        FileSaver.saveAs(blob, Name);
+      } else if (fileExt == "doc" || fileExt == "docx") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, exp);
+      }
+    });
+   
+  
+  
+     
+    
+    
+   
+  
   }
 
   processResumes() {
@@ -108,7 +192,9 @@ export class DocumentManagerComponent implements OnInit {
         setTimeout(() => {
           this.toastr.dismissToast;
           this.uploader.queue = [];
-          this.dialogRef.close(); 
+          this.selectedFiles=[];
+          this.PopulateJobDocuments();
+          // this.dialogRef.close(); 
         }, 2000);
        
        
