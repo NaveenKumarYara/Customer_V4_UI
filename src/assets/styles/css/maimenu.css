@@ -4,7 +4,8 @@ app-manage-jobs,
 app-companyprofile,
 app-candidatemanager,
 app-createajob,
-app-view-jobdetails {
+app-view-jobdetails,
+app-accountsettings {
   padding-left: 80px;
   display: block;
 }
