@@ -37,7 +37,7 @@ import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDet
 import swal from "sweetalert2";
 import * as _html2canvas from "html2canvas";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { title } from "process";
+import { pid, title } from "process";
 const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -62,6 +62,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
   image:any;
+  MyDocuments: any = [];
   show: boolean = false;
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
@@ -1112,6 +1113,44 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
+  DownloadDocument(d) {
+    let fileDat = this.MyDocuments.find(x => x.DocName === d);
+    let fileExt: any;
+
+    this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
+      let exp = d.split("aryticDP")[0];
+      fileExt = exp.split(".").pop();
+      let Name = exp.split(".")[0];
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+
+      if (fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, Name);
+      }
+      if (fileExt == "png" || fileExt == "jpeg") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/image" });
+        FileSaver.saveAs(blob, Name);
+      } else if (fileExt == "doc" || fileExt == "docx") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, exp);
+      }
+    });
+
+
+
+
+
+
+
+
+  }
+
   // getMatchingDetails(profileId)
   // {
   //   return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
@@ -1130,6 +1169,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     //     var $detailsCloseBtn = $selectedCard.find('.close');
 
     this.ProfileId = profileId;
+    this.PopulateDocuments(profileId);
     this.iconHide = true;
     if (Val == 0) {
       this.GetCandidateCertifications(profileId);
@@ -1475,6 +1515,17 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       // }
     }
   }
+
+  PopulateDocuments(PId) {
+    this._service.GetService('ProfileAPI/api/GetProfileDocuments?jobId=', this.jobid + '&profileId=' + PId)
+      .subscribe(
+        r => {
+          this.MyDocuments = r;
+        });
+
+  }
+
+
   GetMatchingPercentage(profileId, jobid): any {
     // var profileId = 10;
     // var jobid = 10;

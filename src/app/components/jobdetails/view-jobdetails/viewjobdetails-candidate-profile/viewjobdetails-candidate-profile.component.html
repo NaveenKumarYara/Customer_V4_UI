@@ -2339,12 +2339,14 @@
         <div class="griding-document">
             <div class="row flex flex-wrap flex-aling-equal">
               <div class="col-sm-6 griding-col">
-                <div class="col-container" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
+                <div class="col-container" >
                   <button class="btn btn-close">Close</button>
                   <span class="icon icon-pdf">Icon</span>
-                  <h5>Resume</h5>
-                  <h4>By Arytic</h4>
-                  <button class="btn btn-download">
+                  <h5>Resume _ {{profile?.FirstName | titlecase}} {{
+                    profile?.LastName | titlecase}}</h5>
+                  <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                      profile?.LastName | titlecase}}</h4> -->
+                  <button class="btn btn-download" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -2386,39 +2388,30 @@
           <h4>Other Documents</h4>
         <div class="griding-document">
             <div class="row flex flex-wrap flex-aling-equal">
-           
-              <div class="col-sm-6 griding-col">
+              <ng-container *ngIf="MyDocuments?.length===0">
+                <div class="col-sm-6 griding-col">
+                  <div class="col-container">
+                    <h5>No Attachments added.</h5>
+                  </div>
+                </div>
+              
+              </ng-container>
+              <ng-container *ngIf="MyDocuments?.length>0">
+              <div class="col-sm-6 griding-col" *ngFor="let d of MyDocuments;let di = index">
                 <div class="col-container">
-                  <button class="btn btn-close">Close</button>
-                  <span class="icon icon-word">Icon</span>
-                  <h5>Word Document</h5>
-                  <h4>By Aksh Klm</h4>
+                  <!-- <button class="btn btn-close">Close</button> -->
+                  <span class="icon icon-pdf"
+                  *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                <span class="icon icon-word"
+                  *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                  <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName.split('aryticDP')[0] |
+                    titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
+                  <h4>By {{profile?.FirstName | titlecase}} {{
+                    profile?.LastName | titlecase}}</h4>
                 </div>
               </div>
-              <div class="col-sm-6 griding-col">
-                <div class="col-container">
-                  <button class="btn btn-close">Close</button>
-                  <span class="icon icon-notepad">Icon</span>
-                  <h5>Notepad Document</h5>
-                  <h4>By Aksh Klm</h4>
-                </div>
-              </div>
-              <div class="col-sm-6 griding-col">
-                <div class="col-container">
-                  <button class="btn btn-close">Close</button>
-                  <span class="icon icon-word-01">Icon</span>
-                  <h5>Docx File</h5>
-                  <h4>By Aksh Klm</h4>
-                </div>
-              </div>
-              <div class="col-sm-6 griding-col">
-                <div class="col-container">
-                  <button class="btn btn-close">Close</button>
-                  <span class="icon icon-zip">Icon</span>
-                  <h5>Zip</h5>
-                  <h4>By Aksh Klm</h4>
-                </div>
-              </div> 
+            </ng-container>
+         
             </div>
           </div>
         
