@@ -9976,7 +9976,7 @@ video {
 }
 
 @media (max-width: 1280px) {
-	.main-nav .page-nav {
+	/* .main-nav .page-nav {
 		position: fixed;
 		left: 0;
 		height: 100vh !important;
@@ -9995,7 +9995,7 @@ video {
 	.main-nav .page-nav .nav li {
 		float: none;
 		display: block;
-	}
+	} */
 }
 
 @media (min-width: 768px) and (max-width: 1280px) {
@@ -10014,13 +10014,13 @@ video {
 		border-right: 1px solid #E0E3EF;
 	}
 
-	.main-nav .collapse {
+	/* .main-nav .collapse {
 		display: none !important;
 	}
 
 	.main-nav .collapse.in {
 		display: block !important;
-	}
+	} */
 
 	.main-nav .navbar-toggle .icon-bar {
 		-webkit-transition: 0.2s ease transform;
@@ -19337,7 +19337,7 @@ a.ui-button:active,
 
 @media all and (max-width: 1365px) {
 	.page--dashboard .statistics.card .stats-tabs {
-		width: 340px;
+		width: 315px;
 	}
 
 	.page--dashboard .statistics.card .stats {
