@@ -15,6 +15,7 @@ declare var $: any;
 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { idLocale } from 'ngx-bootstrap';
+import { ApiService } from '../../../../shared/services';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
@@ -33,6 +34,7 @@ export class InterviewListComponent implements OnInit {
     splitVal: any = [];
     SearchList: any = [];
     searchval:any;
+    MyDocuments: any = [];
     searchString:any;
     InterviewAcceptance = new ProposeDate();
     joblist= new GetInterviewSortList();
@@ -167,7 +169,7 @@ export class InterviewListComponent implements OnInit {
     filterInterviewDetail:any = [];
      
     viewscheduleInterviewDialgoref: MatDialogRef<UpdateInterviewComponent>;
-    constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
+    constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private _service: ApiService,
     private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -176,7 +178,13 @@ export class InterviewListComponent implements OnInit {
     }
 
     detailIntviewHandler(index) {
-      this.setActive = index;    
+      this.setActive = index;   
+      if(this.filterInterviewDetail.length>0)
+      {
+        let Pid = this.filterInterviewDetail[this.setActive];
+        this.PopulateDocuments(Pid.JobId,Pid.ProfileId);
+      } 
+
       // this.filterInterviewDetail.indexOf(index);
     }
 
@@ -200,6 +208,16 @@ export class InterviewListComponent implements OnInit {
   titleCaseWord(word: string) {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+  PopulateDocuments(Jid,PId) {
+    debugger
+    this._service.GetService('ProfileAPI/api/GetProfileDocuments?jobId=', Jid + '&profileId=' + PId)
+      .subscribe(
+        r => {
+          this.MyDocuments = r;
+        });
+
   }
 
 
@@ -256,15 +274,15 @@ export class InterviewListComponent implements OnInit {
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
-      debugger
       this.filterInterviewDetail = res.Jobs;
+      let Pid = this.filterInterviewDetail[this.setActive];
+      this.PopulateDocuments(Pid.JobId,Pid.ProfileId);
       this.spinner.hide();
     }); 
   }
 
  UpdateInterviewAccept(userId,jobid,cdate,ctime,cpdate,cpaccept)
  {
-  debugger
    if(cpaccept == 1 && cpdate == 1 )
    {
     this.InterviewAcceptance.CustomerId = this.customerId;
