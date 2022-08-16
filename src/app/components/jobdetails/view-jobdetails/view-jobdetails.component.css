@@ -1005,3 +1005,123 @@
     background: url(../../../../assets/images/funnel-graph-sprites.png) -148px -12px no-repeat;
   }
 
+@media only screen and (max-width: 1280px) {
+  .funnel-graph-container {
+    float: none;
+    margin: 0 auto;
+  }
+  .funnel-graph-col, .search-filter-col {
+    width: 100%;
+  }
+
+  .search-filter-col .flex-justify-end {
+    justify-content: center;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .funnel-graph-container {
+    width: 100%;
+  }
+  .funnel-graph-container .funnel-tabbing .col {
+    flex: 0 0 50%;
+    margin: 0 0 5px;
+    max-width: 50%;
+  }
+
+  .funnel-graph-container .funnel-tabbing .col:before,
+  .funnel-graph-container .funnel-tabbing .col::after {
+    display: none;
+  }
+
+  .funnel-graph-container .funnel-tabbing {
+		background: none;
+		border-radius: 0;
+		padding: 0;
+	}
+
+	.funnel-graph-container .funnel-tabbing .col .col-container {
+		background: #34c397;
+	}
+
+  .funnel-graph-container .funnel-graph {
+    width: auto;
+    height: auto;
+    background: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text {
+    position: relative;
+    left: 0 !important;
+    top: 0 !important;
+    width: auto  !important;
+    height: auto !important;
+    flex: 0 0 50%;
+    display: block;
+    max-width: 50%;
+    padding: 5px 10px;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text.funnel-text-01 {
+    background: #8a9ed6;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text.funnel-text-02 {
+    background: #0488b4;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text.funnel-text-03 {
+    background: #7b8b92;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text.funnel-text-04 {
+    background: #eca520;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text.funnel-text-05 {
+    background: #2fc495;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text em {
+    position: relative;
+    left: -18px !important;
+    top:  0!important;
+    right: 0 !important;
+    margin: 0  auto!important;
+    line-height: 28px;
+    display: block;
+  }
+
+  .funnel-graph-container .funnel-graph .funnel-text em.reject {
+    margin: -27px auto  0!important;
+    left: 15px !important;
+  }
+
+  .funnel-graph-container .funnel-tabbing .col .icon.icon-01 {
+    right: 6px;
+  }
+
+  .funnel-graph-container .funnel-tabbing .col.yellow .col-container {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .funnel-graph-container .funnel-graph .funnel-text,
+  .funnel-graph-container .funnel-tabbing .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .search-filter-col .flex-justify-end {
+    flex-wrap: wrap;
+  }
+
+  .search-filter-col .flex-justify-end [class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

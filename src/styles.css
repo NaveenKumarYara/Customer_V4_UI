@@ -31714,3 +31714,83 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	color: #9eabc0;
 	margin: 0;
 }
+
+.cdk-overlay-container {
+	z-index: 1005;
+}
+
+@media only screen and (max-width: 1280px) {
+	.page--job-details .selected-job .btn-border,
+	.page--job-details .selected-job .btn-filled {
+		padding: 10px 12px;
+		margin: 0 5px 10px 0 !important;
+	}
+	.page--job-details .selected-job .card-body>div .btn-border {
+		margin-right: 5px;
+	}
+	.funnel-graph-row .r-s-f {
+		justify-content: center;
+	}
+
+	.page--job-details .selected-job .mob-btn  {
+		text-align: center;
+	}
+
+	.page--job-details .selected-job .mob-btn .sm-f-r {
+		float: none;
+	}
+
+	.search-filter-col .sm-w-100 {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+	.main-nav .navbar-brand a img {
+		width: 75%;
+	}
+
+	.funnel-graph-row .r-s-f .flex-container .search-toggle {
+		width: 100%;
+	}
+	.search-toggle form> input[type=text]#searchStr {
+		transform: none;
+		min-width: inherit !important;
+		margin: 0 !important;
+	}
+
+	.funnel-graph-row .r-s-f {
+		display: block;
+		text-align: left;
+	}
+
+	.page--job-details .ng-untouched .flex-container .adv-filters-btn.btn {
+		margin-right: 0;
+		float: left;
+	}
+
+	.page--job-details .ng-untouched .flex-container #searchStr  {
+		left: 0 !important;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+	.page--job-details .ng-untouched .flex-container {
+		margin-left: 0;
+	}
+
+	.filters .r-s-f .sm-f-none, .filters .r-s-f .sm-w-100 {
+		display: flex !important;
+	}
+
+	.filters .r-s-f .sm-w-100 .form-group {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}
+
+@media only screen and (max-width: 479px) {
+	.sm-w-100 .styled-select-box {
+		min-width: inherit;
+	}
+}

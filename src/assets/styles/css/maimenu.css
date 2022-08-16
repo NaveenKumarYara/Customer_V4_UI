@@ -225,3 +225,76 @@ body body {
   visibility: visible;
   opacity: 1;
 }
+
+@media only screen and (max-width: 767px) {
+  #nav-icon1 {
+    margin: 5px 0 0 10px;
+  }
+  .maimenu-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .maimenu-icon::before {
+    transform-origin: right center;
+    left: -12px;
+  }
+  .main-nav .mainmenu-fixed .navbar-collapse li {
+    margin: -5px 0;
+  }
+  .mainmenu-fixed {
+    width: 44px;
+  }
+  .mainmenu-fixed .main-nav-logo {
+    left: 30px;
+    top: 13px;
+  }
+  .mainmenu-fixed .main-nav-logo  img {
+    width: 65px;
+    height: auto;
+  }
+  .mainmenu-fixed.open {
+    width: 190px;
+  }
+  app-dashboardview, app-postajob, app-manage-jobs, app-companyprofile, app-candidatemanager, app-createajob, app-view-jobdetails, app-accountsettings, app-jobtemplate, app-editdraft {
+    padding-left: 44px;
+  }
+
+  .main-nav .navbar-brand a,
+  .main-nav .user-options a {
+    line-height: 1.65 !important;
+  }
+
+  .navbar-brand {
+    height: 44px !important;
+  }
+
+  .main-nav .dropdown .profile-pic>img {
+    width: 34px;
+    height: auto;
+  }
+
+  .main-nav .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom__user__option {
+    top: 8px;
+  }
+
+  .main-nav .user-options li.text-danger a {
+    padding: 5px 5px 0 5px !important;
+    position: relative;
+    top: 3px;
+  }
+
+  .main-nav .nav>li.dropdown {
+    position: relative;
+    top: 3px;
+  }
+
+  .main-nav .user-options li.text-danger a.upgrade-now img {
+    width: 34px;
+    height: auto;
+  }
+}

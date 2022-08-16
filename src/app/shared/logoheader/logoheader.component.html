@@ -42,7 +42,12 @@
                     <path d="M14.2 6.9l-2 5.3-5.3 2 2-5.3z" />
                   </g>
                 </svg> -->
-                <span class="maimenu-icon mainmenu-icon-dashboard">Icon</span>
+                <ng-container *ngIf="menuFixed == false">
+                  <span class="maimenu-icon mainmenu-icon-dashboard" placement="right" tooltip="Dashboard">Icon</span>
+                </ng-container>
+                <ng-container *ngIf="menuFixed == true">
+                  <span class="maimenu-icon mainmenu-icon-dashboard">Icon</span>
+                </ng-container>
                 <span class="link-text">Dashboard</span>
               </a>
             </li>
@@ -59,7 +64,12 @@
                       stroke-miterlimit="10" stroke-width="2" />
                   </g>
                 </svg> -->
-                <span class="maimenu-icon mainmenu-icon-postjob">Icon</span>
+                <ng-container *ngIf="menuFixed == false">
+                  <span class="maimenu-icon mainmenu-icon-postjob" placement="right" tooltip="Post a job">Icon</span>
+                </ng-container>
+                <ng-container *ngIf="menuFixed == true">
+                  <span class="maimenu-icon mainmenu-icon-postjob">Icon</span>
+                </ng-container>
                 <span class="link-text">Post a job</span>
               </a>
             </li>
@@ -75,7 +85,12 @@
                     <path transform="translate(9.5 10.8)" d="M3 0H0" />
                   </g>
                 </svg> -->
-                <span class="maimenu-icon mainmenu-icon-manage-job">Icon</span>
+                <ng-container *ngIf="menuFixed == false">
+                  <span class="maimenu-icon mainmenu-icon-manage-job" placement="right" tooltip="Manage Jobs">Icon</span>
+                </ng-container>
+                <ng-container *ngIf="menuFixed == true">
+                  <span class="maimenu-icon mainmenu-icon-manage-job">Icon</span>
+                </ng-container>
                 <span class="link-text">Manage Jobs</span>
               </a>
             </li>
@@ -90,7 +105,12 @@
                     <path transform="translate(9.5 10.8)" d="M3 0H0" />
                   </g>
                 </svg> -->
-                <span class="maimenu-icon mainmenu-icon-profile">Icon</span>
+                <ng-container *ngIf="menuFixed == false">
+                  <span class="maimenu-icon mainmenu-icon-profile" placement="right" tooltip="Company Profile">Icon</span>
+                </ng-container>
+                <ng-container *ngIf="menuFixed == true">
+                  <span class="maimenu-icon mainmenu-icon-profile">Icon</span>
+                </ng-container>
                 <span class="link-text">Company Profile</span>
               </a>
             </li>
@@ -102,7 +122,12 @@
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg> -->
-                <span class="maimenu-icon mainmenu-icon-find">Icon</span>
+                <ng-container *ngIf="menuFixed == false">
+                  <span class="maimenu-icon mainmenu-icon-find"  placement="right" tooltip="Find Candidate">Icon</span>
+                </ng-container>
+                <ng-container *ngIf="menuFixed == true">
+                  <span class="maimenu-icon mainmenu-icon-find">Icon</span>
+                </ng-container>
                 <span class="link-text">Find Candidate</span>
               </a>
             </li>
