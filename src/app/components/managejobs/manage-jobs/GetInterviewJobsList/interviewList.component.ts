@@ -12,10 +12,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import {GetInterviewSortList,Jobs} from '../../../../../models/GetInterviewSortList';
 import {ValueArrayPipe} from '../../../managejobs/manage-jobs/ValueArrayPipe.pipe';
 declare var $: any;
-
+import * as FileSaver from "file-saver";
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { idLocale } from 'ngx-bootstrap';
 import { ApiService } from '../../../../shared/services';
+import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
@@ -29,12 +30,14 @@ export class InterviewListComponent implements OnInit {
     loaddata = false;
     joblistcount: number;
     sort:any;
+    Pro:any;
     search:any='';
     value:any;
     splitVal: any = [];
     SearchList: any = [];
     searchval:any;
     MyDocuments: any = [];
+    MyActvity:any=[];
     searchString:any;
     InterviewAcceptance = new ProposeDate();
     joblist= new GetInterviewSortList();
@@ -169,12 +172,67 @@ export class InterviewListComponent implements OnInit {
     filterInterviewDetail:any = [];
      
     viewscheduleInterviewDialgoref: MatDialogRef<UpdateInterviewComponent>;
+  CandidateFeedback: any=[];
     constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private _service: ApiService,
-    private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
+      private jobdetailsservice: JobdetailsService, private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
       this.toastr.setRootViewContainerRef(_vcr);
+    }
+
+    base64ToArrayBuffer(base64) {
+      const binary_string = window.atob(base64);
+      const len = binary_string.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+    GetJobFeedback(profileId, jobId) {
+      this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
+        this.CandidateFeedback = datr6;
+      });
+    }
+
+    DownloadDocument(d) {
+      let fileDat = this.MyDocuments.find(x => x.DocName === d);
+      let fileExt: any;
+  
+      this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
+        let exp = d.split("_")[0];
+        fileExt = exp.split(".").pop();
+        let Name = exp.split(".")[0];
+        this.toastr.success("Downloading!", "Success!");
+        setTimeout(() => {
+          this.toastr.dismissToast;
+        }, 3000);
+  
+        if (fileExt == "pdf") {
+          let byteArr = this.base64ToArrayBuffer(fileData);
+          let blob = new Blob([byteArr], { type: "application/pdf" });
+          FileSaver.saveAs(blob, Name);
+        }
+        if (fileExt == "png" || fileExt == "jpeg") {
+          let byteArr = this.base64ToArrayBuffer(fileData);
+          let blob = new Blob([byteArr], { type: "application/image" });
+          FileSaver.saveAs(blob, Name);
+        } else if (fileExt == "doc" || fileExt == "docx") {
+          let byteArr = this.base64ToArrayBuffer(fileData);
+          let blob = new Blob([byteArr], { type: "application/pdf" });
+          FileSaver.saveAs(blob, exp);
+        }
+      });
+  
+  
+  
+  
+  
+  
+  
+  
     }
 
     detailIntviewHandler(index) {
@@ -182,6 +240,7 @@ export class InterviewListComponent implements OnInit {
       if(this.filterInterviewDetail.length>0)
       {
         let Pid = this.filterInterviewDetail[this.setActive];
+        this.Pro = this.filterInterviewDetail[this.setActive];
         this.PopulateDocuments(Pid.JobId,Pid.ProfileId);
       } 
 
@@ -211,11 +270,21 @@ export class InterviewListComponent implements OnInit {
   }
 
   PopulateDocuments(Jid,PId) {
-    debugger
-    this._service.GetService('ProfileAPI/api/GetProfileDocuments?jobId=', Jid + '&profileId=' + PId)
+    this.PopulateActivity(Jid,PId);
+    this.GetJobFeedback(PId,Jid);
+    this._service.GetService('ProfileAPI/api/GetInterviewsAttachments?profileId=', + PId + '&jobId=' + Jid)
       .subscribe(
         r => {
           this.MyDocuments = r;
+        });
+
+  }
+
+  PopulateActivity(Jid,PId) {
+    this._service.GetService('ProfileAPI/api/GetProfileActivity?profileId=', + PId + '&jobId=' + Jid)
+      .subscribe(
+        r => {
+          this.MyActvity = r;
         });
 
   }
@@ -275,8 +344,9 @@ export class InterviewListComponent implements OnInit {
       this.loaddata = true;
       this.joblist = res;
       this.filterInterviewDetail = res.Jobs;
-      let Pid = this.filterInterviewDetail[this.setActive];
-      this.PopulateDocuments(Pid.JobId,Pid.ProfileId);
+      this.Pro = this.filterInterviewDetail[this.setActive];
+      debugger
+      this.PopulateDocuments(this.Pro.JobId,this.Pro.ProfileId);
       this.spinner.hide();
     }); 
   }

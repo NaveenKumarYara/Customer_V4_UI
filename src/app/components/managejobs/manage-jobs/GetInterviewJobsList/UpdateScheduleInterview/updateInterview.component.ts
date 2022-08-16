@@ -350,6 +350,7 @@ else
 }
 
 this.schIntw.Comments = this.Comment;
+this.schIntw.BridgeUrl = this.savenote.OtherInfo;
   this.managejobservice.UpdateinterviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();

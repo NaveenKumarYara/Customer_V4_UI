@@ -269,12 +269,12 @@
  
 
     <ng-container *ngIf="filterInterviewDetail.length>0">
-    <ng-container *ngFor="let job of filterInterviewDetail;let j=index" >
+    <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
       <div class="interview-detail-section" *ngIf="j === setActive">
 
         <div class="top-title flex flex-wrap" >
-          <a href="javascript:void(0)" (click)="ViewJobdetails(job?.JobId)">
-          <h4 >{{ job?.JobTitle | titlecase }}
+          <a href="javascript:void(0)" (click)="ViewJobdetails(jo?.JobId)">
+          <h4 >{{ jo?.JobTitle | titlecase }}
             <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>
           </h4>
       
@@ -289,17 +289,17 @@
         </div>
         <ng-container *ngIf="this.subNavigationActive == 'Summary'">
           <ul class="inline-listing">
-            <li>From <strong>{{job?.StartTime}} To {{job?.EndTime || "N/A"}}</strong></li>
-            <li>{{job?.InterviewDate  | date }}</li>
+            <li>From <strong>{{jo?.StartTime}} To {{jo?.EndTime || "N/A"}}</strong></li>
+            <li>{{jo?.InterviewDate  | date }}</li>
             <li> <ng-container
-              *ngIf="job?.IsCandidateAccepted === 1 && job?.IsCPNewDate === null && job?.IsCPNewDate != 1">
+              *ngIf="jo?.IsCandidateAccepted === 1 && jo?.IsCPNewDate === null && jo?.IsCPNewDate != 1">
               Confirmed
             </ng-container>
-            <ng-container *ngIf="job?.IsCandidateAccepted === 0 && job?.IsCPNewDate === null">
+            <ng-container *ngIf="jo?.IsCandidateAccepted === 0 && jo?.IsCPNewDate === null">
               Not interested
             </ng-container>
-            <ng-container *ngIf="job?.IsCPNewDate === 1">
-              New proposal ({{job?.CPDate | date:'mediumDate'}} @ {{job?.CPFromTime}})
+            <ng-container *ngIf="jo?.IsCPNewDate === 1">
+              New proposal ({{jo?.CPDate | date:'mediumDate'}} @ {{jo?.CPFromTime}})
             </ng-container></li>
           </ul>
           <div class="grid-table-section">
@@ -307,12 +307,12 @@
               <div class="col-sm-4 grid-col grid-left-col">
                 Candiate Name
               </div>
-              <a href="javascript:void(0)" (click)="GetRedirect(job?.JobId,job?.ProfileId)">
+              <a href="javascript:void(0)" (click)="GetRedirect(jo?.JobId,jo?.ProfileId)">
                 <div class="col-sm-8 grid-col grid-right-col" >
-                  <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                  <img class="align-self-center mr-10" src="{{jo?.ProfileBasicInfo.ProfilePic}}" height="32"
                   width="32" alt="">
-                  {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-                  {{job?.ProfileBasicInfo?.LastName  | titlecase }}
+                  {{jo?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                  {{jo?.ProfileBasicInfo?.LastName  | titlecase }}
                   <i class="fa fa-info-circle" tooltip="View the profile details." placement="right"></i>
                 </div>
               </a>
@@ -324,7 +324,7 @@
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
                 <p >
-                  {{job?.JobLocations.split('|')[0]}}
+                  {{jo?.JobLocations.split('|')[0]}}
                   </p>
                 
               </div>
@@ -334,17 +334,17 @@
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
                 <p *ngIf="job?.HiringLeaderFirstName != null">
-                  <img  class="align-self-center mr-10" src="{{job?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
-                    {{job?.HiringLeaderFirstName  | titlecase}} {{job?.HiringLeaderLastName  | titlecase}}
+                  <img  class="align-self-center mr-10" src="{{jo?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
+                    {{jo?.HiringLeaderFirstName  | titlecase}} {{jo?.HiringLeaderLastName  | titlecase}}
                   </p>
-                <p *ngIf="job?.HiringLeaderFirstName === null">Not Mentioned.</p>
+                <p *ngIf="jo?.HiringLeaderFirstName === null">Not Mentioned.</p>
               </div>
            
               <div class="col-sm-4 grid-col grid-left-col">
                Interview Round
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-               {{ job?.BridgeUrl  || 'TECHNICAL'}}
+               {{ jo?.BridgeUrl  || 'TECHNICAL'}}
               </div>
             </div>
             <div class="row grid-row">
@@ -352,7 +352,7 @@
                 Mode of Interview
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-                {{ job?.InterviewType | titlecase }}
+                {{ jo?.InterviewType | titlecase }}
               </div>
             </div>  
             <div class="row grid-row">
@@ -360,7 +360,7 @@
                 Mode Details
               </div>
               <div class="col-sm-8 grid-col grid-right-col more-detial-info">
-                {{job?.SkypeId || 'Not Provided'}}
+                {{jo?.SkypeId || 'Not Provided'}}
               </div>
             </div>
             <div class="row grid-row">
@@ -368,7 +368,7 @@
                 Candidate Comments
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-                {{job?.CandidateComments || 'No Comments Provided'}}
+                {{jo?.CandidateComments || 'No Comments Provided'}}
               </div>
             </div>
             <div class="row grid-row">
@@ -377,7 +377,7 @@
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
                 <div class="image-container">
-                  {{job?.CandidateMiddleName || 'No Comments Provided'}}
+                  {{jo?.CandidateMiddleName || 'No Comments Provided'}}
                 </div>
               </div>
             </div> 
@@ -386,8 +386,8 @@
                 &nbsp;
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-                <a href="javascript:void(0)" class="btn btn-border" (click)="ViewJobdetails(job?.JobId)">View job details</a>
-                <a href="javascript:void(0)" class="btn btn-filled" (click)="GetRedirect(job?.JobId,job?.ProfileId)">View Candidate Profile</a>
+                <a href="javascript:void(0)" class="btn btn-border" (click)="ViewJobdetails(jo?.JobId)">View job details</a>
+                <a href="javascript:void(0)" class="btn btn-filled" (click)="GetRedirect(jo?.JobId,jo?.ProfileId)">View Candidate Profile</a>
               </div>
              
             </div>
@@ -411,117 +411,54 @@
               <div id="history-activity" class="tab-pane fade in active">
                 <h4>Activity</h4>
                 <div class="history-listing-grid">
-                  <div class="history-listing-col">
+                  <div class="history-listing-col" *ngFor="let js of MyActvity">
                     <span class="icon icon-01">Icon</span>
                     <div class="history-col-container">
-                      <p>May 16, 2022</p>
+                      <p>{{js?.Rounds}}</p>
                       <h5>Interview Scheduled</h5>
-                      <h6>By Aksh Klm</h6>
-                      <button class="btn btn-remove">Remove</button>
+                      <h6>By     
+                        {{Pid?.HiringLeaderFirstName  | titlecase}} {{Pid?.HiringLeaderLastName  | titlecase}}
+                        </h6>
+                      <!-- <button class="btn btn-remove">Remove</button> -->
                       <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
+                        {{js?.Comments}}
+                        <!-- <button class="btn btn-edit">Edit</button> -->
                       </div>
                     </div>
                   </div>
-                  <div class="history-listing-col">
-                    <span class="icon icon-02">Icon</span>
-                    <div class="history-col-container">
-                      <h5>Interview Scheduled</h5>
-                      <h6>By Aksh Klm</h6>
-                      <p>May 16, 2022</p>
-                      <button class="btn btn-remove">Remove</button>
-                      <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-listing-col">
-                    <span class="icon icon-03">Icon</span>
-                    <div class="history-col-container">
-                      <h5>Interview Scheduled</h5>
-                      <h6>By Aksh Klm</h6>
-                      <p>May 16, 2022</p>
-                      <button class="btn btn-remove">Remove</button>
-                      <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-listing-col">
-                    <span class="icon icon-04">Icon</span>
-                    <div class="history-col-container">
-                      <h5>Interview Scheduled</h5>
-                      <h6>By Aksh Klm</h6>
-                      <p>May 16, 2022</p>
-                      <button class="btn btn-remove">Remove</button>
-                      <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
-                      </div>
-                    </div>
-                  </div>
+          
                 </div>
               </div>
               <div id="history-feedback" class="tab-pane fade">
                 <h4>Feedback</h4>
+
                 <div class="history-listing-grid">
+                  <ng-container *ngIf="CandidateFeedback.length > 0">
+                    <ng-container *ngFor="let pn of CandidateFeedback; let i = index">
                   <div class="history-listing-col">
                     <span class="icon icon-05">Icon</span>
                     <div class="history-col-container">
-                      <p>May 16, 2022</p>
-                      <h5>Refer to Next Round</h5>
-                      <h6>By Aksh Klm</h6>
-                      <button class="btn btn-remove">Remove</button>
+                      <p>{{ pn?.FeedbackOption}}</p>
+                      <h5> {{ pn?.FeedbackTitle }}</h5>
+                      <h6>By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</h6>
+                      <!-- <button class="btn btn-remove">Remove</button> -->
                       <div class="summary">
-                        Good Profile
-                        <button class="btn btn-edit">Edit</button>
-                        <div class="listing-document">
+                        {{ pn?.Comment | titlecase }}
+                        <!-- <button class="btn btn-edit">Edit</button> -->
+                        <!-- <div class="listing-document">
                           <ul>
                             <li>document.docx</li>
                           </ul>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
-                  <div class="history-listing-col">
-                    <span class="icon icon-06">Icon</span>
-                    <div class="history-col-container">
-                      <p>May 16, 2022</p>
-                      <h5>Feedback to Candidate By Hr</h5>
-                      <h6>By Aksh Klm</h6>
-                      <button class="btn btn-remove">Remove</button>
-                      <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
-                        <div class="listing-document">
-                          <ul>
-                            <li>document.docx</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-listing-col">
-                    <span class="icon icon-07">Icon</span>
-                    <div class="history-col-container">
-                      <p>May 16, 2022</p>
-                      <h5>Final Round</h5>
-                      <h6>By Aksh Klm</h6>
-                      <button class="btn btn-remove">Remove</button>
-                      <div class="summary">
-                        Please Provide The Availabilty
-                        <button class="btn btn-edit">Edit</button>
-                        <div class="listing-document">
-                          <ul>
-                            <li>document.docx</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </ng-container>
+              </ng-container>
+    
+              <ng-container *ngIf="CandidateFeedback.length === 0">
+                <h6>Feedback Yet to Add</h6>
+              </ng-container>
                 </div>
               </div>
             </div>
@@ -546,13 +483,12 @@
                 <div class="col-container">
                   <!-- <button class="btn btn-close">Close</button> -->
                   <span class="icon icon-pdf"
-                  *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                  *ngIf="d.DocName.split('_')[0].includes('.pdf')">Icon</span>
                 <span class="icon icon-word"
-                  *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
-                  <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName.split('aryticDP')[0] |
-                    titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
-                  <h4>By {{profile?.FirstName | titlecase}} {{
-                    profile?.LastName | titlecase}}</h4>
+                  *ngIf="!d.DocName.split('_')[0].includes('.pdf')">Icon</span>
+                  <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName?.split("_")[0] | titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
+                  <h4>By  {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                    {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h4>
                 </div>
               </div>
             </ng-container>

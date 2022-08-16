@@ -341,6 +341,7 @@ if (this.processSelection === 1) {
 //   // this.schIntw.RequiredFurtherInterview = this.webxRI;
 //   // this.schIntw.PhoneNumber=this.userId;
 // }
+this.schIntw.BridgeUrl = this.savenote.OtherInfo;
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
@@ -354,6 +355,7 @@ else
 {
   this.schIntw.InterviewingPerson = this.selectedUserName.toString();
 }
+debugger
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
    
