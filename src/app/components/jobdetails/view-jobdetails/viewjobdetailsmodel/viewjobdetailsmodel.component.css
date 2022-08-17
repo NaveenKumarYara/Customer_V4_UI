@@ -3236,6 +3236,10 @@
   padding: 20px 30px;
 }
 
+.griding-document .griding-top-container {
+    margin: 0 0 30px;
+}
+
 .griding-document .row {
   margin: 0 -7px;
 }

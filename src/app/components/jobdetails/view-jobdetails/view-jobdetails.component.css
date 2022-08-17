@@ -1005,6 +1005,36 @@
     background: url(../../../../assets/images/funnel-graph-sprites.png) -148px -12px no-repeat;
   }
 
+  .funnel-legend ul {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    display: none;
+  }
+
+  .funnel-legend li {
+    display: inline-block;
+    font-size: 12px;
+    padding-left: 24px;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .funnel-legend li:before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #2fc495;
+    position: absolute;
+    left: 10px;
+    top: 4px;
+  }
+
+  .funnel-legend li:last-child::before {
+    background-color: #dd3f40;
+  }
+
 @media only screen and (max-width: 1280px) {
   .funnel-graph-container {
     float: none;
@@ -1024,6 +1054,11 @@
   .funnel-graph-container {
     width: 100%;
   }
+
+  .funnel-legend ul {
+    display: block;
+  }
+
   .funnel-graph-container .funnel-tabbing .col {
     flex: 0 0 50%;
     margin: 0 0 5px;
@@ -1093,11 +1128,15 @@
     margin: 0  auto!important;
     line-height: 28px;
     display: block;
+    background: #2fc495;
+    color: #fff;
   }
 
   .funnel-graph-container .funnel-graph .funnel-text em.reject {
     margin: -27px auto  0!important;
     left: 15px !important;
+    background-color: #dd3f40;
+    color: #FFF;
   }
 
   .funnel-graph-container .funnel-tabbing .col .icon.icon-01 {
