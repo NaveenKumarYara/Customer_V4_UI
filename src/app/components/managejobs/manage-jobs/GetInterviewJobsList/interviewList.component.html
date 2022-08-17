@@ -341,7 +341,7 @@
                 Interviewer
               </div>
               <div class="col-sm-8 grid-col grid-right-col">
-                <p *ngIf="job?.HiringLeaderFirstName != null">
+                <p *ngIf="jo?.HiringLeaderFirstName != null">
                   <img  class="align-self-center mr-10" src="{{jo?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
                     {{jo?.HiringLeaderFirstName  | titlecase}} {{jo?.HiringLeaderLastName  | titlecase}}
                   </p>
@@ -503,10 +503,10 @@
           </div>
         </ng-container>
         <div class="buttons">
-          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.StartTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a>
+          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(jo?.ProfileBasicInfo?.UserId,jo?.JobId,jo?.CPDate,jo?.StartTime,jo?.IsCandidateAccepted,jo?.IsCPNewDate)"> Accept</a>
           <!-- <a href="javascript:void(0)" class="btn btn-border">Cancel</a> -->
           <a href="javascript:void(0)" class="btn btn-filled"
-            (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Re-Schedule
+            (click)="OpenScheduleInterviewDialog(jo?.JobInterviewId,jo?.JobResponseId,jo?.JobId,jo?.ProfileBasicInfo?.ProfileId,jo?.ProfileBasicInfo?.UserId,jo?.InterviewDate,jo?.StartTime)">Re-Schedule
           </a>
         </div>
       </div>
