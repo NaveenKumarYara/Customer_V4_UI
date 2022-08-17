@@ -345,7 +345,6 @@ export class InterviewListComponent implements OnInit {
       this.joblist = res;
       this.filterInterviewDetail = res.Jobs;
       this.Pro = this.filterInterviewDetail[this.setActive];
-      debugger
       this.PopulateDocuments(this.Pro.JobId,this.Pro.ProfileId);
       this.spinner.hide();
     }); 

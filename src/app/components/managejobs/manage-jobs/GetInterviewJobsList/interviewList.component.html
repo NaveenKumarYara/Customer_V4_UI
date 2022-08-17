@@ -43,10 +43,18 @@
   <!--Interview Schedule Box-->
   <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
     <div class="tab-content" id="myTabContent">
-      <!-- <div class="search-box-container">
-        <input type="text" class="form-control" placeholder="Enter Search Here..."/>
-        <button class="btn btn-search">Search</button>
-      </div> -->
+      <div class="search-box-container">
+        <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
+        <input type="text" class="form-control" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
+        <div class="searchList" *ngIf="SearchList.length>0">
+          <ul class="searchList-dropdown">
+            <li class="searchList-options" *ngFor="let slist of SearchList"
+              (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+          </ul>
+        </div>
+        <button class="btn btn-search"  (keyDown)="SearchEnter(searchString)" style="display: none;">Search</button>
+        </form>
+      </div>
       <!--Week Tabs-->
       <div class="tab-pane fade active in" id="thisweek" role="tabpanel" aria-labelledby="thisweek-tab">
         <div class="horizontalTabs">
@@ -417,7 +425,7 @@
                       <p>{{js?.Rounds}}</p>
                       <h5>Interview Scheduled</h5>
                       <h6>By     
-                        {{Pid?.HiringLeaderFirstName  | titlecase}} {{Pid?.HiringLeaderLastName  | titlecase}}
+                        {{Pro?.HiringLeaderFirstName  | titlecase}} {{Pro?.HiringLeaderLastName  | titlecase}}
                         </h6>
                       <!-- <button class="btn btn-remove">Remove</button> -->
                       <div class="summary">
@@ -487,8 +495,7 @@
                 <span class="icon icon-word"
                   *ngIf="!d.DocName.split('_')[0].includes('.pdf')">Icon</span>
                   <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName?.split("_")[0] | titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
-                  <h4>By  {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
-                    {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h4>
+                  <!-- <h4>By  {{Pro?.HiringLeaderFirstName  | titlecase}} {{Pro?.HiringLeaderLastName  | titlecase}}</h4> -->
                 </div>
               </div>
             </ng-container>
