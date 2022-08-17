@@ -1127,12 +1127,10 @@
           </div>
           <div id="tab-documents" class="tab-pane fade">
             <div class="griding-document">
-              <h4>Documents
-                <div>
-                  <a href="javascript:void(0)"  class="btn btn-border btn-prev pull-right" (click)="documentManagerDialog()"> Add Job Attachments</a>
-                </div>
-              </h4>
-             
+              <div class="griding-top-container flex flex-align-center">
+                <h4>Documents</h4>
+                <a href="javascript:void(0)"  class="btn btn-border btn-prev ml-auto" (click)="documentManagerDialog()"> Add Job Attachments</a>
+              </div>
             
               <div class="row flex flex-wrap flex-aling-equal">
                 <ng-container *ngIf="JobDocuments?.length === 0">
