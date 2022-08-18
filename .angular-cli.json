@@ -23,6 +23,7 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/mailgo/dist/mailgo.min.js",
         "assets/js/app.js",
         "assets/js/libs.js" ,
         "../node_modules/chart.js/dist/Chart.bundle.min.js"

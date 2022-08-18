@@ -50,6 +50,7 @@
     "html2canvas-cors": "^1.0.0-rc.7",
     "html2canvas-proxy": "^1.0.1",
     "jquery": "^3.3.1",
+    "mailgo": "^0.12.2",
     "ng-circle-progress": "^1.0.0",
     "ng-multiselect-dropdown": "^0.2.3",
     "ng-select": "^1.0.0-rc.5",

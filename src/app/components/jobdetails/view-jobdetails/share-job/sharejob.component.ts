@@ -17,6 +17,17 @@ import { SettingsService } from '../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services';
 declare var $: any;
+import { DomSanitizer } from "@angular/platform-browser";
+import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
+import { assert } from 'console';
+
+export interface mailtoAsset {
+  
+  Id: string;
+  Title: string;
+  Location:string;
+  Link:string;
+}
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -27,6 +38,23 @@ export interface DialogData {
 })
 export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
+  mailtoHeader = "mailto:?";
+  subjectProp = "subject=";
+  bodyProp = "body=";
+  amp = "&amp;";
+  breakStr = "%0D%0A";
+  footer = "Powered by Arytic!"
+  demoSubject = ""
+
+  demoAssets: mailtoAsset[] = [
+    {
+      Id: "",
+      Title:"",
+      Location:"",
+      Link:""
+    }
+  ];
+
   teammembers: '';
   referLink:any;
   whatsapp: any;
@@ -68,13 +96,41 @@ export class ShareJobComponent implements OnInit {
   CompanyName: any;
   Title: any;
   Image:any;
-  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  NImage:any;
+  jobdetailscustomer = new  GetJobDetailCustomer();
+  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer ,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetLink();
     this.GetjobCard();
+    this.PopulateJobdetail();
+  }
+
+  PopulateJobdetail() {
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.JobId).subscribe(res => {
+      this.jobdetailscustomer = res;
+    });
+  }
+  getStringifiedAssets(assets: mailtoAsset[]) {
+    let subject = this.Title + '  had shared the job to you';
+
+    let str = "";
+    assets.forEach(asset=>{
+      asset.Id = 'JobId: #' + this.data.JobId;
+      asset.Title = 'Job Title: ' + this.jobdetailscustomer.JobInfo.JobTitle;
+      asset.Location = 'Job Location: ' + this.jobdetailscustomer.JobLocation[0].CityName;
+      asset.Link = 'Job Link: ' + this.referLink;
+      str = str + this.breakStr + this.joinLines(asset.Id) + this.breakStr + this.joinLines(asset.Title) + this.breakStr + this.joinLines(asset.Location) + this.breakStr + this.joinLines(asset.Link) + this.breakStr;
+    })
+     
+    const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
+    return this.sanitizer.bypassSecurityTrustUrl(url)
+  }
+
+  joinLines(lines: string) {
+    return lines + this.breakStr;
   }
 
   GetLink()
@@ -88,6 +144,22 @@ export class ShareJobComponent implements OnInit {
     // script.append("val", "abcbcbc");
     body.appendChild(script);
   }
+
+
+
+  getBase64FromUrl(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+}
 
   copyToClipboard() {
     // var copyText = <HTMLInputElement>document.querySelector('.rjobLink');
@@ -140,6 +212,10 @@ public share(val) {
   return window.open(this.navUrl, "_blank");
 }
 
+titleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+}
+
   ngOnInit() {
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
@@ -152,6 +228,7 @@ public share(val) {
     this.isSharingStarted = false;
     this.teammemberslist = this.appService.getTeammembers();
     this.showThis = 'mainNav';
+    this.Title=  this.titleCase(this.customer.FirstName) + '  '+ this.titleCase(this.customer.LastName);
     this.subscription = this.appService.teammembersChanged
       .subscribe(
         (teammemberlist: CustomerUsers[]) => {
@@ -193,7 +270,7 @@ public share(val) {
       }
       this.Image=res;
       this.CompanyName= 'Job Details Preview';
-      this.Title=this.customer.FirstName.toUpperCase();
+
 
     });
   }
