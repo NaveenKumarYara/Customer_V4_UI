@@ -126,7 +126,8 @@ export class ShareJobComponent implements OnInit {
     })
      
     const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
-    return this.sanitizer.bypassSecurityTrustUrl(url)
+    //return this.sanitizer.bypassSecurityTrustUrl(url)
+    window.location.href = url;
   }
 
   joinLines(lines: string) {
