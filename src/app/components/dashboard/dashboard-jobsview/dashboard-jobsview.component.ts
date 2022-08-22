@@ -186,7 +186,7 @@ export class DashboardJobsviewComponent implements OnInit {
    
     public lineChartLabelsall: Label[] = ['Year2019','Year2020'];
     public lineChartLabels: Label[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday','Sunday'];
-    public lineChartLabelsmw: Label[] = ['week1','week2','week3','week4','week5'];
+    public lineChartLabelsmw: Label[] = ['Week1','Week2','Week3','Week4','Week5'];
     public lineChartLabelsm: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
 
 
