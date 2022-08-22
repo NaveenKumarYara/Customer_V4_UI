@@ -2,7 +2,9 @@
   <div class="upload__resume__container">
     <div class="top__container__before flex flex-wrap flex-align-center">
       <h3 mat-dialog-title class="modal-title">Job Attachments</h3>
-  
+      <span>
+        <i class="fa fa-info">* Upload .doc, .docx, .pdf and .txt files only</i>
+      </span>
       <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
@@ -24,7 +26,7 @@
                         (click)="browse.value = null" value="" multiple (change)="onFileSelected($event)">
                     </div>
                     <div>Browse & Upload</div>
-                    <h5>Upload the documents required for these Job position. </h5>
+                    <h5>Upload the documents required  for these Job position. </h5>
                     <!-- <h6>We recommended to use Microsoft Word.</h6> -->
                   </div>
                 </div>
@@ -105,10 +107,10 @@
                   </tbody>
                 </table>
                 <button class="btn btn-primary pull-right"
-                  *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<5"
+                  *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<6"
                   (click)="processResumes()">Save</button>
                 <button class="btn btn-primary pull-right"
-                  *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<5">
+                  *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<6">
                   <span>Saving...</span>
                 </button>
                 <!-- <span *ngIf="uploader.queue.length>=3">
