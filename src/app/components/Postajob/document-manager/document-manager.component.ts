@@ -217,7 +217,7 @@ export class DocumentManagerComponent implements OnInit {
         let file: File = this.uploader.queue[i]._file;
          this.selectedFiles.push(file);
       }
-      if(this.uploader.queue.length > 5)
+      if(this.uploader.queue.length > 6)
       {
         this.toastr.warning('Please upload maximum of 5 files.','Oh no!!!');
       }
