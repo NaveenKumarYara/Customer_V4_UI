@@ -127,7 +127,7 @@
   "GetReportingTeamList": "https://profileapi-dev.arytic.com/api/GetReportingTeamList?",
   "GetTechinicalTeamList": "https://profileapi-dev.arytic.com/api/GetTechinicalTeamList?",
   "AddDepartment": "https://profileapi-dev.arytic.com/api/InsertCustomerDepartments",
-  "customerLogin": "https://dev.arytic.com/customerlogin",
+  "customerLogin": "https://customer-dev.arytic.com/login",
   "customerSignUp": "https://customer-dev.arytic.com/signup",
   "ForgotPasswordurl": "https://dev.arytic.com/ForgotPassword",
   

@@ -164,7 +164,7 @@ export class dLoginComponent {
 
                     if (data.IsActive == false) {
                       this.ResendMail = true;
-                      this.resendEmail.AppLink = this.settingsService.settings.Login + ';Uid=' + data.UserId;
+                      this.resendEmail.AppLink = this.settingsService.settings.customerLogin + ';Uid=' + data.UserId;
                       this.resendEmail.ToEmailId = this.loginform.value.Email;
                       this.resendEmail.FullName = data.FirstName + ' ' + data.LastName;
                       this.loading = false;
