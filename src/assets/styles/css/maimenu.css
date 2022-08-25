@@ -7,7 +7,9 @@ app-createajob,
 app-view-jobdetails,
 app-accountsettings,
 app-jobtemplate,
-app-editdraft {
+app-editdraft,
+app-customer-dashboard,
+app-notifications {
   padding-left: 80px;
   display: block;
 }
@@ -129,6 +131,10 @@ body body {
   background-position: -268px -17px;
 }
 
+.maimenu-icon.mainmenu-icon-schedule::before {
+  background-position: -310px -17px;
+}
+
 #nav-icon1 {
   width: 25px;
   height: 30px;
@@ -211,6 +217,10 @@ body body {
 
 .main-nav .mainmenu-fixed .navbar-collapse li.active .maimenu-icon.mainmenu-icon-find::before {
   background-position: -268px -59px;
+}
+
+.main-nav .mainmenu-fixed .navbar-collapse li.active .maimenu-icon.mainmenu-icon-schedule::before {
+  background-position: -310px -59px;
 }
 
 .mainmenu-fixed .main-nav-logo {
