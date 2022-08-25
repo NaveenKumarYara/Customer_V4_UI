@@ -1,0 +1,77 @@
+.page-customer-dashboard .top-chart-row .col,
+.page-customer-dashboard .middle-chart-row .col {
+  margin-bottom: 30px;
+}
+
+.page-customer-dashboard .top-chart-row .col-container,
+.page-customer-dashboard .middle-chart-row .col-container {
+  border: 1px solid #ccc;
+  box-shadow: 5px 0 15px rgba(158,171,192,0.20);
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container {
+  padding: 20px;
+}
+
+.page-customer-dashboard .top-chart-row .col-container h3 {
+  font-size: 22px;
+  padding: 20px 20px 0;
+  color: #136482;
+  margin: 0 0 5px;
+}
+
+.page-customer-dashboard .top-chart-row .col-container h4 {
+  font-size: 14px;
+  color: #136482;
+  padding: 0 20px;
+  margin: 0 0 5px;
+  font-weight: 400;
+}
+
+.page-customer-dashboard .top-chart-row .col-container h3 span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.page-customer-dashboard .top-chart-row .col-container canvas {
+  width: 100% !important;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container h4 {
+  font-size: 18px;
+  color:#6e819e;
+  margin: 0 0 10px;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container .summary-box {
+  margin: 20px 0 0;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container h5 {
+  font-size: 14px;
+  color:#6e819e;
+  font-weight: 400;
+  margin: 0 0 10px;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container h6 {
+  margin: 0;
+  padding-top: 10px;
+  color:#6e819e;
+  font-size: 12px;
+  border-top: 1px solid #e0e3ef;
+}
+
+.page-customer-dashboard .middle-chart-row .col-container canvas {
+  width: 100% !important;
+  margin: 20px 0 0;
+  display: block;
+}
+
+.title-container h3 {
+  margin: 0 0 20px;
+}

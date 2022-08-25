@@ -129,6 +129,7 @@ import { VendorDetailComponent } from "./components/vendor-manager/vendor-detail
 import { CandidatedetailviewComponent } from "./components/CandidateProfile-details/candidatedetailview/candidatedetailview.component";
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { DocumentManagerComponent } from "./components/Postajob/document-manager/document-manager.component";
+import { CustomerDashboardComponent } from "./components/customer-dashboard/customer-dashboard.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -152,7 +153,7 @@ const appRoutes: Routes = [
   { path: "app-jobtemplate", component: JobTemplateComponent },
   { path: "app-Getcandidateprofile", component: GetCandidateprofileComponent },
   { path: "app-candidateview", component: CandidateViewComponent },
-
+  { path: "dashboard", component: CustomerDashboardComponent },
   {
     path: "app-createajob",
     component: CreateajobComponent,
