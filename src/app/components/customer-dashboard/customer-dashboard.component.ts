@@ -326,7 +326,14 @@ export class CustomerDashboardComponent implements OnInit {
           display: false,
           text: 'Population growth (millions): Europe & Africa'
         },
-        legend: { display: false }
+        legend: { 
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            borderWidth: 1,
+            borderRadius: 20
+          }
+        }
       }
     });
 
@@ -335,45 +342,55 @@ export class CustomerDashboardComponent implements OnInit {
     var chartMixOne = new Chart(mixedChartOne, {
       type: 'line',
       data: {
-          labels: ["Tokyo",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo",	"New York",	"Karachi","Buenos Aires",	"Delhi","Moscow"],
+          labels: ["Tokyo",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo"],
           datasets: [{
             label: 'Series 1', // Name the series
-            data: [10,	60,	50,	40,	30,	80,	70,	90,	100, 20], // Specify the data values array
+            data: [10,	60,	50,	40,	30], // Specify the data values array
             fill: true,
-            borderColor: '#2196f3', // Add custom color border (Line)
-            backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+            borderColor: '#c98c1c', // Add custom color border (Line)
+            backgroundColor: '#F1B84D', // Add custom color background (Points and Fill)
             borderWidth: 1 // Specify bar border width
           },
           {
             label: 'Series 2', // Name the series
-            data: [20,	70,	60,	50,	40,	90,	100,	85,	65, 75], // Specify the data values array
+            data: [	90,	100,	85,	65, 75], // Specify the data values array
             fill: true,
-            borderColor: '#4CAF50', // Add custom color border (Line)
-            backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+            borderColor: '#2196f3', // Add custom color border (Line)
+            backgroundColor: '#2CF6B6', // Add custom color background (Points and Fill)
             borderWidth: 1 // Specify bar border width
           }]
       },
       options: {
-        responsive: false, // Instruct chart js to respond nicely.
-        maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+        legend: { 
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            borderWidth: 1
+          }
+        }
       }
     });
 
     var chartMixTwo = new Chart(document.getElementById("mixed-chart-02"), {
       type: 'horizontalBar',
       data: {
-        labels: ["User 1", "User 2", "User 3", "User 4", "User 5","User 6", "User 7"],
+        labels: ["20", "40", "80", "100", "120"],
         datasets: [
           {
             label: "Population (millions)",
-            backgroundColor: ["#136482", "#47b2c4","#66dab5","#f1b84d","#de3c63", "#47b2c4","#66dab5","#f1b84d","#de3c63"],
-            data: [20, 40 , 60 , 80 , 120, 75,90, 30]
+            backgroundColor: ["#136482", "#47b2c4","#66dab5","#f1b84d","#de3c63"],
+            data: [20, 40 , 60 , 80 , 120]
           }
         ]
       },
       options: {
-        legend: {
-          display: false,
+        legend: { 
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            borderWidth: 1,
+            borderRadius: 20
+          }
         },
         tooltips: {
           enabled: false,
@@ -430,10 +447,19 @@ export class CustomerDashboardComponent implements OnInit {
         ]
       },
       options: {
+        legend: { 
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            borderWidth: 1,
+            borderRadius: 20
+          }
+        },
         title: {
-          display: true,
+          display: false,
           text: 'Predicted world population (millions) in 2050'
-        }, scales: {
+        }, 
+        scales: {
           yAxes: [{ 
             scaleLabel: {
               display: true,
