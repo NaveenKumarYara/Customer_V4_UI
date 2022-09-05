@@ -215,6 +215,7 @@
   "GetCompanySize": "https://identityapi-dev.arytic.com/api/GetCompanySize",
   "InsertProfileNotesCustomer": "https://identityapi-dev.arytic.com/api/InsertProfileNotesCustomer",
   "GetProfileNotes": "https://profileapi-dev.arytic.com/api/GetProfileNotes",
+  "MyNotes":"https://profileapi-dev.arytic.com/api/GetProfileNotesNew",
   "Attachments": "https://profileapi-dev.arytic.com/api/InsertProfileAttachments",
   "DeleteNote": "https://profileapi-dev.arytic.com/api/DeleteNotes?",
   "GetgoogleApi": "https://profileapi-dev.arytic.com/api/GetGoogleLocations?",

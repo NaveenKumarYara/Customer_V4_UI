@@ -214,6 +214,7 @@
     "ShareProfile": "${Email_URL}/api/ShareProfile",
     "InsertProfileNotesCustomer": "${Identity_URL}/api/InsertProfileNotesCustomer",
     "GetProfileNotes": "${Profile_URL}/api/GetProfileNotes",
+    "MyNotes":"${Profile_URL}/api/GetProfileNotesNew",
     "Attachments": "${Profile_URL}/api/InsertProfileAttachments",
     "DeleteNote": "${Profile_URL}/api/DeleteNotes?",
     "GetgoogleApi": "${Profile_URL}/api/GetGoogleLocations?",

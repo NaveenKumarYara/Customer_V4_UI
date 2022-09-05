@@ -718,7 +718,7 @@
 }
 
 .revamp__view__job__details .middle__section .nav-tabs>li {
-  width: 25%;
+  width: 20%;
   margin: 0;
   text-align: center;
 }
@@ -3304,3 +3304,52 @@
   font-size: 0;
 }
 
+.container1 {
+  border: 2px solid #dedede;
+  background-color: #b4eff7;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: rgb(228, 245, 215);
+  background-color: rgb(218 221 217);
+}
+
+.container1::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container1 img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container1 img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.attched {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -8px;
+}

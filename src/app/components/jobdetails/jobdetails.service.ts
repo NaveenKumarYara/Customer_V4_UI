@@ -164,6 +164,16 @@ export class JobdetailsService {
       );
   }
 
+  GetProfileNotesNew(profileId: number, jobId: number,cid:number): Observable<string[]> {
+    const url = this.settingsService.settings.MyNotes +
+    '?profileId=' + profileId + '&jobId=' + jobId + '&cid=' + cid;
+    return this.http.get<string[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
   GetCustomerStatus(mail: string, jobId: number,customerId:number,IsPublic:boolean): Observable<CustStatusRes> {
     const url = this.settingsService.settings.CheckCustProfile +
     'mail=' + mail + '&jobId=' + jobId + '&customerId=' + customerId + '&ispublic=' + IsPublic;

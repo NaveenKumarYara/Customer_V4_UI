@@ -47,6 +47,7 @@ export class DashboardService {
     getRecentApplicants(customerId:number,userId:number,count: number): Observable<RecentApplicants[]> {
        const url = this.settingsService.settings.RecentApplicants +
        'customerId=' + customerId + '&userId=' + userId + '&page=1&numberOfRows=5';
+       debugger
        return this.http.get<RecentApplicants[]>(url)
            .debounceTime(1000)
            .catch(

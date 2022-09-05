@@ -170,6 +170,7 @@
           <li><a data-toggle="tab" href="#job-details">Job Details</a></li>
           <li><a data-toggle="tab" href="#skills">Skills</a></li>
           <li><a data-toggle="tab" href="#tab-documents">Documents</a></li>
+          <li><a data-toggle="tab" href="#tab-Notes">Job Notes</a></li>
         </ul>
 
         <div class="tab-content">
@@ -1150,6 +1151,78 @@
                       <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
                     </div>
                   </div>
+                </ng-container>
+              
+          
+              </div>
+            </div>
+          </div>
+          <div id="tab-Notes" class="tab-pane fade">
+            <div class="griding-document">
+              <div class="griding-top-container flex flex-align-center">
+                <h4>Job Notes</h4>
+                <a href="javascript:void(0)"  class="btn btn-border btn-prev ml-auto"  (click)="OpenJobDialog(jobdetailscustomer?.JobInfo?.JobId)"> Add Job Notes</a>
+              </div>
+            
+              <div class="row flex flex-wrap flex-aling-equal">
+                <ng-container *ngIf="JobNotes?.length === 0">
+                  <div class="col-sm-4 griding-col">
+                    <div class="col-container">
+                      <h5>No Notes added.</h5>
+                      </div>
+                      </div>
+                </ng-container>
+                <ng-container *ngIf="JobNotes?.length>0">
+                  <ng-container *ngFor="let n of JobNotes; let i = index">
+                    <div class="container">
+            
+                    
+
+<div class="container1" *ngIf="n?.FirstName === customer?.FirstName">
+
+ 
+ 
+  <h5><i class="fa fa-hand-o-right" aria-hidden="true"></i>    <b>  {{n?.Others}}</b></h5>
+  <p><i class="fa fa-weixin" aria-hidden="true"></i>   {{n?.CustomerComment}}</p>
+ 
+
+  <ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+    <label>Attachments</label>
+    <div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+         <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+          <div class="attched"></div>
+        </a>   
+    </div>
+  </ng-container>
+
+  <span class="time-right">  <img src="https://ui-avatars.com/api/?name={{n?.FirstName}}+{{n?.LastName}}"
+    alt="Avatar" class="time-right"  style="width:100%;"> <b> {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</b> </span>
+</div>
+
+<div class="container1 darker"  *ngIf="n?.FirstName != customer?.FirstName">
+  <h5 ><i class="fa fa-hand-o-right" aria-hidden="true"></i>   <b>{{n?.Others}}</b> </h5>
+  <p><i class="fa fa-weixin" aria-hidden="true"></i>   {{n?.CustomerComment}}</p>
+ 
+
+  <ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+    <label>Attachments</label>
+    <div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+         <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+          <div class="attched"></div>
+        </a>   
+    </div>
+  </ng-container>
+
+  <span class="time-right">  <img src="https://ui-avatars.com/api/?name={{n?.FirstName}}+{{n?.LastName}}"
+    alt="Avatar" class="time-right"  style="width:100%;">  <b> {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</b>  </span>
+</div>
+
+
+
+                     
+                  </div>
+      
+                  </ng-container>
                 </ng-container>
               
           

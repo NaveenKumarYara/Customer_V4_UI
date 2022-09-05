@@ -50,6 +50,7 @@ export class DashboardviewComponent implements OnInit {
     // }
 
     populateRecentApplicants(customerId,userId,count: number,) {
+      debugger
        return this.dashboardservice.getRecentApplicants(customerId,userId,count).subscribe(res => {
            this.recentapplicantlist = res;
        });

@@ -29,6 +29,7 @@ import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 import { InviteProfiledialogComponent } from './filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { ShareJobComponent } from './share-job/sharejob.component';
+import { SendnotificationdialogNcomponentComponent } from './viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -313,6 +314,22 @@ export class ViewJobdetailsComponent implements OnInit {
       }
  
   });
+  }
+
+  OpenJobDialog(Jid) {
+    if (this.jobStatus !== "InActive") {
+      const senddialogRef = this.dialog.open(SendnotificationdialogNcomponentComponent, {
+        position: { right: "0px" },
+        data: {
+          jobId: Jid,
+          // status : this.statusid
+        },
+      });
+      senddialogRef.afterClosed().subscribe((result) => {
+        //this.GetJobNotes(profileId, this.jobid);
+        console.log("Screen Dialog result: ${result}");
+      });
+    }
   }
 
   // toggleChild() {

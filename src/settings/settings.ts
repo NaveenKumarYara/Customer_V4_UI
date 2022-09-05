@@ -239,4 +239,5 @@ export class Settings {
   SearchDomains:string;
   ActiveJobs:string;
   CheckCustProfile:string;
+  MyNotes:string;
 }

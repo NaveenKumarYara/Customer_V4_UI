@@ -18,6 +18,8 @@ import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
 import * as FileSaver from "file-saver";
 import { DocumentManagerComponent } from '../../../Postajob/document-manager/document-manager.component';
+import { SendnotificationdialogNcomponentComponent } from '../viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
+import { Resume } from '../viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 const html2canvas: any = _html2canvas;
 var htmlToImage = require('html-to-image');
 declare var $: any;
@@ -36,6 +38,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   complete: any;
   customerId: any;
   userId: any;
+  hideme = [true];
   fileUploadForm: FormGroup;
  jobid: number;
  Education:any;
@@ -46,8 +49,11 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  WFH:any;
  Background:any;
  customer: any;
+ JobNotes:any=[];
  filedata=new FormData();
  viewJobDetails:any;
+ fileType = new Resume();
+ fileExt: any;
  deactivate = new deactivate();
  getjobCompleteinfo :JobCompletenessInfo;
  getcompanybenfit: GetCompanyBenefit[]=[];
@@ -88,6 +94,58 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       this.ViewJobdetailsModel(this.jobid);
     });
   }
+
+  OpenJobDialog(Jid) {
+    this.dialog.closeAll();
+      const senddialogRef = this.dialog.open(SendnotificationdialogNcomponentComponent, {
+        position: { right: "0px" },
+        data: {
+          jobId: Jid,
+          // status : this.statusid
+        },
+      });
+      senddialogRef.afterClosed().subscribe((result) => {
+        //this.GetJobNotes(profileId, this.jobid);
+        console.log("Screen Dialog result: ${result}");
+      });
+    
+  }
+
+  GetJobNotes(profileId, jobId) {
+    debugger
+    this.jobdetailsservice.GetProfileNotesNew(profileId, jobId, this.customer.UserId).subscribe((datr7) => {
+      this.JobNotes = datr7;
+    });
+  }
+
+  DownloadResumeNote(val, Name): void {
+    this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", val).subscribe((fileData) => {
+      this.fileType = fileData;
+      let exp = Name.split(".").pop();
+      this.fileExt = exp;
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+
+      if (this.fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, Name);
+      }
+      if (this.fileExt == "png" || this.fileExt == "jpeg") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/image" });
+        FileSaver.saveAs(blob, Name);
+      } else if (this.fileExt == "doc" || this.fileExt == "docx") {
+        var extension = ".doc";
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, Name);
+      }
+    });
+  }
+
 
   ViewJobdetailsModel(viewJobJobId) {
     const viewdialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
@@ -138,6 +196,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       this.jobdetailscustomer = res;
       this.GetInterviewStatus(this.jobid);
       this.GetJobStatus(this.jobid);
+      this.GetJobNotes(0,this.jobid);
       this.PopulateJobDocuments();
       this.check(this.jobid);
       let params = new HttpParams();

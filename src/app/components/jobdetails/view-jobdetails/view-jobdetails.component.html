@@ -130,6 +130,10 @@
 							<span class="icon-upload">Icon</span>
 							Upload
 						</button>
+						<button class="btn btn-filled mr-5" mat-button (click)=" OpenJobDialog(jobdetailsbasicinfo.JobId)">
+							<!-- <span class="icon-notes">Icon</span> -->
+							Add Notes
+						</button>
 						<button class="btn btn-filled mr-5" mat-button
 							(click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit
 							Job Detail</button>
@@ -137,6 +141,7 @@
 							(click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId)">
 							<span class="icon-forward">Icon</span>
 							Share Job</button>
+							
 						<!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
 						<button class="btn btn-filled" mat-button (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View
 							Job Detail</button>
