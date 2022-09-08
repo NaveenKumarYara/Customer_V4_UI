@@ -1,5 +1,6 @@
 <ng-container *ngIf="addNotes">
 	<div class="page page--job-details">
+		<button class="btn btn-border" (click)="CloseAddNoteDialog()">Back</button>
 		<div>
 			<h4 mat-dialog-title class="modal-title text-center">
 				Add Job Note <i class="fa fa-send-o"></i>
@@ -154,76 +155,93 @@
 </ng-container>
 
 <ng-container *ngIf="!addNotes">
-	<div id="history-activity">
-		<button class="btn btn-filled btn-plus" mat-button (click)=" OpenAddNoteDialog()">
-			<i class="fa fa-plus-circle"></i>
-		</button>
-		<h4>Add Notes</h4>
-		<div class="history-listing-grid">
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>HR</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						HR Round
+	<button class="btn btn-filled btn-plus" mat-button (click)=" OpenAddNoteDialog()">
+		<i class="fa fa-plus-circle"></i>
+	</button>
+	<button mat-button mat-dialog-close class="btn btn-border btn-cross">
+		<i class="fa fa-times-circle" aria-hidden="true"></i>
+	</button>
+	<div class="horizontalTabs">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#history-activity">Notes</a></li>
+			<li><a data-toggle="tab" href="#history-feedback">Feedback</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="history-activity">
+				<h4>Notes</h4>
+				<div class="history-listing-grid">
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>HR</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								HR Round
+							</div>
+						</div>
+					</div>
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>Manager</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								Manager Round.
+							</div>
+						</div>
+					</div>
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>Techinical</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								Manager Round
+							</div>
+						</div>
+					</div>
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>Techinical</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								Please be ready for  HR Round
+							</div>
+						</div>
+					</div>
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>Techinical</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								Scheduled for an interview
+							</div>
+						</div>
+					</div>
+					<div class="history-listing-col ng-star-inserted">
+						<span class="icon icon-01">Icon</span>
+						<div class="history-col-container">
+							<h5>Techinical</h5>
+							<h6>Added By Sim Rrr</h6>
+							<span class="date">Add on 08-09-2022</span>
+							<div class="summary">
+								test
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Manager</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Manager Round.
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Manager Round
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Please be ready for  HR Round
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Scheduled for an interview
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						test
-					</div>
+			<div class="tab-pane fade" id="history-feedback">
+				<h4>Feedback</h4>
+				<div class="history-listing-grid">
+					<h6 class="ng-star-inserted">Feedback Yet to Add</h6>
 				</div>
 			</div>
 		</div>

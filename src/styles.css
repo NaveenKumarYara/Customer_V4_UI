@@ -9975,7 +9975,10 @@ video {
 	}
 }
 
+
+
 @media (max-width: 1280px) {
+	
 	/* .main-nav .page-nav {
 		position: fixed;
 		left: 0;
@@ -31719,12 +31722,6 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	z-index: 1005;
 }
 
-.share_detail_dialog {
-	height: 100vh !important;
-	overflow: hidden;
-	overflow-y: auto;
-}
-
 @media only screen and (max-width: 1280px) {
 	.page--job-details .selected-job .btn-border,
 	.page--job-details .selected-job .btn-filled {
@@ -31795,15 +31792,19 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	}
 }
 
-@media only screen and (max-width: 1400px) {
-	.page--job-details .btn-filled,
-	.page--job-details .card-body>div .btn-border {
-		padding: 10px 24px;
-	}
-}
-
 @media only screen and (max-width: 479px) {
 	.sm-w-100 .styled-select-box {
 		min-width: inherit;
+	}
+}
+
+.word-wrap {
+	word-wrap: break-word;
+}
+
+@media only screen and (max-width: 1460px) {
+	.page--job-details .btn-filled,
+	.page--job-details .btn-border {
+		padding: 11px 24px !important;
 	}
 }
