@@ -262,7 +262,7 @@ h2 {
   color: #6e819e !important;
 }
 
-.btn.btn-plus {
+.btn.btn-plus, .btn.btn-cross  {
   position: absolute;
   right: 30px;
   top: 10px;
@@ -276,8 +276,21 @@ h2 {
   font-size: 20px;
 }
 
-.btn.btn-plus:focus {
+.btn.btn-cross  {
+  right: 55px;
+  border: 0;
+  top: 11px;
+  color: var(--gray-blue-400);
+}
+
+.btn.btn-plus:focus, .btn.btn-cross:focus {
   outline: none;
+  box-shadow: none;
+}
+
+.history-col-container .date {
+  font-size: 12px;
+  color: #93a2bb
 }
 
 .mat-dialog-content {

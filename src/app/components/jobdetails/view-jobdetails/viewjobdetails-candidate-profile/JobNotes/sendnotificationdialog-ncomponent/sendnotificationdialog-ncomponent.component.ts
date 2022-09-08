@@ -144,7 +144,11 @@ selectedFileNames: string[] = [];
   }
 
   OpenAddNoteDialog() {
-    this.addNotes = !this.addNotes;
+    this.addNotes = true;
+  }
+
+  CloseAddNoteDialog() {
+    this.addNotes= false;
   }
   
 
