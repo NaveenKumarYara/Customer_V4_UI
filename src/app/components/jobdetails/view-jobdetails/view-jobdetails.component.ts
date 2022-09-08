@@ -314,12 +314,13 @@ export class ViewJobdetailsComponent implements OnInit {
       }
  
   });
-  }
+  } 
 
   OpenJobDialog(Jid) {
     if (this.jobStatus !== "InActive") {
       const senddialogRef = this.dialog.open(SendnotificationdialogNcomponentComponent, {
         position: { right: "0px" },
+        width: '50vw',
         data: {
           jobId: Jid,
           // status : this.statusid
@@ -331,6 +332,7 @@ export class ViewJobdetailsComponent implements OnInit {
       });
     }
   }
+
 
   // toggleChild() {
   //   this.showVar = !this.showVar;

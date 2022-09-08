@@ -43,6 +43,8 @@ export class SendnotificationdialogNcomponentComponent implements OnInit {
  isShown1: boolean = true ;
  isShown2: boolean = false ;
  isShown3: boolean = false ;
+ addNotes: boolean = false;
+
  GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -130,24 +132,20 @@ selectedFileNames: string[] = [];
 
 
   toggleShow1() {
-
     this.isShown1 = ! this.isShown1;
-    
-    }
+  }
 
-    toggleShow2() {
+  toggleShow2() {
+    this.isShown2 = ! this.isShown2;
+  }
 
-      this.isShown2 = ! this.isShown2;
-      
-      }
+  toggleShow3() {
+    this.isShown3 = ! this.isShown3;
+  }
 
-      toggleShow3() {
-
-        this.isShown3 = ! this.isShown3;
-        
-        }
-
-  
+  OpenAddNoteDialog() {
+    this.addNotes = !this.addNotes;
+  }
   
 
   ngOnInit() {
