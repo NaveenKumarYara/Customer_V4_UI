@@ -3270,6 +3270,12 @@
   box-shadow: 0 3px 6px rgba(158,171,192,0.20);
 }
 
+.griding-document .griding-col .fa.fa-download {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
 
 .griding-document .griding-col h5 {
   font-size: 16px;
