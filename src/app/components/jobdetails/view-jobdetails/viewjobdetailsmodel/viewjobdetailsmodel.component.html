@@ -411,7 +411,7 @@
 
                                   <div class="col-sm-6">
                                     <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
-                                    <h4>${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
+                                    <h4 class="word-wrap">${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
                                       <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
                                         hours/month)</span>
                                       <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
@@ -444,7 +444,7 @@
                                 <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
                                   <div class="col-sm-6">
                                     <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
-                                    <h4> Open for Conversation.</h4>
+                                    <h4 class="word-wrap"> Open for Conversation.</h4>
                                   </div>
                                 </ng-container>
                               </div>
@@ -1147,7 +1147,7 @@
                       <button class="btn btn-close" (click)="DelDocument(d?.Id)">Delete</button>
                       <span class="icon icon-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
                       <span class="icon icon-word" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
-                      <h5  class="address" (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
+                      <h5  class="address" (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}} </h5><i class="fa fa-download" (click)="DownloadDocument(d?.DocName)"  aria-hidden="true"></i>
                       <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
                     </div>
                   </div>
