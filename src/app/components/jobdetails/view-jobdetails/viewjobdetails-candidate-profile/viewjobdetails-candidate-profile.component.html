@@ -1400,7 +1400,8 @@
                 <h4>Hired</h4>
               </div>
             </ng-container>
-            <ng-container *ngIf="profile?.ResponseStatusId === 11">
+            <ng-container *ngIf="profile?.ResponseStatusId === 11 || profile?.ResponseStatusId === 
+            12">
               <div class="col-sm-2 col active">
                 <span class="icon-smart icon-smart-review"></span>
                 <h4>Submitted</h4>
@@ -1417,11 +1418,16 @@
                 <span class="icon-smart icon-smart-interview"></span>
                 <h4>Interview</h4>
               </div>
-              <div class="col-sm-2 col in-progress">
+              <div class="col-sm-2 col in-progress"  *ngIf="profile?.ResponseStatusId === 11">
                 <span class="icon-smart icon-smart-hired"></span>
                 <h4>Hired</h4>
               </div>
+              <div class="col-sm-2 col in-progress"  *ngIf="profile?.ResponseStatusId === 12">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>WithDrawn</h4>
+              </div>
             </ng-container>
+
             </div>
           </div>
         </div>
