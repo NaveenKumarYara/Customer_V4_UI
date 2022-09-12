@@ -264,30 +264,37 @@ getcustomerusers()
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
 
- if(this.isShown1==true&&this.isShown2==false)
+ if(this.teammemberslist.length>0)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=false;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc = '';
  }
-
- if(this.isShown2==true&&this.isShown1==false)
+ else
  {
-  this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
-  this.savenote.isCandidate=true;
-  this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
-  this.savenote.OtherInfo = ' ';
-
- }
-
- if(this.isShown1==true&&this.isShown2==true)
- {
-  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
-  this.savenote.isCandidate=true;
+  this.savenote.toUserId = this.customerUser.toString();
+  this.savenote.isCandidate=false;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
-  this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
+  this.savenote.Doc = '';
  }
+
+//  if(this.isShown2==true&&this.isShown1==false)
+//  {
+//   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
+//   this.savenote.isCandidate=true;
+//   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
+//   this.savenote.OtherInfo = ' ';
+
+//  }
+
+//  if(this.isShown1==true&&this.isShown2==true)
+//  {
+//   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
+//   this.savenote.isCandidate=true;
+//   this.savenote.OtherInfo = this.savenote.OtherInfo;
+//   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
+//  }
 
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
