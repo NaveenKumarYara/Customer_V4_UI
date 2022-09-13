@@ -95,11 +95,17 @@ export class SendEmailComponent implements OnInit {
     this.conversation.Body = this.body;
     // if(){
     if (this.data.profileUpload === false || this.data.profileUpload === undefined) {
-      if (this.UserRoleId === 5 && this.UserId > 0) {
+      if (this.UserId > 0) {
         this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
       }
       else {
-        this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
+        if (this.sdetails.planId != "enterprise" || this.sdetails.planId === undefined) {
+          this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp + ';sid=' + this.data.ccpid + ';jId=' + this.data.jobId;
+        }
+        else
+        {
+          this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId + ';sid=' + this.data.ccpid;
+        }
       }
     }
     if (this.data.profileUpload === true) {
@@ -127,6 +133,7 @@ export class SendEmailComponent implements OnInit {
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' : 'Yes I will Join';
     // }
     this.conversation.ToEmailID = this.ToEmailID;
+    debugger
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 
       if (data === 0) {
