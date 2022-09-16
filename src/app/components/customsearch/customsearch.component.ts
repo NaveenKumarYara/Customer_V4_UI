@@ -7,15 +7,17 @@ import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
+import DataSource from 'devextreme/data/data_source';
 @Component({
   selector: 'app-customsearch',
   templateUrl: './customsearch.component.html',
   styleUrls: ['./customsearch.component.css']
 })
 export class CustomsearchComponent implements OnInit {
-  employees: Employee[];
+  dataSource: any;
 
-  showFilterRow: boolean;
+  filterValue: Array<any>;
+
   customer:any;
   userId:any;
 
@@ -28,8 +30,10 @@ export class CustomsearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employees = this.appService.getEmployees();
-    this.showFilterRow = true;
+    this.dataSource = new DataSource({
+      store: this.appService.getEmployees(),
+    });
+    this.filterValue = ['City', '=', 'Bentonville'];
   }
 
 }
