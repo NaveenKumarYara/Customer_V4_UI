@@ -130,6 +130,7 @@ import { CandidatedetailviewComponent } from "./components/CandidateProfile-deta
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { DocumentManagerComponent } from "./components/Postajob/document-manager/document-manager.component";
 import { CustomerDashboardComponent } from "./components/customer-dashboard/customer-dashboard.component";
+import { CustomsearchComponent } from "./components/customsearch/customsearch.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -145,6 +146,7 @@ const appRoutes: Routes = [
   { path: "guest", component: GuestComponent },
   { path: "ForgotPassword", component: ForgotComponent },
   { path: "ResetPassword", component: ResetComponent },
+  { path: "app-customsearch", component: CustomsearchComponent },
   { path: "ActivateAndResetPassword", component: AboutComponent },
   { path: "features", component: FeaturesComponent },
   { path: "app-postajob", component: PostajobComponent },

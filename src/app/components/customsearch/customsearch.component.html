@@ -1,0 +1,42 @@
+<app-Logoheader></app-Logoheader>
+<body class="page page--notifications">
+
+  <main>
+    <div class="container">
+      <div class="revamp__notification">
+        <div class="revamp__section__title text-center">
+          <h1>My Search </h1>
+        </div>
+        <body class="dx-viewport">
+          <div class="demo-container">
+        <div class="revamp__listing">
+          <dx-tree-list
+  id="employees"
+  [dataSource]="employees"
+  keyExpr="ID"
+  parentIdExpr="Head_ID"
+  [showRowLines]="true"
+  [showBorders]="true"
+  [columnAutoWidth]="true"
+  [expandedRowKeys]="[1]"
+>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-selection mode="single"></dxo-selection>
+  <dxi-column dataField="Full_Name"></dxi-column>
+  <dxi-column dataField="Title" caption="Position"></dxi-column>
+  <dxi-column dataField="City"></dxi-column>
+  <dxi-column dataField="State"></dxi-column>
+  <dxi-column dataField="Mobile_Phone"></dxi-column>
+  <dxi-column dataField="Hire_Date" dataType="date"></dxi-column>
+</dx-tree-list>
+
+        </div>
+          </div></body>
+      </div>
+
+    
+    </div>
+  </main>
+
+
+</body>

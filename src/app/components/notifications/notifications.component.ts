@@ -33,6 +33,11 @@ export class NotificationsComponent implements OnInit {
 
   }
 
+  CheckSearch()
+  {
+    this.router.navigateByUrl('app-customsearch');
+  }
+
 
 getNotifications() {
   
