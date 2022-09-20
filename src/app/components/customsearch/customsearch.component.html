@@ -5,11 +5,16 @@
     <div class="container">
       <div class="revamp__notification">
         <div class="revamp__section__title text-center">
-          <h1>My Search </h1>
+          <h1 data-step="1" data-intro="This is a boolean search!" data-position='right'>My Search </h1>
+    
+          
         </div>
+        <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works</a>
         <body class="dx-viewport">
+       
           <div class="demo-container">
-        <div class="revamp__listing">
+            
+        <div class="revamp__listing" data-step="2" data-intro="Results can be Filtered or Search!" data-position='top'>
           <dx-tree-list
           id="employees"
           [dataSource]="dataSource"
@@ -23,19 +28,22 @@
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
           <dxi-column dataField="Full_Name" dataType="string"></dxi-column>
+      
           <dxi-column
             dataField="Title"
             caption="Position"
             dataType="string"
           ></dxi-column>
-          <dxi-column dataField="City" dataType="string"></dxi-column>
+          <dxi-column dataField="City" dataType="string" ></dxi-column>
           <dxi-column dataField="State" dataType="string"></dxi-column>
           <dxi-column dataField="Mobile_Phone" dataType="string"></dxi-column>
           <dxi-column dataField="Hire_Date" dataType="date"></dxi-column>
+
         </dx-tree-list>
-        
+     
 
         </div>
+        <span data-step="3" data-intro="view the results applied here!" data-position='bottom'></span>
           </div></body>
       </div>
 
