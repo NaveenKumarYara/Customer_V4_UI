@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 import { AuthService } from '../../../shared/guard/auth.service';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-dashboardview',
@@ -32,6 +33,7 @@ export class DashboardviewComponent implements OnInit {
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
     jobLoader : boolean;
+    introJS = introJs();
     daysRemaining:any;
     bill:billEstimates; 
     constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService, private authService: AuthService) { 
@@ -43,6 +45,11 @@ export class DashboardviewComponent implements OnInit {
         this.userId=this.customer.UserId;
     }
 
+    start()
+    {
+      this.introJS.start();
+    }
+
     // populateRecentJoblist(count: number) {
     //     return this.dashboardservice.getRecentJobs(count).subscribe(res => {
     //         this.recentjoblist = res;
@@ -50,7 +57,6 @@ export class DashboardviewComponent implements OnInit {
     // }
 
     populateRecentApplicants(customerId,userId,count: number,) {
-      debugger
        return this.dashboardservice.getRecentApplicants(customerId,userId,count).subscribe(res => {
            this.recentapplicantlist = res;
        });

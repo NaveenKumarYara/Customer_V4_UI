@@ -1,6 +1,7 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--dashboard">
-  <div class="container">
+  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> Explore Dashboard</a>
+  <div class="container" data-step="1" data-intro="Welcome to Arytic home let's start how it works." data-position='top'>
     <!--Upgrade Text for Mobile View-->
     <!-- <a
       class="text-danger mobile-version-upgrade"
@@ -11,14 +12,15 @@
       Free Trial Expires, Upgrade Now!</a
     > -->
     <!--Upgrade Text for Mobile View-->
-    <div class="row">
-      <app-dashboard-jobsview> </app-dashboard-jobsview>
+
+    <div class="row" data-step="2" data-intro="View the job statistics and applicants here." data-position='left'>
+      <app-dashboard-jobsview></app-dashboard-jobsview>
       <app-dashboard-activejobs></app-dashboard-activejobs>
       <app-dashboard-scheduled-interview> </app-dashboard-scheduled-interview>
       <app-dashboard-content></app-dashboard-content>
     </div>
-    <div class="row">
-      <app-dashboard-recentjobs></app-dashboard-recentjobs>
+    <div class="row" data-step="3" data-intro="Find here recent Job postings and Applicants." data-position='bottom'>
+      <app-dashboard-recentjobs ></app-dashboard-recentjobs>
       <app-dashboard-recent-applications [recentapplicantlist]="recentapplicantlist">
       </app-dashboard-recent-applications>
       
