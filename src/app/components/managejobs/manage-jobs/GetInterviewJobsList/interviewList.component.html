@@ -26,7 +26,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="false">
+      <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" (click)="SortTheProfile(4)" aria-selected="false">
         <span class="icon icon-calendar">Icon</span>
         Calendar
       </a>
@@ -45,7 +45,7 @@
     <div class="tab-content" id="myTabContent">
       <div class="search-box-container">
         <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
-        <input type="text" class="form-control" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
+        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
         <div class="searchList" *ngIf="SearchList.length>0">
           <ul class="searchList-dropdown">
             <li class="searchList-options" *ngFor="let slist of SearchList"
@@ -266,7 +266,35 @@
 
       <!--Calendar Tabs-->
       <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
-        Coming Soon.
+        <div class="horizontalTabs">
+          <ul class="nav nav-tabs" id="completedab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link" id="completed-interview-tab" data-toggle="tab" href="#completed-interview" role="tab" aria-controls="completed-interview" aria-selected="true">
+                Interview Schedule
+              </a>
+            </li>
+    
+          </ul>
+          <div class="tab-content" id="completed-interview">
+            <!--Completed Interview Tab-->
+            <div class="tab-pane fade active in" id="completed-interview" role="tabpanel" aria-labelledby="completed-interview-tab">
+              <div class="listing-grid">
+                <div class="listing-col">
+                     Sample Calendar..
+                </div>
+              </div>
+            </div>
+            <!--Completed Interview Tab-->
+
+            <!--Completed Event Tab-->
+         
+
+ 
+            <!--Completed Event Tab-->
+          </div>
+        </div>
+
+ 
       </div>
 
       <!--Comment Tabs-->
@@ -276,7 +304,8 @@
     </div>
  
 
-    <ng-container *ngIf="filterInterviewDetail.length>0">
+    <ng-container *ngIf="filterInterviewDetail.length>0">    
+   
     <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
       <div class="interview-detail-section" *ngIf="j === setActive">
 
@@ -513,9 +542,32 @@
     </ng-container>
     </ng-container>
     <ng-container *ngIf="filterInterviewDetail.length===0">
+      <ng-container *ngIf="show === false">
       <p> No records found!!</p>
-    </ng-container>
+      </ng-container>
+      
+        <ng-container *ngIf="show === true">
  
+          <div class="interview-detail-section">
+            <dx-scheduler
+            timeZone="America/Los_Angeles"
+            [dataSource]="appointmentsData"
+            [views]="['week', 'month']"
+            currentView="week"
+            [currentDate]="currentDate"
+            [startDayHour]="9"
+            [height]="600"
+          >
+          </dx-scheduler>
+          </div>
+        
+     
+        
+      </ng-container>
+      
+    </ng-container>
+
+  
+
    
-  </div>
 </div>

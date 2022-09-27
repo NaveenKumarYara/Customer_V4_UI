@@ -25,3 +25,13 @@ export class getDetails
     LastName:  string;
     RoleName:  string;
 }
+
+export class Appointment {
+    text: string;
+  
+    startDate: Date;
+  
+    endDate: Date;
+  
+    allDay?: boolean;
+  }

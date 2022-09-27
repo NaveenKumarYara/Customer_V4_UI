@@ -37,6 +37,9 @@ import { SearchjobsComponent } from "./searchjobs/searchjobs.component";
 import { AdvanceSearchComponent } from "./advance-search/advance-search.component";
 import { LoadJoblistComponent } from "./load-joblist/load-joblist.component";
 import { TooltipModule } from 'ng2-tooltip-directive';
+
+import { DxSchedulerModule } from 'devextreme-angular';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -47,6 +50,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     ReactiveFormsModule,
     NgSelectModule,
     MatDialogModule,
+    DxSchedulerModule,
     SharedModule,
     // HttpClientModule,
     RouterModule,
@@ -63,6 +67,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
     MatInputModule,
+    
     AngularMultiSelectModule,
     ManagejobsRoutingModule,
     FileUploadModule 

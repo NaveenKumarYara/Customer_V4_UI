@@ -17,6 +17,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { idLocale } from 'ngx-bootstrap';
 import { ApiService } from '../../../../shared/services';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
+import { Appointment } from '../../models/getDetails';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
@@ -32,6 +33,7 @@ export class InterviewListComponent implements OnInit {
     sort:any;
     Pro:any;
     search:any='';
+    show:boolean = false;
     value:any;
     splitVal: any = [];
     SearchList: any = [];
@@ -46,6 +48,12 @@ export class InterviewListComponent implements OnInit {
     setActive:  number = null;
     jobs: any;
     subNavigationActive: string;
+
+    appointmentsData: Appointment[];
+
+    currentDate: Date = new Date();
+    
+ 
 
     invetviewListArray:any = [
       {
@@ -191,6 +199,12 @@ export class InterviewListComponent implements OnInit {
       return bytes.buffer;
     }
 
+    GetData()
+    {
+      this.filterInterviewDetail = [];
+      this.appointmentsData = this.managejobservice.getAppointments();
+    }
+
     GetJobFeedback(profileId, jobId) {
       this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
         this.CandidateFeedback = datr6;
@@ -297,13 +311,25 @@ export class InterviewListComponent implements OnInit {
       this.sort =val
       this.detailIntviewHandler(0); 
       this.joblistcount = 6; 
-      this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+    
+      if(val === 4)
+      {
+       debugger
+        this.show = true;
+        this.GetData();      
+      }
+      else
+      {
+        this.show = false;
+        this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+      }    
     }
     else
     {
       this.sort=3;
       this.detailIntviewHandler(0);  
       this.joblistcount = 6;
+      this.show = false;
       this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
     }
   }
@@ -340,8 +366,10 @@ export class InterviewListComponent implements OnInit {
       this.listSort=1;
     }
     this.searchString=search;
+    debugger
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
+      debugger
       this.joblist = res;
       this.filterInterviewDetail = res.Jobs;
       this.Pro = this.filterInterviewDetail[this.setActive];
@@ -495,3 +523,5 @@ export class ProposeDate {
       public CPDate: Date;
       public CPFromTime: string;
 }
+
+
