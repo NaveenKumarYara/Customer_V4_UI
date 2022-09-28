@@ -15,6 +15,7 @@ import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../../shared/services';
+import { Item } from 'angular2-multiselect-dropdown';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -22,11 +23,13 @@ export interface DialogData {
 @Component({
   selector: 'app-sharedialog',
   templateUrl: './sharedialog.component.html',
-  styleUrls: ['./sharedialog.component.css']
+  styleUrls: ['./sharedialog.component.css','./sharedialog-new.component.css']
 })
 export class SharedialogComponent implements OnInit{
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
+  dropdownList = [];
+  selectedItems = [];
   GetContactsList: contactInfo[];
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -37,6 +40,9 @@ export class SharedialogComponent implements OnInit{
   profileSharing = new ProfileShare();
   customer: any;
   AddUser: boolean = false;
+  activeAny: string;
+  showCC: boolean = false;
+  showBCC: boolean = false;
   customerId: number;
   UserId: any;
   SaveInfo = new contactInfo();
@@ -57,6 +63,7 @@ export class SharedialogComponent implements OnInit{
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
+  dropdownSettings = {};
   arr: any=[];
   constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private elementRef:ElementRef,private _service: ApiService,private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -119,7 +126,42 @@ export class SharedialogComponent implements OnInit{
           this.teammemberslist = teammemberlist;
         }
       );
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Shaik Mohammed' ,isDisabled: false},
+      { item_id: 2, item_text: 'D’Mani Dave',isDisabled: false },
+      { item_id: 3, item_text: 'Pawan Bothra',isDisabled: false },
+      { item_id: 4, item_text: 'Kinjal Mehta' ,isDisabled: false}
+    ];
+
+    this.dropdownSettings  = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
+    this.activeAny = 'Normal';
   }
+
+  showClickCC() {
+    this.showCC = !this.showCC;
+  }
+
+  showClickBCC() {
+    this.showBCC = !this.showBCC;
+  }
+
+
+  onItemSelect(item: any) {
+    this.selectedItems.push(Item);
+   }
+   onSelectAll(items: any) {
+     this.selectedItems.push(Item);
+   }
 
  GetProfileCard()
  {
