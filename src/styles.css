@@ -31802,6 +31802,17 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	word-wrap: break-word;
 }
 
+.share-ui-component .multiselect-dropdown .dropdown-btn {
+  padding: 14px 20px !important;
+}
+
+.share-ui-component  .multiselect-dropdown .dropdown-btn .dropdown-down {
+	top: 6px !important;
+	border-top: 6px solid #adadad !important;
+	border-left: 6px solid transparent !important;
+	border-right: 6px solid transparent !important;
+}
+
 @media only screen and (max-width: 1460px) {
 	.page--job-details .btn-filled,
 	.page--job-details .btn-border {

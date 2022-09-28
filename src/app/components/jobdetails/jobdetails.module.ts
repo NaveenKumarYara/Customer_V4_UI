@@ -70,6 +70,8 @@ import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { SendnotificationdialogNcomponentComponent } from './view-jobdetails/viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -103,7 +105,9 @@ setTheme('bs3');
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
     NgCircleProgressModule.forRoot({}),
-    TooltipModule
+    TooltipModule,
+    CKEditorModule,
+    NgMultiSelectDropDownModule
     // ,
     // ModalDialogModule.forRoot()
   ],
