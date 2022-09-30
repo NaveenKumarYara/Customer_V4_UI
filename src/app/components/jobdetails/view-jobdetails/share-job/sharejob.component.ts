@@ -34,7 +34,7 @@ export interface DialogData {
 @Component({
   selector: 'app-sharejob',
   templateUrl: './sharejob.component.html',
-  styleUrls: ['./sharejob.component.css']
+  styleUrls: ['./sharejob.component.css','./sharejob-new.component.css']
 })
 export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
@@ -97,6 +97,12 @@ export class ShareJobComponent implements OnInit {
   Title: any;
   Image:any;
   NImage:any;
+  showCC: boolean = false;
+  showBCC: boolean = false;
+  dropdownSettings = {};
+  dropdownList = [];
+  selectedItems = [];
+  activeAny: string;
   jobdetailscustomer = new  GetJobDetailCustomer();
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer ,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -237,6 +243,25 @@ titleCase(str) {
         }
       );
       this.referLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
+
+      this.dropdownList = [
+        { item_id: 1, item_text: 'Shaik Mohammed' ,isDisabled: false},
+        { item_id: 2, item_text: 'D’Mani Dave',isDisabled: false },
+        { item_id: 3, item_text: 'Pawan Bothra',isDisabled: false },
+        { item_id: 4, item_text: 'Kinjal Mehta' ,isDisabled: false}
+      ];
+  
+      this.dropdownSettings  = {
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'item_text',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 4,
+        allowSearchFilter: true
+      };
+  
+      this.activeAny = 'Normal';
   }
 
   getcustomerusers() {

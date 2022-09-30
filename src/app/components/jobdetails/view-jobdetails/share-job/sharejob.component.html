@@ -1,1357 +1,1437 @@
- <div class="page page--job-details">
-	<div>
-		<h4 mat-dialog-title class="modal-title text-center">
-			Share Job
-		</h4>
-		<mat-dialog-content class="mat-typography modal-dialog h-auto">
-			<div>
-				<div class="modal-body">
-					<div class="row">
-					</div>
-					<form action="">
-						<div class="form-row">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-6 w-auto">
-										<label class="radio checkbox">
+<div class="hidden">
+	<div class="page page--job-details">
+		<div>
+			<h4 mat-dialog-title class="modal-title text-center">
+				Share Job
+			</h4>
+			<mat-dialog-content class="mat-typography modal-dialog h-auto">
+				<div>
+					<div class="modal-body">
+						<div class="row">
+						</div>
+						<form action="">
+							<div class="form-row">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6 w-auto">
+											<label class="radio checkbox">
 											<input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false)">
 											<span class="radio-btn wh-22 ml-0"></span>
 											<span> Team Members </span>
-
-										</label>
-									</div>
-									<div class="col-md-6 w-auto">
-										<label class="radio checkbox">
+											</label>
+										</div>
+										<div class="col-md-6 w-auto">
+											<label class="radio checkbox">
 											<input type="radio" class="radio-input" name="team" (click)="teamchange(true)">
 											<span class="radio-btn wh-22 ml-0"></span>
 											<span> Share via Email / Social Media </span>
-									
-										
-
-										</label>
-
-										
+											</label>
+										</div>
 									</div>
-								</div>
-								<ng-container *ngIf="changeval===false">
-									<div class="input-group">
-										<ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
+									<ng-container *ngIf="changeval===false">
+										<div class="input-group">
+											<ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
 											placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
 											bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
 											id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
 											#TMemb="ngModel">
-										</ng-select>
-
-										<span class="input-group-btn">
-											<button class="btn" (click)="addTeammembers()">+</button>
-										</span>
-										<span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
-									</div>
-									<ul class="share_candidate team-members-list">
-										<li *ngFor="let teammember of teammemberslist; let i = index">
-											<div class="w-100">
-												<h4>{{teammember.FirstName}}
-												</h4>
-												<span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
-											</div>
-										</li>
-									</ul>
-								</ng-container>
-								<ng-container *ngIf="changeval===true">
-								
-									<div class="form-group public-link">
-								
-										<div class="input-group">
-											<input type="url" class="form-control text-to-copy njobLink" [(ngModel)]="referLink"
-												[ngModelOptions]="{standalone: true}" id="job-link" readonly>
+											</ng-select>
 											<span class="input-group-btn">
+											<button class="btn" (click)="addTeammembers()">+</button>
+											</span>
+											<span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+										</div>
+										<ul class="share_candidate team-members-list">
+											<li *ngFor="let teammember of teammemberslist; let i = index">
+												<div class="w-100">
+													<h4>{{teammember.FirstName}}
+													</h4>
+													<span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+												</div>
+											</li>
+										</ul>
+									</ng-container>
+									<ng-container *ngIf="changeval===true">
+										<div class="form-group public-link">
+											<div class="input-group">
+												<input type="url" class="form-control text-to-copy njobLink" [(ngModel)]="referLink"
+												[ngModelOptions]="{standalone: true}" id="job-link" readonly>
+												<span class="input-group-btn">
 												<button class="btn btn-secondary copy-btn" id="nbtnCpy" (click)="copyToClipboard()"
 													type="button">
-													<span class="hidden-xs btn-sm">Copy Link</span>
+												<span class="hidden-xs btn-sm">Copy Link</span>
 												</button>
-											</span>
+												</span>
+											</div>
 										</div>
-									</div>
-									<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
-									<div>
-										<input type="hidden" id="Company_Name" [(ngModel)]="CompanyName"  [ngModelOptions]="{standalone: true}" />
-<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
-<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
-<div id="hiddenTag">
-	<div class="text-center">
-		<span class=" icon">
-		<!-- <a
-		href="mailto:? &subject= '{{Title}}' Had shared Job to you  &body= 'please check below Job details '<a href='{{referLink}}' style='margin:0; padding:0; font-size:14px; color:#fff; display: block; width: 80%; background:#66dab5; display: block; text-decoration:none; padding: 4px 16px; border-radius:6px; text-align: center;'>View Job Details</a> "
-		target=”_blank” rel="noopener noreferrer" >   <img src="assets/images/interview-icon.png" id="share-dialog-linkedin" alt="linkedin"></a> -->
-
-		<a (click)="getStringifiedAssets(demoAssets)" href="javascript:void(0)"	 data-address="matteo" data-domain="mailgo.dev">Send Mail</a>
-		</span>
-	  <span class=" icon">
-		<!-- <div id="share-dialog-linkedin"></div> -->
-		<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; " (click)="GetLink()">
-		  <img src="assets/images/linkedin-icon.png" id="share-dialog-linkedin" alt="linkedin">
-		</a>
-	  </span>
-	  <span class="icon">
-		<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; " (click)="GetLink()">
-		  <img src="assets/images/fb-icon.png" id="share-dialog-facebook" alt="facebook">
-		</a>
-	  </span>
-	  <span class="icon">
-		<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; " (click)="GetLink()">
-		  <img src="assets/images/twitter-icon.png" alt="twitter">
-		</a>
-	  </span>
-	  <span class="icon">
-		<a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
-			src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
-	  </span>
-	</div>
-  </div>
-								
-									</div>
-									<form [formGroup]="inviteform">
-										<div class="input-group col-sm-12 pt-2 p-rel">
-											<div class="clearfix">&nbsp;</div>
-											<textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
-												autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
-                                        </textarea>
-											<div
-												*ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
-												class="error1">
-												<div *ngIf="inviteform.controls['inviteEmail']">
-													Incorrect Email.
+										<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+										<div>
+											<input type="hidden" id="Company_Name" [(ngModel)]="CompanyName"  [ngModelOptions]="{standalone: true}" />
+											<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
+											<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
+											<div id="hiddenTag">
+												<div class="text-center">
+													<span class=" icon">
+														<!-- <a
+															href="mailto:? &subject= '{{Title}}' Had shared Job to you  &body= 'please check below Job details '<a href='{{referLink}}' style='margin:0; padding:0; font-size:14px; color:#fff; display: block; width: 80%; background:#66dab5; display: block; text-decoration:none; padding: 4px 16px; border-radius:6px; text-align: center;'>View Job Details</a> "
+															target=”_blank” rel="noopener noreferrer" >   <img src="assets/images/interview-icon.png" id="share-dialog-linkedin" alt="linkedin"></a> -->
+														<a (click)="getStringifiedAssets(demoAssets)" href="javascript:void(0)"	 data-address="matteo" data-domain="mailgo.dev">Send Mail</a>
+													</span>
+													<span class=" icon">
+														<!-- <div id="share-dialog-linkedin"></div> -->
+														<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; " (click)="GetLink()">
+														<img src="assets/images/linkedin-icon.png" id="share-dialog-linkedin" alt="linkedin">
+														</a>
+													</span>
+													<span class="icon">
+													<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; " (click)="GetLink()">
+													<img src="assets/images/fb-icon.png" id="share-dialog-facebook" alt="facebook">
+													</a>
+													</span>
+													<span class="icon">
+													<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; " (click)="GetLink()">
+													<img src="assets/images/twitter-icon.png" alt="twitter">
+													</a>
+													</span>
+													<span class="icon">
+													<a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
+														src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+													</span>
 												</div>
 											</div>
 										</div>
-
-										<div class="clearfix">&nbsp;</div>
-										<!-- <div class="col-sm-12 plr-0">
-											<div class="pull-right">
-												<button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
-												(click)="loginstyle()">Submit</button>
-											</div>
-										</div> -->
-
-									</form>
-								</ng-container>
-
+						<form [formGroup]="inviteform">
+						<div class="input-group col-sm-12 pt-2 p-rel">
+						<div class="clearfix">&nbsp;</div>
+						<textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+							autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
+						</textarea>
+						<div
+							*ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
+							class="error1">
+						<div *ngIf="inviteform.controls['inviteEmail']">
+						Incorrect Email.
+						</div>
+						</div>
+						</div>
+						<div class="clearfix">&nbsp;</div>
+						<!-- <div class="col-sm-12 plr-0">
+							<div class="pull-right">
+								<button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
+								(click)="loginstyle()">Submit</button>
 							</div>
+							</div> -->
+						</form>
+						</ng-container>
+						</div>
 						</div>
 						<div class="form-group" *ngIf="changeval===false">
 							<label for="">Comments</label>
 							<textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
-								placeholder="Please add your comments *" rows="10"></textarea>
+							placeholder="Please add your comments *" rows="10"></textarea>
 						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
-		</mat-dialog-content>
-		<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-			<button mat-button mat-dialog-close class="btn btn-border">Close</button>
-			<ng-container *ngIf="changeval===false">
-				<button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
-				<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+			</mat-dialog-content>
+			<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+				<button mat-button mat-dialog-close class="btn btn-border">Close</button>
+				<ng-container *ngIf="changeval===false">
+					<button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+					<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
 					<i class="fa fa-spinner fa-spin"></i>
-				</button>
-			</ng-container>
-			<ng-container *ngIf="changeval===true">
-				<button mat-button (click)="SaveInvite()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
-				<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+					</button>
+				</ng-container>
+				<ng-container *ngIf="changeval===true">
+					<button mat-button (click)="SaveInvite()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+					<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
 					<i class="fa fa-spinner fa-spin"></i>
+					</button>
+				</ng-container>
+			</mat-dialog-actions>
+		</div>
+	</div>
+	<!-- <div class="share__job__container">
+		<div class="share__job__main__nav" *ngIf="showThis == 'mainNav'">
+			<div class="title">
+				<h4>Share the Job</h4>
+				<button class="btn btn-filled btn-back">
+					Share All
+					<i class="fa fa-share" aria-hidden="true"></i>
 				</button>
-			</ng-container>
-
-		</mat-dialog-actions>
-	</div>
-</div>  
-
- <!-- <div class="share__job__container">
-	<div class="share__job__main__nav" *ngIf="showThis == 'mainNav'">
-		<div class="title">
-			<h4>Share the Job</h4>
-			<button class="btn btn-filled btn-back">
-				Share All
-				<i class="fa fa-share" aria-hidden="true"></i>
-			</button>
-		</div>
-		<ul>
-			<li>
-				<a href="javascript:void(0)" (click)="showThis = 'shareVendor'">
-					<span class="icon icon-hiring">&nbsp;</span>
-					<div class="mask__info">
-						<div class="info__box">
-							<h4>Share with Esolvit vendors / hiring agency</h4>
-						</div>
-						<div class="info__mask">
-							<h4>Share with Esolvit vendors / hiring agency</h4>
-							<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" (click)="showThis = 'aryticPartner'">
-					<span class="icon icon-partner">&nbsp;</span>
-					<div class="mask__info">
-						<div class="info__box">
-							<h4>Share with Arytic Partner</h4>
-						</div>
-						<div class="info__mask">
-							<h4>Share with Arytic Partner</h4>
-							<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" (click)="showThis = 'aryticForm'">
-					<span class="icon icon-team">&nbsp;</span>
-					<div class="mask__info">
-						<div class="info__box">
-							<h4>Share with Team Member</h4>
-						</div>
-						<div class="info__mask">
-							<h4>Share with Team Member</h4>
-							<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" (click)="showThis = 'aryticExternal'">
-					<span class="icon icon-social">&nbsp;</span>
-					<div class="mask__info">
-						<div class="info__box">
-							<h4>Share with Social Media/External</h4>
-						</div>
-						<div class="info__mask">
-							<h4>Share with Social Media/External</h4>
-							<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" (click)="showThis = 'aryticBoard'">
-					<span class="icon icon-job">&nbsp;</span>
-					<div class="mask__info">
-						<div class="info__box">
-							<h4>Share with Arytic Job Boards</h4>
-						</div>
-						<div class="info__mask">
-							<h4>Share with Arytic Job Boards</h4>
-							<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
-						</div>
-					</div>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="share__job__board__grid" *ngIf="showThis == 'aryticBoard'">
-		<div class="title flex flex-wrap flex-align-center">
-			<h4>Share with Arytic Job Boards</h4>
-			<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
-		</div>
-		<div class="row flex flex-wrap flex-align-equal">
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__01.png" alt="">
-					</figure>
-					<h4>Indeed</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">UI</a></li>
-							<li><a href="#">Web Designer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__02.png" alt="">
-					</figure>
-					<h4>Adzuna</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">Web Developer</a></li>
-							<li><a href="#">Angular</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__03.png" alt="">
-					</figure>
-					<h4>CareerJet</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">Software Developer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__04.png" alt="">
-					</figure>
-					<h4>Facebook</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">UI</a></li>
-							<li><a href="#">Web Designer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__05.png" alt="">
-					</figure>
-					<h4>JobIsJob</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">It</a></li>
-							<li><a href="#">Engineering</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__06.png" alt="">
-					</figure>
-					<h4>Jobrapido</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">Node JS</a></li>
-							<li><a href="#">React</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__07.png" alt="">
-					</figure>
-					<h4>Jobtome</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">React Native</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__08.png" alt="">
-					</figure>
-					<h4>Jooble</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">Ux Designer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__09.png" alt="">
-					</figure>
-					<h4>Neuvoo</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">Wordpress developer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__010.png" alt="">
-					</figure>
-					<h4>Slack</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">UI</a></li>
-							<li><a href="#">Web Designer</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-3 main-col">
-				<a href="#" class="col-container">
-					<figure>
-						<img src="../../../../../assets/images/share-jobs/logo__011.png" alt="">
-					</figure>
-					<h4>Zip Recruiter</h4>
-					<div class="tags">
-						<ul>
-							<li><a href="#">React native</a></li>
-						</ul>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="share__arytic__partner__container" *ngIf="showThis == 'aryticPartner'">
-		<div class="main__navigation">
-			<div class="title flex flex-wrap flex-align-center">
-				<h4 class="title">Share with Artyic Partner</h4>
-				<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
 			</div>
 			<ul>
 				<li>
-					<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-						<span class="icon icon-partner-small"></span>
-						<div class="info__box">
-							<div class="box__container">
-								<h6>Share with</h6>
-								<h4>Arytic Premium Partner</h4>
+					<a href="javascript:void(0)" (click)="showThis = 'shareVendor'">
+						<span class="icon icon-hiring">&nbsp;</span>
+						<div class="mask__info">
+							<div class="info__box">
+								<h4>Share with Esolvit vendors / hiring agency</h4>
+							</div>
+							<div class="info__mask">
+								<h4>Share with Esolvit vendors / hiring agency</h4>
+								<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
 							</div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)"  (click)="showThis = 'allVenodr'; showSubThis='subNavigation'">
-						<span class="icon icon-vendor"></span>
-						<div class="info__box">
-							<div class="box__container">
-								<h6>Share with</h6>
-								<h4>All Vendors</h4>
+					<a href="javascript:void(0)" (click)="showThis = 'aryticPartner'">
+						<span class="icon icon-partner">&nbsp;</span>
+						<div class="mask__info">
+							<div class="info__box">
+								<h4>Share with Arytic Partner</h4>
+							</div>
+							<div class="info__mask">
+								<h4>Share with Arytic Partner</h4>
+								<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
 							</div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)" (click)="showThis = 'freelanceRecruit'; showSubThis='subNavigation'">
-						<span class="icon icon-freelance"></span>
-						<div class="info__box">
-							<div class="box__container">
-								<h6>Share with</h6>
-								<h4>Arytic preferred Freelance Recruiter</h4>
+					<a href="javascript:void(0)" (click)="showThis = 'aryticForm'">
+						<span class="icon icon-team">&nbsp;</span>
+						<div class="mask__info">
+							<div class="info__box">
+								<h4>Share with Team Member</h4>
+							</div>
+							<div class="info__mask">
+								<h4>Share with Team Member</h4>
+								<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
 							</div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)" (click)="showThis = 'allFreelancer'; showSubThis='subNavigation'">
-						<span class="icon icon-freelancer"></span>
-						<div class="info__box">
-							<div class="box__container">
-								<h6>Share with</h6>
-								<h4>All Freelance Recruiter</h4>
+					<a href="javascript:void(0)" (click)="showThis = 'aryticExternal'">
+						<span class="icon icon-social">&nbsp;</span>
+						<div class="mask__info">
+							<div class="info__box">
+								<h4>Share with Social Media/External</h4>
+							</div>
+							<div class="info__mask">
+								<h4>Share with Social Media/External</h4>
+								<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" (click)="showThis = 'aryticBoard'">
+						<span class="icon icon-job">&nbsp;</span>
+						<div class="mask__info">
+							<div class="info__box">
+								<h4>Share with Arytic Job Boards</h4>
+							</div>
+							<div class="info__mask">
+								<h4>Share with Arytic Job Boards</h4>
+								<p>Pellentesque habitant morbi tristique senectus et net us et malesuada fames ac turpis egestas.</p>
 							</div>
 						</div>
 					</a>
 				</li>
 			</ul>
 		</div>
-	</div>
-	<div class="share__arytic__partner__container">
-		<div class="navigation-col side-col" *ngIf="showSubThis == 'subNavigation'">
-			<div class="side__navigation">
+		<div class="share__job__board__grid" *ngIf="showThis == 'aryticBoard'">
+			<div class="title flex flex-wrap flex-align-center">
+				<h4>Share with Arytic Job Boards</h4>
+				<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
+			</div>
+			<div class="row flex flex-wrap flex-align-equal">
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__01.png" alt="">
+						</figure>
+						<h4>Indeed</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">UI</a></li>
+								<li><a href="#">Web Designer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__02.png" alt="">
+						</figure>
+						<h4>Adzuna</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">Web Developer</a></li>
+								<li><a href="#">Angular</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__03.png" alt="">
+						</figure>
+						<h4>CareerJet</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">Software Developer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__04.png" alt="">
+						</figure>
+						<h4>Facebook</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">UI</a></li>
+								<li><a href="#">Web Designer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__05.png" alt="">
+						</figure>
+						<h4>JobIsJob</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">It</a></li>
+								<li><a href="#">Engineering</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__06.png" alt="">
+						</figure>
+						<h4>Jobrapido</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">Node JS</a></li>
+								<li><a href="#">React</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__07.png" alt="">
+						</figure>
+						<h4>Jobtome</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">React Native</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__08.png" alt="">
+						</figure>
+						<h4>Jooble</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">Ux Designer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__09.png" alt="">
+						</figure>
+						<h4>Neuvoo</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">Wordpress developer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__010.png" alt="">
+						</figure>
+						<h4>Slack</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">UI</a></li>
+								<li><a href="#">Web Designer</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-3 main-col">
+					<a href="#" class="col-container">
+						<figure>
+							<img src="../../../../../assets/images/share-jobs/logo__011.png" alt="">
+						</figure>
+						<h4>Zip Recruiter</h4>
+						<div class="tags">
+							<ul>
+								<li><a href="#">React native</a></li>
+							</ul>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="share__arytic__partner__container" *ngIf="showThis == 'aryticPartner'">
+			<div class="main__navigation">
+				<div class="title flex flex-wrap flex-align-center">
+					<h4 class="title">Share with Artyic Partner</h4>
+					<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
+				</div>
 				<ul>
-					<li [ngClass]="showThis == 'aryticPremium' ? 'active' : ''">
+					<li>
 						<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-							<p>Share with</p>
-							<h6>Arytic Premium Partner</h6>
+							<span class="icon icon-partner-small"></span>
+							<div class="info__box">
+								<div class="box__container">
+									<h6>Share with</h6>
+									<h4>Arytic Premium Partner</h4>
+								</div>
+							</div>
 						</a>
 					</li>
-					<li [ngClass]="showThis == 'allVenodr' ? 'active' : ''">
-						<a href="javascript:void(0)" (click)="showThis = 'allVenodr'; showSubThis='subNavigation'">
-							<p>Share with</p>
-							<h6>All Vendors</h6>
+					<li>
+						<a href="javascript:void(0)"  (click)="showThis = 'allVenodr'; showSubThis='subNavigation'">
+							<span class="icon icon-vendor"></span>
+							<div class="info__box">
+								<div class="box__container">
+									<h6>Share with</h6>
+									<h4>All Vendors</h4>
+								</div>
+							</div>
 						</a>
 					</li>
-					<li [ngClass]="showThis == 'freelanceRecruit' ? 'active' : ''">
+					<li>
 						<a href="javascript:void(0)" (click)="showThis = 'freelanceRecruit'; showSubThis='subNavigation'">
-							<p>Share with Arytic</p>
-							<h6>Preferred Freelance Recruiter</h6>
+							<span class="icon icon-freelance"></span>
+							<div class="info__box">
+								<div class="box__container">
+									<h6>Share with</h6>
+									<h4>Arytic preferred Freelance Recruiter</h4>
+								</div>
+							</div>
 						</a>
 					</li>
-					<li [ngClass]="showThis == 'allFreelancer' ? 'active' : ''">
+					<li>
 						<a href="javascript:void(0)" (click)="showThis = 'allFreelancer'; showSubThis='subNavigation'">
-							<p>Share with</p>
-							<h6>All Freelance Recruiter</h6>
+							<span class="icon icon-freelancer"></span>
+							<div class="info__box">
+								<div class="box__container">
+									<h6>Share with</h6>
+									<h4>All Freelance Recruiter</h4>
+								</div>
+							</div>
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<ng-container  *ngIf="showThis == 'aryticPremium'">
-			<div class="main__section">
-				<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
-				<div class="main__navigation">
-					<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
-						<h4>Share with Arytic Premium Partner</h4>
-					</div>
-					<div class="box-container">
-						<h5>We have <em>36</em> Arytic partners</h5>
-						<p>Expected to get the response in <em>36</em>  hrs on an average</p>
-						<p><em>60%</em> of chances to get highly matched profiles</p>
-						<div class="buttons">
-							<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
-							<a href="javascript:void(0)" class="btn btn-filled">Share</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</ng-container>
-		<ng-container  *ngIf="showThis == 'allVenodr'">
-			<div class="main__section">
-				<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
-				<div class="main__navigation lg">
-					<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
-						<h4 class="text-center">Share with All vendors</h4>
-					</div>
+		<div class="share__arytic__partner__container">
+			<div class="navigation-col side-col" *ngIf="showSubThis == 'subNavigation'">
+				<div class="side__navigation">
 					<ul>
-						<li>
+						<li [ngClass]="showThis == 'aryticPremium' ? 'active' : ''">
 							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-diamond"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Diamond Vendors</h4>
-									</div>
-								</div>
+								<p>Share with</p>
+								<h6>Arytic Premium Partner</h6>
 							</a>
 						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-sliver"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Sliver Vendors</h4>
-									</div>
-								</div>
+						<li [ngClass]="showThis == 'allVenodr' ? 'active' : ''">
+							<a href="javascript:void(0)" (click)="showThis = 'allVenodr'; showSubThis='subNavigation'">
+								<p>Share with</p>
+								<h6>All Vendors</h6>
 							</a>
 						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-gold"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Gold Vendors</h4>
-									</div>
-								</div>
+						<li [ngClass]="showThis == 'freelanceRecruit' ? 'active' : ''">
+							<a href="javascript:void(0)" (click)="showThis = 'freelanceRecruit'; showSubThis='subNavigation'">
+								<p>Share with Arytic</p>
+								<h6>Preferred Freelance Recruiter</h6>
 							</a>
 						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-platinium"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Platinium Vendors</h4>
-									</div>
-								</div>
+						<li [ngClass]="showThis == 'allFreelancer' ? 'active' : ''">
+							<a href="javascript:void(0)" (click)="showThis = 'allFreelancer'; showSubThis='subNavigation'">
+								<p>Share with</p>
+								<h6>All Freelance Recruiter</h6>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div class="buttons">
-					<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
-					<a href="javascript:void(0)" class="btn btn-filled">Share</a>
-				</div>
 			</div>
-		</ng-container>
-		<ng-container  *ngIf="showThis == 'freelanceRecruit'">
-			<div class="main__section">
-				<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
-				<div class="main__navigation">
-					<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
-						<h4>Share with Arytic preferred Freelance Recruiter</h4>
-					</div>
-					<div class="box-container">
-						<h5>We have <em>36</em> Arytic partners</h5>
-						<p>Expected to get the response in <em>36</em>  hrs on an average</p>
-						<p><em>60%</em> of chances to get highly matched profiles</p>
-						<div class="buttons">
-							<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
-							<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+			<ng-container  *ngIf="showThis == 'aryticPremium'">
+				<div class="main__section">
+					<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
+					<div class="main__navigation">
+						<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
+							<h4>Share with Arytic Premium Partner</h4>
+						</div>
+						<div class="box-container">
+							<h5>We have <em>36</em> Arytic partners</h5>
+							<p>Expected to get the response in <em>36</em>  hrs on an average</p>
+							<p><em>60%</em> of chances to get highly matched profiles</p>
+							<div class="buttons">
+								<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
+								<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</ng-container>
-		<ng-container  *ngIf="showThis == 'allFreelancer'">
-			<div class="main__section">
-				<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
-				<div class="main__navigation lg">
-					<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
-						<h4 class="text-center">All Freelance Recruiter</h4>
-					</div>
-					<ul>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-diamond"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Diamond Vendors</h4>
+			</ng-container>
+			<ng-container  *ngIf="showThis == 'allVenodr'">
+				<div class="main__section">
+					<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
+					<div class="main__navigation lg">
+						<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
+							<h4 class="text-center">Share with All vendors</h4>
+						</div>
+						<ul>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-diamond"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Diamond Vendors</h4>
+										</div>
 									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-sliver"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Sliver Vendors</h4>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-sliver"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Sliver Vendors</h4>
+										</div>
 									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-gold"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Gold Vendors</h4>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-gold"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Gold Vendors</h4>
+										</div>
 									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
-								<span class="icon icon-award-platinium"></span>
-								<div class="info__box">
-									<div class="box__container">
-										<h6>Do you want to</h6>
-										<h4>Go with Platinium Vendors</h4>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-platinium"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Platinium Vendors</h4>
+										</div>
 									</div>
-								</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="buttons">
+						<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
+						<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container  *ngIf="showThis == 'freelanceRecruit'">
+				<div class="main__section">
+					<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
+					<div class="main__navigation">
+						<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
+							<h4>Share with Arytic preferred Freelance Recruiter</h4>
+						</div>
+						<div class="box-container">
+							<h5>We have <em>36</em> Arytic partners</h5>
+							<p>Expected to get the response in <em>36</em>  hrs on an average</p>
+							<p><em>60%</em> of chances to get highly matched profiles</p>
+							<div class="buttons">
+								<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
+								<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container  *ngIf="showThis == 'allFreelancer'">
+				<div class="main__section">
+					<button class="btn btn-filled btn-back" (click)="showThis = 'mainNav'; showSubThis = ''"><i class="fa fa-arrow-left"></i> Back</button>
+					<div class="main__navigation lg">
+						<div class="title flex flex-wrap flex-align-center text-center flex-justify-center">
+							<h4 class="text-center">All Freelance Recruiter</h4>
+						</div>
+						<ul>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-diamond"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Diamond Vendors</h4>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-sliver"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Sliver Vendors</h4>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-gold"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Gold Vendors</h4>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" (click)="showThis = 'aryticPremium'; showSubThis='subNavigation'">
+									<span class="icon icon-award-platinium"></span>
+									<div class="info__box">
+										<div class="box__container">
+											<h6>Do you want to</h6>
+											<h4>Go with Platinium Vendors</h4>
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="buttons">
+						<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
+						<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+					</div>
+				</div>
+			</ng-container>
+		</div>
+		<div class="share__job__external" *ngIf="showThis == 'aryticExternal'">
+			<div class="title">
+				<h4>External</h4>
+			</div>
+			<div class="modal__container">
+				<h5>Share this job through Social Media</h5>
+				<div class="social">
+					<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+					<a href="#" class="fb"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a href="#" class="tw"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+					<a href="#" class="wh"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+					<a href="#" class="sms"><i class="fa fa-commenting-o" aria-hidden="true"></i></a>
+				</div>
+				<span class="or"><em>or</em></span>
+				<h4>Share it to your friends</h4>
+				<h6>Friends Already Referred</h6>
+				<p class="highlight">No Friends Referred! Refer Now</p>
+				<div class="form-group">
+					<label>Public Link</label>
+					<div class="input-group">
+						<input id="email" type="text" class="form-control" placeholder="Publi Link">
+						<span class="input-group-addon"><button class="btn btn-filled" type="button">Copy Link</button></span>   
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" placeholder="Enter Email" class="form-control">
+					<span class="notes">Enter email addresses seperated by commas</span>
+				</div>
+			</div>
+			<div class="modal__footer">
+				<button class="btn btn-default" (click)="showThis = 'mainNav'">Cancel</button>
+				<button class="btn btn-filled">Share</button>
+			</div>
+		</div>
+		<div class="share__job__external" *ngIf="showThis == 'aryticForm'">
+			<div class="title">
+				<h4>Share with Team Member</h4>
+			</div>
+			<div class="modal__container">
+				<div class="form-group">
+					<div class="input-group">
+						<select class="styled-select-box">
+							<option value="Add Team Member">Add Team Members</option>
+						</select>
+						<span class="input-group-addon"><button class="btn btn-filled btn-filled-lg" type="button">+</button></span>   
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="tags">
+						<ul>
+							<li>
+								<a href="#">Prem Kumar<i class="fa fa-times" aria-hidden="true"></i></a>
+							</li>
+							<li>
+								<a href="#">Varun Dhawan <i class="fa fa-times" aria-hidden="true"></i></a>
+							</li>
+							<li>
+								<a href="#">Jeez Mandis <i class="fa fa-times" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="form-group">
+					<textarea placeholder="Please add your comments" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class="modal__footer">
+				<button class="btn btn-default" (click)="showThis = 'mainNav'">Cancel</button>
+				<button class="btn btn-filled">Share</button>
+			</div>
+		</div>
+		<div class="share__job__table" *ngIf="showThis == 'shareVendor'">
+			<div class="title flex flex-wrap flex-align-center">
+				<h4>Share with Vendor</h4>
+				<div class="buttons__section">
+					<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
+					<button class="btn btn-default">Share With My Preferred Vendor</button>
+				</div>
+			</div>
+			<div class="job__filters">
+				<div class="row flex flex-wrap flex-align-center">
+					<div class="col-sm-5 first-col flex flex-wrap flex-align-start">
+						<div class="view__buttons">
+							<button class="btn btn-grid">Grid</button>
+							<button class="btn btn-list">List</button>
+						</div>
+						<div class="search-box">
+							<div class="input-box">
+								<input type="search" placeholder="Enter Search Here.."  class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-7 second-col flex flex-wrap flex-align-start flex-justify-end">
+						<div class="search-box">
+							<div class="input-box">
+								<input type="search" placeholder="Enter Search Here.." class="form-control"/>
+							</div>
+						</div>
+						<button class="btn btn-filter">Filter</button>
+						<select class="styled-select-box">
+							<option value="">Sort By</option>	
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="job__table">
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__th__col check__col">
+						<label class="custom-checkbox">
+							<input type="checkbox" checked="checked" >
+							<span class="checkmark">&nbsp;</span>
+						</label>
+					</div>
+					<div class="job__col job__th__col name__col">
+						Name of Vendor
+					</div>
+					<div class="job__col job__th__col location__col">
+						Location
+					</div>
+					<div class="job__col job__th__col point_col">
+						Point of Person
+					</div>
+					<div class="job__col job__th__col email__col">
+						Email Id
+					</div>
+					<div class="job__col job__th__col phone__col">
+						Phone Number
+					</div>
+					<div class="job__col  job__th__col actions__col">
+						&nbsp;
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
 							</a>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
-				<div class="buttons">
-					<a href="javascript:void(0)" class="btn btn-default">Cancel</a>
-					<a href="javascript:void(0)" class="btn btn-filled">Share</a>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="job__row flex flex-wrap flex-align-equal">
+					<div class="job__col job__td__col check__col">
+						<div class="table-heading">&nbsp;</div>
+						<div class="box-table">
+							<label class="custom-checkbox">
+								<input type="checkbox">
+								<span class="checkmark">&nbsp;</span>
+							</label>
+						</div>
+					</div>
+					<div class="job__col job__td__col name__col">
+						<div class="table-heading">Name of Vendor</div>
+						<div class="box-table">
+							<div class="profile">
+								<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+								Esolvit	
+							</div>
+						</div>
+					</div>
+					<div class="job__col job__td__col location__col">
+						<div class="table-heading">Location</div>
+						<div class="box-table">
+							Lviv, Bogomoltsya St.
+						</div>
+					</div>
+					<div class="job__col job__td__col point_col">
+						<div class="table-heading">Point of Person</div>
+						<div class="box-table">
+							Oleksii Novikov
+						</div>
+					</div>
+					<div class="job__col job__td__col email__col">
+						<div class="table-heading">Email</div>
+						<div class="box-table">
+							oleksii@gmail.com
+						</div>
+					</div>
+					<div class="job__col job__td__col phone__col">
+						<div class="table-heading">Phone Number</div>
+						<div class="box-table">
+							+3 809 698 3822
+						</div>
+					</div>
+					<div class="job__col  job__td__col actions__col">
+						<div class="table-heading">Actions</div>
+						<div class="box-table">
+							<a href="#">
+								<i class="fa fa-share" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</ng-container>
-	</div>
-	<div class="share__job__external" *ngIf="showThis == 'aryticExternal'">
-		<div class="title">
-			<h4>External</h4>
 		</div>
-		<div class="modal__container">
-			<h5>Share this job through Social Media</h5>
-			<div class="social">
-				<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-				<a href="#" class="fb"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-				<a href="#" class="tw"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-				<a href="#" class="wh"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-				<a href="#" class="sms"><i class="fa fa-commenting-o" aria-hidden="true"></i></a>
-			</div>
-			<span class="or"><em>or</em></span>
-			<h4>Share it to your friends</h4>
-			<h6>Friends Already Referred</h6>
-			<p class="highlight">No Friends Referred! Refer Now</p>
-			<div class="form-group">
-				<label>Public Link</label>
-				<div class="input-group">
-					<input id="email" type="text" class="form-control" placeholder="Publi Link">
-					<span class="input-group-addon"><button class="btn btn-filled" type="button">Copy Link</button></span>   
+		</div>  -->
+	<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+		<div class="modal-dialog modal-align-center">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title">
+						Whatsapp
+					</h2>
+					<button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
+					<img src="assets/images/close-btn.png" alt="X">
+					</button>
 				</div>
-			</div>
-			<div class="form-group">
-				<label>Email</label>
-				<input type="email" placeholder="Enter Email" class="form-control">
-				<span class="notes">Enter email addresses seperated by commas</span>
-			</div>
-		</div>
-		<div class="modal__footer">
-			<button class="btn btn-default" (click)="showThis = 'mainNav'">Cancel</button>
-			<button class="btn btn-filled">Share</button>
-		</div>
-	</div>
-	<div class="share__job__external" *ngIf="showThis == 'aryticForm'">
-		<div class="title">
-			<h4>Share with Team Member</h4>
-		</div>
-		<div class="modal__container">
-			<div class="form-group">
-				<div class="input-group">
-					<select class="styled-select-box">
-						<option value="Add Team Member">Add Team Members</option>
-					</select>
-					<span class="input-group-addon"><button class="btn btn-filled btn-filled-lg" type="button">+</button></span>   
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="tags">
-					<ul>
-						<li>
-							<a href="#">Prem Kumar<i class="fa fa-times" aria-hidden="true"></i></a>
-						</li>
-						<li>
-							<a href="#">Varun Dhawan <i class="fa fa-times" aria-hidden="true"></i></a>
-						</li>
-						<li>
-							<a href="#">Jeez Mandis <i class="fa fa-times" aria-hidden="true"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="form-group">
-				<textarea placeholder="Please add your comments" class="form-control"></textarea>
-			</div>
-		</div>
-		<div class="modal__footer">
-			<button class="btn btn-default" (click)="showThis = 'mainNav'">Cancel</button>
-			<button class="btn btn-filled">Share</button>
-		</div>
-	</div>
-	<div class="share__job__table" *ngIf="showThis == 'shareVendor'">
-		<div class="title flex flex-wrap flex-align-center">
-			<h4>Share with Vendor</h4>
-			<div class="buttons__section">
-				<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
-				<button class="btn btn-default">Share With My Preferred Vendor</button>
-			</div>
-		</div>
-		<div class="job__filters">
-			<div class="row flex flex-wrap flex-align-center">
-				<div class="col-sm-5 first-col flex flex-wrap flex-align-start">
-					<div class="view__buttons">
-						<button class="btn btn-grid">Grid</button>
-						<button class="btn btn-list">List</button>
-					</div>
-					<div class="search-box">
-						<div class="input-box">
-							<input type="search" placeholder="Enter Search Here.."  class="form-control"/>
+				<div class="modal-body">
+					<form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
+					<div class="row">
+						<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label for="mobilenumber" class="hidden">Mobile		
+							</label>
+							<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
+							></int-phone-prefix>
+							<span class="form-highlight"></span>
+							<span class="form-bar"></span>
+							<div
+								*ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
+								class="error1">
+								<div *ngIf="whatsappform.controls['mobilenumber']">
+									Incorrect *.
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-7 second-col flex flex-wrap flex-align-start flex-justify-end">
-					<div class="search-box">
-						<div class="input-box">
-							<input type="search" placeholder="Enter Search Here.." class="form-control"/>
-						</div>
-					</div>
-					<button class="btn btn-filter">Filter</button>
-					<select class="styled-select-box">
-						<option value="">Sort By</option>	
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="job__table">
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__th__col check__col">
-					<label class="custom-checkbox">
-						<input type="checkbox" checked="checked" >
-						<span class="checkmark">&nbsp;</span>
-					</label>
-				</div>
-				<div class="job__col job__th__col name__col">
-					Name of Vendor
-				</div>
-				<div class="job__col job__th__col location__col">
-					Location
-				</div>
-				<div class="job__col job__th__col point_col">
-					Point of Person
-				</div>
-				<div class="job__col job__th__col email__col">
-					Email Id
-				</div>
-				<div class="job__col job__th__col phone__col">
-					Phone Number
-				</div>
-				<div class="job__col  job__th__col actions__col">
-					&nbsp;
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="job__row flex flex-wrap flex-align-equal">
-				<div class="job__col job__td__col check__col">
-					<div class="table-heading">&nbsp;</div>
-					<div class="box-table">
-						<label class="custom-checkbox">
-							<input type="checkbox">
-							<span class="checkmark">&nbsp;</span>
-						</label>
-					</div>
-				</div>
-				<div class="job__col job__td__col name__col">
-					<div class="table-heading">Name of Vendor</div>
-					<div class="box-table">
-						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
-							Esolvit	
-						</div>
-					</div>
-				</div>
-				<div class="job__col job__td__col location__col">
-					<div class="table-heading">Location</div>
-					<div class="box-table">
-						Lviv, Bogomoltsya St.
-					</div>
-				</div>
-				<div class="job__col job__td__col point_col">
-					<div class="table-heading">Point of Person</div>
-					<div class="box-table">
-						Oleksii Novikov
-					</div>
-				</div>
-				<div class="job__col job__td__col email__col">
-					<div class="table-heading">Email</div>
-					<div class="box-table">
-						oleksii@gmail.com
-					</div>
-				</div>
-				<div class="job__col job__td__col phone__col">
-					<div class="table-heading">Phone Number</div>
-					<div class="box-table">
-						+3 809 698 3822
-					</div>
-				</div>
-				<div class="job__col  job__td__col actions__col">
-					<div class="table-heading">Actions</div>
-					<div class="box-table">
-						<a href="#">
-							<i class="fa fa-share" aria-hidden="true"></i>
-						</a>
-					</div>
+					<div class="modal-footer">
+						<button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
+						(click)="WhatsappShare()">
+						Share
+						</button>
+						<button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
+						Cancel
+						</button>
+					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>  -->
+</div>
 
-<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog modal-align-center">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">
-            Whatsapp
-          </h2>
-          <button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
-            <img src="assets/images/close-btn.png" alt="X">
-          </button>
+<div class="share-ui-component">
+  <div class="top-container flex flex-wrap">
+    <h3>Share Candidate</h3>
+    <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+  <div class="middle-container">
+    <div class="form-group">
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-3">
+          <label>From</label>
         </div>
-
-        <div class="modal-body">
-
-          <form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
-            <div class="row">
-              <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <label for="mobilenumber" class="hidden">Mobile		
-				</label>
-				<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
-                   ></int-phone-prefix>
-
-                <span class="form-highlight"></span>
-                <span class="form-bar"></span>
-                <div
-                  *ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
-                  class="error1">
-                  <div *ngIf="whatsappform.controls['mobilenumber']">
-                    Incorrect *.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
-                (click)="WhatsappShare()">
-                Share
-              </button>
-              <button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
-                Cancel
-              </button>
-            </div>
-          </form>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Name">
         </div>
-
       </div>
     </div>
+    <div class="form-group">
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-3">
+          <label class="label-block">Message Type</label>
+        </div>
+        <div class="col-sm-9">
+          <div class="toogle-button-group">
+            <button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
+            <button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
+          </div>
+        </div>
+        
+      </div>
+   
+      
+    </div>
+    <div class="form-group">
+      <div class="inline-navigation">
+        <ul>
+          <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+          <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+          <li><button class="btn btn-link">Clear All</button></li>
+        </ul>
+      </div>
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-3">
+          <label>To</label>
+        </div>
+        <div class="col-sm-9">
+          <ng-multiselect-dropdown class="custom-style"
+            [placeholder]="'Enter Email Address'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="showCC == true">
+      <input type="text" class="form-control" placeholder="CC">
+    </div>
+    <div class="form-group" *ngIf="showBCC == true">
+      <input type="text" class="form-control" placeholder="BCC">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Job Reference">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Subject">
+    </div>
+    <div class="form-group">
+      <ckeditor [(ngModel)]="jobDescription"></ckeditor>
+    </div>
+    <div class="form-group">
+      <div class="upload-border">
+        <div class="flex_items_center pointer">
+          <div class="d-block">
+            <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+            <div class="file">
+              <input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
+            </div>
+            <div>Browse &amp; Upload</div>
+            <h5>We recommended to use Microsoft Word. </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-upload-file">Upload File</button>
+    </div>
   </div>
+  <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+    <button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+    <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+    <i class="fa fa-spinner fa-spin"></i>
+    </button>
+  </mat-dialog-actions>
+</div>
