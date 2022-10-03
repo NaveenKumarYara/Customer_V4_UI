@@ -69,6 +69,7 @@
     "ng4-intl-phone": "^1.2.1",
     "ng5-slider": "^1.1.6",
     "ngx-bootstrap": "^2.0.5",
+    "ngx-chips": "^1.9.8",
     "ngx-doc-viewer": "^0.1.20",
     "ngx-flickity": "0.0.9",
     "ngx-image-cropper": "^1.4.1",

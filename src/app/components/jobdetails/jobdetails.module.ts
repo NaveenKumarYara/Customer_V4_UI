@@ -50,7 +50,10 @@ import { MatDialogModule,
   MatSnackBarModule,
   MatSelectModule,
   MatInputModule,
-  MatAutocompleteModule} from '@angular/material';
+  MatAutocompleteModule,
+  MatChipsModule,
+  MatIconModule,
+  MatError} from '@angular/material';
   import { QRCodeModule } from 'angularx-qrcode';
 import {backgrounddialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
@@ -72,6 +75,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 import { SendnotificationdialogNcomponentComponent } from './view-jobdetails/viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TagInputModule } from 'ngx-chips';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -83,6 +87,10 @@ setTheme('bs3');
     BrowserModule,
     // routing,
     RouterModule,
+    TagInputModule,
+    MatChipsModule,
+    MatIconModule,
+ MatSelectModule,
     HttpModule,
     FormsModule,
     NgxMaskModule,

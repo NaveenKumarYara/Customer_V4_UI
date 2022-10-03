@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService } from '../../../../../app.service';
 import { CustomerSubscription } from '../../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../../models/GetSubscriptionDetails';
+import { FormGroup, AbstractControl, Validators, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -34,6 +36,11 @@ export class SendEmailComponent implements OnInit {
   UserRoleId: any;
   body: string;
   isSendingEmail: boolean;
+  public separatorKeysCodes = [ENTER, COMMA];
+  public emailList = [];
+  removable = true;
+  rulesForm: FormGroup;
+  fb: FormBuilder = new FormBuilder();
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private _service: ApiService, public dialogRef: MatDialogRef<SendEmailComponent>, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
@@ -52,6 +59,46 @@ export class SendEmailComponent implements OnInit {
 
   ngOnInit() {
     this.mailbox = true;
+    this.rulesForm = this.fb.group({
+      emails: this.fb.array([], this.validateArrayNotEmpty),
+    });
+  }
+
+  add(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.validateEmail(event.value)) {
+        this.emailList.push({ value: event.value, invalid: false });
+      } else {
+        this.emailList.push({ value: event.value, invalid: true });
+        this.rulesForm.controls['emails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+
+  removeEmail(data: any): void {
+    console.log('Removing ' + data)
+    if (this.emailList.indexOf(data) >= 0) {
+      this.emailList.splice(this.emailList.indexOf(data), 1);
+    }
+  }
+
+  private validateArrayNotEmpty(c: FormControl) {
+    if (c.value && c.value.length === 0) {
+      return {
+        validateArrayNotEmpty: { valid: false }
+      };
+    }
+    return null;
+  }
+
+  private validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
 
   GetCustomerSubscription() {
@@ -91,7 +138,7 @@ export class SendEmailComponent implements OnInit {
     //this.spinner.show();
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
-    this.conversation.CCEmailAddress = this.ccEmailAddress;
+    this.conversation.CCEmailAddress = this.emailList.map(x => x.value).toString();
     this.conversation.Body = this.body;
     // if(){
     if (this.data.profileUpload === false || this.data.profileUpload === undefined) {
@@ -143,6 +190,7 @@ export class SendEmailComponent implements OnInit {
         //this.spinner.hide();
         this.isSendingEmail = false;
         this.dialogRef.close();
+        this.emailList=[];
         this.toastr.success('Mail Sent', 'Success');
         setTimeout(() => {
           this.toastr.dismissToast;

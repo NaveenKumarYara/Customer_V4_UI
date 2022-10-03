@@ -20,9 +20,36 @@
                   placeholder="Email Address">
               </div>
               <div class="input-group col-sm-12 pt-2">
-                <label class="mail-label">CC : </label>
-                <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
-                  placeholder="CC Email Address">
+                <!-- <label class="mail-label">CC : </label> -->
+                <!-- <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
+                  placeholder="CC Email Address"> -->
+                  <form [formGroup]="rulesForm">
+                    <mat-form-field>
+                      <mat-chip-list #chipList formArrayName="emails" >
+                        <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                          [selectable]="true" 
+                          [removable]="removable"
+                          (removed)="removeEmail(item)" 
+                          required name="chips">
+                          {{item.value}}
+                          <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                        </mat-chip>
+                        <input placeholder="CC Email Address" 
+                          [matChipInputFor]="chipList"  
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
+                          [matChipInputAddOnBlur]="true "
+                          (matChipInputTokenEnd)="add($event) " />
+                      </mat-chip-list>
+                    </mat-form-field>
+                    
+                    <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+                      
+                    {{list}}
+                    <!-- <button mat-button type="submit " [disabled]="rulesForm.invalid">Submit</button> -->
+                    <div style="padding:20px" *ngIf=rulesForm?.submitted>
+                      {{list}}
+                      </div>
+                  </form>
               </div>
               <div class="input-group col-sm-12 pt-2">
                 <label class="mail-label">Subject : </label>
