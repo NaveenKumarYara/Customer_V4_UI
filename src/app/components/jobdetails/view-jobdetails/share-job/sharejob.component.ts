@@ -96,6 +96,7 @@ export class ShareJobComponent implements OnInit {
   CompanyName: any;
   Title: any;
   Image:any;
+  jobDescription:any;
   NImage:any;
   showCC: boolean = false;
   showBCC: boolean = false;
@@ -113,6 +114,24 @@ export class ShareJobComponent implements OnInit {
     this.GetjobCard();
     this.PopulateJobdetail();
   }
+
+  showClickCC()
+  {
+
+  }
+
+  showClickBCC()
+  {
+
+  }
+
+  onItemSelect(s)
+  {
+
+  }
+
+  onSelectAll(s)
+  {}
 
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.JobId).subscribe(res => {

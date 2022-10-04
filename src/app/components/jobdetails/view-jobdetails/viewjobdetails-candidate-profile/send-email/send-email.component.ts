@@ -27,6 +27,7 @@ export class SendEmailComponent implements OnInit {
   ccEmailAddress: string;
   ToEmailID: string;
   customerName = null;
+  chipList:any;
   mailbox: any = false;
   subdetails = new CustomerSubscription();
   sdetails = new GetSubscriptionDetails();

@@ -39,6 +39,7 @@ export class SharedialogComponent implements OnInit{
   getTeammember: CustomerUsers;
   profileSharing = new ProfileShare();
   customer: any;
+  jobDescription:any;
   AddUser: boolean = false;
   activeAny: string;
   showCC: boolean = false;
