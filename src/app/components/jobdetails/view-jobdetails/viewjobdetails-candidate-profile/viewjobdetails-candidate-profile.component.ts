@@ -55,6 +55,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
+  valJobForm: FormGroup;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   public show_dialog: boolean = false;
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
@@ -99,6 +100,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   loading: boolean;
   jobdetailscustomer = new GetJobDetailCustomer();
   status = new JobStatus();
+  statusA = new JobStatusA();
   companyname: any;
   usersList: any;
   iconHide: boolean = false;
@@ -236,6 +238,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       'JobSmartCard': ['', Validators.nullValidator],
       'Url': ['', Validators.nullValidator],
       'FileExtension': ['', Validators.nullValidator],
+    });
+    this.valJobForm = this.fb.group({
+      ProfileId: [0, Validators.compose([Validators.required])],
+      JobId: [0, Validators.compose([Validators.nullValidator])],
+      UserId: [0, Validators.compose([Validators.nullValidator])]
     });
   }
 
@@ -737,6 +744,62 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
 
 
+  RequestCandidate(JobResponseId,
+    ProfileId,
+    Email,
+    FirstName,
+    LastName) {
+    swal(
+      {
+        
+        title: 'Have you got confirmation from  ' + FirstName + ' ' + LastName ,
+        showConfirmButton: true,
+        showCancelButton: true,
+        type: "info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes,Proceed.',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value === true) {
+          //this.GetCandidateApproval(ProfileId);
+          this.valJobForm.value.ProfileId = ProfileId;
+          this.valJobForm.value.JobId = this.jobid;
+          this._service.PostService(this.valJobForm.value, 'JobsAPI/api/GetCandidateApprovalById')
+            .subscribe(data => {
+              this.statusA.AppLink = this.settingsService.settings.CandidateLogin;
+              this.statusA.JobStatus = "Applied";
+              this.statusA.FromEmail = this.customer.Email;
+              this.statusA.ToEmailID = Email;
+              this.statusA.FullName =  FirstName + ' ' + LastName;
+              this.statusA.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+              this.statusA.JobLocation =
+                this.jobdetailscustomer.JobLocation[0].CityName + "," + this.jobdetailscustomer.JobLocation[0].StateName;
+                this.statusA.SCName = this.customer.FirstName + ' '+ this.customer.LastName;
+                this.statusA.Company = this.jobdetailscustomer.JobInfo.CompanyName;
+                this._service.PostService( this.statusA, 'EmailAPI/api/SendJobStatusApprove')
+                .subscribe(data => {
+                this.toastr.success("Email Sent", "Success");
+                setTimeout(() => {
+                  this.toastr.dismissToast;
+                  swal(
+                    {
+                      title: 'Application farwarding to next level!',
+                      showConfirmButton: true,
+                      timer: 3000,
+                      type: "success"
+                    });
+                    this.parentApi.callSearchMethod('');
+                }, 3000);
+              });
+            },
+              error => console.log(error));
+         
+
+        }
+      })
+  }
+
   RequestAchivement(profile) {
     swal(
       {
@@ -843,6 +906,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       }, 3000);
     });
   }
+
+
 
   GetCandidateProfile(profileId) {
     if (this.jobStatus !== "InActive") {
@@ -1525,6 +1590,16 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   }
 
+  GetCandidateApproval(job) {
+    this.valJobForm.value.ProfileId = job;
+    this.valJobForm.value.JobId = this.jobid;
+    this._service.PostService(this.valJobForm.value, 'JobsAPI/api/GetCandidateApprovalById')
+      .subscribe(data => {
+        console.log('data');
+      },
+        error => console.log(error));
+  }
+
 
   GetMatchingPercentage(profileId, jobid): any {
     // var profileId = 10;
@@ -1747,6 +1822,18 @@ export class JobStatus {
   public JobTitle: string;
 }
 
+export class JobStatusA {
+  public FullName: string;
+  public AppLink: string;
+  public JobStatus: string;
+  public ToEmailID: string;
+  public JobLocation: string;
+  public FromEmail: string;
+  public Company: string;
+  public SCName: string;
+  public JobTitle: string;
+}
+
 export class Notes {
   public ProfileId: Number
   public JobId: Number
@@ -1774,3 +1861,5 @@ export class EditNotes {
   public NewComment: string;
   public ProfileId: Number;
 }
+
+

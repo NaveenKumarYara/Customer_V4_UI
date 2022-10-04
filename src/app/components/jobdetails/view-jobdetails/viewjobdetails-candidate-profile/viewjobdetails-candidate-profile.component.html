@@ -6,11 +6,25 @@
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
   <div class="dropup" *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
     <a href="javascript:void(0)" data-toggle="dropdown"
-      tooltip="Status cannot be moved when profile is in uploaded and Waiting for response." placement="left">
+      tooltip="Status can be moved when you got response from candidate." placement="left">
       Tooltip
     </a>
     <ng-container *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
-      <ul role="menu" class="dropdown-menu dropdown-menu-right"></ul>
+      <ul role="menu" class="dropdown-menu dropdown-menu-right">
+      <li role="presentation">
+        <a role="menuitem" href="javascript:void(0)" (click)="
+        RequestCandidate(
+            profile?.JobResponseId,
+            profile?.ProfileId,
+            profile?.Email,
+            profile?.FirstName,
+            profile?.LastName
+          )
+        ">
+          <p class="p6">Submit Consent after Candidate Approval</p>
+        </a>
+      </li>
+      </ul>
     </ng-container>
   </div>
   <div class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
@@ -305,6 +319,7 @@
         </ng-container>
       </ul>
     </ng-container>
+
   </div>
 
   <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
@@ -783,7 +798,7 @@
                   profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
                 }}">
                 {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
-                <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status cannot be moved when profile is in uploaded and Waiting for response. Candidate need to approve the Job" placement="left" placement="top"></i>
+                <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status can be moved when candidate had approved for the Job" placement="left" placement="top"></i>
               </div>
             </div>
 
