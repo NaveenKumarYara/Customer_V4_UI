@@ -17,7 +17,7 @@ export interface DialogData {
 @Component({
   selector: 'app-send-email',
   templateUrl: './send-email.component.html',
-  styleUrls: ['./send-email.component.css'],
+  styleUrls: ['./send-email.component.css','./send-email-new.component.css'],
   providers: [ApiService]
 })
 export class SendEmailComponent implements OnInit {
@@ -41,6 +41,12 @@ export class SendEmailComponent implements OnInit {
   public emailList = [];
   removable = true;
   rulesForm: FormGroup;
+  activeAny: string;
+  showCC: boolean = false;
+  showBCC: boolean = false;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
   fb: FormBuilder = new FormBuilder();
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private _service: ApiService, public dialogRef: MatDialogRef<SendEmailComponent>, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
@@ -63,6 +69,24 @@ export class SendEmailComponent implements OnInit {
     this.rulesForm = this.fb.group({
       emails: this.fb.array([], this.validateArrayNotEmpty),
     });
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Shaik Mohammed' ,isDisabled: false},
+      { item_id: 2, item_text: 'D’Mani Dave',isDisabled: false },
+      { item_id: 3, item_text: 'Pawan Bothra',isDisabled: false },
+      { item_id: 4, item_text: 'Kinjal Mehta' ,isDisabled: false}
+    ];
+
+    this.dropdownSettings  = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
+    this.activeAny = 'Normal';
   }
 
   add(event): void {

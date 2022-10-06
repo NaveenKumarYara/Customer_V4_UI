@@ -1,5 +1,6 @@
 .shareModalPopup .mat-dialog-container {
   background: #f9fafe;
+  height: 100vh !important;
 }
 .share__job__container .icon {
   display: inline-block;

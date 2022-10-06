@@ -129,28 +129,3 @@
 .share-ui-component .middle-container label.label-block {
   display: block;
 }
-
-.social-group  {
-  display: flex;
-}
-
-.social-group .icon:not(:first-child) {
-  margin-left: 8px;
-}
-
-.social-group .icon a {
-  width: 56px;
-  height: 56px;
-  background-color: #f6f8ff;
-  border-radius: 6px;
-  box-shadow: 0 3px 6px rgba(58,58,58,0.14);
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-group .fa {
-  font-size: 20px;
-  color: #447afa
-}

@@ -1,76 +1,163 @@
-<div class="mat-dialog-title">
-  <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span
-      aria-hidden="true">×</span></button>
-  <h3 mat-dialog-title class="modal-title">Send Email</h3>
-</div>
-<div class="mat-typography">
+<div class="hidden">
+  <div class="mat-dialog-title">
+    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h3 mat-dialog-title class="modal-title">Send Email</h3>
+  </div>
+  <div class="mat-typography">
 
-  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
-    <p style="font-size: 20px; color: white">Loading...</p>
-  </ngx-spinner>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="card manage-uploads clearfix">
-      <div class="tab-content">
-        <div id="sendEmail" class="tab-pane fade active in  w-50">
-          <ng-container>
-            <form #form="ngForm" (ngSubmit)="sendEmail()">
-              <div class="input-group col-sm-12">
-                <label class="mail-label">To : </label>
-                <input type="email" class="form-control" [disabled]="!mailbox" [(ngModel)]="ToEmailID" name="ToEmailID"
-                  placeholder="Email Address">
-              </div>
-              <div class="input-group col-sm-12 pt-2">
-                <!-- <label class="mail-label">CC : </label> -->
-                <!-- <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
-                  placeholder="CC Email Address"> -->
-                  <form [formGroup]="rulesForm">
-                    <mat-form-field>
-                      <mat-chip-list #chipList formArrayName="emails" >
-                        <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
-                          [selectable]="true" 
-                          [removable]="removable"
-                          (removed)="removeEmail(item)" 
-                          required name="chips">
-                          {{item.value}}
-                          <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
-                        </mat-chip>
-                        <input placeholder="CC Email Address" 
-                          [matChipInputFor]="chipList"  
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
-                          [matChipInputAddOnBlur]="true "
-                          (matChipInputTokenEnd)="add($event) " />
-                      </mat-chip-list>
-                    </mat-form-field>
-                    
-                    <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-                      
-                 
-                    <!-- <button mat-button type="submit " [disabled]="rulesForm.invalid">Submit</button> -->
-                    <!-- <div style="padding:20px">
-                      {{list}}
-                      </div> -->
-                  </form>
-              </div>
-              <div class="input-group col-sm-12 pt-2">
-                <label class="mail-label">Subject : </label>
-                <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
-              </div>
-              <div class="input-group col-sm-12 pt-2">
-                <label class="mail-label">Body :</label>
-                <textarea class="form-control col-sm-12" [(ngModel)]="body" name="body" cols="30" rows="40"></textarea>
-              </div>
-              <div class="col-sm-12 p-19 pr-0 edit-mail">
-                <div class="pull-right">
-                  <button type="submit" class="btn s-btn" *ngIf="!isSendingEmail">Send Email</button>
-                  <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sending Email...
-                    <i class="fa fa-spinner fa-spin"></i>
-                  </button>
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+      <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card manage-uploads clearfix">
+        <div class="tab-content">
+          <div id="sendEmail" class="tab-pane fade active in  w-50">
+            <ng-container>
+              <form #form="ngForm" (ngSubmit)="sendEmail()">
+                <div class="input-group col-sm-12">
+                  <label class="mail-label">To : </label>
+                  <input type="email" class="form-control" [disabled]="!mailbox" [(ngModel)]="ToEmailID" name="ToEmailID"
+                    placeholder="Email Address">
                 </div>
-              </div>
-            </form>
-          </ng-container>
+                <div class="input-group col-sm-12 pt-2">
+                  <!-- <label class="mail-label">CC : </label> -->
+                  <!-- <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
+                    placeholder="CC Email Address"> -->
+                    <form [formGroup]="rulesForm">
+                      <mat-form-field>
+                        <mat-chip-list #chipList formArrayName="emails" >
+                          <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                            [selectable]="true" 
+                            [removable]="removable"
+                            (removed)="removeEmail(item)" 
+                            required name="chips">
+                            {{item.value}}
+                            <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                          </mat-chip>
+                          <input placeholder="CC Email Address" 
+                            [matChipInputFor]="chipList"  
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
+                            [matChipInputAddOnBlur]="true "
+                            (matChipInputTokenEnd)="add($event) " />
+                        </mat-chip-list>
+                      </mat-form-field>
+                      
+                      <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+                        
+                  
+                      <!-- <button mat-button type="submit " [disabled]="rulesForm.invalid">Submit</button> -->
+                      <!-- <div style="padding:20px">
+                        {{list}}
+                        </div> -->
+                    </form>
+                </div>
+                <div class="input-group col-sm-12 pt-2">
+                  <label class="mail-label">Subject : </label>
+                  <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
+                </div>
+                <div class="input-group col-sm-12 pt-2">
+                  <label class="mail-label">Body :</label>
+                  <textarea class="form-control col-sm-12" [(ngModel)]="body" name="body" cols="30" rows="40"></textarea>
+                </div>
+                <div class="col-sm-12 p-19 pr-0 edit-mail">
+                  <div class="pull-right">
+                    <button type="submit" class="btn s-btn" *ngIf="!isSendingEmail">Send Email</button>
+                    <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sending Email...
+                      <i class="fa fa-spinner fa-spin"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="share-ui-component">
+  <div class="top-container flex flex-wrap">
+    <h3>Send Email</h3>
+    <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+  <div class="middle-container">
+    <div class="form-group">
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-3">
+          <label>From</label>
+        </div>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Name">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="inline-navigation">
+        <ul>
+          <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+          <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+          <li><button class="btn btn-link">Clear All</button></li>
+        </ul>
+      </div>
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-3">
+          <label>To</label>
+        </div>
+        <div class="col-sm-9">
+          <ng-multiselect-dropdown class="custom-style"
+            [placeholder]="'Enter Email Address'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="showCC == true">
+      <input type="text" class="form-control" placeholder="CC">
+    </div>
+    <div class="form-group" *ngIf="showBCC == true">
+      <input type="text" class="form-control" placeholder="BCC">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Job Reference">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Subject">
+    </div>
+    <div class="form-group">
+      <ckeditor [(ngModel)]="jobDescription"></ckeditor>
+    </div>
+    <div class="form-group">
+      <div class="upload-border">
+        <div class="flex_items_center pointer">
+          <div class="d-block">
+            <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+            <div class="file">
+              <input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
+            </div>
+            <div>Browse &amp; Upload</div>
+            <h5>We recommended to use Microsoft Word. </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-upload-file">Upload File</button>
+    </div>
+  </div>
+  <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+    <button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSendingEmail">Share</button>
+    <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sharing...
+    <i class="fa fa-spinner fa-spin"></i>
+    </button>
+  </mat-dialog-actions>
 </div>

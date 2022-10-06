@@ -1337,101 +1337,165 @@
 	</div>
 </div>
 
+
+
 <div class="share-ui-component">
   <div class="top-container flex flex-wrap">
     <h3>Share Candidate</h3>
     <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
   </div>
-  <div class="middle-container">
-    <div class="form-group">
-      <div class="row flex flex-wrap flex-align-center">
-        <div class="col-sm-3">
-          <label>From</label>
-        </div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="Name">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="row flex flex-wrap flex-align-center">
-        <div class="col-sm-3">
-          <label class="label-block">Message Type</label>
-        </div>
-        <div class="col-sm-9">
-          <div class="toogle-button-group">
-            <button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
-            <button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
-          </div>
-        </div>
-        
-      </div>
-   
-      
-    </div>
-    <div class="form-group">
-      <div class="inline-navigation">
-        <ul>
-          <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
-          <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
-          <li><button class="btn btn-link">Clear All</button></li>
-        </ul>
-      </div>
-      <div class="row flex flex-wrap flex-align-center">
-        <div class="col-sm-3">
-          <label>To</label>
-        </div>
-        <div class="col-sm-9">
-          <ng-multiselect-dropdown class="custom-style"
-            [placeholder]="'Enter Email Address'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-            [(ngModel)]="selectedItems"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
-          >
-          </ng-multiselect-dropdown>
-        </div>
-      </div>
-    </div>
-    <div class="form-group" *ngIf="showCC == true">
-      <input type="text" class="form-control" placeholder="CC">
-    </div>
-    <div class="form-group" *ngIf="showBCC == true">
-      <input type="text" class="form-control" placeholder="BCC">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Job Reference">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Subject">
-    </div>
-    <div class="form-group">
-      <ckeditor [(ngModel)]="jobDescription"></ckeditor>
-    </div>
-    <div class="form-group">
-      <div class="upload-border">
-        <div class="flex_items_center pointer">
-          <div class="d-block">
-            <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
-            <div class="file">
-              <input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
-            </div>
-            <div>Browse &amp; Upload</div>
-            <h5>We recommended to use Microsoft Word. </h5>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-upload-file">Upload File</button>
-    </div>
-  </div>
-  <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-    <button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
-    <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
-    <i class="fa fa-spinner fa-spin"></i>
-    </button>
-  </mat-dialog-actions>
+	<div class="horizontalTabs">
+		<ul class="nav nav-tabs" id="thisWeekTab" role="tablist">
+			<li class="nav-item active">
+				<a aria-controls="external-email" aria-selected="true" class="nav-link" data-toggle="tab" href="#external-email" id="external-email-tab" role="tab">
+				External Email
+				</a>
+			</li>
+			<li class="nav-item">
+				<a aria-controls="social-media" aria-selected="true" class="nav-link" data-toggle="tab" href="#social-media" id="social-media-tab" role="tab">
+					Social Media
+				</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="thisWeekContent">
+			<div aria-labelledby="external-email-tab" class="tab-pane fade active in" id="external-email" role="tabpanel">
+				<div class="middle-container">
+					<div class="form-group">
+						<div class="row flex flex-wrap flex-align-center">
+							<div class="col-sm-3">
+								<label>From</label>
+							</div>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" placeholder="Name">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row flex flex-wrap flex-align-center">
+							<div class="col-sm-3">
+								<label class="label-block">Message Type</label>
+							</div>
+							<div class="col-sm-9">
+								<div class="toogle-button-group">
+									<button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
+									<button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
+								</div>
+							</div>
+							
+						</div>
+				 
+						
+					</div>
+					<div class="form-group">
+						<div class="inline-navigation">
+							<ul>
+								<li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+								<li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+								<li><button class="btn btn-link">Clear All</button></li>
+							</ul>
+						</div>
+						<div class="row flex flex-wrap flex-align-center">
+							<div class="col-sm-3">
+								<label>To</label>
+							</div>
+							<div class="col-sm-9">
+								<ng-multiselect-dropdown class="custom-style"
+									[placeholder]="'Enter Email Address'"
+									[settings]="dropdownSettings"
+									[data]="dropdownList"
+									[(ngModel)]="selectedItems"
+									(onSelect)="onItemSelect($event)"
+									(onSelectAll)="onSelectAll($event)"
+								>
+								</ng-multiselect-dropdown>
+							</div>
+						</div>
+					</div>
+					<div class="form-group" *ngIf="showCC == true">
+						<input type="text" class="form-control" placeholder="CC">
+					</div>
+					<div class="form-group" *ngIf="showBCC == true">
+						<input type="text" class="form-control" placeholder="BCC">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Job Reference">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Subject">
+					</div>
+					<div class="form-group">
+						<ckeditor [(ngModel)]="jobDescription"></ckeditor>
+					</div>
+					<div class="form-group">
+						<div class="upload-border">
+							<div class="flex_items_center pointer">
+								<div class="d-block">
+									<i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+									<div class="file">
+										<input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
+									</div>
+									<div>Browse &amp; Upload</div>
+									<h5>We recommended to use Microsoft Word. </h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-upload-file">Upload File</button>
+					</div>
+				</div>
+				<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+					<button mat-button mat-dialog-close class="btn btn-border">Close</button>
+					<button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+					<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+					<i class="fa fa-spinner fa-spin"></i>
+					</button>
+				</mat-dialog-actions>
+			</div>
+			<div aria-labelledby="social-media-tab" class="tab-pane fade" id="social-media" role="tabpanel">
+				<div class="middle-container">
+					<div class="form-group public-link">
+						<div class="input-group">
+							<input class="form-control text-to-copy njobLink ng-pristine " id="job-link" readonly="" type="url">
+							<span class="input-group-btn">
+							<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button">
+							<span class="hidden-xs btn-sm">Copy Link</span>
+							</button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+					</div>
+					<div class="form-group social-group">
+						<span class=" icon">
+						<a data-address="matteo" data-domain="mailgo.dev" href="javascript:void(0)">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</a>
+						</span>
+						<span class=" icon">
+						<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; ">
+							<i class="fa fa-linkedin-square" aria-hidden="true"></i>
+						</a>
+						</span>
+						<span class="icon">
+						<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; ">
+							<i class="fa fa-facebook-official" aria-hidden="true"></i>
+						</a>
+						</span>
+						<span class="icon">
+						<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; ">
+							<i class="fa fa-twitter-square" aria-hidden="true"></i>
+						</a>
+						</span>
+						<span class="icon">
+							<a data-target="#Whatsapp" data-toggle="modal" href="javascript:void(0)">
+								<i class="fa fa-whatsapp" aria-hidden="true"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
