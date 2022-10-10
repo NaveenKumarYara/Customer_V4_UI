@@ -27,6 +27,7 @@
                     placeholder="CC Email Address"> -->
                     <form [formGroup]="rulesForm">
                       <mat-form-field>
+                        <mat-label>Favorite Fruits</mat-label>
                         <mat-chip-list #chipList formArrayName="emails" >
                           <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
                             [selectable]="true" 
@@ -108,15 +109,35 @@
           <label>To</label>
         </div>
         <div class="col-sm-9">
-          <ng-multiselect-dropdown class="custom-style"
+          <!-- <ng-multiselect-dropdown class="custom-style"
             [placeholder]="'Enter Email Address'"
             [settings]="dropdownSettings"
             [data]="dropdownList"
             [(ngModel)]="selectedItems"
             (onSelect)="onItemSelect($event)"
             (onSelectAll)="onSelectAll($event)"
-          >
-          </ng-multiselect-dropdown>
+          > 
+          </ng-multiselect-dropdown>-->
+          <form [formGroup]="rulesForm">
+            <mat-form-field>
+              <mat-chip-list #chipList formArrayName="emails" >
+                <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                  [selectable]="true" 
+                  [removable]="removable"
+                  (removed)="removeEmail(item)" 
+                  required name="chips">
+                  {{item.value}}
+                  <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                </mat-chip>
+                <input placeholder="CC Email Address" 
+                  [matChipInputFor]="chipList"  
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
+                  [matChipInputAddOnBlur]="true "
+                  (matChipInputTokenEnd)="add($event) " />
+              </mat-chip-list>
+            </mat-form-field>
+            <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+          </form>
         </div>
       </div>
     </div>
