@@ -85,14 +85,15 @@
     <h3>Send Email</h3>
     <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
   </div>
+
   <div class="middle-container">
     <div class="form-group">
       <div class="row flex flex-wrap flex-align-center">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <label>From</label>
         </div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="Name">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="From" [(ngModel)]="fromId" name="fromId"  readonly>
         </div>
       </div>
     </div>
@@ -101,14 +102,14 @@
         <ul>
           <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
           <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
-          <li><button class="btn btn-link">Clear All</button></li>
+          <!-- <li><button class="btn btn-link"  (click)="showClear()">Clear CC && BCC Address</button></li> -->
         </ul>
       </div>
       <div class="row flex flex-wrap flex-align-center">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <label>To</label>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
           <!-- <ng-multiselect-dropdown class="custom-style"
             [placeholder]="'Enter Email Address'"
             [settings]="dropdownSettings"
@@ -126,12 +127,12 @@
                   [removable]="removable"
                   (removed)="removeEmail(item)" 
                   required name="chips">
-                  {{item.value}}
+                  {{item?.value}}
                   <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
                 </mat-chip>
-                <input placeholder="CC Email Address" 
+                <input placeholder="TO Email Address" 
                   [matChipInputFor]="chipList"  
-                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
                   [matChipInputAddOnBlur]="true "
                   (matChipInputTokenEnd)="add($event) " />
               </mat-chip-list>
@@ -141,22 +142,74 @@
         </div>
       </div>
     </div>
-    <div class="form-group" *ngIf="showCC == true">
-      <input type="text" class="form-control" placeholder="CC">
+    <div class="form-group">
+    <div class="row flex flex-wrap flex-align-center" *ngIf="showCC === true">
+      <div class="col-sm-2">
+        <label>CC</label>
+      </div>
+      <div class="col-sm-10">
+      <form [formGroup]="ccrulesForm">
+        <mat-form-field>
+          <mat-chip-list #cchipList formArrayName="CCemails" >
+            <mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
+              [selectable]="true" 
+              [removable]="cremovable"
+              (removed)="removeEmailc(citem)" 
+              required name="chips">
+              {{citem?.value}}
+              <mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
+            </mat-chip>
+            <input placeholder="CC Email Address" 
+              [matChipInputFor]="cchipList"  
+              [matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
+              [matChipInputAddOnBlur]="true "
+              (matChipInputTokenEnd)="addcc($event) " />
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+      </form>
+      </div>
     </div>
-    <div class="form-group" *ngIf="showBCC == true">
-      <input type="text" class="form-control" placeholder="BCC">
     </div>
     <div class="form-group">
+    <div class="row flex flex-wrap flex-align-center" *ngIf="showBCC === true">
+      <div class="col-sm-2">
+        <label>BCC</label>
+      </div>
+      <div class="col-sm-10">
+      <form [formGroup]="bccrulesForm">
+        <mat-form-field>
+          <mat-chip-list #bcchipList formArrayName="BCCemails" >
+            <mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
+              [selectable]="true" 
+              [removable]="bcremovable"
+              (removed)="removeEmailbc(bcitem)" 
+              required name="chips">
+              {{bcitem?.value}}
+              <mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
+            </mat-chip>
+            <input placeholder="BCC Email Address" 
+              [matChipInputFor]="bcchipList"  
+              [matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
+              [matChipInputAddOnBlur]="true "
+              (matChipInputTokenEnd)="addbcc($event) " />
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+      </form>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="form-group">
       <input type="text" class="form-control" placeholder="Job Reference">
+    </div> -->
+    <div class="form-group">
+      <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Subject">
+      <ckeditor  [(ngModel)]="body" name="body" cols="30" rows="40"></ckeditor>
     </div>
-    <div class="form-group">
-      <ckeditor [(ngModel)]="jobDescription"></ckeditor>
-    </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <div class="upload-border">
         <div class="flex_items_center pointer">
           <div class="d-block">
@@ -172,13 +225,18 @@
     </div>
     <div class="form-group">
       <button class="btn btn-upload-file">Upload File</button>
-    </div>
-  </div>
-  <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-    <button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSendingEmail">Share</button>
-    <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sharing...
-    <i class="fa fa-spinner fa-spin"></i>
+    </div> -->
+    <button  class="btn s-btn pull-right" *ngIf="!isSendingEmail" (click)="sendEmail()">Send Email</button>
+    <button mat-button class="btn btn-filled pull-right" *ngIf="isSendingEmail">Sending Email...
+      <i class="fa fa-spinner fa-spin"></i>
     </button>
-  </mat-dialog-actions>
+  </div>
+
+  <!-- <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right"> -->
+
+
+   
+  <!-- </mat-dialog-actions> -->
+  
+
 </div>

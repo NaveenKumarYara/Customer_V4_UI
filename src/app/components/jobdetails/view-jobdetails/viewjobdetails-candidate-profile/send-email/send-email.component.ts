@@ -28,6 +28,7 @@ export class SendEmailComponent implements OnInit {
   ToEmailID: string;
   customerName = null;
   chipList:any;
+  fromId:any;
   mailbox: any = false;
   subdetails = new CustomerSubscription();
   sdetails = new GetSubscriptionDetails();
@@ -38,9 +39,17 @@ export class SendEmailComponent implements OnInit {
   body: string;
   isSendingEmail: boolean;
   public separatorKeysCodes = [ENTER, COMMA];
+  public ccseparatorKeysCodes = [ENTER, COMMA];
+  public bccseparatorKeysCodes = [ENTER, COMMA];
   public emailList = [];
+  public ccemailList = [];
+  public bccemailList = [];
   removable = true;
+  cremovable = true;
+  bcremovable = true;
   rulesForm: FormGroup;
+  ccrulesForm: FormGroup;
+  bccrulesForm: FormGroup;
   activeAny: string;
   showCC: boolean = false;
   showBCC: boolean = false;
@@ -51,6 +60,7 @@ export class SendEmailComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private _service: ApiService, public dialogRef: MatDialogRef<SendEmailComponent>, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
+    this.fromId = this.customerName.Email;
     this.emailUpdate.JobId = data.jobId;
     this.emailUpdate.JobResponseId = data.jobResponseId;
     this.emailUpdate.ProfileId = data.profileId;
@@ -67,8 +77,16 @@ export class SendEmailComponent implements OnInit {
   ngOnInit() {
     this.mailbox = true;
     this.rulesForm = this.fb.group({
-      emails: this.fb.array([], this.validateArrayNotEmpty),
+      emails: this.fb.array([], this.validateArrayNotEmpty)
     });
+    this.ccrulesForm = this.fb.group({
+      CCemails: this.fb.array([], this.validateArrayNotEmpty)
+    });
+    this.bccrulesForm = this.fb.group({
+      BCCemails: this.fb.array([], this.validateArrayNotEmpty)
+    });
+
+    this.emailList.push({ value: this.data.EmailId, invalid: false });
     this.dropdownList = [
       { item_id: 1, item_text: 'Shaik Mohammed' ,isDisabled: false},
       { item_id: 2, item_text: 'D’Mani Dave',isDisabled: false },
@@ -89,6 +107,14 @@ export class SendEmailComponent implements OnInit {
     this.activeAny = 'Normal';
   }
 
+  showClickCC() {
+    this.showCC = !this.showCC;
+  }
+
+  showClickBCC() {
+    this.showBCC = !this.showBCC;
+  }
+
   add(event): void {
     console.log(event.value)
     if (event.value) {
@@ -104,12 +130,65 @@ export class SendEmailComponent implements OnInit {
     }
   }
 
+  addcc(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.ccvalidateEmail(event.value)) {
+        this.ccemailList.push({ value: event.value, invalid: false });
+      } else {
+        this.ccemailList.push({ value: event.value, invalid: true });
+        this.ccrulesForm.controls['CCemails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+  addbcc(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.bccvalidateEmail(event.value)) {
+        this.bccemailList.push({ value: event.value, invalid: false });
+      } else {
+        this.bccemailList.push({ value: event.value, invalid: true });
+        this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
 
   removeEmail(data: any): void {
     console.log('Removing ' + data)
     if (this.emailList.indexOf(data) >= 0) {
       this.emailList.splice(this.emailList.indexOf(data), 1);
     }
+    this.rulesForm.controls['emails'].setErrors({'incorrectEmail': false});
+  }
+
+  removeEmailc(data: any): void {
+    console.log('Removing ' + data)
+    if (this.ccemailList.indexOf(data) >= 0) {
+      this.ccemailList.splice(this.ccemailList.indexOf(data), 1);
+    }
+    this.ccrulesForm.controls['CCemails'].setErrors({'incorrectEmail': false});
+  }
+
+  removeEmailbc(data: any): void {
+    console.log('Removing ' + data)
+    if (this.bccemailList.indexOf(data) >= 0) {
+      this.bccemailList.splice(this.bccemailList.indexOf(data), 1);
+    }
+    this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': false})
+  }
+
+  showClear()
+  {
+    this.bccemailList = [];
+    this.bccemailList = [];
   }
 
   private validateArrayNotEmpty(c: FormControl) {
@@ -122,6 +201,16 @@ export class SendEmailComponent implements OnInit {
   }
 
   private validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  private ccvalidateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  private bccvalidateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
@@ -163,7 +252,9 @@ export class SendEmailComponent implements OnInit {
     //this.spinner.show();
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
-    this.conversation.CCEmailAddress = this.emailList.map(x => x.value).toString();
+    this.conversation.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
+    this.conversation.ToEmailID = this.emailList.map(x => x.value).toString();
+    this.conversation.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
     this.conversation.Body = this.body;
     // if(){
     if (this.data.profileUpload === false || this.data.profileUpload === undefined) {
@@ -204,8 +295,7 @@ export class SendEmailComponent implements OnInit {
     }
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' : 'Yes I will Join';
     // }
-    this.conversation.ToEmailID = this.ToEmailID;
-    debugger
+
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 
       if (data === 0) {
@@ -259,6 +349,7 @@ export class StartConversation {
   AppLink: string;
   UserCheck: string;
   CCEmailAddress: string;
+  BCCEmailAddress: string;
 }
 export class EmailUpdateStatus {
   JobResponseId: number;
