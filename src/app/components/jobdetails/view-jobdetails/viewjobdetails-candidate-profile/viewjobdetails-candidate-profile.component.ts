@@ -800,6 +800,35 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       })
   }
 
+
+  RequestCandidateAp(NoEmail,
+    Email,
+    FirstName,
+    LastName,
+    JobResponseId,
+    ProfileId,
+    ResponseStatusId,
+    CCPID,
+    UserId,IsUploaded) {
+    swal(
+      {
+        
+        title: 'Hey would you like to resend email to ' + FirstName + ' ' + LastName,
+        showConfirmButton: true,
+        showCancelButton: true,
+        type: "info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes,Proceed.',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value === true) {
+             this.OpenSendEmailDialog(NoEmail,Email,FirstName,LastName,JobResponseId,ProfileId,ResponseStatusId,CCPID,UserId,IsUploaded);
+
+        }
+      })
+  }
+
   RequestAchivement(profile) {
     swal(
       {
