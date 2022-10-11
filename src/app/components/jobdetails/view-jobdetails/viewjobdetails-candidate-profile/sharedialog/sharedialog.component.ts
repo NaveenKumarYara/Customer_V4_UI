@@ -13,9 +13,12 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+
 import { ApiService } from '../../../../../shared/services';
 import { Item } from 'angular2-multiselect-dropdown';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -33,6 +36,9 @@ export class SharedialogComponent implements OnInit{
   GetContactsList: contactInfo[];
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
+  removable = true;
+  cremovable = true;
+  bcremovable = true;
   whatsapp: any;
   whatsappform: FormGroup;
   inviteform: FormGroup;
@@ -48,8 +54,19 @@ export class SharedialogComponent implements OnInit{
   UserId: any;
   SaveInfo = new contactInfo();
   info: number;
+  public emailList = [];
+  public ccemailList = [];
+  public bccemailList = [];
+  rulesForm: FormGroup;
+  ccrulesForm: FormGroup;
+  bccrulesForm: FormGroup;
+  public separatorKeysCodes = [ENTER, COMMA];
+  public ccseparatorKeysCodes = [ENTER, COMMA];
+  public bccseparatorKeysCodes = [ENTER, COMMA];
   EmailId: any = null;
   Name: any = null;
+  ccEmailAddress: string;
+  ToEmailID: string;
   usersloading: boolean;
   customerUser: number;
   @Input() shareUrl: string;
@@ -60,6 +77,7 @@ export class SharedialogComponent implements OnInit{
   type:string;
   CompanyName: any;
   Title: any;
+  chipLists:any;
   Image:any;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
@@ -73,6 +91,7 @@ export class SharedialogComponent implements OnInit{
     this.teamchange(false,0);
     this.GetProfileCard();
     this.GetLink();
+    this.ToEmailID = this.data.EmailId;
   }
 
 
@@ -146,6 +165,18 @@ export class SharedialogComponent implements OnInit{
     };
 
     this.activeAny = 'Normal';
+
+    this.rulesForm = this.fb.group({
+      emails: this.fb.array([], this.validateArrayNotEmpty)
+    });
+    this.ccrulesForm = this.fb.group({
+      CCemails: this.fb.array([], this.validateArrayNotEmpty)
+    });
+    this.bccrulesForm = this.fb.group({
+      BCCemails: this.fb.array([], this.validateArrayNotEmpty)
+    });
+
+    //this.emailList.push({ value: this.data.EmailId, invalid: false });
   }
 
   showClickCC() {
@@ -154,6 +185,107 @@ export class SharedialogComponent implements OnInit{
 
   showClickBCC() {
     this.showBCC = !this.showBCC;
+  }
+
+  private validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  private ccvalidateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  private bccvalidateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+
+  add(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.validateEmail(event.value)) {
+        this.emailList.push({ value: event.value, invalid: false });
+      } else {
+        this.emailList.push({ value: event.value, invalid: true });
+        this.rulesForm.controls['emails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+  addcc(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.ccvalidateEmail(event.value)) {
+        this.ccemailList.push({ value: event.value, invalid: false });
+      } else {
+        this.ccemailList.push({ value: event.value, invalid: true });
+        this.ccrulesForm.controls['CCemails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+  addbcc(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.bccvalidateEmail(event.value)) {
+        this.bccemailList.push({ value: event.value, invalid: false });
+      } else {
+        this.bccemailList.push({ value: event.value, invalid: true });
+        this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+
+  removeEmail(data: any): void {
+    console.log('Removing ' + data)
+    if (this.emailList.indexOf(data) >= 0) {
+      this.emailList.splice(this.emailList.indexOf(data), 1);
+    }
+    this.rulesForm.controls['emails'].setErrors({'incorrectEmail': false});
+  }
+
+  removeEmailc(data: any): void {
+    console.log('Removing ' + data)
+    if (this.ccemailList.indexOf(data) >= 0) {
+      this.ccemailList.splice(this.ccemailList.indexOf(data), 1);
+    }
+    this.ccrulesForm.controls['CCemails'].setErrors({'incorrectEmail': false});
+  }
+
+  removeEmailbc(data: any): void {
+    console.log('Removing ' + data)
+    if (this.bccemailList.indexOf(data) >= 0) {
+      this.bccemailList.splice(this.bccemailList.indexOf(data), 1);
+    }
+    this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': false})
+  }
+
+  showClear()
+  {
+    this.bccemailList = [];
+    this.bccemailList = [];
+  }
+
+  private validateArrayNotEmpty(c: FormControl) {
+    if (c.value && c.value.length === 0) {
+      return {
+        validateArrayNotEmpty: { valid: false }
+      };
+    }
+    return null;
   }
 
 

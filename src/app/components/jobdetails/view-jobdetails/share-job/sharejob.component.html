@@ -1399,23 +1399,86 @@
 								<label>To</label>
 							</div>
 							<div class="col-sm-9">
-								<ng-multiselect-dropdown class="custom-style"
-									[placeholder]="'Enter Email Address'"
-									[settings]="dropdownSettings"
-									[data]="dropdownList"
-									[(ngModel)]="selectedItems"
-									(onSelect)="onItemSelect($event)"
-									(onSelectAll)="onSelectAll($event)"
-								>
-								</ng-multiselect-dropdown>
+								<form [formGroup]="rulesForm">
+									<mat-form-field>
+										<mat-chip-list #chipList formArrayName="emails" >
+											<mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+												[selectable]="true" 
+												[removable]="removable"
+												(removed)="removeEmail(item)" 
+												required name="chips">
+												{{item?.value}}
+												<mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+											</mat-chip>
+											<input placeholder="TO Email Address" 
+												[matChipInputFor]="chipList"  
+												[matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+												[matChipInputAddOnBlur]="true "
+												(matChipInputTokenEnd)="add($event) " />
+										</mat-chip-list>
+									</mat-form-field>
+									<mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+								</form>
 							</div>
 						</div>
 					</div>
 					<div class="form-group" *ngIf="showCC == true">
-						<input type="text" class="form-control" placeholder="CC">
+						<div class="row flex flex-wrap flex-align-center">
+							<div class="col-sm-3">
+								<label>CC</label>
+							</div>
+							<div class="col-sm-9">
+								<form [formGroup]="ccrulesForm">
+									<mat-form-field>
+										<mat-chip-list #cchipList formArrayName="CCemails" >
+											<mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
+												[selectable]="true" 
+												[removable]="cremovable"
+												(removed)="removeEmailc(citem)" 
+												required name="chips">
+												{{citem?.value}}
+												<mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
+											</mat-chip>
+											<input placeholder="CC Email Address" 
+												[matChipInputFor]="cchipList"  
+												[matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
+												[matChipInputAddOnBlur]="true "
+												(matChipInputTokenEnd)="addcc($event) " />
+										</mat-chip-list>
+									</mat-form-field>
+									<mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+								</form>
+							</div>
+						</div>
 					</div>
 					<div class="form-group" *ngIf="showBCC == true">
-						<input type="text" class="form-control" placeholder="BCC">
+						<div class="row flex flex-wrap flex-align-center">
+							<div class="col-sm-3">
+								<label>BCC</label>
+							</div>
+							<div class="col-sm-9">
+								<form [formGroup]="bccrulesForm">
+									<mat-form-field>
+										<mat-chip-list #bcchipList formArrayName="BCCemails" >
+											<mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
+												[selectable]="true" 
+												[removable]="bcremovable"
+												(removed)="removeEmailbc(bcitem)" 
+												required name="chips">
+												{{bcitem?.value}}
+												<mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
+											</mat-chip>
+											<input placeholder="BCC Email Address" 
+												[matChipInputFor]="bcchipList"  
+												[matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
+												[matChipInputAddOnBlur]="true "
+												(matChipInputTokenEnd)="addbcc($event) " />
+										</mat-chip-list>
+									</mat-form-field>
+									<mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+								</form>
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Job Reference">
