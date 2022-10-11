@@ -144,59 +144,59 @@
     </div>
     <div class="form-group">
     <div class="row flex flex-wrap flex-align-center" *ngIf="showCC === true">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <label>CC</label>
       </div>
-      <div class="col-sm-10">
-      <form [formGroup]="ccrulesForm">
-        <mat-form-field>
-          <mat-chip-list #cchipList formArrayName="CCemails" >
-            <mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
-              [selectable]="true" 
-              [removable]="cremovable"
-              (removed)="removeEmailc(citem)" 
-              required name="chips">
-              {{citem?.value}}
-              <mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
-            </mat-chip>
-            <input placeholder="CC Email Address" 
-              [matChipInputFor]="cchipList"  
-              [matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
-              [matChipInputAddOnBlur]="true "
-              (matChipInputTokenEnd)="addcc($event) " />
-          </mat-chip-list>
-        </mat-form-field>
-        <mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-      </form>
+      <div class="col-sm-9">
+        <form [formGroup]="ccrulesForm">
+          <mat-form-field>
+            <mat-chip-list #cchipList formArrayName="CCemails" >
+              <mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
+                [selectable]="true" 
+                [removable]="cremovable"
+                (removed)="removeEmailc(citem)" 
+                required name="chips">
+                {{citem?.value}}
+                <mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
+              </mat-chip>
+              <input placeholder="CC Email Address" 
+                [matChipInputFor]="cchipList"  
+                [matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
+                [matChipInputAddOnBlur]="true "
+                (matChipInputTokenEnd)="addcc($event) " />
+            </mat-chip-list>
+          </mat-form-field>
+          <mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+        </form>
       </div>
     </div>
     </div>
     <div class="form-group">
     <div class="row flex flex-wrap flex-align-center" *ngIf="showBCC === true">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <label>BCC</label>
       </div>
-      <div class="col-sm-10">
-      <form [formGroup]="bccrulesForm">
-        <mat-form-field>
-          <mat-chip-list #bcchipList formArrayName="BCCemails" >
-            <mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
-              [selectable]="true" 
-              [removable]="bcremovable"
-              (removed)="removeEmailbc(bcitem)" 
-              required name="chips">
-              {{bcitem?.value}}
-              <mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
-            </mat-chip>
-            <input placeholder="BCC Email Address" 
-              [matChipInputFor]="bcchipList"  
-              [matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
-              [matChipInputAddOnBlur]="true "
-              (matChipInputTokenEnd)="addbcc($event) " />
-          </mat-chip-list>
-        </mat-form-field>
-        <mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-      </form>
+      <div class="col-sm-9">
+        <form [formGroup]="bccrulesForm">
+          <mat-form-field>
+            <mat-chip-list #bcchipList formArrayName="BCCemails" >
+              <mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
+                [selectable]="true" 
+                [removable]="bcremovable"
+                (removed)="removeEmailbc(bcitem)" 
+                required name="chips">
+                {{bcitem?.value}}
+                <mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
+              </mat-chip>
+              <input placeholder="BCC Email Address" 
+                [matChipInputFor]="bcchipList"  
+                [matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
+                [matChipInputAddOnBlur]="true "
+                (matChipInputTokenEnd)="addbcc($event) " />
+            </mat-chip-list>
+          </mat-form-field>
+          <mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+        </form>
       </div>
     </div>
     </div>
