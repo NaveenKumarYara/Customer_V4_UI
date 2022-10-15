@@ -37,7 +37,7 @@ declare var $: any;
 @Component({
   selector: 'app-view-jobdetails',
   templateUrl: './view-jobdetails.component.html',
-  styleUrls: ['./view-jobdetails.component.css'],
+  styleUrls: ['./view-jobdetails.component.css','./view-job-details-top.css'],
   providers: [AppService, AlertService]
 })
 export class ViewJobdetailsComponent implements OnInit {
