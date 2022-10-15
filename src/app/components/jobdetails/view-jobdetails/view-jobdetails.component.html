@@ -1,7 +1,7 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--job-details">
 	<div class="container">
-		<div>
+		<div class="hidden">
 			<div class="selected-job card">
 				<header>
 					<div class="left">
@@ -594,6 +594,182 @@
 				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
 			</div>
 		</div>
+		<div class="job-summary-card">
+			<div class="row flex flex-wrap flex-align-center">
+				<div class="col-sm-6 left-col">
+					<div class="title-container">
+						<h4>SalesForce Admin Job/ SalesForce Developer Job</h4>
+						<ul>
+							<li><span><strong>Job Id</strong>: 123456789</span></li>
+							<li class="location">Austin, Texas</li>
+							<li class="calendar">25th June, 2022</li>
+						</ul>
+					</div>
+					<div class="praymid-container">
+						<ul>
+							<li class="active">
+								<span class="tag">What is it?</span>
+								<select class="custom-select">
+									<option value="All Application">All Application</option>
+									<option value="Arytic profile">Arytic profile</option>
+									<option value="Invited profile">Invited profile</option>
+									<option value="Uploaded Profile">Uploaded Profile</option>
+								</select>
+								<span class="number">20</span>
+							</li>
+							<li class="green">
+								<span class="tag">I Like It</span>
+								Screening
+								<span class="number">10</span></li>
+							<li class="yellow">
+								<span class="tag">I Want It</span>
+								Shortlisted
+								<span class="number">05</span>
+							</li>
+							<li class="red">
+								<span class="tag">I ‘m getting it</span>
+								Interviewed
+								<span class="number">10</span>
+							</li>
+							<li class="blue">
+								<span class="tag">I Like It</span>
+								Hired
+								<span class="number">05</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-6 right-col">
+					<div class="buttons">
+						<a href="#" class="btn btn-outline-secondary">Arytic Matching Profile</a>
+						<a href="#" class="btn btn-outline-primary">Check Wishlist Profile</a>
+					</div>
+					<div class="top-navigation">
+						<div class="btn-group flex flex-wrap flex-justify-end">
+							<ul class="flex flex-wrap flex-justify-end">
+								<li>
+									<button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="icon icon-share">Icon</span>
+										Share/Submit
+									</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Share Feedback</a>
+										<a class="dropdown-item" href="#">Share job (to Job boards, web pages, career page, social media)</a>
+										<a class="dropdown-item" href="#">Upload Resume</a>
+										<a class="dropdown-item" href="#">Share feedback</a>
+										<a class="dropdown-item" href="#">Assign job</a>
+										<a class="dropdown-item" href="#">Schedule an interview</a>
+									</div>
+								</li>
+								<li>
+									<button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="icon icon-view">Icon</span>
+										View
+									</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">View job details</a>
+									</div>
+								</li>
+								<li>
+									<button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="icon icon-add">Icon</span>
+										Add
+									</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Edit job</a>
+										<a class="dropdown-item" href="#">Add notes</a>
+										<a class="dropdown-item" href="#">Add comments</a>
+										<a class="dropdown-item" href="#">Make inactivek</a>
+									</div>
+								</li>
+								<li>
+									<button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="icon icon-email">Icon</span>
+										Email
+									</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Email Candidates</a>
+										<a class="dropdown-item" href="#">Invite candidate</a>
+										<a class="dropdown-item" href="#">Email team members</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="stats-icon">
+						<div class="row stats-rows">
+							<div class="col-sm-6 stats-cols">
+								<div class="row stats-row">
+									<div class="col-sm-6 stats-col">
+										<div class="col-container">
+											<span class="icon icon-skills">Icon</span>
+											<h4>60%</h4>
+											<h6>Skills</h6>
+										</div>
+									</div>
+									<div class="col-sm-6 stats-col">
+										<div class="col-container">
+											<span class="icon icon-job-fit">Icon</span>
+											<h4>40%</h4>
+											<h6>Job Fit</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-6 stats-cols">
+								<div class="row stats-row">
+									<div class="col-sm-6 stats-col">
+										<div class="col-container">
+											<span class="icon icon-notes">Icon</span>
+											<h4>50%</h4>
+											<h6>Notes</h6>
+										</div>
+									</div>
+									<div class="col-sm-6 stats-col">
+										<div class="col-container">
+											<span class="icon icon-job-feedback">Icon</span>
+											<h4>50%</h4>
+											<h6>Feedback</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="icon-listing">
+						<ul>
+							<li>
+								<h4>No. of Applicants</h4>
+								<span class="number">1</span>
+							</li>
+							<li>
+								<h4>No. of Views</h4>
+								<span class="number">2</span>
+							</li>
+							<li>
+								<span class="icon icon-like">Icon</span>
+								<h4>Likes(2)</h4>
+							</li>
+							<li>
+								<span class="icon icon-dislike">Icon</span>
+								<h4>Dislike(2)</h4>
+							</li>
+							<li>
+								<span class="icon icon-save">Icon</span>
+								<h4>Saved</h4>
+							</li>
+							<li>
+								<span class="icon icon-comments">Icon</span>
+								<h4>Comments</h4>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
 			<div>
 				<div class="tab-content">
