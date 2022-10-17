@@ -284,9 +284,8 @@ export class ViewJobdetailsComponent implements OnInit {
       100,
       0
     ).subscribe((res) =>
-    {
-
-      let candidateProfile = res.Profile.find(item => item.ProfileId = profileId);
+    {3
+      let candidateProfile = res.Profile.find(item => item.ProfileId == profileId);
       sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
       if(candidateProfile!=null&&candidateProfile!=undefined)
       {
