@@ -31,6 +31,7 @@ import * as _html2canvas from "html2canvas";
 import { FormBuilder, Validators } from "@angular/forms";
 import { title } from "process";
 const html2canvas: any = _html2canvas;
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
 	selector: 'cm-details',
@@ -66,6 +67,7 @@ export class DetailsComponent implements OnInit {
 	selectedIndex: number;
 	fileType = new Resume();
 	fileExt: any;
+	introJS = introJs();
 	showDetail: boolean = false;
 	skilltitleloading: boolean;
 	jobsLoading: boolean;
@@ -328,6 +330,11 @@ export class DetailsComponent implements OnInit {
 		}
 		
 		return new File([u8arr], filename, {type:mime});
+	}
+
+	start()
+	{
+	  this.introJS.start();
 	}
 
 	clickme(val) {

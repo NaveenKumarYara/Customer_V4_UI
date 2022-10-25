@@ -2,6 +2,7 @@
 
 <body class="page page--company-profile edit-mode">
   <main>
+    <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
     <div class="container">
       <!--Culture Test Code-->
       <!-- <div class="row">
@@ -38,11 +39,11 @@
         </div>
       </div> -->
       <!--#Culture Test Code-->
-      <div class="row">
+      <div class="row" data-step="1" data-intro="Find here company basic details candidate can see the details posted by you." data-position='top'>
         <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo"></app-basicinfo>
 
       </div>
-      <div class="row show__domain__row" *ngIf="ShowDomain!=true">
+      <div class="row show__domain__row" *ngIf="ShowDomain!=true" data-step="2" data-intro="You can create your custom domain here." data-position='top'>
         <label class="switch">
           <input type="checkbox" #chkEnable [(ngModel)]="cdomain.IsDomain" name="IsDomain"
             (ngModelChange)="SaveCustomDomain()">
@@ -61,13 +62,13 @@
 
       </div>
 
-      <div class="row">
+      <div class="row" data-step="3" data-intro="Find other details of company here." data-position='top'>
         <app-otherinfo [companyprofileotherinfo]="companyprofileotherinfo"></app-otherinfo>
       </div>
-      <div class="row">
+      <div class="row" data-step="4" data-intro="Describe the vision and direction of the company so potential lenders and partners can develop an accurate impression about who you are" data-position='top'>
         <app-aboutcompany [getaboutcompany]="getaboutcompany"></app-aboutcompany>
         <div class="col-md-6">
-          <div class="row">
+          <div class="row" data-step="5" data-intro="You can perform culture test of company. so arytic provides you best candidate who fits for your culture." data-position='top'>
             <!-- culture -->
             <div class="col-md-12 culture-row">
               <div class="card card--location">
@@ -232,20 +233,20 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row"  data-step="5" data-intro="Find the benfits, specialities,client details here." data-position='top'>
         <app-benefits [getcompanybenfit]="getcompanybenfit" [companyspecialities]="companyspecialities"
           [getcompanytechnology]="getcompanytechnology" [getCustomerClients]="getCustomerClients"
           [getCustomerDepartments]="getCustomerDepartments"></app-benefits>
         <!-- <app-specialities  [companyspecialities]="companyspecialities" [getcompanytechnology]="getcompanytechnology" [getCustomerClients]="getCustomerClients" [getCustomerDepartments]="getCustomerDepartments"></app-specialities> -->
       </div>
-      <div class="row">
+      <div class="row" data-step="6" data-intro="Find the white papers,news papers,press releases here." data-position='top'>
         <app-whitepaper></app-whitepaper>
         <app-questions></app-questions>
       </div>
       <div class="row">
         <app-achievementsandawards></app-achievementsandawards>
       </div>
-      <div class="row">
+      <div class="row" data-step="7" data-intro="Find the Cultures here.">
         <app-culture></app-culture>
       </div>
       <router-outlet></router-outlet>

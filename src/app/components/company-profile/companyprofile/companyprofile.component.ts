@@ -30,6 +30,7 @@ import { CultureTestComponent } from '../culturetest/culturetest.component';
 import { GetQuestionnarieAssignement, GetQuestionnarieResponse } from '../../../../models/SubmitReference';
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-companyprofile',
@@ -44,6 +45,7 @@ export class CompanyprofileComponent implements OnInit {
     userId:any;
     show:boolean=false;
     cultureresults: any;
+    introJS = introJs();
     cd = new SendCDEmail();
     CulturalTestStatusNew: number = 0;
     getCustomerDepartments: GetCustomerDepartments[]=[];
@@ -176,6 +178,11 @@ export class CompanyprofileComponent implements OnInit {
         this.userId=this.customer.UserId;
         this.toastr.setRootViewContainerRef(_vcr);  
 
+      }
+
+      start()
+      {
+        this.introJS.start();
       }
 
     populateCompanyProfile(customerId) {

@@ -4,28 +4,30 @@
 <!--Old Code Ends-->
 
 <!--New Code Start-->
+<a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
 <div class="inteview-schedule-section flex flex-wrap flex-align-equal">
+
   <!--Vertical Tabs-->
   <ul class="nav nav-tabs verticalTab" id="verticalTab" role="tablist">
-    <li class="nav-item active">
+    <li class="nav-item active" data-step="2" data-intro="Current week interview-schedules you can find here." data-position='top'>
       <a class="nav-link" id="thisweek-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(3)" aria-controls="thisweek" aria-selected="true">
         <span class="icon icon-week">Icon</span>
         This Week
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" data-step="3" data-intro="upcoming interview-schedules you can find here." data-position='top'>
       <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(2)" aria-controls="upcoming" aria-selected="false">
         <span class="icon icon-upcoming">Icon</span>
         Upcoming
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" data-step="4" data-intro="Compelted interview-schedules you can find here." data-position='top'>
       <a class="nav-link" id="completed-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(1)" aria-controls="completed" aria-selected="false">
         <span class="icon icon-completed">Icon</span>
         Completed
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" data-step="5" data-intro="Check your calendar to see how many Schedules you have today." data-position='top'>
       <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" (click)="SortTheProfile(4)" aria-selected="false">
         <span class="icon icon-calendar">Icon</span>
         Calendar
@@ -43,7 +45,7 @@
   <!--Interview Schedule Box-->
   <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
     <div class="tab-content" id="myTabContent">
-      <div class="search-box-container">
+      <div class="search-box-container" data-step="1" data-intro="You can search here your Schedules." data-position='top'>
         <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
         <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
         <div class="searchList" *ngIf="SearchList.length>0">
@@ -70,11 +72,11 @@
               </a>
             </li> -->
           </ul>
-          <div class="tab-content" id="thisWeekContent">
+          <div class="tab-content" id="thisWeekContent" >
             <!--This Week Interview Tab-->
             <div class="tab-pane fade active in" id="this-week-interview" role="tabpanel" aria-labelledby="this-week-interview-tab">
               <div class="listing-grid" *ngIf="joblist?.Jobs?.length>0">
-                  <div class="listing-col" *ngFor="let job of joblist.Jobs | valueArray;let i=index" [class.active]="setActive === i" (click)="detailIntviewHandler(i);">
+                  <div class="listing-col" *ngFor="let job of joblist.Jobs | valueArray;let i=index" [class.active]="setActive === i" (click)="detailIntviewHandler(i);" >
                     <span class="date">
                       <span class="month">{{job?.InterviewDate  | date: 'MMM'}}</span>
                       <span class="day">{{job?.InterviewDate  | date: 'dd'}}</span>
@@ -114,7 +116,7 @@
             <!--This Week Interview Tab-->
 
             <!--This Week Event Tab-->
-            <div class="tab-pane fade" id="this-week-event" role="tabpanel" aria-labelledby="this-week-event-tab">
+            <div class="tab-pane fade" id="this-week-event" role="tabpanel" aria-labelledby="this-week-event-tab"  data-step="7" data-intro="Find more details of your Scheduling." data-position='top'>
               <div class="listing-grid">
                 <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
                   <span class="date">
@@ -307,9 +309,9 @@
     <ng-container *ngIf="filterInterviewDetail.length>0">    
    
     <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
-      <div class="interview-detail-section" *ngIf="j === setActive">
+      <div class="interview-detail-section" *ngIf="j === setActive" >
 
-        <div class="top-title flex flex-wrap" >
+        <div class="top-title flex flex-wrap">
           <a href="javascript:void(0)" (click)="ViewJobdetails(jo?.JobId)">
           <h4 >{{ jo?.JobTitle | titlecase }}
             <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>

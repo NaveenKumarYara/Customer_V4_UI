@@ -18,6 +18,7 @@ import { idLocale } from 'ngx-bootstrap';
 import { ApiService } from '../../../../shared/services';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { Appointment } from '../../models/getDetails';
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
@@ -39,6 +40,7 @@ export class InterviewListComponent implements OnInit {
     SearchList: any = [];
     searchval:any;
     MyDocuments: any = [];
+    introJS = introJs();
     MyActvity:any=[];
     searchString:any;
     InterviewAcceptance = new ProposeDate();
@@ -197,6 +199,11 @@ export class InterviewListComponent implements OnInit {
         bytes[i] = binary_string.charCodeAt(i);
       }
       return bytes.buffer;
+    }
+
+    start()
+    {
+      this.introJS.start();
     }
 
     GetData()

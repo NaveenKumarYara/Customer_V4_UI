@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { stat } from 'fs';
 import { AppService } from '../../../../app.service';
 declare var $: any;
-
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-manage-load-joblist',
   templateUrl: './load-joblist.component.html',
@@ -59,7 +59,7 @@ export class LoadJoblistComponent implements OnInit {
    post:any;
   processed = false;
   FilterId: string;
-
+  introJS = introJs();
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private appService: AppService,private router: Router,
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -152,7 +152,10 @@ export class LoadJoblistComponent implements OnInit {
   private anyErrors: boolean;
   private finished: boolean;
 
-
+  start()
+  {
+    this.introJS.start();
+  }
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 
 

@@ -12,6 +12,7 @@ import { Qualifications } from '../../../models/qualifications.model';
 import { PjDomain, GetDomain, CustomerUsers, KeyRole,PjTechnicalTeam,Cities,jobImmigrationData, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData, GetKeyRole, PjSkill } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 import { ApiService } from '../../shared/services';
+import * as introJs from 'intro.js/intro.js';
 declare var $: any;
 @Component({
   selector: 'app-postajob',
@@ -19,12 +20,17 @@ declare var $: any;
   styleUrls: ['./postajob.component.css']
 })
 export class PostajobComponent implements OnInit {
-
+  introJS = introJs();
 parser : boolean =false;
 
   constructor(private route: ActivatedRoute, private toastr: ToastsManager,private _service:ApiService,
     private router: Router, private appService: AppService, private location: Location, private zone: NgZone) {
 
+  }
+
+  start()
+  {
+    this.introJS.start();
   }
 
   getFileDetails(e) {

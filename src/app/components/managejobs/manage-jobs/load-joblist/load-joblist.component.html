@@ -1,11 +1,15 @@
 <!-- <div class="col-md-12" *ngIf="!loaddata">
     <div class="loading">Loading&#8230;</div>
  </div> -->
+ <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+ 
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
+
 <!-- <div style="width:100%;height:0;padding-bottom:92%;position:relative;"><iframe src="https://giphy.com/embed/FVUeTJckIPL7t0uVCp" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div> -->
 <div class="filters col-md-10 custom-filter-post-a-job">
+
     <div class="pull-left">
         <form class="form-inline" action="">
             <div class="form-group view-group  custom-view-group">
@@ -17,7 +21,7 @@
             </svg>
 
           </label> -->
-                <div class="show-jobs show-job-first">
+                <div class="show-jobs show-job-first" data-step="1" data-intro="You can sort the jobs based on Recent,Older,Most Viewed and Applied here" data-position='top'>
                     <label class="show-count mt-15">Sort By</label>
                     <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
                         <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Recent</option>
@@ -26,7 +30,7 @@
                         <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
                     </select>
                 </div>
-                <div class="show-jobs pull-right">
+                <div class="show-jobs pull-right" data-step="2" data-intro="You can filter All Jobs postings,Active jobs,Inactive Jobs and Closed Jobs here" data-position='top'>
                     <label class="show-count mt-15">Show</label>
                     <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
                       <option default value="0" [selected]="sortBy=== '0' || sortBy=== 0">All Jobs</option>
@@ -51,19 +55,19 @@
             <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
         </div>
         <!---->
-        <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
-        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()">
+        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-intro="You can search your job postings here." data-position='top'></app-manage-searchjobs>
+        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-intro="You can clear all applied filters." data-position='top'>
             <i class="fa fa-refresh" aria-hidden="true"></i>
             Clear All
         </div>
     </div>
 </div>
 
-<div class="col-md-2 pull-right custom-filter-navigation">
+<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-intro="You can apply filters where search made easy for you." data-position='top'> 
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->
-<div class="col-md-12">
+<div class="col-md-12"  data-step="6" data-intro="Find the count here of your job postings." data-position='top'>
     <div class="col-md-2 show-count-label">
         <ng-container *ngIf="joblist?.TotalCount>=5">
             <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
@@ -132,7 +136,7 @@
 
 
 <div id="grid-view" class="grid grid-view-custom tab-pane fade in active" *ngIf="id==1">
-    <div class="col-md-12">
+    <div class="col-md-12"  data-step="7" data-intro="Here are the details of your job postings." data-position='top'>
         <div class="row grid-custom-row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-custom-col" *ngFor="let job of joblist.Jobs; let i=index">
                 <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">
