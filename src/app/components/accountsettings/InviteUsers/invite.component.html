@@ -2,16 +2,22 @@
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <div class="col-lg-9">
+  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
   <div class="right">
-    <div class="tab-content i-t-m">
+    <div class="tab-content i-t-m" data-step="1" data-intro="You can either let your team members access everything in this site, or assign
+    specific
+    roles to them." data-position='top'>
       <div class="row i-t-m-header">
         <div class="col-md-9">
           <h1 ><a href="javascript:void(0)" (click)="Rest()">Manage Team Members </a></h1>
+         
         </div>
-        <div class="col-md-3 mr-t-3">
+        <div class="col-md-3 mr-t-3" data-step="2" data-intro="You can Invite
+        Member here." data-position='top'>
           <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right" data-toggle="modal">
             <span class="add">+</span>Invite
             Member</a>
+          
         </div>
       </div>
       <div class="clearfix">&nbsp;</div>
@@ -54,7 +60,8 @@
                 <div class="col-md-2 text-center">
                   <h5>{{customercontacts?.length}} Members</h5>
                 </div>
-              <div class="col-md-3 pull-right">
+              <div class="col-md-3 pull-right" data-step="3" data-intro="You can Search
+              team member here." data-position='top'>
                 <!-- <div class="form-group i-s"  *ngIf="customercontacts.length>5">
                   <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
                     placeholder="Search Here..">
@@ -72,7 +79,7 @@
               </div> -->
             </div>
 
-            <div class="row">
+            <div class="row" data-step="4" data-intro="Here are the team-members-list added by you." data-position='top'>
               <div class="col-md-12 i-u-l scrollbar-inner">
                 <ul class="list-group ">
                   <ng-container *ngFor="let contact of customercontacts |  filter : searchText">

@@ -12,6 +12,7 @@ import { GetBillingCardDetails } from '../../../../models/GetBillingCardDetails'
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import {GetSubscriptionDetails} from '../../../../models/GetSubscriptionDetails';
+import * as introJs from 'intro.js/intro.js';
 declare var $: any; 
 @Component({
   selector: 'app-billing-and-payments',
@@ -26,6 +27,7 @@ export class BillingAndPaymentsComponent implements OnInit {
   amount:number;
   InvoicesList=[];
   Invoices=[];
+  introJS = introJs();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   invoice:invoiceEstimates[];
@@ -39,6 +41,11 @@ export class BillingAndPaymentsComponent implements OnInit {
     this.GetPlans();
     this.GetBillingEstimates();
     this.GetCustomerSubscription();
+  }
+
+  start()
+  {
+    this.introJS.start();
   }
 
 

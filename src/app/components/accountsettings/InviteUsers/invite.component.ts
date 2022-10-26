@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 declare var $: any; 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { ResetComponent } from '../../ResetPassword/resetpassword.component';
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-inviteusers',
   templateUrl: './invite.component.html',
@@ -17,6 +18,7 @@ export class InviteUsersComponent implements OnInit {
   customer:any; 
   Addform: FormGroup;
   IsEdit:boolean=false;
+  introJS = introJs();
   customerId:any;
   userId:any;
   searchText:string;
@@ -45,7 +47,10 @@ export class InviteUsersComponent implements OnInit {
   // {
   //  this.Value= val;
   // }
-
+  start()
+  {
+    this.introJS.start();
+  }
 
   Rest()
   {

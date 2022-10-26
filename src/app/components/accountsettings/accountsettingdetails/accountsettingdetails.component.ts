@@ -7,6 +7,7 @@ import {FormsValidationService} from '../../../shared/validation/validation.serv
 import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-accountsettingdetails',
   templateUrl: './accountsettingdetails.component.html',
@@ -16,6 +17,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 export class AccountsettingdetailsComponent implements OnInit {
   @ViewChild(NgForm) myForm: NgForm;
   customer:any;  
+  introJS = introJs();
   iseditPwd: any = false;
   iseditname: any = false;
   emailForm: FormGroup;
@@ -57,6 +59,13 @@ export class AccountsettingdetailsComponent implements OnInit {
     },
       { validator: matchingPasswords('NewPassword', 'ConfirmPassword') });
   }
+
+  start()
+  {
+    this.introJS.start();
+  }
+
+  
   updateEmail()
   {
 
