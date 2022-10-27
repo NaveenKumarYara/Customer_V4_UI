@@ -116,7 +116,7 @@
             <!--This Week Interview Tab-->
 
             <!--This Week Event Tab-->
-            <div class="tab-pane fade" id="this-week-event" role="tabpanel" aria-labelledby="this-week-event-tab"  data-step="7" data-intro="Find more details of your Scheduling." data-position='top'>
+            <div class="tab-pane fade" id="this-week-event" role="tabpanel" aria-labelledby="this-week-event-tab">
               <div class="listing-grid">
                 <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
                   <span class="date">
@@ -309,9 +309,9 @@
     <ng-container *ngIf="filterInterviewDetail.length>0">    
    
     <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
-      <div class="interview-detail-section" *ngIf="j === setActive" >
+      <div class="interview-detail-section" *ngIf="j === setActive"  data-intro="Find more details of your Scheduling." data-position='top'>
 
-        <div class="top-title flex flex-wrap">
+        <div class="top-title flex flex-wrap" data-step="7" > 
           <a href="javascript:void(0)" (click)="ViewJobdetails(jo?.JobId)">
           <h4 >{{ jo?.JobTitle | titlecase }}
             <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>
