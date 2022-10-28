@@ -117,6 +117,8 @@ export class ShareJobComponent implements OnInit {
   dropdownSettings = {};
   dropdownList = [];
   selectedItems = [];
+  shareOptionVia:string;
+  shareOptions:boolean = false;
   activeAny: string;
   jobdetailscustomer = new  GetJobDetailCustomer();
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer ,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {

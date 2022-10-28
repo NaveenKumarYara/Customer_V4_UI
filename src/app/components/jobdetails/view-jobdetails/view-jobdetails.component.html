@@ -654,9 +654,9 @@
 									</button>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="#">Share Feedback</a>
-										<a class="dropdown-item" href="#">Share job (to Job boards, web pages, career page, social media)</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId)">Share job (to Job boards, web pages, career page, social media)</a>
 										<a class="dropdown-item" href="#">Upload Resume</a>
-										<a class="dropdown-item" href="#">Share feedback</a>
+										<!-- <a class="dropdown-item" href="#">Share feedback</a> -->
 										<a class="dropdown-item" href="#">Assign job</a>
 										<a class="dropdown-item" href="#">Schedule an interview</a>
 									</div>
@@ -689,7 +689,7 @@
 									</button>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="#">Email Candidates</a>
-										<a class="dropdown-item" href="#">Invite candidate</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenInviteProfileDialog()">Invite candidate</a>
 										<a class="dropdown-item" href="#">Email team members</a>
 									</div>
 								</li>
