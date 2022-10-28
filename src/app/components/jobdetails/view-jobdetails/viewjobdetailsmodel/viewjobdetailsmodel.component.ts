@@ -17,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as _html2canvas from "html2canvas";
 import * as FileSaver from "file-saver";
+import { SettingsService } from '../../../../../settings/settings.service';
 import { DocumentManagerComponent } from '../../../Postajob/document-manager/document-manager.component';
 import { SendnotificationdialogNcomponentComponent } from '../viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
 import { Resume } from '../viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
@@ -61,7 +62,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   jobComments: JobComments[]=[];
   profileImage:boolean=false;
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,private fb: FormBuilder,private _sanitizer: DomSanitizer,
-        private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,
+        private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,private settingsService: SettingsService,
      private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -300,10 +301,13 @@ DelDocument(d)
 
 DownloadDocument(d)
 {
-  let fileDat = this.JobDocuments.find(x=>x.DocName === d);
+  // let fileDat = this.JobDocuments.find(x=>x.DocName === d);
   let fileExt:any;
-  
-  this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
+  let re = /\#/gi;
+  let name = d.replace(re, "%23");
+  let u = this.settingsService.settings.IdentitybaseUrl + '/home/WhitePapers?id=';
+  let url = u + name;
+  this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", url).subscribe((fileData) => {
     let exp = d.split("aryticDP")[0];
     fileExt = exp.split(".").pop();
     let Name = exp.split(".")[0];
