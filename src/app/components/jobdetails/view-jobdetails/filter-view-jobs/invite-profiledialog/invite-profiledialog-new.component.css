@@ -1,17 +1,9 @@
 .share-ui-component {
-  width: 100%;
+  width: 750px;
 }
 
 .share-ui-component .form-group {
   margin-bottom: 20px;
-}
-
-.share-ui-component  .left-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  border: 1px solid #ebebeb;
-  box-shadow: 4px 4px 5px -1px rgba(158, 171, 192, 0.45);
 }
 
 .share-ui-component .top-container {
@@ -136,6 +128,31 @@
 
 .share-ui-component .middle-container label.label-block {
   display: block;
+}
+
+.social-group  {
+  display: flex;
+}
+
+.social-group .icon:not(:first-child) {
+  margin-left: 8px;
+}
+
+.social-group .icon a {
+  width: 56px;
+  height: 56px;
+  background-color: #f6f8ff;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(58,58,58,0.14);
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-group .fa {
+  font-size: 20px;
+  color: #447afa
 }
 
 .mat-form-field {
