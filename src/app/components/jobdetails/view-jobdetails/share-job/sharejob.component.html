@@ -1,4 +1,4 @@
-<div>
+<div class="hidden">
 	<div class="page page--job-details">
 		<div>
 			<h4 mat-dialog-title class="modal-title text-center">
@@ -1338,227 +1338,362 @@
 </div>
 
 
-
-<div class="share-ui-component hidden">
-  <div class="top-container flex flex-wrap">
-    <h3>Share Job</h3>
-    <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
+<div class="share-ui-component">
+	<div class="top-container flex flex-wrap flex-align-center">
+		<ng-container  *ngIf="shareOptions != true">
+			<h3>Share Job</h3>
+		</ng-container>
+		<ng-container  *ngIf="shareOptionVia == 'viaTeamMember' && shareOptions == true">
+			<button class="btn btn-back" (click)="shareOptions = false; shareOptionVia = ''" *ngIf="shareOptions == true "><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+			<h3>Share Job - External</h3>
+		</ng-container>
+		<ng-container  *ngIf="shareOptionVia == 'viaSocial' && shareOptions == true">
+			<button class="btn btn-back" (click)="shareOptions = false; shareOptionVia = ''" *ngIf="shareOptions == true "><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+			<h3>Share Job - Social Media</h3>
+		</ng-container>
+		<div class="ml-auto">
+			
+			<button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
+		</div>
   </div>
-	<div class="horizontalTabs">
-		<ul class="nav nav-tabs" id="thisWeekTab" role="tablist">
-			<li class="nav-item active">
-				<a aria-controls="external-email" aria-selected="true" class="nav-link" data-toggle="tab" href="#external-email" id="external-email-tab" role="tab">
-				External Email
+	<div class="share-job-via-options" *ngIf="shareOptions != true ">
+		<ul>
+			<li>
+				<a href="javascript:void(0)" (click)="shareOptionVia = 'viaTeamMember'; shareOptions = true">
+					<span class="icon-container">
+						<span class="icon icon-via-team">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to External</h4>
+						<p>Pellentesque habitant morbi tristique senectus.</p>
+					</div>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a aria-controls="social-media" aria-selected="true" class="nav-link" data-toggle="tab" href="#social-media" id="social-media-tab" role="tab">
-					Social Media
+			<li>
+				<a href="javascript:void(0)" (click)="shareOptionVia = 'viaSocial'; shareOptions = true">
+					<span class="icon-container">
+						<span class="icon icon-via-social">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to Social media</h4>
+						<p>Pellentesque habitant morbi tristique senectus.</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="disabled">
+					<span class="icon-container">
+						<span class="icon icon-via-job-cards">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to Job boards</h4>
+						<p>(Enterprise)</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="disabled">
+					<span class="icon-container">
+						<span class="icon icon-via-career">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to Career page</h4>
+						<p>(Enterprise)</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="disabled">
+					<span class="icon-container">
+						<span class="icon icon-via-web">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to Web pages</h4>
+						<p>(Enterprise)</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="disabled">
+					<span class="icon-container">
+						<span class="icon icon-via-enterprise">Icon</span>
+					</span>
+					<div class="info">
+						<h4>Share to Vendor/Client</h4>
+						<p>(Enterprise)</p>
+					</div>
 				</a>
 			</li>
 		</ul>
-		<div class="tab-content" id="thisWeekContent">
-			<div aria-labelledby="external-email-tab" class="tab-pane fade active in" id="external-email" role="tabpanel">
-				<div class="middle-container">
-					<div class="form-group">
-						<div class="row flex flex-wrap flex-align-center">
-							<div class="col-sm-3">
-								<label>From</label>
-							</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" placeholder="Name">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row flex flex-wrap flex-align-center">
-							<div class="col-sm-3">
-								<label class="label-block">Message Type</label>
-							</div>
-							<div class="col-sm-9">
-								<div class="toogle-button-group">
-									<button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
-									<button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
-								</div>
-							</div>
-							
-						</div>
-				 
-						
-					</div>
-					<div class="form-group">
-						<div class="inline-navigation">
-							<ul>
-								<li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
-								<li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
-								<li><button class="btn btn-link">Clear All</button></li>
-							</ul>
-						</div>
-						<div class="row flex flex-wrap flex-align-center">
-							<div class="col-sm-3">
-								<label>To</label>
-							</div>
-							<div class="col-sm-9">
-								<form [formGroup]="rulesForm">
-									<mat-form-field>
-										<mat-chip-list #chipList formArrayName="emails" >
-											<mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
-												[selectable]="true" 
-												[removable]="removable"
-												(removed)="removeEmail(item)" 
-												required name="chips">
-												{{item?.value}}
-												<mat-icon matChipRemove *ngIf="removable">x</mat-icon>
-											</mat-chip>
-											<input placeholder="TO Email Address" 
-												[matChipInputFor]="chipList"  
-												[matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
-												[matChipInputAddOnBlur]="true "
-												(matChipInputTokenEnd)="add($event) " />
-										</mat-chip-list>
-									</mat-form-field>
-									<mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="form-group" *ngIf="showCC == true">
-						<div class="row flex flex-wrap flex-align-center">
-							<div class="col-sm-3">
-								<label>CC</label>
-							</div>
-							<div class="col-sm-9">
-								<form [formGroup]="ccrulesForm">
-									<mat-form-field>
-										<mat-chip-list #cchipList formArrayName="CCemails" >
-											<mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
-												[selectable]="true" 
-												[removable]="cremovable"
-												(removed)="removeEmailc(citem)" 
-												required name="chips">
-												{{citem?.value}}
-												<mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
-											</mat-chip>
-											<input placeholder="CC Email Address" 
-												[matChipInputFor]="cchipList"  
-												[matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
-												[matChipInputAddOnBlur]="true "
-												(matChipInputTokenEnd)="addcc($event) " />
-										</mat-chip-list>
-									</mat-form-field>
-									<mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="form-group" *ngIf="showBCC == true">
-						<div class="row flex flex-wrap flex-align-center">
-							<div class="col-sm-3">
-								<label>BCC</label>
-							</div>
-							<div class="col-sm-9">
-								<form [formGroup]="bccrulesForm">
-									<mat-form-field>
-										<mat-chip-list #bcchipList formArrayName="BCCemails" >
-											<mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
-												[selectable]="true" 
-												[removable]="bcremovable"
-												(removed)="removeEmailbc(bcitem)" 
-												required name="chips">
-												{{bcitem?.value}}
-												<mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
-											</mat-chip>
-											<input placeholder="BCC Email Address" 
-												[matChipInputFor]="bcchipList"  
-												[matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
-												[matChipInputAddOnBlur]="true "
-												(matChipInputTokenEnd)="addbcc($event) " />
-										</mat-chip-list>
-									</mat-form-field>
-									<mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Job Reference">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Subject">
-					</div>
-					<div class="form-group">
-						<ckeditor [(ngModel)]="jobDescription"></ckeditor>
-					</div>
-					<div class="form-group">
-						<div class="upload-border">
-							<div class="flex_items_center pointer">
-								<div class="d-block">
-									<i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
-									<div class="file">
-										<input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
-									</div>
-									<div>Browse &amp; Upload</div>
-									<h5>We recommended to use Microsoft Word. </h5>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<button class="btn btn-upload-file">Upload File</button>
-					</div>
-				</div>
-				<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-					<button mat-button mat-dialog-close class="btn btn-border">Close</button>
-					<button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
-					<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
-					<i class="fa fa-spinner fa-spin"></i>
-					</button>
-				</mat-dialog-actions>
+	</div>
+
+	<ng-container *ngIf="shareOptionVia == 'viaTeamMember' && shareOptions == true ">
+		<div class="row flex flex-wrap flex-align-start">
+			<div class="col-sm-12 col-md-4 left-card">
+				<img src="../../../../../assets/images/job-card-image.png" alt=""/>
 			</div>
-			<div aria-labelledby="social-media-tab" class="tab-pane fade" id="social-media" role="tabpanel">
-				<div class="middle-container">
-					<div class="form-group public-link">
-						<div class="input-group">
-							<input class="form-control text-to-copy njobLink ng-pristine " id="job-link" readonly="" type="url">
-							<span class="input-group-btn">
-							<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button">
-							<span class="hidden-xs btn-sm">Copy Link</span>
-							</button>
-							</span>
+			<div class="col-sm-12 col-md-8 horizontalTabs ml-auto">
+				<!-- <ul class="nav nav-tabs" id="thisWeekTab" role="tablist">
+					<li class="nav-item active">
+						<a aria-controls="external-email" aria-selected="true" class="nav-link" data-toggle="tab" href="#external-email" id="external-email-tab" role="tab">
+						External Email
+						</a>
+					</li>
+					<li class="nav-item">
+						<a aria-controls="social-media" aria-selected="true" class="nav-link" data-toggle="tab" href="#social-media" id="social-media-tab" role="tab">
+							Social Media
+						</a>
+					</li>
+				</ul> -->
+				<div class="tab-content">
+					<div aria-labelledby="external-email-tab" class="tab-pane fade active in" id="external-email" role="tabpanel">
+						<div class="middle-container">
+							<div class="form-group">
+								<div class="row flex flex-wrap flex-align-center">
+									<div class="col-sm-3">
+										<label>From</label>
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Name">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="row flex flex-wrap flex-align-center">
+									<div class="col-sm-3">
+										<label class="label-block">Message Type</label>
+									</div>
+									<div class="col-sm-9">
+										<div class="toogle-button-group">
+											<button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
+											<button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
+										</div>
+									</div>
+									
+								</div>
+						 
+								
+							</div>
+							<div class="form-group">
+								<div class="inline-navigation">
+									<ul>
+										<li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+										<li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+										<li><button class="btn btn-link">Clear All</button></li>
+									</ul>
+								</div>
+								<div class="row flex flex-wrap flex-align-center">
+									<div class="col-sm-3">
+										<label>To</label>
+									</div>
+									<div class="col-sm-9">
+										<form [formGroup]="rulesForm">
+											<mat-form-field>
+												<mat-chip-list #chipList formArrayName="emails" >
+													<mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+														[selectable]="true" 
+														[removable]="removable"
+														(removed)="removeEmail(item)" 
+														required name="chips">
+														{{item?.value}}
+														<mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+													</mat-chip>
+													<input placeholder="TO Email Address" 
+														[matChipInputFor]="chipList"  
+														[matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+														[matChipInputAddOnBlur]="true "
+														(matChipInputTokenEnd)="add($event) " />
+												</mat-chip-list>
+											</mat-form-field>
+											<mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" *ngIf="showCC == true">
+								<div class="row flex flex-wrap flex-align-center">
+									<div class="col-sm-3">
+										<label>CC</label>
+									</div>
+									<div class="col-sm-9">
+										<form [formGroup]="ccrulesForm">
+											<mat-form-field>
+												<mat-chip-list #cchipList formArrayName="CCemails" >
+													<mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
+														[selectable]="true" 
+														[removable]="cremovable"
+														(removed)="removeEmailc(citem)" 
+														required name="chips">
+														{{citem?.value}}
+														<mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
+													</mat-chip>
+													<input placeholder="CC Email Address" 
+														[matChipInputFor]="cchipList"  
+														[matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
+														[matChipInputAddOnBlur]="true "
+														(matChipInputTokenEnd)="addcc($event) " />
+												</mat-chip-list>
+											</mat-form-field>
+											<mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" *ngIf="showBCC == true">
+								<div class="row flex flex-wrap flex-align-center">
+									<div class="col-sm-3">
+										<label>BCC</label>
+									</div>
+									<div class="col-sm-9">
+										<form [formGroup]="bccrulesForm">
+											<mat-form-field>
+												<mat-chip-list #bcchipList formArrayName="BCCemails" >
+													<mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
+														[selectable]="true" 
+														[removable]="bcremovable"
+														(removed)="removeEmailbc(bcitem)" 
+														required name="chips">
+														{{bcitem?.value}}
+														<mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
+													</mat-chip>
+													<input placeholder="BCC Email Address" 
+														[matChipInputFor]="bcchipList"  
+														[matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
+														[matChipInputAddOnBlur]="true "
+														(matChipInputTokenEnd)="addbcc($event) " />
+												</mat-chip-list>
+											</mat-form-field>
+											<mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="form-group">
+								<input type="text" class="form-control" placeholder="Job Reference">
+							</div> -->
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Subject">
+							</div>
+							<div class="form-group">
+								<ckeditor [(ngModel)]="jobDescription"></ckeditor>
+							</div>
+							<div class="form-group">
+								<div class="upload-border">
+									<div class="flex_items_center pointer">
+										<div class="d-block">
+											<i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+											<div class="file">
+												<input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
+											</div>
+											<div>Browse &amp; Upload</div>
+											<h5>We recommended to use Microsoft Word. </h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="form-group">
+								<button class="btn btn-upload-file">Upload File</button>
+							</div> -->
 						</div>
 					</div>
-					<div class="form-group">
-						<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
-					</div>
-					<div class="form-group social-group">
-						<span class=" icon">
-						<a data-address="matteo" data-domain="mailgo.dev" href="javascript:void(0)">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</a>
-						</span>
-						<span class=" icon">
-						<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; ">
-							<i class="fa fa-linkedin-square" aria-hidden="true"></i>
-						</a>
-						</span>
-						<span class="icon">
-						<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; ">
-							<i class="fa fa-facebook-official" aria-hidden="true"></i>
-						</a>
-						</span>
-						<span class="icon">
-						<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; ">
-							<i class="fa fa-twitter-square" aria-hidden="true"></i>
-						</a>
-						</span>
-						<span class="icon">
-							<a data-target="#Whatsapp" data-toggle="modal" href="javascript:void(0)">
-								<i class="fa fa-whatsapp" aria-hidden="true"></i>
-							</a>
-						</span>
+					<div aria-labelledby="social-media-tab" class="tab-pane fade" id="social-media" role="tabpanel">
+						<div class="middle-container">
+							<div class="form-group public-link">
+								<div class="input-group">
+									<input class="form-control text-to-copy njobLink ng-pristine " id="job-link" readonly="" type="url">
+									<span class="input-group-btn">
+									<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button">
+									<span class="hidden-xs btn-sm">Copy Link</span>
+									</button>
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+							</div>
+							<div class="form-group social-group">
+								<span class=" icon">
+								<a data-address="matteo" data-domain="mailgo.dev" href="javascript:void(0)">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</a>
+								</span>
+								<span class=" icon">
+								<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; ">
+									<i class="fa fa-linkedin-square" aria-hidden="true"></i>
+								</a>
+								</span>
+								<span class="icon">
+								<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; ">
+									<i class="fa fa-facebook-official" aria-hidden="true"></i>
+								</a>
+								</span>
+								<span class="icon">
+								<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; ">
+									<i class="fa fa-twitter-square" aria-hidden="true"></i>
+								</a>
+								</span>
+								<span class="icon">
+									<a data-target="#Whatsapp" data-toggle="modal" href="javascript:void(0)">
+										<i class="fa fa-whatsapp" aria-hidden="true"></i>
+									</a>
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+			<button mat-button mat-dialog-close class="btn btn-border">Close</button>
+			<button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+			<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+			<i class="fa fa-spinner fa-spin"></i>
+			</button>
+		</mat-dialog-actions>
+	</ng-container>
+
+	<ng-container *ngIf="shareOptionVia == 'viaSocial' && shareOptions == true">
+		<div class="share-via-social-media">
+			<!-- <h4>https://www.dices.com/jobs/10512715763701</h4> -->
+			<div class="form-group public-link">
+				<div class="input-group">
+					<input class="form-control text-to-copy njobLink ng-pristine" value="https://www.arytic.com/jobs/10512715763701" id="job-link" readonly="" type="url">
+					<span class="input-group-btn">
+					<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button">
+					<span class="hidden-xs btn-sm"><i class="fa fa-clone" aria-hidden="true"></i></span>
+					</button>
+					</span>
+				</div>
+			</div>
+			<ul>
+				<li>
+					<a href="#" class="link-twitter">
+						<i class="fa fa-twitter" aria-hidden="true"></i>Twitter
+					</a>
+				</li>
+				<li>
+					<a href="#" class="link-facebook">
+						<i class="fa fa-facebook" aria-hidden="true"></i>Facebook
+					</a>
+				</li>
+				<li>
+					<a href="#" class="link-linkedin">
+						<i class="fa fa-linkedin-square" aria-hidden="true"></i>LikedIn
+					</a>
+				</li>
+				<li>
+					<a href="#" class="link-email">
+						<i class="fa fa-envelope" aria-hidden="true"></i>Email
+					</a>
+				</li>
+				<li>
+					<a href="#" class="link-url">
+						<i class="fa fa-clipboard" aria-hidden="true"></i>Copy URL
+					</a>
+				</li>
+			</ul>
+			<p>Note: it may take up to 30 minutes for the job post to be live.</p>
+		</div>
+	</ng-container>
+	
 </div>

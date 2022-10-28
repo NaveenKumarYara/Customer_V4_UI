@@ -4,7 +4,7 @@
   box-shadow: 4px 4px 5px -1px rgb(158 171 192 / 45%);
   border-radius: 10px;
   margin-bottom: 40px;
-  padding: 20px;
+  padding: 20px 20px 0;
 }
 
 .job-summary-card .title-container h4 {
@@ -112,7 +112,7 @@
 }
 
 .praymid-container li {
-  padding: 12px 30px 12px 12px;
+  padding: 9px 30px 9px 12px;
   background: #00a4bc;
   color: #fff;
   text-align: right;
@@ -120,9 +120,7 @@
   cursor: pointer;
 }
 .praymid-container li.active{
-  border-bottom: 3px solid #beff00;
-  border-top: 3px solid #beff00;
-  border-right: 6px solid #beff00;
+  background: #f5f6fa;
 }
 .praymid-container li.green {
   background-color: #01bda7;
@@ -197,8 +195,8 @@
 }
 
 .praymid-container .active .number {
-  background-color:#beff00;
-  color: rgb(106, 106, 106);
+  background-color:#00a4bc;
+  color: #fff;
   border-color: #fff;
 }
 
@@ -399,7 +397,7 @@
   border: 0;
   background: #66dab5;
   padding: 9px 48px 9px 16px;
-  border-radius: 32px;
+  border-radius: 6px;
   position: relative;
   box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
   overflow: hidden;
@@ -408,6 +406,7 @@
 
 .btn.btn-outline-secondary:hover {
   box-shadow: 4px 4px 10px rgb(158 171 192 / 35%);
+  background: #01bda7;
 }
 
 .btn.btn-outline-secondary:before {
@@ -415,19 +414,23 @@
   width: 38px;
   height: 38px;
   position: absolute;
-  right: 0;
+  right: -10px;
   top: 0;
-  background: url(../../../../assets/images/manage-job-sprites.svg) -166px -72px no-repeat;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -169px -72px no-repeat;
+  border-radius: 32px;
+  background-color: #01bda7;
 }
 
-
+.btn.btn-outline-secondary:hover::before { 
+  background-color: #66dab5;
+}
 
 .btn.btn-outline-primary {
   color: #fff;
   border: 0;
   background: #448afa;
   padding: 9px 48px 9px 16px;
-  border-radius: 32px;
+  border-radius: 6px;
   margin-left: 8px;
   box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
   position: relative;
@@ -444,9 +447,19 @@
   width: 38px;
   height: 38px;
   position: absolute;
-  right: 0;
+  right: -10px;
   top: 0;
-  background: url(../../../../assets/images/manage-job-sprites.svg) -166px -72px no-repeat;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -169px -72px no-repeat;
+  border-radius: 32px;
+  background-color: #3a75d5;
+}
+
+.btn.btn-outline-primary:hover {
+  background: #3a75d5;
+}
+
+.btn.btn-outline-primary:hover:before {
+  background-color: #448afa;
 }
 
 .custom-select {
@@ -456,7 +469,7 @@
 }
 
 .active .custom-select {
-  color: #beff00;
+  color: #00a4bc;
 }
 
 .custom-select option {
@@ -685,4 +698,86 @@
   .buttons .btn:before {
     display: none !important;
   }
+}
+
+.job-details-top-container {
+  text-align: right;
+  margin: 0 0 20px;
+}
+
+.job-details-top-container .btn {
+  padding: 10px 30px 10px 20px;
+  background: #448afa;
+  color: #fff;
+  border-radius: 6px !important;
+  font-size: 15px !important;
+  position: relative;
+}
+
+.job-details-top-container .btn::before {
+  content: "";
+  width: 12px;
+  height: 7px;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -115px -128px no-repeat;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.job-details-top-container .open>.dropdown-menu {
+  width: 250px;
+  right: 0;
+  left: auto;
+}
+
+.job-details-top-container .dropdown-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding: 0 10px 10px;
+}
+
+.job-details-top-container .dropdown-menu li a {
+  color: #9eabc0;
+}
+
+.job-details-top-container .dropdown-menu > ul > li > a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.job-details-top-container .dropdown-menu > ul > li > a .icon {
+  margin-right: 10px;
+}
+
+.job-details-top-container .dropdown-menu ul ul {
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+  padding: 10px;
+}
+
+.job-details-top-container .dropdown-menu ul li:last-child ul {
+  border-bottom: 0;
+}
+
+.job-details-top-container .dropdown-menu ul ul li:not(:first-child) {
+  margin-top: 10px;
+}
+
+.job-details-top-container .dropdown-menu ul ul li a {
+  display: block;
+  position: relative;
+  padding-left: 15px;
+}
+
+.job-details-top-container .dropdown-menu ul ul li a:before {
+  content: "";
+  width: 5px;
+  height: 8px;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -137px -65px;
 }

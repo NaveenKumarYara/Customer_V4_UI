@@ -161,7 +161,7 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         width: '750',
         position: {right : '0px'},
-        height : '750px',
+        height : '100vh',
         data: {
           animal: 'panda',
           jobId: this.jobid
