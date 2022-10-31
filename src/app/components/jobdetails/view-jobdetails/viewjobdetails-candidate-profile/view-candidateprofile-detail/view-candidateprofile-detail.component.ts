@@ -16,7 +16,7 @@ declare var $: any;
   styleUrls: ['./view-candidateprofile-detail.component.css'],
   providers: [ApiService]
 })
-export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
+export class ViewCandidateprofileDetailComponent implements OnInit {
   customer: any;
   customerId: any;
   cultureresults: any = [];
@@ -677,12 +677,12 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     return string;
   }
 
-  ngOnDestroy() {
-    localStorage.removeItem('cprofileId');
-    localStorage.removeItem('cjobid');
-    localStorage.removeItem('cuserId');
-    localStorage.removeItem('checku');
-  }
+  // ngOnDestroy() {
+  //   localStorage.removeItem('cprofileId');
+  //   localStorage.removeItem('cjobid');
+  //   localStorage.removeItem('cuserId');
+  //   localStorage.removeItem('checku');
+  // }
 
 }
 
