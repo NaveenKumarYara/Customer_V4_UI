@@ -27,7 +27,7 @@ import { StepContractDurationComponent } from './contractduration.component';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material"
 import { DocumentManagerComponent } from '../../document-manager/document-manager.component';
-
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -54,6 +54,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   // formData: any;
   // joblist = new InsertJob();
   disable1:any;
+  introJS = introJs();
   disableLoc = false;
   isDrafted: boolean;
   customer: any;
@@ -163,6 +164,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
     }
   }
 
+  start()
+  {
+    this.introJS.start();
+  }
+
+  
   postJob(step, exit?) {
 
     this.insertJob.CustomerId = this.customerId;

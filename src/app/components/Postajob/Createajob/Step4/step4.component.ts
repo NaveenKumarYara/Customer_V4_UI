@@ -14,6 +14,7 @@ import { ApiService } from "../../../../shared/services";
 import { FormBuilder,FormGroup, Validators } from "@angular/forms";
 import * as _html2canvas from "html2canvas";
 const html2canvas: any = _html2canvas;
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: "app-steps-step4",
   templateUrl: "./step4.component.html",
@@ -28,6 +29,7 @@ export class Step4Component implements OnInit {
   loading = false;
   Education:any;
   srlist:any=[];
+  introJS = introJs();
   fileUploadForm: FormGroup;
   Employement:any;
   Reference:any;
@@ -198,6 +200,11 @@ export class Step4Component implements OnInit {
 
   checkValue(event: any) {
     this.Template = event;
+  }
+
+  start()
+  {
+    this.introJS.start();
   }
 
   GetInterviewStatus(JId)

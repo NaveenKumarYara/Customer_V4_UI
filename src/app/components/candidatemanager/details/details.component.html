@@ -8,7 +8,7 @@
 
 				<div class="scroll-box">
 					<div class="icon__box">&nbsp;</div>
-					<button class="btn btn-filter" (click)="toggleFilter()" data-step="1" data-intro="You can apply filters where search made easy for you." data-position='top'>Filter</button>
+					<button class="btn btn-filter" (click)="toggleFilter()" data-step="1" data-intro="This filter enables us to search the required candidates using company name, profile title, experience, skills etc." data-position='top'>Filter</button>
 					<button class="btn btn-cross" (click)="closeSidebarHandler()">Close</button>
 					<ul (mouseenter)="showNavigation()" id="show_main_navigation">
 						<li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
@@ -271,7 +271,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3 col" data-step="2" data-intro="You can search profiles here." data-position='top'>
+					<div class="col-sm-3 col" data-step="2" data-intro="The search option enables you to search the candidates based on inputs like candidate name, location etc" data-position='top'>
 						<div class="input-group blue">
 							<input class="form-control" id="searchData" name="searchData" placeholder="Search"
 								[(ngModel)]="searchValue" #searchData="ngModel">
@@ -423,10 +423,10 @@
 						</div>
 					</div>
 					<div>
-						<button class="btn btn-primary btn-sm" (click)="clearAllFilters()" data-step="3" data-intro="Clear all the filters applied here." data-position='top'>Clear Filters</button>
+						<button class="btn btn-primary btn-sm" (click)="clearAllFilters()" data-step="3" data-intro="Clear all the applied filters and search using clear all option." data-position='top'>Clear Filters</button>
 					</div>
 					<div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end pagination-col">
-						<div class="revamp__sorting" *ngIf="candidates.length>0" data-step="4" data-intro="Find the how many profiles you have." data-position='top'>
+						<div class="revamp__sorting" *ngIf="candidates.length>0" data-step="4" data-intro="This information represents the list of candidates existing in the respective database." data-position='top'>
 							<ul>
 								<li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
 										(click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}"
@@ -443,7 +443,7 @@
 			</div>
 			<span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
 			<div *ngIf="!candidatesLoading">
-				<div class="cds" data-step="5" data-intro="You can sort the profiles here." data-position='top'>
+				<div class="cds" data-step="5" data-intro="Sort option enables you to sort the candidates based on public and private." data-position='top'>
 
 					<select name="cview" class="styled-select-box " (change)="Filter($event.target.value)" [(ngModel)]="sortBY">
 						<option selected value="0"><a  href="javascript:void(0)">All</a></option>
@@ -465,7 +465,7 @@
 				</div>
 				<ng-container *ngIf="candidates.length > 0">
 					<div class="data-grid-view" *ngIf="currentView == 'Grid'"
-						[ngClass]="{'open':showFilterNavBar, 'full':!isfullGridView}" data-step="6" data-intro="Here are the profiles uploaded by you and arytic suggested profiles." data-position='top'>
+						[ngClass]="{'open':showFilterNavBar, 'full':!isfullGridView}" data-step="6" data-intro="The view gives the information of a list of candidates with details like basic info, job title and company name." data-position='top'>
 						<div class="row">
 							<div class="col-sm-7 big-col">
 								<div class="row flex flex-wrap flex-align-equal">

@@ -4,7 +4,7 @@
     <div class="tab-content">
       <div id="account-settings" class="tab-pane fade active in">
        <h1>Account Settings</h1>
-        <div class="edit-group email-group" data-step="1" data-intro="You can edit your Name and Email details here." data-position='top'>
+        <div class="edit-group email-group" data-step="1" data-intro="Edit and update your name and email address here." data-position='top'>
           <ng-container *ngIf="iseditname">
             <form [formGroup]="nameForm"  action="" (ngSubmit)="updateName()" class="form-inline">            
               <div class="form-group">
@@ -102,7 +102,7 @@
             </div>
           </div>
         </div>
-        <div class="edit-group" data-step="2" data-intro="You can edit your Password here." data-position='top'>
+        <div class="edit-group" data-step="2" data-intro="Edit and update your password here." data-position='top'>
           <div class="edit-group password-group">
             <ng-container *ngIf="iseditPwd">
             <form [formGroup]="passForm"  action="" (ngSubmit)="UpdatePass()"  class="form-inline">

@@ -21,7 +21,8 @@
             </svg>
 
           </label> -->
-                <div class="show-jobs show-job-first" data-step="1" data-intro="You can sort the jobs based on Recent,Older,Most Viewed and Applied here" data-position='top'>
+                <div class="show-jobs show-job-first" data-step="1" data-intro="This sort by option enables you to 
+                sort the jobs based on recent, older, most viewed and applied." data-position='top'>
                     <label class="show-count mt-15">Sort By</label>
                     <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
                         <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Recent</option>
@@ -30,7 +31,8 @@
                         <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
                     </select>
                 </div>
-                <div class="show-jobs pull-right" data-step="2" data-intro="You can filter All Jobs postings,Active jobs,Inactive Jobs and Closed Jobs here" data-position='top'>
+                <div class="show-jobs pull-right" data-step="2" data-intro="This filter enables you to view all the active jobs, inactive jobs and closed jobs.
+                " data-position='top'>
                     <label class="show-count mt-15">Show</label>
                     <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
                       <option default value="0" [selected]="sortBy=== '0' || sortBy=== 0">All Jobs</option>
@@ -55,19 +57,19 @@
             <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
         </div>
         <!---->
-        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-intro="You can search your job postings here." data-position='top'></app-manage-searchjobs>
-        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-intro="You can clear all applied filters." data-position='top'>
+        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-intro="The search enables you to search the jobs posted using different parameters like location, job title, job id etc." data-position='top'></app-manage-searchjobs>
+        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-intro="Clear the search inputs, filter selection using clear all option." data-position='top'>
             <i class="fa fa-refresh" aria-hidden="true"></i>
             Clear All
         </div>
     </div>
 </div>
 
-<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-intro="You can apply filters where search made easy for you." data-position='top'> 
+<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top'> 
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->
-<div class="col-md-12"  data-step="6" data-intro="Find the count here of your job postings." data-position='top'>
+<div class="col-md-12"  data-step="6" data-intro="his count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
     <div class="col-md-2 show-count-label">
         <ng-container *ngIf="joblist?.TotalCount>=5">
             <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
@@ -136,7 +138,7 @@
 
 
 <div id="grid-view" class="grid grid-view-custom tab-pane fade in active" *ngIf="id==1">
-    <div class="col-md-12"  data-step="7" data-intro="Here are the details of your job postings." data-position='top'>
+    <div class="col-md-12"  data-step="7" data-intro="A detailed view of posted jobs can be found here." data-position='top'>
         <div class="row grid-custom-row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-custom-col" *ngFor="let job of joblist.Jobs; let i=index">
                 <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">

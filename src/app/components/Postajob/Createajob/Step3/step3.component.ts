@@ -28,6 +28,7 @@ import { SalarysliderComponent } from './salaryslider.component';
 import { recriuterComponent } from './recriuter.component';
 import { Options, LabelType  } from '@angular-slider/ngx-slider';
 import { MatchingDetails } from '../../../jobdetails/models/matchingDetails';
+import * as introJs from 'intro.js/intro.js';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -48,7 +49,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
   minValue: number = 60;
   maxValue: number = 100;
   JobFitval: number = 40;
-
+  introJS = introJs();
   options: Options = {
     ceil: 100,
     floor: 0,
@@ -206,6 +207,11 @@ export class Step3Component implements OnInit,AfterViewChecked {
   {
     this.minValue = event;
     this.JobFitval = this.maxValue-this.minValue;
+  }
+
+  start()
+  {
+    this.introJS.start();
   }
 
   OpenScheduleInterviewDialog() {

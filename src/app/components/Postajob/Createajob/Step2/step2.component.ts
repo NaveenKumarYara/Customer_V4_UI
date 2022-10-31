@@ -22,7 +22,7 @@ import { MatDialog } from '@angular/material';
 import { DocumentManagerComponent } from '../../document-manager/document-manager.component';
 declare var $: any;
 declare var jQuery: any;
-
+import * as introJs from 'intro.js/intro.js';
 @Component({
   selector: 'app-steps-step2',
   templateUrl: './step2.component.html',
@@ -40,6 +40,7 @@ export class Step2Component implements OnInit,AfterViewChecked {
   jobMinExp: number;
   jobMaxExp: number;
   jobTitle: string;
+  introJS = introJs();
   salaryMinRate: number;
   salaryMaxRate: number;
   jobDescription: string;
@@ -162,7 +163,10 @@ isDrafted: boolean;
     });
   }
 
-  
+  start()
+  {
+    this.introJS.start();
+  }
 
 
   ngOnInit() {
