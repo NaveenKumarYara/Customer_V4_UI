@@ -33,6 +33,7 @@ export class SharedialogComponent implements OnInit{
   teammembers: '';
   dropdownList = [];
   selectedItems = [];
+  subject: string;
   GetContactsList: contactInfo[];
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -65,6 +66,7 @@ export class SharedialogComponent implements OnInit{
   public bccseparatorKeysCodes = [ENTER, COMMA];
   EmailId: any = null;
   Name: any = null;
+  fromId:any;
   ccEmailAddress: string;
   ToEmailID: string;
   usersloading: boolean;
@@ -125,7 +127,9 @@ export class SharedialogComponent implements OnInit{
 
 
   ngOnInit() {
-   
+    this.fromId = this.customer.Email;
+    this.selectedComments="Please review the profile shared to you.";
+    this.subject = 'Check out this Profile Details for '+ ' ' + (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic' ;
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
@@ -501,70 +505,24 @@ export class SharedialogComponent implements OnInit{
   }
   
   ShareProfile() {
+    if(this.emailList.length>0)
+    { 
     this.isSharingStarted = true;
     this.profileSharing.FromUser = this.titleCase(this.customer.FirstName) +'  '+ this.titleCase(this.customer.LastName);
-    if (this.info == 0) {
-      this.profileSharing.InviteFriendId = 0;
-      this.profileSharing.FromuserId = this.customerUser;
-      this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
-      this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
-      this.profileSharing.ApplicationName = (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic';
-      this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
-      this.profileSharing.Comments = this.selectedComments;
-    }
-    if (this.info == 1) {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = "0";
-      this.profileSharing.ToEmailId = this.EmailId;
+      // this.profileSharing.ToEmailId = this.EmailId;
+      this.profileSharing.Subject = this.subject;
       this.profileSharing.ApplicationName = (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic';
       this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
-      this.profileSharing.Comments = this.selectedComments!=null?this.selectedComments:'Please review the profile shared to you';
-    }
-    if (this.profileSharing.ToEmailId == "" && this.profileSharing.Comments == undefined) {
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.profileSharing.Comments == undefined) {
-      this.toastr.error('Please provide Comments!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    if (this.profileSharing.ToEmailId != "" && this.profileSharing.Comments != "") {
-      if(this.info == 1 )
-      {
-        this.arr =this.inviteform.value.inviteEmail.split(',');
-        this.arr.forEach(element => {
-          this.profileSharing.ToEmailId = element;
-        this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
-          if (data === 0) {
-            //this.inviteform.reset();
-            this.teammemberslist = [];
-            $('#teamMbr').val('');
-            //this.selectedUserName = ''
-            this.getTeammember = new CustomerUsers();
-            this.profileSharing = new ProfileShare();
-            this.clearTeamMemebers();
-            this.selectedComments = "";
-            this.EmailId = " ";
-            this.isSharingStarted = false;
-            this.dialogRef.close();
-            this.toastr.success('Mail sent successfully', 'Success');
-            setTimeout(() => {
-              this.toastr.dismissToast;
-            }, 3000);
-          }
-        }, error => {
-          this.isSharingStarted = false;
-          console.log('error:', JSON.stringify(error));
-        });
-      });
-      }
-      else
-      {
+      this.profileSharing.Comments = this.selectedComments;
+      this.profileSharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
+      this.profileSharing.ToEmailId = this.emailList.map(x => x.value).toString();
+      this.profileSharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
+      this.profileSharing.FromEmail = this.fromId;
+
+
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
@@ -590,8 +548,13 @@ export class SharedialogComponent implements OnInit{
 
       }
  
-    }
-  }
+    
+  
+  else
+  {
+  this.toastr.error('Please provide the valid details!', 'Oops!');
+ }
+}
 }
 
 
@@ -609,6 +572,10 @@ export class ProfileShare {
   FromUser:string;
   Image:string;
   ApplicationName: string;
+  CCEmailAddress: string;
+  BCCEmailAddress: string;
+  Subject: string;
+  FromEmail:string;
   readonly modules: ReadonlyArray<{}> = []
 }
 

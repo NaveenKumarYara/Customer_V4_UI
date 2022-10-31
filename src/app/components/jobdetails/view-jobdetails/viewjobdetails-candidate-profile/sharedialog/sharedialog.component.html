@@ -263,7 +263,7 @@
   </div>
   <div class="row flex flex-wrap flex-align-start">
     <div class="col-sm-12 col-md-4 left-card">
-      <img src="../../../../../../assets/images/smart-card-image.png" alt="">
+      <img src="{{Image}}" alt="">
     </div>
     <div class="col-sm-12 col-md-8 right-content">
       <div class="middle-container">
@@ -273,16 +273,16 @@
               <label>From</label>
             </div>
             <div class="col-sm-9">
-              <input type="text" class="form-control" placeholder="Name">
+              <input type="text" class="form-control" placeholder="From" [(ngModel)]="fromId" name="fromId"  readonly>
             </div>
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div class="row flex flex-wrap flex-align-center">
             <div class="col-sm-3">
               <label class="label-block">Message Type</label>
             </div>
-            <div class="col-sm-9">
+             <div class="col-sm-9">
               <div class="toogle-button-group">
                 <button class="btn btn-link" (click)="activeAny = 'Normal'" [ngClass]="activeAny == 'Normal'? 'active':''">Normal</button>
                 <button class="btn btn-link" (click)="activeAny = 'Mass Mail'" [ngClass]="activeAny == 'Mass Mail'? 'active':''">Mass Mail</button>
@@ -292,13 +292,13 @@
           </div>
        
           
-        </div>
+        </div> -->
         <div class="form-group">
           <div class="inline-navigation">
             <ul>
               <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
               <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
-              <li><button class="btn btn-link">Clear All</button></li>
+              <!-- <li><button class="btn btn-link">Clear All</button></li> -->
             </ul>
           </div>
           <div class="row flex flex-wrap flex-align-center">
@@ -391,10 +391,10 @@
           <input type="text" class="form-control" placeholder="Job Reference">
         </div> -->
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Subject">
+          <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
         </div>
         <div class="form-group">
-          <ckeditor [(ngModel)]="jobDescription"></ckeditor>
+          <ckeditor  [(ngModel)]="selectedComments" name="body" cols="30" rows="40"></ckeditor>
         </div>
         <!-- <div class="form-group">
           <div class="upload-border">
