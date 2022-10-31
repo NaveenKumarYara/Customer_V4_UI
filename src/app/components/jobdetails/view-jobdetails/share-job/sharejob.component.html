@@ -77,7 +77,7 @@
 															target=”_blank” rel="noopener noreferrer" >   <img src="assets/images/interview-icon.png" id="share-dialog-linkedin" alt="linkedin"></a> -->
 														<a (click)="getStringifiedAssets(demoAssets)" href="javascript:void(0)"	 data-address="matteo" data-domain="mailgo.dev">Send Mail</a>
 													</span>
-													<span class=" icon">
+													<span class="icon">
 														<!-- <div id="share-dialog-linkedin"></div> -->
 														<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; " (click)="GetLink()">
 														<img src="assets/images/linkedin-icon.png" id="share-dialog-linkedin" alt="linkedin">
@@ -1381,7 +1381,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="disabled">
+				<a href="javascript:void(0)" class="disabled">
 					<span class="icon-container">
 						<span class="icon icon-via-job-cards">Icon</span>
 					</span>
@@ -1392,7 +1392,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="disabled">
+				<a href="javascript:void(0)" class="disabled">
 					<span class="icon-container">
 						<span class="icon icon-via-career">Icon</span>
 					</span>
@@ -1403,7 +1403,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="disabled">
+				<a href="javascript:void(0)" class="disabled">
 					<span class="icon-container">
 						<span class="icon icon-via-web">Icon</span>
 					</span>
@@ -1414,7 +1414,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="disabled">
+				<a href="javascript:void(0)" class="disabled">
 					<span class="icon-container">
 						<span class="icon icon-via-enterprise">Icon</span>
 					</span>
@@ -1618,22 +1618,22 @@
 								</a>
 								</span>
 								<span class=" icon">
-								<a href="javascript:void(0)" id="share-dialog-linkedin" style=" padding: 10px; ">
+								<a href="javascript:void(0)" id="share-dialog-linkedin"  style=" padding: 10px; " (click)="GetLink()">
 									<i class="fa fa-linkedin-square" aria-hidden="true"></i>
 								</a>
 								</span>
 								<span class="icon">
-								<a href="javascript:void(0)" id="share-dialog-facebook" style=" padding: 10px; ">
+								<a href="javascript:void(0)" id="share-dialog-facebook"  style=" padding: 10px; " (click)="GetLink()">
 									<i class="fa fa-facebook-official" aria-hidden="true"></i>
 								</a>
 								</span>
 								<span class="icon">
-								<a href="javascript:void(0)" id="share-dialog-twitter" style=" padding: 10px; ">
+								<a href="javascript:void(0)" id="share-dialog-twitter"  style=" padding: 10px; " (click)="GetLink()">
 									<i class="fa fa-twitter-square" aria-hidden="true"></i>
 								</a>
 								</span>
 								<span class="icon">
-									<a data-target="#Whatsapp" data-toggle="modal" href="javascript:void(0)">
+									<a data-target="#Whatsapp" data-toggle="modal" href="javascript:void(0)"  (click)="GetLink()">
 										<i class="fa fa-whatsapp" aria-hidden="true"></i>
 									</a>
 								</span>
@@ -1657,43 +1657,107 @@
 			<!-- <h4>https://www.dices.com/jobs/10512715763701</h4> -->
 			<div class="form-group public-link">
 				<div class="input-group">
-					<input class="form-control text-to-copy njobLink ng-pristine" value="https://www.arytic.com/jobs/10512715763701" id="job-link" readonly="" type="url">
+					<input class="form-control text-to-copy njobLink ng-pristine" [(ngModel)]="referLink"
+					[ngModelOptions]="{standalone: true}" id="job-link" readonly=" true" type="url">
 					<span class="input-group-btn">
-					<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button">
+					<button class="btn btn-secondary copy-btn" id="nbtnCpy" type="button" (click)="copyToClipboard()">
 					<span class="hidden-xs btn-sm"><i class="fa fa-clone" aria-hidden="true"></i></span>
 					</button>
 					</span>
 				</div>
 			</div>
 			<ul>
+				<input type="hidden" id="Company_Name" [(ngModel)]="CompanyName"  [ngModelOptions]="{standalone: true}" />
+											<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
+											<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
 				<li>
-					<a href="#" class="link-twitter">
+					<a href="javascript:void(0)" id="share-dialog-twitter" class="link-twitter" (click)="GetLink()">
 						<i class="fa fa-twitter" aria-hidden="true"></i>Twitter
 					</a>
 				</li>
 				<li>
-					<a href="#" class="link-facebook">
+					<a href="javascript:void(0)" id="share-dialog-facebook" class="link-facebook" (click)="GetLink()">
 						<i class="fa fa-facebook" aria-hidden="true"></i>Facebook
 					</a>
 				</li>
 				<li>
-					<a href="#" class="link-linkedin">
+					<a href="javascript:void(0)"  class="link-linkedin"  id="share-dialog-linkedin" style=" padding: 10px; " (click)="GetLink()">
+						<i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+						</a>
+					<!-- <a href="javascript:void(0)" id="share-dialog-linkedin" class="link-linkedin" (click)="GetLink()">
 						<i class="fa fa-linkedin-square" aria-hidden="true"></i>LikedIn
-					</a>
+					</a> -->
 				</li>
 				<li>
-					<a href="#" class="link-email">
+					<a href="javascript:void(0)" class="link-email" (click)="getStringifiedAssets(demoAssets)" 	 data-address="matteo" data-domain="mailgo.dev">
 						<i class="fa fa-envelope" aria-hidden="true"></i>Email
 					</a>
 				</li>
-				<li>
-					<a href="#" class="link-url">
+				<!-- <li>
+					<!-- <a href="javascript:void(0)" class="link-url" >
 						<i class="fa fa-clipboard" aria-hidden="true"></i>Copy URL
+					</a> -->
+					<a href="javascript:void(0)" class="link-url" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp">
+						<img src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"/> Whatsapp
 					</a>
-				</li>
+				</li> -->
 			</ul>
+
+		
 			<p>Note: it may take up to 30 minutes for the job post to be live.</p>
+
 		</div>
-	</ng-container>
+
 	
+	</ng-container>
+
+
+</div>
+
+
+
+<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+	<div class="modal-dialog modal-align-center">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title">
+					Whatsapp
+				</h2>
+				<button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
+				<img src="assets/images/close-btn.png" alt="X">
+				</button>
+			</div>
+			<div class="modal-body">
+				<form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
+				<div class="row">
+					<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label for="mobilenumber" class="hidden">Mobile		
+						</label>
+						<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
+						></int-phone-prefix>
+						<span class="form-highlight"></span>
+						<span class="form-bar"></span>
+						<div
+							*ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
+							class="error1">
+							<div *ngIf="whatsappform.controls['mobilenumber']">
+								Incorrect *.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
+					(click)="WhatsappShare()">
+					Share
+					</button>
+					<button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
+					Cancel
+					</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
