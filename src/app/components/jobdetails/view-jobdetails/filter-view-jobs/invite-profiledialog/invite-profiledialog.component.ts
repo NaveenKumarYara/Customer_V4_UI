@@ -21,6 +21,7 @@ export class InviteProfiledialogComponent implements OnInit {
   inviteinfo = new InviteInfo();
   inviteform: FormGroup;
   customer: any;
+  body: string;
   loading = false;
   startedInvite: boolean;
   loginstyle(): void {
@@ -33,6 +34,7 @@ export class InviteProfiledialogComponent implements OnInit {
   jobData: GetInviteList[];
   emailPattern = "^(([a-zA-Z\-0-9\.]+@)([a-zA-Z\-0-9\.]+)[,]*)+$";
   Emailinvite: any;
+  fromId:any;
   inviteEmail: any;
   removable = true;
   cremovable = true;
@@ -40,6 +42,7 @@ export class InviteProfiledialogComponent implements OnInit {
   public emailList = [];
   public ccemailList = [];
   public bccemailList = [];
+  subject: string;
   showCC: boolean = false;
   showBCC: boolean = false;
   rulesForm: FormGroup;
@@ -54,11 +57,13 @@ export class InviteProfiledialogComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
-
+       
   }
 
   ngOnInit() {
     this.startedInvite = false;
+    this.fromId = this.customer.Email;
+    this.subject = "Your are Invited for a Job  - Findout how much it is matching for you ";
     this.inviteform = this.fb.group({
       'inviteEmail': ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
@@ -199,29 +204,27 @@ export class InviteProfiledialogComponent implements OnInit {
   };
 
   SaveInvite() {
-
+    if(this.emailList.length>0)
+    { 
     this.startedInvite = true;
-
     this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = this.data.jobId;
     this.inviteinfo.userName = this.customer.FirstName;
     this.inviteinfo.fullName = this.customer.FirstName +' '+this.customer.LastName ;
     this.inviteinfo.statusId = 0;
-    this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
+    // this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
     this.inviteinfo.CandFullName = 'New User';
     this.inviteinfo.CustFullName = this.customer.FirstName;
     this.inviteinfo.ClientLogo = '';
+    this.inviteinfo.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
+    this.inviteinfo.ToEmailId = this.emailList.map(x => x.value).toString();
+    this.inviteinfo.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
+    this.inviteinfo.Body = this.body;
+    this.inviteinfo.FromID = this.fromId;
+    this.inviteinfo.Subject = this.subject;
     this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
-    if (this.inviteinfo.ToEmailId == "") {
-
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.inviteinfo.ToEmailId != "") {
 
       this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
         if (data === 0) {
@@ -231,7 +234,7 @@ export class InviteProfiledialogComponent implements OnInit {
           setTimeout(() => {
             this.toastr.dismissToast;
             this.loading = false;
-            this.inviteform.reset();
+            this.inviteinfo = new InviteInfo();
           }, 3000);
         }
       }, error => {
@@ -239,10 +242,15 @@ export class InviteProfiledialogComponent implements OnInit {
         console.log('error:', JSON.stringify(error));
       });
     }
-  }
-
+   else
+    {
+    this.toastr.error('Please provide the valid details!', 'Oops!');
+   }
+}
 
 }
+
+
 
 export class InviteInfo {
   customerId: number;
@@ -257,5 +265,10 @@ export class InviteInfo {
   ToEmailId: string;
   ApplicationName: string;
   ClientLogo: string;
+  CCEmailAddress: string;
+  BCCEmailAddress: string;
+  Subject: string;
+  Body: string;
+  FromID: string;
   readonly modules: ReadonlyArray<{}> = [];
 }
