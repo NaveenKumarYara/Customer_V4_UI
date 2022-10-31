@@ -69,7 +69,7 @@
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->
-<div class="col-md-12"  data-step="6" data-intro="his count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
+<div class="col-md-12"  data-step="6" data-intro="This count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
     <div class="col-md-2 show-count-label">
         <ng-container *ngIf="joblist?.TotalCount>=5">
             <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
