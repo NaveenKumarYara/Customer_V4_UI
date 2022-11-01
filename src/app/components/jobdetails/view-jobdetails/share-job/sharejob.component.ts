@@ -49,6 +49,7 @@ export class ShareJobComponent implements OnInit {
   removable = true;
   cremovable = true;
   bcremovable = true;
+  fromId:any;
   public emailList = [];
   public ccemailList = [];
   public bccemailList = [];
@@ -72,6 +73,7 @@ export class ShareJobComponent implements OnInit {
   teammembers: '';
   referLink:any;
   whatsapp: any;
+  subject: string;
   whatsappform: FormGroup;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -353,6 +355,9 @@ titleCase(str) {
 }
 
   ngOnInit() {
+    this.fromId = this.customer.Email;
+    this.selectedComments="Please review the job shared to you.";
+    this.subject = 'A Job has been shared to you - Check it out ' + ' ' + (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.JobId + ' ' + '-Arytic' ;
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
@@ -532,40 +537,23 @@ titleCase(str) {
     });
   }
   ShareJob() {
+    if(this.emailList.length>0)
+    { 
     this.isSharingStarted = true;
-
+    this.Sharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
+    this.Sharing.ToEmailID = this.emailList.map(x => x.value).toString();
+    this.Sharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
     this.Sharing.ShareId = 0;
     this.Sharing.FromuserId = this.customerUser;
     this.Sharing.CustomerId = this.customerId;
-    this.Sharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
-    this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
+    this.Sharing.ToUserId = "";
+    // this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
     this.Sharing.JobId = this.data.JobId;
     this.Sharing.FromEmail = this.customer.Email;
     this.Sharing.ToUserName = this.customer.FirstName +' ' + this.customer.LastName;
     this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';JobId=' + this.data.JobId + ';CId=' + this.customerId;
     this.Sharing.Comments = this.selectedComments;
-    if (this.Sharing.ToEmailID == "" && this.Sharing.Comments == undefined) {
-      this.isSharingStarted = false;
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.teammemberslist.length === 0) {
-      this.isSharingStarted = false;
-      this.toastr.error('Please Select and Add Team Member!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.Sharing.Comments == undefined) {
-      this.isSharingStarted = false;
-      this.toastr.error('Please provide Comments!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.Sharing.ToEmailID != "" && this.Sharing.Comments != undefined) {
+    this.Sharing.Subject = this.subject;
         this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
           if (data === 0) {
             //this.inviteform.reset();
@@ -588,9 +576,14 @@ titleCase(str) {
         });
 
     }
+  
+    else
+    {
+    this.toastr.error('Please provide the valid details!', 'Oops!');
+   }
+  
   }
 }
-
 
 
 
@@ -605,6 +598,10 @@ export class JobShare {
   Comments: string;
   ToUserName: string;
   FromEmail: string;
+  CCEmailAddress: string;
+  BCCEmailAddress: string;
+  Subject: string;
+  Docs:any;
   readonly modules: ReadonlyArray<{}> = []
 }
 

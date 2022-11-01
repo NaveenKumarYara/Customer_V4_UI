@@ -68,7 +68,7 @@ export class JoblistGridlayoutComponent implements OnInit {
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 
-  OpenShareJobDialog(jobid) {
+  OpenShareJobDialog(jobid,jobtitle) {
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
         //width: '90vw',
@@ -77,8 +77,8 @@ export class JoblistGridlayoutComponent implements OnInit {
         panelClass:'shareModalPopup',
         data: {
           animal: 'panda',
-          JobId: jobid
-
+          JobId: jobid,
+          JobTitle: jobtitle
         }
       }
     );

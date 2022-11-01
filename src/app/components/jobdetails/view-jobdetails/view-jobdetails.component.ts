@@ -658,7 +658,7 @@ export class ViewJobdetailsComponent implements OnInit {
       })
   }
 
-  OpenShareJobDialog(jobid) {
+  OpenShareJobDialog(jobid,jobtitle) {
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
         //width: '90vw',
@@ -667,8 +667,8 @@ export class ViewJobdetailsComponent implements OnInit {
         panelClass:'shareModalPopup',
         data: {
           animal: 'panda',
-          JobId: jobid
-
+          JobId: jobid,
+          JobTitle: jobtitle
         }
       }
     );
