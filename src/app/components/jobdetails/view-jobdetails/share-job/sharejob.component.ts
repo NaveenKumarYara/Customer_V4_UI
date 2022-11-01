@@ -21,7 +21,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { assert } from 'console';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
+const URL = 'http://localhost:4800/fileupload/';
 export interface mailtoAsset {
   
   Id: string;
@@ -41,11 +42,13 @@ export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
   mailtoHeader = "mailto:?";
   subjectProp = "subject=";
+  do = new doc();
   bodyProp = "body=";
   amp = "&amp;";
   breakStr = "%0D%0A";
   footer = "Powered by Arytic!"
-  demoSubject = ""
+  demoSubject = "";
+  private base64textString:String="";
   removable = true;
   cremovable = true;
   bcremovable = true;
@@ -83,6 +86,8 @@ export class ShareJobComponent implements OnInit {
   inviteform: FormGroup;
   Sharing = new JobShare();
   customer: any;
+  uploader: FileUploader = new FileUploader({}); //Empty options to avoid having a target URL
+  reader: FileReader = new FileReader();
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   Emailinvite:any;
@@ -95,11 +100,13 @@ export class ShareJobComponent implements OnInit {
   changeval:boolean=false;
   EmailId: any = null;
   Name: any = null;
+  dos : any=[];
   usersloading: boolean;
   customerUser: number;
   selectedUserName: number;
   selectedComments: any;
   userId: number;
+  fileUploadForm: FormGroup;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
@@ -131,6 +138,24 @@ export class ShareJobComponent implements OnInit {
     this.GetLink();
     this.GetjobCard();
     this.PopulateJobdetail();
+    this.uploader = new FileUploader({
+      url: URL,
+      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+      formatDataFunctionIsAsync: true,
+      allowedFileType: ['image', 'pdf','doc','docx'],
+     
+      formatDataFunction: async (item) => {
+        return new Promise( (resolve, reject) => {
+          resolve({
+            name: item._file.name,
+            length: item._file.size,
+            contentType: item._file.type,
+            date: new Date()
+          });
+        });
+      }
+    });
+
   }
 
   showClickCC() {
@@ -354,6 +379,8 @@ titleCase(str) {
   return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
 }
 
+
+
   ngOnInit() {
     this.fromId = this.customer.Email;
     this.selectedComments="Please review the job shared to you.";
@@ -363,6 +390,17 @@ titleCase(str) {
     });
     this.whatsappform = this.fb.group({
       'mobilenumber': ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+    });
+    this.fileUploadForm = this.fb.group({ 
+      'NoteId': [0, Validators.required],
+      'ProfileId': [0, Validators.nullValidator],
+      'JobId': [0, Validators.nullValidator],
+      'customerUserId': [this.customerUser, Validators.required],
+      'toUserId': [0, Validators.required],
+      'Title':['', Validators.nullValidator],
+      'Attachment': [null, Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],
+      'DocUrl': ['', Validators.nullValidator]
     });
     this.clearTeamMemebers();
     this.getcustomerusers();
@@ -536,6 +574,60 @@ titleCase(str) {
       return elem.UserId === team.UserId;
     });
   }
+
+  uploadMultiple(){
+    if(this.emailList.length>0)
+    { 
+    for (let i = 0; i < this.uploader.queue.length; i++) {
+      let fileItem = this.uploader.queue[i]._file;
+      if(fileItem.size > 2 * 1024 * 1024){
+        this.toastr.error("Each File should be less than 2 MB of size.","!Oh no");
+        return;
+      }
+    }
+    for (let j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let request = '';
+      let fileItem = this.uploader.queue[j]._file;
+      if (this.fileUploadForm.value !== '') {
+        this.fileUploadForm.value.Title = fileItem.name;
+        this.fileUploadForm.value.DocUrl = '';
+        this.fileUploadForm.value.toUserId = this.customer.UserId;
+        this.fileUploadForm.value.NoteId=0;
+        this.fileUploadForm.value.FileExtension =fileItem.type;
+         request = JSON.stringify(this.fileUploadForm.value);
+       }     
+      data.append('Attachment', fileItem);
+      data.append('fileSeq', 'seq'+j);
+      data.append('Model', request);
+      this.uploadFile(data,fileItem.name);
+    }
+  }
+  else
+    {
+    this.toastr.error('Please provide the valid details!', 'Oops!');
+   }
+   
+  }
+  
+  uploadFile(data: FormData,fileName){
+  this._service.byteStorage(data, 'ProfileAPI/api/ProfileAttachmentsNew').subscribe(data => {
+    this.do = new doc();
+    this.do.DocUrl = data;
+    this.do.DocName = fileName;
+    this.do.JobId = 0;
+    this.do.ProfileId = 0;
+    this.dos.push(this.do);
+   
+    if(this.uploader.queue.length === this.dos.length)
+    {
+      this.ShareJob();
+    }
+    }); 
+
+  }
+
+
   ShareJob() {
     if(this.emailList.length>0)
     { 
@@ -554,8 +646,10 @@ titleCase(str) {
     this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';JobId=' + this.data.JobId + ';CId=' + this.customerId;
     this.Sharing.Comments = this.selectedComments;
     this.Sharing.Subject = this.subject;
+    this.Sharing.Docs = this.dos;
         this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
           if (data === 0) {
+            this.uploader.clearQueue();
             //this.inviteform.reset();
             this.teammemberslist = [];
             $('#teamMbr').val('');
@@ -603,6 +697,14 @@ export class JobShare {
   Subject: string;
   Docs:any;
   readonly modules: ReadonlyArray<{}> = []
+}
+
+export class doc
+{
+      DocUrl: any;
+      ProfileId: number;
+      JobId: number;
+      DocName: any;
 }
 
 

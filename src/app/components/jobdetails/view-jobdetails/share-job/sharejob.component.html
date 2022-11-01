@@ -1578,16 +1578,54 @@
 								<ckeditor  [(ngModel)]="selectedComments" name="body" cols="30" rows="40"></ckeditor>
 							  </div>
 							<div class="form-group">
-								<div class="upload-border">
+								<div class="upload-border" >
 									<div class="flex_items_center pointer">
-										<div class="d-block">
+										<div class="d-block" (click)="photo.click()">
 											<i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
 											<div class="file">
-												<input matinput="" ng2fileselect="" type="file" value="" >
+												<input class="hidden" type="file" #photo (click)="photo.value = null" value="" ng2FileSelect
+												[uploader]="uploader" multiple>
 											</div>
 											<div>Browse &amp; Upload</div>
 											<h5>We recommended to use Microsoft Word. </h5>
 										</div>
+										</div>
+								</div>
+								<!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
+								<div class="file__upload__list__table row">
+									<div class="col-xs-12 mt-5" *ngIf="uploader.queue.length>0">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Size</th>
+												
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngFor="let item of uploader.queue;let i=index">
+													<td>
+														{{ item?.file?.name }}
+													</td>
+													<td>
+														{{ item?.file?.size/1024/1024 | number:'.2' }} MB
+													</td>
+													<!-- <td *ngIf="uploader.options.isHTML5">
+														<div class="progress" style="margin-bottom: 0;">
+														 <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+															<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+																<span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+															</div>
+														</div>
+													</td> -->
+													<td>
+														<button type="button" class="btn btn-danger btn__delete btn-xs" (click)="item.remove(i)">
+															<span class="glyphicon glyphicon-trash"></span>
+														</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -1645,7 +1683,8 @@
 		</div>
 		<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 			<button mat-button mat-dialog-close class="btn btn-border">Close</button>
-			<button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+				<button mat-button (click)="uploadMultiple()" class="btn btn-filled" *ngIf="!isSharingStarted && uploader.queue.length > 0">Share</button>
+				<button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted && uploader.queue.length === 0">Share</button>
 			<button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
 			<i class="fa fa-spinner fa-spin"></i>
 			</button>
