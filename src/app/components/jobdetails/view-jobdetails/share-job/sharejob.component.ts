@@ -186,7 +186,16 @@ export class ShareJobComponent implements OnInit {
     console.log(event.value)
     if (event.value) {
       if (this.validateEmail(event.value)) {
+        
         this.emailList.push({ value: event.value, invalid: false });
+        if(this.emailList.length>1)
+        {
+          this.activeAny = 'Mass Mail';
+        }
+        else
+        {
+          this.activeAny = 'Normal';
+        }
       } else {
         this.emailList.push({ value: event.value, invalid: true });
         this.rulesForm.controls['emails'].setErrors({'incorrectEmail': true});
@@ -232,6 +241,14 @@ export class ShareJobComponent implements OnInit {
     console.log('Removing ' + data)
     if (this.emailList.indexOf(data) >= 0) {
       this.emailList.splice(this.emailList.indexOf(data), 1);
+      if(this.emailList.length>1)
+        {
+          this.activeAny = 'Mass Mail';
+        }
+        else
+        {
+          this.activeAny = 'Normal';
+        }
     }
     this.rulesForm.controls['emails'].setErrors({'incorrectEmail': false});
   }
@@ -250,6 +267,11 @@ export class ShareJobComponent implements OnInit {
       this.bccemailList.splice(this.bccemailList.indexOf(data), 1);
     }
     this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': false})
+  }
+
+  clearEmail()
+  {
+    this.emailList=[];
   }
 
   showClear()

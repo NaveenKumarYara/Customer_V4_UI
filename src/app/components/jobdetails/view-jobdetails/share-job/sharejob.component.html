@@ -1482,9 +1482,13 @@
 										<!-- <li><button class="btn btn-link">Clear All</button></li> -->
 									</ul>
 								</div>
-								<div class="row flex flex-wrap flex-align-center">
-									<div class="col-sm-3">
+								<div class="row flex flex-wrap flex-align-center" >
+									<div class="col-sm-3" *ngIf="activeAny == 'Normal'">
 										<label>To</label>
+									</div>
+									<div class="col-sm-3" *ngIf="activeAny == 'Mass Mail'">
+										<label>To</label>
+										<h6><i class="fa fa-info-circle"></i> Add more recipients.</h6>
 									</div>
 									<div class="col-sm-9">
 										<form [formGroup]="rulesForm">
@@ -1509,6 +1513,7 @@
 										</form>
 									</div>
 								</div>
+						
 							</div>
 							<div class="form-group" *ngIf="showCC == true">
 								<div class="row flex flex-wrap flex-align-center">
