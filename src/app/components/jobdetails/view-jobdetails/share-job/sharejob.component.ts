@@ -613,9 +613,11 @@ titleCase(str) {
   uploadFile(data: FormData,fileName){
   this._service.byteStorage(data, 'ProfileAPI/api/ProfileAttachmentsNew').subscribe(data => {
     this.do = new doc();
+    let re = /\#/gi;
     this.do.DocUrl = data;
     this.do.DocName = fileName;
     this.do.JobId = 0;
+    this.do.DocUrl = this.do.DocUrl.replaceAll(re, "%23");
     this.do.ProfileId = 0;
     this.dos.push(this.do);
    
@@ -647,6 +649,7 @@ titleCase(str) {
     this.Sharing.Comments = this.selectedComments;
     this.Sharing.Subject = this.subject;
     this.Sharing.Docs = this.dos;
+    debugger
         this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
           if (data === 0) {
             this.uploader.clearQueue();
