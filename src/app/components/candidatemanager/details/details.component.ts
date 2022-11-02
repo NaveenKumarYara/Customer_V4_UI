@@ -32,6 +32,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { title } from "process";
 const html2canvas: any = _html2canvas;
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 
 @Component({
 	selector: 'cm-details',
@@ -39,7 +40,7 @@ import * as introJs from 'intro.js/intro.js';
 	styleUrls: ['./details.component.css']
 })
 
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit,OnDestroy {
 	currentView: string = 'Grid';
 	showFilterNavBar: boolean = false;
 	showMenu: boolean = false;
@@ -336,6 +337,15 @@ export class DetailsComponent implements OnInit {
 	{
 	  this.introJS.start();
 	}
+
+	tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
+  }
 
 	clickme(val) {
 		let request = '';
@@ -1019,6 +1029,7 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 	}
 	OpenCandidate(profileId, userId, percentage) {
+		this.tClose();
 		if (percentage < 50) {
 			swal(
 				{

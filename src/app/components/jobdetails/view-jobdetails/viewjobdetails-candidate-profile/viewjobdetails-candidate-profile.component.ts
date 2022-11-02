@@ -752,7 +752,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     swal(
       {
         
-        title: 'Have you got confirmation from  ' + FirstName + ' ' + LastName ,
+        title: 'Have you received the approval/consent from   ' + FirstName + ' ' + LastName ,
         showConfirmButton: true,
         showCancelButton: true,
         type: "info",
@@ -784,7 +784,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                   this.toastr.dismissToast;
                   swal(
                     {
-                      title: 'Application farwarding to next level!',
+                      title: 'Application is forwarded to next stages successfully !',
                       showConfirmButton: true,
                       timer: 3000,
                       type: "success"

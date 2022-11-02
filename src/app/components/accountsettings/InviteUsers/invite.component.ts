@@ -8,13 +8,14 @@ declare var $: any;
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { ResetComponent } from '../../ResetPassword/resetpassword.component';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-inviteusers',
   templateUrl: './invite.component.html',
   styleUrls: ['./invite.component.css'],
   providers: [AppService]
 })
-export class InviteUsersComponent implements OnInit {
+export class InviteUsersComponent implements OnInit,OnDestroy {
   customer:any; 
   Addform: FormGroup;
   IsEdit:boolean=false;
@@ -52,6 +53,15 @@ export class InviteUsersComponent implements OnInit {
     this.introJS.start();
   }
 
+  tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
+  }
+
   Rest()
   {
     //debugger
@@ -81,6 +91,7 @@ export class InviteUsersComponent implements OnInit {
 
   RemoveUser(Id)
   {
+    this.tClose();
     return this.appService.DeleteInviteUsers(Id).subscribe(
       data => 
       {
@@ -91,7 +102,7 @@ export class InviteUsersComponent implements OnInit {
 
   ActivateInviteUsers(contact)
   {
-
+    this.tClose();
     return this.appService.ActivateInviteUsers(contact.Email).subscribe(
       data => 
       {
@@ -147,6 +158,7 @@ export class InviteUsersComponent implements OnInit {
 
   ResendEmail(contact)
   {
+    this.tClose();
     this.Forgotform.value.EmailId = contact.Email;
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
@@ -178,6 +190,7 @@ export class InviteUsersComponent implements OnInit {
 
 EditUser(contact)
 {
+  this.tClose();
   this.showStep=true;
   this.IsEdit=true;
   this.Addform = this.fb.group({

@@ -15,12 +15,13 @@ import { FormBuilder,FormGroup, Validators } from "@angular/forms";
 import * as _html2canvas from "html2canvas";
 const html2canvas: any = _html2canvas;
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from "@angular/core/public_api";
 @Component({
   selector: "app-steps-step4",
   templateUrl: "./step4.component.html",
   styleUrls: ["./step4.component.css"],
 })
-export class Step4Component implements OnInit {
+export class Step4Component implements OnInit,OnDestroy {
   z;
   // step1
   jobdetailscustomer: GetJobDetailCustomer;
@@ -205,6 +206,14 @@ export class Step4Component implements OnInit {
   start()
   {
     this.introJS.start();
+  }
+  Close()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.Close();
   }
 
   GetInterviewStatus(JId)

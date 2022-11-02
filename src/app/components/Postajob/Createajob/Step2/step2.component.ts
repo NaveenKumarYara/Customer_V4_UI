@@ -23,12 +23,13 @@ import { DocumentManagerComponent } from '../../document-manager/document-manage
 declare var $: any;
 declare var jQuery: any;
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-steps-step2',
   templateUrl: './step2.component.html',
   styleUrls: ['./step2.component.css']
 })
-export class Step2Component implements OnInit,AfterViewChecked {
+export class Step2Component implements OnInit,AfterViewChecked,OnDestroy {
   // @ViewChild(Step1Component) step1: Step1Component;
   // @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
   // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
@@ -166,6 +167,15 @@ isDrafted: boolean;
   start()
   {
     this.introJS.start();
+  }
+
+  Close()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.Close();
   }
 
 

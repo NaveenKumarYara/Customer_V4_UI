@@ -13,13 +13,14 @@ import { stat } from 'fs';
 import { AppService } from '../../../../app.service';
 declare var $: any;
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-manage-load-joblist',
   templateUrl: './load-joblist.component.html',
   styleUrls: ['./load-joblist.component.css'],
   providers: [NgxSpinnerService, FilterjobsComponent]
 })
-export class LoadJoblistComponent implements OnInit {
+export class LoadJoblistComponent implements OnInit,OnDestroy {
   id: any;
   sub: any;
   customer: any;
@@ -155,6 +156,15 @@ export class LoadJoblistComponent implements OnInit {
   start()
   {
     this.introJS.start();
+  }
+
+  tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
   }
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 

@@ -31,6 +31,7 @@ import { GetQuestionnarieAssignement, GetQuestionnarieResponse } from '../../../
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 
 @Component({
   selector: 'app-companyprofile',
@@ -38,7 +39,7 @@ import * as introJs from 'intro.js/intro.js';
   styleUrls: ['./companyprofile.component.css'],
   providers: [AppService]
 })
-export class CompanyprofileComponent implements OnInit {
+export class CompanyprofileComponent implements OnInit,OnDestroy {
     //culturetestref: MatDialogRef<CultureTestComponent>;
     customer:any;
     customerId:any;
@@ -180,6 +181,15 @@ export class CompanyprofileComponent implements OnInit {
 
       }
 
+      tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
+  }
+
       start()
       {
         this.introJS.start();
@@ -199,6 +209,7 @@ export class CompanyprofileComponent implements OnInit {
 
     populateCompanyLogo(customerId) {
         return this.companyprofileservice.getCompanyLogo(customerId).subscribe(res => {
+        
             this.getcompanylogo= res;
         });
     }

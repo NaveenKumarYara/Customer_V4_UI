@@ -19,13 +19,14 @@ import { ApiService } from '../../../../shared/services';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { Appointment } from '../../models/getDetails';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
   styleUrls: ['./interviewList.component.css','./interviewListUI.component.css'],
   providers: [ ValueArrayPipe ]
 })
-export class InterviewListComponent implements OnInit {
+export class InterviewListComponent implements OnInit,OnDestroy {
     jobId: any;
     customer: any;
     customerId: any;
@@ -204,6 +205,15 @@ export class InterviewListComponent implements OnInit {
     start()
     {
       this.introJS.start();
+    }
+
+    tClose()
+    {
+      this.introJS.exit();
+    }
+  
+    ngOnDestroy() {
+      this.tClose();
     }
 
     GetData()

@@ -28,12 +28,13 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material"
 import { DocumentManagerComponent } from '../../document-manager/document-manager.component';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.css']
 })
-export class Step1Component implements OnInit, AfterViewChecked {
+export class Step1Component implements OnInit, AfterViewChecked,OnDestroy {
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     event.returnValue = false;
 }
@@ -114,6 +115,15 @@ export class Step1Component implements OnInit, AfterViewChecked {
       height: "750px",
       panelClass: 'candiateModalPop'
     });
+  }
+
+  Close()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.Close();
   }
 
   ngOnInit() {

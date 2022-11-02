@@ -8,13 +8,14 @@ import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 @Component({
   selector: 'app-accountsettingdetails',
   templateUrl: './accountsettingdetails.component.html',
   styleUrls: ['./accountsettingdetails.component.css'],
   providers: [AppService,AlertService]
 })
-export class AccountsettingdetailsComponent implements OnInit {
+export class AccountsettingdetailsComponent implements OnInit,OnDestroy {
   @ViewChild(NgForm) myForm: NgForm;
   customer:any;  
   introJS = introJs();
@@ -65,10 +66,19 @@ export class AccountsettingdetailsComponent implements OnInit {
     this.introJS.start();
   }
 
+  tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
+  }
+
   
   updateEmail()
   {
-
+    this.tClose();
     this.appService.updateemail(this.emailForm.value)
     .subscribe(
     data => {
@@ -105,7 +115,7 @@ export class AccountsettingdetailsComponent implements OnInit {
 
   updateName()
   {
-
+    this.tClose();
     this.appService.UpdateFullName(this.nameForm.value)
     .subscribe(
     data => {

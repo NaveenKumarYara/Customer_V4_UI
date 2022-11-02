@@ -16,13 +16,14 @@ import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 import { AuthService } from '../../../shared/guard/auth.service';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 
 @Component({
   selector: 'app-dashboardview',
   templateUrl: './dashboardview.component.html',
   styleUrls: ['./dashboardview.component.css']
 })
-export class DashboardviewComponent implements OnInit {
+export class DashboardviewComponent implements OnInit,OnDestroy {
     // recentjoblist: RecentJobs[] = [];
     customer:any;
     customerId:any;
@@ -48,6 +49,15 @@ export class DashboardviewComponent implements OnInit {
     start()
     {
       this.introJS.start();
+    }
+
+    tClose()
+    {
+      this.introJS.exit();
+    }
+  
+    ngOnDestroy() {
+      this.tClose();
     }
 
     // populateRecentJoblist(count: number) {

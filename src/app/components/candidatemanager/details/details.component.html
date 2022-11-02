@@ -474,7 +474,7 @@
 										<div class="top__container flex flex-wrap flex-align-center">
 											<label class="custom-checkbox custom-checkbox-round">
 												<input type="checkbox" [checked]="candidate.IsSelected"
-													(change)="candidate.IsSelected = !candidate.IsSelected">
+													(change)="candidate.IsSelected = !candidate.IsSelected;tClose()">
 												<span class="checkmark"></span>
 											</label>
 											<ul>
@@ -493,7 +493,7 @@
 												</li>
 											</ul>
 										</div>
-										<div class="col__container" (click)="fullGridViewShow(candidate,k)">
+										<div class="col__container" (click)="fullGridViewShow(candidate,k);tClose()">
 											<div class="info__container">
 												<div class="profile__thumb">
 													<img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}"

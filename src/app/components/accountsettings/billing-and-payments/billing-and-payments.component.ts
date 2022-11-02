@@ -13,13 +13,14 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import {GetSubscriptionDetails} from '../../../../models/GetSubscriptionDetails';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 declare var $: any; 
 @Component({
   selector: 'app-billing-and-payments',
   templateUrl: './billing-and-payments.component.html',
   styleUrls: ['./billing-and-payments.component.css']
 })
-export class BillingAndPaymentsComponent implements OnInit {
+export class BillingAndPaymentsComponent implements OnInit,OnDestroy {
   Plans:PlanFeature[]=[];
   customer:any;  
   bill:billEstimates; 
@@ -46,6 +47,15 @@ export class BillingAndPaymentsComponent implements OnInit {
   start()
   {
     this.introJS.start();
+  }
+
+  tClose()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.tClose();
   }
 
 

@@ -13,13 +13,14 @@ import { PjDomain, GetDomain, CustomerUsers, KeyRole,PjTechnicalTeam,Cities,jobI
 import { WorkAuthorization } from '../../../models/workAuthorization';
 import { ApiService } from '../../shared/services';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 declare var $: any;
 @Component({
   selector: 'app-postajob',
   templateUrl: './postajob.component.html',
   styleUrls: ['./postajob.component.css']
 })
-export class PostajobComponent implements OnInit {
+export class PostajobComponent implements OnInit,OnDestroy {
   introJS = introJs();
 parser : boolean =false;
 
@@ -30,10 +31,21 @@ parser : boolean =false;
 
   start()
   {
+    
     this.introJS.start();
   }
 
+  Close()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy(): void {
+    this.Close();
+  }
+
   getFileDetails(e) {
+    this.Close();
     const fileSelected: File = e.target.files[0];
     const stringToSplitDoc = fileSelected.name;
     const y = stringToSplitDoc.split('.');

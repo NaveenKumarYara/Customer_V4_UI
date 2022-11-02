@@ -13,6 +13,7 @@ import {
   NavigationError
 } from '@angular/router';
 import { AppService } from './app.service';
+import * as introJs from 'intro.js/intro.js';
 declare var $: any;
 
 @Component({
@@ -23,6 +24,7 @@ declare var $: any;
 export class AppComponent {
   idleState = 'Not started.';
   timedOut = false;
+  introJS = introJs();
   lastPing?: Date = null;
   items: string[];
   constructor( private dialogRef: MatDialog,private toastr: ToastsManager, private _vcr: ViewContainerRef,private route: Router,private appService: AppService,private element: ElementRef, private idle: Idle, private keepalive: Keepalive) {
@@ -56,6 +58,7 @@ export class AppComponent {
       this.dialogRef.closeAll();
       $('.modal-backdrop').remove();
       this.route.navigateByUrl('/login' , { replaceUrl: true });
+      this.tClose();
     });
     idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
     idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');
@@ -78,7 +81,12 @@ export class AppComponent {
 
    
     }
-
+    tClose()
+    {
+      this.introJS.exit();
+    }
+  
+ 
     populateItems() {
       this.appService.getDashboarddata().subscribe(res => {
         this.items = res;

@@ -29,6 +29,7 @@ import { recriuterComponent } from './recriuter.component';
 import { Options, LabelType  } from '@angular-slider/ngx-slider';
 import { MatchingDetails } from '../../../jobdetails/models/matchingDetails';
 import * as introJs from 'intro.js/intro.js';
+import { OnDestroy } from '@angular/core/public_api';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -38,7 +39,7 @@ declare var jQuery: any;
   templateUrl: './step3.component.html',
   styleUrls: ['./step3.component.css']
 })
-export class Step3Component implements OnInit,AfterViewChecked {
+export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
 
   // @ViewChild(Step2Component) step2: Step2Component;
   // @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
@@ -212,6 +213,15 @@ export class Step3Component implements OnInit,AfterViewChecked {
   start()
   {
     this.introJS.start();
+  }
+
+  Close()
+  {
+    this.introJS.exit();
+  }
+
+  ngOnDestroy() {
+    this.Close();
   }
 
   OpenScheduleInterviewDialog() {

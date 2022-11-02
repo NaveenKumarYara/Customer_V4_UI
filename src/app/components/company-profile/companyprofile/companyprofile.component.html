@@ -40,7 +40,7 @@
       </div> -->
       <!--#Culture Test Code-->
       <div class="row" data-step="1" data-intro="All the basic information of the company like email, website url, social media, address can be found here." data-position='top'>
-        <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo"></app-basicinfo>
+        <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo" (click)="tClose()"></app-basicinfo>
 
       </div>
       <div class="row show__domain__row" *ngIf="ShowDomain!=true" data-step="2" data-intro="This section enables you to create your custom domain through toggle on." data-position='top'>
