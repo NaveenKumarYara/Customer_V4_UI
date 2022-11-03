@@ -15362,7 +15362,7 @@ a.ui-button:active,
 }
 
 .page--job-details .card .candidate-status {
-	width: 100%;
+	width: 106%;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
