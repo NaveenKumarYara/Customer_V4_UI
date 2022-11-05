@@ -153,8 +153,52 @@
         </div>
       </div>
       <!--/.nav-collapse -->
-
+     
       <ul class="nav navbar-nav pull-right navbar-right user-options">
+        <li *ngIf="showAction">
+          <div class="quick-navigation">
+            <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+            <div class="dropdown-menu">
+              <ul>
+                <li>
+                  <a href="#"><span class="icon icon-share">Icon</span> Share/Submit</a>
+                  <ul>
+                    <li><a href="#">Share Feedback</a></li>
+                    <li><a href="#">Share job (to Job boards, web pages, career page, social media)</a></li>
+                    <li><a href="#">Upload Resume</a></li>
+                    <li><a href="#">Assign Job</a></li>
+                    <li><a href="#">Schedule an interview</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"><span class="icon icon-email">Icon</span> Email</a>
+                  <ul>
+                    <li><a href="#">Email Candidates</a></li>
+                    <li><a href="#">Invite candidate</a></li>
+                    <li><a href="#">Email team members</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"><span class="icon icon-view">Icon</span>View</a>
+                  <ul>
+                    <li><a href="#">View job details</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"><span class="icon icon-add">Icon</span>Add</a>
+                  <ul>
+                    <li><a href="#">Edit job</a></li>
+                    <li><a href="#">Add notes</a></li>
+                    <li><a href="#">Add comments</a></li>
+                    <li><a href="#">Make inactive</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
         <!--Upgrade Now Alert starts-->
         <li class="text-danger" routerLinkActive="active" *ngIf="customer?.AccessDetails?.Subscription==true">
           <a class="upgrade-now" href="Javascript:void(0)"

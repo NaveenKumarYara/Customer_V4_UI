@@ -1,0 +1,148 @@
+.quick-navigation .btn {
+  padding: 0 !important;
+  position: relative;
+  background: none !important;
+  border: 0 !important;
+  font-size: 10px;
+  margin: 12px 26px 0 0;
+  text-transform: uppercase;
+}
+
+.quick-navigation .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.quick-navigation .btn:before {
+  width: 38px;
+  height: 38px;
+  display: block;
+  background: url(../../../assets/images/manage-job-sprites.png) -285px -70px #697d9d;
+  background-size: 366px auto;
+  color: #fff;
+  border-radius: 50% !important;
+  content: "";
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.quick-navigation .btn::after {
+  content: "";
+  width: 12px;
+  height: 7px;
+  background: url(../../../assets/images/manage-job-sprites.png) -115px -108px no-repeat;
+  background-size: 366px auto;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.quick-navigation.open>.dropdown-menu {
+  width: 350px;
+  right: 0;
+  left: auto;
+  margin-top: 12px;
+}
+
+.quick-navigation.open>.dropdown-menu:before {
+  content: "";
+  position: absolute;
+  right: 32px;
+  border-bottom: 8px solid #d4d4d4;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  top: -8px;
+}
+
+.quick-navigation .dropdown-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  padding: 0 10px 10px;
+}
+
+.quick-navigation .dropdown-menu >  ul {
+  overflow: hidden;
+  overflow-y: auto;
+  height: 300px;
+}
+
+.quick-navigation .dropdown-menu li a {
+  color: #9eabc0;
+  line-height: 1.65;
+}
+
+.quick-navigation .dropdown-menu > ul > li > a {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.quick-navigation .dropdown-menu > ul > li > a .icon {
+  margin-right: 10px;
+}
+
+.quick-navigation .dropdown-menu ul ul {
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+  padding: 10px;
+}
+
+.quick-navigation .dropdown-menu ul li:last-child ul {
+  border-bottom: 0;
+}
+
+.quick-navigation.dropdown-menu ul ul li:not(:first-child) {
+  margin-top: 10px;
+}
+
+.quick-navigation .dropdown-menu ul ul li a {
+  display: block;
+  position: relative;
+  padding-left: 15px;
+}
+
+.quick-navigation .dropdown-menu ul ul li a:before {
+  content: "";
+  width: 5px;
+  height: 8px;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  background: url(../../../assets/images/manage-job-sprites.png) -137px -65px no-repeat;
+  background-size: 366px auto;
+}
+
+
+.quick-navigation .icon {
+  background: url(../../../assets/images/manage-job-sprites.png) 0 0 no-repeat;
+  background-size: 366px auto;
+  display: inline-block;
+  font-size: 0;
+}
+
+.quick-navigation .icon.icon-share {
+  width: 18px;
+  height: 13px;
+  background-position: -17px -105px;
+}
+
+.quick-navigation .icon.icon-view {
+  width: 18px;
+  height: 11px;
+  background-position: -43px -105px;
+}
+
+.quick-navigation .icon.icon-add {
+  width: 10px;
+  height: 10px;
+  background-position: -69px -106px;
+}
+
+.quick-navigation .icon.icon-email {
+  width: 18px;
+  height: 11px;
+  background-position: -85px -105px;
+}
