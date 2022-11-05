@@ -31850,3 +31850,47 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 .mat-chip:not(.mat-basic-chip)+.mat-chip:not(.mat-basic-chip) {
 	margin: 4px !important;
 }
+
+.top-button-container  {
+	margin-bottom: 30px;
+}
+
+.btn-tour-link {
+  color: #fff;
+  border: 0;
+  background: #66dab5;
+  padding: 9px 48px 9px 16px;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
+  overflow: hidden;
+  transition: all 550ms linear;
+}
+
+.btn-tour-link:hover, .btn-tour-link:focus {
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 35%);
+  background: #01bda7;
+	color: #fff;
+}
+
+.btn-tour-link:before {
+  content: "";
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  border-radius: 32px;
+  background-color: #01bda7;
+}
+
+.btn-tour-link .no {
+  position: absolute;
+  width: 28px;
+  height: 18px;
+	text-align: center;
+	font-size: 13px;
+  right: -2px;
+	top: 50%;
+	transform: translateY(-50%);
+}

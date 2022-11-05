@@ -189,6 +189,7 @@
   border: 1px solid #e0e3ef;
   border-radius: 3px;
   padding: 12px 16px;
+  background: #fff !important;
 }
 
 .share-job-via-options {
@@ -498,3 +499,36 @@
   background-color: #2fc495;
   color: #fff;
 }
+
+.toggle-switch input[type=checkbox] {display:none}
+.toggle-switch label {cursor:pointer; margin: 0;}
+.toggle-switch label .toggle-track {
+  display:block;
+  height:26px;
+  width:50px;
+  background:#f5f6fa;
+  border-radius:20px;
+  position:relative;
+  margin-left: 10px;
+  border:1px solid #e0e3ef;
+}
+
+.toggle-switch .toggle-track:before{
+  content:'';
+  display:inline-block;
+  height: 24px;
+  width: 24px;
+  background:#e0e3ef;
+  border-radius:20px;
+  position:absolute;
+  top:0;
+  right:0;
+  transition:right .2s ease-in;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label .toggle-track:before{
+  background:#66dab5;
+  right:24px;
+}
+
+label.no-margin { margin: 0; }

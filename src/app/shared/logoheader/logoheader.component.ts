@@ -1,5 +1,6 @@
 import { Component ,OnInit,ViewContainerRef} from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { AppService } from '../../app.service';
 import { environment } from '../../../environments/environment.prod';
 import { billEstimates } from '../../../models/billEstimates';
@@ -10,7 +11,8 @@ import { ApiService } from '../../shared/services/api.service/api.service';
 declare var $: any; 
 @Component({
     selector: 'app-Logoheader',
-    templateUrl: './logoheader.component.html'   
+    templateUrl: './logoheader.component.html',
+    styleUrls: ['./logoheader.component.css'],
 })
 export class LogoHeaderComponent implements OnInit {  
   customer:any;
@@ -19,13 +21,14 @@ export class LogoHeaderComponent implements OnInit {
   notificationsCount: any;
   active:boolean=false;
   jobsactive:boolean=false;
+  showAction:boolean = false;
   daysRemaining:any;
   postactive:boolean=false;
   addPricing = new payment();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   menuFixed:boolean = false;
-  constructor( private appService: AppService,  private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef) {
+  constructor( private appService: AppService,  private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef, location: Location) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.toastr.setRootViewContainerRef(_vcr);
     if (this.customer == null) {
@@ -169,6 +172,9 @@ expandMenu() {
 }
 
 ngOnInit() {
+    if (location.pathname === '/app-view-jobdetails' || this.router.routerState.snapshot.url === '/app-view-jobdetails') {
+       this.showAction = true;
+    }
     $(document).on('click touchend', function(e){
       if (!$(".mainmenu-fixed").is(e.target) && $(".mainmenu-fixed").has(e.target).length==0)
         {
