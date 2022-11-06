@@ -632,7 +632,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent, {
         width: "750",
         position: { right: "0px" },
-        height: "750px",
+        height: "100vh",
         data: {
           EmailId: emailId,
           jobId: this.jobid,
