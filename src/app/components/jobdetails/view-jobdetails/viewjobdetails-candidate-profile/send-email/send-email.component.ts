@@ -263,10 +263,13 @@ export class SendEmailComponent implements OnInit {
 
     this.isSendingEmail = true;
     //this.spinner.show();
+    let emails = this.emailList.map(x => x.value);
+    var ctr = 0;
+    emails.forEach(element => {
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-    this.conversation.ToEmailID = this.emailList.map(x => x.value).toString();
+    this.conversation.ToEmailID = element.toString();
     this.conversation.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
     this.conversation.Body = this.body;
     // if(){
@@ -314,7 +317,8 @@ export class SendEmailComponent implements OnInit {
       if (data === 0) {
         this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
         });
-
+        ctr++; 
+        if (ctr === emails.length) {
         //this.spinner.hide();
         this.isSendingEmail = false;
         this.dialogRef.close();
@@ -329,6 +333,7 @@ export class SendEmailComponent implements OnInit {
         this.conversation.ToEmailID = '';
         this.mailbox = false;
       }
+    }
     },
       error => {
         this.isSendingEmail = false;
@@ -336,6 +341,7 @@ export class SendEmailComponent implements OnInit {
       () => {
         this.isSendingEmail = false;
       });
+    });
   }
 
   Check() {

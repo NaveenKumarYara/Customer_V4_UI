@@ -221,7 +221,11 @@ export class InviteProfiledialogComponent implements OnInit {
   SaveInvite() {
     if(this.emailList.length>0)
     { 
+
     this.startedInvite = true;
+    let emails = this.emailList.map(x => x.value);
+    var ctr = 0;
+    emails.forEach(element => {
     this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = this.data.jobId;
@@ -234,15 +238,16 @@ export class InviteProfiledialogComponent implements OnInit {
     this.inviteinfo.CustFullName = this.customer.FirstName;
     this.inviteinfo.ClientLogo = '';
     this.inviteinfo.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-    this.inviteinfo.ToEmailId = this.emailList.map(x => x.value).toString();
+    this.inviteinfo.ToEmailId =  element.toString();
     this.inviteinfo.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-    this.inviteinfo.Body = this.body;
+    this.inviteinfo.Body = this.selectedComments;
     this.inviteinfo.FromID = this.fromId;
     this.inviteinfo.Subject = this.subject;
     this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
-
       this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
         if (data === 0) {
+          ctr++; 
+          if (ctr === emails.length) {
           this.startedInvite = false;
           this.dialogRef.close();
           this.toastr.success('Mail sent successfully', 'Success');
@@ -252,10 +257,12 @@ export class InviteProfiledialogComponent implements OnInit {
             this.inviteinfo = new InviteInfo();
           }, 3000);
         }
+        }
       }, error => {
         this.startedInvite = false;
         console.log('error:', JSON.stringify(error));
       });
+    });
     }
    else
     {
