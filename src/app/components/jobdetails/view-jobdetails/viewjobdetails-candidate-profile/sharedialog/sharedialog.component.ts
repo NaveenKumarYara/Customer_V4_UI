@@ -523,9 +523,9 @@ export class SharedialogComponent implements OnInit{
     if(this.emailList.length>0)
     { 
     this.isSharingStarted = true;
-    let emails = this.emailList.map(x => x.value);
-    var ctr = 0;
-    emails.forEach(element => {
+    // let emails = this.emailList.map(x => x.value);
+    // var ctr = 0;
+    // emails.forEach(element => {
     this.profileSharing.FromUser = this.titleCase(this.customer.FirstName) +'  '+ this.titleCase(this.customer.LastName);
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
@@ -536,16 +536,16 @@ export class SharedialogComponent implements OnInit{
       this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
       this.profileSharing.Comments = this.selectedComments;
       this.profileSharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-      this.profileSharing.ToEmailId = element.toString();
+      this.profileSharing.ToEmailId = this.emailList.map(x => x.value).toString();
       this.profileSharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
       this.profileSharing.FromEmail = this.fromId;
 
 
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0) {
-            ctr++; 
-            //this.inviteform.reset();
-            if (ctr === emails.length) {
+            // ctr++; 
+            // //this.inviteform.reset();
+            // if (ctr === emails.length) {
             this.teammemberslist = [];
             $('#teamMbr').val('');
             //this.selectedUserName = ''
@@ -561,13 +561,13 @@ export class SharedialogComponent implements OnInit{
               this.toastr.dismissToast;
             }, 3000);
           }
-        }
+       
         }, error => {
           this.isSharingStarted = false;
           console.log('error:', JSON.stringify(error));
         });
       
-      });
+
       }
  
     

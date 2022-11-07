@@ -669,11 +669,11 @@ titleCase(str) {
     if(this.emailList.length>0)
     { 
     this.isSharingStarted = true;
-    let emails = this.emailList.map(x => x.value);
-    var ctr = 0;
-    emails.forEach(element => {
+    // let emails = this.emailList.map(x => x.value);
+    // var ctr = 0;
+    // emails.forEach(element => {
     this.Sharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-    this.Sharing.ToEmailID = element.toString();
+    this.Sharing.ToEmailID = this.emailList.map(x => x.value).toString();
     this.Sharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
     this.Sharing.ShareId = 0;
     this.Sharing.FromuserId = this.customerUser;
@@ -689,8 +689,8 @@ titleCase(str) {
     this.Sharing.Docs = this.dos;
         this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
           if (data === 0) {
-            ctr++; 
-            if (ctr === emails.length) {
+            // ctr++; 
+            // if (ctr === emails.length) {
             this.uploader.clearQueue();
             //this.inviteform.reset();
             this.teammemberslist = [];
@@ -707,11 +707,11 @@ titleCase(str) {
               this.dialogRef.close();
             }, 1000);
           }
-          }
+         
         }, error => {
           console.log('error:', JSON.stringify(error));
         });
-      });
+
     }
   
     else
