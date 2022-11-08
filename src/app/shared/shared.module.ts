@@ -19,6 +19,7 @@ import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.
 import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
 import { TooltipModule } from "ng2-tooltip-directive";
 import { FitlerComponent } from "./components/filter-component/filter-component";
+import { SignatureComponent } from './Signature/signature/signature.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { FitlerComponent } from "./components/filter-component/filter-component"
     DoughnutChartComponent,
     RadarChartLargeComponent,
     FitlerComponent,
-    RadarSmartChartComponent
+    RadarSmartChartComponent,
+    SignatureComponent
   ],
   exports: [
     LogoHeaderComponent, 
@@ -54,6 +56,7 @@ import { FitlerComponent } from "./components/filter-component/filter-component"
     DoughnutChartComponent,
     RadarChartLargeComponent,
     RadarSmartChartComponent,
+    SignatureComponent
   ],
 })
 export class SharedModule {}

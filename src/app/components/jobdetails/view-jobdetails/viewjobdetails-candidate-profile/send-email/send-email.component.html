@@ -218,8 +218,17 @@
       </div>
     </div>
     <div class="form-group">
-      <ckeditor  [(ngModel)]="body" name="body" cols="30" rows="40"></ckeditor>
+   
+      <ckeditor  [(ngModel)]="body" name="body" cols="30" rows="40">
+       
+      </ckeditor>
+  
     </div>
+    <!-- <div class="form-group" *ngIf="isChecked == true">
+    <app-signature>
+          
+    </app-signature>
+    </div> -->
     <!-- <div class="form-group">
       <div class="upload-border">
         <div class="flex_items_center pointer">
