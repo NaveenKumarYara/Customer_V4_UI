@@ -38,6 +38,7 @@ import swal from "sweetalert2";
 import * as _html2canvas from "html2canvas";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { pid, title } from "process";
+import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.component";
 const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -1322,6 +1323,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $(".matching-details").removeClass("open");
       $("#matchingDetailDocuments-" + profileId).toggleClass("open");
     }
+    if (Val == 7) {
+      //debugger
+      this.OpenUpload(profileId, this.jobid);
+      $(".matching-details").removeClass("open");
+      // $("#matchingDetailDocuments-" + profileId).toggleClass("open");
+    }
     // $detailsCloseBtn.on('click', function (e) {
     //   e.preventDefault();
     //   $detailsDiv.removeClass('open');
@@ -1627,6 +1634,33 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         console.log('data');
       },
         error => console.log(error));
+  }
+
+
+  OpenUpload(profileId, jobid)
+  {
+    const dialogRef = this.dialog.open(UploadProfilesComponent,
+      {
+        width: '65vw',
+        position: { right: '0px' },
+        height: '100vh',
+        data: {
+          jobId: jobid,
+          profileId: profileId
+        },
+        panelClass:'upload__resume__modal'
+        // closeOnNavigation:false,
+        // disableClose:true
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+      // this.updateappliedstatus();
+      this.myEvent.emit(null);
+      this.iconHide = false;
+      console.log('Dialog result: ${result}');
+    });
   }
 
 
