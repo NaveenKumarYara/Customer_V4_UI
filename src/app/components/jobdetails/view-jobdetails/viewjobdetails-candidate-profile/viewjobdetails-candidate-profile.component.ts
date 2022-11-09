@@ -1103,6 +1103,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.statusid = statusid; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
     }
     if (statistics === 0 && statusid > 4) {
+      this.spinner.hide();
       this.jobdetailsprofiles = new JobdetailsProfile();
     } else {
       return this.jobdetailsservice
