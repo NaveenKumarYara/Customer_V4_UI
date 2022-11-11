@@ -39,6 +39,7 @@ import * as _html2canvas from "html2canvas";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { pid, title } from "process";
 import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.component";
+import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
 const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -1102,6 +1103,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.statusid = statusid; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
     }
     if (statistics === 0 && statusid > 4) {
+      this.spinner.hide();
       this.jobdetailsprofiles = new JobdetailsProfile();
     } else {
       return this.jobdetailsservice
@@ -1325,7 +1327,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
     if (Val == 7) {
       //debugger
-      this.OpenUpload(profileId, this.jobid);
+      this.OpenUpload(profileId);
       $(".matching-details").removeClass("open");
       // $("#matchingDetailDocuments-" + profileId).toggleClass("open");
     }
@@ -1637,20 +1639,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
 
-  OpenUpload(profileId, jobid)
+  OpenUpload(profileId)
   {
-    const dialogRef = this.dialog.open(UploadProfilesComponent,
+    const dialogRef = this.dialog.open(EditprofileComponent,
       {
         width: '65vw',
         position: { right: '0px' },
         height: '100vh',
         data: {
-          jobId: jobid,
-          profileId: profileId
+          jobId: this.jobid,
+          ProfileId: profileId
         },
         panelClass:'upload__resume__modal'
-        // closeOnNavigation:false,
-        // disableClose:true
       }
     );
 

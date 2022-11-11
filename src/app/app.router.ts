@@ -131,6 +131,7 @@ import { CandidatedetailviewComponent } from "./components/CandidateProfile-deta
 import { DocumentManagerComponent } from "./components/Postajob/document-manager/document-manager.component";
 import { CustomerDashboardComponent } from "./components/customer-dashboard/customer-dashboard.component";
 import { CustomsearchComponent } from "./components/customsearch/customsearch.component";
+import { EditprofileComponent } from "./components/jobdetails/view-jobdetails/edit-profiles/editprofile/editprofile.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -246,6 +247,7 @@ const appRoutes: Routes = [
   { path: "app-jobdetails-advance-search", component: JobdetailsAdvanceSearchComponent },
   { path: "app-viewjobdetailsmodel", component: ViewjobdetailsmodelComponent },
   { path: "app-UploadProfiles", component: UploadProfilesComponent },
+  { path: "app-editprofile", component: EditprofileComponent },
   { path: "app-viewjobdetails-candidate-profile", component: ViewjobdetailsCandidateProfileComponent },
   { path: "app-view-candidateprofile-detail", component: ViewCandidateprofileDetailComponent },
   // dialog

@@ -76,6 +76,7 @@ import { SendnotificationdialogNcomponentComponent } from './view-jobdetails/vie
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TagInputModule } from 'ngx-chips';
+import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofile/editprofile.component';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -123,7 +124,7 @@ setTheme('bs3');
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
-                  UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent],
+                  UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent],
   entryComponents: [
     ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent]
 })
