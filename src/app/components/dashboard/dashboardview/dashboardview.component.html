@@ -1,7 +1,14 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--dashboard">
-  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> Explore Dashboard</a>
-  <div class="container" data-step="1" data-intro="This tour will give you a quick introduction to the dashboard in three steps." data-position='top'>
+  
+  <div class="container" data-step="1" data-title="Step 1" data-overaly-opacity="0.5" data-intro="This tour will give you a quick introduction to the dashboard in three steps." data-position='top'>
+    <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title="Tour Guide">
+      <i class="fa fa-play" aria-hidden="true"></i>
+      <div class="circle" style="animation-delay: -3s"></div>
+      <div class="circle" style="animation-delay: -2s"></div>
+      <div class="circle" style="animation-delay: -1s"></div>
+      <div class="circle" style="animation-delay: 0s"></div>
+    </a>
     <!--Upgrade Text for Mobile View-->
     <!-- <a
       class="text-danger mobile-version-upgrade"
