@@ -159,73 +159,35 @@
 			<i class="fa fa-plus-circle"></i>
 		</button>
 		<h4>Add Notes</h4>
-		<div class="history-listing-grid">
-			<div class="history-listing-col">
+		<ng-container *ngIf="JobNotes?.length === 0">
+			<h4>Not yet added.</h4>
+		</ng-container>
+		<ng-container *ngIf="JobNotes?.length>0">
+			<ng-container *ngFor="let n of JobNotes; let i = index">
+		     <div class="history-listing-grid">
+			<div class="history-listing-col" *ngIf="n?.FirstName === customer?.FirstName">
 				<span class="icon icon-01">Icon</span>
 				<div class="history-col-container">
-					<p>HR</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
+					<p>{{n?.Others}}</p>
+					<h5>{{n?.CustomerComment}}</h5>
+					<h6>By {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</h6>
+					<!-- <div class="summary">
 						HR Round
-					</div>
+					</div> -->
 				</div>
 			</div>
-			<div class="history-listing-col">
+
+			<div class="history-listing-col"  *ngIf="n?.FirstName != customer?.FirstName">
 				<span class="icon icon-01">Icon</span>
 				<div class="history-col-container">
-					<p>Manager</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Manager Round.
-					</div>
+					<p>{{n?.Others}}</p>
+					<h5>{{n?.CustomerComment}}</h5>
+					<h6>By {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</h6>
 				</div>
 			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Manager Round
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Please be ready for  HR Round
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						Scheduled for an interview
-					</div>
-				</div>
-			</div>
-			<div class="history-listing-col">
-				<span class="icon icon-01">Icon</span>
-				<div class="history-col-container">
-					<p>Techinical</p>
-					<h5>Interview Scheduled</h5>
-					<h6>By Sim Rrr</h6>
-					<div class="summary">
-						test
-					</div>
-				</div>
-			</div>
-		</div>
+		
+		  </div>
+		  </ng-container>
+		  </ng-container>
 	</div>
 </ng-container>

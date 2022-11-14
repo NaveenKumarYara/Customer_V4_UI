@@ -44,7 +44,7 @@ export class SendnotificationdialogNcomponentComponent implements OnInit {
  isShown2: boolean = false ;
  isShown3: boolean = false ;
  addNotes: boolean = false;
-
+ JobNotes:any=[];
  GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -156,6 +156,7 @@ selectedFileNames: string[] = [];
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
+    this.GetJobNotes(0,this.data.jobId);
     this.AddUser = false;
     this.info = 0;
    
@@ -571,6 +572,11 @@ SendEmail()
 
 
 
+GetJobNotes(profileId, jobId) {
+  this.jobdetailsservice.GetProfileNotesNew(profileId, jobId, this.customer.UserId).subscribe((datr7) => {
+    this.JobNotes = datr7;
+  });
+}
 
 
  ShareProfile() {
