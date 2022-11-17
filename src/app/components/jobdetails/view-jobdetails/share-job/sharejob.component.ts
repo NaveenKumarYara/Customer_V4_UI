@@ -683,7 +683,7 @@ titleCase(str) {
     this.Sharing.JobId = this.data.JobId;
     this.Sharing.FromEmail = this.customer.Email;
     this.Sharing.ToUserName = this.customer.FirstName +' ' + this.customer.LastName;
-    this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';JobId=' + this.data.JobId + ';CId=' + this.customerId;
+    this.Sharing.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
     this.Sharing.Comments = this.selectedComments;
     this.Sharing.Subject = this.subject;
     this.Sharing.Docs = this.dos;
