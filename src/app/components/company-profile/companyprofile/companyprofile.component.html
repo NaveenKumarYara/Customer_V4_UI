@@ -2,8 +2,16 @@
 
 <body class="page page--company-profile edit-mode">
   <main>
-    <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+    <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+    
     <div class="container">
+      <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+        <i class="fa fa-play" aria-hidden="true"></i>
+        <div class="circle" style="animation-delay: -3s"></div>
+        <div class="circle" style="animation-delay: -2s"></div>
+        <div class="circle" style="animation-delay: -1s"></div>
+        <div class="circle" style="animation-delay: 0s"></div>
+      </a>
       <!--Culture Test Code-->
       <!-- <div class="row">
         <div class="col-xl-12">
@@ -39,11 +47,11 @@
         </div>
       </div> -->
       <!--#Culture Test Code-->
-      <div class="row" data-step="1" data-intro="All the basic information of the company like email, website url, social media, address can be found here." data-position='top'>
+      <div class="row" data-step="1" data-title="Step 1" data-intro="All the basic information of the company like email, website url, social media, address can be found here." data-position='top'>
         <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo" (click)="tClose()"></app-basicinfo>
 
       </div>
-      <div class="row show__domain__row" *ngIf="ShowDomain!=true" data-step="2" data-intro="This section enables you to create your custom domain through toggle on." data-position='top'>
+      <div class="row show__domain__row" *ngIf="ShowDomain!=true" data-step="2" data-title="Step 2" data-intro="This section enables you to create your custom domain through toggle on." data-position='top'>
         <label class="switch">
           <input type="checkbox" #chkEnable [(ngModel)]="cdomain.IsDomain" name="IsDomain"
             (ngModelChange)="SaveCustomDomain()">
@@ -62,13 +70,13 @@
 
       </div>
 
-      <div class="row" data-step="3" data-intro="Company statistics enables you to provide you with insights of the number of employees, offices and revenue." data-position='top'>
+      <div class="row" data-step="3" data-title="Step 3" data-intro="Company statistics enables you to provide you with insights of the number of employees, offices and revenue." data-position='top'>
         <app-otherinfo [companyprofileotherinfo]="companyprofileotherinfo"></app-otherinfo>
       </div>
-      <div class="row" data-step="4" data-intro="This section enables you to provide information of company core values and perform culture test" data-position='top'>
+      <div class="row" data-step="4" data-title="Step 4" data-intro="This section enables you to provide information of company core values and perform culture test" data-position='top'>
         <app-aboutcompany [getaboutcompany]="getaboutcompany"></app-aboutcompany>
         <div class="col-md-6">
-          <div class="row" data-step="5" data-intro="You can perform culture test of company. so arytic provides you best candidate who fits for your culture." data-position='top'>
+          <div class="row" data-step="5" data-title="Step 5" data-intro="You can perform culture test of company. so arytic provides you best candidate who fits for your culture." data-position='top'>
             <!-- culture -->
             <div class="col-md-12 culture-row">
               <div class="card card--location">
@@ -233,20 +241,20 @@
           </div>
         </div>
       </div>
-      <div class="row"  data-step="5" data-intro="All the benefits, specialities, technologies, clients, departments of the company can be saved here" data-position='top'>
+      <div class="row"  data-step="5" data-title="Step 5" data-intro="All the benefits, specialities, technologies, clients, departments of the company can be saved here" data-position='top'>
         <app-benefits [getcompanybenfit]="getcompanybenfit" [companyspecialities]="companyspecialities"
           [getcompanytechnology]="getcompanytechnology" [getCustomerClients]="getCustomerClients"
           [getCustomerDepartments]="getCustomerDepartments"></app-benefits>
         <!-- <app-specialities  [companyspecialities]="companyspecialities" [getcompanytechnology]="getcompanytechnology" [getCustomerClients]="getCustomerClients" [getCustomerDepartments]="getCustomerDepartments"></app-specialities> -->
       </div>
-      <div class="row" data-step="6" data-intro="The section enables you to provide and save the company’s whitepapers, news release, achievements etc." data-position='top'>
+      <div class="row" data-step="6" data-title="Step 6" data-intro="The section enables you to provide and save the company’s whitepapers, news release, achievements etc." data-position='top'>
         <app-whitepaper></app-whitepaper>
         <app-questions></app-questions>
       </div>
       <div class="row">
         <app-achievementsandawards></app-achievementsandawards>
       </div>
-      <div class="row" data-step="7" data-intro="This section enables you to provide a list of culture related information.">
+      <div class="row" data-step="7" data-title="Step 7" data-intro="This section enables you to provide a list of culture related information.">
         <app-culture></app-culture>
       </div>
       <router-outlet></router-outlet>

@@ -2,15 +2,22 @@
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <div class="col-lg-9">
-  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+  <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+  <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
   <div class="right">
-    <div class="tab-content i-t-m" data-step="1" data-intro="Manage your team members here and assign the hiring duties based on role." data-position='top'>
+    <div class="tab-content i-t-m" data-step="1" data-title="Step 1" data-intro="Manage your team members here and assign the hiring duties based on role." data-position='top'>
       <div class="row i-t-m-header">
         <div class="col-md-9">
           <h1 ><a href="javascript:void(0)" (click)="Rest()">Manage Team Members </a></h1>
          
         </div>
-        <div class="col-md-3 mr-t-3" data-step="2" data-intro="Invite a team member here." data-position='top'>
+        <div class="col-md-3 mr-t-3" data-step="2" data-title="Step 2" data-intro="Invite a team member here." data-position='top'>
           <a href="javascript:void(0)" (click)="showStep=!showStep;tClose();" class="add-btn pull-right" data-toggle="modal">
             <span class="add">+</span>Invite
             Member</a>
@@ -57,7 +64,7 @@
                 <div class="col-md-2 text-center">
                   <h5>{{customercontacts?.length}} Members</h5>
                 </div>
-              <div class="col-md-3 pull-right" data-step="3" data-intro="You can Search
+              <div class="col-md-3 pull-right" data-step="3" data-title="Step 3" data-intro="You can Search
               team member here." data-position='top'>
                 <!-- <div class="form-group i-s"  *ngIf="customercontacts.length>5">
                   <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
@@ -76,7 +83,7 @@
               </div> -->
             </div>
 
-            <div class="row" data-step="4" data-intro="Here are the team-members-list added by you." data-position='top'>
+            <div class="row" data-step="4" data-title="Step 4" data-intro="Here are the team-members-list added by you." data-position='top'>
               <div class="col-md-12 i-u-l scrollbar-inner">
                 <ul class="list-group ">
                   <ng-container *ngFor="let contact of customercontacts |  filter : searchText">
