@@ -1,8 +1,15 @@
 <div id="step1" class="tab-pane fade active in">
-  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
-  <div class="tab-inner" data-step="1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
+  <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  
+  <div class="tab-inner" data-step="1" data-title="Step 1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
    
-    <app-steps-step1-jobprofile data-step="2" data-intro="Specify required Industry,Job title,Experience,Description for job here." data-position='left'>
+    <app-steps-step1-jobprofile data-step="2" data-title="Step 2" data-intro="Specify required Industry,Job title,Experience,Description for job here." data-position='left'>
     </app-steps-step1-jobprofile>    <!-- changes as sugggested-->
     <!-- <app-steps-step1-jobcategory>
     </app-steps-step1-jobcategory> -->
@@ -40,7 +47,7 @@
   </app-steps-step1-jobdetails>
   
   <div class="row form-main-rows">
-    <div class="col-sm-12 form-cols" data-step="3" data-intro="Specify job Locations,how many open positions here." data-position='left'>
+    <div class="col-sm-12 form-cols" data-step="3" data-title="Step 3" data-intro="Specify job Locations,how many open positions here." data-position='left'>
       <app-steps-step2-locationwisejobs>
       </app-steps-step2-locationwisejobs>
     </div>

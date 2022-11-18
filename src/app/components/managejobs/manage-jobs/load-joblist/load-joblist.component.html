@@ -1,7 +1,16 @@
 <!-- <div class="col-md-12" *ngIf="!loaddata">
     <div class="loading">Loading&#8230;</div>
  </div> -->
- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+ <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+
+ <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  
  
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
@@ -21,7 +30,7 @@
             </svg>
 
           </label> -->
-                <div class="show-jobs show-job-first" data-step="1" data-intro="This sort by option enables you to 
+                <div class="show-jobs show-job-first" data-step="1" data-title="Step 1" data-intro="This sort by option enables you to 
                 sort the jobs based on recent, older, most viewed and applied." data-position='top'>
                     <label class="show-count mt-15">Sort By</label>
                     <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
@@ -31,7 +40,7 @@
                         <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
                     </select>
                 </div>
-                <div class="show-jobs pull-right" data-step="2" data-intro="This filter enables you to view all the active jobs, inactive jobs and closed jobs.
+                <div class="show-jobs pull-right" data-step="2" data-title="Step 2" data-intro="This filter enables you to view all the active jobs, inactive jobs and closed jobs.
                 " data-position='top'>
                     <label class="show-count mt-15">Show</label>
                     <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
@@ -57,19 +66,19 @@
             <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
         </div>
         <!---->
-        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-intro="The search enables you to search the jobs posted using different parameters like location, job title, job id etc." data-position='top'></app-manage-searchjobs>
-        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-intro="Clear the search inputs, filter selection using clear all option." data-position='top'>
+        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-title="Step 3" data-intro="The search enables you to search the jobs posted using different parameters like location, job title, job id etc." data-position='top'></app-manage-searchjobs>
+        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-title="Step 4" data-intro="Clear the search inputs, filter selection using clear all option." data-position='top'>
             <i class="fa fa-refresh" aria-hidden="true"></i>
             Clear All
         </div>
     </div>
 </div>
 
-<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top'> 
+<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-title="Step 5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top'> 
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->
-<div class="col-md-12"  data-step="6" data-intro="This count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
+<div class="col-md-12"  data-step="6" data-title="Step 6" data-intro="This count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
     <div class="col-md-2 show-count-label">
         <ng-container *ngIf="joblist?.TotalCount>=5">
             <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
@@ -138,7 +147,7 @@
 
 
 <div id="grid-view" class="grid grid-view-custom tab-pane fade in active" *ngIf="id==1">
-    <div class="col-md-12"  data-step="7" data-intro="A detailed view of posted jobs can be found here." data-position='top'>
+    <div class="col-md-12"  data-step="7" data-title="Step 7" data-intro="A detailed view of posted jobs can be found here." data-position='top'>
         <div class="row grid-custom-row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-custom-col" *ngFor="let job of joblist.Jobs; let i=index">
                 <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">

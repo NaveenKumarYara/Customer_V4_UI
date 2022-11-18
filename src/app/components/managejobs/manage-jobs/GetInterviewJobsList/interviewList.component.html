@@ -4,37 +4,44 @@
 <!--Old Code Ends-->
 
 <!--New Code Start-->
-<a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+<!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+<a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+  <i class="fa fa-play" aria-hidden="true"></i>
+  <div class="circle" style="animation-delay: -3s"></div>
+  <div class="circle" style="animation-delay: -2s"></div>
+  <div class="circle" style="animation-delay: -1s"></div>
+  <div class="circle" style="animation-delay: 0s"></div>
+</a>
 <div class="inteview-schedule-section flex flex-wrap flex-align-equal">
 
   <!--Vertical Tabs-->
   <ul class="nav nav-tabs verticalTab" id="verticalTab" role="tablist">
-    <li class="nav-item active" data-step="2" data-intro="All the list of scheduled interviews in this week can be found here." data-position='top'>
+    <li class="nav-item active" data-step="2" data-title="Step 2" data-intro="All the list of scheduled interviews in this week can be found here." data-position='top'>
       <a class="nav-link" id="thisweek-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(3)" aria-controls="thisweek" aria-selected="true">
         <span class="icon icon-week">Icon</span>
         This Week
       </a>
     </li>
-    <li class="nav-item" data-step="3" data-intro="All the list of upcoming scheduled interviews can be found here." data-position='top'>
+    <li class="nav-item" data-step="3" data-title="Step 3" data-intro="All the list of upcoming scheduled interviews can be found here." data-position='top'>
       <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(2)" aria-controls="upcoming" aria-selected="false">
         <span class="icon icon-upcoming">Icon</span>
         Upcoming
       </a>
     </li>
-    <li class="nav-item" data-step="4" data-intro="All the list of completed interviews can be found here." data-position='top'>
+    <li class="nav-item" data-step="4" data-title="Step 4" data-intro="All the list of completed interviews can be found here." data-position='top'>
       <a class="nav-link" id="completed-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(1)" aria-controls="completed" aria-selected="false">
         <span class="icon icon-completed">Icon</span>
         Completed
       </a>
     </li>
-    <li class="nav-item" data-step="5" data-intro="The calendar enables you to view the list of scheduled interviews based on date (The calendar is coming soon)." data-position='top'>
+    <li class="nav-item" data-step="5" data-title="Step 5" data-intro="The calendar enables you to view the list of scheduled interviews based on date (The calendar is coming soon)." data-position='top'>
       <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" (click)="SortTheProfile(4)" aria-selected="false">
         <span class="icon icon-calendar">Icon</span>
         Calendar
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="comment-tab" data-step="6" data-intro="The messenger enables you to communicate with the candidate whom the interview is scheduled for (The messenger is coming soon)." data-position='top'  data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">
+      <a class="nav-link" id="comment-tab" data-step="6" data-title="Step 6" data-intro="The messenger enables you to communicate with the candidate whom the interview is scheduled for (The messenger is coming soon)." data-position='top'  data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">
         <span class="icon icon-comment">Icon</span>
         Message
       </a>
@@ -45,7 +52,7 @@
   <!--Interview Schedule Box-->
   <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
     <div class="tab-content" id="myTabContent">
-      <div class="search-box-container" data-step="1" data-intro="All the scheduled interview details can be viewed here using the search option." data-position='top'>
+      <div class="search-box-container" data-step="1" data-title="Step 1" data-intro="All the scheduled interview details can be viewed here using the search option." data-position='top'>
         <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
         <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
         <div class="searchList" *ngIf="SearchList.length>0">
@@ -311,7 +318,7 @@
     <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
       <div class="interview-detail-section" *ngIf="j === setActive"  data-intro="Find more details of your Scheduling." data-position='top'>
 
-        <div class="top-title flex flex-wrap" data-step="7" > 
+        <div class="top-title flex flex-wrap" data-step="7" data-title="Step 7" > 
           <a href="javascript:void(0)" (click)="ViewJobdetails(jo?.JobId)">
           <h4 >{{ jo?.JobTitle | titlecase }}
             <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>
