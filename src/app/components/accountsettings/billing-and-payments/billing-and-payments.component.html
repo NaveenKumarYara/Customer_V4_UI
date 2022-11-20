@@ -1,15 +1,22 @@
 <div class="col-lg-9">
   <div class="right">
     <div class="tab-content">
-      <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+      <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+      <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+        <i class="fa fa-play" aria-hidden="true"></i>
+        <div class="circle" style="animation-delay: -3s"></div>
+        <div class="circle" style="animation-delay: -2s"></div>
+        <div class="circle" style="animation-delay: -1s"></div>
+        <div class="circle" style="animation-delay: 0s"></div>
+      </a>
       <div id="billing" class="tab-pane fade active in">
         <h1>Billing and Payments</h1>
         <ul class="nav nav-tabs">
-          <li class="" id="ov"><a data-toggle="tab" href="#overview" aria-expanded="false" data-step="1" data-intro="You can overview the subscription details." data-position='top'>Overview</a></li>
-          <li class="" id="be"><a data-toggle="tab" href="#estimates" aria-expanded="false" data-step="2" data-intro="Find your billing estimates here." data-position='top'>Billing Estimates</a></li>
-          <li class="" id="bd"><a data-toggle="tab" href="#billing-details" aria-expanded="false" data-step="3" data-intro="Find your billing details here." data-position='top'>Billing Details</a></li>
-          <li class="" id="bh"><a data-toggle="tab" href="#billing-history" aria-expanded="false" data-step="4" data-intro="Find your billing history details here." data-position='top'>Billing History</a></li>
-          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false" data-step="5" data-intro="View and manage your subscriptions here." data-position='top'>Manage Subscription</a>
+          <li class="" id="ov"><a data-toggle="tab" href="#overview" aria-expanded="false" data-step="1" data-title="Step 1" data-intro="You can overview the subscription details." data-position='top'>Overview</a></li>
+          <li class="" id="be"><a data-toggle="tab" href="#estimates" aria-expanded="false" data-step="2" data-title="Step 2"  data-intro="Find your billing estimates here." data-position='top'>Billing Estimates</a></li>
+          <li class="" id="bd"><a data-toggle="tab" href="#billing-details" aria-expanded="false" data-step="3" data-title="Step 3"  data-intro="Find your billing details here." data-position='top'>Billing Details</a></li>
+          <li class="" id="bh"><a data-toggle="tab" href="#billing-history" aria-expanded="false" data-step="4" data-title="Step 4"  data-intro="Find your billing history details here." data-position='top'>Billing History</a></li>
+          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false" data-step="5" data-title="Step 5"  data-intro="View and manage your subscriptions here." data-position='top'>Manage Subscription</a>
           </li>
         </ul>
         <div class="tab-content">
