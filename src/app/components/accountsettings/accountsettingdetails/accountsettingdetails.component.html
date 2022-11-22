@@ -1,10 +1,17 @@
 <div class="col-lg-9">
   <div class="right">
-    <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
+    <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+    <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title="Tour Guide">
+      <i class="fa fa-play" aria-hidden="true"></i>
+      <div class="circle" style="animation-delay: -3s"></div>
+      <div class="circle" style="animation-delay: -2s"></div>
+      <div class="circle" style="animation-delay: -1s"></div>
+      <div class="circle" style="animation-delay: 0s"></div>
+    </a>
     <div class="tab-content">
       <div id="account-settings" class="tab-pane fade active in">
        <h1>Account Settings</h1>
-        <div class="edit-group email-group" data-step="1" data-intro="Edit and update your name and email address here." data-position='top'>
+        <div class="edit-group email-group" data-step="1" data-title="Step 1" data-intro="Edit and update your name and email address here." data-position='top'>
           <ng-container *ngIf="iseditname">
             <form [formGroup]="nameForm"  action="" (ngSubmit)="updateName()" class="form-inline">            
               <div class="form-group">
@@ -102,7 +109,7 @@
             </div>
           </div>
         </div>
-        <div class="edit-group" data-step="2" data-intro="Edit and update your password here." data-position='top'>
+        <div class="edit-group" data-step="2" data-title="Step 2" data-intro="Edit and update your password here." data-position='top'>
           <div class="edit-group password-group">
             <ng-container *ngIf="iseditPwd">
             <form [formGroup]="passForm"  action="" (ngSubmit)="UpdatePass()"  class="form-inline">

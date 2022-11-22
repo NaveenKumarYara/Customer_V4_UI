@@ -10,6 +10,7 @@ import { JobdetailsBasicInfo } from '../models/jobdetailsbasicinfo';
 import { deactivate } from '../../managejobs/models/deactivate';
 import { Jobstatistics } from '../models/jobstatistics';
 import { UploadProfilesComponent } from './upload-profiles/upload-profiles.component';
+import { DefaultModelsComponent } from './default-models/default-models.component';
 // import { UploadCandidatesComponent } from './upload-candidates/upload-candidates.component';
 import { JobdetailsProfile } from '../models/jobdetailsprofile';
 import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
@@ -248,6 +249,25 @@ export class ViewJobdetailsComponent implements OnInit {
         console.log('Dialog result: ${result}');
       });
     }
+  }
+
+  openDefaultDialog() {
+    const dialogRef = this.dialog.open(DefaultModelsComponent,
+      {
+        width: '65vw',
+        position: { right: '0px' },
+        height: '100vh',
+        panelClass:'default_component_modal'
+        // closeOnNavigation:false,
+        // disableClose:true
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      //this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+      // this.updateappliedstatus();
+      //console.log('Dialog result: ${result}');
+    });
   }
 
   GetProfileDetails()
