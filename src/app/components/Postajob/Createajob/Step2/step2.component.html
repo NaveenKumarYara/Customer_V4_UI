@@ -1,6 +1,14 @@
 <div id="step2" class="tab-pane">
-  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
-  <div class="tab-inner" data-step="1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
+  <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+  <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title="Tour Guide">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  
+  <div class="tab-inner" data-step="1"  data-title="Step 1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
     <!-- <app-steps-step2-noofopenings>
     </app-steps-step2-noofopenings>
     <app-steps-step2-locationwisejobs>
@@ -20,11 +28,11 @@
     </div>
     
     <div class="form-rows row single-form-rows">
-      <div class="col-sm-12 form-cols single-form-cols" data-step="2" data-intro="Specify job required skills here." data-position='left'>
+      <div class="col-sm-12 form-cols single-form-cols" data-step="2" data-title="Step 2" data-intro="Specify job required skills here." data-position='left'>
         <app-steps-step1-jobskillset>
         </app-steps-step1-jobskillset>
       </div>
-      <div class="col-sm-12 form-cols single-form-cols" data-step="3" data-intro="Specify job required Qualification and Key Requirements." data-position='left' >
+      <div class="col-sm-12 form-cols single-form-cols" data-step="3" data-title="Step 3" data-intro="Specify job required Qualification and Key Requirements." data-position='left' >
         <app-steps-step2-qualifications>
         </app-steps-step2-qualifications>
       </div>
@@ -44,7 +52,7 @@
   <div class="clearfix form-nav">
       <alert></alert>
     <div class="pull-left">
-      <div class="pull-right" data-step="4" data-intro="Add job attachments here." data-position='left'>
+      <div class="pull-right" data-step="4" data-title="Step 4" data-intro="Add job attachments here." data-position='left'>
         <a href="javascript:void(0)"  class="btn btn-border btn-prev" (click)="backtoStep1()" routerLink="/app-createajob/app-steps-step1">Back</a>
         <a href="javascript:void(0)"  class="btn btn-border btn-prev" (click)="documentManagerDialog()" >Job Attachments</a>
       </div>

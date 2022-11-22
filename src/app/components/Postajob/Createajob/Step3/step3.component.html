@@ -1,10 +1,17 @@
 <div id="step3" class="tab-pane">
-  <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a>
-  <div class="tab-inner" data-step="1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
+  <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+  <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title="Tour Guide">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  <div class="tab-inner" data-step="1" data-title="Step 1" data-intro="Provide important details required for the job and converts the data provided into a job card" data-position='top'>
 
     <div>
      
-      <div class="rang-slider-section" data-step="2" data-intro="Select the profile matching criteria you want to include to get the right candidate
+      <div class="rang-slider-section" data-step="2" data-title="Step 2" data-intro="Select the profile matching criteria you want to include to get the right candidate
       for this job ." data-position='left'>
         <div class="row">
           <div class="col-xs-8">
@@ -184,10 +191,10 @@
     </div>  -->
     <!-- <app-salaryslider></app-salaryslider> -->
     <div class="row form-rows single-form-rows">
-      <div class="col-sm-6 form-cols single-form-cols" data-step="3" data-intro="Provide Interview type here." data-position='left'>
+      <div class="col-sm-6 form-cols single-form-cols" data-step="3" data-title="Step 3" data-intro="Provide Interview type here." data-position='left'>
         <app-steps-step3-interviewtype></app-steps-step3-interviewtype>
       </div>
-      <div class="col-sm-6 form-cols single-form-cols" data-step="4" data-intro="Create a video sizzle that details the job and gives profiles a glimpse into
+      <div class="col-sm-6 form-cols single-form-cols" data-step="4" data-title="Step 4" data-intro="Create a video sizzle that details the job and gives profiles a glimpse into
       requirements and company culture.." data-position='left'>
         <label for="" class="question">Video Sizzle <small>(Optional)</small>
           <a href="javascript:void(0)" class="tooltip__link">

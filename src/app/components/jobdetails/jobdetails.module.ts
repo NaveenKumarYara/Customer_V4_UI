@@ -6,6 +6,7 @@ import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-a
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
  import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
+ import { DefaultModelsComponent } from './view-jobdetails/default-models/default-models.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewjobdetailsScComponent } from './view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -116,16 +117,16 @@ setTheme('bs3');
     NgCircleProgressModule.forRoot({}),
     TooltipModule,
     CKEditorModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
     // ,
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
-                  HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
+                  HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, DefaultModelsComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
                   UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent],
   entryComponents: [
-    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent]
+    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent]
 })
 export class JobdetailsModule { }

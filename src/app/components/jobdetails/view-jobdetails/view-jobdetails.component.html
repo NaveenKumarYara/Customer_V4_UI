@@ -254,6 +254,7 @@
 										</span>
 									</div>
 								</div>
+
 							</div>
 							<div class="col-sm-6 search-filter-col">
 								<div class="row flex flex-align-center flex-justify-end text-center">
@@ -598,12 +599,30 @@
 			<div class="row flex flex-wrap flex-align-start">
 				<div class="col-sm-6 left-col">
 					<div class="title-container">
-						<h4>SalesForce Admin Job/ SalesForce Developer Job</h4>
+						<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
+							{{jobdetailsbasicinfo?.JobTitle}}</h4>
 						<ul>
 							<li><span><strong>Job Id</strong>: 123456789</span></li>
-							<li class="location">Austin, Texas</li>
-							<li class="calendar">25th June, 2022</li>
-							<li class="view">10 Views</li>
+							<li class="location">
+								<ng-container *ngIf="jobdetailsbasicinfo?.JobLocations?.length == 1">
+									<ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
+										{{location?.CityName}},{{location?.StateCode}}
+									</ng-container>
+								</ng-container>
+								<ng-container *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">
+									<ng-container class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span
+											*ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span>
+										{{jobdetailsbasicinfo?.JobLocations[0].StateCode}} +
+
+										<span class="tooltipcontent">
+											<ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
+												{{location?.CityName}},{{location?.StateCode}}; </ng-container>
+										</span>
+									</ng-container>
+								</ng-container>
+							</li>
+							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
+							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>
 						</ul>
 					</div>
 					<div class="praymid-container">
@@ -618,32 +637,32 @@
 								</select>
 								<span class="number">20</span>
 							</li>
-							<li>
+							<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
 								<span class="tag">I Like It</span>
 								Screening
-								<span class="number">10</span></li>
-							<li>
+								<span class="number">{{jobstatistics?.Screening}}</span></li>
+							<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
 								<span class="tag">I Want It</span>
 								Shortlisted
-								<span class="number">05</span>
+								<span class="number">{{jobstatistics?.ShortListed}}</span>
 							</li>
-							<li>
+							<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
 								<span class="tag">I ‘m getting it</span>
 								Interviewed
-								<span class="number">10</span>
+								<span class="number">{{jobstatistics?.Interviewed}}</span>
 							</li>
-							<li>
+							<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
 								<span class="tag">I Like It</span>
 								Hired
-								<span class="number">05</span>
+								<span class="number">{{jobstatistics?.Hired}}</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-sm-6 right-col">
 					<div class="buttons">
-						<a href="#" class="btn btn-outline-secondary">Arytic Matching Profile <span class="no">10</span></a>
-						<a href="#" class="btn btn-outline-primary">Check Wishlist Profile <span class="no">5</span></a>
+						<a  href="javascript:void(0);" (click)="openDefaultDialog()" class="btn btn-outline-secondary">Arytic Matching Profile <span class="no">10</span></a>
+						<a  href="javascript:void(0);" (click)="openDefaultDialog()" class="btn btn-outline-primary">Check Wishlist Profile <span class="no">5</span></a>
 					</div>
 					<div class="top-navigation">
 						<div class="btn-group flex flex-wrap flex-justify-end">
@@ -654,12 +673,12 @@
 										Share/Submit
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">Share Feedback</a>
+										<a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Share Feedback</a>
 										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)">Share job (to Job boards, web pages, career page, social media)</a>
-										<a class="dropdown-item" href="#">Upload Resume</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="openCandidateUploadDialog()">Upload Resume</a>
 										<!-- <a class="dropdown-item" href="#">Share feedback</a> -->
-										<a class="dropdown-item" href="#">Assign job</a>
-										<a class="dropdown-item" href="#">Schedule an interview</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Assign job</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Schedule an interview</a>
 									</div>
 								</li>
 								<li>
@@ -668,7 +687,7 @@
 										View
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">View job details</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View job details</a>
 									</div>
 								</li>
 								<li>
@@ -677,10 +696,18 @@
 										Add
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">Edit job</a>
-										<a class="dropdown-item" href="#">Add notes</a>
-										<a class="dropdown-item" href="#">Add comments</a>
-										<a class="dropdown-item" href="#">Make inactivek</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit job</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)=" OpenJobDialog(jobdetailsbasicinfo.JobId)">Add notes</a>
+										<a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Add comments</a>
+										<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+											<a class="dropdown-item" href="javascript:void(0)" *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" id="Inactive"
+												(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
+												Inactive</a>
+										</ng-container>
+										<ng-template #isactive>
+											<a class="dropdown-item" href="javascript:void(0)" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
+												Active</a>
+										</ng-template>
 									</div>
 								</li>
 								<li>
@@ -689,9 +716,9 @@
 										Email
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">Email Candidates</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Email Candidates</a>
 										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenInviteProfileDialog()">Invite candidate</a>
-										<a class="dropdown-item" href="#">Email team members</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Email team members</a>
 									</div>
 								</li>
 							</ul>
@@ -705,14 +732,14 @@
 										<div class="col-container">
 											<span class="icon icon-skills">Icon</span>
 											<h6>Skills Fit</h6>
-											<h4>60%</h4>
+											<h4>{{Percentweightage?.SkillFit}}%</h4>
 										</div>
 									</div>
 									<div class="col-sm-3 stats-col">
 										<div class="col-container">
 											<span class="icon icon-job-fit">Icon</span>
 											<h6>Job Fit</h6>
-											<h4>40%</h4>
+											<h4>{{Percentweightage?.JobFit}}%</h4>
 										</div>
 									</div>
 									<div class="col-sm-3 stats-col">
@@ -756,11 +783,11 @@
 							</li>
 							<li>
 								<span class="icon icon-like">Icon</span>
-								<span class="number">10</span>
+								<span class="number">{{jobdetailsbasicinfo?.LikesCount}}</span>
 							</li>
 							<li>
 								<span class="icon icon-dislike">Icon</span>
-								<span class="number">10</span>
+								<span class="number">{{jobdetailsbasicinfo?.DislikesCount}}</span>
 							</li>
 						</ul>
 					</div>
