@@ -125,7 +125,7 @@ setTheme('bs3');
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, DefaultModelsComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
-                  UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent],
+                  UploadProfilesComponent,ScheduleInterviewComponent, EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent],
   entryComponents: [
     ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent]
 })
