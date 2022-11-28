@@ -194,6 +194,17 @@ export class JobdetailsService {
       );
   }
 
+  GetJobStatsForManage(customerId: number, jobId: number,UId:number) {
+    const url = this.settingsService.settings.GetJobStatsForManage +
+    'customerId=' + customerId + '&jobId=' + jobId + '&userId=' + UId;
+    return this.http.get<string>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = this.settingsService.settings.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)

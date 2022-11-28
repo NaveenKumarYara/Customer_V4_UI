@@ -90,6 +90,7 @@
     "GetInterviewAccept": "${Jobs_URL}/api/GetInterviewAcceptance?",
     "UpdateWishlist": "${Profile_URL}/api/UpdateWishlist",
     "RecentJobs": "${Jobs_URL}/api/GetCustomerJobs?",
+    "GetJobStatsForManage": "${Identity_URL}/api/GetJobStatsForManage?",
     "RecentApplicants": "${Jobs_URL}/api/GetApplicants?",
     "DashboardStatistics": "${Profile_URL}/api/GetDashboardStatistics?",
     "ApplicantStatistics": "${Jobs_URL}/api/GetApplicantStatistics?",

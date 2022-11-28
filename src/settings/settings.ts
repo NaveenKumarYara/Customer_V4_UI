@@ -229,6 +229,7 @@ export class Settings {
   DeleteNote: string;
   GetgoogleApi: string;
   GetProfileFeedback: string;
+  GetJobStatsForManage:string;
   UserRoleCheck: string;
   NewJobDetailsRedirect: string;
   GetAssignedList: string;

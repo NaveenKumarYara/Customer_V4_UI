@@ -2,17 +2,17 @@
 <main class="page page--job-details">
 	<div class="container">
 		<div >
-			<div class="selected-job card">
+			<div class="selected-job card hidden">
 				<header>
 					<div class="left">
 						<div class="flex va">
-							<a (click)="backClicked()">
+							<!-- <a (click)="backClicked()">
 								<svg fill="#448AFA" xmlns="http://www.w3.org/2000/svg" width="21.1" height="16.7">
 									<path class="st0"
 										d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
 									<path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
 								</svg>
-							</a>
+							</a> -->
 							<h3 class="title mr-top" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
 								{{jobdetailsbasicinfo?.JobTitle}}</h3>
 							<div class="status {{jobdetailsbasicinfo?.JobStatus}}">
@@ -43,6 +43,7 @@
 								<path class="st0"
 									d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
 							</svg>
+
 							<h5 class="location">
 								<!-- <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
 										{{location?.CityName}},{{location?.StateCode}}
@@ -53,6 +54,7 @@
 										{{location?.CityName}},{{location?.StateCode}}
 									</ng-container>
 								</div>
+							
 								<div *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">
 									<div class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span
 											*ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span>
@@ -595,32 +597,54 @@
 				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
 			</div>
 		</div>
-		<div class="job-summary-card hidden">
+		<div class="job-summary-card ">
 			<div class="row flex flex-wrap flex-align-start">
 				<div class="col-sm-6 left-col">
 					<div class="title-container">
+						<a (click)="backClicked()">
+							<svg fill="#448AFA" xmlns="http://www.w3.org/2000/svg" width="21.1" height="16.7">
+								<path class="st0"
+									d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
+								<path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
+							</svg>
+						</a> 
 						<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
 							{{jobdetailsbasicinfo?.JobTitle}}</h4>
 						<ul>
-							<li><span><strong>Job Id</strong>: 123456789</span></li>
-							<li class="location">
-								<ng-container *ngIf="jobdetailsbasicinfo?.JobLocations?.length == 1">
+							<li><span><strong>Arytic Job Id</strong>: {{jobdetailsbasicinfo?.JobId}}</span></li>
+							<li class="location" >
+							
+								<span class="tooltip__link">
+	<ng-container *ngIf="jobdetailsbasicinfo?.JobLocations?.length == 1">
 									<ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
 										{{location?.CityName}},{{location?.StateCode}}
 									</ng-container>
 								</ng-container>
 								<ng-container *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">
-									<ng-container class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span
-											*ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span>
+									<ng-container  >{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <ng-container
+											*ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</ng-container>
 										{{jobdetailsbasicinfo?.JobLocations[0].StateCode}} +
 
-										<span class="tooltipcontent">
+										 <!-- <ng-container>
 											<ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
 												{{location?.CityName}},{{location?.StateCode}}; </ng-container>
-										</span>
-									</ng-container>
+											</ng-container>
+
+									</ng-container> -->
+									<!-- <span class="custom__tooltip">
+										<span class="step__01">
+											<ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
+											{{location?.CityName}},{{location?.StateCode}};
+										</ng-container> 
+									  </span>
+									  </span> -->
 								</ng-container>
+									
+								</ng-container>
+								</span>
+							
 							</li>
+							
 							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
 							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>
 						</ul>
@@ -629,40 +653,55 @@
 						<ul>
 							<li>
 								<span class="tag">What is it?</span>
-								<select class="custom-select">
+								<select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Application</option>
-									<option value="Arytic profile">Arytic profile - 10</option>
-									<option value="Invited profile">Invited profile - 5</option>
-									<option value="Uploaded Profile">Uploaded Profile - 5</option>
+									<option value="In-Progress">In-Progress - {{jobstatistics?.InProgress || 0}}</option>
+									<option value="Invited profile">Invited profile - {{myjobstatistics?.Invited||0}}</option>
+									<option value="Uploaded Profile">Uploaded Profile - {{myjobstatistics?.Uploaded||0}}</option>
 								</select>
-								<span class="number">20</span>
+								<span class="number">{{jobstatistics?.Applied || 0}}</span>
 							</li>
 							<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
 								<span class="tag">I Like It</span>
 								Screening
-								<span class="number">{{jobstatistics?.Screening}}</span></li>
+								<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
 							<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
 								<span class="tag">I Want It</span>
 								Shortlisted
-								<span class="number">{{jobstatistics?.ShortListed}}</span>
+								<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
 							</li>
 							<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
 								<span class="tag">I ‘m getting it</span>
 								Interviewed
-								<span class="number">{{jobstatistics?.Interviewed}}</span>
+								<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
 							</li>
 							<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
 								<span class="tag">I Like It</span>
 								Hired
-								<span class="number">{{jobstatistics?.Hired}}</span>
+								<span class="number">{{jobstatistics?.Hired || 0}}</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-sm-6 right-col">
 					<div class="buttons">
-						<a  href="javascript:void(0);" (click)="openDefaultDialog()" class="btn btn-outline-secondary">Arytic Matching Profile <span class="no">10</span></a>
-						<a  href="javascript:void(0);" (click)="openDefaultDialog()" class="btn btn-outline-primary">Check Wishlist Profile <span class="no">5</span></a>
+						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
+
+						<ng-container  *ngIf="acheck === false;else isacts">
+							<a  href="javascript:void(0);" (click)="GetaSort(true)"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+						</ng-container>
+					
+						<ng-template #isacts>
+							<a  href="javascript:void(0);"  (click)="GetaSort(false)" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+						</ng-template>
+						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+							<a  href="javascript:void(0);" class="btn btn-outline-secondary" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+					</ng-container>
+			
+					
+					<ng-template #isact>
+						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true)" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+					</ng-template>
 					</div>
 					<div class="top-navigation">
 						<div class="btn-group flex flex-wrap flex-justify-end">
@@ -736,31 +775,31 @@
 										</div>
 									</div>
 									<div class="col-sm-3 stats-col">
-										<div class="col-container">
+										<div class="col-container" >
 											<span class="icon icon-job-fit">Icon</span>
 											<h6>Job Fit</h6>
 											<h4>{{Percentweightage?.JobFit}}%</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col">
+									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-personality">Icon</span>
 											<h6>Personality</h6>
-											<h4>60%</h4>
+											<h4>0%</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col">
+									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-culture">Icon</span>
 											<h6>Culture Fit</h6>
-											<h4>40%</h4>
+											<h4>0%</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col">
+									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-team">Icon</span>
 											<h6>Team Fit</h6>
-											<h4>30%</h4>
+											<h4>0%</h4>
 										</div>
 									</div>
 								</div>
@@ -771,15 +810,15 @@
 						<ul>
 							<li class="active">
 								<span class="icon icon-notes">Icon</span>
-								<span class="number">10</span>
+								<span class="number">{{myjobstatistics?.NotesCount}}</span>
 							</li>
 							<li>
 								<span class="icon icon-job-feedback">Icon</span>
-								<span class="number">10</span>
+								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li>
 							<li>
 								<span class="icon icon-comments">Icon</span>
-								<span class="number">10</span>
+								<span class="number">{{myjobstatistics?.Reviews}}</span>
 							</li>
 							<li>
 								<span class="icon icon-like">Icon</span>

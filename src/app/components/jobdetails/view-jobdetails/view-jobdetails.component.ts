@@ -47,9 +47,11 @@ export class ViewJobdetailsComponent implements OnInit {
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
+  acheck: boolean =false;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
+  myjobstatistics:any;
   wishcheck : boolean =false;
   SuggestedCount: any;
   wsList = new WishList();
@@ -642,6 +644,26 @@ export class ViewJobdetailsComponent implements OnInit {
   updateLoadMore() {
     this.loadMore = false;
   }
+  MySort(val)
+  {
+    if(val === "All Application")
+    {
+      this.updateappliedstatus();
+      //this.inprogressview(0);
+    }
+    else if(val === "In-Progress")
+    {
+      this.updateinprogressstatus();
+    }
+    else if(val === "Invited profile")
+    {
+      this.GetInvitedList();
+    }
+    else if(val === "Uploaded Profile")
+    {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 1, 0,0,0,0, this.profilecount);
+    }
+  }
   populateJobsBasicInfo() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
@@ -698,9 +720,18 @@ export class ViewJobdetailsComponent implements OnInit {
   
   }
 
+  publicstats()
+  {
+    return this.jobdetailsservice.GetJobStatsForManage(this.customerId, this.jobid,this.customer.UserId).subscribe(res => {
+      this.myjobstatistics = res;
+    });
+  }
+
   populateJobsStaticInfo(customerId, jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
+      this.publicstats();
+      //this.CallList(this.statusid);
       this.GetJobMatching(this.jobid);
       this.SuggestedCount = res.AryticSuggested;
       this.Counts = this.child.TotalCount;
@@ -843,6 +874,20 @@ export class ViewJobdetailsComponent implements OnInit {
   //    }
   // }
 
+  GetaSort(a)
+  {
+    if(a === true)
+    {
+      this.acheck = true;
+      this.updatesuggestedstatus();
+    }
+    else
+    {
+      this.acheck = false;
+      this.updateappliedstatus();
+    }
+  }
+
   GetWishlistSort(wish)
   {
    
@@ -866,6 +911,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
   GetUploadList()
   {
+    debugger
     this.getParentApi().CallViewBy(1,0,0,0,0,0,undefined,this.profilecount);
   }
 
@@ -975,7 +1021,6 @@ export class ViewJobdetailsComponent implements OnInit {
         }
         this.loadMore = this.statistics > 6 ? true : false;
         // this.parentMethod(name);
-        ////debugger
         this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist, invited, arytic, this.profilecount);
       }
     };
