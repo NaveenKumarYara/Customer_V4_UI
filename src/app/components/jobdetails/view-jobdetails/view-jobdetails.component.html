@@ -772,14 +772,14 @@
 						<div class="row stats-rows">
 							<div class="col-sm-12 stats-cols">
 								<div class="row stats-row flex flex-wrap flex-align-equal">
-									<div class="col-sm-3 stats-col">
+									<div class="col-sm-3 stats-col" tooltip="Skills Fit Weightage" placement="top">
 										<div class="col-container">
 											<span class="icon icon-skills">Icon</span>
 											<h6>Skills Fit</h6>
 											<h4>{{Percentweightage?.SkillFit}}%</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col">
+									<div class="col-sm-3 stats-col" tooltip="Job Fit Weightage" placement="top">
 										<div class="col-container" >
 											<span class="icon icon-job-fit">Icon</span>
 											<h6>Job Fit</h6>
@@ -813,23 +813,23 @@
 					</div>
 					<div class="icon-listing">
 						<ul>
-							<li class="active">
+							<li class="active" style="cursor: default;"  tooltip="Notes">
 								<span class="icon icon-notes">Icon</span>
 								<span class="number">{{myjobstatistics?.NotesCount}}</span>
 							</li>
-							<li>
+							<li style="cursor: default;" tooltip="Feedback">
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li>
-							<li>
+							<li style="cursor: default;" tooltip="Comments">
 								<span class="icon icon-comments">Icon</span>
 								<span class="number">{{myjobstatistics?.Reviews}}</span>
 							</li>
-							<li>
+							<li style="cursor: default;" tooltip="Likes">
 								<span class="icon icon-like">Icon</span>
 								<span class="number">{{jobdetailsbasicinfo?.LikesCount}}</span>
 							</li>
-							<li>
+							<li style="cursor: default;" tooltip="Dislikes">
 								<span class="icon icon-dislike">Icon</span>
 								<span class="number">{{jobdetailsbasicinfo?.DislikesCount}}</span>
 							</li>
