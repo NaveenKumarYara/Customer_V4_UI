@@ -151,6 +151,7 @@ isDrafted: boolean;
   }
 
   documentManagerDialog() {
+    this.introJS.exit();
     const res = localStorage.getItem('jobId');
     let JID  = res != null ? parseInt(res, 10) : 0;
     this.dialog.open(DocumentManagerComponent, {
