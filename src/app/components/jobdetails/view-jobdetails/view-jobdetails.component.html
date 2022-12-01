@@ -593,9 +593,7 @@
 				<!-- .selected .job-card -->
 			</div>
 		
-			<div *ngIf="showDetailadvancesearch">
-				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
-			</div>
+		
 		</div>
 		<div class="job-summary-card ">
 			<div class="row flex flex-wrap flex-align-start">
@@ -646,15 +644,18 @@
 							</li>
 							
 							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
+							<li><span>  <strong> {{ jobdetailsbasicinfo?.JobStatus }} </strong> </span></li>
 							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>
 						</ul>
 					</div>
 					<div class="praymid-container">
 						<ul>
 							<li>
-								<span class="tag">What is it?</span>
+								<!-- <span class="tag">What is it?</span> -->
 								<select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Application</option>
+									<option value="Arytic Profiles">Applied Through Arytic - {{myjobstatistics?.AryticProfiles
+										|| 0}}</option>
 									<option value="In-Progress">In-Progress - {{jobstatistics?.InProgress || 0}}</option>
 									<option value="Invited profile">Invited profile - {{myjobstatistics?.Invited||0}}</option>
 									<option value="Uploaded Profile">Uploaded Profile - {{myjobstatistics?.Uploaded||0}}</option>
@@ -662,21 +663,21 @@
 								<span class="number">{{jobstatistics?.Applied || 0}}</span>
 							</li>
 							<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-								<span class="tag">I Like It</span>
+								<!-- <span class="tag">I Like It</span> -->
 								Screening
 								<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
 							<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-								<span class="tag">I Want It</span>
+								<!-- <span class="tag">I Want It</span> -->
 								Shortlisted
 								<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
 							</li>
 							<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
-								<span class="tag">I ‘m getting it</span>
+								<!-- <span class="tag">I ‘m getting it</span> -->
 								Interviewed
 								<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
 							</li>
 							<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
-								<span class="tag">I Like It</span>
+								<!-- <span class="tag">I Like It</span> -->
 								Hired
 								<span class="number">{{jobstatistics?.Hired || 0}}</span>
 							</li>
@@ -716,7 +717,7 @@
 										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)">Share job (to Job boards, web pages, career page, social media)</a>
 										<a class="dropdown-item" href="javascript:void(0);" (click)="openCandidateUploadDialog()">Upload Resume</a>
 										<!-- <a class="dropdown-item" href="#">Share feedback</a> -->
-										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Assign job</a>
+	
 										<a class="dropdown-item" href="javascript:void(0);" (click)="openDefaultDialog()">Schedule an interview</a>
 									</div>
 								</li>
@@ -727,6 +728,8 @@
 									</button>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="javascript:void(0)" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View job details</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit job</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)">View notes</a>
 									</div>
 								</li>
 								<li>
@@ -735,9 +738,11 @@
 										Add
 									</button>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="javascript:void(0)" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit job</a>
-										<a class="dropdown-item" href="javascript:void(0)" (click)=" OpenJobDialog(jobdetailsbasicinfo.JobId)">Add notes</a>
-										<a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Add comments</a>
+										
+										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)">Add Notes</a>
+										<a class="dropdown-item" href="javascript:void(0)" (click)="documentManagerDialog()">Add Attachments</a>
+										<a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Add Comments</a>
+										<a class="dropdown-item" href="javascript:void(0);" (click)="OpenAssignJob()">Assign job</a>
 										<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 											<a class="dropdown-item" href="javascript:void(0)" *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" id="Inactive"
 												(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
@@ -832,10 +837,28 @@
 					</div>
 					
 				</div>
+				
+				
 			</div>
+
+		
 		</div>
 
+
+			<div>
+		<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
+		[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
+			</div>
+
 		<div class="row">
+			<div *ngIf="showDetailadvancesearch">
+				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
+			</div>
+		</div>
+	
+
+		<div class="row">
+
 			<div>
 				<div class="tab-content">
 					<div id="applied" class="tab-pane fade in active">

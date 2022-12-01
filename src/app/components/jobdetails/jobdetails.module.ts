@@ -78,6 +78,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TagInputModule } from 'ngx-chips';
 import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofile/editprofile.component';
+import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -125,8 +126,8 @@ setTheme('bs3');
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, DefaultModelsComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
-                  UploadProfilesComponent,ScheduleInterviewComponent, EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent],
+                  UploadProfilesComponent,ScheduleInterviewComponent, EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent, AshareJobComponentComponent],
   entryComponents: [
-    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent]
+    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent,AshareJobComponentComponent]
 })
 export class JobdetailsModule { }

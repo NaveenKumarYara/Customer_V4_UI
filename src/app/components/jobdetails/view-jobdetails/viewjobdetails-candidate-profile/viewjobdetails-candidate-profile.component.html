@@ -1158,7 +1158,20 @@
               <h4>Hired/Rejected</h4>
             </div>
           </ng-container>
-           
+          <ng-container *ngIf="profile?.ResponseStatusId === null">
+            <div class="col-sm-3 col">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Interview</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+           </ng-container>
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
@@ -1471,6 +1484,28 @@
                 <h4>WithDrawn</h4>
               </div>
             </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === null">
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+             </ng-container>
 
             </div>
           </div>

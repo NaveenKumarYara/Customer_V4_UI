@@ -31,6 +31,8 @@ import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetail
 import { InviteProfiledialogComponent } from './filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { ShareJobComponent } from './share-job/sharejob.component';
 import { SendnotificationdialogNcomponentComponent } from './viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
+import { DocumentManagerComponent } from '../../Postajob/document-manager/document-manager.component';
+import { AshareJobComponentComponent } from './Assign-Job/ashare-job-component/ashare-job-component.component';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -646,8 +648,10 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   MySort(val)
   {
+    this.checkR();
     if(val === "All Application")
     {
+
       this.updateappliedstatus();
       //this.inprogressview(0);
     }
@@ -663,7 +667,48 @@ export class ViewJobdetailsComponent implements OnInit {
     {
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 1, 0,0,0,0, this.profilecount);
     }
+    else if(val === "Arytic Profiles")
+    {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0, 0,0,0,1, this.profilecount);
+    }
   }
+
+  OpenAssignJob()
+  {
+    this.dialog.closeAll();
+    const docRef = this.dialog.open(AshareJobComponentComponent, {
+      // width: "80vw",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        JobId:  this.jobid
+      },
+      panelClass: 'candiateModalPop'
+    });
+    docRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+      //this.ViewJobdetailsModel(this.jobid);
+    });
+  }
+
+  documentManagerDialog() {
+    this.dialog.closeAll();
+    const docRef = this.dialog.open(DocumentManagerComponent, {
+      width: "80vw",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        jobId:  this.jobid
+      },
+      panelClass: 'candiateModalPop'
+    });
+    docRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+      //this.ViewJobdetailsModel(this.jobid);
+    });
+  }
+
+  
   populateJobsBasicInfo() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
@@ -887,6 +932,15 @@ export class ViewJobdetailsComponent implements OnInit {
       this.updateappliedstatus();
     }
   }
+
+  checkR()
+  {
+    this.wishcheck = false;
+    this.acheck = false;
+    this.GetaSort(false);
+    this.GetWishlistSort(false);
+  }
+
 
   GetWishlistSort(wish)
   {

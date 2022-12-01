@@ -13,6 +13,7 @@
   
   "AddSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/CreateCustomerWithSubscription",
   "JobShareInvite": "https://emailapi-dev.arytic.com/api/JobShare",
+  "AJobShareInvite": "https://emailapi-dev.arytic.com/api/AssignJob",
   "configurePassword":"https://identityapi-dev.arytic.com/api/ShowPassword",
   "CustomerInterviewAccept": "https://jobsapi-dev.arytic.com/api/UpdateCustomerInterviewAcceptance",
   "SuggestJobTitleEndPoint": "https://jobsapi-dev.arytic.com/api/SuggestedJobTitles?",

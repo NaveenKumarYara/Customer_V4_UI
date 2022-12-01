@@ -193,6 +193,15 @@ export class JobdetailsService {
         this.handleError
       );
   }
+  GetAssignedList(jobId:number): Observable<any> 
+  {
+    const url = this.settingsService.settings.GetAssignedList + 'jobId=' + jobId
+    return this.http.get<any>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
 
   GetJobStatsForManage(customerId: number, jobId: number,UId:number) {
     const url = this.settingsService.settings.GetJobStatsForManage +
@@ -494,6 +503,14 @@ export class JobdetailsService {
 
   JobShareInvite(body) {
     return this.http.post(this.settingsService.settings.JobShareInvite, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AJobShareInvite(body) {
+    return this.http.post(this.settingsService.settings.AJobShareInvite, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
