@@ -9205,8 +9205,8 @@ button.close {
 	left: 100%;
 	z-index: 9;
 	bottom: 0;
-	-webkit-transform: translateX(10%);
-	transform: translateX(10%);
+	/*-webkit-transform: translateX(10%);
+	transform: translateX(10%);*/
 	border: 0;
 	border-bottom: 1px solid #E0E3EF;
 	background-color: transparent;
@@ -16002,10 +16002,10 @@ a.ui-button:active,
 		display: block;
 	}
 
-	.page--job-details #applied .col {
+	/* .page--job-details #applied .col {
 		-ms-flex-preferred-size: 100%;
 		flex-basis: 100%;
-	}
+	} */
 
 	.page--job-details #applied .job-title-row .location {
 		display: block;
@@ -16032,17 +16032,21 @@ a.ui-button:active,
 		color: #505c68;
 		padding-right: 15px;
 		content: attr(data-label);
-		-ms-flex-preferred-size: 50%;
-		flex-basis: 50%;
-		margin-bottom: 10px;
-		border-bottom: 1px solid #ececec;
-		padding-bottom: 5px;
+		/*-ms-flex-preferred-size: 50%;
+		 flex-basis: 50%; */
+		margin-bottom: 0;
+		/*border-bottom: 1px solid #ececec;*/
+		padding-bottom: 0;
 	}
 
 	.page--job-details #applied .col img,
 	.page--job-details #applied .col>div {
 		-ms-flex-item-align: start;
 		align-self: flex-start;
+	}
+
+	.smart-card-status h4 {
+		font-size: 10px;
 	}
 }
 
@@ -28133,7 +28137,7 @@ table .table-prl-0 td {
 	transition: all .5s;
 	position: relative;
 	left: -12px;
-	margin-right: 1rem;
+	/* margin-right: 1rem; */
 	border-radius: 3px;
 }
 
@@ -30980,6 +30984,19 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 
 	body .revamp__radio__grid .col__container .row .col-sm-6:last-child {
 		text-align: right;
+	}
+
+	.full-xl-dialog {
+		width: 90vw;
+	}
+
+	.full-xl-dialog .mat-dialog-content {
+		width: 100%;
+		margin: 0;
+	}
+
+	.full-xl-dialog .modal-body {
+		padding: 0;
 	}
 }
 

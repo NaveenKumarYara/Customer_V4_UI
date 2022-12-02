@@ -83,6 +83,8 @@ import { FilterDocumentComponent } from './components/Postajob/document-manager/
 import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 import { DxTreeListModule } from 'devextreme-angular';
 import { CustomsearchComponent } from './components/customsearch/customsearch.component';
+import { RecruitmentDashboardComponent } from './components/recruitment-dashboard/recruitment-dashboard.component';
+
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -116,7 +118,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     LeftSidebarComponent,
     FilterDocumentComponent,
     CustomerDashboardComponent,
-    CustomsearchComponent
+    CustomsearchComponent,
+    RecruitmentDashboardComponent
   ],
   imports: [
     BrowserModule,

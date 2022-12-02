@@ -346,6 +346,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== "InActive") {
       const screendialogRef = this.dialog.open(screeningdialogComponent, {
         position: { right: "0px" },
+        panelClass: 'full-xl-dialog',
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
@@ -369,6 +370,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== "InActive") {
       const shortdialogRef = this.dialog.open(shortlisteddialogComponent, {
         position: { right: "0px" },
+        panelClass: 'full-xl-dialog',
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,

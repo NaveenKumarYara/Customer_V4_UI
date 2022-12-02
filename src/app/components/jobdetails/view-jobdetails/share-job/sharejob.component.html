@@ -1337,7 +1337,6 @@
 	</div>
 </div>
 
-
 <div class="share-ui-component">
 	<div class="top-container flex flex-wrap flex-align-center">
 		<ng-container  *ngIf="shareOptions != true">
@@ -1727,8 +1726,8 @@
 			</div>
 			<ul>
 				<input type="hidden" id="Company_Name" [(ngModel)]="CompanyName"  [ngModelOptions]="{standalone: true}" />
-											<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
-											<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
+					<input type="hidden" id="title" [(ngModel)]="Title"  [ngModelOptions]="{standalone: true}">
+					<input type="hidden" id="Image" [(ngModel)]="Image"  [ngModelOptions]="{standalone: true}">
 				<li>
 					<a href="javascript:void(0)" id="share-dialog-twitter" class="link-twitter" (click)="GetLink()">
 						<i class="fa fa-twitter" aria-hidden="true"></i>Twitter
@@ -1756,10 +1755,10 @@
 					 <!-- <a href="javascript:void(0)" class="link-url" >
 						<i class="fa fa-clipboard" aria-hidden="true"></i>Copy URL
 					</a>  -->
-					<!-- <a href="javascript:void(0)" class="link-url" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp">
-						<img src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"> Whatsapp
+					<a href="javascript:void(0)" class="link-url" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp">
+						<!--<img src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"> Whatsapp-->
 						<i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-					</a> -->
+					</a>
 				</li> 
 			</ul>
 
@@ -1773,8 +1772,6 @@
 
 
 </div>
-
-
 
 <div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
 	<div class="modal-dialog modal-align-center">

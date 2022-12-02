@@ -12,8 +12,6 @@ h2 {
 	margin-bottom: 8px;
 }
 
-
-
 .progress {
     overflow: hidden;
     height: 20px;
@@ -64,3 +62,29 @@ h2 {
 .btn-danger.btn__delete:focus { outline:none; }
 .ng-star-inserted .progress { background:#f1f2f6; box-shadow:none; }
 .ng-star-inserted .progress-bar { background:#448afa }
+
+@media only screen and (max-width: 1023px) {
+	.inline-radio-tab {
+		flex-wrap: wrap;
+	}
+
+	.inline-radio-tab div {
+		flex: 0 0 calc(33.333% - 10px);
+		max-width: calc(33.333% - 10px);
+		margin: 5px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.inline-radio-tab div {
+		flex: 0 0 calc(50% - 10px);
+		max-width: calc(50% - 10px);
+	}
+}
+
+@media only screen and (max-width: 568px) {
+	.inline-radio-tab div {
+		flex: 0 0 calc(100% - 10px);
+		max-width: calc(100% - 10px);
+	}
+}
