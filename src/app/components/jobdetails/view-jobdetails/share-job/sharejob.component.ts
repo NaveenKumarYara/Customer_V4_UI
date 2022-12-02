@@ -174,11 +174,11 @@ export class ShareJobComponent implements OnInit {
   Contact(){
      swal(
       {
-        title: 'Contact Support Team?',
+        title: 'Customer Support team',
         showConfirmButton: true,
         showCancelButton: true,
-        html:
-        '<i class=" fa fa-envelope"></i>' + '<a href="mailto: info@arytic.com" target="_blank">Mail</a>' + '<br>'+ '<i class="fa fa-phone"></i>' + '<a href="tel: +1 855-427-9842" target="_blank" >Call</a>',
+        html: 'Contact us using below options' + '<br>'+
+        '<i class=" fa fa-envelope"></i> ' + '<a href="mailto: info@arytic.com" target="_blank"> Mail</a>' + '<br>'+    '<i class="fa fa-phone"></i> ' + '<a href="tel: +1 855-427-9842" target="_blank"> Call</a>',
         type: "info",
         confirmButtonColor: '#66dab5',
         cancelButtonColor: '#FF0000',

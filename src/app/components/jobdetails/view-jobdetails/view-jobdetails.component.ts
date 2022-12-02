@@ -667,11 +667,11 @@ export class ViewJobdetailsComponent implements OnInit {
     }
     else if(val === "Uploaded Profile")
     {
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 1, 0,0,0,0, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 1,0,0,0,0, this.profilecount);
     }
     else if(val === "Arytic Profiles")
     {
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0, 0,0,0,1, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0,0,0,0,1, this.profilecount);
     }
   }
 

@@ -668,12 +668,12 @@
 					</div>
 					<div class="praymid-container">
 						<ul>
-							<li>
+							<li data-toggle="tab" href="#All">
 								<!-- <span class="tag">What is it?</span> -->
 								<select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Applicants</option>
-									<option value="Arytic Profiles">Arytic Applicants</option>
 									<option value="In-Progress">In-Progress</option>
+									<option value="Arytic Profiles">Arytic Applicants</option>
 									<option value="Invited profile">Invited profiles</option>
 									<option value="Uploaded Profile">Uploaded Profiles</option>
 									<!-- <option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
@@ -683,31 +683,56 @@
 									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> -->
 								</select>
 								<span class="number" *ngIf="sval === 'All Application'">{{jobstatistics?.Applied || 0}}</span>
-								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
-									|| 0}}</span>
 								<span class="number" *ngIf="sval === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
+								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
+									|| 0}}</span>							
 								<span class="number" *ngIf="sval === 'Invited profile'" >{{myjobstatistics?.Invited || 0}}</span>
 								<span class="number" *ngIf="sval === 'Uploaded Profile'" >{{myjobstatistics?.Uploaded || 0}}</span>
 							</li>
-							<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-								<!-- <span class="tag">I Like It</span> -->
-								Screening
-								<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
-							<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-								<!-- <span class="tag">I Want It</span> -->
-								Shortlisted
-								<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
-							</li>
-							<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
-								<!-- <span class="tag">I ‘m getting it</span> -->
-								Interviewed
-								<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
-							</li>
-							<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
-								<!-- <span class="tag">I Like It</span> -->
-								Hired
-								<span class="number">{{jobstatistics?.Hired || 0}}</span>
-							</li>
+							<ng-container *ngIf="sval === 'In-Progress' || sval === 'All Application'">
+								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+									<!-- <span class="tag">I Like It</span> -->
+									Screening
+									<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
+								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+									<!-- <span class="tag">I Want It</span> -->
+									Shortlisted
+									<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
+								</li>
+								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+									<!-- <span class="tag">I ‘m getting it</span> -->
+									Interviewed
+									<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
+								</li>
+								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+									<!-- <span class="tag">I Like It</span> -->
+									Hired
+									<span class="number">{{jobstatistics?.Hired || 0}}</span>
+								</li>
+							</ng-container>
+							<ng-container *ngIf="sval === 'Arytic Profiles' || sval === 'Invited profile' || sval === 'Uploaded Profile' ">
+								
+								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+									<!-- <span class="tag">I Like It</span> -->
+									Screening
+									<span class="number">0</span></li>
+								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+									<!-- <span class="tag">I Want It</span> -->
+									Shortlisted
+									<span class="number"> 0</span>
+								</li>
+								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+									<!-- <span class="tag">I ‘m getting it</span> -->
+									Interviewed
+									<span class="number">0 </span>
+								</li>
+								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+									<!-- <span class="tag">I Like It</span> -->
+									Hired
+									<span class="number"> 0</span>
+								</li>
+							</ng-container>
+						
 						</ul>
 					</div>
 				</div>
