@@ -10,7 +10,7 @@
 .job-summary-card .title-container h4 {
   font-size: 18px;
   color: var(--gray-blue-400);
-  margin: 0 0 10px;
+  margin: 0 8px 10px 0;
   padding-left: 24px;
   position: relative
 }
@@ -44,7 +44,7 @@
   position: relative;
 }
 
-.job-summary-card .title-container li span {
+.job-summary-card .title-container li span.highlight {
   color: #fff;
   font-size: 12px;
   background: #90a4ad;
@@ -130,7 +130,8 @@
   background: #f5f6fa;
 }
 
-.praymid-container li:hover {
+.praymid-container li:hover,
+.praymid-container li.active {
   background: #00a4bc;
   color: #fff;
 }
@@ -567,7 +568,7 @@
 }
 
 .active .custom-select {
-  color: #00a4bc;
+  color: #fff;
 }
 
 .custom-select option {
@@ -716,6 +717,15 @@
     width: 100%;
   }
 
+  .buttons {
+    text-align: center;
+  }
+
+  .row.stats-rows,
+  .row.stats-row {
+    margin: 0;
+  }
+
   .praymid-container {
     position: relative;
     width: 70%;
@@ -727,8 +737,10 @@
 
 @media only screen and (max-width: 767px) {
   .stats-icon .stats-col {
-    width: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
     float: left;
+    margin: 30px 0 0;
   }
 
   .job-summary-card .title-container li {
@@ -744,9 +756,9 @@
   }
 
   .icon-listing li {
-    width: 50%;
-    margin-bottom: 10px;
-    border-left: 0;
+    flex: 0  0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    margin: 5px;
   }
 
   .top-navigation li {
@@ -829,3 +841,4 @@
 .custom__tooltip span.step__title { font-weight:600; padding-left:0; }
 .custom__tooltip span:not(:first-child) { margin:5px 0 0; }
 .custom__tooltip span em { position: absolute; left:0; top:0; font-style: normal; width:24px; height:24px; border-radius:50%; line-height:24px; font-size:11px; background:#fff; color:#23527c; text-align: center; }
+

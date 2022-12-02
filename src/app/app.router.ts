@@ -132,6 +132,7 @@ import { DocumentManagerComponent } from "./components/Postajob/document-manager
 import { CustomerDashboardComponent } from "./components/customer-dashboard/customer-dashboard.component";
 import { CustomsearchComponent } from "./components/customsearch/customsearch.component";
 import { EditprofileComponent } from "./components/jobdetails/view-jobdetails/edit-profiles/editprofile/editprofile.component";
+import { RecruitmentDashboardComponent } from "./components/recruitment-dashboard/recruitment-dashboard.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -157,6 +158,7 @@ const appRoutes: Routes = [
   { path: "app-Getcandidateprofile", component: GetCandidateprofileComponent },
   { path: "app-candidateview", component: CandidateViewComponent },
   { path: "dashboard", component: CustomerDashboardComponent },
+  { path: "customer-dashboard", component: RecruitmentDashboardComponent },
   {
     path: "app-createajob",
     component: CreateajobComponent,

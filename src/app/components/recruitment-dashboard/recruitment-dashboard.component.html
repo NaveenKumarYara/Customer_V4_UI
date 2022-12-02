@@ -1,0 +1,629 @@
+<app-Logoheader></app-Logoheader>
+<div class="admin-pages">
+  <div class="main-container">
+    <div class="title-container flex flex-wrap flex-align-center">
+      <h4>Status of Jobs</h4>
+      <select class="custom-select ml-auto">
+        <option value="Sorting By Weekly">Sorting By Weekly</option>
+      </select>
+    </div>
+
+    <div class="section status-section">
+      <div class="row flex flex-wrap flex-align-equal">
+        <div class="col-md-4 left-col">
+          <div class="col-container">
+            <h4>Job Report Weekly</h4>
+
+            <div class="chart-container">
+              <canvas id="mixed-chart-02" width="800" height="600"></canvas>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-8 right-col">
+          <div class="col-container">
+            <div class="top-container">
+              <h4>Weekly Status of  Jobs</h4>
+            </div>
+
+            <div class="grid-table-container">
+              <div class="grid-row grid-th-row flex flex-wrap flex-align-center">
+                <div class="grid-col grid-th-col title-col">
+                  Client
+                </div>
+                <div class="grid-col grid-th-col">
+                  Forward
+                </div>
+                <div class="grid-col grid-th-col">
+                  Received
+                </div>
+                <div class="grid-col grid-th-col">
+                  Client Closed
+                </div>
+                <div class="grid-col grid-th-col">
+                  Internal Close
+                </div>
+                <div class="grid-col grid-th-col">
+                  WIP
+                </div>
+                <div class="grid-col grid-th-col">
+                  Submits
+                </div>
+                <div class="grid-col grid-th-col">
+                  Interview
+                </div>
+                <div class="grid-col grid-th-col">
+                  Closure
+                </div>
+              </div>
+              <div class="grid-row grid-td-row grid-total-row flex flex-wrap flex-align-center">
+                <div class="grid-col grid-td-col title-col">
+                  Total
+                </div>
+                <div class="grid-col grid-td-col">
+                  23
+                </div>
+                <div class="grid-col grid-td-col">
+                  11
+                </div>
+                <div class="grid-col grid-td-col">
+                  2
+                </div>
+                <div class="grid-col grid-td-col">
+                  12
+                </div>
+                <div class="grid-col grid-td-col">
+                  80
+                </div>
+                <div class="grid-col grid-td-col">
+                  3
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+              </div>
+              <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                <div class="grid-col grid-td-col title-col">
+                  Tesla
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  0
+                </div>
+                <div class="grid-col grid-td-col">
+                  2
+                </div>
+                <div class="grid-col grid-td-col">
+                  3
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+              </div>
+              <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                <div class="grid-col grid-td-col title-col">
+                  AFS
+                </div>
+                <div class="grid-col grid-td-col">
+                  17
+                </div>
+                <div class="grid-col grid-td-col">
+                  10
+                </div>
+                <div class="grid-col grid-td-col">
+                  -
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  39
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+              </div>
+              <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                <div class="grid-col grid-td-col title-col">
+                  Quinnox
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  2
+                </div>
+                <div class="grid-col grid-td-col">
+                  3
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+                <div class="grid-col grid-td-col">
+                  1
+                </div>
+              </div>
+            </div>
+
+            <nav class="pagination-container">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="title-container flex flex-wrap flex-align-center">
+      <h4>Status By Clients</h4>
+      <select class="custom-select ml-auto">
+        <option value="Sorting By Weekly">Sorting By Weekly</option>
+      </select>
+    </div>
+
+    <div class="section status-by-client-section">
+      <div class="slider-section row flex flex-wrap flex-align-equal">
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <div class="info">
+              <div class="icon-box">
+                CPA
+                <span class="number">5</span>
+              </div>
+              <h4>CPA</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <div class="info">
+              <div class="icon-box">
+                TE
+                <span class="number">5</span>
+              </div>
+              <h4>Telsa</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container active">
+            <div class="info">
+              <div class="icon-box">
+                AFS
+                <span class="number">5</span>
+              </div>
+              <h4>AFS</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <div class="info">
+              <div class="icon-box">
+                DIR
+                <span class="number">5</span>
+              </div>
+              <h4>DIR</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <div class="info">
+              <div class="icon-box">
+                The
+                <span class="number">5</span>
+              </div>
+              <h4>THECB</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-info-section row flex flex-wrap flex-align-equal">
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+        <div class="col-sm-2 col">
+          <div class="col-container">
+            <h4>Recruiter 1</h4>
+            <h6>Positions  - 6</h6>
+            <span class="number">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section tab-horizontal">
+      <div class="row flex flex-wrap flex-align-equal">
+        <div class="col-sm-3 tab-nav-col">
+          <h4>Recruiters</h4>
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#recruiter-1">
+                <figure>
+                  <img src="../../../assets/images/profile-pic-01.png" alt="">
+                </figure>
+                <div class="profile-info">
+                  <h5>Recruiter Name 1</h5>
+                  <div class="row flex flex-wrap">
+                    <div class="col-sm-12 col-md-6 col">
+                      Target : 10
+                    </div>
+                    <div class="col-sm-12 col-md-6 col">
+                      Total : 10
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#recruiter-2">
+                <figure>
+                  <img src="../../../assets/images/profile-pic-02.png" alt="">
+                </figure>
+                <div class="profile-info">
+                  <h5>Recruiter Name 2</h5>
+                  <div class="row flex flex-wrap">
+                    <div class="col-sm-12 col-md-6 col">
+                      Target : 10
+                    </div>
+                    <div class="col-sm-12 col-md-6 col">
+                      Total : 10
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#recruiter-3">
+                <figure>
+                  <img src="../../../assets/images/profile-pic-03.png" alt="">
+                </figure>
+                <div class="profile-info">
+                  <h5>Recruiter Name 3</h5>
+                  <div class="row flex flex-wrap">
+                    <div class="col-sm-12 col-md-6 col">
+                      Target : 10
+                    </div>
+                    <div class="col-sm-12 col-md-6 col">
+                      Total : 10
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#recruiter-4">
+                <figure>
+                  <img src="../../../assets/images/profile-pic-04.png" alt="">
+                </figure>
+                <div class="profile-info">
+                  <h5>Recruiter Name 4</h5>
+                  <div class="row flex flex-wrap">
+                    <div class="col-sm-12 col-md-6 col">
+                      Target : 10
+                    </div>
+                    <div class="col-sm-12 col-md-6 col">
+                      Total : 10
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 tab-content-col">
+          <div class="top-container">
+            <div class="row flex flex-wrap flex-align-center">
+              <div class="col-sm-4 left-col">
+                <h4>Recruitment Status</h4>
+              </div>
+              <div class="col-sm-8 right-col">
+                <div class="calendar-navigation">
+                  <ul>
+                    <li class="active"><a href="#">Week</a></li>
+                    <li><a href="#">Monthly</a></li>
+                    <li><a href="#">Yearly</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>   
+          <div class="tab-content">
+            <div id="recruiter-1" class="tab-pane fade in active">
+              <div class="view-navigation">
+                <ul>
+                  <li class="active">
+                    <a href="javascript:void(0)" (click)="viewType = 'weekly-chart'" class="view-grid">
+                      <span class="icon-grid">Icon</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" (click)="viewType = 'weekly-table'" class="view-list">
+                      <span class="icon-list">Icon</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <ng-container *ngIf="viewType == 'weekly-chart'">
+                Chart
+                <canvas id="mixed-chart-01" width="800" height="300"></canvas>
+              </ng-container>
+              <ng-container *ngIf="viewType == 'weekly-table'">
+                <div class="grid-table-container">
+                  <div class="grid-row grid-th-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-th-col title-col">
+                      Client
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Forward
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Received
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Client Closed
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Internal Close
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      WIP
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Submits
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Interview
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Closure
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row grid-total-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Total
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      23
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      11
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      12
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      80
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Tesla
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      0
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      AFS
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      17
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      10
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      -
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      39
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Quinnox
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                </div>
+                <nav class="pagination-container">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                </nav>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,8 @@ app-accountsettings,
 app-jobtemplate,
 app-editdraft,
 app-customer-dashboard,
-app-notifications {
+app-notifications,
+app-recruitment-dashboard {
   padding-left: 80px;
   display: block;
 }
