@@ -22,6 +22,7 @@ import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer
 import { assert } from 'console';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
+import swal from 'sweetalert2';
 const URL = 'http://localhost:4800/fileupload/';
 export interface mailtoAsset {
   
@@ -136,6 +137,7 @@ export class ShareJobComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer ,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
+    const swal = require('sweetalert2');
     this.customerUser = this.customer.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetLink();
@@ -167,6 +169,33 @@ export class ShareJobComponent implements OnInit {
 
   showClickBCC() {
     this.showBCC = !this.showBCC;
+  }
+
+  Contact(){
+     swal(
+      {
+        title: 'Contact Support Team?',
+        showConfirmButton: true,
+        showCancelButton: true,
+        html:
+        '<i class=" fa fa-envelope"></i>' + '<a href="mailto: info@arytic.com" target="_blank">Mail</a>' + '<br>'+ '<i class="fa fa-phone"></i>' + '<a href="tel: +1 855-427-9842" target="_blank" >Call</a>',
+        type: "info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'OK',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value === true) {
+          swal(
+            {
+              title: 'Thank you for showing your Interest!',
+              showConfirmButton: true,
+              timer: 3000,
+              type: "success"
+            });
+        }
+      }
+        )
   }
 
   checkValue(x) {
