@@ -666,9 +666,11 @@
 
 					
 					</div>
-					<div class="praymid-container">
-						<ul>
-							<li data-toggle="tab" href="#All">
+					<div class="praymid-container" >
+					
+						<ul >
+							<li data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
+							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
 								<select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Applicants</option>
@@ -689,6 +691,7 @@
 								<span class="number" *ngIf="sval === 'Invited profile'" >{{myjobstatistics?.Invited || 0}}</span>
 								<span class="number" *ngIf="sval === 'Uploaded Profile'" >{{myjobstatistics?.Uploaded || 0}}</span>
 							</li>
+					
 							<ng-container *ngIf="sval === 'In-Progress' || sval === 'All Application'">
 								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
 									<!-- <span class="tag">I Like It</span> -->
@@ -732,11 +735,13 @@
 									<span class="number"> 0</span>
 								</li>
 							</ng-container>
-						
+							
 						</ul>
+					
 					</div>
 				</div>
 				<div class="col-sm-6 right-col">
+			
 					<div class="buttons">
 
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
