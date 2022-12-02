@@ -50,6 +50,7 @@ export class ViewJobdetailsComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   acheck: boolean =false;
+  sval:any = 'All Application';
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
@@ -648,7 +649,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   MySort(val)
   {
-    this.checkR();
+    //this.checkR();
+    this.sval = val;
     if(val === "All Application")
     {
 
