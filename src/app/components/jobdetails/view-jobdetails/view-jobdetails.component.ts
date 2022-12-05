@@ -653,24 +653,28 @@ export class ViewJobdetailsComponent implements OnInit {
     this.sval = val;
     if(val === "All Application")
     {
-
+      this.ClearallValues();
       this.updateappliedstatus();
       //this.inprogressview(0);
     }
     else if(val === "In-Progress")
     {
+      this.ClearallValues();
       this.updateinprogressstatus();
     }
     else if(val === "Invited profile")
     {
+      this.ClearallValues();
       this.GetInvitedList();
     }
     else if(val === "Uploaded Profile")
     {
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 1,0,0,0,0, this.profilecount);
+      this.ClearallValues();
+      this.GetUploadList();
     }
     else if(val === "Arytic Profiles")
     {
+      this.ClearallValues();
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0,0,0,0,1, this.profilecount);
     }
   }
@@ -967,7 +971,6 @@ export class ViewJobdetailsComponent implements OnInit {
 
   GetUploadList()
   {
-    debugger
     this.getParentApi().CallViewBy(1,0,0,0,0,0,undefined,this.profilecount);
   }
 

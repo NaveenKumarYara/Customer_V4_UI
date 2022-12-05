@@ -715,16 +715,16 @@
 							</ng-container>
 							<ng-container *ngIf="sval === 'Arytic Profiles' || sval === 'Invited profile' || sval === 'Uploaded Profile' ">
 								
-								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+								<li data-toggle="tab" href="#screening">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
 									<span class="number">0</span></li>
-								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+								<li data-toggle="tab" href="#shortlisted">
 									<!-- <span class="tag">I Want It</span> -->
 									Shortlisted
 									<span class="number"> 0</span>
 								</li>
-								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+								<li data-toggle="tab" href="#interview">
 									<!-- <span class="tag">I ‘m getting it</span> -->
 									Interviewed
 									<span class="number">0 </span>
@@ -896,7 +896,7 @@
 										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)">View Notes</a>
 										<a class="dropdown-item" href="javascript:void(0)" (click)="documentManagerDialog()">Add Attachments</a>
 										<!-- <a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Add Comments</a> -->
-										<a class="dropdown-item" href="javascript:void(0);" (click)="OpenAssignJob()">Assign job</a>
+										<!-- <a class="dropdown-item" href="javascript:void(0);" (click)="OpenAssignJob()">Assign job</a> -->
 										<!-- <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 											<a class="dropdown-item" href="javascript:void(0)" *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" id="Inactive"
 												(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
