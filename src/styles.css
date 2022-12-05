@@ -15032,6 +15032,11 @@ a.ui-button:active,
 	background-color: rgb(216, 60, 60);
 }
 
+.page--job-details .status.Freezed
+{
+	background-color: #fbd497;
+}
+
 .page--job-details .status.Applied {
 	background-color: #5CD1DE;
 }
