@@ -719,6 +719,7 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
+        debugger
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
       //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
@@ -730,6 +731,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.jobdetailsbasicinfo = res;
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
+      debugger
       this.inprogressview(0);
       //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });

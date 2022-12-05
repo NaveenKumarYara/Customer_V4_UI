@@ -728,16 +728,27 @@
 				<div class="col-sm-6 right-col">
 			
 					<div class="buttons">
-
+					
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-							<button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-filled" id="Inactive"
-								(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
-								Inactive</button>
+							<fieldset class="radio-switch">
+								<legend>
+								  Settings
+								</legend>
+								<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false)">
+								<label for="public">
+								 In-Active
+								</label>
+							  
+								<input type="radio"   name="lol" [checked]="jobStatus !== 'InActive'" id="private"  (click)="changeJobStatus(jobdetailsbasicinfo,true)">
+								<label for="private">
+								 Active
+								</label>
+							  </fieldset>									
 						</ng-container>
-						<ng-template #isactive>
+						<!-- <ng-template #isactive>
 							<button id="Active" class="btn btn-filled" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
-						</ng-template>
+						</ng-template> -->
 						
 						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
 
