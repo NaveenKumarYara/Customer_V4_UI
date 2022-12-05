@@ -561,6 +561,10 @@ header .right-header {
   margin-bottom: 30px;
 }
 
+.status-by-client-section .slider-section  {
+  padding: 0 40px;
+}
+
 .status-by-client-section .slider-section .icon-box {
   width: 64px;
   height: 64px;
@@ -601,9 +605,6 @@ header .right-header {
   margin: 0;
 }
 
-.status-by-client-section .slider-section .col {
-  width: 20%;
-}
 
 .pagination {
   border: 0;
@@ -890,7 +891,8 @@ header .right-header {
   list-style: none;
 }
 
-.view-navigation ul li a {
+.view-navigation ul li a,
+.view-navigation ul li div {
   width: 30px;
   height: 30px;
   display: flex;
@@ -898,7 +900,8 @@ header .right-header {
   justify-content: center;
 }
 
-.view-navigation ul li.active a {
+.view-navigation ul li.active a,
+.view-navigation ul li.active div {
   background: #66dab5;
 }
 
@@ -909,3 +912,5 @@ header .right-header {
 .view-navigation ul li.active .icon-list {
   background-position: -50px -55px;
 }
+
+
