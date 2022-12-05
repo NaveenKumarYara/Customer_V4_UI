@@ -225,6 +225,7 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
   }
 
   OpenScheduleInterviewDialog() {
+    this.Close();
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(UploadvideoprofileComponent,

@@ -48,7 +48,7 @@
                   Personal Details
                 </a>
               </li>
-              <li class="with__icon" [ngClass]="showThis == 'WorkExperience'? 'active': null">
+              <!-- <li class="with__icon" [ngClass]="showThis == 'WorkExperience'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'WorkExperience'">
                   <span class="icon icon__experience"><span class="sr-only">Icon</span></span>
                   Work Experience
@@ -71,7 +71,7 @@
                   <span class="icon icon__achivement"><span class="sr-only">Icon</span></span>
                   Achievement
                 </a>
-              </li>
+              </li> -->
               <!-- <li class="with__icon" [ngClass]="showThis == 'Hobbies'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'Hobbies'">
                   <span class="icon icon__hobbies"><span class="sr-only">Icon</span></span>
@@ -1381,7 +1381,7 @@
               </ng-container>
             </div>
           </ng-container>
-          <ng-container *ngIf="showThis == 'WorkExperience'">
+          <!-- <ng-container *ngIf="showThis == 'WorkExperience'">
             <ng-container *ngFor="let exp of experience;let e= index;">
               <div class="stripped__table no__margin" *ngIf="!editWorkExperience">
                 <div class="row strip__row flex flex-wrap">
@@ -1627,7 +1627,7 @@
                     </ng-container>
 
                   </div>
-                </div> -->
+                </div> 
                 <div class="row strip__row flex flex-wrap">
                   <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                     <div class="box__table">Specialization</div>
@@ -1704,7 +1704,7 @@
                         </div>
                       </ng-container>
                     </div>
-                  </div> -->
+                  </div> 
                   <div class="row strip__row flex flex-wrap">
                     <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                       <div class="box__table">Specialization</div>
@@ -1972,7 +1972,7 @@
                 <li><a href="#">Service Standards</a></li>
                 <li><a href="#">Aviation</a></li>
                 <li><a href="#">Pharma</a></li>
-              </ul> -->
+              </ul> 
             </div>
             <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -2010,7 +2010,7 @@
                         <span class="sr-only">Delete</span>
                       </button>
                     </div>
-                  </div> -->
+                  </div> 
                 </div>
               </ng-container>
               <ng-container *ngIf="achievements.length===0">
@@ -2090,7 +2090,7 @@
                     </button>
                   </div>
                 </div>
-              </div> -->
+              </div> 
             </div>
           </ng-container>
           <ng-container *ngIf="showThis == 'Hobbies'">
@@ -2342,7 +2342,7 @@
                 </div>
               </div>
             </div>
-          </ng-container>
+          </ng-container> -->
         </div>
       </div>
     </ng-container>
