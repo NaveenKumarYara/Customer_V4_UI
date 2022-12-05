@@ -608,17 +608,11 @@
 								</svg>
 							</a> 
 							<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
-								{{jobdetailsbasicinfo?.JobTitle}}</h4>
-
-                         
-							
-							
+								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus }}</span>
-							
-							
-							
-						
-						
+							<span class="edit-btn" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+							</span>
 						</div>
 					
 						<ul>
@@ -649,19 +643,10 @@
 										</span>
 									</ng-container>
 								</ng-container>
-								</span>
-							
-							</li>
-							
+								</span>			
+							</li>						
 							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
-							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>
-							<li>
-								<span (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
-									<i class="fa fa-pencil" aria-hidden="true"></i>
-								</span>
-							</li>
-						
-						
+							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>				
 						</ul>
 
 					
@@ -669,7 +654,7 @@
 					<div class="praymid-container" >
 					
 						<ul >
-							<li data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
+							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
 							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
 								<select class="custom-select" (change)="MySort($event.target.value)">

@@ -27,11 +27,14 @@
 .smart-card .card-profile-image-container h1.title a {
   text-align: left !important;
   margin-left: 0 !important;
+  width: 66%;
 }
 
 .smart-card .card-profile-image-container h1 button {
   padding: 0;
   border: 0;
+  display: inline-block;
+  vertical-align: top;
   background: none;
   color: var(--dark-blue-600);
 }
@@ -727,4 +730,60 @@ div.dropup > a {
   transform: none;
   left: auto;
   font-size: 14px !important;
+}
+
+@media only screen and  (max-width: 1460px) {
+  .load-manage-searchjobs .search-toggle input[type="text"]#searchStr {
+    width: 100% !important;
+    left: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .page--manage-jobs .filters .nav > li > a {
+    padding: 7px !important;
+  }
+
+  .load-manage-searchjobs .search-toggle {
+    display: block !important;
+  }
+
+  .new-filter-btn.notification {
+    padding: 7px 8px 1px !important;
+  }
+
+  .col-md-2.custom-filter-navigation app-manage-filterjobs {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    top: 10px;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .show-count {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .form-inline .form-group.custom-view-group {
+    align-items: flex-end;
+  }
+
+  .col-md-2.custom-filter-navigation app-manage-filterjobs {
+    position: relative;
+    top: 0;
+    margin-left: 0  !important;
+  }
+
+  .col-md-2.custom-filter-navigation {
+    text-align: center;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .new-filter-btn.notification {
+    float: none  !important;
+  }
+
 }

@@ -553,7 +553,7 @@ titleCase(str) {
     window.open(url, '_blank');
     this.toastr.success('Successfully shared', 'Success!!');
     this.whatsapp = undefined;
-    $("#Whatsapp").Modal('hide');
+    //$("#Whatsapp").Modal('hide');
     this.whatsappform.reset();
   }
   commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {

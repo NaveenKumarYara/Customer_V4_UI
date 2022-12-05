@@ -198,62 +198,20 @@
     </div>
 
     <div class="section status-by-client-section">
-      <div class="slider-section row flex flex-wrap flex-align-equal">
-        <div class="col-sm-2 col">
-          <div class="col-container">
-            <div class="info">
-              <div class="icon-box">
-                CPA
-                <span class="number">5</span>
+      <div class="slider-section">
+        <owl-carousel [options]="options" [items]="images" [carouselClasses]="['owl-theme', '', 'sliding']">
+          <div class="item col" *ngFor="let image of images;let i = index">
+            <div class="col-container">
+              <div class="info">
+                <div class="icon-box">
+                  {{ image.name }}
+                  <span class="number">{{ image.count }}</span>
+                </div>
+                <h4>CPA</h4>
               </div>
-              <h4>CPA</h4>
             </div>
           </div>
-        </div>
-        <div class="col-sm-2 col">
-          <div class="col-container">
-            <div class="info">
-              <div class="icon-box">
-                TE
-                <span class="number">5</span>
-              </div>
-              <h4>Telsa</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-2 col">
-          <div class="col-container active">
-            <div class="info">
-              <div class="icon-box">
-                AFS
-                <span class="number">5</span>
-              </div>
-              <h4>AFS</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-2 col">
-          <div class="col-container">
-            <div class="info">
-              <div class="icon-box">
-                DIR
-                <span class="number">5</span>
-              </div>
-              <h4>DIR</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-2 col">
-          <div class="col-container">
-            <div class="info">
-              <div class="icon-box">
-                The
-                <span class="number">5</span>
-              </div>
-              <h4>THECB</h4>
-            </div>
-          </div>
-        </div>
+        </owl-carousel>
       </div>
       <div class="slider-info-section row flex flex-wrap flex-align-equal">
         <div class="col-sm-2 col">
@@ -444,10 +402,10 @@
             <div id="recruiter-1" class="tab-pane fade in active">
               <div class="view-navigation">
                 <ul>
-                  <li class="active">
-                    <a href="javascript:void(0)" (click)="viewType = 'weekly-chart'" class="view-grid">
+                  <li>
+                    <div (click)="weeklyChartHandle()" class="view-grid">
                       <span class="icon-grid">Icon</span>
-                    </a>
+                    </div>
                   </li>
                   <li>
                     <a href="javascript:void(0)" (click)="viewType = 'weekly-table'" class="view-list">
@@ -456,8 +414,7 @@
                   </li>
                 </ul>
               </div>
-              <ng-container *ngIf="viewType == 'weekly-chart'">
-                Chart
+              <ng-container *ngIf="viewType == 'weeklyChart'">
                 <canvas id="mixed-chart-01" width="800" height="300"></canvas>
               </ng-container>
               <ng-container *ngIf="viewType == 'weekly-table'">
@@ -620,6 +577,15 @@
                   </ul>
                 </nav>
               </ng-container>
+            </div>
+            <div id="recruiter-2" class="tab-pane fade in">
+              <h4>No Data Found</h4>
+            </div>
+            <div id="recruiter-3" class="tab-pane fade in">
+              <h4>No Data Found</h4>
+            </div>
+            <div id="recruiter-4" class="tab-pane fade in">
+              <h4>No Data Found</h4>
             </div>
           </div>
         </div>

@@ -248,3 +248,24 @@
     padding: 0 30px;
   }
 }
+
+@media only screen and  (max-width: 1460px) {
+  .col-md-10.custom-filter-post-a-job {
+    width: 100%;
+  }
+
+  .load-manage-searchjobs {
+    flex-wrap: wrap;
+    padding-left: 15px;
+  }
+
+  .load-manage-searchjobs app-manage-searchjobs {
+    flex: 0 0 calc(100% - 116px);
+    max-width: calc(100% - 116px);
+  }
+  .load-manage-searchjobs .new-filter-btn {
+    flex: 0 0 106px;
+    max-width: 106px;
+    margin: 0 0 0 auto;
+  }
+}
