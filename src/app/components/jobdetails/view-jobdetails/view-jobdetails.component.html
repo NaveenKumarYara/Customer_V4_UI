@@ -790,10 +790,10 @@
 						<div class="row stats-rows">
 							<div class="col-sm-12 stats-cols">
 								<div class="row stats-row flex flex-wrap flex-align-equal">
-									<div class="col-sm-3 stats-col" tooltip="Skills Fit" placement="top">
+									<div class="col-sm-3 stats-col" tooltip="Skill Fit" placement="top">
 										<div class="col-container">
 											<span class="icon icon-skills">Icon</span>
-											<h6>Skills Fit</h6>
+											<h6>Skill Fit</h6>
 											<h4>{{Percentweightage?.SkillFit}}%</h4>
 										</div>
 									</div>
@@ -807,22 +807,22 @@
 									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-personality">Icon</span>
-											<h6>Personality</h6>
-											<h4>0%</h4>
+											<h6>Personality Fit</h6>
+											<h4>N/A</h4>
 										</div>
 									</div>
 									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-culture">Icon</span>
 											<h6>Culture Fit</h6>
-											<h4>0%</h4>
+											<h4>N/A</h4>
 										</div>
 									</div>
 									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
 										<div class="col-container">
 											<span class="icon icon-team">Icon</span>
 											<h6>Team Fit</h6>
-											<h4>0%</h4>
+											<h4>N/A</h4>
 										</div>
 									</div>
 								</div>
@@ -831,23 +831,23 @@
 					</div>
 					<div class="icon-listing">
 						<ul>
-							<li class="active" style="cursor: default;"  tooltip="Notes">
+							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)"  tooltip="Notes">
 								<span class="icon icon-notes">Icon</span>
 								<span class="number">{{myjobstatistics?.NotesCount}}</span>
 							</li>
-							<!-- <li style="cursor: default;" tooltip="Feedback">
+							 <!-- <li style="cursor: pointer;" tooltip="Attachments">
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
-							<li style="cursor: default;" tooltip="Comments">
+							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
 								<span class="icon icon-comments">Icon</span>
 								<span class="number">{{myjobstatistics?.Reviews}}</span>
 							</li>
-							<li style="cursor: default;" tooltip="Likes">
+							<li style="cursor: default;"   tooltip="Likes">
 								<span class="icon icon-like">Icon</span>
 								<span class="number">{{jobdetailsbasicinfo?.LikesCount}}</span>
 							</li>
-							<li style="cursor: default;" tooltip="Dislikes">
+							<li style="cursor: default;"   tooltip="Dislikes">
 								<span class="icon icon-dislike">Icon</span>
 								<span class="number">{{jobdetailsbasicinfo?.DislikesCount}}</span>
 							</li>

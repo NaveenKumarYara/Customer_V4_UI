@@ -113,7 +113,6 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   }
 
   GetJobNotes(profileId, jobId) {
-    debugger
     this.jobdetailsservice.GetProfileNotesNew(profileId, jobId, this.customer.UserId).subscribe((datr7) => {
       this.JobNotes = datr7;
     });
