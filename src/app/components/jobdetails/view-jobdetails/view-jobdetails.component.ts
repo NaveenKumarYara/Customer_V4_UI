@@ -489,11 +489,11 @@ export class ViewJobdetailsComponent implements OnInit {
   updateinprogressstatus() {
     this.sortBy = 1;
     this.statusid = 17;
-    this.displayQuick = 0;
-    this.inprogressview(1);
+    //this.displayQuick = 0;
+    // this.inprogressview(1);
     this.inprogressprofile = true;
     this.ClearallValues();
-    this.ClearActiveClasses();
+    // this.ClearActiveClasses();
     //  this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     //debugger
@@ -664,16 +664,19 @@ export class ViewJobdetailsComponent implements OnInit {
     }
     else if(val === "Invited profile")
     {
+      this.statusid=4;
       this.ClearallValues();
       this.GetInvitedList();
     }
     else if(val === "Uploaded Profile")
     {
+      this.statusid=4;
       this.ClearallValues();
       this.GetUploadList();
     }
     else if(val === "Arytic Profiles")
     {
+      this.statusid=4;
       this.ClearallValues();
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0,0,0,0,1, this.profilecount);
     }
@@ -719,7 +722,6 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
-        debugger
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
       //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
@@ -731,7 +733,6 @@ export class ViewJobdetailsComponent implements OnInit {
       this.jobdetailsbasicinfo = res;
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
-      debugger
       this.inprogressview(0);
       //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
