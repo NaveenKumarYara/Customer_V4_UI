@@ -84,7 +84,7 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
 import { DxTreeListModule } from 'devextreme-angular';
 import { CustomsearchComponent } from './components/customsearch/customsearch.component';
 import { RecruitmentDashboardComponent } from './components/recruitment-dashboard/recruitment-dashboard.component';
-
+import { OwlModule } from 'ng2-owl-carousel';
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -174,7 +174,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     NgxImgModule.forRoot(),
     CmModule,
     VmModule,
-    routing
+    routing,
+    OwlModule
   ],
   providers: [
     SettingsHttpService,

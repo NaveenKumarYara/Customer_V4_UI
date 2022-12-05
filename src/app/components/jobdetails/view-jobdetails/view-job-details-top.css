@@ -7,6 +7,10 @@
   padding: 20px 20px 0;
 }
 
+.job-summary-card .edit-btn {
+  margin-left: 5px;
+}
+
 .job-summary-card .title-container h4 {
   font-size: 18px;
   color: var(--gray-blue-400);
@@ -479,6 +483,10 @@
   text-align: right;
 }
 
+.buttons .btn.btn-filled {
+  padding: 9px 16px;
+}
+
 .btn.btn-outline-secondary {
   color: #fff;
   border: 0;
@@ -578,11 +586,8 @@
 }
 
 .top-navigation ul {
-  margin: 0 -20px 40px 0;
-  border: 1px solid #ccc;
-  border-right: 0;
+  margin: 0 0 40px 0;
   padding: 0;
-  border-radius: 6px 0  0 6px;
   list-style: none;
 }
 
@@ -601,6 +606,7 @@
   padding: 10px 40px 10px 20px;
   color: #6e819e;
   display: flex;
+  border: 1px solid #ccc;
   position: relative;
   align-items: center;
   height: 100%;
@@ -617,7 +623,7 @@
   height: 8px;
   background: url(../../../../assets/images/manage-job-sprites.png) -115px -108px no-repeat;
   background-size: 366px auto;
-  right: 15px;
+  right: 10px;
   top: 50%;
   margin-top: -4px;
 }
@@ -693,7 +699,20 @@
 }
 
 .top-navigation li:first-child .btn {
-  border-radius: 6px 0  0 6px;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 1480px) {
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .buttons .btn {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
+    margin: 5px;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
@@ -718,7 +737,13 @@
   }
 
   .buttons {
-    text-align: center;
+    justify-content: center;
+  }
+
+  .buttons .btn {
+    flex: 0 0 calc(33.33% - 14px);
+    max-width: calc(33.33% - 14px);
+    margin: 5px;
   }
 
   .row.stats-rows,
@@ -741,6 +766,11 @@
     max-width: 50%;
     float: left;
     margin: 30px 0 0;
+  }
+
+  .buttons .btn {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
   }
 
   .job-summary-card .title-container li {
@@ -771,7 +801,7 @@
   }
 
   .top-navigation li:last-child .btn {
-    border-radius: 0 0 0 6px;
+    border-radius: 4px;
   }
 }
 
@@ -785,8 +815,9 @@
   }
   
   .buttons .btn {
-    display: block;
-    width: 100%;
+    flex: 0 0 calc(100% - 14px);
+    max-width: calc(100% - 14px);
+    margin: 5px;
   }
 
   .btn.btn-outline-primary {

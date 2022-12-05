@@ -64,6 +64,7 @@
     "ng2-dragula": "^2.0.4",
     "ng2-file-upload": "^1.4.0",
     "ng2-img-max": "^2.2.4",
+    "ng2-owl-carousel": "^0.1.15",
     "ng2-toastr": "^4.1.2",
     "ng2-tooltip-directive": "^2.8.17",
     "ng4-intl-phone": "^1.2.1",

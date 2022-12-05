@@ -31578,7 +31578,7 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	}
 
 	.manage-searchjobs.load-manage-searchjobs .search-toggle {
-		margin-left: -40px;
+		margin-left: 0;
 	}
 
 	.manage-searchjobs.load-manage-searchjobs .search-toggle,
@@ -31624,7 +31624,7 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	}
 
 	.manage-searchjobs.load-manage-searchjobs .search-toggle {
-		margin-left: -36px;
+		margin-left: -7px;
 	}
 
 	.page--manage-jobs .notification {
@@ -32074,4 +32074,30 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 .introjs-tooltiptext {
 	font-size: 14px;
 	color: #90a4ad !important;
+}
+
+.slider-section .owl-prev {
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+	font-size: 0 !important;
+}
+
+.slider-section .owl-prev:before {
+	content:"\f053";
+	font: normal normal normal 14px/1 FontAwesome;
+}
+
+.slider-section .owl-next {
+  position: absolute;
+  right: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0 !important;
+}
+
+.slider-section .owl-next:before {
+	content:"\f054";
+	font: normal normal normal 14px/1 FontAwesome;
 }
