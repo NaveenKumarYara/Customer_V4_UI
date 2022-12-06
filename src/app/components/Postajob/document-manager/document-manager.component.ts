@@ -39,6 +39,7 @@ export class DocumentManagerComponent implements OnInit {
   formDAtaList: Array<FormData> = [];
   customerName: any;
   selectedFileNames: string[] = [];
+  fileErrorDetail: { file: any; error: string; };
   constructor(public dialogRef: MatDialogRef<DocumentManagerComponent>,private appService: AppService,private _service: ApiService,private jobdetailsservice: JobdetailsService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService) { 
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
@@ -47,8 +48,9 @@ export class DocumentManagerComponent implements OnInit {
       url: URL,
       disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       formatDataFunctionIsAsync: true,
-      allowedFileType: ['pdf','doc','rtf','docx'],
+      allowedFileType: ['pdf','doc','rtf','docx','txt'],
       maxFileSize : maxFileSize,
+      filters: [ { name: 'fileTypeAllowed', fn: function (item , options) { let itemType = item.name.substring(item.name.lastIndexOf('.')+1, item.name.length) || item.name; let fileTypesAllowed = ['pdf','doc','rtf','docx','txt']; if (!fileTypesAllowed.includes(itemType)) { return this.queue.onWhenAddingFileFailed; } else { return this.queue; } } } ],
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
           resolve({
@@ -59,6 +61,8 @@ export class DocumentManagerComponent implements OnInit {
           });
         });
       }
+
+    
     });
   }
 
@@ -92,6 +96,8 @@ export class DocumentManagerComponent implements OnInit {
       type: data.type || defaultType,
     });
   }
+
+
   
   DelDocument(d)
   {
@@ -212,8 +218,33 @@ export class DocumentManagerComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    this.uploader.onWhenAddingFileFailed = (item: any, filter: any, options: any) => {
+      switch (filter.name) {
+    
+        case 'fileTypeAllowed':
+            this.fileErrorDetail = {
+    
+              file: item.name,
+              error: `File type not allowed`
+    
+            }
+            break;
+        default: {
+          //console.log('Invalid upload');
+          this.toastr.warning('Invalid file upload','Oh no!!');
+          break;
+         }
+    
+      }
+    
+    };
     if (this.uploader.queue.length > 0) {
+
+      
+  
+     
       for (let i = 0; i < this.uploader.queue.length; i++) {
+   
         let file: File = this.uploader.queue[i]._file;
          this.selectedFiles.push(file);
       }
