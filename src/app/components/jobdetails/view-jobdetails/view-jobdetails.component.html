@@ -657,18 +657,23 @@
 							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
 							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
-								<select class="custom-select" (change)="MySort($event.target.value)">
+								<!-- <select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Applicants</option>
 									<option value="In-Progress">In-Progress</option>
 									<option value="Arytic Profiles">Arytic Applicants</option>
 									<option value="Invited profile">Invited profiles</option>
 									<option value="Uploaded Profile">Uploaded Profiles</option>
-									<!-- <option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
+									<option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
 										|| 0}})</option>
 									<option value="In-Progress">In-Progress - ({{jobstatistics?.InProgress || 0}})</option>
 									<option value="Invited profile">Invited profiles - ({{myjobstatistics?.Invited||0}})</option>
-									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> -->
-								</select>
+									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> 
+								</select>-->
+
+								<ng-select class="custom-style" [items]="Industries" [loading]="ILoading" [addTag]="addApplicants"
+								addTagText="addApplicants" placeholder="All Applicants" bindLabel="Code" name="Indusrty"
+								[(ngModel)]="Industry" (change)="MySort($event.target.value)" #Indusrty="ngModel" required>
+							</ng-select>
 								<span class="number" *ngIf="sval === 'All Application'">{{jobstatistics?.Applied || 0}}</span>
 								<span class="number" *ngIf="sval === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
 								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
@@ -726,30 +731,27 @@
 					</div>
 				</div>
 				<div class="col-sm-6 right-col">
-			
+					<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+						<fieldset class="radio-switch">
+							<legend>
+								Settings
+							</legend>
+							<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false)">
+							<label for="public">
+							 In-Active
+							</label>
+							
+							<input type="radio"   name="lol" [checked]="jobStatus !== 'InActive'" id="private"  (click)="changeJobStatus(jobdetailsbasicinfo,true)">
+							<label for="private">
+							 Active
+							</label>
+							</fieldset>									
+					</ng-container>
 					<div class="buttons">
-					
-						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-							<fieldset class="radio-switch">
-								<legend>
-								  Settings
-								</legend>
-								<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false)">
-								<label for="public">
-								 In-Active
-								</label>
-							  
-								<input type="radio"   name="lol" [checked]="jobStatus !== 'InActive'" id="private"  (click)="changeJobStatus(jobdetailsbasicinfo,true)">
-								<label for="private">
-								 Active
-								</label>
-							  </fieldset>									
-						</ng-container>
 						<!-- <ng-template #isactive>
 							<button id="Active" class="btn btn-filled" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
 						</ng-template> -->
-						
 						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
 
 						<ng-container  *ngIf="acheck === false;else isacts">
@@ -769,21 +771,25 @@
 					</ng-template>
 					</div>
 					<div class="buttons">		
-						<a  href="javascript:void(0);" (click)="openCandidateUploadDialog()" class="btn btn-outline-primary">
-							Upload <span class="no"><i class="fa fa-cloud-upload"></i></span></a>
+						<a  href="javascript:void(0);" (click)="openCandidateUploadDialog()" class="btn btn-outline-primary light">
+							Upload <span class="no">
+							<i class="fa fa-cloud-upload"></i></span>
+						</a>
 
-						<a  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)"  class="btn btn-outline-primary">
-							Share Job <span class="no"><i class="fa fa-share"></i></span></a>
+						<a  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)"  class="btn btn-outline-primary light">
+							Share Job 
+							<span class="no"><i class="fa fa-share"></i></span>
+						</a>
 
-							<a  href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)" class="btn btn-outline-primary">
-								View job details <span class="no"><i class="fa fa-eye"></i></span></a>
+						<a  href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)" class="btn btn-outline-primary light">
+							View job details 
+							<span class="no"><i class="fa fa-eye"></i></span>
+						</a>
 
-								<a  href="javascript:void(0);" (click)="OpenInviteProfileDialog()" class="btn btn-outline-primary">
-									Invite candidate <span class="no"><i class="fa fa-envelope"></i></span></a>
-
-
-
-								
+						<a  href="javascript:void(0);" (click)="OpenInviteProfileDialog()" class="btn btn-outline-primary light">
+							Invite candidate 
+							<span class="no"><i class="fa fa-envelope"></i></span>
+						</a>
 					</div>
 					
 					<div class="stats-icon">
@@ -804,25 +810,25 @@
 											<h4>{{Percentweightage?.JobFit}}%</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
+									<div class="col-sm-3 stats-col" tooltip="Contact to Support" placement="top">
 										<div class="col-container">
-											<span class="icon icon-personality">Icon</span>
+											<span class="icon icon-personality light">Icon</span>
 											<h6>Personality Fit</h6>
-											<h4>N/A</h4>
+											<h4 class="xs-font">Enterprise</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
+									<div class="col-sm-3 stats-col" tooltip="Contact to Support" placement="top">
 										<div class="col-container">
-											<span class="icon icon-culture">Icon</span>
+											<span class="icon icon-culture light">Icon</span>
 											<h6>Culture Fit</h6>
-											<h4>N/A</h4>
+											<h4 class="xs-font">Enterprise</h4>
 										</div>
 									</div>
-									<div class="col-sm-3 stats-col" tooltip="Enterprise" placement="top">
+									<div class="col-sm-3 stats-col" tooltip="Contact to Support" placement="top">
 										<div class="col-container">
-											<span class="icon icon-team">Icon</span>
+											<span class="icon icon-team light">Icon</span>
 											<h6>Team Fit</h6>
-											<h4>N/A</h4>
+											<h4 class="xs-font">Enterprise</h4>
 										</div>
 									</div>
 								</div>
@@ -832,24 +838,36 @@
 					<div class="icon-listing">
 						<ul>
 							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)"  tooltip="Notes">
-								<span class="icon icon-notes">Icon</span>
-								<span class="number">{{myjobstatistics?.NotesCount}}</span>
+								<div class="flex flex-align-center">
+									<span class="icon icon-notes">Icon</span>
+									<span class="number">{{myjobstatistics?.NotesCount}}</span>
+								</div>
+								<span class="sub-title">Notes</span>
 							</li>
 							 <!-- <li style="cursor: pointer;" tooltip="Attachments">
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
 							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
-								<span class="icon icon-comments">Icon</span>
-								<span class="number">{{myjobstatistics?.Reviews}}</span>
+								<div class="flex flex-align-center">
+									<span class="icon icon-comments">Icon</span>
+									<span class="number">{{myjobstatistics?.Reviews}}</span>
+								</div>
+								<span class="sub-title">Comments</span>
 							</li>
 							<li style="cursor: default;"   tooltip="Likes">
-								<span class="icon icon-like">Icon</span>
-								<span class="number">{{jobdetailsbasicinfo?.LikesCount}}</span>
+								<div class="flex flex-align-center">
+									<span class="icon icon-like">Icon</span>
+									<span class="number">{{jobdetailsbasicinfo?.LikesCount}}</span>
+								</div>
+								<span class="sub-title">Likes</span>
 							</li>
 							<li style="cursor: default;"   tooltip="Dislikes">
-								<span class="icon icon-dislike">Icon</span>
-								<span class="number">{{jobdetailsbasicinfo?.DislikesCount}}</span>
+								<div class="flex flex-align-center">
+									<span class="icon icon-dislike">Icon</span>
+									<span class="number">{{jobdetailsbasicinfo?.DislikesCount}}</span>
+								</div>
+								<span class="sub-title">Dislikes</span>
 							</li>
 						</ul>
 					</div>
