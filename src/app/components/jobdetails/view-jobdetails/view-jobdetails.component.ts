@@ -75,6 +75,14 @@ export class ViewJobdetailsComponent implements OnInit {
   location: any;
   domain: any;
   customerId: any;
+  Industries:any=[
+    "All Applicants",
+    "In-Progress",
+    "Arytic Applicants",
+    "Invited profiles",
+    "Uploaded Profiles",
+    "Arytic Applicants"
+  ];
   Count: any;
   customer: any;
   subdetails = new CustomerSubscription();
