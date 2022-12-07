@@ -670,7 +670,6 @@
 									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option>--> 
 								</select>
 
-<<<<<<< HEAD
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
 								bindValue="name"  name="Indusrty" [clearable]="false"
 								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
@@ -678,15 +677,6 @@
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
 								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
 								<span class="number" *ngIf="Industry === 'Arytic Applicants'" >{{myjobstatistics?.AryticProfiles
-=======
-								<!-- <ng-select class="custom-style" [items]="Industries" [loading]="ILoading" [addTag]="addApplicants"
-									addTagText="addApplicants" placeholder="All Applicants" bindLabel="Code" name="Indusrty"
-									[(ngModel)]="Industry" (change)="MySort($event.target.value)" #Indusrty="ngModel" required>
-								</ng-select> -->
-								<span class="number" *ngIf="sval === 'All Application'">{{jobstatistics?.Applied || 0}}</span>
-								<span class="number" *ngIf="sval === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
-								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
->>>>>>> 21c857f1630ca5533fe31d04250a740696c1ccc1
 									|| 0}}</span>							
 								<span class="number" *ngIf="Industry === 'Invited profiles'" >{{myjobstatistics?.Invited || 0}}</span>
 								<span class="number" *ngIf="Industry === 'Uploaded Profiles'" >{{myjobstatistics?.Uploaded || 0}}</span>
