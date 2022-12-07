@@ -657,7 +657,7 @@
 							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
 							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
-								<select class="custom-select" (change)="MySort($event.target.value)">
+								<!-- <select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Applicants</option>
 									<option value="In-Progress">In-Progress</option>
 									<option value="Arytic Profiles">Arytic Applicants</option>
@@ -667,8 +667,8 @@
 										|| 0}})</option>
 									<option value="In-Progress">In-Progress - ({{jobstatistics?.InProgress || 0}})</option>
 									<option value="Invited profile">Invited profiles - ({{myjobstatistics?.Invited||0}})</option>
-									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option>--> 
-								</select>
+									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> 
+								</select> -->
 
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
 								bindValue="name"  name="Indusrty" [clearable]="false"
