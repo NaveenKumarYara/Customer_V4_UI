@@ -670,19 +670,19 @@
 									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> 
 								</select>-->
 
-								<ng-select class="custom-style" [items]="Industries" [loading]="ILoading" [addTag]="addApplicants"
-								addTagText="addApplicants" placeholder="All Applicants" bindLabel="Code" name="Indusrty"
-								[(ngModel)]="Industry" (change)="MySort($event.target.value)" #Indusrty="ngModel" required>
+								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
+								bindValue="name"  name="Indusrty" [clearable]="false"
+								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
 							</ng-select>
-								<span class="number" *ngIf="sval === 'All Application'">{{jobstatistics?.Applied || 0}}</span>
-								<span class="number" *ngIf="sval === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
-								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
+								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
+								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
+								<span class="number" *ngIf="Industry === 'Arytic Applicants'" >{{myjobstatistics?.AryticProfiles
 									|| 0}}</span>							
-								<span class="number" *ngIf="sval === 'Invited profile'" >{{myjobstatistics?.Invited || 0}}</span>
-								<span class="number" *ngIf="sval === 'Uploaded Profile'" >{{myjobstatistics?.Uploaded || 0}}</span>
+								<span class="number" *ngIf="Industry === 'Invited profiles'" >{{myjobstatistics?.Invited || 0}}</span>
+								<span class="number" *ngIf="Industry === 'Uploaded Profiles'" >{{myjobstatistics?.Uploaded || 0}}</span>
 							</li>
 					
-							<ng-container *ngIf="sval === 'In-Progress' || sval === 'All Application'">
+							<ng-container *ngIf="Industry === 'In-Progress' || Industry === 'All Applicants'">
 								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
@@ -703,7 +703,7 @@
 									<span class="number">{{jobstatistics?.Hired || 0}}</span>
 								</li>
 							</ng-container>
-							<ng-container *ngIf="sval === 'Arytic Profiles' || sval === 'Invited profile' || sval === 'Uploaded Profile' ">
+							<ng-container *ngIf="Industry === 'Arytic Applicants' || Industry === 'Invited profiles' || Industry === 'Uploaded Profiles' ">
 								
 								<li data-toggle="tab" href="#screening">
 									<!-- <span class="tag">I Like It</span> -->

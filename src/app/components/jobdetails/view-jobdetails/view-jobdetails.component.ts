@@ -50,7 +50,7 @@ export class ViewJobdetailsComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   acheck: boolean =false;
-  sval:any = 'All Application';
+  sval:any = 'All Applicants';
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
@@ -75,14 +75,16 @@ export class ViewJobdetailsComponent implements OnInit {
   location: any;
   domain: any;
   customerId: any;
-  Industries:any=[
-    "All Applicants",
-    "In-Progress",
-    "Arytic Applicants",
-    "Invited profiles",
-    "Uploaded Profiles",
-    "Arytic Applicants"
-  ];
+  Industry:any = 'All Applicants';;
+  Industries:any
+  = [
+    {id: 1, name: 'All Applicants'},
+    {id: 2, name: 'In-Progress'},
+    {id: 3, name: 'Arytic Applicants'},
+    {id: 4, name: 'Invited profiles'},
+    {id: 5, name: 'Uploaded Profiles'}
+];
+
   Count: any;
   customer: any;
   subdetails = new CustomerSubscription();
@@ -413,7 +415,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
-        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6);
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic,6,0);
       this.loadMore = this.jobstatistics.AllCandidates > 6 ? true : false;
     } else {
       this.loadMore = false;
@@ -448,7 +450,8 @@ export class ViewJobdetailsComponent implements OnInit {
       this.child.NoRecords();
     }
   }
-  updateappliedstatus() {// 1000080;  
+  updateappliedstatus() {   // 1000080;  
+    this.ClearallValues();
     this.sortBy = 1;
     this.statusid = 4;
     this.displayQuick = 1;
@@ -458,7 +461,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.AryticFlag = false;
     this.inprogressview(0);
     this.inprogressprofile = false;
-    this.ClearallValues();
+
     this.ClearActiveClasses();
     this.CallList(this.statusid);
     // this.loadMoreStat=this.statusid;
@@ -469,7 +472,7 @@ export class ViewJobdetailsComponent implements OnInit {
     if (this.jobstatistics.Applied > 0) {
       //debugger
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
-        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6);
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6,0);
       this.loadMore = this.jobstatistics.Applied > 6 ? true : false;
     } else {
       this.loadMore = false;
@@ -625,7 +628,7 @@ export class ViewJobdetailsComponent implements OnInit {
     } else if (this.statusid === 4) {
       if (this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist > 0 || this.invited > 0 || this.arytic > 0)) {
         this.statistics = this.totalCount;
-      } else if (this.totalCount === 0) {
+      }else if (this.totalCount === 0 || this.totalCount === undefined) {
         this.statistics = this.jobstatistics.Applied;
       }
     } else if (this.statusid === 5) {
@@ -657,9 +660,10 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   MySort(val)
   {
+    this.Industry = val;
     //this.checkR();
     this.sval = val;
-    if(val === "All Application")
+    if(val === "All Applicants")
     {
       this.ClearallValues();
       this.updateappliedstatus();
@@ -670,19 +674,19 @@ export class ViewJobdetailsComponent implements OnInit {
       this.ClearallValues();
       this.updateinprogressstatus();
     }
-    else if(val === "Invited profile")
+    else if(val === "Invited profiles")
     {
       this.statusid=4;
       this.ClearallValues();
       this.GetInvitedList();
     }
-    else if(val === "Uploaded Profile")
+    else if(val === "Uploaded Profiles")
     {
       this.statusid=4;
       this.ClearallValues();
       this.GetUploadList();
     }
-    else if(val === "Arytic Profiles")
+    else if(val === "Arytic Applicants")
     {
       this.statusid=4;
       this.ClearallValues();
