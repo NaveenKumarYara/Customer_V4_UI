@@ -33,6 +33,7 @@ import { ShareJobComponent } from './share-job/sharejob.component';
 import { SendnotificationdialogNcomponentComponent } from './viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
 import { DocumentManagerComponent } from '../../Postajob/document-manager/document-manager.component';
 import { AshareJobComponentComponent } from './Assign-Job/ashare-job-component/ashare-job-component.component';
+import { ApiService } from '../../../shared/services';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -51,6 +52,7 @@ export class ViewJobdetailsComponent implements OnInit {
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   acheck: boolean =false;
   sval:any = 'All Applicants';
+  JobDocuments:any=[];
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
@@ -114,7 +116,7 @@ export class ViewJobdetailsComponent implements OnInit {
   deactivate = new deactivate();
   complete: number;
   constructor(private route: ActivatedRoute, private _location: Location, private toastr: ToastsManager, private _vcr: ViewContainerRef,
-    private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
+    private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,private _service: ApiService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
   ) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -230,6 +232,19 @@ export class ViewJobdetailsComponent implements OnInit {
 
     this._location.back();
   }
+
+
+  PopulateJobDocuments(jobId) {
+    this._service.GetService('ProfileAPI/api/GetJobDocuments?jobId=', jobId)
+   .subscribe(
+     r => {
+      debugger
+      this.JobDocuments = r;
+    });
+  
+  }
+
+
   openCandidate() {
     this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
     setTimeout(() => {
@@ -797,6 +812,7 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.publicstats();
+    
       //this.CallList(this.statusid);
       this.GetJobMatching(this.jobid);
       this.SuggestedCount = res.AryticSuggested;
@@ -911,6 +927,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.arytic = 0;
   }
   ngOnInit() {
+    this.PopulateJobDocuments(this.jobid);
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
     // this.loadMoreStat=0;
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);

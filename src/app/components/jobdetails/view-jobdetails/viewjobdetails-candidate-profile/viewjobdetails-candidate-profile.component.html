@@ -347,13 +347,28 @@
 
   <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <ul>
-      <li tooltip="Share the candidate to team members." placement="left">
-        <button class="active"  data-toggle="modal" data-target="#shareCandidate"
-        (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
-          <span class="icon-smart icon-smart-share">Notes</span>
-          <!-- <span class="counter">1</span> -->
-        </button>
-      </li>
+      <ng-container  *ngIf="
+      (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+        profile?.UserId > 0 &&
+        profile?.IsConfirmed == null;else SBlock
+    ">
+    <li tooltip="Candidate had not submitted his consent to share." placement="left">
+      <button class="active">
+        <span class="icon-smart icon-smart-share">Notes</span>
+        <!-- <span class="counter">1</span> -->
+      </button>
+    </li>
+      </ng-container>
+      <ng-template #SBlock>
+        <li tooltip="Share the candidate" placement="left">
+          <button class="active"  data-toggle="modal" data-target="#shareCandidate"
+          (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+            <span class="icon-smart icon-smart-share">Notes</span>
+            <!-- <span class="counter">1</span> -->
+          </button>
+        </li>
+      </ng-template>
+  
       <li>
         <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
           <span class="icon-smart icon-smart-notes">Notes</span>

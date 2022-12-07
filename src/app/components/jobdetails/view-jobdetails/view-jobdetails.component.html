@@ -671,7 +671,7 @@
 								</select> -->
 
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
-								bindValue="name"  name="Indusrty" [clearable]="false"
+								bindValue="name"  name="Indusrty" [clearable]="false" [searchable]="false"
 								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
 							</ng-select>
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
@@ -733,9 +733,9 @@
 				<div class="col-sm-6 right-col">
 					<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 						<fieldset class="radio-switch">
-							<legend>
+							<!-- <legend>
 								Settings
-							</legend>
+							</legend> -->
 							<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false)">
 							<label for="public">
 							 In-Active
@@ -755,38 +755,38 @@
 						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
 
 						<ng-container  *ngIf="acheck === false;else isacts">
-							<a  href="javascript:void(0);" (click)="GetaSort(true)"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);" (click)="GetaSort(true)" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-container>
 					
 						<ng-template #isacts>
-							<a  href="javascript:void(0);"  (click)="GetaSort(false)" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);"  (click)="GetaSort(false)" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-template>
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-							<a  href="javascript:void(0);" class="btn btn-outline-secondary" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Wishlisted Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-container>
 			
 					
 					<ng-template #isact>
-						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true)" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true)" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-template>
 					</div>
 					<div class="buttons">		
-						<a  href="javascript:void(0);" (click)="openCandidateUploadDialog()" class="btn btn-outline-primary light">
+						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog()" class="btn btn-outline-primary light">
 							Upload <span class="no">
 							<i class="fa fa-cloud-upload"></i></span>
 						</a>
 
-						<a  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)"  class="btn btn-outline-primary light">
+						<a tooltip="Share Job with multiple options" placement="top"  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)"  class="btn btn-outline-primary light">
 							Share Job 
 							<span class="no"><i class="fa fa-share"></i></span>
 						</a>
 
-						<a  href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)" class="btn btn-outline-primary light">
+						<a  tooltip="View job details" placement="top" href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)" class="btn btn-outline-primary light">
 							View job details 
 							<span class="no"><i class="fa fa-eye"></i></span>
 						</a>
 
-						<a  href="javascript:void(0);" (click)="OpenInviteProfileDialog()" class="btn btn-outline-primary light">
+						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog()" class="btn btn-outline-primary light">
 							Invite candidate 
 							<span class="no"><i class="fa fa-envelope"></i></span>
 						</a>
@@ -854,6 +854,14 @@
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
+							<li style="cursor: pointer;" (click)="documentManagerDialog()" tooltip="Attachments">
+								<div class="flex flex-align-center">
+									<span><i class="fa fa-paperclip"></i></span>
+									<!-- <i class="fa fa-paperclip"></i> -->
+									<span class="number">{{JobDocuments?.length || 0}}</span>
+								</div>
+								<span class="sub-title">Attachments</span>
+							</li>
 							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
 								<div class="flex flex-align-center">
 									<span class="icon icon-comments">Icon</span>
@@ -878,7 +886,7 @@
 						</ul>
 					</div>
 
-					<div class="top-navigation">
+					<div class="top-navigation" class="hidden">
 						<div class="btn-group flex flex-wrap flex-justify-end">
 							<ul class="flex flex-wrap flex-justify-end">
 								<!-- <li>
@@ -913,8 +921,8 @@
 									</button>
 									<div class="dropdown-menu">
 										
-										<a class="dropdown-item" href="javascript:void(0)" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)">View Notes</a>
-										<a class="dropdown-item" href="javascript:void(0)" (click)="documentManagerDialog()">Add Attachments</a>
+										<!-- <a class="dropdown-item" href="javascript:void(0)" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)">View Notes</a> -->
+										<!-- <a class="dropdown-item" href="javascript:void(0)" (click)="documentManagerDialog()">Add Attachments</a> -->
 										<!-- <a class="dropdown-item"  href="javascript:void(0);" (click)="openDefaultDialog()">Add Comments</a> -->
 										<!-- <a class="dropdown-item" href="javascript:void(0);" (click)="OpenAssignJob()">Assign job</a> -->
 										<!-- <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
