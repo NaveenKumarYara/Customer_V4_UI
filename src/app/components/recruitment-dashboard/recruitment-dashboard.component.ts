@@ -44,6 +44,7 @@ export class RecruitmentDashboardComponent implements OnInit {
     {name:'THECB', count:'5'},
     {name:'CPA', count:'5'}
   ]; 
+
   ngOnInit() {
     var chartMixTwo = new Chart(document.getElementById("mixed-chart-02"), {
       type: 'bar',
@@ -79,13 +80,12 @@ export class RecruitmentDashboardComponent implements OnInit {
         }
       }
     });
-
-   
   }
 
-  ngAfterViewInit() {
+  weeklyRecruiterChart() {
     var chartMixOne = new Chart(document.getElementById("mixed-chart-01"), {
       type: 'bar',
+      maintainAspectRatio: true,
       data: {
         labels: ["Forward", "Received", "Closed", "WIP", "Submit","Inverview","Closuer"],
         datasets: [
@@ -121,49 +121,15 @@ export class RecruitmentDashboardComponent implements OnInit {
     $(window).trigger('resize');
     chartMixOne.resize();
     chartMixOne.render();
+  }
+
+  ngAfterViewInit() {
+    //this.weeklyRecruiterChart();
   }
 
   weeklyChartHandle() {
     this.viewType = 'weeklyChart';
-    
-    var chartMixOne = new Chart(document.getElementById("mixed-chart-01"), {
-      type: 'bar',
-      data: {
-        labels: ["Forward", "Received", "Closed", "WIP", "Submit","Inverview","Closuer"],
-        datasets: [
-          {
-            label: "",
-            backgroundColor: ["#136482", "#47b2c4","#66dab5","#f1b84d","#de3c63"],
-            data: [10, 20 , 30 , 40 , 50, 60, 70],
-            barThickness: 0.5
-          }
-        ]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            barThickness: 10,
-            ticks: {
-              fontSize: 8
-            }
-          }]
-        },
-        legend: { 
-          display: false
-        },
-        tooltips: {
-          enabled: false,
-        },
-        title: {
-          display: false,
-          text: 'Predicted world population (millions) in 2050'
-        }
-      }
-    });
-    chartMixOne.clear();
-    $(window).trigger('resize');
-    chartMixOne.resize();
-    chartMixOne.render();
+    this.weeklyRecruiterChart();
   }
 
   searchClickHandler() {

@@ -415,7 +415,7 @@
                 </ul>
               </div>
               <ng-container *ngIf="viewType == 'weeklyChart'">
-                <canvas id="mixed-chart-01" width="800" height="300"></canvas>
+                <img src="../../../assets/images/chart-big.jpg" alt="">
               </ng-container>
               <ng-container *ngIf="viewType == 'weekly-table'">
                 <div class="grid-table-container">
@@ -579,13 +579,541 @@
               </ng-container>
             </div>
             <div id="recruiter-2" class="tab-pane fade in">
-              <h4>No Data Found</h4>
+              <div class="view-navigation">
+                <ul>
+                  <li>
+                    <div (click)="weeklyChartHandle()" class="view-grid">
+                      <span class="icon-grid">Icon</span>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" (click)="viewType = 'weekly-table'" class="view-list">
+                      <span class="icon-list">Icon</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <ng-container *ngIf="viewType == 'weeklyChart'">
+                <img src="../../../assets/images/chart-big.jpg" alt="">
+              </ng-container>
+              <ng-container *ngIf="viewType == 'weekly-table'">
+                <div class="grid-table-container">
+                  <div class="grid-row grid-th-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-th-col title-col">
+                      Client
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Forward
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Received
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Client Closed
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Internal Close
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      WIP
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Submits
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Interview
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Closure
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row grid-total-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Total
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      23
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      11
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      12
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      80
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Tesla
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      0
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      AFS
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      17
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      10
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      -
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      39
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Quinnox
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                </div>
+                <nav class="pagination-container">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                </nav>
+              </ng-container>
             </div>
             <div id="recruiter-3" class="tab-pane fade in">
-              <h4>No Data Found</h4>
+              <div class="view-navigation">
+                <ul>
+                  <li>
+                    <div (click)="weeklyChartHandle()" class="view-grid">
+                      <span class="icon-grid">Icon</span>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" (click)="viewType = 'weekly-table'" class="view-list">
+                      <span class="icon-list">Icon</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <ng-container *ngIf="viewType == 'weeklyChart'">
+                <img src="../../../assets/images/chart-big.jpg" alt="">
+              </ng-container>
+              <ng-container *ngIf="viewType == 'weekly-table'">
+                <div class="grid-table-container">
+                  <div class="grid-row grid-th-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-th-col title-col">
+                      Client
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Forward
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Received
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Client Closed
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Internal Close
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      WIP
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Submits
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Interview
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Closure
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row grid-total-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Total
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      23
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      11
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      12
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      80
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Tesla
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      0
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      AFS
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      17
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      10
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      -
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      39
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Quinnox
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                </div>
+                <nav class="pagination-container">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                </nav>
+              </ng-container>
             </div>
             <div id="recruiter-4" class="tab-pane fade in">
-              <h4>No Data Found</h4>
+              <div class="view-navigation">
+                <ul>
+                  <li>
+                    <div (click)="weeklyChartHandle()" class="view-grid">
+                      <span class="icon-grid">Icon</span>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" (click)="viewType = 'weekly-table'" class="view-list">
+                      <span class="icon-list">Icon</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <ng-container *ngIf="viewType == 'weeklyChart'">
+                <img src="../../../assets/images/chart-big.jpg" alt="">
+              </ng-container>
+              <ng-container *ngIf="viewType == 'weekly-table'">
+                <div class="grid-table-container">
+                  <div class="grid-row grid-th-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-th-col title-col">
+                      Client
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Forward
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Received
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Client Closed
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Internal Close
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      WIP
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Submits
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Interview
+                    </div>
+                    <div class="grid-col grid-th-col">
+                      Closure
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row grid-total-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Total
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      23
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      11
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      12
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      80
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Tesla
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      0
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      AFS
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      17
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      10
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      -
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      39
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                  <div class="grid-row grid-td-row flex flex-wrap flex-align-center">
+                    <div class="grid-col grid-td-col title-col">
+                      Quinnox
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      2
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      3
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                    <div class="grid-col grid-td-col">
+                      1
+                    </div>
+                  </div>
+                </div>
+                <nav class="pagination-container">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                </nav>
+              </ng-container>
             </div>
           </div>
         </div>

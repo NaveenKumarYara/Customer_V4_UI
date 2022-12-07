@@ -236,6 +236,11 @@
   cursor: pointer;
 }
 
+.icon-listing li .flex {
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .icon-listing li:first-child {
   border-left: 0;
 }
@@ -246,7 +251,7 @@
 } */
 
 .icon-listing li .number {
-  font-size: 20px;
+  font-size: 18px;
   padding-left: 10px;
   font-weight: 600;
   color: #90a4ad;
@@ -312,8 +317,8 @@
 }
 
 .icon-listing li .icon {
-  margin: 5px auto;
-  display: block;
+  margin: 5px 0;
+  display: inline-block;
 }
 
 .icon.icon-like {
@@ -418,6 +423,7 @@
   box-shadow: 4px 4px 10px rgba(158, 171, 192, .20);
   height: 100%;
   text-align: center;
+  cursor: pointer;
 }
 
 .stats-icon .stats-col:last-child {
@@ -1019,4 +1025,10 @@
   z-index: 1;
 }
 
-
+.stats-col .edit-btn {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  margin-left: 0;
+  color: #90a4ad;
+}
