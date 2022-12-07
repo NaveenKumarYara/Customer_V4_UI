@@ -59,8 +59,6 @@ h2 {
 	margin-bottom: 8px;
 }
 
-
-
 .progress {
     overflow: hidden;
     height: 20px;
@@ -297,4 +295,21 @@ h2 {
   margin: 0;
   width: 100% !important;
   max-height: inherit !important;
+}
+
+#history-activity .btn.btn-plus {
+  top: auto;
+}
+
+.btn.btn-back {
+  border: 0;
+  padding: 0;
+  margin-right: 15px;
+  background-color: transparent;
+  outline:  0 !important;
+  display: inline-block;
+}
+
+.modal-title-box  {
+  margin-bottom: 10px;
 }

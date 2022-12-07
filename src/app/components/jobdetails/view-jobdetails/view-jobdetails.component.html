@@ -657,19 +657,20 @@
 							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
 							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
-								<!-- <select class="custom-select" (change)="MySort($event.target.value)">
+								<select class="custom-select" (change)="MySort($event.target.value)">
 									<option value="All Application">All Applicants</option>
 									<option value="In-Progress">In-Progress</option>
 									<option value="Arytic Profiles">Arytic Applicants</option>
 									<option value="Invited profile">Invited profiles</option>
 									<option value="Uploaded Profile">Uploaded Profiles</option>
-									<option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
+									<!--<option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
 										|| 0}})</option>
 									<option value="In-Progress">In-Progress - ({{jobstatistics?.InProgress || 0}})</option>
 									<option value="Invited profile">Invited profiles - ({{myjobstatistics?.Invited||0}})</option>
-									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> 
-								</select>-->
+									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option>--> 
+								</select>
 
+<<<<<<< HEAD
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
 								bindValue="name"  name="Indusrty" [clearable]="false"
 								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
@@ -677,6 +678,15 @@
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
 								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
 								<span class="number" *ngIf="Industry === 'Arytic Applicants'" >{{myjobstatistics?.AryticProfiles
+=======
+								<!-- <ng-select class="custom-style" [items]="Industries" [loading]="ILoading" [addTag]="addApplicants"
+									addTagText="addApplicants" placeholder="All Applicants" bindLabel="Code" name="Indusrty"
+									[(ngModel)]="Industry" (change)="MySort($event.target.value)" #Indusrty="ngModel" required>
+								</ng-select> -->
+								<span class="number" *ngIf="sval === 'All Application'">{{jobstatistics?.Applied || 0}}</span>
+								<span class="number" *ngIf="sval === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
+								<span class="number" *ngIf="sval === 'Arytic Profiles'" >{{myjobstatistics?.AryticProfiles
+>>>>>>> 21c857f1630ca5533fe31d04250a740696c1ccc1
 									|| 0}}</span>							
 								<span class="number" *ngIf="Industry === 'Invited profiles'" >{{myjobstatistics?.Invited || 0}}</span>
 								<span class="number" *ngIf="Industry === 'Uploaded Profiles'" >{{myjobstatistics?.Uploaded || 0}}</span>
@@ -798,6 +808,9 @@
 								<div class="row stats-row flex flex-wrap flex-align-equal">
 									<div class="col-sm-3 stats-col" tooltip="Skill Fit" placement="top">
 										<div class="col-container">
+											<span class="edit-btn" data-toggle="modal" data-target="#skillFitEdit">
+												<i aria-hidden="true" class="fa fa-pencil"></i>
+											</span>
 											<span class="icon icon-skills">Icon</span>
 											<h6>Skill Fit</h6>
 											<h4>{{Percentweightage?.SkillFit}}%</h4>
@@ -805,6 +818,9 @@
 									</div>
 									<div class="col-sm-3 stats-col" tooltip="Job Fit" placement="top">
 										<div class="col-container" >
+											<span class="edit-btn" data-toggle="modal" data-target="#jobFitEdit">
+												<i aria-hidden="true" class="fa fa-pencil"></i>
+											</span>
 											<span class="icon icon-job-fit">Icon</span>
 											<h6>Job Fit</h6>
 											<h4>{{Percentweightage?.JobFit}}%</h4>
@@ -982,4 +998,50 @@
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div id="skillFitEdit" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Skill Fit</h4>
+				</div>
+				<div class="modal-body">
+					<div class="flex flex-align-center">
+						<input type="text" class="form-control" placeholder="25%">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-border" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-filled">Save</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="jobFitEdit" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Job Fit</h4>
+				</div>
+				<div class="modal-body">
+					<div class="flex flex-align-center">
+						<input type="text" class="form-control" placeholder="25%">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-border" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-filled">Save</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </main>
