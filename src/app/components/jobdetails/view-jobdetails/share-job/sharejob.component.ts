@@ -225,9 +225,9 @@ export class ShareJobComponent implements OnInit {
   add(event): void {
     console.log(event.value)
     if (event.value) {
-      if (this.validateEmail(event.value)) {
+      if (this.validateEmail(event.value.trim())) {
         
-        this.emailList.push({ value: event.value, invalid: false });
+        this.emailList.push({ value: event.value.trim(), invalid: false });
         if(this.emailList.length>1)
         {
           this.activeAny = 'Mass Mail';
@@ -249,8 +249,8 @@ export class ShareJobComponent implements OnInit {
   addcc(event): void {
     console.log(event.value)
     if (event.value) {
-      if (this.ccvalidateEmail(event.value)) {
-        this.ccemailList.push({ value: event.value, invalid: false });
+      if (this.ccvalidateEmail(event.value.trim())) {
+        this.ccemailList.push({ value: event.value.trim(), invalid: false });
       } else {
         this.ccemailList.push({ value: event.value, invalid: true });
         this.ccrulesForm.controls['CCemails'].setErrors({'incorrectEmail': true});
@@ -264,8 +264,8 @@ export class ShareJobComponent implements OnInit {
   addbcc(event): void {
     console.log(event.value)
     if (event.value) {
-      if (this.bccvalidateEmail(event.value)) {
-        this.bccemailList.push({ value: event.value, invalid: false });
+      if (this.bccvalidateEmail(event.value.trim())) {
+        this.bccemailList.push({ value: event.value.trim(), invalid: false });
       } else {
         this.bccemailList.push({ value: event.value, invalid: true });
         this.bccrulesForm.controls['BCCemails'].setErrors({'incorrectEmail': true});
