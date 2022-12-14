@@ -828,10 +828,10 @@ public addkeyRole() {
       this.TitleId = null;
       this.keyslist = [];
       this.SelectKey=undefined;  
-      this.minExperience = undefined;
-      this.maxExperience = undefined;
-      this.MaximumExperience = undefined;
-      this.MinimumExperience = undefined;
+      // this.minExperience = undefined;
+      // this.maxExperience = undefined;
+      // this.MaximumExperience = undefined;
+      // this.MinimumExperience = undefined;
       this.getDomain = new GetKeyRole();
       this.addkeyList = [];
       this.appService.keyrole = [];
