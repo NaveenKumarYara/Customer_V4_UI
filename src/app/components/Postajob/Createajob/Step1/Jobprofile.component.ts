@@ -162,7 +162,7 @@ NewCategory(val)
 
 NewJobTitle(val)
 {
-  if(this.CategoryId == "")
+  if(this.CategoryId == "" || this.CategoryId == "0")
   {
     this.CategoryId = '1';
   }
@@ -827,8 +827,7 @@ public addkeyRole() {
       this.Title = undefined;
       this.TitleId = null;
       this.keyslist = [];
-      this.SelectKey=undefined;
-      this.roleForm.resetForm();
+      this.SelectKey=undefined;  
       this.minExperience = undefined;
       this.maxExperience = undefined;
       this.MaximumExperience = undefined;
@@ -838,6 +837,7 @@ public addkeyRole() {
       this.appService.keyrole = [];
       this.appService.addkeyrole = [];
       this.GetKeyRespones('0');
+      this.roleForm.resetForm();
     }
     else
     {
