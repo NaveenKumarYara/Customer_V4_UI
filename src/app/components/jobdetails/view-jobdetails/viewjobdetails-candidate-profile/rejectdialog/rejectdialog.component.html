@@ -273,6 +273,7 @@
           mat-button
           cdkFocusInitial
           (click)="SaveNotes()"
+          [disabled]="teammemberslist.length==0&&isShown2==false"
           class="btn btn-filled btn__spinner"
           [class.spinner]="loading"
           (click)="loginstyle()"
