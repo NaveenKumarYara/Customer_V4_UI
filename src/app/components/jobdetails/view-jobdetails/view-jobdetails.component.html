@@ -1,6 +1,13 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--job-details">
-	<div class="container">
+	<a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+		<i class="fa fa-play" aria-hidden="true"></i>
+		<div class="circle" style="animation-delay: -3s"></div>
+		<div class="circle" style="animation-delay: -2s"></div>
+		<div class="circle" style="animation-delay: -1s"></div>
+		<div class="circle" style="animation-delay: 0s"></div>
+	  </a>
+	<div class="container" data-step="1" data-title="Step 1" data-intro="This tour guide will provide a quick introduction to manage a job in 9 steps." data-position='top'>
 		<div >
 			<div class="selected-job card hidden">
 				<header>
@@ -595,7 +602,7 @@
 		
 		
 		</div>
-		<div class="job-summary-card ">
+		<div class="job-summary-card " data-step="2" data-title="Step 2" data-intro="This section enables the user to manage a job and perform necessary action in application process." data-position='top'>
 			<div class="row flex flex-wrap flex-align-start">
 				<div class="col-sm-6 left-col">
 					<div class="title-container">
@@ -651,7 +658,7 @@
 
 					
 					</div>
-					<div class="praymid-container" >
+					<div class="praymid-container"  data-step="3" data-title="Step 3" data-intro=" Clicking on this section enables the user to filter the applicant profiles based on the respective sources and hiring stage." data-position='top'>
 					
 						<ul >
 							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
@@ -672,7 +679,7 @@
 
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
 								bindValue="name"  name="Indusrty" [clearable]="false" [searchable]="false"
-								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
+								[(ngModel)]="Industry"  (ngModelChange)="MySort($event);tClose()" #Indusrty="ngModel" required>
 							</ng-select>
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
 								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
@@ -683,21 +690,21 @@
 							</li>
 					
 							<ng-container *ngIf="Industry === 'In-Progress' || Industry === 'All Applicants'">
-								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus();tClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
 									<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
-								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus();tClose()">
 									<!-- <span class="tag">I Want It</span> -->
 									Shortlisted
 									<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
 								</li>
-								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus();tClose()">
 									<!-- <span class="tag">I ‘m getting it</span> -->
 									Interviewed
 									<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
 								</li>
-								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus();tClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Hired
 									<span class="number">{{jobstatistics?.Hired || 0}}</span>
@@ -732,7 +739,7 @@
 				</div>
 				<div class="col-sm-6 right-col">
 					<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-						<fieldset class="radio-switch">
+						<fieldset class="radio-switch"  data-step="4" data-title="Step 4" data-intro="Make the job active or inactive using the toggle button." data-position='top'>
 							<!-- <legend>
 								Settings
 							</legend> -->
@@ -747,7 +754,7 @@
 							</label>
 							</fieldset>									
 					</ng-container>
-					<div class="buttons">
+					<div class="buttons"  data-step="5" data-title="Step 5" data-intro="Arytic matching profiles gives the suggested matching profiles for the job and the user can view his wishlisted profiles using check wishlisted profiles." data-position='top'>
 						<!-- <ng-template #isactive>
 							<button id="Active" class="btn btn-filled" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
@@ -755,11 +762,11 @@
 						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
 
 						<ng-container  *ngIf="acheck === false;else isacts">
-							<a  href="javascript:void(0);" (click)="GetaSort(true)" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);" (click)="GetaSort(true);tClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-container>
 					
 						<ng-template #isacts>
-							<a  href="javascript:void(0);"  (click)="GetaSort(false)" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);"  (click)="GetaSort(false);tClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-template>
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Wishlisted Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
@@ -767,32 +774,32 @@
 			
 					
 					<ng-template #isact>
-						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true)" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);tClose()" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-template>
 					</div>
-					<div class="buttons">		
-						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog()" class="btn btn-outline-primary light">
+					<div class="buttons" data-step="6" data-title="Step 6" data-intro="This section enables the user to perform the actions like upload a profile, share a job to different sources, view job details and invite candidates." data-position='top'>		
+						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog();tClose()" class="btn btn-outline-primary light">
 							Upload <span class="no">
 							<i class="fa fa-cloud-upload"></i></span>
 						</a>
 
-						<a tooltip="Share Job with multiple options" placement="top"  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0)"  class="btn btn-outline-primary light">
+						<a tooltip="Share Job with multiple options" placement="top"  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0);tClose()"  class="btn btn-outline-primary light">
 							Share Job 
 							<span class="no"><i class="fa fa-share"></i></span>
 						</a>
 
-						<a  tooltip="View job details" placement="top" href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)" class="btn btn-outline-primary light">
+						<a  tooltip="View job details" placement="top" href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);tClose()" class="btn btn-outline-primary light">
 							View job details 
 							<span class="no"><i class="fa fa-eye"></i></span>
 						</a>
 
-						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog()" class="btn btn-outline-primary light">
+						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();tClose()" class="btn btn-outline-primary light">
 							Invite candidate 
 							<span class="no"><i class="fa fa-envelope"></i></span>
 						</a>
 					</div>
 					
-					<div class="stats-icon">
+					<div class="stats-icon" data-step="7" data-title="Step 7" data-intro="This section enables the user the selected criteria required in the candidates to apply this job." data-position='top'>
 						<div class="row stats-rows">
 							<div class="col-sm-12 stats-cols">
 								<div class="row stats-row flex flex-wrap flex-align-equal">
@@ -841,9 +848,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="icon-listing">
+					<div class="icon-listing"  data-step="8" data-title="Step 8" data-intro="This section enables the user to view/add the notes, documents, comments, likes and dislikes." data-position='top'>
 						<ul>
-							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId)"  tooltip="Notes">
+							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId);tClose()"  tooltip="Notes">
 								<div class="flex flex-align-center">
 									<span class="icon icon-notes">Icon</span>
 									<span class="number">{{myjobstatistics?.NotesCount}}</span>
@@ -854,7 +861,7 @@
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
-							<li style="cursor: pointer;" (click)="documentManagerDialog()" tooltip="Attachments">
+							<li style="cursor: pointer;" (click)="documentManagerDialog();tClose()" tooltip="Attachments">
 								<div class="flex flex-align-center">
 									<span><i class="fa fa-paperclip"></i></span>
 									<!-- <i class="fa fa-paperclip"></i> -->
@@ -862,7 +869,7 @@
 								</div>
 								<span class="sub-title">Attachments</span>
 							</li>
-							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
+							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);tClose()">
 								<div class="flex flex-align-center">
 									<span class="icon icon-comments">Icon</span>
 									<span class="number">{{myjobstatistics?.Reviews}}</span>
@@ -960,19 +967,21 @@
 		</div>
 
 
-			<div>
-		<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
-		[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
-			</div>
 
-		<div class="row">
+
+		<div class="row" data-step="9" data-title="Step 9" data-intro="This section enables the user to search the profiles and apply filters, sort by matching." data-position='top'>
+			<div >
+				<app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick"
+				[Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
+					</div>
+			
 			<div *ngIf="showDetailadvancesearch">
 				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
 			</div>
 		</div>
 	
 
-		<div class="row">
+		<div class="row" data-step="10" data-title="Step 10" data-intro="This section enables the user to view the list of smart cards of the candidate profiles." data-position='top'>
 
 			<div>
 				<div class="tab-content">
@@ -984,7 +993,7 @@
 							[mode]="mode" strokeWidth="3" [diameter]="50">
 						</mat-progress-spinner>
 						<div class="col-md-12" *ngIf="loadMore" id="LoadMore">
-							<div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid)">
+							<div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid);tClose()">
 								Load More
 							</div>
 						</div>

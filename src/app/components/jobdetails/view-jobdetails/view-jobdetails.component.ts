@@ -34,6 +34,7 @@ import { SendnotificationdialogNcomponentComponent } from './viewjobdetails-cand
 import { DocumentManagerComponent } from '../../Postajob/document-manager/document-manager.component';
 import { AshareJobComponentComponent } from './Assign-Job/ashare-job-component/ashare-job-component.component';
 import { ApiService } from '../../../shared/services';
+import * as introJs from 'intro.js/intro.js';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -53,6 +54,7 @@ export class ViewJobdetailsComponent implements OnInit {
   acheck: boolean =false;
   sval:any = 'All Applicants';
   JobDocuments:any=[];
+  introJS = introJs();
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
@@ -242,6 +244,17 @@ export class ViewJobdetailsComponent implements OnInit {
       this.JobDocuments = r;
     });
   
+  }
+
+  
+  start()
+  {
+    this.introJS.start();
+  }
+
+  tClose()
+  {
+    this.introJS.exit();
   }
 
 
@@ -1008,6 +1021,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
 
   getParentApi(): ParentComponentApi {
+    this.tClose();
     return {
       callfilterMethod: (exp, location, domain) => {
         if (this.statusid === 4) {
