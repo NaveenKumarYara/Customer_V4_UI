@@ -1,6 +1,6 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--job-details">
-	<a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+	<a id="toTop" (click)="startA()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
 		<i class="fa fa-play" aria-hidden="true"></i>
 		<div class="circle" style="animation-delay: -3s"></div>
 		<div class="circle" style="animation-delay: -2s"></div>
@@ -607,14 +607,14 @@
 				<div class="col-sm-6 left-col">
 					<div class="title-container">
 						<div class="title-top-container flex flex-align-start">
-							<a href="javascript:void(0)" (click)="backClicked()">
+							<a href="javascript:void(0)" (click)="backClicked();ttClose()">
 								<svg fill="#448AFA" xmlns="http://www.w3.org/2000/svg" width="21.1" height="16.7">
 									<path class="st0"
 										d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
 									<path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
 								</svg>
 							</a> 
-							<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
+							<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus }}</span>
 							<span class="edit-btn" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
@@ -679,7 +679,7 @@
 
 								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
 								bindValue="name"  name="Indusrty" [clearable]="false" [searchable]="false"
-								[(ngModel)]="Industry"  (ngModelChange)="MySort($event);tClose()" #Indusrty="ngModel" required>
+								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
 							</ng-select>
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
 								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
@@ -690,21 +690,21 @@
 							</li>
 					
 							<ng-container *ngIf="Industry === 'In-Progress' || Industry === 'All Applicants'">
-								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus();tClose()">
+								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus();ttClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
 									<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
-								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus();tClose()">
+								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus();ttClose()">
 									<!-- <span class="tag">I Want It</span> -->
 									Shortlisted
 									<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
 								</li>
-								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus();tClose()">
+								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus();ttClose()">
 									<!-- <span class="tag">I ‘m getting it</span> -->
 									Interviewed
 									<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
 								</li>
-								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus();tClose()">
+								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus();ttClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Hired
 									<span class="number">{{jobstatistics?.Hired || 0}}</span>
@@ -743,12 +743,12 @@
 							<!-- <legend>
 								Settings
 							</legend> -->
-							<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false)">
+							<input type="radio"   [checked]="jobStatus === 'InActive'" name="lol" id="public" (click)="changeJobStatus(jobdetailsbasicinfo,false);ttClose()">
 							<label for="public">
 							 In-Active
 							</label>
 							
-							<input type="radio"   name="lol" [checked]="jobStatus !== 'InActive'" id="private"  (click)="changeJobStatus(jobdetailsbasicinfo,true)">
+							<input type="radio"   name="lol" [checked]="jobStatus !== 'InActive'" id="private"  (click)="changeJobStatus(jobdetailsbasicinfo,true);ttClose()">
 							<label for="private">
 							 Active
 							</label>
@@ -762,11 +762,11 @@
 						<!-- <a  href="javascript:void(0);" (click)="updateappliedstatus()" class="btn btn-outline-secondary">All Application <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a> -->
 
 						<ng-container  *ngIf="acheck === false;else isacts">
-							<a  href="javascript:void(0);" (click)="GetaSort(true);tClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);" (click)="GetaSort(true);ttClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-container>
 					
 						<ng-template #isacts>
-							<a  href="javascript:void(0);"  (click)="GetaSort(false);tClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<a  href="javascript:void(0);"  (click)="GetaSort(false);ttClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-template>
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Wishlisted Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
@@ -774,26 +774,26 @@
 			
 					
 					<ng-template #isact>
-						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);tClose()" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);ttClose()" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-template>
 					</div>
 					<div class="buttons" data-step="6" data-title="Step 6" data-intro="This section enables the user to perform the actions like upload a profile, share a job to different sources, view job details and invite candidates." data-position='top'>		
-						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog();tClose()" class="btn btn-outline-primary light">
+						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog();ttClose()" class="btn btn-outline-primary light">
 							Upload <span class="no">
 							<i class="fa fa-cloud-upload"></i></span>
 						</a>
 
-						<a tooltip="Share Job with multiple options" placement="top"  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0);tClose()"  class="btn btn-outline-primary light">
+						<a tooltip="Share Job with multiple options" placement="top"  href="javascript:void(0);" (click)="OpenShareJobDialog(jobdetailsbasicinfo.JobId,0);ttClose()"  class="btn btn-outline-primary light">
 							Share Job 
 							<span class="no"><i class="fa fa-share"></i></span>
 						</a>
 
-						<a  tooltip="View job details" placement="top" href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);tClose()" class="btn btn-outline-primary light">
+						<a  tooltip="View job details" placement="top" href="javascript:void(0);" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()" class="btn btn-outline-primary light">
 							View job details 
 							<span class="no"><i class="fa fa-eye"></i></span>
 						</a>
 
-						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();tClose()" class="btn btn-outline-primary light">
+						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();ttClose()" class="btn btn-outline-primary light">
 							Invite candidate 
 							<span class="no"><i class="fa fa-envelope"></i></span>
 						</a>
@@ -850,7 +850,7 @@
 					</div>
 					<div class="icon-listing"  data-step="8" data-title="Step 8" data-intro="This section enables the user to view/add the notes, documents, comments, likes and dislikes." data-position='top'>
 						<ul>
-							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId);tClose()"  tooltip="Notes">
+							<li class="active" style="cursor: pointer;" (click)="OpenJobDialog(jobdetailsbasicinfo.JobId);ttClose()"  tooltip="Notes">
 								<div class="flex flex-align-center">
 									<span class="icon icon-notes">Icon</span>
 									<span class="number">{{myjobstatistics?.NotesCount}}</span>
@@ -861,7 +861,7 @@
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
-							<li style="cursor: pointer;" (click)="documentManagerDialog();tClose()" tooltip="Attachments">
+							<li style="cursor: pointer;" (click)="documentManagerDialog();ttClose()" tooltip="Attachments">
 								<div class="flex flex-align-center">
 									<span><i class="fa fa-paperclip"></i></span>
 									<!-- <i class="fa fa-paperclip"></i> -->
@@ -869,7 +869,7 @@
 								</div>
 								<span class="sub-title">Attachments</span>
 							</li>
-							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);tClose()">
+							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								<div class="flex flex-align-center">
 									<span class="icon icon-comments">Icon</span>
 									<span class="number">{{myjobstatistics?.Reviews}}</span>
@@ -993,7 +993,7 @@
 							[mode]="mode" strokeWidth="3" [diameter]="50">
 						</mat-progress-spinner>
 						<div class="col-md-12" *ngIf="loadMore" id="LoadMore">
-							<div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid);tClose()">
+							<div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid);ttClose()">
 								Load More
 							</div>
 						</div>

@@ -55,6 +55,7 @@ export class ViewJobdetailsComponent implements OnInit {
   sval:any = 'All Applicants';
   JobDocuments:any=[];
   introJS = introJs();
+  //introJS = introJs();
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount: any;
@@ -240,19 +241,18 @@ export class ViewJobdetailsComponent implements OnInit {
     this._service.GetService('ProfileAPI/api/GetJobDocuments?jobId=', jobId)
    .subscribe(
      r => {
-      debugger
       this.JobDocuments = r;
     });
   
   }
 
   
-  start()
+  startA()
   {
     this.introJS.start();
   }
 
-  tClose()
+  ttClose()
   {
     this.introJS.exit();
   }
@@ -688,6 +688,7 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   MySort(val)
   {
+    this.ttClose();
     this.Industry = val;
     //this.checkR();
     this.sval = val;
@@ -1021,7 +1022,6 @@ export class ViewJobdetailsComponent implements OnInit {
 
 
   getParentApi(): ParentComponentApi {
-    this.tClose();
     return {
       callfilterMethod: (exp, location, domain) => {
         if (this.statusid === 4) {
