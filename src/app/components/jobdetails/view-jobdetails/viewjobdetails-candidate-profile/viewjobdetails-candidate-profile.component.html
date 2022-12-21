@@ -382,11 +382,24 @@
         </button>
       </li> -->
       <!--Old Code-->
-      <li>
-        <button tooltip="Documents" placement="left" (click)="callSkills(profile?.ProfileId, 6)">
+      <ng-container *ngIf="
+      (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+        profile?.UserId > 0 &&
+        profile?.IsConfirmed == null;
+      else firtBlck
+    ">
+      <li 
+    >
+        <button tooltip="Documents cannot visible until candidate approval" placement="left" >
           <span class="icon-smart icon-smart-document">Icon</span>
         </button>
       </li>
+    </ng-container>
+    <ng-template #firtBlck>
+      <button tooltip="Documents" placement="left" (click)="callSkills(profile?.ProfileId, 6)">
+        <span class="icon-smart icon-smart-document">Icon</span>
+      </button>
+ </ng-template>
 
        <li *ngIf="profile?.UserId === 0">
         <button tooltip="Edit Profile" placement="left" (click)="callSkills(profile?.ProfileId, 7)">
@@ -548,16 +561,17 @@
           <ng-template #Block>
             <img  *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
             <img *ngIf="!profileImage"  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
+            <ng-container *ngIf="profile?.VideoProfile != null && profileFlipVideo?.VideoSizzle != null">
+              <a href="javascript:void(0)"
+                (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
+                *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
+                <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
+                  width="25" />
+              </a>
+            </ng-container>
           </ng-template>
              
-          <ng-container *ngIf="profile?.VideoProfile != null && profileFlipVideo?.VideoSizzle != null">
-            <a href="javascript:void(0)"
-              (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
-              *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
-              <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
-                width="25" />
-            </a>
-          </ng-container>
+         
         </figure>
         <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
@@ -689,35 +703,68 @@
             </div>
             <!-- Email-->
             <ul class="smart-list-icons">
-              <li>
-                <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
-                  <i class="fa fa-star"></i>
-                </button> -->
-                <button class="btn" 
-                  tooltip="{{ profile?.Email }}" 
-                  placement="top"
-                  *ngIf="profile.Email.substring(0, 7) != 'noemail'"
-                  (click)="
-                  OpenSendEmailDialog(
-                    profile?.NoEmail,
-                    profile?.Email,
-                    profile?.FirstName,
-                    profile?.LastName,
-                    profile?.JobResponseId,
-                    profile?.ProfileId,
-                    profile?.ResponseStatusId,
-                    profile?.CCPID,
-                    profile?.UserId
-                  )"
-                >
-                  <span class="icon-smart icon-smart-email">Icon</span>
-                </button>
-              </li>
-              <li *ngIf="profile?.MobilePhone != null; else false">
+           
+              <ng-container *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+              profile?.UserId > 0 &&
+              profile?.IsConfirmed == null;
+              else firtBlck
+            "> 
+            <li>
+              <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                <i class="fa fa-star"></i>
+              </button> -->
+              <button class="btn" 
+                tooltip="Email can visible after candidate's approval" 
+                placement="top"
+              >
+                <span class="icon-smart icon-smart-email">Icon</span>
+              </button>
+            </li>
+            <li>
+              <button class="btn" tooltip="Mobile number can visible after candidate's approval" placement="top">
+                <a><span class="icon-smart icon-smart-phone">Icon</span></a>
+              </button>
+            </li>
+      
+          </ng-container>
+          <ng-template #firtBlck>
+            <li>
+              <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                <i class="fa fa-star"></i>
+              </button> -->
+              <button class="btn" 
+                tooltip="{{ profile?.Email }}" 
+                placement="top"
+                *ngIf="profile.Email.substring(0, 7) != 'noemail'"
+                (click)="
+                OpenSendEmailDialog(
+                  profile?.NoEmail,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.ResponseStatusId,
+                  profile?.CCPID,
+                  profile?.UserId
+                )"
+              >
+                <span class="icon-smart icon-smart-email">Icon</span>
+              </button>
+            </li>
+            <li *ngIf="profile?.MobilePhone != null; else false">
+              <button class="btn" tooltip="{{ profile.MobilePhone }}" placement="top">
+                <a href="tel:{{ profile.MobilePhone }}"><span class="icon-smart icon-smart-phone">Icon</span></a>
+              </button>
+            </li>
+            
+       </ng-template>
+           
+              <!-- <li *ngIf="profile?.MobilePhone != null; else false">
                 <button class="btn" tooltip="{{ profile.MobilePhone }}" placement="top">
                   <a href="tel:{{ profile.MobilePhone }}"><span class="icon-smart icon-smart-phone">Icon</span></a>
                 </button>
-              </li>
+              </li> -->
               <li class="certificate-list">
                 <button class="btn" tooltip="Certificate" placement="top" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
                   <span class="icon-smart icon-smart-certificate">Icon</span>

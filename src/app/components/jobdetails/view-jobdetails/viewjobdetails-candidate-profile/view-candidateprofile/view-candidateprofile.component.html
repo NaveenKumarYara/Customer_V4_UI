@@ -6,7 +6,11 @@
 		<div class="tab-pane fade in active summary-view" id="summaryView">
 			<div class="style1 revamp__style__01">
 				<div class="revmap__profile__top flex flex-wrap flex-align-end">
-					<div class="image__container">
+					<div class="image__container" *ngIf="showMaskedData">
+						<img alt="..." class="media-object media-img-circle"
+							src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}" />
+					</div>
+					<div class="image__container" *ngIf="!showMaskedData">
 						<img alt="..." class="media-object media-img-circle"
 							src="{{ details?.profileVal?.ProfilePic }}" />
 					</div>
@@ -71,7 +75,7 @@
 							<div class="col-sm-5 buttons__col">
 								<div class="row">
 									<button class="btn btn-filled btn-download-resume"
-										(click)="DownloadResume(details?.profileVal?.FirstName)">
+										(click)="DownloadResume(details?.profileVal?.FirstName)" *ngIf="!showMaskedData">
 										Download Resume
 									</button>
 								</div>
@@ -124,8 +128,12 @@
 							</li>
 							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to
 								Provide</li>
-							<li class="mobile">
-								<a href='tel:{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}'  target="_blank">{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}</a>
+							<li class="mobile" *ngIf="showMaskedData">
+								<a href="javascript:void(0)">{{ details?.profileVal?.MobilePhone.charAt(0) || "Yet to Provide" }} <img
+									src="../../../../../assets/images/c_name_hide.png" /></a>
+							</li>
+							<li class="mobile" *ngIf="!showMaskedData">
+								<a href='tel:{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}'  target="_blank">{{ details?.profileVal?.MobilePhone || "Yet to Provide" }} </a>
 							</li>
 							<li class="location">
 								<ng-container *ngIf="details?.profileVal?.CityName != null">
@@ -237,9 +245,10 @@
 
 							<div class="download-resume pull-right">
 								<button class="btn btn-filled btn-download-resume"
-									(click)="DownloadResume(details?.profileVal?.FirstName)">
+									(click)="DownloadResume(details?.profileVal?.FirstName)" *ngIf="!showMaskedData">
 									<i class="fa fa-file-text" aria-hidden="true"></i> Download Resume
 								</button>
+								
 								<button class="btn btn-filled btn-detailed-view"
 									(click)="OpenCandidate(details?.ProfileId, details?.profileVal?.UserId)">
 									Detailed View <i class="fa fa-chevron-right" aria-hidden="true"></i>

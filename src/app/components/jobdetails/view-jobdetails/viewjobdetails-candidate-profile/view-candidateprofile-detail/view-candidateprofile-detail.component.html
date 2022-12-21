@@ -40,7 +40,10 @@
 <div class="public__profile__detail">
   <div class="revmap__profile__top flex flex-wrap flex-align-end">
     <div class="container">
-      <div class="image__container">
+      <div class="image__container" *ngIf="showMaskedData">
+        <img alt="..." class="media-object media-img-circle" src="https://ui-avatars.com/api/?name={{ details?.profileVal?.FirstName }}+{{ details?.profileVal?.LastName }}">
+      </div>
+      <div class="image__container" *ngIf="!showMaskedData">
         <img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}">
       </div>
       <div class="profile__info__box">
@@ -175,7 +178,9 @@
                 src="../../../../../assets/images/c_name_hide.png" /></div>
             <div *ngIf="!showMaskedData">{{ details?.profileVal?.Email }}</div>
           </li>
-          <li class="mobile">{{details?.profileVal?.MobilePhone || "Yet to Provide" }}</li>
+          <li class="mobile" *ngIf="showMaskedData">{{details?.profileVal?.MobilePhone .charAt(0) }}<img
+            src="../../../../../assets/images/c_name_hide.png" /></li>
+          <li class="mobile" *ngIf="!showMaskedData">{{details?.profileVal?.MobilePhone || "Yet to Provide" }}</li>
           <li class="location">
             <ng-container>
               {{details?.profileVal?.CityName || "Location yet to provide"}}.
