@@ -883,6 +883,7 @@ export class ViewJobdetailsComponent implements OnInit {
   //   });
   // }
   updateStatistics(value: any) {
+    this.ttClose();
     this.populateJobsStaticInfo(this.customerId, this.jobid);
     // if(this.statusid==)
     this.CallList(this.statusid);
