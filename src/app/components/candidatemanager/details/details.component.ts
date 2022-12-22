@@ -33,6 +33,7 @@ import { title } from "process";
 const html2canvas: any = _html2canvas;
 import * as introJs from 'intro.js/intro.js';
 import { OnDestroy } from '@angular/core/public_api';
+import { EditprofileCmComponent } from '../../jobdetails/view-jobdetails/editprofile-cm/editprofile-cm.component';
 
 @Component({
 	selector: 'cm-details',
@@ -1714,6 +1715,26 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.sortBY = Sort;
 	}
 	this.getCandidates();
+   }
+
+   OpenEditProfile(ProfileId)
+   {
+	debugger
+	const dialogRef = this.dialog.open(EditprofileCmComponent,
+		{
+		  width: '65vw',
+		  position: { right: '0px' },
+		  height: '100vh',
+		  data: {
+			ProfileId: ProfileId
+		  },
+		  panelClass:'upload__resume__modal'
+		}
+	  );
+  
+	  dialogRef.afterClosed().subscribe(result => {
+		console.log('Dialog result: ${result}');
+	  });
    }
 
 

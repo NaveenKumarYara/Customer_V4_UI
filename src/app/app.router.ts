@@ -133,6 +133,7 @@ import { CustomerDashboardComponent } from "./components/customer-dashboard/cust
 import { CustomsearchComponent } from "./components/customsearch/customsearch.component";
 import { EditprofileComponent } from "./components/jobdetails/view-jobdetails/edit-profiles/editprofile/editprofile.component";
 import { RecruitmentDashboardComponent } from "./components/recruitment-dashboard/recruitment-dashboard.component";
+import { EditprofileCmComponent } from "./components/jobdetails/view-jobdetails/editprofile-cm/editprofile-cm.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -250,6 +251,7 @@ const appRoutes: Routes = [
   { path: "app-viewjobdetailsmodel", component: ViewjobdetailsmodelComponent },
   { path: "app-UploadProfiles", component: UploadProfilesComponent },
   { path: "app-editprofile", component: EditprofileComponent },
+  { path: "app-cmeditprofile", component: EditprofileCmComponent },
   { path: "app-viewjobdetails-candidate-profile", component: ViewjobdetailsCandidateProfileComponent },
   { path: "app-view-candidateprofile-detail", component: ViewCandidateprofileDetailComponent },
   // dialog

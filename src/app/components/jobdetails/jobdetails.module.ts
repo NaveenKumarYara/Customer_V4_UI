@@ -79,6 +79,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TagInputModule } from 'ngx-chips';
 import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofile/editprofile.component';
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
+import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -126,7 +127,7 @@ setTheme('bs3');
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, DefaultModelsComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
-                  UploadProfilesComponent,ScheduleInterviewComponent, EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent, AshareJobComponentComponent],
+                  UploadProfilesComponent,ScheduleInterviewComponent,EditprofileCmComponent,EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent, AshareJobComponentComponent],
   entryComponents: [
     ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent,AshareJobComponentComponent]
 })

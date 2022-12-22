@@ -570,6 +570,11 @@
 																		<span  class="icon-smart icon-smart-notes">Notes</span>
 																		</button>
 																	</li>
+																	<li *ngIf="candidate?.UserId === 0">
+																		<button tooltip="Edit Profile" placement="left" (click)="OpenEditProfile(candidate?.ProfileId)">
+																		  <span class="fa fa-pencil"></span>
+																		</button>
+																	  </li> 
 																	<li >
 																		<button  placement="left" tooltip="Documents">
 																		<span  class="icon-smart icon-smart-document">Icon</span>
