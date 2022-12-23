@@ -378,11 +378,17 @@
   .smart-card .star-rating .star {
       padding: 0 !important;
   }
+  .smart-card .card-profile-image-container h1.title a {
+    width: 56%;
+  }
 }
 
 @media only screen and (max-width:1170px) {
   .smart-card .candidate-status a {
     width: 64px;
+  }
+  .smart-card .card-profile-image-container h1.title a {
+    width: 66%;
   }
 }
 

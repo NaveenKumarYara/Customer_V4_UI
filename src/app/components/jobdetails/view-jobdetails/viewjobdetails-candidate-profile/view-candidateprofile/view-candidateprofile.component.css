@@ -4311,10 +4311,10 @@ h5.meta.meta-light {
 	transform: rotate(-5deg);
   }
 
-  .show-less {
-    height: 3.5rem;
-    overflow: hidden;
-    /* padding: 1rem; */
+.show-less {
+	height: 3.5rem;
+	overflow: hidden;
+	/* padding: 1rem; */
 }
 
 .show-less.text-nowrap {
@@ -5132,6 +5132,8 @@ font-size: 11px;
 	.culture-tile-row { margin:0 -7px; }
 	.culture-tile-row .col-xs-4 { padding:0 7px; margin:14px 0 0; }
 	.revmap__profile__top .profile__info__box .buttons__col { flex-direction:row; align-items: center; justify-content:flex-start; }
+
+	.revmap__profile__top .top__listing .textwrap { width: 100%; white-space: normal; }
 }
 
 @media only screen and (max-width:767px) {
