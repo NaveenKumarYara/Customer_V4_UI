@@ -314,11 +314,23 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
   PopulateSort(sort)
   { 
       this.spinner.show();
-      this.newSortBy = sort;
+     
       this.nsortBy=sort;
       this.isfiltered=0;
-      localStorage.setItem('NsortBy', JSON.stringify(sort));
-      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+      if(sort > 3)
+      {
+        this.status = this.nsortBy;
+        this.newSortBy = 0;
+        localStorage.setItem('NsortBy', JSON.stringify(sort));
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,0);     
+      }
+      else
+      {
+        this.newSortBy = sort;
+        localStorage.setItem('NsortBy', JSON.stringify(sort));
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+      }
+    
   }
 
   UpdatePopulateSort(filter)

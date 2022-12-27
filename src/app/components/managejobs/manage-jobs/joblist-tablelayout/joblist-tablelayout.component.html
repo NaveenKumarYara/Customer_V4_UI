@@ -16,10 +16,14 @@
             <h5 class="client" *ngIf="job?.ClientName !=null">
                 {{job?.ClientName !=null ? job?.ClientName : '' }}
             </h5>
-            <h5 *ngIf="job?.Departments != null" class="ml-1"
+            <!-- <h5 *ngIf="job?.Departments != null" class="ml-1"
                 [ngClass]="{'jobdepartments': job?.Departments  != null ? job?.Departments : ''}"
                 title=" {{job?.Departments  != null ? job?.Departments : ''}}">
-                {{job?.Departments != null ? job?.Departments : ''}}</h5>
+                {{job?.Departments != null ? job?.Departments : ''}}</h5> -->
+                <div class="ribbon2" *ngIf="job?.Departments === 'Low'"><i class="fa fa-arrow-down" aria-hidden="true"></i> Low</div> 
+                <div class="ribbon3"  *ngIf="job?.Departments === 'High'"><i class="fa fa-arrow-up" aria-hidden="true"></i> High</div> 
+                 <div class="ribbon"  *ngIf="job?.Departments === 'Medium'"><i class="fa fa-arrows-h" aria-hidden="true"></i> Medium</div> 
+  
             <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="19"
                 height="19.3">
                 <path class="st0"

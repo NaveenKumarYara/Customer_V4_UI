@@ -35,9 +35,12 @@
                     <label class="show-count mt-15">Sort By</label>
                     <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
                         <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Arytic JobId</option>
-                        <option value="1" [selected]="nsortBy=== '1' || nsortBy=== 1">Older</option>
-                        <option value="2" [selected]="nsortBy=== '2' || nsortBy=== 2">Most Viewed</option>
-                        <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
+                        <option value="1" [selected]="nsortBy === '1' || nsortBy === 1">Older</option>
+                        <option value="2" [selected]="nsortBy === '2' || nsortBy === 2">Most Viewed</option>
+                        <option value="3" [selected]="nsortBy === '3' || nsortBy === 3">Most Applied</option>
+                        <option value="4" [selected]="nsortBy === '4' || nsortBy === 4">Low</option>
+                        <option value="5" [selected]="nsortBy === '5' || nsortBy === 5">Medium</option>
+                        <option value="6" [selected]="nsortBy === '6' || nsortBy === 6">High</option>
                     </select>
                 </div>
                 <div class="show-jobs pull-right" data-step="2" data-title="Step 2" data-intro="This filter enables you to view all the active jobs, inactive jobs and closed jobs.
