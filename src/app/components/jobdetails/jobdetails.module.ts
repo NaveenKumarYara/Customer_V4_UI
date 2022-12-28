@@ -80,6 +80,7 @@ import { TagInputModule } from 'ngx-chips';
 import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofile/editprofile.component';
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -118,6 +119,7 @@ setTheme('bs3');
     FlickityModule, ProgressBarModule,
     NgCircleProgressModule.forRoot({}),
     TooltipModule,
+    NgxSliderModule,
     CKEditorModule,
     NgMultiSelectDropDownModule,
     // ,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
@@ -16,6 +16,7 @@ import { JobdetailsProfile } from '../models/jobdetailsprofile';
 import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
+import { Options, LabelType  } from '@angular-slider/ngx-slider';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { WishlistCount } from '../models/WishlistCount';
@@ -35,6 +36,7 @@ import { DocumentManagerComponent } from '../../Postajob/document-manager/docume
 import { AshareJobComponentComponent } from './Assign-Job/ashare-job-component/ashare-job-component.component';
 import { ApiService } from '../../../shared/services';
 import * as introJs from 'intro.js/intro.js';
+import { MatchingWeightage } from '../../Postajob/Createajob/Step3/step3.component';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -52,9 +54,24 @@ export class ViewJobdetailsComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   acheck: boolean =false;
+  @ViewChild('mmdivClick') mmdivClick: ElementRef;
   sval:any = 'All Applicants';
   JobDocuments:any=[];
+  TotalExperience:boolean=true;
+  Title:boolean=true;
+  Domain:boolean=true;
   introJS = introJs();
+  minValue: number = 60;
+  maxValue: number = 100;
+  JobFitval: number = 40;
+  options: Options = {
+    ceil: 100,
+    floor: 0,
+    step: 5,
+    showSelectionBar: true,
+    showTicks: true
+  };
+  match = new MatchingWeightage();
   //introJS = introJs();
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
@@ -166,6 +183,36 @@ export class ViewJobdetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ${result}');
     });
+  }
+
+
+  SaveMatching()
+  {
+    this.JobFitval = Math.round(this.maxValue - this.minValue)
+    this.match.jobFit = this.JobFitval;
+    this.match.skillFit = this.minValue;
+    this.match.domain = this.Domain;
+    this.match.role = this.Title;
+    this.match.totalExp = this.TotalExperience;
+    this.match.jobId=this.jobid;
+    this.match.userId = this.customer.UserId;
+    this.appService.postjobMatching(this.match).subscribe(data => {
+      if (data>=0) {
+            this.match = new MatchingWeightage();
+            this.GetJobMatching(this.jobid);
+            this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+            this.mmdivClick.nativeElement.click();
+            // $('#skillFitEdit').modal('hide');
+      }
+      })
+
+  }
+
+
+  onValueChange(event: any)
+  {
+    this.minValue = event;
+    this.JobFitval = this.maxValue-this.minValue;
   }
 
   OpenInviteProfileDialog() {
@@ -783,11 +830,11 @@ export class ViewJobdetailsComponent implements OnInit {
   {
     this.appService.GetJobMatching(JId).subscribe(data => {
       if (data != "No records found") {
-        //  this.minValue = data.SkillFit;
-        //  this.JobFitval = data.JobFit;
-        //  this.Domain  = data.JobDomain;
-        //  this.TotalExperience = data.JobTotalExp;
-        //  this.Title = data.JobRole;
+         this.minValue = data.SkillFit;
+         this.JobFitval = data.JobFit;
+         this.Domain  = data.JobDomain;
+         this.TotalExperience = data.JobTotalExp;
+         //this.Title = data.JobRole;
 
         this.Percentweightage = data;
 
