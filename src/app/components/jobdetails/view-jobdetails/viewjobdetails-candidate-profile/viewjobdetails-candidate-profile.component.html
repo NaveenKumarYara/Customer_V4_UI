@@ -358,6 +358,12 @@
         <!-- <span class="counter">1</span> -->
       </button>
     </li>
+    <li tooltip="Documents cannot visible until candidate approval" placement="left"
+    >
+        <button  >
+          <span class="icon-smart icon-smart-document">Icon</span>
+        </button>
+      </li>
       </ng-container>
       <ng-template #SBlock>
         <li tooltip="Share the candidate" placement="left">
@@ -367,6 +373,12 @@
             <!-- <span class="counter">1</span> -->
           </button>
         </li>
+        <li tooltip="Documents" placement="left">
+          <button  (click)="callSkills(profile?.ProfileId, 6)">
+            <span class="icon-smart icon-smart-document">Icon</span>
+          </button>
+        </li>
+   
       </ng-template>
   
       <li>
@@ -382,24 +394,8 @@
         </button>
       </li> -->
       <!--Old Code-->
-      <ng-container *ngIf="
-      (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-        profile?.UserId > 0 &&
-        profile?.IsConfirmed == null;
-      else firtBlck
-    ">
-      <li 
-    >
-        <button tooltip="Documents cannot visible until candidate approval" placement="left" >
-          <span class="icon-smart icon-smart-document">Icon</span>
-        </button>
-      </li>
-    </ng-container>
-    <ng-template #firtBlck>
-      <button tooltip="Documents" placement="left" (click)="callSkills(profile?.ProfileId, 6)">
-        <span class="icon-smart icon-smart-document">Icon</span>
-      </button>
- </ng-template>
+
+
 
        <li *ngIf="profile?.UserId === 0">
         <button tooltip="Edit Profile" placement="left" (click)="callSkills(profile?.ProfileId, 7)">
