@@ -521,7 +521,6 @@ clickme(val) {
 
         res.then(() => {
           setTimeout(function () {
-            debugger
             this.router.navigate(["/app-manage-jobs/app-manage-load-joblist/1"]);
             this.appService.resetJob();
           }, 3000);
@@ -531,7 +530,6 @@ clickme(val) {
       if (this.JobIds.length == 0 || this.JobIds == undefined) {
         if (localStorage.getItem("EditMode") != null)
         {
-      debugger
           this.insertJob.TemplateSaveTitle = this.TemplateName;
           //debugger
           this.appService.postjob(this.insertJob).subscribe((data) => {
@@ -600,6 +598,7 @@ clickme(val) {
   ViewJobdetails(jobId) {
     this.appService.resetJob();
     sessionStorage.setItem("jobId", JSON.stringify(jobId));
+    localStorage.setItem("posts", "2");
     this.router.navigateByUrl("app-view-jobdetails");
   }
   backtoStep3() {
