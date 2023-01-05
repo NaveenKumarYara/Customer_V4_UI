@@ -71,7 +71,7 @@ export class RejectdialogComponent implements OnInit {
   uploader: FileUploader;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
-  feedbackOptions: any = ["Selected", "Refer to next round", "Rejected", "Tentative", "Others"];
+  feedbackOptions: any = [];
   interviewType: any = ["Technical", "HR", "Screening","Manager","Other"];
   selectedFeedbackOption: string;
   selectedInterviewType: string;
@@ -95,7 +95,7 @@ export class RejectdialogComponent implements OnInit {
     this.matching = this.data.Matching;
     this.jobid = JSON.parse(sessionStorage.getItem("jobId"));
     this.toastr.setRootViewContainerRef(_vcr);
-    this.savenote.FeedbackOption="Refer to Next Round";
+    this.savenote.FeedbackOption="Refer to next round";
   }
 
   PopulateJobdetail() {
@@ -114,7 +114,6 @@ export class RejectdialogComponent implements OnInit {
     this.matching = this.data.Matching;
     this.AddUser = true;
     this.info = 1;
-    this.savenote.FeedbackOption="Refer to Next Round";
     this.checkemail = this.data.Email;
     //this.GetInterView();
     //this.GetType();

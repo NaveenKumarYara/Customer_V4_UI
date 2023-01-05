@@ -151,7 +151,7 @@
 		<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
 			<button mat-button mat-dialog-close class="btn btn-border">Close</button>
-			<button mat-button (click)="SaveNotes()" [class.spinner]="loading" (click)="loginstyle()" [disabled]="teammemberslist.length==0&&isShown2==false"
+			<button mat-button (click)="SaveNotes()" [class.spinner]="loading" (click)="loginstyle()" [disabled]="selectedComments === undefined || selectedComments === ''"
 				class="btn btn-filled">Send</button>
 
 		</mat-dialog-actions>
