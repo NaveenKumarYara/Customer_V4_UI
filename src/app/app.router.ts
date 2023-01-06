@@ -134,6 +134,7 @@ import { CustomsearchComponent } from "./components/customsearch/customsearch.co
 import { EditprofileComponent } from "./components/jobdetails/view-jobdetails/edit-profiles/editprofile/editprofile.component";
 import { RecruitmentDashboardComponent } from "./components/recruitment-dashboard/recruitment-dashboard.component";
 import { EditprofileCmComponent } from "./components/jobdetails/view-jobdetails/editprofile-cm/editprofile-cm.component";
+import { CdocumentManagerComponent } from "./components/Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -154,6 +155,7 @@ const appRoutes: Routes = [
   { path: "features", component: FeaturesComponent },
   { path: "app-postajob", component: PostajobComponent },
   { path: "app-document-manager", component:  DocumentManagerComponent },
+  { path: "app-cdocument-manager", component:  CdocumentManagerComponent },
   { path: "app-editdraft", component: EditDraftComponent },
   { path: "app-jobtemplate", component: JobTemplateComponent },
   { path: "app-Getcandidateprofile", component: GetCandidateprofileComponent },

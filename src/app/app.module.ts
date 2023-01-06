@@ -85,6 +85,7 @@ import { DxTreeListModule } from 'devextreme-angular';
 import { CustomsearchComponent } from './components/customsearch/customsearch.component';
 import { RecruitmentDashboardComponent } from './components/recruitment-dashboard/recruitment-dashboard.component';
 import { OwlModule } from 'ng2-owl-carousel';
+import { CdocumentManagerComponent } from './components/Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component';
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -115,6 +116,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     SafeHtmlNewPipe,
     VendorManagerComponent,
     DocumentManagerComponent,
+    CdocumentManagerComponent,
     LeftSidebarComponent,
     FilterDocumentComponent,
     CustomerDashboardComponent,

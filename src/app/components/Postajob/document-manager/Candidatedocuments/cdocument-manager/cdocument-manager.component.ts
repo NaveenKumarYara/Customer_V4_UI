@@ -11,10 +11,10 @@ import { setTheme } from 'ngx-bootstrap/utils';
 import { promise } from 'protractor';
 import { resolve } from 'url';
 import { c } from '@angular/core/src/render3';
-import { ApiService, SettingsService } from '../../../shared/services';
-import { AppService } from '../../../app.service';
-import { AlertService } from '../../../shared/alerts/alerts.service';
-import { JobdetailsService } from '../../jobdetails/jobdetails.service';
+import { ApiService, SettingsService } from '../../../../../shared/services';
+import { AppService } from '../../../../../app.service';
+import { AlertService } from '../../../../../shared/alerts/alerts.service';
+import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
 const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
 const fs = require('fs');
@@ -26,21 +26,23 @@ export interface DialogData {
 
 
 @Component({
-  selector: 'app-document-manager',
-  templateUrl: './document-manager.component.html',
-  styleUrls: ['./document-manager.component.css']
+  selector: 'app-cdocument-manager',
+  templateUrl: './cdocument-manager.component.html',
+  styleUrls: ['./cdocument-manager.component.css']
 })
-export class DocumentManagerComponent implements OnInit {
+export class CdocumentManagerComponent implements OnInit {
   uploader:FileUploader;
   selectedFiles: any= [];
   JobDocuments:any=[];
   isProcessing: boolean;
+  MyDocuments: any = [];
   fileUploadForm: FormGroup;
   formDAtaList: Array<FormData> = [];
   customerName: any;
+  CandidateName:any;
   selectedFileNames: string[] = [];
   fileErrorDetail: { file: any; error: string; };
-  constructor(public dialogRef: MatDialogRef<DocumentManagerComponent>,private appService: AppService,private _service: ApiService,private jobdetailsservice: JobdetailsService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService) { 
+  constructor(public dialogRef: MatDialogRef<CdocumentManagerComponent>,private appService: AppService,private _service: ApiService,private jobdetailsservice: JobdetailsService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService) { 
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     let maxFileSize = 2 * 1024 * 1024;
@@ -68,16 +70,18 @@ export class DocumentManagerComponent implements OnInit {
 
   ngOnInit() {
     this.fileUploadForm = this.fb.group({
-      'userId': [this.customerName.UserId, Validators.required],
       'Url': ['', Validators.nullValidator],
       'FileName': ['', Validators.nullValidator],
       'Title': ['', Validators.nullValidator],
       'UserName': ['', Validators.nullValidator],
       'ResumeFile': ['', Validators.compose([Validators.required])],
       'FileExtension': ['', Validators.nullValidator],
-      'JobId': [null, Validators.nullValidator]
+      'JobId': [null, Validators.nullValidator],
+      'ProfileId': [null, Validators.nullValidator]
     });
+    this.CandidateName = this.data.Name;
     this.PopulateJobDocuments();
+    this.PopulateDocuments();
   }
 
   PopulateJobDocuments() {
@@ -87,6 +91,18 @@ export class DocumentManagerComponent implements OnInit {
       this.JobDocuments = r;
     });
   
+  }
+
+  PopulateDocuments() {
+    // let params = new HttpParams();
+    // params = params.append('jobId', this.jobId);
+    // params = params.append('profileId', this.candidateDetails.ProfileId.toString());
+    this._service.GetService('ProfileAPI/api/GetProfileDocuments?jobId=', this.data.jobId + '&profileId=' + this.data.ProfileId)
+      .subscribe(
+        r => {
+          this.MyDocuments = r;
+        });
+
   }
   
   async getFileFromUrl(url, name, defaultType = 'application/pdf'){
@@ -101,7 +117,7 @@ export class DocumentManagerComponent implements OnInit {
   
   DelDocument(d)
   {
-    this._service.DeleteService("ProfileAPI/api/DeleteCD?Id=", d).subscribe((dt) => {
+    this._service.DeleteService("ProfileAPI/api/DeletePD?Id=", d).subscribe((dt) => {
       if(dt==0)
       { 
         this.toastr.success("File Deleted!", "Success!");
@@ -109,6 +125,7 @@ export class DocumentManagerComponent implements OnInit {
         this.toastr.dismissToast;
       }, 3000);
         this.PopulateJobDocuments();
+        this.PopulateDocuments();
       }
     })
   }
@@ -177,13 +194,14 @@ export class DocumentManagerComponent implements OnInit {
         this.fileUploadForm.value.FileExtension = this.selectedFiles[i].type;
         this.fileUploadForm.value.UserName = null;
         this.fileUploadForm.value.JobId = this.data.jobId;
+        this.fileUploadForm.value.ProfileId = this.data.ProfileId;
         this.fileUploadForm.value.title = this.selectedFiles[i].name + 'aryticDP';
         if (this.fileUploadForm.value !== '') {
           request = JSON.stringify(this.fileUploadForm.value);
         }
         formData.append('ResumeFile', this.selectedFiles[i]);
         formData.append('Model', request);       
-        this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/InsertCustomerDocuments').subscribe(data => {  // 'api/JobDescriptionParse'
+        this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/InsertCandidateDocuments').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
           
             this.selectedFileNames.push(this.selectedFiles[i].name);
@@ -200,6 +218,7 @@ export class DocumentManagerComponent implements OnInit {
           this.uploader.queue = [];
           this.selectedFiles=[];
           this.PopulateJobDocuments();
+          this.PopulateDocuments();
           // this.dialogRef.close(); 
         }, 2000);
        

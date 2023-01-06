@@ -40,6 +40,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { pid, title } from "process";
 import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.component";
 import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
+import { CdocumentManagerComponent } from "../../../Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
 const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -1629,6 +1630,49 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         });
 
   }
+
+  DelDocument(d,Pid)
+  {
+    this._service.DeleteService("ProfileAPI/api/DeletePD?Id=", d).subscribe((dt) => {
+      if(dt==0)
+      { 
+        this.toastr.success("File Deleted!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+    
+        this.PopulateDocuments(Pid);
+      }
+    })
+  }
+
+  OpenDocuments(Name,PId)
+  {
+    const dialogRef = this.dialog.open(CdocumentManagerComponent,
+      {
+        width: '65vw',
+        position: { right: '0px' },
+        height: '100vh',
+        data: {
+          jobId: this.jobid,
+          ProfileId: PId,
+          Name:Name
+        },
+        panelClass:'upload__resume__modal'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+      // this.updateappliedstatus();
+      this.PopulateDocuments(PId);
+      this.myEvent.emit(null);
+      this.iconHide = false;
+      console.log('Dialog result: ${result}');
+    });
+  }
+
+
 
   GetCandidateApproval(job) {
     this.valJobForm.value.ProfileId = job;

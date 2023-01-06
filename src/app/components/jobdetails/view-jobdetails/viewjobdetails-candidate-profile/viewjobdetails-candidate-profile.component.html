@@ -2483,7 +2483,7 @@
             <div class="row flex flex-wrap flex-aling-equal">
               <div class="col-sm-6 griding-col">
                 <div class="col-container" >
-                  <button class="btn btn-close">Close</button>
+                 
                   <span class="icon icon-pdf">Icon</span>
                   <h5>Resume _ {{profile?.FirstName | titlecase}} {{
                     profile?.LastName | titlecase}}</h5>
@@ -2529,6 +2529,9 @@
             </div>
           </div>
           <h4>Other Documents</h4>
+          <button class="btn btn-sm" (click)="OpenDocuments(profile?.FirstName, profile?.ProfileId)">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+          </button>
         <div class="griding-document">
             <div class="row flex flex-wrap flex-aling-equal">
               <ng-container *ngIf="MyDocuments?.length===0">
@@ -2542,7 +2545,7 @@
               <ng-container *ngIf="MyDocuments?.length>0">
               <div class="col-sm-6 griding-col" *ngFor="let d of MyDocuments;let di = index">
                 <div class="col-container">
-                  <!-- <button class="btn btn-close">Close</button> -->
+                  <button class="btn btn-close"  (click)="DelDocument(d?.Id,profile?.ProfileId)">Close</button>
                   <span class="icon icon-pdf"
                   *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
                 <span class="icon icon-word"
