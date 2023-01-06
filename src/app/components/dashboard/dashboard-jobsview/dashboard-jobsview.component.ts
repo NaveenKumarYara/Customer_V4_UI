@@ -195,7 +195,7 @@ export class DashboardJobsviewComponent implements OnInit {
       scales: {
       xAxes: [{
         //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        labels: ['2018','2019','2020','2021','2022']
+        labels: ['2018','2019','2020','2021','2022','2023']
          
               }],
               yAxes: [{
