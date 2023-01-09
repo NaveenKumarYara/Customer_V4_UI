@@ -2544,7 +2544,7 @@
               </ng-container>
               <ng-container *ngIf="MyDocuments?.length>0">
               <div class="col-sm-6 griding-col" *ngFor="let d of MyDocuments;let di = index">
-                <div class="col-container">
+                <div class="col-container" *ngIf="di<5">
                   <button class="btn btn-close"  (click)="DelDocument(d?.Id,profile?.ProfileId)">Close</button>
                   <span class="icon icon-pdf"
                   *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
