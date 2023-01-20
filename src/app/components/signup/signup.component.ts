@@ -61,6 +61,10 @@ export class SignUpComponent  implements OnInit{
           // create session to it and store while loging in 
           sessionStorage.setItem('Id', params['id']);
         }
+        if(params.Pid !== null&& params.Pid > 0)
+        {
+          sessionStorage.setItem('Pid',params.Pid)
+        }
       });
       this.selectCountry = [
         {
@@ -1318,7 +1322,6 @@ export class SignUpComponent  implements OnInit{
     else if(this.result.UserId === 0 && this.terms.value === true)
     {
       this.signUpform.value.CountryCode = this.Ccode != undefined ? this.Ccode : '+1';
-      debugger
         this.appService.signUp(this.signUpform.value)
         .subscribe(
           data => {
@@ -1363,7 +1366,7 @@ GetEmailValidate() {
     this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
     this.info.ToEmailId = this.signUpform.value.ContactEmail;
     this.info.ApplicationName = 'Arytic';
-    this.info.AppLink = this.settingsService.settings.customerLogin+';Uid='+userId; 
+    this.info.AppLink = this.settingsService.settings.customerLogin+';Uid='+userId + ';Pid=' + this.planId; 
     this.info.ClientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {
@@ -1414,7 +1417,7 @@ getValue(optionid) {
   {
     this.addsubscription.PlanId = 'growthdirect';
   }
-  if(this.planId == "3")
+  if(this.planId >= "3")
   {
     this.addsubscription.PlanId = 'enterprise';
   }
