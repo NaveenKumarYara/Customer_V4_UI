@@ -31741,7 +31741,7 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 }
 
 .cdk-overlay-container {
-	z-index: 1005;
+	z-index: 1150;
 }
 
 @media only screen and (max-width: 1280px) {
