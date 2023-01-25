@@ -28,19 +28,33 @@
         <hr>
         <ul class="features">
 
-          <ng-container *ngIf="plans?.id == 1">
-            <li> Post 3 Jobs </li>
-            <li> Transaction Fee 8% </li>
+          <ng-container *ngIf="plans?.id == 1">      
+                  <li>Up to <strong>3</strong> job postings</li>
+									<li>Up to <strong>1</strong> user account</li>
+                  <li> Transaction Fee 8% </li>
+									<li>Unlimited candidates</li>
+									<li>Up to <strong>5</strong> candidate conversations</li>         
+									<li>Arytic specialized recommendations</li>
           </ng-container>
           <ng-container *ngIf="plans?.id == 2">
-            <li> Post 10 Jobs </li>
+            <li>Up to <strong>10</strong> job postings</li>
+            <li>Up to <strong>3</strong> user accounts</li>
             <li> Transaction Fee 7 % </li>
+            <li>Unlimited candidates</li>
+            <li>Up to <strong>100</strong> candidate conversations</li>
+            <li>Arytic specialized recommendations</li>
+      
           </ng-container>
           <ng-container *ngIf="plans?.id == 3">
-            <li> Flexible </li>
+            <li>Unlimited Jobs</li>
+            <li>Up to <strong>10</strong> user accounts</li>
             <li> Flexible Transaction Fee  </li>
+            <li>Unlimited candidates</li>
+            <li>Up to <strong>500</strong> candidate conversations</li>
+            <!-- <li><strong>7 %</strong> Transaction fee of successful recruitment</li> -->
+            <li>Arytic specialized recommendations</li>
           </ng-container>
-          <ng-container *ngFor="let feature of Plans?.featuresOffered">
+          <!-- <ng-container *ngFor="let feature of Plans?.featuresOffered">
 
 
             <ng-container *ngIf="plans?.id == 1 && feature?.id <= 5">
@@ -63,7 +77,7 @@
             </ng-container>
 
 
-          </ng-container>
+          </ng-container> -->
         </ul>
       </div>
     </div>
