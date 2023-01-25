@@ -361,6 +361,7 @@ getcustomerusers()
  Ids.forEach((value, index, array)=>
  {
    this.savenote.toUserId = value;
+   debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -542,8 +543,8 @@ SendEmail()
   this.emailNote.Body =this.selectedComments;
   this.emailNote.ToUserId = 0; 
   this.emailNote.FullName = "";
-  debugger
-  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNew').subscribe(
+  this.emailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNewU').subscribe(
     check=>
     {
   
@@ -668,4 +669,5 @@ export class SendNoteEmail
   public ToEmailID :string
   public NotesId:number
   public ToUserId:number
+  public Subject:string
 }

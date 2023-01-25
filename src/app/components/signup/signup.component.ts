@@ -63,7 +63,7 @@ export class SignUpComponent  implements OnInit{
         }
         if(params.Pid !== null&& params.Pid > 0)
         {
-          sessionStorage.setItem('Pid',params.Pid)
+          sessionStorage.setItem('planId',params.Pid);
         }
       });
       this.selectCountry = [

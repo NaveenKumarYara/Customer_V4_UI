@@ -419,6 +419,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
+          JobTitle: this.jobdetailscustomer.JobInfo.JobTitle,
           ProfileId: profileId,
           Email: Email,
           FullName: FirstName + LastName,
