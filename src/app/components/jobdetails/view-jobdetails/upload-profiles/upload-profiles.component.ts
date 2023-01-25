@@ -1473,8 +1473,15 @@ GetJobRequiredDomain(PId) {
 
   DeleteRecord(i)
   {
+    
     this.uploader.removeFromQueue(i);
     this.selectedFiles.splice(i, 1);
+    if(this.selectedFiles.length == 0)
+    {
+       this.selectedFiles = [];
+       this.uploader.clearQueue;
+    }
+    
   }
 
   EditRoleFitHandler() {
