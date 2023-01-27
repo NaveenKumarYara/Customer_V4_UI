@@ -30,16 +30,14 @@
     </h5>
   </div> -->
   <!--Job Description-->
-  <div class="form-data-group">
+  <div class="form-data-group" *ngIf="completeDescription != null && completeDescription != ' ' ">
     <h3 class="question">
       Do you want to add the Job description?
     </h3>
-    <h6 class="data" *ngIf="hasDescription==true">
-      <!-- {{completeDescription}} -->
+
+
+    <h6 class="data">
       <ckeditor  [(ngModel)]="completeDescription" readOnly="true"></ckeditor>
-    </h6>
-    <h6 class="data" *ngIf="hasDescription==false">
-      N/A
     </h6>
   </div>
 

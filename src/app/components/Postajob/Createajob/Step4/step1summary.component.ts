@@ -144,7 +144,7 @@ maxRate: number;
       this.appService.currentDescriptionChecked.subscribe((data) => {
         this.hasDescription = data; // And he have data here too!
       });
-      this.appService.currentDescription.subscribe((data) => {
+      this.appService.description.subscribe((data) => {
         this.completeDescription = data; // And he have data here too!
       });
       this.appService.currentjobPosition.subscribe((data) => {
