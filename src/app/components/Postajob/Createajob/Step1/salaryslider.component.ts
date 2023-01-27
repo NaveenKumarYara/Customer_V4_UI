@@ -1,7 +1,8 @@
-import { Component, OnInit,AfterViewChecked } from '@angular/core';
+import { Component, OnInit,AfterViewChecked, ViewContainerRef } from '@angular/core';
 import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 import { Salary } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
+import { ToastsManager } from 'ng2-toastr';
 @Component({
   selector: 'app-stepsalaryslider',
   templateUrl: './salaryslider.component.html',
@@ -51,7 +52,7 @@ export class StepSalarysliderComponent implements OnInit, AfterViewChecked {
       }
     }
   };
-  constructor( private appService: AppService) { }
+  constructor( private appService: AppService ,private toastr: ToastsManager, private _vcr: ViewContainerRef) {  this.toastr.setRootViewContainerRef(_vcr); }
 
   ngOnInit() {
     this.populateSalaryTypes();
@@ -107,8 +108,17 @@ export class StepSalarysliderComponent implements OnInit, AfterViewChecked {
 
   onMaxChange(value)
   {
-    this.maxHourRate=value;
-    this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate,  this.salaryTypeSelected.SalaryTypeId);
+    if (Number(this.maxHourRate) < Number(this.minHourRate)) {
+      this.toastr.info('Please provide valid Salary','Oh no!!!');
+      return false;
+ 
+    }
+    else
+    {
+      this.maxHourRate=value;
+      this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate,  this.salaryTypeSelected.SalaryTypeId);
+    }
+ 
   }
 
   populateSalaryTypes() {

@@ -94,6 +94,7 @@ jobimplist:jobImps[]=[];
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.disable =  localStorage.getItem('Item');
+      this.toastr.setRootViewContainerRef(_vcr);
   }
 
 
