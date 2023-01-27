@@ -124,6 +124,7 @@
   border-bottom: 0;
   box-shadow: 5px 0 15px rgba(158,171,192,0.20);
   width: 95px;
+  padding-top: 10px;
   position: relative;
   z-index: 10;
 }
@@ -826,4 +827,145 @@
 .inteview-schedule-section .horizontalTabs .tab-content {
   height: 75vh;
   overflow-y: auto;
+}
+
+.no-result-found {
+  padding: 20px;
+  margin: 0;
+}
+
+@media only screen and (max-width: 1170px) {
+  .tab-content {
+    width: 45%;
+  }
+  .interview-detail-section {
+    width: 55%;
+  }
+
+  .grid-table-section .grid-row .grid-right-col .btn-border {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .grid-table-section .grid-row .grid-right-col .btn-filled,
+  .griding-document .griding-col {
+    width: 100%;
+  }
+
+  .griding-document .griding-col h5 {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .inteview-schedule-section .verticalTab {
+    width: 100%;
+    display: flex;
+    padding: 7px;
+    justify-content: center;
+  }
+
+  .inteview-schedule-box {
+    width: 100%;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+  .interview-detail-section {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .interview-detail-section .top-title {
+    flex-direction: column;
+  }
+  .icon-navigation {
+    margin: 0 !important;
+  }
+  .icon-navigation ul {
+    margin: 5px 0 10px !important;
+    display: inline-block;
+  }
+
+  .grid-table-section .grid-row .grid-left-col:before {
+    display: none;
+  }
+
+  .grid-table-section .grid-row .grid-left-col {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .inteview-schedule-section .verticalTab {
+    flex-wrap: wrap;
+  }
+
+  .inteview-schedule-section {
+    margin: 0 -15px;
+  }
+
+  .interview-detail-section .buttons {
+    position: relative;
+  }
+
+  .interview-detail-section {
+    padding: 15px;
+  }
+
+  .listing-col .date {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 2px;
+    margin-bottom: 5px;
+    width: auto;
+    display: inline-block;
+  }
+
+  .listing-col .date .month, 
+  .listing-col .date .year {
+    display: inline-block;
+  }
+
+  .listing-col {
+    padding: 20px;
+  }
+
+  .listing-col .date .day {
+    display: inline-block;
+    font-size: 10px;
+    vertical-align: middle;
+    padding: 0;
+  }
+
+  .listing-col .top-box-container {
+    flex-wrap: wrap;
+  }
+
+  .tab-content {
+    padding: 30px 15px 15px;
+  }
+
+  .inteview-schedule-box .search-box-container {
+    margin: -30px -15px 20px;
+  }
+
+  .listing-grid .time {
+    margin-left: 0 !important;
+  }
+  
+  .notification-count {
+    font-size: 8px !important;
+    position: absolute;
+    top: -15px;
+    background: #448AFA;
+    padding: 4px 5px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    left: 15px;
+  }
 }

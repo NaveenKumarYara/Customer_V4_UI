@@ -117,7 +117,7 @@
                 </ng-container>
               </div>
               <ng-container *ngIf="joblist?.Jobs?.length===0">
-                <p> No Upcoming Interviews found!!</p>
+                <p class="no-result-found"> No Upcoming Interviews found!!</p>
               </ng-container>
             </div>
             <!--This Week Interview Tab-->
@@ -552,7 +552,7 @@
     </ng-container>
     <ng-container *ngIf="filterInterviewDetail.length===0">
       <ng-container *ngIf="show === false">
-      <p> No records found!!</p>
+      <p class="no-result-found"> No records found!!</p>
       </ng-container>
       
         <ng-container *ngIf="show === true">
