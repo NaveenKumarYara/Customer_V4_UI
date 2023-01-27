@@ -299,6 +299,7 @@ Job = {
 
         this.Percentweightage = data;
         this.roleweight = Math.round(data.JobFit / 3);
+
         this.expweight = Math.round(data.JobFit - this.roleweight);
       }
       })
@@ -559,7 +560,7 @@ Job = {
       this.IndustryId = '';
       this.CoreId = '';
       this.CategoryId = '';
-      this.GetProfileRoleFitDetails();
+      this.GetProfileRoleFitDetails(this.CProfileId);
     })
   }
 
@@ -579,7 +580,7 @@ Job = {
       //location.reload();
       this.EditBD = false;
       this.insertrole = new InsertRole();
-      this.GetProfileRoleFitDetails();
+      this.GetProfileRoleFitDetails(this.CProfileId);
       this.GetMatchingPercentage(this.CProfileId);
       this.GetJobRequiredDomain(this.CProfileId);
       this.GetCandidateJobFitResult(this.CProfileId);
@@ -604,7 +605,7 @@ Job = {
       //location.reload();
       this.EditT = false;
       this.insertrole = new InsertRole();
-      this.GetProfileRoleFitDetails();
+      this.GetProfileRoleFitDetails(this.CProfileId);
       this.GetCandidateJobFitResult(this.CProfileId);
       this.GetMatchingPercentage(this.CProfileId);
       this.GetJobRequiredDomain(this.CProfileId);
@@ -640,7 +641,7 @@ Job = {
       //location.reload();
       this.EditKey = false;
       this.insertrole = new InsertRole();
-      this.GetProfileRoleFitDetails();
+      this.GetProfileRoleFitDetails(this.CProfileId);
       this.GetMatchingPercentage(this.CProfileId);
       this.GetJobRequiredDomain(this.CProfileId);
       this.GetCandidateJobFitResult(this.CProfileId);
@@ -1169,6 +1170,7 @@ GetMatchingPercentage(profileId): any {
      this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
      this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
      this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
+     debugger
    });
    return this.matchingParameterDetails;
   
@@ -1214,7 +1216,7 @@ GetCandidateJobFitResult(Pid) {
           }
         }  
         this.Job.datasets[0].data = [exp, data2.RoleFit, data2.JobHopping, data2.Education];
-
+debugger
         this.FitDetails = data2.JobFit;
 
       })
@@ -1262,19 +1264,19 @@ GetAllProfileDetails(ProfileId)
                 this.GetJobRequiredSkills(ProfileId);
                 this.GetJobRequiredDomain(ProfileId);
                 
-                this.GetProfileRoleFitDetails();
+                this.GetProfileRoleFitDetails(ProfileId);
                 this.CProfileId = ProfileId;
-                this.uploadRes.find(obj => {
-                  if(obj != null)
-                  {
-                    if(obj.ProfileId === ProfileId)
-                    {
-                      return obj.ProfileId === ProfileId;
-                    }
+                // this.uploadRes.find(obj => {
+                //   if(obj != null)
+                //   {
+                //     if(obj.ProfileId === ProfileId)
+                //     {
+                //       return obj.ProfileId === ProfileId;
+                //     }
                   
-                  }
+                //   }
                 
-                });
+                // });
                 // this.GetProjects(ProfileId);
 }
 
@@ -1300,8 +1302,8 @@ GetProfileDetails(Id)
 
 
 
-GetProfileRoleFitDetails() {
-  return this._service.GetService('ProfileAPI/api/JobCandidateProfileForRoleFit?jobId='+this.data.jobId +'&profileId=', this.CProfileId)
+GetProfileRoleFitDetails(ProfileId) {
+  return this._service.GetService('ProfileAPI/api/JobCandidateProfileForRoleFit?jobId='+this.data.jobId +'&profileId=',ProfileId)
     .subscribe(
       data => {
         this.roleFitDetails = data;
@@ -1377,6 +1379,7 @@ GetJobRequiredDomain(PId) {
     this.GetCandidateJobFitResult(PId);
     if(domain.length>0)
     {
+      debugger
       this.Jdomains = domain; 
     }
     else

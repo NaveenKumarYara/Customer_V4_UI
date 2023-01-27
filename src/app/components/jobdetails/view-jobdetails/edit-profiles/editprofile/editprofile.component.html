@@ -133,7 +133,10 @@
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
                     {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
-
+                    <button class="btn btn__edit" (click)="editBd()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
                   </div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
                     Not Available
@@ -170,6 +173,11 @@
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
                     <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
                       {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }}
+                      <button class="btn btn__edit" (click)="editt()"
+                      *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
                     </ng-container>
                     <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
                       Not Available
@@ -272,7 +280,7 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">you got
-                    <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong>
+                    <strong>{{matchingParameterDetails?.Jobfit_Total - matchingParameterData?.Role/10 }} %</strong>
                   </div>
                   <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
                     <strong>30%</strong>
