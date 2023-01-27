@@ -95,8 +95,8 @@ export class dLoginComponent {
     //window.location.href = this.settingsService.settings.customerSignUp;
   }
   forgot() {
-    //this.router.navigateByUrl('ForgotPassword'); 
-    window.location.href = this.settingsService.settings.ForgotPasswordurl;
+    this.router.navigateByUrl('ForgotPassword'); 
+    //window.location.href = this.settingsService.settings.ForgotPasswordurl;
   }
   Redirect() {
     window.location.href = this.settingsService.settings.Arytic;

@@ -1284,7 +1284,7 @@ export class SignUpComponent  implements OnInit{
 
   LayoutR()
   {
-    window.location.href = 'https://arytic.co'; 
+    window.location.href = 'https://arytic.com'; 
   }
 
 

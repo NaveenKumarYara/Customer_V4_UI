@@ -8,7 +8,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any; 
 @Component({
   
-  selector: 'forgotPassword',
+  selector: 'ForgotPassword',
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.css'],
   providers:[AppService,AlertService]

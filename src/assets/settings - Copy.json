@@ -125,7 +125,7 @@
     "AddDepartment": "http://localhost:61297//api/InsertCustomerDepartments",
     "customerLogin": "https://dev.arytic.com/customerlogin",
     "customerSignUp": "https://dev.arytic.com/customersignup",
-    "ForgotPasswordurl": "https://dev.arytic.com/ForgotPassword",
+    "ForgotPasswordurl": "https://customer-dev.arytic.com/ForgotPassword",
     "CandidateSignUp": "https://dev.arytic.com/candidatesignup",
     "NewCandidateSignUp": "https://dev.arytic.com/candidatesignuppublic",
     "CandidateLogin": "https://dev.arytic.com/candidatelogin",

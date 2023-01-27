@@ -37,7 +37,7 @@
                                     <div class="p-rel">
                                         <input type="text" class="form-control" formControlName="ContactFirstName"
                                             placeholder="First Name *" minlength=3 maxlength=15
-                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 96 && event.charCode <= 122)"
                                             required>
                                         <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
                                             class="error1">
@@ -59,7 +59,7 @@
                                     <div class="p-rel">
                                         <input type="text" class="form-control" formControlName="ContactLastName"
                                             minlength=3 maxlength=15 placeholder="Last Name *"
-                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 96 && event.charCode <= 122)"
                                             required>
                                         <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
                                             class="error1">

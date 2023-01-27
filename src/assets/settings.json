@@ -130,7 +130,7 @@
   "AddDepartment": "https://profileapi-dev.arytic.com/api/InsertCustomerDepartments",
   "customerLogin": "https://customer-dev.arytic.com/login",
   "customerSignUp": "https://customer-dev.arytic.com/signup",
-  "ForgotPasswordurl": "https://dev.arytic.com/ForgotPassword",
+  "ForgotPasswordurl": "https://customer-dev001.arytic.com/ForgotPassword",
   
   "CandidateSignUp": "https://dev.arytic.co/candidatesignup",
   "NewCandidateSignUp": "https://dev.arytic.co/candidatesignuppublic",
