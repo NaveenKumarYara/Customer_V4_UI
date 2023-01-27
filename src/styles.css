@@ -31814,6 +31814,20 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	}
 }
 
+@media only screen and (max-width: 640px) {
+	.notification-count {
+    font-size: 8px !important;
+    position: absolute;
+    top: -15px;
+    background: #448AFA;
+    padding: 4px 5px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    left: 15px;
+  }
+}
+
 @media only screen and (max-width: 479px) {
 	.sm-w-100 .styled-select-box {
 		min-width: inherit;
