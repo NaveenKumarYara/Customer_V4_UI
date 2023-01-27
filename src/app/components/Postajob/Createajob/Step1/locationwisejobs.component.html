@@ -90,7 +90,7 @@
 							</div> -->
 							<h4>OR</h4>
 							<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings"
-								(ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2">
+								(ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
 							<small class="text-danger radio-error1 error__required" *ngIf="openings.invalid && openings.touched">Number of Positions are
 								required!</small>
 						</div>
