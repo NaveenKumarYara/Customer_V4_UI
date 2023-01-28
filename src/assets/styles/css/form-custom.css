@@ -1365,3 +1365,25 @@ body .error__required.lg {
   position: relative;
   top: 20px;
 }
+
+
+@media only screen and (max-width: 1170px) {
+  .single-form-cols  .form-check-list li {
+    width: 50%;
+  }  
+
+  .single-form-cols .form-check-list li span.name {
+    width: 82%;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .single-form-cols  .form-check-list li {
+    width: 100%;
+  }  
+}
