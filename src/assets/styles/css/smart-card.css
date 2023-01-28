@@ -824,3 +824,18 @@ div.dropup > a {
 .praymid-container .active .ng-select .ng-select-container .ng-value-container .ng-input>input {
   color: #fff;
 }
+
+
+@media only screen and  (max-width:767px) {
+  .smart-card {
+    padding: 0 !important;
+  }
+
+  div.dropup {
+    width: 32px;
+    height:  32px;
+    right: 10px;
+    top: 10px;
+    background-position: -338px -32px;
+  }
+}
