@@ -31826,11 +31826,21 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
     font-weight: 500;
     left: 15px;
   }
+
+	.radio-grid-cols .checkbox {
+		flex: 0 0 50%;
+		max-width: 50%;
+		margin: 5px 0 !important;
+	}
 }
 
 @media only screen and (max-width: 479px) {
 	.sm-w-100 .styled-select-box {
 		min-width: inherit;
+	}
+	.radio-grid-cols .checkbox {
+		flex: 0 0 100%;
+		max-width: 100%;
 	}
 }
 

@@ -2903,9 +2903,7 @@ border-radius:0px;
 .shape__info { position:absolute; left:0; top:0; padding:20px 10px; width:100%; height:100%; text-align:center; }
 .shape__info p { margin:0; }
 
-@media only screen and (max-width:1360px) {
-    .skills__container .card__container .bottom__section .exp__col {  font-size: 10px; }
-}
+.skills__container .card__container .bottom__section .exp__col {  font-size: 9px; }
 
 @media only screen and (max-width:1199px) {
   .skills__container .skills__listing .col { width:33.333%; }
@@ -2953,8 +2951,9 @@ border-radius:0px;
   .public__profile__detail .tab__section .nav-tabs { border-radius:12px; }
   .public__profile__detail .tab__section .nav-tabs > li { width:50%; }
   .skills__col { margin:20px 0 0; }
-  .skills__container .skills__listing .col { width:50%; } 
-  .skills__container .card__container .bottom__section .exp__col, .skills__container .card__container .bottom__section .star__col { width:50%; float: left;}
+  .skills__container .skills__listing .col { width:50%; float: left; } 
+  .skills__container .card__container .bottom__section .exp__col, 
+  .skills__container .card__container .bottom__section .star__col { width:50%; float: left;}
   .main-row .main-col:first-child { margin:0; }
   .main-row .main-col { width:100%; margin:14px 0 0; }
   .hobbies__col li, .achivements__col .col { width:50%; }
@@ -2964,7 +2963,6 @@ border-radius:0px;
   .profile__info__box__bottom .bottom__listing { padding-left:80px; }
   .reference__grid__container .col { width:100% }
   .data-grid-table .grid-col { width:100% !important; }
-
 }
 
 @media only screen and (max-width:568px) {
@@ -2974,7 +2972,10 @@ border-radius:0px;
 
 @media only screen and (max-width:480px) { 
   .public__profile__detail .tab__section .nav-tabs > li { width:100%; } 
-  .skills__container .skills__listing .col { width:100%; } 
+  .skills__container .skills__listing .col { width:100%; }
+  .skills__container .card__container .bottom__section { position: relative;  } 
+  .skills__container .card__container .bottom__section .exp__col,
+  .skills__container .card__container .bottom__section .star__col { width: 50%; } 
 }
 
 /* .sub-carousel .sub-item { height:0; overflow: hidden; }
