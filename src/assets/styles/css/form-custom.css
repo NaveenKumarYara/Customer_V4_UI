@@ -1366,9 +1366,19 @@ body .error__required.lg {
   top: 20px;
 }
 
+.form-cols .jdv-skill-list .col-container .edit {
+  margin-top: -11px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .form-cols .jdv-skill-list .col,
+  .single-form-cols .form-check-list li { width:  25%;}
+
+}
 
 @media only screen and (max-width: 1170px) {
-  .single-form-cols  .form-check-list li {
+  .single-form-cols  .form-check-list li,
+  .form-cols .jdv-skill-list .col{
     width: 50%;
   }  
 
@@ -1383,7 +1393,8 @@ body .error__required.lg {
 
 
 @media only screen and (max-width: 767px) {
-  .single-form-cols  .form-check-list li {
+  .single-form-cols  .form-check-list li,
+  .form-cols .jdv-skill-list .col {
     width: 100%;
   }  
 }
