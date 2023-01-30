@@ -28,7 +28,8 @@
         <hr>
         <ul class="features">
 
-          <ng-container *ngIf="plans?.id == 1">      
+          <ng-container *ngIf="plans?.id == 1">    
+            <li> (FOR INDIVIDUALS)  </li>
                   <li>Up to <strong>3</strong> job postings</li>
 									<li>Up to <strong>1</strong> user account</li>
                   <li> Transaction Fee 8% </li>
@@ -40,6 +41,7 @@
                  
           </ng-container>
           <ng-container *ngIf="plans?.id == 2">
+            <li> (FOR SMALL TEAMS)  </li>
             <li>Up to <strong>10</strong> job postings</li>
             <li>Up to <strong>3</strong> user accounts</li>
             <li> Transaction Fee 7 % </li>
@@ -51,6 +53,7 @@
             
           </ng-container>
           <ng-container *ngIf="plans?.id == 3">
+            <li> (FOR INDUSTRY LEADERS) </li>
             <li>Unlimited Jobs</li>
             <li>Up to <strong>10</strong> user accounts</li>
             <li> Flexible Transaction Fee  </li>
@@ -99,17 +102,17 @@
 <div class="custom-plan">
   <div class="banner">
     <h2>Custom Plan</h2>
-    <p>For enterprise companies and large publishers who want powerful tools and a direct account manager while
-      integrating and scaling Disqus.</p>
+    (FOR CUSTOM INTEGRATIONS) 
+    <p>For large scale companies who are looking for more integration tools in application tracking, custom plan is right for you. Choose a service and pay according to the use.</p>
     <button class="btn btn-border" (click)="Contact()">
       Contact us
     </button>
   </div>
 </div>
-<div class="why">
+<!-- <div class="why">
   <h3>Why Should we upgrade?</h3>
   <p>
     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
     eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
   </p>
-</div>
+</div> -->
