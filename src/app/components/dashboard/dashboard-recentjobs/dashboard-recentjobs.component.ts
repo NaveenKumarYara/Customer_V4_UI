@@ -66,6 +66,8 @@ export class DashboardRecentjobsComponent implements OnInit {
         this.jobLoader = false;
     });
 }
+
+
 GetJobsRedirect(val,customerId,userId,jobId)  {
    if(val>0){
    this.statusId=val;

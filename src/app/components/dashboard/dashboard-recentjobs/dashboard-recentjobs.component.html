@@ -47,7 +47,11 @@
                       </ng-container>
             </span>
           <span class="v-divider"></span>
-          <span>{{job?.PostedOn  | date:'mediumDate'}}</span>
+          <span> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{job?.PostedOn  | date:'mediumDate'}} </span>
+          <span class="v-divider"></span>
+          <span><i class="fa fa-users" aria-hidden="true"></i>  No. of Positions : {{job?.NumberOfVacancies}}</span>
+           <span class="v-divider"></span>
+          <span class="status Active"> Arytic Id : {{job?.JobId}}</span>
         </div>
       </div>
       <div class="stats stats--row">
