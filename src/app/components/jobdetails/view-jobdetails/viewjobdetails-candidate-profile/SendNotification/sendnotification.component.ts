@@ -340,7 +340,7 @@ getcustomerusers()
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
-  this.savenote.OtherInfo = ' ';
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
 
  }
 

@@ -50,12 +50,12 @@
 							</div>						
 					</ng-container>
 
-					<ng-container *ngIf="isShown1">
+					<ng-container>
 						<form action="">
 							<div class="form-row">
 								<div class="form-group">
-									<label for="">Add Team Member</label>
-									<div class="input-group lg-right-padding">
+									<label for=""  *ngIf="isShown1" >Add Team Member</label>
+									<div class="input-group lg-right-padding"  *ngIf="isShown1">
 										<ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
 											placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
 											bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
@@ -68,7 +68,7 @@
 										</span>
 										<span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
 									</div>
-									<ul class="share_candidate team-members-list share__candidates__tags">
+									<ul class="share_candidate team-members-list share__candidates__tags"  *ngIf="isShown1">
 										<li *ngFor="let teammember of teammemberslist; let i = index">
 											<div class="w-100">
 												<!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
