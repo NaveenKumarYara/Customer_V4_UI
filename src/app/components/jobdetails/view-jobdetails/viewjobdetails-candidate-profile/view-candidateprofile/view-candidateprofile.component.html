@@ -66,6 +66,9 @@
 															[showSubtitle]="false">
 														</circle-progress>
 													</div>
+													<button *ngIf="profileview?.ProfileBasicInfo?.UserId == 0 " tooltip="Edit Profile" placement="left" (click)="OpenEditProfile(candidate?.ProfileId)">
+														<span class="fa fa-pencil"></span>
+													  </button>
 												</div>
 											</div>
 										</li>

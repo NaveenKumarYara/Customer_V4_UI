@@ -1719,7 +1719,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
    OpenEditProfile(ProfileId)
    {
-	debugger
 	const dialogRef = this.dialog.open(EditprofileCmComponent,
 		{
 		  width: '65vw',

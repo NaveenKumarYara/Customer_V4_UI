@@ -17,6 +17,7 @@ import { AppService } from "../../../../../app.service";
 import { EventEmitter } from "events";
 import { PageEvent, Sort } from "@angular/material";
 import { RequestdialogComponent } from "../ManageReferences/RequestInfo/requestInfo.component";
+import { EditprofileComponent } from "../../edit-profiles/editprofile/editprofile.component";
 declare var $: any;
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
@@ -447,6 +448,27 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   }
 
+  
+  OpenEditProfile(ProfileId)
+  {
+    this.dialog.closeAll();
+ const dialogRef = this.dialog.open(EditprofileComponent,
+   {
+     width: '65vw',
+     position: { right: '0px' },
+     height: '100vh',
+     data: {
+      jobId: this.data.jobId,
+     ProfileId: ProfileId
+     },
+     panelClass:'upload__resume__modal'
+   }
+   );
+ 
+   dialogRef.afterClosed().subscribe(result => {
+   console.log('Dialog result: ${result}');
+   });
+  }
 
 
   onChartClick(event) {
