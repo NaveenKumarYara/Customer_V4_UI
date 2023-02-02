@@ -9662,14 +9662,10 @@ margin-top: 0px;
     border-right: 1px solid white;
   }
 
-  
+
 
   @media only screen and (max-width: 1023px) {
-    .revamp__candidate__grid__list .cds {
-        display: flex;
-        justify-content: flex-end;
-        
-    }  
+   
     .revamp__candidate__grid__list .cds select {
         width: 100% !important;
         margin: 10px 0;

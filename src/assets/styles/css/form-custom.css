@@ -1370,6 +1370,14 @@ body .error__required.lg {
   margin-top: -11px;
 }
 
+.single-form-cols .form-check-list li span.name {
+  width: 82%;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 @media only screen and (max-width: 1440px) {
   .form-cols .jdv-skill-list .col,
   .single-form-cols .form-check-list li { width:  25%;}
@@ -1382,13 +1390,7 @@ body .error__required.lg {
     width: 50%;
   }  
 
-  .single-form-cols .form-check-list li span.name {
-    width: 82%;
-    overflow: hidden;
-    display: block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+
 }
 
 
@@ -1398,3 +1400,9 @@ body .error__required.lg {
     width: 100%;
   }  
 }
+
+.revamp__candidate__grid__list .cds {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 10px;
+}  
