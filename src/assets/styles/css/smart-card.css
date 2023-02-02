@@ -839,3 +839,23 @@ div.dropup > a {
     background-position: -338px -32px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .smart-card .skills-carousel-Changed a.right-arrow,
+  .smart-card .skills-carousel-Changed a.left-arrow {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .smart-card .skills-carousel-Changed a.left-arrow {
+    left: -32px !important;
+  }
+
+  .smart-card .skills-carousel-Changed a.right-arrow {
+    right: -32px !important;
+  }
+
+  #skills-carousel-Changed .row {
+    position: relative;
+  }
+}
