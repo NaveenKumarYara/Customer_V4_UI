@@ -172,6 +172,7 @@ export class ShareJobComponent implements OnInit {
   }
 
   Contact(){
+    this.dialogRef.close();
      swal(
       {
         title: 'Customer Support team',

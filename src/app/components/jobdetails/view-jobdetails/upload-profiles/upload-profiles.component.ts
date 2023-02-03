@@ -21,6 +21,7 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { promise } from 'protractor';
 import { resolve } from 'url';
+import swal from 'sweetalert2';
 import { c } from '@angular/core/src/render3';
 const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
@@ -196,7 +197,7 @@ Job = {
   expsYear: number=0;
   Percentweightage: any;
   // tslint:disable-next-line:max-line-length
-  constructor(private appService: AppService,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
+  constructor(private appService: AppService, private dialog: MatDialog,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
 
       setTheme('bs3');
@@ -1470,6 +1471,34 @@ GetJobRequiredDomain(PId) {
       }
     
   }
+
+  Contact(){
+    this.dialog.closeAll();
+    swal(
+     {
+       title: 'Customer Support team',
+       showConfirmButton: true,
+       showCancelButton: true,
+       html: 'Contact us using below options' + '<br>'+
+       '<i class=" fa fa-envelope"></i> ' + '<a href="mailto: info@arytic.com" target="_blank"> Mail</a>' + '<br>'+    '<i class="fa fa-phone"></i> ' + '<a href="tel: +1 855-427-9842" target="_blank"> Call</a>',
+       type: "info",
+       confirmButtonColor: '#66dab5',
+       cancelButtonColor: '#FF0000',
+       confirmButtonText: 'OK',
+       cancelButtonText: 'No'
+     }).then((result) => {
+       if (result.value === true) {
+         swal(
+           {
+             title: 'Thank you for showing your Interest!',
+             showConfirmButton: true,
+             timer: 3000,
+             type: "success"
+           });
+       }
+     }
+       )
+ }
 
   DeleteRecord(i)
   {

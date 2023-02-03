@@ -2465,9 +2465,12 @@
       <div class="card manage-uploads manage-upload-custom clearfix">
         <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Tips for Electronic Resumes Do's and
           Dont's</a>
+          <a href="javascript:void(0)"  class="pull-right" (click)="Contact()">
+            Bulk Upload
+          </a>
         <div class="tab-content">
           <div id="uploadProfiles" class="tab-pane fade active in">
-            <div class="upload-border">
+            <div class="upload-border"  *ngIf="selectedFiles.length == 0">
               <div class="flex_items_center pointer" (click)="browse.click()">
                 <div class="d-block">
                   <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
