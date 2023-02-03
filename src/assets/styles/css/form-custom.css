@@ -1370,6 +1370,14 @@ body .error__required.lg {
   margin-top: -11px;
 }
 
+.single-form-cols .form-check-list li .skill-title {
+  width: 82%;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .single-form-cols .form-check-list li span.name {
   width: 82%;
   overflow: hidden;
