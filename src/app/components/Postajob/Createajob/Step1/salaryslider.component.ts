@@ -101,8 +101,16 @@ export class StepSalarysliderComponent implements OnInit, AfterViewChecked {
 
   onMinChange(value)
   {
+    if (Number(this.maxHourRate) < Number(this.minHourRate)) {
+      this.toastr.info('Please provide valid Salary','Oh no!!!');
+      return false;
+ 
+    }
+    else
+    {
     this.minHourRate=value;
     this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate,  this.salaryTypeSelected.SalaryTypeId);
+    }
   }
 
 
