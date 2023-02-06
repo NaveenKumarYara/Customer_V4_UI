@@ -31873,13 +31873,26 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 .mat-form-field-underline,
 .mat-form-field-label-wrapper {
   display: none !important;
-}
+} 
 
 .mat-form-field-infix {
   border-top: 0;
   padding: 0;
 }
 
+.advance-filter-mat .mat-form-field-wrapper {
+  padding-bottom: 1.25em;
+}
+
+.advance-filter-mat .mat-form-field-underline,
+.advance-filter-mat .mat-form-field-label-wrapper {
+  display: block !important;
+} 
+
+.advance-filter-mat  .mat-form-field-infix {
+  padding: 0.4375em 0;
+  border-top: 0.84375em solid transparent;
+}
 
 .mat-chip.mat-chip-selected.mat-primary {
 	background: var(--green-100);
