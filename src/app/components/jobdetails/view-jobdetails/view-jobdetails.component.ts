@@ -811,6 +811,7 @@ export class ViewJobdetailsComponent implements OnInit {
     });
     docRef.afterClosed().subscribe(result => {
       console.log('share Dialog result: ${result}');
+      this.PopulateJobDocuments(this.jobid);
       //this.ViewJobdetailsModel(this.jobid);
     });
   }

@@ -30,7 +30,7 @@
             <div class="meta h-19">
 
                 <!--Condition based border line starts-->
-                <ng-container *ngIf="job?.ClientName !=null && job?.Departments != null; else flasyTemp">
+                <ng-container *ngIf="job?.ClientName != null; else flasyTemp">
                     <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" viewBox="0 -31 512 512" width="16"
                         height="19.3">
                         <g>
@@ -40,7 +40,7 @@
                         </g>
                     </svg>
                     <h5 class="client">
-                        {{job?.ClientName !=null ? job?.ClientName : '' }}
+                        {{job?.ClientName != null ? job?.ClientName : '' }}
                     </h5>
                     <h5 class="ml-1" title="{{job?.Departments != null ? job?.Departments : 'N/A'}}">
                         {{job?.Departments != null ? add3Dots(job.Departments.split('|')[0],35) : ''}}</h5>
@@ -48,7 +48,8 @@
                 </ng-container>
                 <!--Condition based border line ends-->
                 <ng-template #flasyTemp>
-                    <svg *ngIf="job?.ClientName!=null || job?.Departments != null" fill="#93a2bb"
+                    <ng-container *ngIf="job?.ClientName != null">
+                        <svg  fill="#93a2bb"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 -31 512 512" width="16" height="19.3">
                         <g>
                             <path
@@ -56,8 +57,10 @@
                                 data-original="#000000" class="active-path" data-old_color="#93a2bb" fill="#93a2bb" />
                         </g>
                     </svg>
+                    </ng-container>
+             
                     <h5>
-                        {{job?.ClientName !=null ? job?.ClientName : '' }}
+                        {{job?.ClientName != null ? job?.ClientName : '' }}
                     </h5>
 
                     <!-- <h5 class="ml-1" title="{{job?.Departments != null ? job?.Departments : 'N/A'}}">

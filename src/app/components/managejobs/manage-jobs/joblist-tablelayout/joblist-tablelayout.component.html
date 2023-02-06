@@ -5,7 +5,8 @@
         <h6  class="status artyic-id mlr-9 pull-right">Arytic Id : {{job?.JobId}}</h6>
         <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
         <div class="meta h-19">
-            <svg *ngIf="job?.ClientName!=null || job?.Departments != null" fill="#93a2bb"
+            <ng-container *ngIf="job?.ClientName != null">
+            <svg  fill="#93a2bb"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 -31 512 512" width="16" height="19.3">
                 <g>
                     <path
@@ -13,6 +14,7 @@
                         data-original="#000000" class="active-path" data-old_color="#93a2bb" fill="#93a2bb" />
                 </g>
             </svg>
+            </ng-container>
             <h5 class="client" *ngIf="job?.ClientName !=null">
                 {{job?.ClientName !=null ? job?.ClientName : '' }}
             </h5>
