@@ -2552,8 +2552,8 @@
                   *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
                   <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName.split('aryticDP')[0] |
                     titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
-                  <h4>By {{profile?.FirstName | titlecase}} {{
-                    profile?.LastName | titlecase}}</h4>
+                  <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                    profile?.LastName | titlecase}}</h4> -->
                 </div>
               </div>
             </ng-container>

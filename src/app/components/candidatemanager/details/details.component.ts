@@ -1733,6 +1733,16 @@ export class DetailsComponent implements OnInit,OnDestroy {
   
 	  dialogRef.afterClosed().subscribe(result => {
 		console.log('Dialog result: ${result}');
+
+		this.getCandidates();
+		let Profile = this.candidates.filter(x => {
+			if(x.ProfileId == ProfileId)
+			{
+			  x.IsSelected = true;
+			}
+		});
+			 
+		this.fullGridViewShow(Profile,this.selectcard);
 	  });
    }
 
