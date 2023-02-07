@@ -1702,10 +1702,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+      //this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
       // this.updateappliedstatus();
       this.myEvent.emit(null);
       this.iconHide = false;
+      this.GetMatchingPercentage(profileId, this.jobid);
       console.log('Dialog result: ${result}');
     });
   }
