@@ -1708,6 +1708,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.iconHide = false;
       this.GetMatchingPercentage(profileId, this.jobid);
       console.log('Dialog result: ${result}');
+      
     });
   }
 
