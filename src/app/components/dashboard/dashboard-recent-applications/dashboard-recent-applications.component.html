@@ -25,12 +25,12 @@
                                 height="16" src="../../../../assets/images/c_name_hide.png"> </h2>
 
                         <ng-template #firstelseBlock>
-                            <h2 (click)="GetRedirect(recentapplicants.JobId,recentapplicants.ProfileId)">
+                            <h2 (click)="GetRedirect(recentapplicants.JobId,recentapplicants.ProfileId)" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}">
                                 {{recentapplicants?.FirstName | slice:0:12}} {{recentapplicants?.LastName | slice:0:12}}
                             </h2>
                         </ng-template>
                         <div class="status">
-                            <img src="../../../../assets/images/card-icons/not-verified-profile.png" title="Background Checke"
+                            <img src="../../../../assets/images/card-icons/not-verified-profile.png" title="Background Check"
                                 alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="References" alt="References">
                             <ng-container  *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseCert" >

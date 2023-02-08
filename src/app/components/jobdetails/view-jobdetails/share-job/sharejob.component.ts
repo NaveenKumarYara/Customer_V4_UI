@@ -532,6 +532,37 @@ titleCase(str) {
     this.whatsappform.reset();
   }
 
+
+
+  
+
+  async writeClipImg() {
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', 'https://identityapi-dev.arytic.com/,http://localhost:4800');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('x-access-token', sessionStorage.getItem('token'));
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    //headers.append('Origin','http://localhost:3000');
+    try {
+      const imgURL = this.Image;
+      const data = await fetch(imgURL,{
+        mode: 'cors',
+        headers: headers
+    });
+      const blob = await data.blob();
+  
+      await window.navigator['clipboard'].write([
+        new ClipboardItem({
+          [blob.type]: blob,
+        }),
+      ]);
+      console.log("Fetched image copied.");
+    } catch (err) {
+      console.error(err.name, err.message);
+    }
+  }
+
   GetjobCard()
   {
     this._service.GetService('IdentityAPI/api/GetJobCard?jobId=', this.data.JobId)
@@ -796,3 +827,18 @@ export class InviteInfo {
   ClientLogo: string;
   readonly modules: ReadonlyArray<{}> = [];
   }
+
+  interface ClipboardItem {
+    readonly types: string[];
+    readonly presentationStyle: "unspecified" | "inline" | "attachment";
+    getType(): Promise<Blob>;
+  }
+  
+  interface ClipboardItemData {
+    [mimeType: string]: Blob | string | Promise<Blob | string>;
+  }
+  
+  declare var ClipboardItem: {
+    prototype: ClipboardItem;
+    new (itemData: ClipboardItemData): ClipboardItem;
+  };
