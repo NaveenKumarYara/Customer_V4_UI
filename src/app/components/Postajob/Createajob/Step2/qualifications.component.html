@@ -141,7 +141,7 @@
               <div class="form-check-list">
                 <ul class="flex flex-wrap flex-align-equal">
                   <li *ngFor="let domain of keyslist; let i = index">   
-                    <div class="col__container">
+                    <div class="col__container" placement="top" tooltip=" {{domain.DCode}}">
                       <span class="name">
                         {{domain.DCode}}
                       </span>
