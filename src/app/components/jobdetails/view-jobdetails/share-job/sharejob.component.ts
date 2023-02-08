@@ -23,6 +23,7 @@ import { assert } from 'console';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import swal from 'sweetalert2';
+import { copyImageToClipboard } from 'copy-image-clipboard'
 const URL = 'http://localhost:4800/fileupload/';
 export interface mailtoAsset {
   
@@ -548,7 +549,15 @@ titleCase(str) {
 
     });
   }
-
+copyImageToClip(imgSrc){
+  copyImageToClipboard(imgSrc)
+  .then(() => {
+    console.log('Image Copied')
+  })
+  .catch((e) => {
+    console.log('Error: ', e.message)
+  })
+}
   WhatsappShare() {
     let url = 'https://wa.me/' + this.whatsappform.value.mobilenumber + '?text=' + this.referLink;
     window.open(url, '_blank');
@@ -750,6 +759,8 @@ titleCase(str) {
    }
   
   }
+
+  
 }
 
 

@@ -132,7 +132,7 @@
 				<h4 for="" class="light">Primary Skills</h4>
 				<div class="row flex flex-wrap flex-align-equal">
 					<div class="col-xs-12 col-sm-2 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
-						<div class="col-container">
+						<div class="col-container" placement="top" tooltip="{{ add3Dots(primaryjobskill.SkillName,25) }}">
 							<h5 class="skill-title">{{ add3Dots(primaryjobskill.SkillName,25) }}</h5>
 							<ng-container *ngIf="showexp === true">
 								<h6 class="skill-year" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
@@ -173,7 +173,7 @@
 				<h4 for="" class="light">Secondary Skills</h4>
 				<div class="row flex flex-wrap flex-align-equal">
 					<div class="col-xs-12 col-sm-4 master col" *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-						<div class="col-container">
+						<div class="col-container" placement="top" tooltip="{{ add3Dots(secondaryjobskill.SkillName,25) }}">
 							<h5 class="skill-title">{{ add3Dots(secondaryjobskill.SkillName,25) }}</h5>
 							<h6  class="skill-year" *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience">
 								{{(secondaryjobskill.MinimumExp) | skillmonths}} -
