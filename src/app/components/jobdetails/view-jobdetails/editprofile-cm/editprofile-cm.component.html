@@ -1132,11 +1132,12 @@
                         </div>
                         <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
                           <ng-container *ngIf="!editPersonalDetails">
-                            <div class="box__table">{{profileDetails?.UserName}}</div>
+                            <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">{{profileDetails?.UserName}}</div>
+                            <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) == 'noemail'">Yet to provide</div>
                           </ng-container>
                           <ng-container *ngIf="editPersonalDetails">
                             <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) === 'noemail'">
-                              <input type="text" formControlName="Email" value="{{profileDetails?.UserName}}"
+                              <input type="text" formControlName="Email" value="yet to provide"
                                 class="form-control">
                             </div>
                             <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">
