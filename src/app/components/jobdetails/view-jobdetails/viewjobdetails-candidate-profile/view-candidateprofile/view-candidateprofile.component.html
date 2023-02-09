@@ -124,12 +124,12 @@
 				<div class="profile__info__box__bottom">
 					<div class="bottom__listing">
 						<ul class="flex flex-wrap flex-align-center">
-							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'">
+							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'noemail'">
 								<div *ngIf="showMaskedData">{{ details?.profileVal?.Email.charAt(0) }}<img
 										src="../../../../../assets/images/c_name_hide.png" /></div>
 								<div *ngIf="!showMaskedData"><a href="mailto:{{ details?.profileVal?.Email }}" target="_blank">{{ details?.profileVal?.Email }}</a></div>
 							</li>
-							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to
+							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'noemail'">Yet to
 								Provide</li>
 							<li class="mobile" *ngIf="showMaskedData">
 								<a href="javascript:void(0)">{{ details?.profileVal?.MobilePhone.charAt(0) || "Yet to Provide" }} <img
@@ -225,11 +225,11 @@
 						<div class="col-md-5">
 							<div class="d-list">
 								<ul class="c-content">
-									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'"
+									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'noemail'"
 										title=" {{ details?.profileVal?.Email }}">
 										{{ details?.profileVal?.Email }}
 									</li>
-									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet
+									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'noemail'">Yet
 										to Provide</li>
 									<li class="mobile">
 										{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}

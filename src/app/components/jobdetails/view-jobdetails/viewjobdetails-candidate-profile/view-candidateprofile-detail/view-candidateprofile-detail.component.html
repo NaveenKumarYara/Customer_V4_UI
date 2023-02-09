@@ -173,10 +173,14 @@
     <div class="container">
       <div class="bottom__listing">
         <ul class="flex flex-wrap flex-align-center">
-          <li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'">
+          <li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'noemail'">
             <div *ngIf="showMaskedData">{{ details?.profileVal?.Email.charAt(0) }}<img
                 src="../../../../../assets/images/c_name_hide.png" /></div>
             <div *ngIf="!showMaskedData">{{ details?.profileVal?.Email }}</div>
+          </li>
+          <li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) === 'noemail'">
+            Yet to
+            Provide
           </li>
           <li class="mobile" *ngIf="showMaskedData">{{details?.profileVal?.MobilePhone .charAt(0) }}<img
             src="../../../../../assets/images/c_name_hide.png" /></li>
