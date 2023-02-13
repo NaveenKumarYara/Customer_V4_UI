@@ -263,7 +263,7 @@ export class SendEmailComponent implements OnInit {
 
     this.isSendingEmail = true;
     //this.spinner.show();
-
+    this.conversation.FromID = this.customerName.Email;
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
