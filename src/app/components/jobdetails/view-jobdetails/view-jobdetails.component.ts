@@ -446,7 +446,7 @@ export class ViewJobdetailsComponent implements OnInit {
         },
       });
       senddialogRef.afterClosed().subscribe((result) => {
-        //this.GetJobNotes(profileId, this.jobid);
+        this.publicstats();
         console.log("Screen Dialog result: ${result}");
       });
     }
