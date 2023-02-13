@@ -344,7 +344,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenScreeningDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
-    if (this.jobStatus !== "InActive") {
+    // if (this.jobStatus !== "InActive") {
       const screendialogRef = this.dialog.open(screeningdialogComponent, {
         position: { right: "0px" },
         panelClass: 'full-xl-dialog',
@@ -363,12 +363,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.myEvent.emit(null);
         console.log("Screen Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenShortListedDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
     //debugger
-    if (this.jobStatus !== "InActive") {
+    //if (this.jobStatus !== "InActive") {
       const shortdialogRef = this.dialog.open(shortlisteddialogComponent, {
         position: { right: "0px" },
         panelClass: 'full-xl-dialog',
@@ -387,11 +387,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.myEvent.emit(null);
         console.log("Screen Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenWithdrawnDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
-    if (this.jobStatus !== "InActive") {
+    //if (this.jobStatus !== "InActive") {
       const shortdialogRef = this.dialog.open(WithDrawndialogComponent, {
         position: { right: "0px" },
         data: {
@@ -409,11 +409,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.myEvent.emit(null);
         console.log("Screen Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenSendNotificationDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match, StatusId) {
-    if (this.jobStatus !== "InActive") {
+    //if (this.jobStatus !== "InActive") {
       const senddialogRef = this.dialog.open(sendnotificationdialogComponent, {
         position: { right: "0px" },
         data: {
@@ -433,11 +433,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.GetJobNotes(profileId, this.jobid);
         console.log("Screen Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenRejectDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
-    if (this.jobStatus !== "InActive") {
+    //if (this.jobStatus !== "InActive") {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent, {
         position: { right: "0px" },
         data: {
@@ -456,7 +456,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.GetJobFeedback(profileId, this.jobid);
         console.log("reject Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenAchiveDialog(profileId) {

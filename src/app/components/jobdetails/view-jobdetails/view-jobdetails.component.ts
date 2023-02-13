@@ -223,7 +223,16 @@ export class ViewJobdetailsComponent implements OnInit {
      setTimeout(() => {
        this.toastr.dismissToast;
      }, 2000);
+     return false;
    }
+   if (this.jobStatus === 'InActive') {
+    this.toastr.error('Job is In-Active');
+    setTimeout(() => {
+      this.toastr.dismissToast;
+    }, 2000);
+    return false;
+   }
+
    else{
     const inviteProfiledialogRef = this.dialog.open(InviteProfiledialogComponent,
       {
@@ -322,12 +331,22 @@ export class ViewJobdetailsComponent implements OnInit {
     }, 3000);
   }
   openCandidateUploadDialog() {
-    if (this.closedjob === 2) {
-      this.toastr.error('Job is Closed');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 2000);
-    } else {
+    if (this.closedjob === 2)
+    {
+     this.toastr.error('Job is Closed');
+   setTimeout(() => {
+     this.toastr.dismissToast;
+   }, 2000);
+   return false;
+ }
+ if (this.jobStatus === 'InActive') {
+  this.toastr.error('Job is In-Active');
+  setTimeout(() => {
+    this.toastr.dismissToast;
+  }, 2000);
+  return false;
+ }
+     else {
       localStorage.removeItem('DisplayUpload');
       const dialogRef = this.dialog.open(UploadProfilesComponent,
         {
@@ -854,6 +873,23 @@ export class ViewJobdetailsComponent implements OnInit {
   }
 
   OpenShareJobDialog(jobid,jobtitle) {
+    if (this.closedjob === 2)
+    {
+     this.toastr.error('Job is Closed');
+   setTimeout(() => {
+     this.toastr.dismissToast;
+   }, 2000);
+   return false;
+ }
+ if (this.jobStatus === 'InActive') {
+  this.toastr.error('Job is In-Active');
+  setTimeout(() => {
+    this.toastr.dismissToast;
+  }, 2000);
+  return false;
+ }
+ else
+ {
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
         //width: '90vw',
@@ -870,7 +906,7 @@ export class ViewJobdetailsComponent implements OnInit {
     sharedRef.afterClosed().subscribe(result => {
       console.log('share Dialog result: ${result}');
     });
-  
+ }
   }
 
   publicstats()
