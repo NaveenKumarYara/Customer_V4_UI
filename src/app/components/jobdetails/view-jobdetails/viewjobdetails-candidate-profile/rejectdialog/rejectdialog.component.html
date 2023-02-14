@@ -35,16 +35,18 @@
               </div> -->
           </div>
 
+          <ng-container *ngIf="isShown2">
+            <form action="">
+              <div class="form-row">
+                <label>
+                  {{ checkemail }}
+                </label>
+              </div>
+            </form>
+          </ng-container>
+
           <ng-container *ngIf="isShown1">
-            <ng-container *ngIf="isShown2">
-              <form action="">
-                <div class="form-row">
-                  <label>
-                    {{ checkemail }}
-                  </label>
-                </div>
-              </form>
-            </ng-container>
+            
             <form action="">
               <div class="form-row">
                 <div class="form-group">
@@ -193,6 +195,8 @@
               </div>
             </form>
           </ng-container>
+      
+
           <!-- <div class="form-group">
             <input
               type="text"
