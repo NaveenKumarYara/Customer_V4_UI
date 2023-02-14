@@ -761,6 +761,28 @@
                     </div>
                   </div>
                 </div>
+                <ng-container *ngIf="JMskills.length > 0">
+                  <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills">
+                    <div class="col-sm-6 strip__col strip__col__td title__col">
+                      <div class="th__heading">Title</div>
+  
+                      <div class="box__table">{{skill?.Code}}</div>
+  
+                    </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Job Details</div>
+                      <div class="box__table">{{skill?.JExpInYears}}</div>
+                    </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Resume Details</div>
+                      <div class="box__table">
+                        <ng-container *ngIf="skill?.ExpInYears > 0">
+                          {{skill?.ExpInYears}}
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
               </ng-container>
               <ng-container *ngIf="Jskills.length === 0">
                 <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills">
