@@ -11,7 +11,8 @@ import { setTheme } from 'ngx-bootstrap/utils';
 import { promise } from 'protractor';
 import { resolve } from 'url';
 import { c } from '@angular/core/src/render3';
-import { ApiService, SettingsService } from '../../../../../shared/services';
+import { SettingsService } from '../../../../../../settings/settings.service';
+import { ApiService } from '../../../../../shared/services';
 import { AppService } from '../../../../../app.service';
 import { AlertService } from '../../../../../shared/alerts/alerts.service';
 import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
@@ -42,7 +43,7 @@ export class CdocumentManagerComponent implements OnInit {
   CandidateName:any;
   selectedFileNames: string[] = [];
   fileErrorDetail: { file: any; error: string; };
-  constructor(public dialogRef: MatDialogRef<CdocumentManagerComponent>,private appService: AppService,private _service: ApiService,private jobdetailsservice: JobdetailsService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService) { 
+  constructor(public dialogRef: MatDialogRef<CdocumentManagerComponent>,private appService: AppService,private settingsService: SettingsService,private _service: ApiService,private jobdetailsservice: JobdetailsService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService) { 
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     let maxFileSize = 2 * 1024 * 1024;
@@ -139,12 +140,54 @@ export class CdocumentManagerComponent implements OnInit {
     }
     return bytes.buffer;
   }
+
+  DownloadDocumentP(d) {
+    let fileDat = this.JobDocuments.find(x => x.DocName === d);
+    let fileExt: any;
+    let re = /\#/gi;
+    let name = d.replace(re, "%23");
+    let u = this.settingsService.settings.IdentitybaseUrl + '/home/WhitePapers?id=';
+    let url = u + name;
+    this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", url).subscribe((fileData) => {
+      let exp = d.split("aryticDP")[0];
+      fileExt = exp.split(".").pop();
+      let Name = exp.split(".")[0];
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+
+      if (fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, Name);
+      }
+      if (fileExt == "png" || fileExt == "jpeg") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/image" });
+        FileSaver.saveAs(blob, Name);
+      } else if (fileExt == "doc" || fileExt == "docx") {
+        let byteArr = this.base64ToArrayBuffer(fileData);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, exp);
+      }
+    });
+
+
+
+
+
+
+
+
+  }
+
   
   DownloadDocument(d)
   {
     let fileDat = this.JobDocuments.find(x=>x.DocName === d);
     let fileExt:any;
-    
+    debugger
     this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
       let exp = d.split("aryticDP")[0];
       fileExt = exp.split(".").pop();
