@@ -34,7 +34,7 @@ import { WithDrawndialogComponent } from "./Withdrawn/withdrawn.component";
 import { sendnotificationdialogComponent } from "./SendNotification/sendnotification.component";
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 import * as _html2canvas from "html2canvas";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { pid, title } from "process";
@@ -42,10 +42,10 @@ import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.comp
 import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
 import { CdocumentManagerComponent } from "../../../Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
 const html2canvas: any = _html2canvas;
+
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
-
 // import $ from 'jquery';
 // import 'owl-carousel';
 @Component({
@@ -1035,6 +1035,35 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.GetJobNotes(profileId, jobId);
       }
     });
+  }
+
+  DeleteProfile(Id) {
+    swal(
+      {
+        title: 'Delete Profile',
+        text: 'Are you sure you want to Delete.',
+        showConfirmButton: true,
+        showCancelButton: true,
+        type: "info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value === true) {
+    this.jobdetailsservice.DeleteCandidateProfile(Id,this.jobid).subscribe((data) => {
+      if (data >= 0) {
+        this.toastr.info('profile deleted!', 'Success!');
+        setTimeout(() => {
+          this.toastr.dismissToast;
+          this.myEvent.emit(null);
+        }, 3000);
+        
+        //this.GetJobNotes(profileId, jobId);
+      }
+    });
+  }
+  });
   }
 
   DownloadResumeNote(val, Name): void {

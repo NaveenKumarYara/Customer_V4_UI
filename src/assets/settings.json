@@ -10,7 +10,7 @@
   "addSkillsEndpoint": "https://profileapi-dev001.arytic.com/api/AddSkill",
   "GetPersonTypeEndPoint": "https://jobsapi-dev001.arytic.com/api/GetPersonType?",
   "GetInterViewList": "https://jobsapi-dev001.arytic.com/api/InterviewSortBy?",
-  
+  "DeleteCandidateProfile": "https://referalapi-dev001.arytic.com/api/DeleteJobProfile",
   "AddSubscription":"https://pricingapi-dev001.arytic.com/api/BillingHistory/CreateCustomerWithSubscription",
   "JobShareInvite": "https://emailapi-dev001.arytic.com/api/JobShare",
   "AJobShareInvite": "https://emailapi-dev001.arytic.com/api/AssignJob",

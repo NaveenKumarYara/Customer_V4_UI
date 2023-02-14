@@ -639,12 +639,13 @@ titleCase(str) {
        if (data === 0) {  
         this.toastr.success('Mail sent successfully', 'Success');
         setTimeout(() => {
+          this.dialogRef.close();
          this.toastr.dismissToast;    
          this.arr =[];  
          this.inviteform.reset();
       
      }, 3000);
-     this.dialogRef.close();
+
     
        }
      }, error => {
@@ -771,10 +772,12 @@ titleCase(str) {
             this.clearTeamMemebers();
             this.selectedComments = "";
             this.toastr.success('Mail sent successfully', 'Success');
-            this.isSharingStarted = false;
+          
             setTimeout(() => {
+              this.isSharingStarted = false;
               this.toastr.dismissToast;
               this.dialogRef.close();
+            
             }, 1000);
           }
          

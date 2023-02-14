@@ -14,6 +14,7 @@ export class Settings {
   GetPersonTypeEndPoint: string;
   GetInterViewList: string;
   JobShareInvite: string;
+  DeleteCandidateProfile:string;
   AJobShareInvite:string;
   CustomerInterviewAccept: string;
   // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",

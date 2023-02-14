@@ -123,6 +123,7 @@
     "baseUrll": "http://api.tenendus.com:1090/",
     "AddContactShareInfo": "${Profile_URL}/api/InsertShareContactInfo",
     "bulkApply": "${Referral_URL}/api/ApplyBulk",
+    "DeleteCandidateProfile": "${Referral_URL}/api/DeleteJobProfile",
     "WishlistCount": "${Profile_URL}/api/GetWishlistCount?",
     "GetCustomerUsers": "${Profile_URL}/api/GetCustomerUsers?",
     "AddDepartment": "${Profile_URL}/api/InsertCustomerDepartments",

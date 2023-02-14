@@ -557,10 +557,11 @@ export class SharedialogComponent implements OnInit{
             this.selectedComments = "";
             this.EmailId = " ";
             this.isSharingStarted = false;
-            this.dialogRef.close();
+           
             this.toastr.success('Mail sent successfully', 'Success');
             setTimeout(() => {
               this.toastr.dismissToast;
+              this.dialogRef.close();
             }, 3000);
           }
        
