@@ -7,8 +7,18 @@
           <header>
             <a (click)="back()"><img src="/assets/images/right-arrow.svg" class="arrow-left" width="31.9px"
                 height="21.2px" alt=""></a>
-            <h3 *ngIf="editMode === 'true'">Create new Job</h3>
-            <h3 *ngIf="editMode === 'false'">Post a Job</h3>
+
+            <h3 *ngIf="editMode === 'true'">
+                Create new Job
+            </h3>
+            <h3 *ngIf="editMode === 'false'">
+              <ng-container *ngIf="jobdetailscustomer === undefined">
+                Post a Job
+              </ng-container>
+              <ng-container *ngIf="jobdetailscustomer != null">
+                Edit Job
+              </ng-container>
+            </h3>
           </header>
           <div class="form-steps">
             <app-steps></app-steps>

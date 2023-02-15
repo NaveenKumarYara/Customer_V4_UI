@@ -287,14 +287,21 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
 		private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private spinner: NgxSpinnerService
 	) {
+		this.customer = JSON.parse(sessionStorage.getItem('userData'));
+		this.customerId = this.customer.CustomerId;
+		this.userId = this.customer.UserId;
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
 		this.searchTerm.pipe(
 			debounceTime(400),
 			distinctUntilChanged())
 			.subscribe(value => {
-				this.searchValue = value;
-				this.searchCandidates();
+				if(value != undefined)
+				{
+					this.searchValue = value;
+					this.searchCandidates();
+				}
+				
 			});
 
 		this.body = 'Join hands with us and make your goals achieved!.';
@@ -379,7 +386,20 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 	ngOnInit() {
 		this.spinner.show();
-		this.mapsAPILoader.load().then(
+		
+		this.initInitialState();
+		this.isGridShown = true;
+		this.currentView = 'Grid';
+		this.fileUploadForm = this.fb.group({ 
+			'CustomerId': ['', Validators.required],
+			'ProfileId': [0, Validators.nullValidator],
+			'JobId': [0, Validators.nullValidator],
+			'SmartCard':[null, Validators.nullValidator],
+			'JobSmartCard': ['', Validators.nullValidator],
+			'Url': ['', Validators.nullValidator],
+			'FileExtension': ['', Validators.nullValidator],
+		  });
+		  this.mapsAPILoader.load().then(
 			() => {
 				this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
 				this.autocomplete.setComponentRestrictions({ 'country': ['us'] });
@@ -407,18 +427,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 				});
 
 			});
-		this.initInitialState();
-		this.isGridShown = true;
-		this.currentView = 'Grid';
-		this.fileUploadForm = this.fb.group({ 
-			'CustomerId': ['', Validators.required],
-			'ProfileId': [0, Validators.nullValidator],
-			'JobId': [0, Validators.nullValidator],
-			'SmartCard':[null, Validators.nullValidator],
-			'JobSmartCard': ['', Validators.nullValidator],
-			'Url': ['', Validators.nullValidator],
-			'FileExtension': ['', Validators.nullValidator],
-		  });
 	}
 
 	closeSidebarHandler() {
@@ -525,9 +533,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	}
 	initInitialState() {
 		//this.keywordSearchValidators();
-		this.customer = JSON.parse(sessionStorage.getItem('userData'));
-		this.customerId = this.customer.CustomerId;
-		this.userId = this.customer.UserId;
+		
 		this.showDetail = false;
 		this.Filter(0);
 		this.getSkills();
@@ -1750,8 +1756,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	getCandidates() {
 		//debugger;
 		this.candidatesLoading = true;
-		this.customer = JSON.parse(sessionStorage.getItem('userData'));
-		this.customerId = this.customer.CustomerId;
+
 
 		let candidateSearch = new CandidateSearch();
 		candidateSearch.PageNumber = this.currentPage;
