@@ -1040,7 +1040,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     swal(
       {
         title: 'Delete Profile',
-        text: 'Are you sure you want to Delete.',
+        text: 'Are you sure you want to delete?',
         showConfirmButton: true,
         showCancelButton: true,
         type: "info",
