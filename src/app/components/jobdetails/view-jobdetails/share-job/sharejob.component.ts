@@ -539,7 +539,7 @@ titleCase(str) {
 
   async writeClipImg() {
     let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin', 'https://identityapi-dev.arytic.com/,http://localhost:4800');
+    headers.append('Access-Control-Allow-Origin', 'https://identityapi-dev001.arytic.com/,http://localhost:4800');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     headers.append('Content-Type', 'application/json');
