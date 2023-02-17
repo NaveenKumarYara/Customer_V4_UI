@@ -403,8 +403,8 @@
         </button>
       </li> 
 
-      <li *ngIf="profile?.ResponseStatusId > 12">
-        <button tooltip="Delete Profile" placement="left" (click)="DeleteProfile(profile?.ProfileId)">
+      <li *ngIf="profile?.ResponseStatusId > 12 ||   profile?.ResponseStatusId <= 6">
+        <button tooltip="Delete Profile" placement="left" (click)="DeleteProfile(profile?.ProfileId,profile?.FirstName,profile?.LastName,profile?.Email)">
           <span class="fa fa-trash-o"></span>
         </button>
       </li> 

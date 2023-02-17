@@ -63,7 +63,7 @@
 										<ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill"
 											bindLabel="Code" bindValue="Code" [typeahead]="selectedskillinput" [hideSelected]="true"
 											[loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
-											#skill="ngModel" [virtualScroll]="true" [multiple]="false">
+											#skill="ngModel" [virtualScroll]="true" [multiple]="true">
 										</ng-select>
 									</div>
 									<div class="filter__buttons text-right">

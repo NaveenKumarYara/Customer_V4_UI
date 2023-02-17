@@ -66,6 +66,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
   image:any;
+  delProfile = new DeleteProfile();
   MyDocuments: any = [];
   show: boolean = false;
   // profileVideo= new  VideoProfile();
@@ -1036,7 +1037,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  DeleteProfile(Id) {
+  DeleteProfile(Id,Fname,Lname,Email) {
     swal(
       {
         title: 'Delete Profile',
@@ -1052,11 +1053,19 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         if (result.value === true) {
     this.jobdetailsservice.DeleteCandidateProfile(Id,this.jobid).subscribe((data) => {
       if (data >= 0) {
-        this.toastr.info('profile deleted!', 'Success!');
-        setTimeout(() => {
-          this.toastr.dismissToast;
-          this.myEvent.emit(null);
-        }, 3000);
+        if(Email.substring(0, 7) != 'noemail')
+        {
+          this.DelProfile(Fname,Lname,Email);
+        }
+        else
+        {
+          this.toastr.info('profile deleted!', 'Success!');
+          setTimeout(() => {
+            this.toastr.dismissToast;
+            this.myEvent.emit(null);
+          }, 3000);
+        }
+     
         
         //this.GetJobNotes(profileId, jobId);
       }
@@ -1090,6 +1099,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         let blob = new Blob([byteArr], { type: "application/pdf" });
         FileSaver.saveAs(blob, Name);
       }
+    });
+  }
+
+  DelProfile(Fname,Lname,Email) {
+    this.delProfile.CustName = this.customer.FirstName + ' ' + this.customer.LastName;
+    this.delProfile.Name = Fname +' '+ Lname;
+    this.delProfile.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+    this.delProfile.FromEmail = "info@arytic.com" ;
+    this.delProfile.ToEmailId = Email;
+    this._service.PostService(this.delProfile,"EmailAPI/api/SendDeleteProfileInfo").subscribe((fData) => {
+      this.toastr.info('profile deleted!', 'Success!');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+        this.myEvent.emit(null);
+      }, 3000);
     });
   }
 
@@ -2002,4 +2026,11 @@ export class EditNotes {
   public ProfileId: Number;
 }
 
+export class DeleteProfile {
+  public Name: string;
+  public CustName: string;
+  public ToEmailId: string;
+  public JobTitle: string;
+  public FromEmail:string;
+}
 
