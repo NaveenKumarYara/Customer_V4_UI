@@ -1554,7 +1554,7 @@
                 <h4>WithDrawn</h4>
               </div>
             </ng-container>
-            <ng-container *ngIf="profile?.ResponseStatusId === null">
+            <ng-container *ngIf="profile?.ResponseStatusId === null || profile?.ResponseStatusId === 9">
               <div class="col-sm-2 col">
                 <span class="icon-smart icon-smart-review"></span>
                 <h4>Submitted</h4>
