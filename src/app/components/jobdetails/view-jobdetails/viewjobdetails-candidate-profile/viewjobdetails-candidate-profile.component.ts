@@ -1103,8 +1103,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   DelProfile(Fname,Lname,Email) {
-    this.delProfile.CustName = this.customer.FirstName + ' ' + this.customer.LastName;
-    this.delProfile.Name = Fname +' '+ Lname;
+    this.delProfile.CustName = this.titleCase(this.customer.FirstName) + ' ' + this.titleCase(this.customer.LastName);
+    this.delProfile.Name = this.titleCase(Fname) +' '+ this.titleCase(Lname);
     this.delProfile.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
     this.delProfile.FromEmail = "info@arytic.com" ;
     this.delProfile.ToEmailId = Email;
@@ -1302,6 +1302,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
 
 
+  }
+
+  titleCase(str) {
+    return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
   }
 
   // getMatchingDetails(profileId)
