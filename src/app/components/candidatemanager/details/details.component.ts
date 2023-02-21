@@ -246,7 +246,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	closeResult: string;
 	data: any;
 	sortBY:any=0;
-	selectedSkills: any;
+	selectedSkills: any ;
 	isJobTitleShown: boolean;
 	jobTitle: any;
 	isCompanyShown: boolean;
@@ -1339,6 +1339,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.isDomainShown = false;
 		//this.showFilterNavBar = false;
 		//this.showMenu = false;
+		debugger
 		this.getCandidates();
 	}
 	selectSkills() {
@@ -1762,7 +1763,14 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.PageNumber = this.currentPage;
 		candidateSearch.PageSize = this.pageCount;
 		candidateSearch.SearchValue = this.searchValue;
-		candidateSearch.SelectedSkills = this.selectedSkills;
+		if(this.selectedSkills != undefined)
+		{
+			candidateSearch.SelectedSkills = this.selectedSkills.toString();
+		}
+		else
+		{
+			candidateSearch.SelectedSkills = this.selectedSkills;
+		}
 		candidateSearch.MinimumExperience = this.MinimumExperience;
 		candidateSearch.MaximumExperience = this.MaximumExperience;
 		candidateSearch.JobTitle = this.jobTitle;
@@ -1774,6 +1782,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
+		debugger
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
