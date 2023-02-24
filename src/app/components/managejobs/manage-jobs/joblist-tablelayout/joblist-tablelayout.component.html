@@ -40,7 +40,7 @@
               </h5>
             <h5>{{job?.PostedOn  | date:'mediumDate'}}</h5>
 
-            <h5 class="jobbl-1">Job Id : {{job?.JobPositionId}}</h5>
+            <h5 class="jobbl-1" *ngIf="job?.JobPositionId !=''">Job Id : {{job?.JobPositionId}}</h5>
         </div>
     </div>
     <div class="options-group"  *ngIf="customer.UserRoleId!=9">
