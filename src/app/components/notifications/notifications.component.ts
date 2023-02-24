@@ -38,6 +38,10 @@ export class NotificationsComponent implements OnInit {
     this.router.navigateByUrl('app-customsearch');
   }
 
+  Shareclose() {
+    this.router.navigateByUrl('/app-dashboardview');
+}
+
 
 getNotifications() {
   
