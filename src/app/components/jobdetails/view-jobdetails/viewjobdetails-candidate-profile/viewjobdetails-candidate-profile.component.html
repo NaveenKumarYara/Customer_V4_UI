@@ -2321,7 +2321,12 @@
       </div>
     </div>
 
-    <div class="matching-details bg-fff" id="matchingDetailCert-{{ profile.ProfileId }}">
+    <div class="matching-details bg-fff search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="5"
+    [infiniteScrollThrottle]="20"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false" id="matchingDetailCert-{{ profile.ProfileId }}">
       <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
       <div class="header scrollbar-inner">
         <img src="../../../../../assets/images/Certifications/certification.png" width="60" alt="certifications" />
@@ -2582,7 +2587,12 @@
     </div>
 
     <!--Domains-->
-    <div class="matching-details bg-fff" id="matchingDetailDom-{{ profile.ProfileId }}">
+    <div class="matching-details bg-fff search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="5"
+    [infiniteScrollThrottle]="20"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false" id="matchingDetailDom-{{ profile.ProfileId }}">
       <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
       <div class="header scrollbar-inner">
         <img src="../../../../../assets/images/Certifications/domain.png" width="60" alt="Domains" />

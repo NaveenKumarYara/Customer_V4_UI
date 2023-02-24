@@ -2174,6 +2174,11 @@ padding: 15px 15px 16px 55px;
 position: relative;
 height: 100%;
 }
+.search-results {
+    height: 47rem;
+    overflow: scroll;
+}
+
 
 .griding-document .griding-col .icon {
 background: url(../../../../../assets/images/interview-scheduled-sprites.png) -466px -306px no-repeat var(--white);

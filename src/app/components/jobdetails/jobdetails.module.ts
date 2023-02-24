@@ -77,6 +77,7 @@ import { SendnotificationdialogNcomponentComponent } from './view-jobdetails/vie
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TagInputModule } from 'ngx-chips';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofile/editprofile.component';
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
@@ -86,6 +87,7 @@ setTheme('bs3');
   imports: [
     CommonModule,
     MatDialogModule,
+    InfiniteScrollModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     NgbTooltipModule,
