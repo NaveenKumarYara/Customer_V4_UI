@@ -101,10 +101,16 @@ export class ViewJobdetailsComponent implements OnInit {
   Industries:any
   = [
     {id: 1, name: 'All Applicants'},
-    {id: 2, name: 'In-Progress'},
-    {id: 3, name: 'Arytic Applicants'},
-    {id: 4, name: 'Invited profiles'},
-    {id: 5, name: 'Uploaded Profiles'}
+    // {id: 2, name: 'In-Progress'},
+    {id: 3, name: 'Applied Candidates'},
+    {id: 4, name: 'Invited profiles' },
+    {id: 5, name: 'Uploaded Profiles' },
+    {id: 6, name: 'Social Media'},
+    {id: 7, name: 'Freelancer'},
+    {id: 8, name: 'Job Boards'},
+    {id: 9, name: 'Agencies' },
+    {id: 10, name: 'Customer Data' },
+    {id: 11, name: 'Others'}
 ];
 
   Count: any;
@@ -774,11 +780,11 @@ export class ViewJobdetailsComponent implements OnInit {
       this.updateappliedstatus();
       //this.inprogressview(0);
     }
-    else if(val === "In-Progress")
-    {
-      this.ClearallValues();
-      this.updateinprogressstatus();
-    }
+    // else if(val === "In-Progress")
+    // {
+    //   this.ClearallValues();
+    //   this.updateinprogressstatus();
+    // }
     else if(val === "Invited profiles")
     {
       this.statusid=4;
@@ -791,11 +797,17 @@ export class ViewJobdetailsComponent implements OnInit {
       this.ClearallValues();
       this.GetUploadList();
     }
-    else if(val === "Arytic Applicants")
+    else if(val === "Applied Candidates")
     {
       this.statusid=4;
       this.ClearallValues();
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0,0,0,0,1, this.profilecount);
+    }
+    else
+    {
+      this.statusid=0;
+      this.ClearallValues();
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, '', this.exp, this.location, this.domain, 0,0,0,0,0, this.profilecount);
     }
   }
 

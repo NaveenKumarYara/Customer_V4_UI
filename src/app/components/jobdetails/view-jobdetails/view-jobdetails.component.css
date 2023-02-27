@@ -777,6 +777,15 @@
     top: 100%;
   }
 
+  .custom-dropdown  {
+    position: relative;
+    white-space: nowrap;
+    text-align: start;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option { white-space: unset !important; }
+  
+
   .funnel-graph-container .funnel-tabbing .col:after {
     content: "";
     position: absolute;

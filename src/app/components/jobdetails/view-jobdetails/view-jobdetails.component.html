@@ -665,32 +665,67 @@
 							<li class="active" data-toggle="tab" href="#All" tooltip="Clicking on this filter enables you to view the list of profiles based on sources of applications
 							and respective hiring process" placement="top">
 								<!-- <span class="tag">What is it?</span> -->
-								<!-- <select class="custom-select" (change)="MySort($event.target.value)">
-									<option value="All Application">All Applicants</option>
-									<option value="In-Progress">In-Progress</option>
-									<option value="Arytic Profiles">Arytic Applicants</option>
-									<option value="Invited profile">Invited profiles</option>
-									<option value="Uploaded Profile">Uploaded Profiles</option>
+								<!-- <select class="custom-select" (change)="MySort($event)" [(ngModel)]="Industry" name="Indusrty">
+									<option value="All Applicants"  selected="selected" >All Applicants - {{jobstatistics?.Applied || 0}}</option>
+						
+									<option value="Applied Candidates">Applied Candidates - ({{myjobstatistics?.AryticProfiles
+										|| 0}})</option>
+
+									<option value="Invited profiles">Invited profiles - ({{myjobstatistics?.Invited||0}})</option>
+								
+									<option value="Uploaded Profiles">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option>
+								</select> -->
 									<!--<option value="Arytic Profiles">Arytic Applicants - ({{myjobstatistics?.AryticProfiles
 										|| 0}})</option>
 									<option value="In-Progress">In-Progress - ({{jobstatistics?.InProgress || 0}})</option>
 									<option value="Invited profile">Invited profiles - ({{myjobstatistics?.Invited||0}})</option>
 									<option value="Uploaded Profile">Uploaded Profiles - ({{myjobstatistics?.Uploaded || 0}})</option> 
-								</select> -->
+								</select>-->
+								<ng-select  appendTo="body" 
+								class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
+								bindValue="name"  name="Indusrty" [clearable]="false" [searchable]="false"
+								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required
+								 >
+							
+								<ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+									<div class="custom-style custom-dropdown">
+										<span></span>
 
-								<ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="name"
+										<span [ngOptionHighlight]="search" *ngIf="item.name === 'All Applicants' " >{{item.name}} - ( {{ jobstatistics?.Applied || 0 }} )</span>
+										<span [ngOptionHighlight]="search" *ngIf="item.name === 'Applied Candidates' " >{{item.name}} - ( {{myjobstatistics?.AryticProfiles
+											|| 0}} )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Invited profiles' " >{{item.name}} - ( {{myjobstatistics?.Invited || 0}} )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Uploaded Profiles' " >{{item.name}} - ( {{myjobstatistics?.Uploaded || 0}} )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Social Media' " >{{item.name}} - ( 0 )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Freelancer' " >{{item.name}} - ( 0 )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Job Boards' " >{{item.name}} - ( 0 )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Agencies' " >{{item.name}} - ( 0 )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Customer Data' " >{{item.name}} - ( 0 )</span>
+											<span [ngOptionHighlight]="search" *ngIf="item.name === 'Others' " >{{item.name}} - ( 0 )</span>
+										</div>
+									
+								</ng-template>
+							
+							  </ng-select>
+								 <!-- <ng-select class="custom-style" [items]="Industries" placeholder="All Applicants" bindLabel="sname"
 								bindValue="name"  name="Indusrty" [clearable]="false" [searchable]="false"
 								[(ngModel)]="Industry"  (ngModelChange)="MySort($event)" #Indusrty="ngModel" required>
-							</ng-select>
+							</ng-select>  -->
 								<span class="number" *ngIf="Industry === 'All Applicants'">{{jobstatistics?.Applied || 0}}</span>
-								<span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span>
-								<span class="number" *ngIf="Industry === 'Arytic Applicants'" >{{myjobstatistics?.AryticProfiles
+						 <!-- <span class="number" *ngIf="Industry === 'In-Progress'" >{{jobstatistics?.InProgress || 0}}</span> -->
+								<span class="number" *ngIf="Industry === 'Applied Candidates'" >{{myjobstatistics?.AryticProfiles
 									|| 0}}</span>							
 								<span class="number" *ngIf="Industry === 'Invited profiles'" >{{myjobstatistics?.Invited || 0}}</span>
 								<span class="number" *ngIf="Industry === 'Uploaded Profiles'" >{{myjobstatistics?.Uploaded || 0}}</span>
+								<span class="number" *ngIf="Industry === 'Social Media'" > 0 </span>
+								<span class="number" *ngIf="Industry === 'Freelancer'" > 0 </span>
+								<span class="number" *ngIf="Industry === 'Job Boards'" > 0 </span>
+								<span class="number" *ngIf="Industry === 'Agencies'" > 0 </span>
+								<span class="number" *ngIf="Industry === 'Customer Data'" > 0 </span>
+								<span class="number" *ngIf="Industry === 'Others'" > 0 </span>
 							</li>
 					
-							<ng-container *ngIf="Industry === 'In-Progress' || Industry === 'All Applicants'">
+							<ng-container *ngIf="Industry === 'All Applicants'">
 								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus();ttClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
@@ -711,8 +746,8 @@
 									<span class="number">{{jobstatistics?.Hired || 0}}</span>
 								</li>
 							</ng-container>
-							<ng-container *ngIf="Industry === 'Arytic Applicants' || Industry === 'Invited profiles' || Industry === 'Uploaded Profiles' ">
-								
+							<!-- <ng-container *ngIf="Industry === 'Applied Candidates' || Industry === 'Invited profiles' || Industry === 'Uploaded Profiles' "> -->
+								<ng-container *ngIf="Industry != 'All Applicants'">
 								<li data-toggle="tab" href="#screening">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
