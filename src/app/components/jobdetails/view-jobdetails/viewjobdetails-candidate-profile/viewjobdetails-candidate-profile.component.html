@@ -869,6 +869,7 @@
                 <span class="experience"> 0 Yrs</span>
               </ng-container>
             </h4>
+       
             <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation != null; else false">
               <ng-container>
                 <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18" xml:space="preserve"
@@ -883,6 +884,7 @@
                 {{ profile.CurrentLocation }}
               </h5>
             </div>
+         
           </div>
           <!---->
           <div class="d-block text-center min-h40">
@@ -893,17 +895,24 @@
                 {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
                 <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status can be moved when candidate had approved for the Job" placement="left" placement="top"></i>
               </div>
-         
+               <div>
+                <small>
+             
+                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}"><i class="fa fa-info-circle"></i> {{profile.JobStatus}} By <span>{{profile?.CompanyName}} </span> On <span> {{profile?.CreatedOn | date:'mediumDate' }}</span></ng-container> 
+                 </small>
+               </div>
+        
             </div>
 
 
 
-            <small>
-              <ng-container *ngIf="profile.CompanyName != null" > <span title="{{profile?.CompanyName}}">(Private)</span></ng-container>
-              <ng-container *ngIf="profile.CompanyName === null" > <span title="Arytic Profile"> (Public)</span></ng-container>
-              <!-- <ng-container *ngIf="profile.CompanyName != null" title="{{profile?.CompanyName}}">{{profile.JobStatus}}By <span>{{profile?.CompanyName}}</span></ng-container> -->
-              <span> Arytic Check </span>
-            </small>
+      
+          
+              <small>
+                <span> Arytic Check </span>
+               </small>
+         
+          
 
             <!--Old Code-->
             <div class="hidden">

@@ -1183,6 +1183,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;  
+          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
