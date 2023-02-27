@@ -8,6 +8,8 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CustomerSubscription } from '../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../models/GetSubscriptionDetails';
 import { ApiService } from '../../shared/services/api.service/api.service';
+import { NotificationsComponent } from '../../components/notifications/notifications.component';
+import { MatDialog } from '@angular/material';
 declare var $: any; 
 @Component({
     selector: 'app-Logoheader',
@@ -28,7 +30,7 @@ export class LogoHeaderComponent implements OnInit {
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   menuFixed:boolean = false;
-  constructor( private appService: AppService,  private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef, location: Location) {
+  constructor( private appService: AppService, private dialog: MatDialog , private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef, location: Location) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.toastr.setRootViewContainerRef(_vcr);
     if (this.customer == null) {
@@ -147,7 +149,11 @@ GetSubscriptionDetails(sid)
 
   ChangeCount() {
     this.notificationsCount = 0;
-    this.router.navigateByUrl('/app-notifications');
+    const dialogRef = this.dialog.open(NotificationsComponent, {
+      width: '1100px',
+      position: { right: '0'}
+    });
+    // this.router.navigateByUrl('/app-notifications');
   }
 
   GetNotificationCount() {
