@@ -82,6 +82,7 @@ import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofil
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ConfirmationDialog } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/ConfirmationDialog.component';
 setTheme('bs3');
 @NgModule({
   imports: [
@@ -130,9 +131,9 @@ setTheme('bs3');
   providers: [JobdetailsService],
   declarations: [ViewJobdetailsComponent,SafeHtmlPipe,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, DefaultModelsComponent, ViewjobdetailsScComponent,WithDrawndialogComponent,
-                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
+                  ViewjobdetailsCandidateProfileComponent,ConfirmationDialog, ChatboxdialogComponent,sendnotificationdialogComponent,SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
                   UploadProfilesComponent,ScheduleInterviewComponent,EditprofileCmComponent,EditprofileComponent,ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent, SendnotificationdialogNcomponentComponent, EditprofileComponent, AshareJobComponentComponent],
   entryComponents: [
-    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent,AshareJobComponentComponent]
+    ScheduleInterviewComponent,SendnotificationdialogNcomponentComponent, DefaultModelsComponent,AshareJobComponentComponent,ConfirmationDialog]
 })
 export class JobdetailsModule { }

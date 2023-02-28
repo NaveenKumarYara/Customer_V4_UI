@@ -898,7 +898,7 @@
                <div>
                 <small>
              
-                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}"><i class="fa fa-info-circle"></i> {{profile.JobStatus}} By <span>{{profile?.CompanyName}} </span> On <span> {{profile?.CreatedOn | date:'mediumDate' }}</span></ng-container> 
+                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}"><i class="fa fa-info-circle"></i>  By <span> <strong> {{profile?.CompanyName}} </strong> </span> On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
                  </small>
                </div>
         
