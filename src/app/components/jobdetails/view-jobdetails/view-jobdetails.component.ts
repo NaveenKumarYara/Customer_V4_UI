@@ -102,7 +102,7 @@ export class ViewJobdetailsComponent implements OnInit {
   = [
     {id: 1, name: 'All Applicants'},
     // {id: 2, name: 'In-Progress'},
-    {id: 3, name: 'Applied Candidates'},
+    {id: 3, name: 'Applied Profiles'},
     {id: 4, name: 'Invited profiles' },
     {id: 5, name: 'Uploaded Profiles' },
     {id: 6, name: 'Social Media'},
@@ -797,7 +797,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.ClearallValues();
       this.GetUploadList();
     }
-    else if(val === "Applied Candidates")
+    else if(val === "Applied Profiles")
     {
       this.statusid=4;
       this.ClearallValues();
