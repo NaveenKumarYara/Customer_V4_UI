@@ -780,7 +780,11 @@
   .custom-dropdown  {
     position: relative;
     white-space: nowrap;
-    text-align: start;
+    text-align: justify;
+    width: 163%;
+    height: 183%;
+    font-size: 13px;
+    text-overflow: initial;
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option { white-space: unset !important; }

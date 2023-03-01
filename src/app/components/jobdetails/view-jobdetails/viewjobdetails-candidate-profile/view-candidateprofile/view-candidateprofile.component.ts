@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewContainerRef, Output } from "@angular/core";
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatPaginator } from "@angular/material";
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatPaginator, MatSnackBar } from "@angular/material";
 import { ApiService } from "../../../../../shared/services/api.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { JobdetailsService } from "../../../jobdetails.service";
@@ -19,6 +19,9 @@ import { PageEvent, Sort } from "@angular/material";
 import { RequestdialogComponent } from "../ManageReferences/RequestInfo/requestInfo.component";
 import { EditprofileComponent } from "../../edit-profiles/editprofile/editprofile.component";
 declare var $: any;
+import swal from 'sweetalert2';
+import { ConfirmationDialog } from "./ConfirmationDialog.component";
+import { GetJobDetailCustomer } from "../../../../../../models/GetJobDetailCustomer";
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
 export interface DialogData {
@@ -34,6 +37,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
+  delProfile = new iDeleteProfile();
   setActive: number = null;
   selectedSlice: number = -1;
   BigStatementTitle: string;
@@ -299,6 +303,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   alist: any = [];
   showMaskedData: boolean;
   profile: any;
+  jobdetailscustomer: GetJobDetailCustomer;
 
   constructor(
     private dialogRef: MatDialogRef<ViewCandidateprofileComponent>,
@@ -308,10 +313,12 @@ export class ViewCandidateprofileComponent implements OnInit {
     private settingsService: SettingsService,
     private _service: ApiService,
     private router: Router,
+    private snackBar: MatSnackBar,
     private jobdetailsservice: JobdetailsService,
     private appService: AppService,
     private dialog: MatDialog
   ) {
+    const swal = require('sweetalert2');
     //this.preId = sessionStorage.getItem('Preid');
     this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.noTest = false;
@@ -394,6 +401,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   }
   ngOnInit() {
     this.getTestGroupDescription();
+    this.PopulateJobdetail(); 
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
@@ -483,6 +491,113 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) &&
            this.profile.UserId > 0 && this.profile.IsConfirmed == null
       });
+  }
+
+  DeleteProfile(Id,Fname,Lname,Email) {
+    const dialogRef = this.dialog.open(ConfirmationDialog,{
+         width: '340px',
+       
+         height : '180px',
+      data:{
+        message: ' Are you sure want to delete? ',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+    //const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        //snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        this.jobdetailsservice.DeleteCandidateProfile(Id,this.data.jobId).subscribe((data) => {
+              if (data >= 0) {
+                if(Email.substring(0, 7) != 'noemail')
+                {
+                  this.DelProfile(Fname,Lname,Email);
+                }
+                else
+                {
+                  this.toastr.info('profile deleted!', 'Success!');
+                  setTimeout(() => {
+                    this.toastr.dismissToast;
+                    this.dialogRef.close();
+                  }, 3000);
+                }
+              }
+              });
+        //snack.dismiss();
+        // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+        //   duration: 2000,
+        // });
+      }
+    });
+  //   swal(
+  //     {
+  //       title: 'Delete Profile',
+  //       text: 'Are you sure you want to delete?',
+  //       showConfirmButton: true,
+  //       showCancelButton: true,
+  //       type: "info",
+  //       confirmButtonColor: '#66dab5',
+  //       cancelButtonColor: '#FF0000',
+  //       confirmButtonText: 'Yes',
+  //       cancelButtonText: 'No'
+  //     }).then((result) => {
+  //       if (result.value === true) {
+  //   this.jobdetailsservice.DeleteCandidateProfile(Id,this.data.jobId).subscribe((data) => {
+  //     if (data >= 0) {
+  //       if(Email.substring(0, 7) != 'noemail')
+  //       {
+  //         this.DelProfile(Fname,Lname,Email);
+  //       }
+  //       else
+  //       {
+  //         this.toastr.info('profile deleted!', 'Success!');
+  //         setTimeout(() => {
+  //           this.toastr.dismissToast;
+  //           this.dialogRef.close();
+  //         }, 3000);
+  //       }
+     
+        
+  //       //this.GetJobNotes(profileId, jobId);
+  //     }
+  //   });
+  // }
+  // });
+  }
+
+  titleCase(str) {
+    return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+  }
+
+  
+  PopulateJobdetail() {
+    return this.jobdetailsservice.getJobDetailCustomer(this.customer.CustomerId, this.data.jobId).subscribe(res => {
+      this.jobdetailscustomer = res;    
+    });
+
+}
+
+
+  DelProfile(Fname,Lname,Email) {
+    this.delProfile.CustName = this.titleCase(this.customer.FirstName) + ' ' + this.titleCase(this.customer.LastName);
+    this.delProfile.Name = this.titleCase(Fname) +' '+ this.titleCase(Lname);
+    this.delProfile.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+    this.delProfile.FromEmail = "info@arytic.com" ;
+    this.delProfile.ToEmailId = Email;
+    this._service.PostService(this.delProfile,"EmailAPI/api/SendDeleteProfileInfo").subscribe((fData) => {
+      this.toastr.info('profile deleted!', 'Success!');
+      setTimeout(() => {
+        this.dialogRef.close();
+        this.toastr.dismissToast;
+      }, 3000);
+    });
   }
 
   GetCandidateSKills() {
@@ -1553,4 +1668,12 @@ export class TestGroupDesc {
   description: string;
   minPercentage: number;
   maxPercentage: number;
+}
+
+export class iDeleteProfile {
+  public Name: string;
+  public CustName: string;
+  public ToEmailId: string;
+  public JobTitle: string;
+  public FromEmail:string;
 }
