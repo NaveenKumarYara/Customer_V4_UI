@@ -453,13 +453,13 @@
           </button>
         </li>
         <li>
-          <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="left">       
             <i class="fa fa-bookmark"></i>
           </button>
-          <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="left">       
             <i class="fa fa-bookmark"></i>
           </button>
-          <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="left">       
+          <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="left">       
             <i class="fa fa-bookmark"></i>
           </button>
         </li>
@@ -618,13 +618,13 @@
               {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
               profile.LastName.charAt(0)
               }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />
-              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
-              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
-              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
               
@@ -635,13 +635,13 @@
                 <!-- {{ profile.FirstName ? add3Dots(profile.FirstName, 8) : "" }} {{ profile.LastName ? add3Dots(profile.LastName, 5) : "" }} -->
                  {{ profile.FirstName }} {{ profile.LastName }} 
               </a>
-              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
-              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
-              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Wishlist" placement="top">       
+              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
             </ng-template>

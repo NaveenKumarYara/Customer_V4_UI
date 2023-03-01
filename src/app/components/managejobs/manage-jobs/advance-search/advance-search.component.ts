@@ -262,6 +262,7 @@ export class AdvanceSearchComponent implements OnInit {
     showClient: false,
     showDepartment: false,
     showusers: false,
+    JobStatus:false,
   };
 
   constructor(
@@ -1494,6 +1495,7 @@ export class AdvanceSearchComponent implements OnInit {
       this.SelectedJobtitleList = [];
       this.filteredJobtitle.next(this.JobtitleList.slice());
     } else if (componentNo == 4) {
+      this.filters.JobStatus = false;
       this.ProfileStatus = new FormControl();
       this.SelectedProfileStatusList = [];
       this.filteredProfileStatusList.next(this.ProfileStatusList.slice());

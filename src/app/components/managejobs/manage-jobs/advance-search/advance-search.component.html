@@ -29,13 +29,14 @@
 								</label>
 							</div>
 						</li>
-						<!-- <li>
+						<li>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" [(ngModel)]="showDepartment"> Department
+									<input type="checkbox" (ngModelChange)="onFilterChange($event, 'JobStatus')"
+									[(ngModel)]="filters.JobStatus"> Job Status
 								</label>
 							</div>
-						</li> -->
+						</li>
 						<li>
 							<div class="checkbox">
 								<label>
@@ -44,14 +45,14 @@
 								</label>
 							</div>
 						</li>
-						<li>
+						<!-- <li>
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" (ngModelChange)="onFilterChange($event, 'showlastpostedfilter')"
 										[(ngModel)]="filters.showlastpostedfilter"> Last Posted
 								</label>
 							</div>
-						</li>
+						</li> -->
 						<li>
 							<div class="checkbox">
 								<label>
@@ -178,7 +179,7 @@
 			</div>
 		</div>
 
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-12" [hidden]="!filters.JobStatus">
 			<label for="jobPri" class="jobid">Job Status</label>
 			<div>
 				<angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" [settings]="settings"
@@ -187,6 +188,8 @@
 				</angular2-multiselect>
 			</div>
 		</div>
+
+	
 
 		<div class="form-group col-md-12">
 			<label for="jobPri" class="jobid">Users</label>
@@ -396,15 +399,22 @@
 						</div>
 					</div>
 					<!--Profile Type-->
-					<div class="col-md-6">
+					<div class="col-md-6" [hidden]="!filters.JobStatus">
 						<!-- [hidden]="!profiletypefilter" -->
 						<div class="form-group custom-form-group">
+							
 							<label for="addProfilestatusfilter">Job Status
 								<ng-container *ngIf="isStatchecked==true">
 									<img src="../../../../../assets/images/check-mark.svg" alt="email">
 								</ng-container>
 
-								<span class="c-f-default" (click)="RemoveComponent(4)">Clear Filter</span>
+								<span (click)="RemoveComponent(4)">
+									<i class="fa fa-trash" aria-hidden="true"></i>
+								</span>
+								
+								<span class="c-f-default" (click)="ClearComponent(4)">Clear Filter</span>
+
+						
 							</label>
 							<!--QATC-685 Fix-->
 							<ng-container *ngIf="SelectedProfileStatusList.length==0">
@@ -702,12 +712,10 @@
 					</div>
 					<!---->
 					<!--Last Posted-->
-					<div class="col-md-6" [hidden]="!filters.showlastpostedfilter">
+					<div class="col-md-6">
 						<div class="form-group custom-form-group">
 							<label for="addlastpostedfilter">Last Posted
-								<span (click)="RemoveComponent(8)">
-									<i class="fa fa-trash" aria-hidden="true"></i>
-								</span>
+							
 								<span class="c-f-default" (click)="ClearComponent(8)">
 									Clear Filter
 								</span>
