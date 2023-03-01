@@ -283,7 +283,7 @@
 							<input class="form-control" id="searchData" name="searchData" placeholder="Search"
 								[(ngModel)]="searchValue" #searchData="ngModel">
 							<span class="input-group-btn">
-								<button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()"><i class="fa fa-search"
+								<button class="btn btn-primary btn-sm" type="button"  (window:keypress)="onSomeAction($event)" (click)="findCandidates()"><i class="fa fa-search"
 										aria-hidden="true"></i>
 								</button>
 							</span>
@@ -1178,6 +1178,23 @@
 							</div> -->
 						</div>
 					</div>
+					<div>
+						<div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end pagination-col pull-right">
+							<div class="revamp__sorting" *ngIf="candidates.length>0" >
+								<ul>
+									<li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
+											(click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}"
+											[disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
+									<li><input type="text" value="{{currentPage}}" disabled class="form-control"></li>
+									<li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next" (click)="onPageChange(1)"
+											[ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}"
+											[disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
+								</ul>
+								of {{totalPageCount}} pages
+							</div>
+						</div>
+					</div>
+				
 					<div class="data__table__footer">
 						<ul>
 							<!-- <li>
@@ -1205,6 +1222,7 @@
 								<button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
 							</li> -->
 						</ul>
+				
 					</div>
 				</ng-container>
 			</div>

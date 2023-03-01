@@ -1706,9 +1706,17 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.searchCandidates();
 	}
 	findCandidates() {
+	
 		this.cancel();
 		this.getCandidates();
 	}
+
+	onSomeAction(event){
+		if(event.keyCode === 13){
+			this.cancel();
+			this.getCandidates();
+		}
+	   }
 
    Filter(Sort)
    {
@@ -1782,7 +1790,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
-		debugger
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
