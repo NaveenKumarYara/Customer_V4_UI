@@ -1046,7 +1046,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 					type: "info",
 					confirmButtonColor: '#66dab5',
 					cancelButtonColor: '#FF0000',
-					confirmButtonText: 'View',
+					confirmButtonText: 'ok',
 					cancelButtonText: 'No'
 				}).then((result) => {
 					if (result.value === true) {
@@ -1138,10 +1138,10 @@ export class DetailsComponent implements OnInit,OnDestroy {
 							title: 'Eror while applying for a job.',
 							showConfirmButton: true,
 							showCancelButton: false,
-							type: "error",
+							type: "info",
 							confirmButtonColor: '#66dab5',
 							cancelButtonColor: '#FF0000',
-							confirmButtonText: 'View',
+							confirmButtonText: 'ok',
 							cancelButtonText: 'Cancel'
 						}).then((result) => {
 							this.initInitialState();
@@ -1153,10 +1153,10 @@ export class DetailsComponent implements OnInit,OnDestroy {
 					title: 'Please select at least one candidate from the List',
 					showConfirmButton: true,
 					showCancelButton: false,
-					type: "error",
+					type: "info",
 					confirmButtonColor: '#66dab5',
 					cancelButtonColor: '#FF0000',
-					confirmButtonText: 'View',
+					confirmButtonText: 'Ok',
 					cancelButtonText: 'No'
 				}).then((result) => {
 					this.initInitialState();
@@ -1253,7 +1253,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 						type: "success",
 						confirmButtonColor: '#66dab5',
 						cancelButtonColor: '#FF0000',
-						confirmButtonText: 'View',
+						confirmButtonText: 'Ok',
 						cancelButtonText: 'No'
 					}).then((result) => {
 						this.shareJobSidepanel = false;
@@ -1276,7 +1276,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 					title: 'Please select at least one candidate from the List',
 					showConfirmButton: true,
 					showCancelButton: false,
-					type: "error",
+					type: "info",
 					confirmButtonColor: '#66dab5',
 					cancelButtonColor: '#FF0000',
 					confirmButtonText: 'OK',
