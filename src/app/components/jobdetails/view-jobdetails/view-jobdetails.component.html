@@ -117,13 +117,13 @@
 
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
 							<button *ngIf="wishcheck === true;else isact" class="btn btn-border btn-primary"
-							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Wishlist
+							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Favorite
 								</button>
 						</ng-container>
 						<ng-template #isact>
 							<button  class="btn btn-border"
 							(click)="GetWishlistSort(true)">
-							<span class="icon-wishlist">Icon</span> Wishlist
+							<span class="icon-wishlist">Icon</span> Favorite
 								</button>
 						</ng-template>
 					
@@ -790,7 +790,7 @@
 							</label>
 							</fieldset>									
 					</ng-container>
-					<div class="buttons"  data-step="5" data-title="Step 5" data-intro="Arytic matching profiles gives the suggested matching profiles for the job and the user can view his wishlisted profiles using check wishlisted profiles." data-position='top'>
+					<div class="buttons"  data-step="5" data-title="Step 5" data-intro="Arytic matching profiles gives the suggested matching profiles for the job and the user can view his Favorite profiles using check Favorite profiles." data-position='top'>
 						<!-- <ng-template #isactive>
 							<button id="Active" class="btn btn-filled" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
@@ -805,12 +805,12 @@
 							<a  href="javascript:void(0);"  (click)="GetaSort(false);ttClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-template>
 						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Wishlisted Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Favorite Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-container>
 			
 					
 					<ng-template #isact>
-						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);ttClose()" tooltip="Wishlisted Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Wishlisted Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);ttClose()" tooltip="Favorite Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
 					</ng-template>
 					</div>
 					<div class="buttons" data-step="6" data-title="Step 6" data-intro="This section enables the user to perform the actions like upload a profile, share a job to different sources, view job details and invite candidates." data-position='top'>		
@@ -829,8 +829,8 @@
 							<span class="no"><i class="fa fa-eye"></i></span>
 						</a>
 
-						<a  tooltip="Invite candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();ttClose()" class="btn btn-outline-primary light">
-							Invite candidate 
+						<a  tooltip="Invite Candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();ttClose()" class="btn btn-outline-primary light">
+							Invite Candidate 
 							<span class="no"><i class="fa fa-envelope"></i></span>
 						</a>
 					</div>

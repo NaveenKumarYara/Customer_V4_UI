@@ -54,7 +54,7 @@
 														</div>
 														<small>
              
-															<ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}"><i class="fa fa-info-circle"></i>  By <strong> {{profile?.CompanyName}} </strong> On  <strong> {{profile?.CreatedOn | date:'mediumDate' }} </strong></ng-container> 
+															<ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}">  By <strong> {{profile?.CompanyName}} </strong> On  <strong> {{profile?.CreatedOn | date:'mediumDate' }} </strong></ng-container> 
 														   </small>
 														<h5>{{ details?.profileVal?.ProfileTitle }} - {{
 															profileview?.ProfileBasicInfo?.TotalExperience || 0 }} Exp.
