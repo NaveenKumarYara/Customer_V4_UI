@@ -898,7 +898,7 @@
                <div>
                 <small>
              
-                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}"><i class="fa fa-info-circle"></i>  By <span> <strong> {{profile?.CompanyName}} </strong> </span> On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
+                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}">  By <span> <strong> {{profile?.CompanyName}} </strong> </span> On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
                  </small>
                </div>
         
@@ -1254,7 +1254,7 @@
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
-          <h4>Skills</h4>
+          <h4><strong> Skills </strong> </h4>
           <div class="">
             <div class="row" *ngIf="profile?.PrimarySkills != null && profile?.PrimarySkills != ''; else noSkillTemplate">
               <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
@@ -1397,7 +1397,7 @@
         </owl-carousel> -->
       </div>
      
-      <h3 class="sub-title">Application Status</h3>
+      <h3 class="sub-title"><strong> Application Status </strong> </h3>
       <div class="footer">
         <div class="actions">
           <div class="smart-card-status">
