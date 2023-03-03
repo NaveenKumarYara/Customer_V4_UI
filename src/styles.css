@@ -32143,3 +32143,27 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	content:"\f054";
 	font: normal normal normal 14px/1 FontAwesome;
 }
+
+.praymid-container .ng-select {
+	display: block;
+}
+
+.praymid-container .ng-select .ng-select-container .ng-value-container {
+	justify-content: flex-end;
+}
+
+.praymid-container .active .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
+	border-color: transparent transparent #fff;
+}
+
+.praymid-container .ng-select .ng-value-label {
+	color: #fff;
+}
+
+.praymid-container .ng-select.custom-style>.ng-select-container {
+	padding: 0;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items {
+	max-height: inherit !important;
+}
