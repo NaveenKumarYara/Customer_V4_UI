@@ -14396,7 +14396,7 @@ a.ui-button:active,
 	background-color: #6B9BE8;
 }
 
-.page--manage-jobs .status.Closed {
+.page--manage-jobs .status.Filled {
 	background-color: #cc3b3b;
 }
 
@@ -15057,7 +15057,7 @@ a.ui-button:active,
 	background-color: #6B9BE8;
 }
 
-.page--job-details .status.Closed {
+.page--job-details .status.Filled {
 	background-color: #cc3b3b;
 }
 
@@ -19245,7 +19245,7 @@ a.ui-button:active,
 	background-color: #6B9BE8;
 }
 
-.page--dashboard .jobs .status.Closed {
+.page--dashboard .jobs .status.Filled {
 	background-color: #cc3b3b;
 }
 
