@@ -9,8 +9,8 @@
             </svg>
         </button>
         <ul class="dropdown-menu" *ngIf="customer.UserRoleId!=9">
-            <li *ngIf="job.JobStatus != 'Filled'"><a (click)="editJob(job.JobId,job.IsActive)">Edit</a></li>
-            <ng-container *ngIf="job.JobStatus != 'Filled'">
+            <li *ngIf="job.JobStatus != 'Filled' && job.JobStatus != 'Freezed'"><a (click)="editJob(job.JobId,job.IsActive)">Edit</a></li>
+            <ng-container *ngIf="job.JobStatus != 'Filled' && job.JobStatus != 'Freezed' ">
                 <li *ngIf="job.IsActive;else isactive" id="Inactive"><a
                         (click)="changeJobStatus(job,false)">Inactive</a></li>
             </ng-container>
@@ -117,7 +117,7 @@
                     <div class="stats">
                         <!-- <h1>{{job?.SkilledApplicants}}</h1> -->
                         <h1>{{job?.SkilledApplicants||'0'}}</h1>
-                        <h5>Suggested</h5>
+                        <h5>Hired</h5>
                     </div>
                 </div>
             </div>

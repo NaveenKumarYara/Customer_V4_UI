@@ -122,7 +122,7 @@ jobimplist:jobImps[]=[];
     {
       this.showDate=false;
       let date = new Date();  
-      let val = new Date(date.setDate(date.getDate() + 30 )) ;
+      let val = new Date(date.setDate(date.getDate() + 365 )) ;
       this.ExpiryDate = val;
     }
     else if(this.Expiry==4)
@@ -142,7 +142,6 @@ jobimplist:jobImps[]=[];
   
     changeMethod(val)
     {
-      debugger
       if(val!=null)
       this.ExpiryDate=val;
       this.appService.updateJobDueDate(this.ExpiryDate);   

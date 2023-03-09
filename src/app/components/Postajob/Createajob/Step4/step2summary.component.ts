@@ -14,6 +14,7 @@ education: any;
 domain: any;
 personType: any;
 primarySkills = [];
+keyslist=[];
 secondarySkills = [];
 roles = [];
 
@@ -47,7 +48,8 @@ roles = [];
      this.primarySkills = this.appService.primaryjobskills;
      this.secondarySkills = this.appService.secondaryjobskills;
      this.roles = this.appService.responsibilities;
-
+     this.keyslist = this.appService.getKeyRoleList();
+     debugger
   }
 
 

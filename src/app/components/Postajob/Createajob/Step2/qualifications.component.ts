@@ -280,7 +280,17 @@ educationExists(education, list) {​
 GetKeyRespones(Id)
 {
   this.appService.GetJobKeyResponses(Id).subscribe(res3 => {
-    this.KeyResponses = res3; 
+    if(res3.length>0)
+    {
+      this.KeyResponses = res3; 
+    }
+    else
+    {
+      this.appService.GetJobKeyResponses(1).subscribe(res4 => {
+        this.KeyResponses = res4; 
+      });
+    }
+
 });
 }
 
@@ -422,6 +432,10 @@ public addkeyRole() {
         if(this.TitleId !=='')
         {
           this.GetKeyRespones(this.TitleId);
+        }
+        else
+        {
+          this.GetKeyRespones(1);
         }
       }
      
