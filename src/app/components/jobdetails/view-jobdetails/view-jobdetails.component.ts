@@ -225,7 +225,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // if (this.jobStatus !== 'InActive') {
       if (this.closedjob === 2)
       {
-       this.toastr.error('Job is Closed');
+       this.toastr.error('Job is Filled');
      setTimeout(() => {
        this.toastr.dismissToast;
      }, 2000);
@@ -339,7 +339,7 @@ export class ViewJobdetailsComponent implements OnInit {
   openCandidateUploadDialog() {
     if (this.closedjob === 2)
     {
-     this.toastr.error('Job is Closed');
+     this.toastr.error('Job is Filled');
    setTimeout(() => {
      this.toastr.dismissToast;
    }, 2000);
@@ -887,7 +887,7 @@ export class ViewJobdetailsComponent implements OnInit {
   OpenShareJobDialog(jobid,jobtitle) {
     if (this.closedjob === 2)
     {
-     this.toastr.error('Job is Closed');
+     this.toastr.error('Job is Filled');
    setTimeout(() => {
      this.toastr.dismissToast;
    }, 2000);

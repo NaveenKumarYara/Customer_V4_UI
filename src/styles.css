@@ -14380,7 +14380,17 @@ a.ui-button:active,
 	background-color: #ACB0F3;
 }
 
+.page--manage-jobs .card .status.Hired {
+	background-color: #ACB0F3;
+}
+
+
+
 .page--manage-jobs .status.ShortListing {
+	background-color: #ACB0F3;
+}
+
+.page--manage-jobs .status.Screening {
 	background-color: #ACB0F3;
 }
 
@@ -19232,6 +19242,11 @@ a.ui-button:active,
 .page--dashboard .jobs .status.ShortListing {
 	background-color: #ACB0F3;
 }
+
+.page--dashboard .jobs .status.Screening {
+	background-color: #ACB0F3;
+}
+
 
 .page--dashboard .jobs .status.rejected {
 	background-color: #FFBCBC;

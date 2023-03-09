@@ -164,6 +164,9 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
+    localStorage.removeItem('sortBy');
+    this.sortBy = 0;
+    this.searchString = undefined;
     this.tClose();
   }
 

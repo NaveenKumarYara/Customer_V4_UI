@@ -53,10 +53,14 @@
                     <label class="show-count mt-15"> Job Status</label> 
                     <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
                         <option default value="0" [selected]="sortBy=== '0' || sortBy=== 0">All Jobs</option>
-                        <option value="1" [selected]="sortBy==='1' || sortBy === 1">Active Jobs</option>
                         <option value="2" [selected]="sortBy==='2' || sortBy === 2">Inactive Jobs</option>
                         <option value="3" [selected]="sortBy==='3' || sortBy === 3">Filled Jobs</option>
-                        <option value="4" [selected]="sortBy==='4'">Expired Jobs</option>
+                        <option value="5" [selected]="sortBy==='5' || sortBy === 5">Shorlisting Jobs</option>
+                        <option value="6" [selected]="sortBy==='6' || sortBy === 6">Screening Jobs</option>
+                        <option value="7" [selected]="sortBy==='7' || sortBy === 7">Interviewing Jobs</option>
+                        <!-- <option value="8" [selected]="sortBy==='8' || sortBy === 8">Hiring Jobs</option> -->
+                        <option value="1" [selected]="sortBy==='1' || sortBy === 1">Active Jobs</option>
+                        <!-- <option value="4" [selected]="sortBy==='4' || sortBy === 4">Expired Jobs</option> -->
                     </select>
                 </div>
                  

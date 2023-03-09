@@ -100,7 +100,8 @@
 				</header>
 				<div class="card-body mob-btn flex-wrap">
 					<div class="sm-d-inline">
-						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+					
+						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed' && jobdetailsbasicinfo?.JobStatus != 'Freezed'">
 							<button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive"
 								(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
 								Inactive</button>
@@ -109,6 +110,7 @@
 							<button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make
 								Active</button>
 						</ng-template>
+					
 						<button class="btn btn-border" (click)="OpenInviteProfileDialog()">
 							<span class="icon-forward">Icon</span>
 							Invite
@@ -617,7 +619,7 @@
 							<h4 (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus }}</span>
-							<span class="edit-btn" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
+							<span class="edit-btn" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</span>
 						</div>
@@ -774,7 +776,7 @@
 					</div>
 				</div>
 				<div class="col-sm-6 right-col">
-					<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+					<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Filled' && jobdetailsbasicinfo?.JobStatus != 'Freezed'">
 						<fieldset class="radio-switch"  data-step="4" data-title="Step 4" data-intro="Make the job active or inactive using the toggle button." data-position='top'>
 							<!-- <legend>
 								Settings
