@@ -53,9 +53,9 @@
                               placeholder="Password" [formControl]="loginform.controls['Password']">
                            <span class="glyphicon glyphicon-eye-open"></span>
                         </div>
-                        <div *ngIf="!captchahide">
+                        <!-- <div *ngIf="!captchahide">
                            <recaptcha [formControl]="myRecaptcha"></recaptcha>
-                        </div>
+                        </div> -->
                         <br />
                         <div class="text-left">
                            <div class="d-flex justify-content-between" *ngIf="ResendMail === true">
