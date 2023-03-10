@@ -125,7 +125,7 @@ export class dLoginComponent {
 
   login() {
     this.loading = true;
-    if (!this.loginform.valid && this.myRecaptcha.value === false) {
+    if (!this.loginform.valid) {
       this.loading = false;
       this.toastr.error('Please provide the valid details!', 'Oops!');
       setTimeout(() => {
@@ -133,22 +133,22 @@ export class dLoginComponent {
       }, 3000);
       this.loginform.reset();
     }
-    else if (!this.loginform.valid) {
-      this.loading = false;
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-      this.loginform.reset();
-    }
-    else if (this.myRecaptcha.value === false) {
-      this.loading = false;
-      this.toastr.error('Please provide captcha!', 'Oops!');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-      }, 3000);
-    }
-    else if (this.myRecaptcha.value === true) {
+    // else if (!this.loginform.valid) {
+    //   this.loading = false;
+    //   this.toastr.error('Please provide the valid details!', 'Oops!');
+    //   setTimeout(() => {
+    //     this.toastr.dismissToast;
+    //   }, 3000);
+    //   this.loginform.reset();
+    // }
+    // else if (this.myRecaptcha.value === false) {
+    //   this.loading = false;
+    //   this.toastr.error('Please provide captcha!', 'Oops!');
+    //   setTimeout(() => {
+    //     this.toastr.dismissToast;
+    //   }, 3000);
+    // }
+    else  {
       this.appService.validateCheckemail(this.loginform.value.Email)
         .subscribe(
           data2 => {
