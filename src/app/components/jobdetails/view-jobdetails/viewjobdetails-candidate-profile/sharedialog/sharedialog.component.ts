@@ -2,7 +2,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { concat } from 'rxjs/observable/concat';
 import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-
+import * as introJs from 'intro.js/intro.js';
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { AppService } from '../../../../../app.service';
@@ -41,6 +41,7 @@ export class SharedialogComponent implements OnInit{
   cremovable = true;
   bcremovable = true;
   whatsapp: any;
+  introJS = introJs();
   whatsappform: FormGroup;
   inviteform: FormGroup;
   getTeammember: CustomerUsers;
@@ -512,6 +513,8 @@ export class SharedialogComponent implements OnInit{
     const emails = control.value.split(',');
     const forbidden = emails.some(email => Validators.email(new FormControl(email)));
     console.log(forbidden);
+    this.introJS.exit();
+
     return forbidden ? { 'inviteEmail': { value: control.value } } : null;
   };
 
