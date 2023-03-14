@@ -356,7 +356,7 @@ this.schIntw.BridgeUrl = this.savenote.OtherInfo;
       this.schIntw = new ScheduleInterview();
       this.jobinterviewlist= new getDetails();
       this.dialogRef.close('submit');
-      this.SaveNotes();
+      //this.SaveNotes();
      }) ;
     } else {
       return false;
