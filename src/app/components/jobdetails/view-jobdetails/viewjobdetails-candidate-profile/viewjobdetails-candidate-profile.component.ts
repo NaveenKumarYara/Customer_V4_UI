@@ -536,7 +536,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenHireDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
-    if (this.jobStatus !== "InActive") {
+    // if (this.jobStatus !== "InActive") {
       const hiredialogRef = this.dialog.open(HiredialogComponent, {
         width: "700px",
         position: { right: "0px" },
@@ -556,7 +556,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.myEvent.emit(null);
         console.log("hire Dialog result: ${result}");
       });
-    }
+    //}
   }
 
   OpenScheduleInterviewDialog(jobResponseId, userId, profileId, Email, FirstName, LastName, match) {
