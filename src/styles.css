@@ -32167,11 +32167,18 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	justify-content: flex-end;
 }
 
-.praymid-container .active .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
+.praymid-container .active .ng-select .ng-arrow-wrapper .ng-arrow,
+.praymid-container li:hover .ng-select .ng-arrow-wrapper .ng-arrow {
+	border-color: #fff transparent transparent;
+}
+
+.praymid-container .active .ng-select.ng-select-opened>.ng-select-container .ng-arrow,
+.praymid-container li:hover .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
 	border-color: transparent transparent #fff;
 }
 
-.praymid-container .ng-select .ng-value-label {
+.praymid-container .active .ng-select .ng-value-label,
+.praymid-container li:hover .ng-select .ng-value-label {
 	color: #fff;
 }
 
