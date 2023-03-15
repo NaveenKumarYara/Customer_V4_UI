@@ -725,6 +725,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.getcustomerusers();
 		this.shareJobSidepanel = true;
 		this.GetProfileCard(Pid);
+		console.log('hi kinjal')
 	}
 
 	sendEmail() {
