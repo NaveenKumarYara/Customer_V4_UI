@@ -627,6 +627,27 @@ export class ViewJobdetailsComponent implements OnInit {
       this.child.NoRecords();
     }
   }
+
+  updateinprogressstatusp(val) {
+    this.sortBy = 1;
+    this.statusid = 17;
+    //this.displayQuick = 0;
+    // this.inprogressview(1);
+    this.inprogressprofile = true;
+    this.ClearallValues();
+    // this.ClearActiveClasses();
+    //  this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    //debugger
+    if (this.jobstatistics.InProgress > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.InProgress,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, val);
+      this.loadMore = this.jobstatistics.InProgress > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
+  }
   updatescreeningstatus() { // 1000007;
     this.sortBy = 1;
     this.statusid = 8;
@@ -1219,7 +1240,11 @@ export class ViewJobdetailsComponent implements OnInit {
           } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited > 0 || arytic > 0) {
             this.statistics = this.jobstatistics.Applied;
           }
-        } else if (this.statusid === 7) {
+        }
+        else if (this.statusid === 5 || this.statusid === 8) {
+          this.statistics = this.jobstatistics.InProgress;
+        }
+         else if (this.statusid === 7) {
           this.statistics = this.jobstatistics.Interviewed;
         } else if (this.statusid === 11) {
           this.statistics = this.jobstatistics.Hired;

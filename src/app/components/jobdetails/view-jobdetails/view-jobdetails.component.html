@@ -728,25 +728,40 @@
 							</li>
 					
 							<ng-container *ngIf="Industry === 'All Applicants'">
-								<li data-toggle="tab" href="#screening" (click)="updatescreeningstatus();ttClose()">
+								<li data-toggle="tab" href="#screening" (click)="updateinprogressstatusp(8);ttClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Screening
 									<span class="number">{{jobstatistics?.Screening || 0 }}</span></li>
-								<li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus();ttClose()">
+								<li data-toggle="tab" href="#shortlisted" (click)="updateinprogressstatusp(5);ttClose()">
 									<!-- <span class="tag">I Want It</span> -->
 									Shortlisted
 									<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
 								</li>
-								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus();ttClose()">
+								<li data-toggle="tab" href="#interview" (click)="updateinprogressstatusp(7);ttClose()">
 									<!-- <span class="tag">I ‘m getting it</span> -->
 									Interviewed
 									<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
 								</li>
-								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus();ttClose()">
+								<li data-toggle="tab" href="#hired" (click)="updateinprogressstatusp(11);ttClose()">
 									<!-- <span class="tag">I Like It</span> -->
 									Hired
 									<span class="number">{{jobstatistics?.Hired || 0}}</span>
 								</li>
+								<!-- <li data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus();ttClose()">
+									 <span class="tag">I Want It</span> 
+									Shortlisted
+									<span class="number">{{jobstatistics?.ShortListed || 0}}</span>
+								</li>
+								<li data-toggle="tab" href="#interview" (click)="updateinterviewedstatus();ttClose()">
+									<span class="tag">I ‘m getting it</span> 
+									Interviewed
+									<span class="number">{{jobstatistics?.Interviewed || 0 }}</span>
+								</li>
+								<li data-toggle="tab" href="#hired" (click)="updatehiredstatus();ttClose()">
+								 <span class="tag">I Like It</span> 
+									Hired
+									<span class="number">{{jobstatistics?.Hired || 0}}</span>
+								</li> -->
 							</ng-container>
 							<!-- <ng-container *ngIf="Industry === 'Applied Candidates' || Industry === 'Invited profiles' || Industry === 'Uploaded Profiles' "> -->
 								<ng-container *ngIf="Industry != 'All Applicants'">
