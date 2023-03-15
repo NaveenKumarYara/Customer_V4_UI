@@ -621,12 +621,15 @@
               <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
-              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
-                <i class="fa fa-bookmark"></i>
-              </button>
-              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
-                <i class="fa fa-bookmark"></i>
-              </button>
+              <ng-container *ngIf="statusid != 15">
+                <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                  <i class="fa fa-bookmark"></i>
+                </button>
+                <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                  <i class="fa fa-bookmark"></i>
+                </button>
+              </ng-container>
+            
               
             </div>
             <ng-template #firstelseBlock>
@@ -635,6 +638,7 @@
                 <!-- {{ profile.FirstName ? add3Dots(profile.FirstName, 8) : "" }} {{ profile.LastName ? add3Dots(profile.LastName, 5) : "" }} -->
                  {{ profile.FirstName }} {{ profile.LastName }} 
               </a>
+              <ng-container *ngIf="statusid != 15">
               <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
@@ -644,6 +648,7 @@
               <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
                 <i class="fa fa-bookmark"></i>
               </button>
+              </ng-container>
             </ng-template>
             <div class="profile-title" title="{{ profile.ProfileTitle }}">{{ profile.ProfileTitle ? add3Dots(profile.ProfileTitle, 18) : "" }}</div>
           </h1>

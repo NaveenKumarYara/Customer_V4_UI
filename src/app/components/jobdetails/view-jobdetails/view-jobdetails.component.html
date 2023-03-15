@@ -816,19 +816,20 @@
 
 						<ng-container  *ngIf="acheck === false;else isacts">
 							<a  href="javascript:void(0);" (click)="GetaSort(true);ttClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top"  class="btn btn-outline-primary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
+							<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+								<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Favorite Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						</ng-container>
+				
+						
+						<ng-template #isact>
+							<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);ttClose()" tooltip="Favorite Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
+						</ng-template>
 						</ng-container>
 					
 						<ng-template #isacts>
 							<a  href="javascript:void(0);"  (click)="GetaSort(false);ttClose()" tooltip="Matching Profiles suggested by arytic for current position" placement="top" class="btn btn-outline-secondary">Arytic Matching Profiles <span class="no">{{jobstatistics?.AryticSuggested || 0}}</span></a>
 						</ng-template>
-						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
-							<a  href="javascript:void(0);" class="btn btn-outline-secondary" tooltip="Favorite Profiles for current position" placement="top" *ngIf="wishcheck === true;else isact" (click)="GetWishlistSort(false)" >Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
-					</ng-container>
-			
-					
-					<ng-template #isact>
-						<a  href="javascript:void(0);"  (click)="GetWishlistSort(true);ttClose()" tooltip="Favorite Profiles for current position" placement="top" class="btn btn-outline-primary"> Check Favorite Profiles <span class="no">{{myjobstatistics?.Wishlist || 0}}</span></a>
-					</ng-template>
+						
 					</div>
 					<div class="buttons" data-step="6" data-title="Step 6" data-intro="This section enables the user to perform the actions like upload a profile, share a job to different sources, view job details and invite candidates." data-position='top'>		
 						<a tooltip="Upload profiles to current job position"  href="javascript:void(0);" (click)="openCandidateUploadDialog();ttClose()" class="btn btn-outline-primary light">
