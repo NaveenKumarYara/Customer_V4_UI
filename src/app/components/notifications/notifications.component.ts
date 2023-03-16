@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
 import { Notification } from '../../../models/notifications';
+import { MatDialog } from '@angular/material';
 declare var $: any;
 @Component({
   selector: 'app-notifications',
@@ -26,7 +27,7 @@ export class NotificationsComponent implements OnInit {
   notificationList: Notification[] = [];
 
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private dialog: MatDialog , 
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.userId = this.customer.UserId;
@@ -52,12 +53,25 @@ getNotifications() {
   }
 
   ViewJobdetails(jobId) {
+   this.reload();
+   localStorage.removeItem('jobactive');
+   localStorage.removeItem('jobId');
     $("#activeMyjob").addClass('active');
     let jobactive= true;
+    // $("#notification").Modal('hide');
+    this.dialog.closeAll();
+    
     localStorage.setItem('jobactive', JSON.stringify(jobactive));
-    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    localStorage.setItem('jId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
   }
+
+  reload() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./'], { relativeTo: this.route });
+  }
+
 
   ngOnInit() {
 
