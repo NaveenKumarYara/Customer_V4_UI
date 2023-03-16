@@ -153,8 +153,24 @@ export class ViewJobdetailsComponent implements OnInit {
     {
       this.GetProfileDetails();
     }
-    this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    if(sessionStorage.getItem('jobId')!=undefined && sessionStorage.getItem('jobId') != null)
+    {
+      this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    }
+
+    if(localStorage.getItem('jId') != undefined && localStorage.getItem('jId') != null)
+    {
+      this.jobid = JSON.parse(localStorage.getItem('jId'));
+      //this.reload();
+    }
+  
     let vjobId = JSON.parse(localStorage.getItem('vjobId'));
+    let ij = localStorage.getItem('Ji');
+    if(ij !=undefined && ij!=null)
+    {
+      this.ViewJobdetailsModel(this.jobid);
+      localStorage.removeItem('Ji');
+    }
     if(vjobId !=undefined && vjobId!=null)
     {
       this.ViewJobdetailsModel(vjobId);
@@ -267,6 +283,12 @@ export class ViewJobdetailsComponent implements OnInit {
     if (val == 1) {
       this.inprogressprofile = true;
     }
+  }
+
+  reload() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./'], { relativeTo: this.route });
   }
 
 

@@ -148,10 +148,16 @@ GetSubscriptionDetails(sid)
 
 
   ChangeCount() {
+    localStorage.removeItem('jobactive');
+    localStorage.removeItem('jobId');
     this.notificationsCount = 0;
     const dialogRef = this.dialog.open(NotificationsComponent, {
       width: '1100px',
       position: { right: '0'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+ 
     });
     // this.router.navigateByUrl('/app-notifications');
   }

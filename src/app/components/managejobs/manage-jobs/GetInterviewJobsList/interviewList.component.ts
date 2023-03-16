@@ -331,7 +331,6 @@ export class InterviewListComponent implements OnInit,OnDestroy {
     
       if(val === 4)
       {
-       debugger
         this.show = true;
         this.GetData();      
       }
@@ -383,10 +382,8 @@ export class InterviewListComponent implements OnInit,OnDestroy {
       this.listSort=1;
     }
     this.searchString=search;
-    debugger
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
-      debugger
       this.joblist = res;
       this.filterInterviewDetail = res.Jobs;
       this.Pro = this.filterInterviewDetail[this.setActive];
@@ -507,6 +504,7 @@ export class InterviewListComponent implements OnInit,OnDestroy {
 
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    localStorage.setItem('Ji','1');
     this.router.navigateByUrl('app-view-jobdetails');
   }
 
