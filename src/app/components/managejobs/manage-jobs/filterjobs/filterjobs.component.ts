@@ -100,6 +100,10 @@ export class FilterjobsComponent implements OnInit {
         // locations,minExp, MaxExp,minSal,maxSal
         //this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.profileStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education,result.data.isfiltered,result.data.Users);
       }
+      else
+      {
+        this.parentApi.callMethod(1);
+      }
         // console.log('result.data',result.data);
       });
     

@@ -190,7 +190,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
 
   Reset()
   {
-    this.DeleteFilter(this.FilterId);
+  
     $('#searchStr').val('');
     localStorage.removeItem('lsearch');
     localStorage.removeItem('sortBy');
@@ -212,14 +212,15 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
     if (Id > 0) {
       return this.appService.DeleteSaveFilter(Id).subscribe((data) => {
         if (data == 0) {
-          let currentUrl = this.router.url;
-          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-            this.router.navigate([currentUrl]);
-            console.log(currentUrl);
-        });
-          this.GetSavedJobFilter(1);
+            this.GetSavedJobFilter(1);
+          // let currentUrl = this.router.url;
+          // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          //   this.router.navigate([currentUrl]);
+          //   console.log(currentUrl);
         }
-        })
+        });
+         // this.GetSavedJobFilter(1);
+
       }
     }
 
@@ -233,13 +234,13 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
         {
           this.FilterId = res.JobFilterId;
           this.sortBy=0;       
-          this.getParentApi().Filterjobs(res.locations,res.MinExp,res.MaxExp,res.MinSal,res.MaxSal,res.clients,res.domain,res.Immigration,res.lastWeek,res.lastTwoWeek,res.last30days,res.last90days,res.lastyear,res.today,res.category,res.empType,res.JobStatus,res.skills,res.departments,res.titles,res.education,1,res.users);
-        }
-        else
-        {
+          this.DeleteFilter(res.JobFilterId);
           this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
-        }
-           
+        }    
+      else
+      {
+        this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
+      } 
       });  
     }
     else
@@ -361,6 +362,16 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
   }
   getParentApi(): ParentComponentApi {
     return {
+      callMethod : (val) => {
+        this.spinner.show();
+       // this.parentMethod(name);
+        this.cityId = 0;
+        this.experience = 0;
+        this.employmentTypeId = 0;
+        //this.sortBy = 0;
+        //this.defaultValue = '0';
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
+      },
       callSearchMethod : (searchString) => {
         this.spinner.show();
        // this.parentMethod(name);
@@ -428,6 +439,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
 }
 
 export interface ParentComponentApi {
+  callMethod: (val) => void;
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
   Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,profileStatus,skills,departments,titles,education,isfiltered,Users) => void;

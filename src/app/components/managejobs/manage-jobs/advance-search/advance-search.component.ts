@@ -370,7 +370,7 @@ export class AdvanceSearchComponent implements OnInit {
 
   apply() {
     if (1) {
-      //debugger
+      debugger
       // this.filter.getFilterCall();this
       var selectedlocations = "";
       this.SelectedCityList.forEach((element) => {
@@ -592,9 +592,14 @@ export class AdvanceSearchComponent implements OnInit {
           this.isStatchecked = false;
           this.ischecked = false;
           this.isEmpchecked = false;
-          this.ClearALlFilter();
-          this.GetSavedJobFilter();
-          location.reload();
+         // this.parentApi.callMethod(1);
+         this.ClearALlFilter();
+         this.GetSavedJobFilter();
+          this.dialogRef.close();
+          //this.apply();
+      
+         
+          //location.reload();
         }
       });
     } else {
