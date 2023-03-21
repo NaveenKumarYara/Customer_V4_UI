@@ -32189,3 +32189,20 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 .ng-dropdown-panel .ng-dropdown-panel-items {
 	max-height: inherit !important;
 }
+
+.page--create-a-job .form-steps .form-sub-rows .form-sub-cols .ng-dropdown-panel .scroll-host {
+	height: 300px;
+}
+
+.text-overflow-tooltip {
+	width: 90px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
+
+.page--manage-jobs .card .meta svg.map-svg {
+	flex: 0 0 17px;
+	max-width: 17px;
+}
