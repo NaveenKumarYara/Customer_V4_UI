@@ -54,7 +54,7 @@ export class AccountsettingdetailsComponent implements OnInit,OnDestroy {
   createPasswordform() {
     this.passForm = this.fb.group({
       'UserId': [this.customer.UserId, Validators.compose([Validators.required])],
-      'OldPassword': [this.password,Validators.compose([Validators.required])],
+      'OldPassword': ['',Validators.compose([Validators.required])],
       'NewPassword': ['', [Validators.required, FormsValidationService.password]],
       'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('NewPassword')]]
     },
