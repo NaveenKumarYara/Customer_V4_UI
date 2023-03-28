@@ -13,7 +13,7 @@
               </h4>
               <div class="action__icon">
                 <ul>
-                  <li *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed'">
+                  <li *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Filled'">
                     <button class="btn btn__edit"
                       (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)"><i
                         class="fa fa-pencil" aria-hidden="true"></i></button>
