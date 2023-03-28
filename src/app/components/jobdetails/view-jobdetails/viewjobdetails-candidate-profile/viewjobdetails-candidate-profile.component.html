@@ -33,15 +33,15 @@
         <a role="menuitem" href="javascript:void(0)" (click)="
         RequestCandidateAp(
           profile?.NoEmail,
-                          profile?.Email,
-                          profile?.FirstName,
-                          profile?.LastName,
-                          profile?.JobResponseId,
-                          profile?.ProfileId,
-                          profile?.ResponseStatusId,
-                          profile?.CCPID,
-                          profile?.UserId,
-                          profile.IsUploaded
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.ResponseStatusId,
+          profile?.CCPID,
+          profile?.UserId,
+          profile.IsUploaded
           )
         ">
           <p class="p6">Request Candidate to Respond via Email </p>
@@ -1265,23 +1265,23 @@
               <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
                 (click)="prevSkills(profile?.PrimarySkills, i)">
                 < </a>
-                  <div class="col-md-4 skill-click"
+                  <div class="col-md-4 skill-click skill-click-sm"
                     *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates; let j = index">
                     <div id="i-{{ profile.ProfileId }}">
-                      <div class="item" *ngIf="currentNo[i] == 0 && j < 3">
+                      <div class="item position-relative" *ngIf="currentNo[i] == 0 && j < 3">
                         <div class="skill">
-                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <h4 class="text-left" title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
                           <div>
                             <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
                             <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                           </div>
                         </div>
-                        <div class="star-rating">
+                        <div class="star-rating star-rating-sm">
                           <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
                             uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
                         </div>
                       </div>
-                      <div class="item" *ngIf="currentNo[i] == 1 && j < 6 && j > 2">
+                      <div class="item position-relative" *ngIf="currentNo[i] == 1 && j < 6 && j > 2">
                         <div class="skill">
                           <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
                           <div>
@@ -1290,14 +1290,14 @@
                           </div>
                         </div>
                         <!--Star Rating redesign on 05-05-2020-->
-                        <div class="star-rating">
+                        <div class="star-rating star-rating-sm">
                           <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
                             uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
                         </div>
 
                         <!---->
                       </div>
-                      <div class="item" *ngIf="currentNo[i] == 2 && j < 9 && j > 5">
+                      <div class="item position-relative" *ngIf="currentNo[i] == 2 && j < 9 && j > 5">
                         <div class="skill">
                           <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
                           <div>
@@ -1306,13 +1306,13 @@
                           </div>
                         </div>
                         <!--Star Rating redesign on 05-05-2020-->
-                        <div class="star-rating">
+                        <div class="star-rating star-rating-sm">
                           <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
                             uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
                         </div>
                         <!---->
                       </div>
-                      <div class="item" *ngIf="currentNo[i] == 3 && j > 8">
+                      <div class="item position-relative" *ngIf="currentNo[i] == 3 && j > 8">
                         <div class="skill">
                           <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
                           <div>
@@ -1321,7 +1321,7 @@
                           </div>
                         </div>
                         <!--Star Rating redesign on 05-05-2020-->
-                        <div class="star-rating">
+                        <div class="star-rating star-rating-sm">
                           <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
                             uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
                         </div>

@@ -81,25 +81,23 @@
      
     </ul>
 
-    <ul class="flex flex-wrap flex-align-equal">
-   
-        <ng-container *ngIf="keyslist?.length!=0">
-          <li *ngFor="let domain of keyslist; let i = index">   
-            <div class="col__container" placement="top" tooltip=" {{domain.DCode}}">
-              <span class="name">
-                {{domain.DCode}}
-              </span>
-              <span class="experience">
-                {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs
-              </span>
-              <!-- <span class="close" (click)="deleteDomain(i)">&times;</span> -->
-            </div>    
-          </li>
-        </ng-container>
-        <ng-container *ngIf="keyslist?.length==0">
-          <li></li>
-        </ng-container>
-      
+    <ul class="margin-top-10">
+      <ng-container *ngIf="keyslist?.length!=0">
+        <li *ngFor="let domain of keyslist; let i = index">   
+          <div class="col__container" placement="right" tooltip=" {{domain.DCode}}">
+            <span class="name">
+              {{domain.DCode}}
+            </span>
+            <span class="experience">
+              {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs
+            </span>
+            <!-- <span class="close" (click)="deleteDomain(i)">&times;</span> -->
+          </div>    
+        </li>
+      </ng-container>
+      <ng-container *ngIf="keyslist?.length==0">
+        <li></li>
+      </ng-container>
     </ul>
   </div>
 
