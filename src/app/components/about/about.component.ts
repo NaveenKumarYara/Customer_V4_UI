@@ -40,7 +40,8 @@ export class AboutComponent {
 
             });
             this.toastr.setRootViewContainerRef(_vcr);
-
+            this.pid =  sessionStorage.getItem('Pid');
+            this.userId = sessionStorage.getItem('Uid');
             this.Addform = this.fb.group({
               'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
               'FirstName': ['', Validators.compose([Validators.nullValidator])],   
