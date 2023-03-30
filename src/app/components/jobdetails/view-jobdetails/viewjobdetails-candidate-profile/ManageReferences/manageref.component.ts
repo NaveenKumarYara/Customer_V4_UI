@@ -116,8 +116,7 @@ export class ReferencedialogComponent {
   }
 
 
-  OpenRequest()
-  {
+  OpenRequest(){
     swal(
       {
         title: 'Request more info from Arytic?',
@@ -127,22 +126,16 @@ export class ReferencedialogComponent {
         confirmButtonColor: '#66dab5',
         cancelButtonColor: '#FF0000',
         confirmButtonText: 'Yes',
-        cancelButtonText:'No'
+        cancelButtonText:'No',
       }).then((result) => {
-        if (result.value === true) {       
-            swal(
-              {
-                title: 'Information requested. You will receive an email shortly!',
-                showConfirmButton: true,
-                timer: 3000,
-                type:"success"
-              });
-        
-        }
-
-
-    
-      
+      if (result.value === true) {       
+        swal({
+          title: 'Information requested. You will receive an email shortly!',
+          showConfirmButton: true,
+          timer: 3000,
+          type:"success"
+        });
+      }
     });
   }
 

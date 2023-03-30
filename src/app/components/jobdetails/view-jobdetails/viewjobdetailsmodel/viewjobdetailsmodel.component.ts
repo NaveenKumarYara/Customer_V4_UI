@@ -99,7 +99,9 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   OpenJobDialog(Jid) {
     this.dialog.closeAll();
       const senddialogRef = this.dialog.open(SendnotificationdialogNcomponentComponent, {
+        width: "80vw",
         position: { right: "0px" },
+        height: "750px",
         data: {
           jobId: Jid,
           // status : this.statusid

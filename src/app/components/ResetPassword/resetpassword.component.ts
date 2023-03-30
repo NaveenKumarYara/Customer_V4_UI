@@ -32,6 +32,13 @@ export class ResetComponent {
             }
           });
           this.toastr.setRootViewContainerRef(_vcr);
+          this.Resetform = this.fb.group({
+            'Email': [this.pid, Validators.compose([Validators.nullValidator])],
+            'Password': ['', [Validators.required, FormsValidationService.password]],
+            'ConfirmPassword': ['', [Validators.required, FormsValidationService.password]]
+          }, { 
+            validator: this.ConfirmedValidator('Password', 'ConfirmPassword')
+          });
   }
 
 //   login1(username: string, password: string) {
@@ -50,6 +57,21 @@ Login()
 {
   this.router.navigateByUrl('home'); 
 }  
+
+ConfirmedValidator(controlName: string, matchingControlName: string){
+  return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+          return;
+      }
+      if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+          matchingControl.setErrors(null);
+      }
+  }
+}
   
   Send() {
     if(!this.Resetform.valid)
@@ -79,12 +101,7 @@ Login()
 
   ngOnInit() {
     this.pid =  sessionStorage.getItem('Pid');
-    this.Resetform = this.fb.group({
-      'Email': [this.pid, Validators.compose([Validators.nullValidator])],
-      'Password': ['', [Validators.required, FormsValidationService.password]],
-      'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('Password')]]
-    },
-      { validator: matchingPasswords('Password', 'ConfirmPassword') });
+
    
   }
 }
