@@ -32206,3 +32206,30 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	flex: 0 0 17px;
 	max-width: 17px;
 }
+
+.margin-top-10 {
+	margin-top: 10px
+}
+
+.swal2-container {
+	z-index: 1151 !important;
+}
+
+.swal2-container h2.swal2-title {
+	font-size: 20px;
+}
+
+.page--job-details .position-relative .skill {
+	width: 100% !important;
+}
+
+.skills-carousel-Changed .skill-click.skill-click-sm {
+	padding: 0 7px;
+}
+
+.star-rating.star-rating-sm {
+	right: 0;
+	left: 0;
+	font-size: 0;
+	text-align: center;
+}

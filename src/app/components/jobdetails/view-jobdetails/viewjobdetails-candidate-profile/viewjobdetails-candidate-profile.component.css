@@ -2220,3 +2220,11 @@ z-index: 12;
 padding: 0;
 font-size: 0;
 }
+
+.text-left {
+  text-align: left !important;
+}
+
+.position-relative {
+	position: relative;
+}
