@@ -40,6 +40,24 @@ export class AboutComponent {
 
             });
             this.toastr.setRootViewContainerRef(_vcr);
+
+            this.Addform = this.fb.group({
+              'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
+              'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+              'LastName': ['', Validators.compose([Validators.nullValidator])] 
+            });
+            //this.Id = sessionStorage.getItem('Uid');
+            //this.ActivatetheUser(this.Id);
+            this.Resetform = this.fb.group({
+              'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
+              'FirstName': ['', Validators.compose([Validators.required])],   
+              'LastName': ['', Validators.compose([Validators.required])],
+              'Email': [this.pid, Validators.compose([Validators.nullValidator])],
+              'Password': ['', [Validators.required, FormsValidationService.password]],
+              'ConfirmPassword': ['', [Validators.required, FormsValidationService.password]]
+            }, { 
+              validator: this.ConfirmedValidator('Password', 'ConfirmPassword')
+            });
     }
   
   Login()
@@ -96,6 +114,20 @@ export class AboutComponent {
     }
 
 
+    ConfirmedValidator(controlName: string, matchingControlName: string){
+      return (formGroup: FormGroup) => {
+          const control = formGroup.controls[controlName];
+          const matchingControl = formGroup.controls[matchingControlName];
+          if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+              return;
+          }
+          if (control.value !== matchingControl.value) {
+              matchingControl.setErrors({ confirmedValidator: true });
+          } else {
+              matchingControl.setErrors(null);
+          }
+      }
+  }
 
     GetCustomerInviteUsers()
     {
@@ -108,28 +140,14 @@ export class AboutComponent {
     ngOnInit() {
       this.pid =  sessionStorage.getItem('Pid');
       this.userId = sessionStorage.getItem('Uid');
-      this.Addform = this.fb.group({
-        'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
-        'FirstName': ['', Validators.compose([Validators.nullValidator])],   
-        'LastName': ['', Validators.compose([Validators.nullValidator])] 
-      });
-      //this.Id = sessionStorage.getItem('Uid');
-      //this.ActivatetheUser(this.Id);
-      this.Resetform = this.fb.group({
-        'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
-        'FirstName': ['', Validators.compose([Validators.required])],   
-        'LastName': ['', Validators.compose([Validators.required])],
-        'Email': [this.pid, Validators.compose([Validators.nullValidator])],
-        'Password': ['', [Validators.required, FormsValidationService.password]],
-        'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('Password')]]
-      },
-        { validator: matchingPasswords('Password', 'ConfirmPassword') });
+    
         return this.appService.GetUserDetails(this.userId).subscribe(result => {
           this.UserEmail = result.Email;
         })
      
     }
   }
+  
   
   function matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
       return (group: FormGroup): { [key: string]: any } => {
