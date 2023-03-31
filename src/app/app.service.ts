@@ -1891,19 +1891,13 @@ export class AppService {
   }
 
   getSkills(skill: string = null): Observable<any> {
-    const url = this.settingsService.settings.getskillsEndpoint + "?skillName=" + skill;
-
-    debugger;
-    
+    const url = this.settingsService.settings.getskillsEndpoint + "?skillName=" + skill;  
     let data =this.http.get(url).catch(this.handleError);
     return data;
   }
 
   searhchSkills(skill: string = null): any {
     const url = this.settingsService.settings.SearchSkills + "?skillName=" + skill;
-
-    debugger;
-    
     let data =this.http.get(url).catch(this.handleError);
     return data;
   }
