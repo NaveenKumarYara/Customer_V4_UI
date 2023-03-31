@@ -101,7 +101,7 @@
 				<div class="card-body mob-btn flex-wrap">
 					<div class="sm-d-inline">
 					
-						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed' && jobdetailsbasicinfo?.JobStatus != 'Freezed'">
+						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Filled' && jobdetailsbasicinfo?.JobStatus != 'Freezed'">
 							<button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive"
 								(click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
 								Inactive</button>
@@ -117,7 +117,7 @@
 						</button>
 
 
-						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+						<ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Filled'">
 							<button *ngIf="wishcheck === true;else isact" class="btn btn-border btn-primary"
 							(click)="GetWishlistSort(false)"><span class="icon-wishlist">Icon</span> Favorite
 								</button>
@@ -619,7 +619,7 @@
 							<h4 class="cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus }}</span>
-							<span class="edit-btn cursor-pointer" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
+							<span class="edit-btn cursor-pointer" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'&& jobdetailsbasicinfo?.JobStatus != 'Filled'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</span>
 							<span class="edit-btn cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
