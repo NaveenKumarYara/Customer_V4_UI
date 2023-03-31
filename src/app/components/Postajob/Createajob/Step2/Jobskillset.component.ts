@@ -28,7 +28,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    maxexpval:any;
    minexpval:any;
   expYears: any = [];
-  skillType  = false;
+  skillType:boolean  = false;
   selectedOption:TOptions = new TOptions(2, ' 3-5');
   options = [
      new TOptions(1, '0-2' ),
@@ -135,7 +135,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       {
         this.getValue(2);
       }
-
+      this.skillType = this.skillType!=null?this.skillType:false;
       // if (Number(this.minexperience) === 0) {
       //   return false;
       // }
@@ -153,37 +153,135 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       this.minexperience = this.minexpval;
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
-      const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
-
-      if (check === true&&newskills.SkillName!=null) {
-        let Id = this.primaryjobskills.findIndex(x=>x.SkillName === newskills.SkillName);
-        this.deletePrimarySkills(Id);
-        this.deleteSecondarySkills(Id);
-        this.appService.addJobSkill(newskills);
-        this.selectedSkillName=undefined;
-        this.minexperience = 3;
-        this.maxexperience = 5;
-        newskills = new Jobskills();
-        this.getValue(2);
-        localStorage.removeItem('skill');
-        this.form.reset();
-    }
-     
-      if (check === false&&newskills.SkillName!=null) {
+      //const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
+      if(this.primaryjobskills.length>0 && this.skillType == true)
+      {
+        const pexists = this.primaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
+        if (!pexists && newskills.SkillName !=undefined) {
           this.appService.addJobSkill(newskills);
           this.selectedSkillName=undefined;
-          this.minexperience = 0;
-          this.maxexperience = 0;
+          this.minexperience = 3;
+          this.maxexperience = 5;
           newskills = new Jobskills();
           this.getValue(2);
           localStorage.removeItem('skill');
           this.form.reset();
+        }
+        else
+        {
+          this.selectedSkillName=undefined;
+          this.minexperience = 3;
+          this.maxexperience = 5;
+          newskills = new Jobskills();
+          this.getValue(2);
+          localStorage.removeItem('skill');
+          this.form.reset();
+          this.toastr.info('Skill already added','Oh no!!')
+          setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+        }
+  
       }
-      this.selectedSkillName = '';
-      this.minexperience = 0;
-      this.maxexperience = 0;
-      localStorage.removeItem('skill');
-     this.form.reset();
+
+      if(this.secondaryjobskills.length>0 && this.skillType == false)
+      {
+
+        const sexists = this.secondaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
+        if (!sexists && newskills.SkillName !=undefined) {
+          this.appService.addJobSkill(newskills);
+          this.selectedSkillName=undefined;
+          this.minexperience = 3;
+          this.maxexperience = 5;
+          newskills = new Jobskills();
+          this.getValue(2);
+          localStorage.removeItem('skill');
+          this.form.reset();
+          
+        }
+        else
+        {
+          this.selectedSkillName=undefined;
+          this.minexperience = 3;
+          this.maxexperience = 5;
+          newskills = new Jobskills();
+          this.getValue(2);
+          localStorage.removeItem('skill');
+          this.form.reset();
+          this.toastr.info('Skill already added','Oh no!!')
+          setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+        }
+  
+      }
+
+      else if (newskills.SkillName!=null && newskills.SkillName !=undefined)
+      {
+        this.appService.addJobSkill(newskills);
+        this.selectedSkillName = undefined;
+        this.minexperience = 0;
+        this.maxexperience = 0;
+        localStorage.removeItem('skill');
+       this.form.reset();
+      }
+      
+
+   
+    //   if (check === true&&newskills.SkillName!=null) {
+    //     newskills.SkillType = check;
+    //     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
+    //     this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
+    //     if(this.primaryjobskills.length>0)
+    //     {
+    //       const object =  this.primaryjobskills.find(object => {
+    //         return object.SkillName === newskills.SkillName;
+    //       });         
+    //       if (object === undefined) {
+    //         this.appService.addJobSkill(newskills);
+    //       }
+       
+    //     }
+    //     else
+    //     {
+    //       this.appService.addJobSkill(newskills);
+    //     }
+  
+    //     //this.primaryjobskills = this.primaryjobskills.filter(item => item.SkillName != newskills.SkillName);
+    //     //this.secondaryjobskills = this.secondaryjobskills.filter(item => item.SkillName != newskills.SkillName);
+    //     // this.deletePrimarySkills(Id);
+    //     // this.deleteSecondarySkills(SId);
+        
+       
+    // }
+     
+    //   if (check === false&&newskills.SkillName!=null) {
+    //     newskills.SkillType = check;
+    //     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
+    //     this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
+    //      if(this.secondaryjobskills.length>0)
+    //      {
+    //        const object =  this.secondaryjobskills.find(object => {
+    //         return object.SkillName === newskills.SkillName;
+    //         });         
+    //         if (object === undefined) {
+    //         this.appService.addJobSkill(newskills);
+    //         }
+    //       }
+    //       else
+    //       {
+    //         this.appService.addJobSkill(newskills);
+    //       }
+          
+    //       this.selectedSkillName=undefined;
+    //       this.minexperience = 0;
+    //       this.maxexperience = 0;
+    //       newskills = new Jobskills();
+    //       this.getValue(2);
+    //       localStorage.removeItem('skill');
+    //       this.form.reset();
+    //   }
+   
     } else {
       this.toastr.info('Please Add/Select Skill','Oops')
       setTimeout(() => {
@@ -217,7 +315,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.minexperience = Skill.MinimumExp/12;
     this.getval();
     this.selectedSkillName=Skill.SkillName;
-    this.skillType = Skill.SkillType;
+    this.skillType = Skill.SkillType !=null?Skill.SkillType:false;
   }
 
    EditSecondarySkills(Skill) {
@@ -225,7 +323,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.minexperience = Skill.MinimumExp/12;
     this.getval();
     this.selectedSkillName=Skill.SkillName;
-    this.skillType = Skill.SkillType;
+    this.skillType = Skill.SkillType !=null?Skill.SkillType:false;
   }
 
 
