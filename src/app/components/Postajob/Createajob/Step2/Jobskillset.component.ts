@@ -27,6 +27,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   maxexperience:number;
    maxexpval:any;
    minexpval:any;
+   ep:any;
+   es:any;
   expYears: any = [];
   skillType:boolean  = false;
   selectedOption:TOptions = new TOptions(2, ' 3-5');
@@ -157,7 +159,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       if(this.primaryjobskills.length>0 && this.skillType == true)
       {
         const pexists = this.primaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
-        if (!pexists && newskills.SkillName !=undefined) {
+        const sexists = this.secondaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
+        if (!pexists && !sexists && newskills.SkillName !=undefined) {
           this.appService.addJobSkill(newskills);
           this.selectedSkillName=undefined;
           this.minexperience = 3;
@@ -187,8 +190,9 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       if(this.secondaryjobskills.length>0 && this.skillType == false)
       {
 
+        const pexists = this.primaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
         const sexists = this.secondaryjobskills.findIndex(element => element.SkillName === newskills.SkillName) > -1;
-        if (!sexists && newskills.SkillName !=undefined) {
+        if (!pexists && !sexists && newskills.SkillName !=undefined) {
           this.appService.addJobSkill(newskills);
           this.selectedSkillName=undefined;
           this.minexperience = 3;
@@ -316,6 +320,9 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.getval();
     this.selectedSkillName=Skill.SkillName;
     this.skillType = Skill.SkillType !=null?Skill.SkillType:false;
+    const p = this.primaryjobskills.findIndex(element => element.SkillName === Skill.SkillName);
+    this.deletePrimarySkills(p);
+ 
   }
 
    EditSecondarySkills(Skill) {
@@ -324,6 +331,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.getval();
     this.selectedSkillName=Skill.SkillName;
     this.skillType = Skill.SkillType !=null?Skill.SkillType:false;
+    const s = this.secondaryjobskills.findIndex(element => element.SkillName === Skill.SkillName);
+    this.deleteSecondarySkills(s);
   }
 
 

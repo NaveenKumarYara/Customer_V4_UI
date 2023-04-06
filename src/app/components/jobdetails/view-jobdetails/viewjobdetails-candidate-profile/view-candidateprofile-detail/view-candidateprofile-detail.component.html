@@ -95,22 +95,22 @@
               <ul>
                 <ng-container *ngIf="profileview?.Links.length === 0">
                   <li class="ins">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)"  tooltip="yet to provide">
 
                     </a>
                   </li>
                   <li class="fb">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)"  tooltip="yet to provide">
 
                     </a>
                   </li>
                   <li class="tw">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)"  tooltip="yet to provide">
 
                     </a>
                   </li>
                   <li class="skype">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)"  tooltip="yet to provide">
 
                     </a>
                   </li>
@@ -135,21 +135,21 @@
 
                     <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
                       <li class="tw">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)"  tooltip="yet to provide">
 
                         </a>
                       </li>
                     </ng-container>
                     <ng-container *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
                       <li class="fb">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" tooltip="yet to provide">
 
                         </a>
                       </li>
                     </ng-container>
                     <ng-container *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
                       <li class="ins">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)"  tooltip="yet to provide">
 
                         </a>
                       </li>
@@ -871,11 +871,11 @@
                         <h4>Summary</h4>
                          <div class="info__box">
                           <div class="custom__scrollbar">
-                            <p [innerHTML]="exps?.Description | slice:0:100">
+                            <p *ngIf="!moreShow" [innerHTML]="exps?.Description | slice:0:100" >
 
                             </p>
                             <ng-container *ngIf="moreShow">
-                              <p [innerHTML]="exps?.Description| slice:100:15000">
+                              <p [innerHTML]="exps?.Description| slice:0:15000">
 
                               </p>
                              </ng-container> 
