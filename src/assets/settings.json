@@ -131,7 +131,7 @@
   "customerLogin": "https://customer-dev001.arytic.com/login",
   "customerSignUp": "https://customer-dev001.arytic.com/signup",
   "ForgotPasswordurl": "https://customer-dev001001.arytic.com/ForgotPassword",
-  
+  "ImageUrl":"identityapi-dev001.arytic.com/home/EsolvitResumes?id=",
   "CandidateSignUp": "https://dev.arytic.co/candidatesignup",
   "NewCandidateSignUp": "https://dev.arytic.co/candidatesignuppublic",
   "CandidateLogin": "https://candidate-dev001.arytic.com/login",

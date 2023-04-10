@@ -374,7 +374,8 @@
           </button>
         </li>
         <li tooltip="Documents" placement="left">
-          <button  (click)="callSkills(profile?.ProfileId, 6)">
+          <!-- <button  (click)="callSkills(profile?.ProfileId, 6)" OpenDocuments(profile?.FirstName, profile?.ProfileId)> -->
+            <button  (click)="OpenDocuments(profile?.FirstName, profile?.ProfileId)">
             <span class="icon-smart icon-smart-document">Icon</span>
           </button>
         </li>

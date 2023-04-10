@@ -123,7 +123,77 @@
                 ;" class="pull-right"> *Please upload maximum of 1 profiles </h5>
                 </span> -->
               </div>
+              <div>
+                <h4>Resume</h4>
+                <div class="row flex flex-wrap flex-aling-equal">
+                  <table class="table custom-upload-profile-table table-hover table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                       
+                        <th>Preview</th>
+                        <th>Download</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container>
+                        <tr>
+                          <td>
+                            {{CandidateName | titlecase}}
+                          </td>
+                          <td>
+                            <ngx-doc-viewer *ngIf="Resume != undefined" 
+                            viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
+                            url="{{Resume}}"
+                            style="width:10%;height:10vh;">
+                        </ngx-doc-viewer>
+                            </td>
+                          <!-- <td *ngIf="uploader.options.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                         <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                            <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                          </div>
+                        </div>
+                      </td> -->
+                  
+                          <td>
+                     
+                            <button class="btn btn-danger btn__delete btn-xs" (click)="DownloadResume(CandidateName)">
+                              <i class="fa fa-download" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
 
+                    </tbody>
+                  </table>
+                  <ng-container>
+                    <!-- <span class="icon icon-pdf">Icon</span> -->
+                    <!-- <h5>Resume _ {{CandidateName}}</h5> -->
+                    <!-- <ngx-doc-viewer 
+                    [viewerUrl]="https://docs.google.com/gview?url=%URL%&embedded=true"
+                    [url]="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc"
+                    viewer="url" style="width:100%;height:50vh;">
+                </ngx-doc-viewer> -->
+                    <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                        profile?.LastName | titlecase}}</h4> -->
+               
+                    <!-- <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
+                      <div class="col-container">
+                        <button class="btn btn-close" (click)="DelDocument(d?.Id)">×</button>
+                        <span class="fas fa-file-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                        <span class="fa fa-file-word-o" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                        <h5  (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
+                        <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
+                      </div>
+                    </div> -->
+                  </ng-container>
+
+
+                </div>
+
+              </div>
 
               <div>
                 <h4>My Documents</h4>
@@ -141,6 +211,7 @@
                         <tr>
                           <th>Name</th>
                           <th>Action</th>
+                          <th>Preview</th>
                           <th>Download</th>
                         </tr>
                       </thead>
@@ -150,7 +221,13 @@
                             <td>
                               {{d?.DocName.split('aryticDP')[0] | titlecase}}
                             </td>
-
+                            <td>
+                              <ngx-doc-viewer *ngIf="d.DocUrl != undefined"
+                              viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
+                              url="{{d?.DocUrl}}"
+                              style="width:10%;height:10vh;">
+                          </ngx-doc-viewer>
+                              </td>
                             <!-- <td *ngIf="uploader.options.isHTML5">
                           <div class="progress" style="margin-bottom: 0;">
                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
@@ -208,7 +285,7 @@
                         <tr>
                           <th>Name</th>
                           <th>Uploaded By</th>
-                          <!-- <th>Action</th> -->
+                          <th>Preview</th>
                           <th>Download</th>
                         </tr>
                       </thead>
@@ -220,6 +297,13 @@
                             </td>
                             <td>
                               {{d?.FirstName | titlecase}} {{d?.LastName | titlecase}}
+                            </td>
+                            <td>
+                            <ngx-doc-viewer  *ngIf="d.DocUrl != undefined"
+                            viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
+                            url="{{d?.DocUrl}}"
+                            style="width:20%;height:20vh;">
+                        </ngx-doc-viewer>
                             </td>
                             <!-- <td *ngIf="uploader.options.isHTML5">
                           <div class="progress" style="margin-bottom: 0;">

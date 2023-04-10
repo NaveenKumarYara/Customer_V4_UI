@@ -20,6 +20,7 @@ const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
 const fs = require('fs');
 import * as FileSaver from "file-saver";
+import { Resume } from '../../../../company-profile/companyprofile/companyprofile.component';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -36,10 +37,13 @@ export class CdocumentManagerComponent implements OnInit {
   selectedFiles: any= [];
   JobDocuments:any=[];
   isProcessing: boolean;
+  Resume:any;
   MyDocuments: any = [];
   fileUploadForm: FormGroup;
   formDAtaList: Array<FormData> = [];
   customerName: any;
+  fileType = new Resume();
+  fileExt: any;
   CandidateName:any;
   selectedFileNames: string[] = [];
   fileErrorDetail: { file: any; error: string; };
@@ -83,6 +87,7 @@ export class CdocumentManagerComponent implements OnInit {
     this.CandidateName = this.data.Name;
     this.PopulateJobDocuments();
     this.PopulateDocuments();
+    this.GetResumes();
   }
 
   PopulateJobDocuments() {
@@ -187,7 +192,6 @@ export class CdocumentManagerComponent implements OnInit {
   {
     let fileDat = this.JobDocuments.find(x=>x.DocName === d);
     let fileExt:any;
-    debugger
     this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
       let exp = d.split("aryticDP")[0];
       fileExt = exp.split(".").pop();
@@ -220,6 +224,51 @@ export class CdocumentManagerComponent implements OnInit {
     
    
   
+  }
+
+
+
+  DownloadResume(val)
+  {
+    let Pid = this.data.ProfileId;
+    this._service.GetService("ProfileAPI/api/GetResume?profileId=", Pid).subscribe((fileData) => {
+      this.fileType = fileData;
+      let exp = this.fileType.Url.split(".").pop();
+      this.fileExt = exp;
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+      //debugger
+
+      if (this.fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, val);
+      } else if (this.fileExt == "doc" || this.fileExt == "docx") {
+        var extension = ".doc";
+        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, val + extension);
+      }
+    });
+  }
+
+  GetResumes()
+  {
+    let Pid = this.data.ProfileId;
+    this._service.GetService("ProfileAPI/api/GetResume?profileId=", Pid).subscribe((file) => {
+      if(file.Url != null && file.Url != undefined)
+      {
+        let ur = this.settingsService.settings.ImageUrl;
+        this.Resume = ur + file.Url;
+      }
+      else
+      {
+        this.Resume = undefined;
+      }
+
+    });
   }
 
   processResumes() {
