@@ -37,6 +37,7 @@ export class CdocumentManagerComponent implements OnInit {
   selectedFiles: any= [];
   JobDocuments:any=[];
   isProcessing: boolean;
+  Resume:any;
   MyDocuments: any = [];
   fileUploadForm: FormGroup;
   formDAtaList: Array<FormData> = [];
@@ -86,6 +87,7 @@ export class CdocumentManagerComponent implements OnInit {
     this.CandidateName = this.data.Name;
     this.PopulateJobDocuments();
     this.PopulateDocuments();
+    this.GetResumes();
   }
 
   PopulateJobDocuments() {
@@ -190,7 +192,6 @@ export class CdocumentManagerComponent implements OnInit {
   {
     let fileDat = this.JobDocuments.find(x=>x.DocName === d);
     let fileExt:any;
-    debugger
     this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", fileDat.DocUrl).subscribe((fileData) => {
       let exp = d.split("aryticDP")[0];
       fileExt = exp.split(".").pop();
@@ -225,6 +226,8 @@ export class CdocumentManagerComponent implements OnInit {
   
   }
 
+
+
   DownloadResume(val)
   {
     let Pid = this.data.ProfileId;
@@ -248,6 +251,24 @@ export class CdocumentManagerComponent implements OnInit {
         let blob = new Blob([byteArr], { type: "application/pdf" });
         FileSaver.saveAs(blob, val + extension);
       }
+    });
+  }
+
+  GetResumes()
+  {
+    let Pid = this.data.ProfileId;
+    this._service.GetService("ProfileAPI/api/GetResume?profileId=", Pid).subscribe((file) => {
+      debugger
+      if(file.Url != null && file.Url != undefined)
+      {
+        let ur = this.settingsService.settings.ImageUrl;
+        this.Resume = ur + file.Url;
+      }
+      else
+      {
+        this.Resume = undefined;
+      }
+
     });
   }
 

@@ -27,6 +27,7 @@
         "../node_modules/mailgo/dist/mailgo.min.js",
         "assets/js/app.js",
         "assets/js/libs.js" ,
+        "../node_modules/mammoth/mammoth.browser.min.js",
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
         "../node_modules/intro.js/intro.js"
 
