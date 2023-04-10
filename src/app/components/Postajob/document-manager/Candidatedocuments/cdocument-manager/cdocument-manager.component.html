@@ -123,7 +123,33 @@
                 ;" class="pull-right"> *Please upload maximum of 1 profiles </h5>
                 </span> -->
               </div>
+              <div>
+                <h4>Resume</h4>
+                <div class="row flex flex-wrap flex-aling-equal">
+  
+                  <ng-container>
+                    <span class="icon icon-pdf">Icon</span>
+                    <h5>Resume _ {{CandidateName}}</h5>
+                    <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                        profile?.LastName | titlecase}}</h4> -->
+                    <button class="btn btn-download" (click)="DownloadResume(CandidateName)">
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    </button>
+                    <!-- <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
+                      <div class="col-container">
+                        <button class="btn btn-close" (click)="DelDocument(d?.Id)">×</button>
+                        <span class="fas fa-file-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                        <span class="fa fa-file-word-o" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                        <h5  (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
+                        <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
+                      </div>
+                    </div> -->
+                  </ng-container>
 
+
+                </div>
+
+              </div>
 
               <div>
                 <h4>My Documents</h4>

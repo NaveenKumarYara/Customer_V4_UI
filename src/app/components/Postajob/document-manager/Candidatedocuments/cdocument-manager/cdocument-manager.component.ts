@@ -20,6 +20,7 @@ const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
 const fs = require('fs');
 import * as FileSaver from "file-saver";
+import { Resume } from '../../../../company-profile/companyprofile/companyprofile.component';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -40,6 +41,8 @@ export class CdocumentManagerComponent implements OnInit {
   fileUploadForm: FormGroup;
   formDAtaList: Array<FormData> = [];
   customerName: any;
+  fileType = new Resume();
+  fileExt: any;
   CandidateName:any;
   selectedFileNames: string[] = [];
   fileErrorDetail: { file: any; error: string; };
@@ -220,6 +223,32 @@ export class CdocumentManagerComponent implements OnInit {
     
    
   
+  }
+
+  DownloadResume(val)
+  {
+    let Pid = this.data.ProfileId;
+    this._service.GetService("ProfileAPI/api/GetResume?profileId=", Pid).subscribe((fileData) => {
+      this.fileType = fileData;
+      let exp = this.fileType.Url.split(".").pop();
+      this.fileExt = exp;
+      this.toastr.success("Downloading!", "Success!");
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+      //debugger
+
+      if (this.fileExt == "pdf") {
+        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, val);
+      } else if (this.fileExt == "doc" || this.fileExt == "docx") {
+        var extension = ".doc";
+        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+        let blob = new Blob([byteArr], { type: "application/pdf" });
+        FileSaver.saveAs(blob, val + extension);
+      }
+    });
   }
 
   processResumes() {
