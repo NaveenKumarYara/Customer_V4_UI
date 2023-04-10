@@ -258,7 +258,6 @@ export class CdocumentManagerComponent implements OnInit {
   {
     let Pid = this.data.ProfileId;
     this._service.GetService("ProfileAPI/api/GetResume?profileId=", Pid).subscribe((file) => {
-      debugger
       if(file.Url != null && file.Url != undefined)
       {
         let ur = this.settingsService.settings.ImageUrl;
