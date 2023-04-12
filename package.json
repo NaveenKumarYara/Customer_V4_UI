@@ -1,7 +1,7 @@
 {
-  "name": "Tenendus.orca.renewals.simulator",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "customer-ui",
+  "version": "1.0.0",
+  "license": "Arytic",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 4400",
