@@ -1,4 +1,9 @@
+# Step 1: Build the app in image 'builder'
+FROM node:10.16-alpine AS builder
 
+WORKDIR /usr/src/app
+COPY . .
+RUN npm ci && npm run build
 
 # Step 2: Use build output from 'builder'
 FROM nginx:stable-alpine
