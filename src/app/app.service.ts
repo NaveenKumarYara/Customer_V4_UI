@@ -1,21 +1,17 @@
 import { Injectable } from "@angular/core";
-import { Response, Headers, RequestOptions, RequestMethod } from "@angular/http";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { GetCompanyLogo } from "../models/GetCompanyLogo";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { Dashboard } from "../models/dashboard.model";
-import { Offer } from "../models/offer.model";
 
 import { Jobskills } from "../models/jobskills.model";
-import { Subject } from "rxjs/Subject";
+import { Subject } from "rxjs";
 import { RecentJobs } from "../models/recentjobs";
 import { BehaviorSubject } from "rxjs";
 import { Qualifications } from "../models/qualifications.model";
 import { Notification } from "../models/notifications";
 import { InterviewType } from "../models/interviewtype.model";
-import { retry } from "rxjs/operator/retry";
 import { EmploymentType } from "../models/employmenttype.model";
-import { Postajob } from "../models/postajob.model";
 import { CustomerContacts } from "../models/customercontacts";
 import { draftDetails } from "../models/draftDetails";
 import { GetEmailValidate } from "../models/GetEmailValidate";
@@ -45,17 +41,13 @@ import {
   AutoSearchClient,
   AutoSearchDepartment,
   DepartmentModel,
-  JobReporting,
   AddResp,
   jobImmigrationData,
   PjDepartments,
-  CategoryNewList,
   KeyRole,
   GetKeyRole,
-  Jobwork,
 } from "./components/Postajob/models/jobPostInfo";
 import { CDuration, WorkAuthorization } from "../models/workAuthorization";
-import { Profile } from "./components/jobdetails/models/SearchProfileDeatils";
 import { XmlJobResponse } from "./components/jobdetails/view-jobdetails/upload-profiles/bulkApply";
 import { ParseResponsibilities } from "./components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component";
 import { SkillDetails, SkillData, SkillPostData } from "../models/skill.model";
@@ -69,8 +61,7 @@ import { GetBillingCardDetails } from "../models/GetBillingCardDetails";
 import { CustomerSubscription } from "../models/CustomerSubscription";
 import { GetSubscriptionDetails } from "../models/GetSubscriptionDetails";
 import { GetBillingAddressCustomer } from "../models/GetBillingAddressCustomer";
-import { ReportingTeam, RecrutingTeam, JobInfo } from "../models/GetJobDetailCustomer";
-import { CandidateInformation } from "./shared/models";
+import { ReportingTeam, RecrutingTeam } from "../models/GetJobDetailCustomer";
 
 const httpOptions = {
   headers: new HttpHeaders({

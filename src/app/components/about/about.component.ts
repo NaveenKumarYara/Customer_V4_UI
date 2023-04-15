@@ -1,75 +1,72 @@
-import { Component,ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
-import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import {FormsValidationService} from '../../shared/validation/validation.service';
-import {CustomerContacts} from '../../../models/customercontacts';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { FormsValidationService } from '../../shared/validation/validation.service';
+import { CustomerContacts } from '../../../models/customercontacts';
 declare var $: any;
 
 @Component({
-  
+
   selector: 'ActivateAndResetPassword',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
-  providers:[AppService,AlertService]
+  providers: [AppService, AlertService]
 })
-export class AboutComponent { 
-    Resetform: any;
-    customerId:any;
-    companyLogo:any;
-    password:any;
-    userId:any;
-    pid:any;
-    Id:any;
-    UserEmail:any;
-    Addform: FormGroup;
-    customercontacts : CustomerContacts[]=[];
-    constructor( private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
-        private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
-          this.route.params.subscribe(params => {
-              console.log(params);
-              if (params['pid'] !==null) {
-                sessionStorage.setItem('Pid', params['pid']);
-              }
-              if (params['Uid'] !==null) {
-                sessionStorage.setItem('Uid', params['Uid']);
-              }
+export class AboutComponent {
+  Resetform: any;
+  customerId: any;
+  companyLogo: any;
+  password: any;
+  userId: any;
+  pid: any;
+  Id: any;
+  UserEmail: any;
+  Addform: FormGroup;
+  customercontacts: CustomerContacts[] = [];
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+    private fb: FormBuilder, private router: Router, private appService: AppService, private alertService: AlertService) {
+    this.route.params.subscribe(params => {
+      console.log(params);
+      if (params['pid'] !== null) {
+        sessionStorage.setItem('Pid', params['pid']);
+      }
+      if (params['Uid'] !== null) {
+        sessionStorage.setItem('Uid', params['Uid']);
+      }
 
-            });
-            this.toastr.setRootViewContainerRef(_vcr);
-            this.pid =  sessionStorage.getItem('Pid');
-            this.userId = sessionStorage.getItem('Uid');
-            this.Addform = this.fb.group({
-              'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
-              'FirstName': ['', Validators.compose([Validators.nullValidator])],   
-              'LastName': ['', Validators.compose([Validators.nullValidator])] 
-            });
-            //this.Id = sessionStorage.getItem('Uid');
-            //this.ActivatetheUser(this.Id);
-            this.Resetform = this.fb.group({
-              'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
-              'FirstName': ['', Validators.compose([Validators.required])],   
-              'LastName': ['', Validators.compose([Validators.required])],
-              'Email': [this.pid, Validators.compose([Validators.nullValidator])],
-              'Password': ['', [Validators.required, FormsValidationService.password]],
-              'ConfirmPassword': ['', [Validators.required, FormsValidationService.password]]
-            }, { 
-              validator: this.ConfirmedValidator('Password', 'ConfirmPassword')
-            });
-    }
-  
-  Login()
-  {
-    this.router.navigateByUrl('home'); 
-  } 
-  
+    });
+    this.toastr.setRootViewContainerRef(_vcr);
+    this.pid = sessionStorage.getItem('Pid');
+    this.userId = sessionStorage.getItem('Uid');
+    this.Addform = this.fb.group({
+      'UserId': [this.userId, Validators.compose([Validators.nullValidator])],
+      'FirstName': ['', Validators.compose([Validators.nullValidator])],
+      'LastName': ['', Validators.compose([Validators.nullValidator])]
+    });
+    //this.Id = sessionStorage.getItem('Uid');
+    //this.ActivatetheUser(this.Id);
+    this.Resetform = this.fb.group({
+      'UserId': [this.userId, Validators.compose([Validators.nullValidator])],
+      'FirstName': ['', Validators.compose([Validators.required])],
+      'LastName': ['', Validators.compose([Validators.required])],
+      'Email': [this.pid, Validators.compose([Validators.nullValidator])],
+      'Password': ['', [Validators.required, FormsValidationService.password]],
+      'ConfirmPassword': ['', [Validators.required, FormsValidationService.password]]
+    }, {
+      validator: this.ConfirmedValidator('Password', 'ConfirmPassword')
+    });
+  }
 
-  SaveUserName()
-  {
-         
+  Login() {
+    this.router.navigateByUrl('home');
+  }
+
+
+  SaveUserName() {
+
   }
   // ActivatetheUser(id)
   // {
@@ -82,84 +79,80 @@ export class AboutComponent {
   //     }, 3000);
   //     })
   // }
-    
-    Send() {
-      if(!this.Resetform.valid)
-      {
-        this.toastr.error('Please fill the Fields!', 'Oops!');
-        setTimeout(() => {
-            this.toastr.dismissToast;
-        }, 3000);
-      }
-      else
-      {
+
+  Send() {
+    if (!this.Resetform.valid) {
+      this.toastr.error('Please fill the Fields!', 'Oops!');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+    }
+    else {
       this.Addform.value.FirstName = this.Resetform.value.FirstName;
       this.Addform.value.LastName = this.Resetform.value.LastName;
       this.appService.UpdateFullName(this.Addform.value)
-      .subscribe(Res=>
-     {
-      this.appService.ResetPassword(this.Resetform.value)
-        .subscribe(
-        data => {
-          this.toastr.success('Details changed successfully','Success');
-              this.Resetform.reset();
-              sessionStorage.removeItem('Pid');
-              setTimeout(() => {
-                this.toastr.dismissToast;
-                  this.Login();    
+        .subscribe(Res => {
+          this.appService.ResetPassword(this.Resetform.value)
+            .subscribe(
+              data => {
+                this.toastr.success('Details changed successfully', 'Success');
+                this.Resetform.reset();
+                sessionStorage.removeItem('Pid');
+                setTimeout(() => {
+                  this.toastr.dismissToast;
+                  this.Login();
                 }, 3000);
-             }     
-        );
-            });
-            }
+              }
+            );
+        });
     }
-
-
-    ConfirmedValidator(controlName: string, matchingControlName: string){
-      return (formGroup: FormGroup) => {
-          const control = formGroup.controls[controlName];
-          const matchingControl = formGroup.controls[matchingControlName];
-          if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
-              return;
-          }
-          if (control.value !== matchingControl.value) {
-              matchingControl.setErrors({ confirmedValidator: true });
-          } else {
-              matchingControl.setErrors(null);
-          }
-      }
   }
 
-    GetCustomerInviteUsers()
-    {
-      return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-        this.customercontacts = res;
+
+  ConfirmedValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
+  }
+
+  GetCustomerInviteUsers() {
+    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+      this.customercontacts = res;
     });
-    }
-  
-  
-    ngOnInit() {
-      this.pid =  sessionStorage.getItem('Pid');
-      this.userId = sessionStorage.getItem('Uid');
-    
-        return this.appService.GetUserDetails(this.userId).subscribe(result => {
-          this.UserEmail = result.Email;
-        })
-     
+  }
+
+
+  ngOnInit() {
+    this.pid = sessionStorage.getItem('Pid');
+    this.userId = sessionStorage.getItem('Uid');
+
+    return this.appService.GetUserDetails(this.userId).subscribe(result => {
+      this.UserEmail = result.Email;
+    })
+
+  }
+}
+
+
+function matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+  return (group: FormGroup): { [key: string]: any } => {
+    let Password = group.controls[passwordKey];
+    let ConfirmPassword = group.controls[confirmPasswordKey];
+
+    if (Password.value !== ConfirmPassword.value) {
+      return {
+        mismatchedPasswords: true
+      };
     }
   }
-  
-  
-  function matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
-      return (group: FormGroup): { [key: string]: any } => {
-        let Password = group.controls[passwordKey];
-        let ConfirmPassword = group.controls[confirmPasswordKey];
-    
-        if (Password.value !== ConfirmPassword.value) {
-          return {
-            mismatchedPasswords: true
-          };
-        }
-      }
-    }
+}
 

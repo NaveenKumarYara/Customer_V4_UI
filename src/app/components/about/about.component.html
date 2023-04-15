@@ -1,112 +1,128 @@
+<title>Arytic</title>
+<!-- GOOGLE WEB FONT -->
+<link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
 
-      <title>Arytic</title>
-      <!-- GOOGLE WEB FONT -->
-      <link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
-   <body class="signpage">
-      <div class="container-fluid full-height">
-          <div class="row row-height">
-              <div class="col-lg-6 content-left">
-                  <div class="content-left-wrapper">
-    <div class="jobs_hide animated slideInLeft">
-      <h2>I'm here for  Hiring</h2>
-      <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
-   </div>
-                  </div>
-              </div>
-              <div class="col-lg-6 content-right recrit_div animated slideInRight"  id="start">
-                  <div id="wizard_container">
-                     <div id="top-wizard">
-                        <div id="progressbar"></div>
-                     </div>
-                     <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
-                     <!-- /top-wizard -->
-										 <div id="hiring_login">
-                        <div class="logo">
-                           <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
-												</div>
-												
-                        <div class="step" style="text-align:left">  
-                                <h2 class="main_question text-left">
-                                        Update Details ! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                     </h2>             
-													 <alert></alert>
-                                                     <form id="wrapped" [formGroup]="Resetform" (ngSubmit)="Send()">
-                                                            <!-- Leave for security protection, read docs for details -->
-                                                           
-                                                            
-                                                            <!-- hiring id _forgot -->
-                                                            <div id="hiring_forgot">
-                                                          
-                                                               <a href="javascript:void(0)" (click)="Login()" class="haringf_close"><img src="../../../assets/images/cancel.svg" width="32"></a>
-                                                               <div class="step " style="">
-                                                                  <div class="form-group">
-                                                                   <input class="form-control" value="{{UserEmail}}" readonly> 
-                                                                  </div>
-                                                                  <div class="form-group">
-                                                                     <input class="form-control" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)" id="FirstName" type="text" name="Password" placeholder="First Name" formControlName="FirstName" required>
-                                                                                                <div *ngIf="Resetform.controls['FirstName'].invalid && (Resetform.controls['FirstName'].dirty || Resetform.controls['FirstName'].touched)"
-                                                                                                class="alert alert-danger">
-                                                                                                <div *ngIf="Resetform.controls['FirstName'].errors.required">
-                                                                                                   FirstName is required.
-                                                                                                </div>
-                                                                                              
-                                                                                              </div>
-                                                                  </div>
-                                                                  <div class="form-group">
-                                                                     <input class="form-control" id="LastName" type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)" name="LastName" placeholder="Last Name" formControlName="LastName" required>
-                                                                     <div *ngIf="Resetform.controls['LastName'].invalid && (Resetform.controls['LastName'].dirty || Resetform.controls['LastName'].touched)"
-                                                                     class="alert alert-danger">
-                                                                     <div *ngIf="Resetform.controls['LastName'].errors.required">
-                                                                        Last Name is required.
-                                                                     </div>
-                                                                    
-                                                                   </div>
-                                                                  </div>
-                                                                                               <div class="form-group">
-                                                                                                <input class="form-control" id="password" type="password" name="Password" placeholder="Password" formControlName="Password">
-                                                                                                <div *ngIf="Resetform.controls['Password'].invalid && (Resetform.controls['Password'].dirty || Resetform.controls['Password'].touched)"
-                                                                                                class="alert alert-danger">
-                                                                                                <div *ngIf="Resetform.controls['Password'].errors.required">
-                                                                                                 Password is required.
-                                                                                                </div>
-                                                                                                <small *ngIf="Resetform.controls['Password'].errors.password>0">
-                                                                                                   Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
-                                                                                                  </small>
-                                                                                              </div>
-                                                                                            </div>
-                                                                                                  <div class="form-group">
-                                                                                                  <input type="password" id="confirmPassword" formControlName="ConfirmPassword" placeholder="Confirm Password" class="form-control">
-                                                                                                  <div *ngIf="Resetform.controls['ConfirmPassword'].invalid && (Resetform.controls['ConfirmPassword'].dirty || Resetform.controls['ConfirmPassword'].touched)"
-                                                                                                  class="alert alert-danger"> 
-                                                                                                  <small *ngIf="Resetform.controls['ConfirmPassword'].errors.required">
-                                                                                                      Confirm Password is required.
-                                                                                                  </small>
-                                                                                                  <small *ngIf="Resetform.controls['ConfirmPassword'].errors.confirmedValidator">
-                                                                                                   Passwords must match  Confirm Password is required.
-                                                                                               </small>
-                                                                                                  <small *ngIf="Resetform.controls['ConfirmPassword'].errors.password>0">
-                                                                                                    Confirm Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
-                                                                                                  </small>
-                                                                                                </div>
-                                                                                                </div>
-                                                                                                  <div class="text-right">
-                                                                     <div class="spt-2">
-                                                                                 <button type="submit" class="btn2 pull-right">Reset</button>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                            </div>
-                                                            <!-- hiring id _forgot -->
-                                                            <!-- /middle-wizard -->
-                                                            <!-- /bottom-wizard -->
-                                                         </form>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- /Wizard container -->
+<body class="signpage">
+   <div class="container-fluid full-height">
+      <div class="row row-height">
+         <div class="col-lg-6 content-left">
+            <div class="content-left-wrapper">
+               <div class="jobs_hide animated slideInLeft">
+                  <h2>I'm here for Hiring</h2>
+                  <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt=""
+                        class="img-fluid"></figure>
                </div>
-              
-          </div>
-      </div>
+            </div>
+         </div>
+         <div class="col-lg-6 content-right recrit_div animated slideInRight" id="start">
+            <div id="wizard_container">
+               <div id="top-wizard">
+                  <div id="progressbar"></div>
+               </div>
+               <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
+               <!-- /top-wizard -->
+               <div id="hiring_login">
+                  <div class="logo">
+                     <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
+                  </div>
 
-   </body>
+                  <div class="step" style="text-align:left">
+                     <h2 class="main_question text-left">
+                        Update Details !
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     </h2>
+                     <alert></alert>
+                     <form id="wrapped" [formGroup]="Resetform" (ngSubmit)="Send()">
+                        <!-- Leave for security protection, read docs for details -->
+
+
+                        <!-- hiring id _forgot -->
+                        <div id="hiring_forgot">
+
+                           <a href="javascript:void(0)" (click)="Login()" class="haringf_close"><img
+                                 src="../../../assets/images/cancel.svg" width="32"></a>
+                           <div class="step " style="">
+                              <div class="form-group">
+                                 <input class="form-control" value="{{UserEmail}}" readonly>
+                              </div>
+                              <div class="form-group">
+                                 <input class="form-control"
+                                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                    id="FirstName" type="text" name="Password" placeholder="First Name"
+                                    formControlName="FirstName" required>
+                                 <div
+                                    *ngIf="Resetform.controls['FirstName'].invalid && (Resetform.controls['FirstName'].dirty || Resetform.controls['FirstName'].touched)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="Resetform.controls['FirstName'].errors.required">
+                                       FirstName is required.
+                                    </div>
+
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <input class="form-control" id="LastName" type="text"
+                                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                    name="LastName" placeholder="Last Name" formControlName="LastName" required>
+                                 <div
+                                    *ngIf="Resetform.controls['LastName'].invalid && (Resetform.controls['LastName'].dirty || Resetform.controls['LastName'].touched)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="Resetform.controls['LastName'].errors.required">
+                                       Last Name is required.
+                                    </div>
+
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <input class="form-control" id="password" type="password" name="Password"
+                                    placeholder="Password" formControlName="Password">
+                                 <div
+                                    *ngIf="Resetform.controls['Password'].invalid && (Resetform.controls['Password'].dirty || Resetform.controls['Password'].touched)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="Resetform.controls['Password'].errors.required">
+                                       Password is required.
+                                    </div>
+                                    <small *ngIf="Resetform.controls['Password'].errors.password>0">
+                                       Password should contain at least 6 from the following one digit, one lower case,
+                                       one upper case, one special character
+                                    </small>
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <input type="password" id="confirmPassword" formControlName="ConfirmPassword"
+                                    placeholder="Confirm Password" class="form-control">
+                                 <div
+                                    *ngIf="Resetform.controls['ConfirmPassword'].invalid && (Resetform.controls['ConfirmPassword'].dirty || Resetform.controls['ConfirmPassword'].touched)"
+                                    class="alert alert-danger">
+                                    <small *ngIf="Resetform.controls['ConfirmPassword'].errors.required">
+                                       Confirm Password is required.
+                                    </small>
+                                    <small *ngIf="Resetform.controls['ConfirmPassword'].errors.confirmedValidator">
+                                       Passwords must match Confirm Password is required.
+                                    </small>
+                                    <small *ngIf="Resetform.controls['ConfirmPassword'].errors.password>0">
+                                       Confirm Password should contain at least 6 from the following one digit, one
+                                       lower case, one upper case, one special character
+                                    </small>
+                                 </div>
+                              </div>
+                              <div class="text-right">
+                                 <div class="spt-2">
+                                    <button type="submit" class="btn2 pull-right">Reset</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- hiring id _forgot -->
+                        <!-- /middle-wizard -->
+                        <!-- /bottom-wizard -->
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <!-- /Wizard container -->
+         </div>
+
+      </div>
+   </div>
+
+</body>
