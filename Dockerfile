@@ -4,6 +4,7 @@ FROM node:10.16-alpine AS builder
 WORKDIR /usr/src/app
 COPY . .
 RUN npm ci && npm run build
+RUN ls /usr/src/app
 
 # Step 2: Use build output from 'builder'
 FROM nginx:stable-alpine
