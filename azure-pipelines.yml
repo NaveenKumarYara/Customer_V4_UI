@@ -4,6 +4,7 @@ trigger:
 variables: 
   USERNAME: $(DOCKER_USERNAME)
   PASSWORD: $(DOCKER_PASSWORD)
+  BUILDID: $(Build.BuildNumber)
 
 pool:
   vmImage: ubuntu-latest
@@ -16,4 +17,4 @@ steps:
   env:
     D_USERNAME: $(USERNAME)
     D_PASSWORD: $(PASSWORD)
-  
+    BUILD_ID: $(BUILDID)
