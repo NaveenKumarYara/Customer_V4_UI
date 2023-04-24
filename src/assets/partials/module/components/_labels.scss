@@ -1,0 +1,84 @@
+
+//label Properties
+
+$label-md-y:7px;
+$label-md-x:12px;
+
+$label-icon-mr:5px;
+
+$label-border-radius:3px;
+$label-md-font-size:12px;
+
+$label-font-weight: 700;
+
+$label-mar-y:0;
+$label-mar-x:3;
+
+//round label properties
+$label-round-md-font-size:22px;
+$label-round-md-height:45px;
+$label-round-md-width:45px;
+$label-round-md-lineHt:3;
+
+$label-round-md-y:10px;
+$label-round-md-x:5px;
+
+$label-text-top:-12px;
+$label-text-right:-12px;
+$label-text-md-font-size:10px;
+/* ========================================================================== */
+/* label Properties */
+/* ================================================5========================== */
+.k-label {
+  font-size: rem($label-md-font-size);
+  display: inline-block;
+  padding: em($label-md-y,$base-size) em($label-md-x,$base-size);
+  border-radius: em($label-border-radius,$base-size);
+  border:$border-width solid transparent;
+  background-image: none;
+  line-height: 1;
+  text-align: center;
+  font-weight: $label-font-weight;
+  max-width: 9999px;
+  vertical-align: baseline;
+  margin: em($label-mar-y,$label-md-font-size) em($label-mar-x,$label-md-font-size);
+  @each $theme, $color in $theme-colors{
+    &.k-#{$theme}{
+      @include label-color($color);
+    }
+  }
+  &:not(.k-round){
+      i{
+      &.icon{
+        width: auto;
+        margin-right: em($label-icon-mr,$label-md-font-size);
+      }
+    }
+  }
+  &.k-round{
+    height: $label-round-md-height;
+    width: $label-round-md-width;
+    line-height:$label-round-md-lineHt;
+    position: relative;
+    i{
+      font-size: rem($label-round-md-font-size);
+    }
+    .k-notify-text{
+      font-size: rem($label-text-md-font-size);
+      padding: em($label-round-md-y,$label-text-md-font-size) em($label-round-md-x,$label-text-md-font-size);
+      position: absolute;
+      top: em($label-text-top,$label-text-md-font-size);
+      right: em($label-text-right,$label-text-md-font-size);
+      @extend %circle-elem;
+      line-height: 0;
+      border: 2px solid transparent;
+      @each $theme, $color in $theme-colors{
+        &.k-#{$theme}{
+          @include label-text-color($color);
+        }
+      }
+      
+    }
+  }
+  
+}

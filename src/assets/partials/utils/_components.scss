@@ -1,0 +1,10 @@
+.btn-primary {
+  @include btn-primary();
+}
+
+.form-control {
+  font-size: $font-size-15;
+  color: $dark-gray;
+  border-color: $stroke-gray;
+  height: 48px;
+}

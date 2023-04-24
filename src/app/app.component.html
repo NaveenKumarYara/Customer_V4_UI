@@ -1,0 +1,10 @@
+<span class="body-bg-top"></span>
+<div id="wrapper">
+  <app-sidebar 
+    [menuOpen]="menuOpen" 
+    (openMenu)="openMenu()" 
+  ></app-sidebar>
+  <div id="main" [ngClass]="menuOpen?'expanded':''">
+    <router-outlet></router-outlet>
+  </div>  
+</div>

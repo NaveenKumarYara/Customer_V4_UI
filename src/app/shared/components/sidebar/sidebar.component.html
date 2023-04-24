@@ -1,0 +1,49 @@
+<div id="sidebar" [ngClass]="menuOpen?'open':''">
+   <button class="btn btn-secondary btn-menu" (click)="this.openMenu.emit();">
+    <span class="mdi mdi-menu"></span>
+   </button>
+   <ul>
+    <li class="active">
+      <a [routerLink]="['/home']">
+        <span class="mdi mdi-home-outline"></span>
+        <em>Home</em>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/manage-jobs']">
+        <span class="mdi mdi-view-grid-outline"></span>
+        <em>Dashboard</em>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="mdi mdi-briefcase-search-outline"></span>
+        <em>Post A Job</em>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="mdi mdi-account-cog-outline"></span>
+        <em>Manage Jobs</em>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="mdi mdi-account-circle-outline"></span>
+        <em>Manage Profile</em>
+      </a>
+    </li>
+    <li>
+      <a href="#"> 
+        <span class="mdi mdi-magnify"></span>
+        <em>Find A Job</em>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="mdi mdi-calendar-clock"></span>
+        <em>Interview Schedule</em>
+      </a>
+    </li>
+   </ul> 
+</div>

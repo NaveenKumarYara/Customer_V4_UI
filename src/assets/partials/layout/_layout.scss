@@ -1,0 +1,32 @@
+
+.web-container{
+    font-size: rem($base-size);
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left:em($sidebar-width,$base-size);
+    overflow: hidden;
+    .web-container__section{
+        position: absolute;
+        top:em($topbar-height,$base-size);
+        right: 0;
+        bottom: 0;
+        left:0;
+        overflow-x: hidden;
+        overflow-y : auto;
+        .web-container__detail{
+            padding: em(20px,$base-size);
+           
+        }
+    }
+}
+
+.comp-header{
+    font-size: rem($base-size);
+    padding: em(30px,$base-size) em(15px,$base-size);
+    max-height: em(180px,$base-size);
+    @extend %bor-btm-1;
+    margin-bottom: em(15px,$base-size);
+
+}

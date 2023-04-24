@@ -1,0 +1,31 @@
+
+ /* ========================================================================= */
+ /* em calculation with parent base-size */
+ /* ========================================================================= */
+ @function em($pixels, $context: $base-size) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+/* ======================================================================== */
+/* rem calculation with html base size */
+/* ======================================================================== */
+@function rem($pixels, $context: $base-size) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+
+}

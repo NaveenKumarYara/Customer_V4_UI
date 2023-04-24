@@ -1,0 +1,23 @@
+
+
+/* ========================================================================== */
+/* Alert Color */
+/* ========================================================================== */
+@mixin label-color($color){
+    background-color: $color;
+    @include color-yiq($color);
+    border-color: $color;
+    @include box-shadow(1);
+    transition: $transition-base;
+    &:hover{
+        background-color: darken($color,10%);
+    }
+}
+
+@mixin label-text-color($color){
+    background-color: $color;
+    @include color-yiq($color);
+    @include color-yiq($color,border-color);
+    @include box-shadow(1);
+}
+
