@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-jobs.component.scss']
 })
 export class ManageJobsComponent implements OnInit {
+  title = 'manage-jobs';
 
   constructor() { }
 

@@ -1,0 +1,244 @@
+@import './../../../../assets/partials/utils/variables';
+
+
+.sticky-navigation {
+  position: absolute;
+  width: 42px;
+  right: -5px;
+  top: 30px;
+  background-color: $white;
+  border: 1px solid $stroke-gray;
+  border-radius: 4px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      text-align: center;
+
+      &:not(:first-child) {
+        border-top: 1px solid $stroke-gray;
+      }
+
+      a {
+        display: block;
+        padding: 5px;
+        color: $dark-gray;
+      }
+    }
+  }
+}
+
+.col-container {
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+	background-color: $white;
+	overflow: hidden;
+	box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
+
+	.top-container{
+		background-color: $light-bg;
+		padding: 50px 20px 20px;
+
+		.profile-info {
+			padding-left: 76px;
+      position: relative;
+
+      .profile-thumb {
+        font-size: 0;
+        width: 72px;
+        height: 72px;
+        background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
+        background-size: 72px auto;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin-top: -24px;
+      }
+
+			h3 {
+				font-size: $font-size-22;
+				color: $darker-gray;
+				font-weight: 600;
+				margin: 0 0 8px;
+			}
+
+			h4 {
+				color: $dark-gray;
+				font-weight: 400;
+				font-size: $font-size-14;
+				margin: 0;
+
+				.mdi-briefcase-outline {
+					font-size: $font-size-16;
+					color: $medium-gray;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+
+  .middle-container {
+    .top-section {
+      padding:20px 30px 20px 96px;
+
+      h3 {
+        font-size: $font-size-16;
+        color: $dark-gray;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 5px;
+
+        li {
+          font-size: 11px;
+          color: $medium-gray;
+          display: flex;
+          align-items: center;
+          
+          .mdi {
+            font-size: $font-size-14;
+            margin-right: 2px;
+          }
+          
+          &:not(:first-child) {
+            border-left: 1px solid $stroke-gray;
+            padding-left: 5px;
+          }
+        }
+
+        .highlight {
+          font-size: 10px;
+          background-color: $medium-gray;
+          text-transform: uppercase;
+          color: $white;
+          display: inline-block;
+          padding: 2px 4px;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .bottom-section {
+      padding: 10px 20px;
+      background-color: $light-bg;
+      margin-top: 20px;
+
+      .left-col {
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          gap: 10px;
+          
+          li {
+            text-align: center;
+          }
+
+          h4 {
+            font-size: 10px;
+            color: $dark-gray;
+            margin: 0;
+
+            span {
+              display: block;
+              font-size: 8px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+      
+     .right-col {
+      h4 {
+        font-size: 16px;
+        color: $dark-gray;
+        text-align: center;
+      }
+     }
+    }
+  }
+
+  .statstics {
+    padding: 10px 0 0;
+    border-top: 1px solid $stroke-gray;
+    margin: 0 20px 10px;
+
+    .col {
+      text-align: center;
+      margin: 0;
+
+      &:not(:first-child) {
+        border-left: 1px solid $stroke-gray;
+      }
+
+      h4 {
+        font-size: $font-size-32;
+        font-weight: 600;
+        color: $dark-gray;
+      }
+
+      h6 {
+        font-size: 13px;
+        color: $medium-gray;
+        margin: 0;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .bottom-container {
+    padding: 20px;
+
+    .right-col {
+      text-align: right;
+      
+      h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 5px;
+        color: $dark-gray;
+      }
+
+      h5 {
+        font-size: 12px;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+
+    .left-col {
+      .profile-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 30px;
+          height: auto;
+          border-radius: 50%;
+        }
+
+        h4 {
+          font-size: 13px;
+          font-weight: 600;
+          margin: 0 0 5px;
+          color: $dark-gray;
+        }
+
+        h5 {
+          font-size: 12px;
+          color: $dark-gray;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

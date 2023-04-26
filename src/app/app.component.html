@@ -1,8 +1,9 @@
 <span class="body-bg-top"></span>
-<div id="wrapper">
+<div id="wrapper"  [ngClass]="url == '/register' || url == '/login' || url == '/'?'with-out-sidebar':'with-sidebar'">
   <app-sidebar 
     [menuOpen]="menuOpen" 
-    (openMenu)="openMenu()" 
+    (openMenu)="openMenu()"
+    *ngIf="url !== '/register' && url !== '/' && url !== '/login'"
   ></app-sidebar>
   <div id="main" [ngClass]="menuOpen?'expanded':''">
     <router-outlet></router-outlet>

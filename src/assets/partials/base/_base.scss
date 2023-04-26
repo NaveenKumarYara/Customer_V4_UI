@@ -32,6 +32,7 @@ body{
 	font-family: $base-family;
 }
 
+
 body {
 	position: relative;
 	background: url(../../images/pattern-01-02.png) 100% 100% no-repeat;
@@ -51,6 +52,16 @@ body {
 
 	&.expanded {
 		padding-left: 280px;
+	}
+}
+
+.with-out-sidebar {
+	#sidebar {
+		display: none;
+	}
+
+	#main {
+		padding-left: 0;
 	}
 }
 
@@ -77,6 +88,23 @@ body {
 	z-index: 1;
 }
 
+.form-select,
+.form-control {
+	height: 48px;
+	padding: 6px 16px;
+	color: $dark-gray;
+	border-color: $stroke-gray;
+}
+
+.col-container {
+  .middle-container {
+    .bottom-section {
+      svg {
+        width: 70px;
+      }
+    }
+  }
+}
 
 @media screen and (min-width:600px) and (max-width:800px){
 	html{

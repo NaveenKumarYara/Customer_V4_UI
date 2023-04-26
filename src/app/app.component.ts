@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,18 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'arytic-app';
   menuOpen: boolean = false;
+  public url: any;
+  
+  constructor(private router: Router) { 
+  }
 
-  constructor(
-    private router: Router,
-  ) {}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.url = event.url;
+      }
+    })
+  }
 
   openMenu(){
     this.menuOpen = !this.menuOpen;

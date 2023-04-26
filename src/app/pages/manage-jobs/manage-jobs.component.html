@@ -1,6 +1,28 @@
 <app-header></app-header>
-<app-sidebar></app-sidebar>
 <div id="main-content">
-  <h1>Manage Jobs</h1>
+  <app-manage-job-filters></app-manage-job-filters>
+  <app-pagination [title]="title"></app-pagination>
+  <div class="manage-listing-grid">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+      <div class="col-md-4 col-lg-4 job-card">
+        <app-manage-jobcard></app-manage-jobcard>
+      </div>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path:'login',
-    redirectTo:'login'
+    redirectTo:'/'
   },
   {
     path:'register',

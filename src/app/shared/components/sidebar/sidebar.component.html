@@ -3,13 +3,13 @@
     <span class="mdi mdi-menu"></span>
    </button>
    <ul>
-    <li class="active">
+    <li [routerLinkActive]="['active']">
       <a [routerLink]="['/home']">
         <span class="mdi mdi-home-outline"></span>
         <em>Home</em>
       </a>
     </li>
-    <li>
+    <li [routerLinkActive]="['active']">
       <a [routerLink]="['/manage-jobs']">
         <span class="mdi mdi-view-grid-outline"></span>
         <em>Dashboard</em>
