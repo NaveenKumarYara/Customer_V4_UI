@@ -47,21 +47,26 @@ body {
 }
 
 #main {
-	padding-left: 90px;
-	transition: all 550ms linear;
-
-	&.expanded {
-		padding-left: 280px;
-	}
+	padding-left: 0;
+	
 }
 
-.with-out-sidebar {
-	#sidebar {
-		display: none;
-	}
+#sidebar {
+	display: none;
+}
 
+.with-sidebar {
+	#sidebar {
+		display: block;
+	}
+	
 	#main {
-		padding-left: 0;
+		padding-left: 90px;
+		transition: all 550ms linear;
+		
+		&.expanded {
+			padding-left: 280px;
+		}
 	}
 }
 

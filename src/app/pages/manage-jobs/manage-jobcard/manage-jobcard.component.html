@@ -7,22 +7,17 @@
 		</li>
 		<li>
 			<a href="#">
-				<span class="mdi mdi-briefcase-edit-outline"></span>
-			</a>
-		</li>
-		<li>
-			<a href="#">
 				<span class="mdi mdi-share-all-outline"></span>
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<span class="mdi mdi-file-arrow-up-down-outline"></span>
+				<span class="mdi mdi-share-variant-outline"></span>
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<span class="mdi mdi-share-variant-outline"></span>
+				<span class="mdi mdi-file-arrow-up-down-outline"></span>
 			</a>
 		</li>
 		<li>
@@ -39,9 +34,11 @@
 </div>
 <div class="col-container">
 	<div class="top-container">
+		<span class="status active">Active</span>
+		<span class="priority"><span class="mdi mdi-arrow-down-thick"></span>Low</span>
 		<div class="profile-info">
 			<div class="profile-thumb">
-				Profile Thumb
+				<img src="../../../../assets/images/default-profile-small.png" alt="">
 			</div>
 			<h3>Salesforce Developer</h3>
 			<h4>
@@ -94,26 +91,23 @@
 			</div>
 		</div>
 		<div class="bottom-section">
-			<div class="row">
-				<div class="col-md-5 col-lg-5 left-col">
-					<ul>
-						<li>
-							<img src="../../../../assets/images/curve-icon-work.svg" alt="">
-							<h4>Full TIme</h4>
-						</li>
-						<li>
-							<img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
-							<h4>
-								$100 Hourly
-								<span>(167 hours/ month)</span>
-							</h4>
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-7 col-lg-7 right-col d-flex align-items-center">
-					<circle-progress
+			<ul>
+				<li>
+					<img src="../../../../assets/images/curve-icon-work.svg" alt="">
+					<h4>Full TIme</h4>
+				</li>
+				<li>
+					<img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
+					<h4>
+						$100 Hourly
+						<span>(167 hours/ month)</span>
+					</h4>
+				</li>
+				<li>
+					<div class="progress-circle d-flex">
+						<circle-progress
 						[percent]="85"
-						[radius]="40"
+						[radius]="32"
 						[outerStrokeWidth]="4"
 						[innerStrokeWidth]="2"
 						[outerStrokeColor]="'#6262FF'"
@@ -122,10 +116,11 @@
 						[animationDuration]="300"
 						[responsive] = true
 						[showSubtitle] = false
-					></circle-progress>
-					<h4>Job Completeness</h4>
-				</div>
-			</div>
+						></circle-progress>
+						<h4>Job <strong>Completeness</strong></h4>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="bottom-container">

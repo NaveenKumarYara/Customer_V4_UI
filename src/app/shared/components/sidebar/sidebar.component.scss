@@ -4,10 +4,9 @@
 	position: absolute;
 	width: 64px;
 	border-radius: 32px;
-	height: 100vh;
+	bottom: 30px;
 	left: 30px;
 	top: 30px;
-	height: calc(100vh - 60px);
 	background: $white;
 	overflow: hidden;
 	transition: all 550ms linear;

@@ -41,6 +41,15 @@
 			justify-content: center;
 			border-color: $stroke-gray;
 			border-radius: 6px;
+
+			&:hover {
+				background-color: $blue;
+				border-color: $blue;
+
+				.mdi {
+					color: $white;
+				}
+			}
 		}
 	}
 }

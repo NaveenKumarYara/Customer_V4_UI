@@ -14,6 +14,25 @@
     padding-left: 15px;
     flex: 0 0 calc(100% - 240px);
     max-width: calc(100% - 240px);
+
+    .search-sub-col {
+      .form-control {
+        background: url(../../../../assets/images/icon-search.svg) 9px 50% no-repeat $white;
+        padding-left: 40px;
+      }
+    }
+
+  }
+
+  .button-col {
+    .btn-icon {
+      margin-right: 15px;
+    }
+    .form-select {
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+    }  
   }
 
   .btn-icon {
@@ -21,6 +40,9 @@
     border: 1px solid $stroke-gray;
     border-radius: 6px;
     color: $dark-gray;
+    padding: 0;
+    width: 48px;
+    height: 48px;
 
     &:hover {
       background-color: $blue;
@@ -35,6 +57,7 @@
     border: 1px solid $stroke-gray;
     border-radius: 6px;
     overflow: hidden;
+    height: 48px;
 
     .btn-icon {
       border-radius: 0;

@@ -3,9 +3,10 @@
 
 .sticky-navigation {
   position: absolute;
-  width: 42px;
-  right: -5px;
-  top: 30px;
+  width: 32px;
+  right: 6px;
+  z-index: 10;
+  top: 60px;
   background-color: $white;
   border: 1px solid $stroke-gray;
   border-radius: 4px;
@@ -22,9 +23,13 @@
         border-top: 1px solid $stroke-gray;
       }
 
+      .mdi {
+        font-size: $font-size-20;
+      }
+
       a {
         display: block;
-        padding: 5px;
+        padding: 2px 5px;
         color: $dark-gray;
       }
     }
@@ -41,6 +46,40 @@
 	.top-container{
 		background-color: $light-bg;
 		padding: 50px 20px 20px;
+    position: relative;
+
+    .status {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      font-size: 12px;
+      border-radius: 0 4px 4px 0;
+      text-transform: uppercase;
+      padding: 2px 4px;
+
+      &.active {
+        background-color: $dark-green;
+        color: $white;
+      }
+    }
+
+    .priority {
+      border-radius: 4px 0 0 4px;
+      background-color: $light-green;
+      font-size: 12px;
+      color: $dark-green;
+      text-transform: uppercase;
+      position: absolute;
+      right: 0;
+      top: 20px;
+      font-weight: 600;
+      padding: 2px 4px;
+
+      .mdi {
+        font-size: 12px;
+        vertical-align: middle;
+      }
+    }
 
 		.profile-info {
 			padding-left: 76px;
@@ -53,9 +92,19 @@
         background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
         background-size: 72px auto;
         position: absolute;
-        left: 0;
+        left: -7px;
         top: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: -24px;
+
+        img {
+          width: 32px;
+          border-radius: 50%;
+          position: relative;
+          top: -5px;
+        }
       }
 
 			h3 {
@@ -105,11 +154,30 @@
           .mdi {
             font-size: $font-size-14;
             margin-right: 2px;
+            position: relative;
+            top: 2px;
           }
           
           &:not(:first-child) {
             border-left: 1px solid $stroke-gray;
             padding-left: 5px;
+          }
+
+          @media only screen and (max-width: 1440px) {
+            &:first-child {
+              flex: 0 0 100%;
+              max-width: 100%;
+            }
+
+            &:not(:first-child) {
+              border-left: 0;
+              padding-left: 0;
+            }
+
+            &:last-child {
+              border-left: 1px solid $stroke-gray;
+              padding-left: 5px;
+            }
           }
         }
 
@@ -122,6 +190,10 @@
           padding: 2px 4px;
           border-radius: 4px;
         }
+
+        @media only screen and (max-width: 1440px) {
+          flex-wrap: wrap;
+        }
       }
     }
 
@@ -130,39 +202,53 @@
       background-color: $light-bg;
       margin-top: 20px;
 
-      .left-col {
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          display: flex;
-          gap: 10px;
-          
-          li {
-            text-align: center;
-          }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 15px;
+
+        li {
+          text-align: center;
 
           h4 {
             font-size: 10px;
             color: $dark-gray;
-            margin: 0;
+            text-transform: uppercase;
+            font-weight: 600;
 
             span {
               display: block;
               font-size: 8px;
               font-weight: 400;
+              text-transform: none;
+            }
+          }
+
+          .progress-circle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            h4 {
+              text-transform: none;
+              font-size: $font-size-14;
+
+              strong {
+                display: block;
+                font-weight: 600;
+              }
+
+              @media (min-width: 1600px) {
+                font-size: $font-size-16;
+              }
             }
           }
         }
       }
-      
-     .right-col {
-      h4 {
-        font-size: 16px;
-        color: $dark-gray;
-        text-align: center;
-      }
-     }
     }
   }
 
