@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-job-filters.component.scss']
 })
 export class ManageJobFiltersComponent implements OnInit {
-
+  advanceFilter:boolean = false;
   constructor() { }
-
   ngOnInit(): void {
   }
 
+  filterHandler() {
+    this.advanceFilter = !this.advanceFilter;
+  }
+
+  filterHideHandler() {
+    this.advanceFilter = false;
+  }
 }

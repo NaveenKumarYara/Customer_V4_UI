@@ -1,0 +1,107 @@
+<div class="advance-filter">
+	<button class="close-btn" (click)="this.filterHideHandler.emit();">
+		<span class="mdi mdi-close-circle-outline"></span>
+	</button>
+  <div class="row">
+		<div class="col-md-3 col-lg-3 col">
+			<label>Employment</label>
+			<div class="form-group">
+				<span class="mdi mdi-briefcase-outline"></span>
+				<select class="form-select">
+					<option value="Full Time">Full Time</option>
+					<option value="Contract">Contract</option>
+					<option value="Part Time">Part Time</option>
+					<option value="Remote">Remote</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Location</label>
+			<div class="form-group">
+				<span class="mdi mdi-map-marker-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Job Title</label>
+			<div class="form-group">
+				<span class="mdi mdi-briefcase-variant-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Users</label>
+			<div class="form-group">
+				<span class="mdi mdi-account-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Last posted</label>
+			<div class="form-group">
+				<span class="mdi mdi-clock-time-eight-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Client</label>
+			<div class="form-group">
+				<span class="mdi mdi-account-multiple-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Skills</label>
+			<div class="form-group">
+				<span class="mdi mdi-star-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Immigration status</label>
+			<div class="form-group">
+				<span class="mdi mdi-badge-account-outline"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Domain</label>
+			<div class="form-group">
+				<span class="mdi mdi-earth"></span>
+				<select class="form-select">
+					<option value="Select">Select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Experience</label>
+			<div class="custom-slider">
+				<ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3 col">
+			<label>Salary Range</label>
+			<div class="custom-slider">
+				<ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+			</div>
+		</div>
+		<div class="col-sm-12 button-col text-right">
+			<button class="btn btn-info">Apply</button>
+			<button class="btn btn-outlined-default">Cancel</button>
+		</div>
+	</div>
+</div> 

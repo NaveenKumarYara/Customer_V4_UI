@@ -2,6 +2,14 @@
   @include btn-primary();
 }
 
+.btn-info {
+  @include btn-info();
+}
+
+.btn-outlined-default {
+  @include btn-outlined-default();
+}
+
 .form-control {
   font-size: $font-size-15;
   color: $dark-gray;

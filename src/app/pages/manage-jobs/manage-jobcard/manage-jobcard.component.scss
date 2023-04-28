@@ -31,6 +31,15 @@
         display: block;
         padding: 2px 5px;
         color: $dark-gray;
+
+        &:hover {
+          background-color: $blue;
+          box-shadow: inset 0px 6px 12px rgba(110, 129, 158, 0.2);
+
+          .mdi {
+            color: $white;
+          }
+        }
       }
     }
   }

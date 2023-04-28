@@ -1,7 +1,9 @@
 <div class="filter-section">
 	<div class="d-flex flex-wrap">
 		<div class="navigation-col">
-			<button class="btn btn-icon"><span class="mdi mdi-filter-outline"></span></button>
+			<button class="btn btn-icon" (click)="filterHandler()" [ngClass]="advanceFilter?'active':''">
+				<span class="mdi mdi-filter-outline"></span>
+			</button>
 			<button class="btn btn-icon"><span class="mdi mdi-feature-search-outline"></span></button>
 			<div class="toogle-layout">
 				<button class="btn btn-icon active">
@@ -33,3 +35,7 @@
 		</div>
 	</div>
 </div>
+
+<ng-container *ngIf="advanceFilter">
+	<app-manage-advance-filter [advanceFilter]="advanceFilter" (filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
+</ng-container>

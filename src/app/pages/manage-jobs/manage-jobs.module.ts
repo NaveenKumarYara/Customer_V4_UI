@@ -6,17 +6,21 @@ import  { PaginationComponent } from './../common/pagination/pagination.componen
 import { ManageJobFiltersComponent } from './manage-job-filters/manage-job-filters.component';
 import { ManageJobcardComponent } from './manage-jobcard/manage-jobcard.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ManageAdvanceFilterComponent } from './manage-job-filters/manage-advance-filter/manage-advance-filter.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
 	declarations: [
 		ManageJobsComponent,
 		PaginationComponent,
 		ManageJobFiltersComponent,
-		ManageJobcardComponent
+		ManageJobcardComponent,
+  	ManageAdvanceFilterComponent
 	],
 	imports: [
 	 CommonModule,
 	 SharedModule,
+	 NgxSliderModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
