@@ -19,6 +19,9 @@
 		color: $dark-gray;
 		display: block;
 		margin-bottom: 10px;
+		.sub-label{
+			font-size: $font-size-12;
+		}
 	}
 
 	.col {
@@ -29,8 +32,9 @@
 		display: flex;
 		gap: 15px;
 		justify-content: flex-end;
+		
 	}
-
+	
 	.text-right {
 		text-align: right;
 	}
