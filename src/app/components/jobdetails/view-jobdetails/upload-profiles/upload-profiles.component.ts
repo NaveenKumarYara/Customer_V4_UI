@@ -168,10 +168,16 @@ Job = {
   itemsArray: IItem[] = [
     {id:0, itemName: 'Individual' },
     {id:1,  itemName: '3rd-Party' },
-    {id:2, itemName: 'Dice' },
+    {id:2, itemName: 'Agency' },
     {id:3, itemName: 'BullHorn' },
-    {id:4, itemName: 'Agency' },
-    {id:5, itemName: 'Others' },
+    {id:4, itemName: 'Dice' },
+    {id:5, itemName: 'Career Builder' },
+    {id:6, itemName: 'Zip Recruiter' },
+    {id:7, itemName: 'LinkedIn' },
+    {id:8, itemName: 'Facebook' },
+    {id:9, itemName: 'Monster' },
+    {id:10, itemName: 'Arytic Partners' },
+    {id:11, itemName: 'FreeLancers' }
   ];
   matchingParameterDetails = new MatchingParameterDetails();
   matchingParameterData = new MatchingParameterDetails();
