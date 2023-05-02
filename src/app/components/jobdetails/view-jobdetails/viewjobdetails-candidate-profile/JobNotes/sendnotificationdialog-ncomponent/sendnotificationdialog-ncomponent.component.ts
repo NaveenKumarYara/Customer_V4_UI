@@ -554,7 +554,7 @@ SendEmail()
   this.emailNote.Body =this.selectedComments;
   this.emailNote.ToUserId = 0; 
   this.emailNote.FullName = "";
-  debugger
+  //debugger
   this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNew').subscribe(
     check=>
     {

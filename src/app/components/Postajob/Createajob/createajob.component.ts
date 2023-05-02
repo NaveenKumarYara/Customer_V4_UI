@@ -349,7 +349,7 @@ editMode: string;
           const ejTechnicalTeam = new CustomerUsers();
           const ejTechnicalTeamId = new PjTechnicalTeam();
           ejTechnicalTeam.UserId = team.UserId;
-            ejTechnicalTeam.FirstName = team.FirstName;
+            ejTechnicalTeam.FirstName = team.FirstName + ' ' + team.LastName + ' - ' + team.RoleName;
             ejTechnicalTeamId.UserId = team.UserId;
             this.ejTechnicalTeamList.push(ejTechnicalTeam);
             this.ejTechnicalTeamIdList.push(ejTechnicalTeamId);

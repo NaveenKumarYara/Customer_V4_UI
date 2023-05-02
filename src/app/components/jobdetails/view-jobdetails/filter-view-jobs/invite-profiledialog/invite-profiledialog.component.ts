@@ -70,7 +70,7 @@ export class InviteProfiledialogComponent implements OnInit {
     this.fromId = this.customer.Email;
     this.defaultComments = "<div class='comment'>Please review the profile shared to you.</div>";
     this.selectedComments= this.defaultComments;
-    this.subject = "Your are Invited for a Job  - Findout how much it is matching for you ";
+    this.subject = "You are Invited for a Job  - Findout how much it is matching for you ";
     this.inviteform = this.fb.group({
       'inviteEmail': ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });

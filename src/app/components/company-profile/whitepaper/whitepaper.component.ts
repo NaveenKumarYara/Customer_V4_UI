@@ -170,7 +170,7 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
           this.selectedFileNames.push(e.target.files[i].name);
           formData.append('WhitePaper', e.target.files[i]);
         }
-        debugger
+        //debugger
        // this.loaddata = false;
         formData.append('Model', request);
         this.filedata= formData;

@@ -41,6 +41,7 @@ import { pid, title } from "process";
 import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.component";
 import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
 import { CdocumentManagerComponent } from "../../../Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
+import { DatasourceComponent } from "./Datasource/datasource/datasource.component";
 const html2canvas: any = _html2canvas;
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
@@ -54,11 +55,16 @@ declare var jQuery: any;
   styleUrls: ["./viewjobdetails-candidate-profile.component.css"],
   providers: [NgxSpinnerService, AlertService, ApiService],
 })
+
+
+
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
+  viewsourceboxdialogueref: MatDialogRef<DatasourceComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
   valJobForm: FormGroup;
+
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   public show_dialog: boolean = false;
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
@@ -66,6 +72,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
   image:any;
+  DataSource:any;
   delProfile = new DeleteProfile();
   MyDocuments: any = [];
   show: boolean = false;
@@ -292,6 +299,41 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+
+
+
+  GetJobDataSourceDetails()
+  {
+   this._service.GetService('IdentityAPI/api/GetJobDataSource?profileId='+ this.ProfileId +'&jobId=',this.jobid ).subscribe(
+     data => {
+      if(data != "No records found")
+      {
+        this.DataSource = data.DataSource;
+      }
+
+
+     });
+  }
+
+    openModal(profileId) {
+      const databoxdialogRef = this.dialog.open(DatasourceComponent, {
+        width: "750",
+        position: { right: "0px" },
+        height: "750px",
+        data: {
+          jobId: this.jobid,
+          ProfileId: profileId
+          // status : this.statusid
+        },
+      });
+      databoxdialogRef.afterClosed().subscribe((result) => {
+        console.log("databoxdialogRef Dialog result: ${result}");
+      this.GetJobDataSourceDetails();
+      });
+    }
+  
+  
+
   GetSubscriptionDetails(sid) {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
       if (res1 != null) {
@@ -462,7 +504,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   OpenAchiveDialog(profileId) {
     const AdialogRef = this.dialog.open(AchivementdialogComponent, {
-      width: "700px",
       position: { right: "0px" },
       data: {
         ProfileId: profileId,
@@ -563,6 +604,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     //debugger
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
+    var lName :string;
+    if(LastName != null)
+    {
+      lName = LastName;
+    }
+    else
+    {
+      lName = '';
+    }
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent, {
       width: "750px",
       position: { right: "0px" },
@@ -573,7 +623,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         ProfileId: profileId,
         userId: userId,
         Email: Email,
-        FullName: FirstName + LastName,
+        FullName: FirstName + ' ' + lName,
         Matching: match,
         // status : this.statusid
       },
@@ -585,8 +635,26 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profileId, Uid, FirstName, LastName) {
+  OpenCandidateDialog(profileId, Uid, FirstName, LastName,CFirstName,CLastName) {
     // if (this.jobStatus!='InActive') {
+      var lName :string;
+      if(LastName != null)
+      {
+        lName = LastName;
+      }
+      else
+      {
+        lName = '';
+      }
+      let CName : string;
+    if(CFirstName!=null)
+    {
+      CName = CFirstName + ' ' + CLastName;
+    }
+    else
+    {
+      CName = this.customer.FirstName + ' ' + this.customer.LastName;
+    }
     this.spinner.show();
     let candidateProfile = this.jobdetailsprofiles.Profile.find(item => item.ProfileId === profileId);
     sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
@@ -602,7 +670,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
             ProfileId: profileId,
             jobId: this.jobid,
             UserId: Uid,
-            Name: FirstName + LastName,
+            Name: FirstName + ' ' + lName,
+            CName : CName,
             JobFit: this.matchingParameterDetails.JobFit,
             Personalityfit: this.matchingParameterDetails.Personalityfit,
             Skillfit: this.matchingParameterDetails.SkillFit,
@@ -1053,18 +1122,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         if (result.value === true) {
     this.jobdetailsservice.DeleteCandidateProfile(Id,this.jobid).subscribe((data) => {
       if (data >= 0) {
-        if(Email.substring(0, 7) != 'noemail')
-        {
-          this.DelProfile(Fname,Lname,Email);
-        }
-        else
-        {
+        // if(Email.substring(0, 7) != 'noemail')
+        // {
+        //   this.DelProfile(Fname,Lname,Email);
+        // }
+        // else
+        // {
           this.toastr.info('profile deleted!', 'Success!');
           setTimeout(() => {
             this.toastr.dismissToast;
             this.myEvent.emit(null);
           }, 3000);
-        }
+        //}
      
         
         //this.GetJobNotes(profileId, jobId);
@@ -1494,7 +1563,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   ngOnInit() {
     this.alertService.clear();
-
+    // this.GetJobDataSourceDetails();
     (function ($) {
       // TODO: test multiple cards -- open and close function
       const $card = $(".page--job-details .tab-content .card");

@@ -46,13 +46,20 @@
               aria-valuemin="0" aria-valuemax="100" style="width:100%">
               <span class="sr-only">100% Complete</span>
             </div>
+            
           </div>
+      
           <!-- <div *ngIf="data.ResumeStatus == null">
           <span  class="notes text-success m-0">{{profileStatus[i].text}}...</span>
         </div> -->
           <div *ngIf="data?.ResumeStatus === 'Successful'">
+       
             <span class="notes text-success m-0">Profile Parsed and Fetched details Successfully!!!</span>
+           
           </div>
+          <!-- <div *ngIf="data?.ResumeStatus === 'Successful'">
+            <a href="javascript:void(0)" (click)="openModal(CProfileId)">Add Source</a>
+          </div> -->
           <div *ngIf="data.ResumeStatus === 'Error'">
             <p class="notes text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
           </div>
@@ -2501,7 +2508,7 @@
                       (click)="browse.value = null" value="" (change)="onFileSelected($event)">
                   </div>
                   <div>Browse & Upload</div>
-                  <h5>We recommended to use Microsoft Word. </h5>
+                  <h5>We recommend to use Microsoft Word. </h5>
                   <!-- <h6>We recommended to use Microsoft Word.</h6> -->
                 </div>
               </div>
@@ -2549,6 +2556,9 @@
                   <tr>
                     <th>Name</th>
                     <th>Size</th>
+                    <th>
+                      Data Source
+                    </th>
                     <th *ngIf="!isProcessing">Action</th>
                   </tr>
                 </thead>
@@ -2559,6 +2569,27 @@
                     </td>
                     <td>
                       {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                    </td>
+                    <td>
+                      <select
+              [(ngModel)]="selectedDItem"
+              (ngModelChange)="onItemSelect($event)"
+              name="item"
+              required
+            >
+              <!--Placeholder Option-->
+              <option
+                [value]="null"
+                [disabled]="true"
+                [selected]>
+                Select an option
+              </option>
+          
+              <!--Data Array Options-->
+              <option [value]="item.itemName" *ngFor="let item of itemsArray">
+                {{ item.itemName }}
+              </option>
+            </select> 
                     </td>
                     <!-- <td *ngIf="uploader.options.isHTML5">
                     <div class="progress" style="margin-bottom: 0;">

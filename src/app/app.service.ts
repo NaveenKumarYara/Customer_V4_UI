@@ -1291,6 +1291,16 @@ export class AppService {
       });
   }
 
+  SendJobInterviewer(body) {
+    return this.http
+      .post(this.settingsService.settings.SendJobInterviewer, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
   getPersonTypes() {
     return this.personTypes.slice();
   }
@@ -2167,7 +2177,7 @@ export class AppService {
 
   searchDomains(domainName: any): Observable<any> {
     const url = this.settingsService.settings.SearchDomains + "?domainName=" + domainName;
-    debugger;    
+    //debugger;    
     let data =this.http.get(url).catch(this.handleError);
     return data;
   }

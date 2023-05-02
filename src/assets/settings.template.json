@@ -40,6 +40,7 @@
     "CustomerAppprofile": "${CuMain_URL}/profileview",
     "InviteContact": "${Email_URL}/api/EmailInviteContact",
     "AJobShareInvite": "${Email_URL}/api/AssignJob",
+    "SendJobInterviewer": "${Email_URL}/api/SendJobInterviewer",
     "ProfileShareInvite": "${Email_URL}/api/ProfileShare",
     "CustomerRequestRefernce": "${Email_URL}/api/CustomerRequestedRef",
     "StartConversation": "${Email_URL}/api/SendEmailConversation",

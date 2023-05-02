@@ -100,6 +100,25 @@ export class InviteUsersComponent implements OnInit,OnDestroy {
       )
   }
 
+  GetUsers(val)
+  {
+    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+    if(val == 1)
+    {
+      this.customercontacts = res.filter(x=> x.IsActive === true );
+    }
+    else if(val == 2)
+    {
+      this.customercontacts = res.filter(x=> x.IsActive === false );
+    }
+    else
+    {
+      this.customercontacts = res;
+    }
+
+    });
+  }
+
   ActivateInviteUsers(contact)
   {
     this.tClose();
@@ -144,6 +163,7 @@ export class InviteUsersComponent implements OnInit,OnDestroy {
                     });             
                       this.toastr.dismissToast; 
                       this.GetCustomerInviteUsers();  
+                    
                     }, 3000);
                    
                  } 
@@ -452,14 +472,15 @@ EditUser(contact)
   }
 
   GetCustomerInviteUsers()
-  {
-    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-      this.showStep=false;
-      this.IsEdit=false;
-      this.spinner.hide();
+  { this.showStep=false;
+    this.IsEdit=false;
+    this.spinner.hide();
+    //return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+ 
       //debugger
-      this.customercontacts = res;
-  });
+      //this.customercontacts = res;
+      this.GetUsers(0);
+  //});
   }
 
   // userDeactivate(contact, isChecked: boolean)

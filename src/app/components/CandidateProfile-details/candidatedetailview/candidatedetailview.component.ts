@@ -154,7 +154,7 @@ export class CandidatedetailviewComponent implements OnInit, OnDestroy {
       
     });
     //this.spinner.show();
-    debugger
+    //debugger
     this.profileId = localStorage.getItem('cdprofileId');
     this.customerId = localStorage.getItem('customerId');
     this.jobId = localStorage.getItem('jobId');

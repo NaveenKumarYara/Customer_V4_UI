@@ -23,6 +23,7 @@ import { promise } from 'protractor';
 import { resolve } from 'url';
 import swal from 'sweetalert2';
 import { c } from '@angular/core/src/render3';
+import { DatasourceComponent, IItem, soInfo } from '../viewjobdetails-candidate-profile/Datasource/datasource/datasource.component';
 const URL = 'http://localhost:4200/fileupload/';
 const http = require('https');
 const fs = require('fs');
@@ -162,6 +163,16 @@ Job = {
   showThis: string;
   open: boolean = true;
   showMenu: boolean;
+  selectedDItem = null;
+  source = new soInfo();
+  itemsArray: IItem[] = [
+    {id:0, itemName: 'Individual' },
+    {id:1,  itemName: '3rd-Party' },
+    {id:2, itemName: 'Dice' },
+    {id:3, itemName: 'BullHorn' },
+    {id:4, itemName: 'Agency' },
+    {id:5, itemName: 'Others' },
+  ];
   matchingParameterDetails = new MatchingParameterDetails();
   matchingParameterData = new MatchingParameterDetails();
   selectedMenuItem: any;
@@ -1070,6 +1081,10 @@ GetProfileStatus(mail)
 }
 
 
+onItemSelect(itemVal): any {
+  this.selectedDItem = itemVal;
+}
+
 
   processResumes() {
 
@@ -1078,6 +1093,8 @@ GetProfileStatus(mail)
     {
       this.isProcessing = true;
       this.getFileDetails();
+    
+   
     }
     
   }
@@ -1567,6 +1584,38 @@ GetJobRequiredDomain(PId) {
       );
   }
 
+  SaveJobDataSource()
+  {
+    let str = this.itemsArray.find(x=>x.itemName == this.selectedDItem);
+    this.source.userId = this.customerName.UserId;
+    this.source.JobId = this.data.jobId;
+    this.source.ProfileId = this.CProfileId;
+    this.source.DataSourceId = str.id;
+    this.source.DataSource = this.selectedDItem;
+   this._service.PostService(this.source,'IdentityAPI/api/JobDataSource').subscribe(
+     data => {
+      this.source = new soInfo();
+     });
+  }
+
+
+  openModal(profileId) {
+    const databoxdialogRef = this.dialog.open(DatasourceComponent, {
+      width: "750",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        jobId: this.data.jobId,
+        ProfileId: profileId
+        // status : this.statusid
+      },
+    });
+    databoxdialogRef.afterClosed().subscribe((result) => {
+      console.log("databoxdialogRef Dialog result: ${result}");
+    });
+  }
+
+
   uploadMultiple(formData, DocId) {
     if(this.sdetails.planId !==  "enterprise" || this.sdetails.planId === undefined )
     {
@@ -1588,9 +1637,13 @@ GetJobRequiredDomain(PId) {
               if (this.tempuploadResponse[i].DocId == data[0].DocId)
                 this.tempuploadResponse[i] = data[0];
             }
-  
+            if(this.selectedDItem != undefined && this.selectedDItem != null)
+            {
+              this.SaveJobDataSource();
+            }
             if (data[0].ResumeStatus == 'Successful') {
               this.successCount = this.successCount + 1;
+         
               // this.toastr.success('Uploaded successfully', 'Success');
             } else {
               this.issueCount = this.issueCount + 1;
@@ -1680,8 +1733,12 @@ GetJobRequiredDomain(PId) {
               if (this.tempuploadResponse[i].DocId == data[0].DocId)
                 this.tempuploadResponse[i] = data[0];
             }
-  
+            if(this.selectedDItem != undefined && this.selectedDItem != null)
+            {
+              this.SaveJobDataSource();
+            }
             if (data[0].ResumeStatus == 'Successful') {
+        
               this.successCount = this.successCount + 1;
               // this.toastr.success('Uploaded successfully', 'Success');
             } else {

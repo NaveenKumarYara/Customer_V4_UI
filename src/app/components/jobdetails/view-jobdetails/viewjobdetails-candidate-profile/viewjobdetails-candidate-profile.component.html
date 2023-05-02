@@ -409,6 +409,12 @@
           <span class="fa fa-trash-o"></span>
         </button>
       </li> 
+
+      <!-- <li *ngIf="profile.CompanyName != null">
+        <button tooltip="Profile Source" placement="left" (click)="openModal(profile?.ProfileId)">
+          <span class="fa fa-star-o"></span>
+        </button>
+      </li>  -->
       
       <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Feedback" placement="left">
         <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
@@ -590,14 +596,14 @@
                 else firstelseBlock
               ">
               <a href="javascript:void(0)"
-                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
                 {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
                 profile.LastName.charAt(0)
                 }}<img src="../../../../../assets/images/c_name_hide.png"  alt="Certifications"/></a>
             </div>
             <ng-template #firstelseBlock>
               <a href="javascript:void(0)"
-                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
                 <!-- GetCandidateProfile(profile.ProfileId) -->
                 {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
               </a>
@@ -635,7 +641,7 @@
             </div>
             <ng-template #firstelseBlock>
               <a href="javascript:void(0)" class="profileName" title="{{ profile.FirstName  + ' ' + profile.LastName }}"
-                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
                 <!-- {{ profile.FirstName ? add3Dots(profile.FirstName, 8) : "" }} {{ profile.LastName ? add3Dots(profile.LastName, 5) : "" }} -->
                  {{ profile.FirstName }} {{ profile.LastName }} 
               </a>
@@ -892,31 +898,40 @@
             </div>
          
           </div>
+       
           <!---->
           <div class="d-block text-center min-h40">
             <div class="d-block ptb-5">
+             
+              <!-- <ng-container  *ngIf="DataSource!=undefined"> 	<strong> {{DataSource}} </strong></ng-container> -->
               <div class="status {{
                   profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
                 }}">
                 {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
                 <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status can be moved when candidate had approved for the Job" placement="left" placement="top"></i>
               </div>
+           
                <div>
                 <small>
-             
-                  <ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}">  By <span> <strong> {{profile?.CompanyName}} </strong> </span> On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
-                 </small>
+                
+                  <ng-container *ngIf="profile.CCPID != null" tooltip ="{{profile?.customerDetails?.FirstName}} {{profile?.customerDetails?.LastName}}">
+                    <!-- <a href="javascript:void(0)" (click)="openModal(profile?.ProfileId)">Add/View Source</a> -->
+                    <span *ngIf="profile?.jdsource?.DataSource != null && profile?.jdsource?.DataSource != undefined">
+                      Source : {{profile?.jdsource?.DataSource}}
+                    </span>
+                    <br/>
+                      By <span> <strong> {{profile?.customerDetails?.FirstName}}  {{profile?.customerDetails?.LastName}}</strong> </span>  On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
+                      <br/>
+                   
+                </small>
                </div>
-        
             </div>
 
 
 
       
           
-              <small>
-                <span> Arytic Check </span>
-               </small>
+          
          
           
 
@@ -935,6 +950,8 @@
                 <span> Invited </span>
                 By <span>{{ profile.CompanyName }}</span>
               </small>
+
+         
             </div>
             <!--if no data -->
             <!-- <small>
@@ -945,7 +962,9 @@
             <!--if no data -->
           </div>
         </div>
+       
         <div class="candidate-status flex flex-wrap flex-align-equal">
+          <h3 class="sub-title"><strong> Arytic Check </strong> </h3>
           <!-- <ng-container
               *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
               <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
@@ -963,6 +982,8 @@
           <!--Icons with clicks-->
           <!--Reference Icons-->
           <!--With dialog-->
+
+       
 
           <a href="javascript:void(0)"  title="Education">
             <span class="jdv-smart-icon jdv-icon-education">Icon</span>
@@ -1952,7 +1973,7 @@
         <h2>Arytic Fit</h2>
       </div>
       <div class="middle__container"
-        (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
+        (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
         <app-radar-chart style="cursor: pointer" (click)="showRadarChart('radar')" [radarChartData]="backRadarChartData"
           [height]="260" [width]="300"></app-radar-chart>
       </div>
@@ -2669,6 +2690,7 @@
 </div>
 <div class="result">
 </div>
+
 <mat-spinner *ngIf="Rloading" style="margin: 0 auto" class="" [color]="color" [mode]="mode" strokeWidth="3"
   [diameter]="50">
 </mat-spinner>
@@ -2682,6 +2704,8 @@
 </ng-container>
 
 <alert></alert>
+
+
 
 <div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog"
   aria-labelledby="myLargeModalLabel" id="matching-criteria">
@@ -3085,4 +3109,7 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
+
+
+
 <!-- /.modal -->

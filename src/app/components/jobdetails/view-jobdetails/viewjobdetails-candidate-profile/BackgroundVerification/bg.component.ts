@@ -123,7 +123,7 @@ export class backgrounddialogComponent {
       this.toastr.success('Processing Request', 'Success');
       this.eventStat.emit(null);
       return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
-      debugger
+      //debugger
       if(res == null || res.subscriptionId==null)
         {
        this.toastr.warning('Access denied contact admin for arytic subscription!!', 'Oops');

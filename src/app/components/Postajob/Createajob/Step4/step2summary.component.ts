@@ -49,7 +49,7 @@ roles = [];
      this.secondarySkills = this.appService.secondaryjobskills;
      this.roles = this.appService.responsibilities;
      this.keyslist = this.appService.getKeyRoleList();
-     debugger
+     //debugger
   }
 
 

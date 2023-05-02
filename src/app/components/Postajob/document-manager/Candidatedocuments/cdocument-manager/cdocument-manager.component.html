@@ -142,10 +142,10 @@
                             {{CandidateName | titlecase}}
                           </td>
                           <td>
-                            <ngx-doc-viewer *ngIf="Resume != undefined" 
+                            <ngx-doc-viewer class="ngx-iframe-custom" *ngIf="Resume != undefined" 
                             viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
                             url="{{Resume}}"
-                            style="width:10%;height:10vh;">
+                            style="width:10%;">
                         </ngx-doc-viewer>
                             </td>
                           <!-- <td *ngIf="uploader.options.isHTML5">
@@ -222,10 +222,10 @@
                               {{d?.DocName.split('aryticDP')[0] | titlecase}}
                             </td>
                             <td>
-                              <ngx-doc-viewer *ngIf="d.DocUrl != undefined"
+                              <ngx-doc-viewer class="ngx-iframe-custom" *ngIf="d.DocUrl != undefined"
                               viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
                               url="{{d?.DocUrl}}"
-                              style="width:10%;height:10vh;">
+                              style="width:10%;">
                           </ngx-doc-viewer>
                               </td>
                             <!-- <td *ngIf="uploader.options.isHTML5">
@@ -299,10 +299,10 @@
                               {{d?.FirstName | titlecase}} {{d?.LastName | titlecase}}
                             </td>
                             <td>
-                            <ngx-doc-viewer  *ngIf="d.DocUrl != undefined"
+                            <ngx-doc-viewer class="ngx-iframe-custom"  *ngIf="d.DocUrl != undefined"
                             viewer="google" viewerUrl="https://docs.google.com/gview?url=%URL%&embedded=true"
                             url="{{d?.DocUrl}}"
-                            style="width:20%;height:20vh;">
+                            style="width:20%;">
                         </ngx-doc-viewer>
                             </td>
                             <!-- <td *ngIf="uploader.options.isHTML5">

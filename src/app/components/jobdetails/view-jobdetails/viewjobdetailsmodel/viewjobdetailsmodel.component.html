@@ -965,6 +965,26 @@
                         </h5>
                       </div><!-- /.box__container -->
                     </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__manager">Icon</span>
+                        <h4>Contact Person</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam?.length!=0">
+                          <h5 *ngFor="let rt of jobdetailscustomer?.TechnicalTeam">
+                            {{rt?.FirstName | titlecase}} {{rt?.LastName | titlecase}}
+                           
+                            
+                          </h5>
+                          <span>
+                            {{CuserDetails.Email}}
+                          </span>
+                        </ng-container>
+
+                        <h5 *ngIf="jobdetailscustomer?.TechnicalTeam?.length===0">
+                          Not yet Added.
+                        </h5>
+                      </div><!-- /.box__container -->
+                    </div>
                   </div>
                 </div>
               </div>

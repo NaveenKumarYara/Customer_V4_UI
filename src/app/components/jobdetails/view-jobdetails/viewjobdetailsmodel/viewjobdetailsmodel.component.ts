@@ -37,6 +37,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   // @Input() jobid: number;
   viewshareddialogueref: MatDialogRef<ShareJobComponent>;
   complete: any;
+  CuserDetails:any='';
   customerId: any;
   userId: any;
   hideme = [true];
@@ -192,10 +193,28 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   }
   
 
+ getcustomerusers() {
+    return this.appService.getTechinicalTeam(this.customerId).subscribe(res =>{
+      if(res.length>0)
+      {
+        this.CuserDetails = res.filter(x=> x.UserId === this.jobdetailscustomer.TechnicalTeam[0].UserId);
+      }
+     else
+     {
+      this.CuserDetails ='';
+     }
+    })
+    }
+
 
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
+      if(res.TechnicalTeam.length>0)
+      {
+        this.getcustomerusers();
+      }
+
       this.GetInterviewStatus(this.jobid);
       this.GetJobStatus(this.jobid);
       this.GetJobNotes(0,this.jobid);

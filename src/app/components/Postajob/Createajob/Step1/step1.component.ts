@@ -307,8 +307,8 @@ export class Step1Component implements OnInit, AfterViewChecked,OnDestroy {
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
     this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
-    //this.insertJob.ClientId = 0;
-    //this.insertJob.ClientName = '';
+    // this.insertJob.ClientId = 0;
+    // this.insertJob.ClientName = '';
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
     this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
     localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
@@ -404,6 +404,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.PositionType = '';
   this.insertJob.Category = '';
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
+  this.insertJob.XmlTechnicalTeam = this.appService.teammembers;
   // this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
   if(this.appService.RemoteWork == true)
   {
@@ -437,6 +438,7 @@ if (this.appService.isDrafted.value != null) {
     {
       this.insertJob.PreferredLocationId = 'Remote, , ';
     }
+    debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -548,6 +550,7 @@ if (this.appService.isDrafted.value != null) {
     {
       //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
       this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+      debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           this.insertJob.JobId = data;
@@ -693,7 +696,7 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.SaveAsTemplate = true;
     this.insertJob.StepNumber = 4;
     this.insertJob.IsDrafted = false;
-    this.insertJob.XmlTechnicalTeam = this.pjTechnicalTeamList;
+    this.insertJob.XmlTechnicalTeam = this.appService.teammembers;
     this.insertJob.XmlAccessToUsers = this.pjJobAccessToList;
     this.insertJob.XmlSkills = this.pjSkillList;
     this.insertJob.XmlRoleId = this.pjRoleList;

@@ -2,12 +2,50 @@
   <div id="scheduleInterview">
     <form #schedule="ngForm">
       <h4 mat-dialog-title class="modal-title">Schedule Interview</h4>
+      <ng-container>
+
+
+         <div class="col-xs-12 mt-5">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>JobTitle </th>
+                <th>Location</th>
+                <th>Job Status</th>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong> {{jobdetailscustomer?.JobInfo?.JobTitle}} </strong>
+                </td>
+                <td>
+                  <strong> {{jobdetailscustomer?.JobLocation[0]?.CityName}} </strong>
+                </td>
+                <td>
+                  <span
+                  class="status {{jobdetailscustomer?.JobInfo?.JobStatus}}">{{jobdetailscustomer?.JobInfo?.JobStatus}}</span>
+                </td>
+                <td *ngIf="CandidateName != null && CandidateName != undefined">
+                  <strong> {{CandidateName}} </strong>
+                </td>
+                <td *ngIf="checkemail != null && checkemail != undefined">
+                  <strong> {{checkemail}} </strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </ng-container>
       <ng-container *ngIf="matching <= 49">
         <h6><i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{ matching }}%.</h6>
       </ng-container>
       <ng-container *ngIf="matching > 49">
         <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{ matching }}%.</h6>
       </ng-container>
+
       <mat-dialog-content class="mat-typography">
         <div class="modal-body">
           <div class="row">
@@ -87,8 +125,8 @@
 
                   <span *ngIf="dataPicker.invalid && dataPicker.touched" class="text-danger">Required.</span>
                 </div>
-                <div class="form-group interview-time-group col-sm-12">
-                  <label for="">Time of Interview</label>
+                <div class="form-group interview-time-group col-sm-17">
+                  <label for="">Interview Time(CST)</label>
                   <!-- <select class="styled-select-box block" [(ngModel)]="schIntw.StartTime" name="startTime" id="">
                   <option value="">12:30</option>
                   <option value="">01:00</option>
@@ -109,16 +147,21 @@
                     [hourStep]="hourStep"
                     [minuteStep]="minuteStep"
                     required
+                    [meridian]="meridian"
                     #timePickr="ngModel"
                   ></ngb-timepicker>
+                  <button class="btn btn-sm btn-outline-{{meridian ? 'success' : 'danger'}}" (click)="toggleMeridian()">
+                     Time format 12 hrs
+                  </button>
+               
                   <span class="help-block" *ngIf="timePickr.invalid && timePickr.touched">Required.</span>
                 </div>
+          
                 <div class="form-group interview-time-group col-sm-12">
                   <label for="">Duration</label>
                   <ngb-timepicker
                     [(ngModel)]="duration"
                     name="duration"
-                    [hourStep]="durationHourStep"
                     [minuteStep]="durationMinuteStep"
                     required
                     #durationPickr="ngModel"
@@ -148,9 +191,64 @@
 												<label class="radio checkbox">
 													<input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()">
 													<span class="radio-btn wh-22 ml-0"></span>
-													<span>Candidate</span>
+													<span>External</span>
 												</label>
 											</div> -->
+
+                      <div class="form-group travel-expense-group">
+                    
+                        <div class="clearfix">
+                          <div class="custom-control custom-checkbox">
+                            <label for="" class="question">Click here to send email to External Interviewer</label>
+                            <input class="form-control"
+                            (click)="toggleCheckbox($event)" [checked]="isChecked"  [(ngModel)]="isChecked"
+                            class="custom-control-input" id="customCheckbox1" name="customCheckbox1" type="checkbox">
+                           
+                          </div>
+                        
+                        </div>
+                        <div class="form-row">
+                            
+                          <!-- <div class="form-group" *ngIf="isChecked == true">
+                            <input  class="form-control" [(ngModel)]="iFullName" placeholder="Name" name="name" Value="Interviewer">
+                          </div> -->
+                       
+               
+                      
+                          <div class="form-group" *ngIf="isChecked == true">
+                            <!-- <input  class="form-control" [(ngModel)]="iEmail" placeholder="Email" name="email"> -->
+                            <div class="row flex flex-wrap flex-align-center">
+                              <div class="col-sm-3">
+                                <label>Email Address</label>
+                              </div>
+                              <div class="col-sm-9">
+                                <form [formGroup]="rulesForm">
+                                  <mat-form-field class="form-control height-auto">
+                                    <mat-chip-list #chipList formArrayName="emails" >
+                                      <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                                        [selectable]="true" 
+                                        [removable]="removable"
+                                        (removed)="removeEmail(item)" 
+                                        required name="chips">
+                                        {{item?.value}}
+                                        <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                                      </mat-chip>
+                                      <input placeholder="TO Email Address" 
+                                        [matChipInputFor]="chipList"  
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                                        [matChipInputAddOnBlur]="true "
+                                        (matChipInputTokenEnd)="add($event)" />
+                                    </mat-chip-list>
+                                  </mat-form-field>
+                                  <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                     </div>
+                      </div>
+                        
+                   
                     <!-- <div class="col-md-3 w-auto">
 												<label class="radio checkbox">
 													<input type="checkbox" class="radio-input" name="team" (click)="toggleShow3()">

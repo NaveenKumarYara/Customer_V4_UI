@@ -162,7 +162,9 @@ h2 {
 .ng-star-inserted .progress { background:#f1f2f6; box-shadow:none; }
 .ng-star-inserted .progress-bar { background:#448afa }
 
-
+.height-auto {
+	height: auto !important;
+}
 
 @media only screen and (max-width:767px) {
 	.interview-type .nav-tabs > li  { width:50%; text-align: center; padding:0 7px; margin:14px 0 0; }

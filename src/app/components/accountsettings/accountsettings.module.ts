@@ -21,6 +21,7 @@ import { InviteUsersComponent } from "./InviteUsers/invite.component";
 import { SearchPipe } from "./InviteUsers/SearchPipe.pipe";
 import { OrderByPipe } from "./InviteUsers/OrderByPipe.pipe";
 import { AccountsettingsRoutingModule } from "./accountsettings-routing.module";
+import { MatRadioButton, MatRadioModule } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { AccountsettingsRoutingModule } from "./accountsettings-routing.module";
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
+    MatRadioModule,
     SharedModule,
     NgxSpinnerModule,
     ToastModule.forRoot(),

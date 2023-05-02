@@ -1,38 +1,56 @@
+
+
+
 <div class="form-group tech-team-group">
-    <label for="" class="question">Technical Team for Screening <small>(Optional)</small></label>
-    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-  
-        <div class="form-row row">
-            <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
-            <div class="col-md-9">
-                <div class="p-rel">
-                    <ng-select class="custom-style" [items]="managersList" placeholder="Select Technical Team" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"  [(ngModel)]="selectedUserName"
-                        [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
-                    <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Team Members are required.</small>
+    <!-- <div class="col-sm-6 form-cols single-form-cols">
+        <app-steps-step1-clients>
+        </app-steps-step1-clients>
+    </div> -->
+
+
+
+            <div class="form-group job-title-group reporting-manager-group">
+              <label for="" class="question">Client contact info  <small>(Optional)</small></label>
+            <div class="form-row row">
+                <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
+                <div class="col-md-8">
+                    <div class="p-rel">
+                        <ng-select class="custom-style" [items]="managersList" placeholder="Client Contact" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"  [(ngModel)]="selectedUserName"
+                            [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
+                        <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Info details are required.</small>
+                    </div>
                 </div>
+                <div class="col-md-1">
+                    <button class="btn add-btn form-control mt-0"  type="submit" *ngIf="teammemberslist.length === 0">+</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialogs"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                  </div>
+            </form>
+         
+                <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
+           
             </div>
-            <div class="col-md-1">
-                <button class="btn add-btn form-control mt-0"  type="submit">+</button>
             </div>
-        </form>
-            <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
-            <!-- <div class="col-md-1">
-                <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialogs"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
-              </div> -->
+        <div class="lists row">
+
+            <div class="col-md-12" *ngIf="teammemberslist.length>0">
+                <!-- <p class="description">Contact Info</p> -->
+                <ul class="data-list">
+                    <li class="col-md-5 no-exp" *ngFor="let teammember of teammemberslist; let i = index">
+                        <span class="name">{{teammember?.FirstName}}    
+                        </span>
+                        <span class="close" (click)="deleteTeammember(i)">&times;</span>
+                    </li>
+                </ul>
+            </div>
         </div>
    
+   
+  
+   
 </div>
-<div class="lists row">
-    <div class="col-md-12" *ngIf="teammemberslist.length>0">
-        <p class="description">Team Members</p>
-        <ul class="data-list">
-            <li class="col-md-5 no-exp" *ngFor="let teammember of teammemberslist; let i = index">
-                <span class="name">{{teammember.FirstName}}</span>
-                <span class="close" (click)="deleteTeammember(i)">&times;</span>
-            </li>
-        </ul>
-    </div>
-</div>
+
 
 
 
@@ -42,7 +60,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Add Team Member</h4>
+          <h4 class="modal-title" id="exampleModalLabel">Add Contact Info</h4>
         </div>
         <div class="modal-body">
           <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
@@ -78,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 form-group p-rel">
+            <div class="col-md-12 form-group p-rel">
                 <input type="email" [pattern]="emailPattern" class="form-control"
                     placeholder="Work Email *" autocomplete="new-email"
                     formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
@@ -96,12 +114,34 @@
                     Email already registered.
                 </div>
             </div>
-            <div class="col-md-6 form-group add-team-member">
-                <select name="Value" id="view" class="styled-select-box w-100 "
-                    (change)="PopulateRoles($event.target.value)" style="margin-top: 0px;">
-                    <option default selected="selected" value=8>Hiring Leader</option>
-                    <option value=6>Reporting Manager</option>
+            <div class="col-md-5 form-group">
+               
+                <select class="form-control" (change)="chooseCountry($event.target.value)">
+                    <option *ngFor="let ls of selectCountry"
+                        [selected]="ls.name == 'United States'" value="{{ls?.dial_code}}">
+                        {{ls?.dial_code}} {{ls?.name}}</option>
                 </select>
+          
+         
+        
+        </div>
+            <div class="col-md-6 form-group add-team-member">
+               
+           
+              
+                <input type="tel" autocomplete="false" class="form-control"
+                formControlName="PhoneNumber" mask="(000) 000-0000"
+                placeholder="Phone Number *" maxlength=20
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <div *ngIf="Addform.controls['PhoneNumber'].invalid && (Addform.controls['PhoneNumber'].dirty || Addform.controls['PhoneNumber'].touched)"
+                class="error1">
+                <div *ngIf="Addform.controls['PhoneNumber'].errors.required">
+                    Required
+                </div>
+                <div *ngIf="Addform.controls['PhoneNumber'].errors.minlength">
+                    Invalid Phone number
+                </div>
+            </div>
             </div>
             <div class="col-md-12">
                 <div class="d-flex  mb-3">

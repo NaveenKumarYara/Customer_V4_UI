@@ -60,10 +60,17 @@
             <div class="row r-i-t-header">
               <div class="col-md-7">
                 <h4>Team Members</h4>
+                <mat-radio-group>
+                  <mat-radio-button value="0" [checked]="true" (click)="GetUsers(0)"> All Members
+                  </mat-radio-button>
+                  <mat-radio-button value="1" (click)="GetUsers(1)">Active Members</mat-radio-button>
+                  <mat-radio-button value="2" (click)="GetUsers(2)">Inactive Members</mat-radio-button>
+                </mat-radio-group>
                 </div> 
                 <div class="col-md-2 text-center">
                   <h5>{{customercontacts?.length}} Members</h5>
                 </div>
+          
               <div class="col-md-3 pull-right" data-step="3" data-title="Step 3" data-intro="You can Search
               team member here." data-position='top'>
                 <!-- <div class="form-group i-s"  *ngIf="customercontacts.length>5">
@@ -86,7 +93,7 @@
             <div class="row" data-step="4" data-title="Step 4" data-intro="Here are the team-members-list added by you." data-position='top'>
               <div class="col-md-12 i-u-l scrollbar-inner">
                 <ul class="list-group ">
-                  <ng-container *ngFor="let contact of customercontacts |  filter : searchText">
+                  <ng-container *ngFor="let contact of customercontacts |  filter : searchText   | sortBy:'Email' | sortBy:'FirstName'">
                     <li class="list-group-item" [ngClass]="{'disabled': contact?.IsRemove === true}">
                       <div class="media">
                         <div class="media-left">

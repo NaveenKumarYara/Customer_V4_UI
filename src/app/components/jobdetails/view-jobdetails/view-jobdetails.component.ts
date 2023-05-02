@@ -1016,6 +1016,14 @@ export class ViewJobdetailsComponent implements OnInit {
           this.updateinterviewedstatus();
 
         }
+        else if (this.statusid === 11) {
+          $("#Prospect").removeClass('active');
+          $("#Screening").removeClass('active');
+          $("#inprogressprofiles").addClass('active');
+          $("#Hired").addClass('active');
+          this.updatehiredstatus();
+
+        }
       }
       sessionStorage.removeItem('statusid');
     });

@@ -269,7 +269,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
     this._service.GetService('ProfileAPI/api/GetCandidateVerification?jobId=', JId)
     .subscribe(
       data => {
-        if(data.length>=0)
+        if(data != null && data.length>0)
         {
           this.statusVal = data[0].IsRequired;
           if(this.statusVal === true)

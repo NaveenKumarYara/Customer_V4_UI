@@ -451,7 +451,7 @@ isDrafted: boolean;
      // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
      // this.insertJob.ClientName = localStorage.getItem('clientName');
      this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
-    
+     this.insertJob.XmlTechnicalTeam = this.appService.teammembers;
      // this.insertJob.DepartmentId = this.appService.addeddepartments;
  
  

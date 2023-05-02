@@ -492,7 +492,7 @@ clickme(val) {
           this.JobIds.forEach((value, index, array) => {
             this.insertJob.JobId = value;
             this.insertJob.TemplateSaveTitle = this.TemplateName;
-            debugger
+            //debugger
             this.appService.postjob(this.insertJob).subscribe((data) => {
               if (data) {
                 // this.insertJob.JobId = data;

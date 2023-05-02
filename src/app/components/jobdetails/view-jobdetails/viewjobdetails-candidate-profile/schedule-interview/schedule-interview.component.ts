@@ -3,7 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {ScheduleType} from '../../../models/ScheduleType';
-import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, Form, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
@@ -23,6 +23,7 @@ import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../../shared/services/api.service';
 import { NgbDateFRParserFormatter} from './dateformat';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 declare var $: any;
 const URL = 'http://localhost:4300/fileupload/';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
@@ -39,14 +40,17 @@ export interface DialogData {
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;
-  selectedOption:Options = new Options(3, 'Zoom Link');
+  selectedOption:Options = new Options(2, 'Zoom');
   options = [
-     new Options(2, 'WebEX' ),
-     new Options(3, 'Zoom Link'),
-      new Options(4, 'Other' )
+     new Options(2, 'Zoom' ),
+     new Options(3, 'Teams'),
+      new Options(4, 'Others' )
   ];
+  removable = true;
+  chipLists:any;
   schIntw = new ScheduleInterview();
   status = new JobInterviewStatus();
+  stat = new CJobInterviewStatus();
  @Output() eventStat = new EventEmitter();
  jobdetailscustomer = new  GetJobDetailCustomer();
  loading = false;
@@ -66,18 +70,24 @@ export class ScheduleInterviewComponent implements OnInit {
   Value: number;
   Forgotform: any;
   result :any;
+  public isChecked = false;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   bridgeUrl: string;
+  iFullName:string;
+  iEmail:string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
   minuteStep = 30;
   secondStep = 1;
-  duration: NgbTimeStruct = {hour: 14, minute: 30, second: 0};
-  durationHourStep = 1;
-  durationMinuteStep = 30;
+  rulesForm: FormGroup;
+  duration: NgbTimeStruct = {hour: 0, minute: 15, second: 0};
+  durationHourStep = 0;
+  durationMinuteStep = 5;
   DuarionSecondStep = 1;
   checkemail:any;
   matching:any;
+  public separatorKeysCodes = [ENTER, COMMA];
+  meridian = true;
   showadd:boolean=false;
   // typeId: number;
   InterviewDate: any;
@@ -95,6 +105,7 @@ export class ScheduleInterviewComponent implements OnInit {
   usersloading: boolean;
   selectedUserName :number;
   teammembers: '';
+  public emailList = [];
   teammemberslist: CustomerUsers[];
   typeList: ScheduleType[];
   savenote = new Notes();
@@ -105,7 +116,7 @@ export class ScheduleInterviewComponent implements OnInit {
   isShown1: boolean = true ;
   isShown2: boolean = false ;
   isShown3: boolean = false ;
-
+  CandidateName:any;
   // addedteammembers: '';
   // addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
@@ -121,7 +132,11 @@ export class ScheduleInterviewComponent implements OnInit {
     this.matching= this.data.Matching;
     this.AddUser = true;
     this.info = 1;
+    this.CandidateName = this.data.FullName;
     this.checkemail=this.data.Email;
+    this.rulesForm = this.fb.group({
+      emails: this.fb.array([], this.validateArrayNotEmpty)
+    });
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     // const current = new Date();
     // config.minDate = { year: current.getFullYear(), month:
@@ -141,6 +156,16 @@ export class ScheduleInterviewComponent implements OnInit {
 
    }
 
+   private validateArrayNotEmpty(c: FormControl) {
+    if (c.value && c.value.length === 0) {
+      return {
+        validateArrayNotEmpty: { valid: false }
+      };
+    }
+    return null;
+  }
+
+  
    getValue(optionid) {
     this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
    }
@@ -154,6 +179,23 @@ export class ScheduleInterviewComponent implements OnInit {
   // changeInterviewType(event) {
   //   this.typeId = event;
   // }
+
+  add(event): void {
+    console.log(event.value)
+    if (event.value) {
+      if (this.validateEmail(event.value.trim())) {
+        this.emailList.push({ value: event.value.trim(), invalid: false });
+      } else {
+        this.emailList.push({ value: event.value, invalid: true });
+        this.rulesForm.controls['emails'].setErrors({'incorrectEmail': true});
+      }
+    }
+    if (event.input) {
+      event.input.value = '';
+    }
+  }
+
+
  clearTeamMemebers() {
   for (let i = 0; i <= 10; i++) {
     const index = i;
@@ -161,6 +203,34 @@ export class ScheduleInterviewComponent implements OnInit {
   }
   this.deleteTeammember(0);
  }
+
+ private validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+
+ removeEmail(data: any): void {
+  console.log('Removing ' + data)
+  if (this.emailList.indexOf(data) >= 0) {
+    this.emailList.splice(this.emailList.indexOf(data), 1);
+  }
+  this.rulesForm.controls['emails'].setErrors({'incorrectEmail': false});
+}
+
+
+ toggleCheckbox(e) {
+
+      if(e.checked == true)
+      {
+        this.isChecked = true;
+      }
+      else
+      {
+        this.isChecked = false; 
+      }
+      
+}
 
  GetCustomerContacts()
   {
@@ -232,7 +302,7 @@ export class ScheduleInterviewComponent implements OnInit {
     this.GetInterView();
     this.GetType();
     this.GetCustomerContacts();
-    
+    this.PopulateJobdetail();
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
@@ -258,7 +328,10 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 
-  
+  toggleMeridian() {
+		this.meridian = !this.meridian;
+	}
+
   teamchange(val,inf)
   {
   this.AddUser= val;
@@ -355,9 +428,14 @@ else
 {
   this.schIntw.InterviewingPerson = this.selectedUserName.toString();
 }
-debugger
+
+
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
-    this.PopulateJobdetail();
+    this.SendStatusEmail();
+    if(this.isChecked == true)
+    {
+      this.SendEStatusEmail()
+    }
    
      }) ;
     } else {
@@ -546,7 +624,7 @@ this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subsc
 PopulateJobdetail () {
   return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
     this.jobdetailscustomer = res;
-    this.SendStatusEmail();
+   
   });
 
 }
@@ -577,12 +655,57 @@ SendStatusEmail()
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
-     this.toastr.success('Email Sent','Success');
+     this.toastr.success('Email Sent to Candidate','Success');
         setTimeout(() => {          
             this.toastr.dismissToast; 
            
             this.schIntw = new ScheduleInterview();
             this.SaveNotes();
+            //this.dialogRef.close();
+          }, 3000);
+         
+       } 
+                  
+  );
+}
+
+SendEStatusEmail()
+{
+  this.stat.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
+  this.stat.PAppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId;
+  this.stat.CFullName = this.customer.FirstName +' '+ this.customer.LastName;
+  this.stat.Date = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString() +'@'+ this.time.hour + ':' + this.time.minute;
+  this.stat.JobStatus = 'Scheduled Interview';
+  if (this.processSelection === 1) {
+    this.stat.InterviewType = "In-Person";
+    this.stat.InterviewDetails = "Face2Face";
+  
+  } else if (this.processSelection === 2) {
+    this.stat.InterviewType = "Phone";
+    this.stat.InterviewDetails =  this.phoneNumber;
+  
+  } 
+  else if (this.processSelection === 3) {
+    this.stat.InterviewType = "Video-Conference";
+    this.stat.InterviewDetails =  this.skypeId;     
+   } 
+  this.stat.FromEmail = this.customer.Email;
+  this.stat.ToEmailID = this.emailList.map(x => x.value).toString();
+  this.stat.FullName = "Interviewer";
+  this.stat.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.stat.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+  debugger
+  this.appService.SendJobInterviewer(this.stat)
+  .subscribe(
+  status => {
+     this.toastr.success('Email Sent to Interviewer','Success');
+        setTimeout(() => {          
+            this.toastr.dismissToast; 
+            this.iEmail = undefined;
+            this.iFullName = undefined;
+            this.stat = new CJobInterviewStatus();
+            this.schIntw = new ScheduleInterview();
+            
             //this.dialogRef.close();
           }, 3000);
          
@@ -756,6 +879,22 @@ export class JobInterviewStatus
 {
     public FullName :string
     public AppLink :string
+    public JobStatus :string
+    public ToEmailID :string
+    public InterviewType :string
+    public InterviewDetails :string
+    public JobLocation :string
+    public Date :string
+    public  FromEmail :string
+    public JobTitle :string
+}
+
+export class CJobInterviewStatus
+{
+    public FullName :string
+    public CFullName :string
+    public AppLink :string
+    public PAppLink :string
     public JobStatus :string
     public ToEmailID :string
     public InterviewType :string

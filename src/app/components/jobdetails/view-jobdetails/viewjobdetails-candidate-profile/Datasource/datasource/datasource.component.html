@@ -1,0 +1,56 @@
+<mat-dialog-content class="mat-typography">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Select the profile source.</h4>
+        <button mat-button mat-dialog-close class="close">×</button>
+      </div>
+      <div class="modal-body">
+
+          <div class="dropdown-block">
+
+            <!--Select Dropdown-->
+            <select
+              [(ngModel)]="selectedItem"
+              (ngModelChange)="onItemSelect($event)"
+              name="item"
+              required
+            >
+              <!--Placeholder Option-->
+              <option
+                [value]="null"
+                [disabled]="true"
+                [selected]>
+                Select an option
+              </option>
+          
+              <!--Data Array Options-->
+              <option [value]="item.itemName" *ngFor="let item of itemsArray">
+                {{ item.itemName }}
+              </option>
+            </select> 
+
+          </div>
+          
+          <br />
+          <br>
+          <div class="show-changes-block">
+           Source:
+            <br>
+          
+            <!--Changing String using NG's String Concatenation-->
+            <div class="changed-string">
+              <strong>
+              {{ showSomethingNew }}
+              </strong>
+            </div>
+          </div>
+   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-filled" (click)="SaveJobDataSource()">Save</button>
+      </div>
+    </div>
+
+</mat-dialog-content>

@@ -30,6 +30,7 @@ import { Options, LabelType  } from '@angular-slider/ngx-slider';
 import { MatchingDetails } from '../../../jobdetails/models/matchingDetails';
 import * as introJs from 'intro.js/intro.js';
 import { OnDestroy } from '@angular/core/public_api';
+import { ClientsComponent } from '../Step1/clients.component';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -40,7 +41,7 @@ declare var jQuery: any;
   styleUrls: ['./step3.component.css']
 })
 export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
-
+  @ViewChild(ClientsComponent) client: ClientsComponent;
   // @ViewChild(Step2Component) step2: Step2Component;
   // @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
   // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
@@ -108,7 +109,7 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
   // joblist = new InsertJob();
   insertJob = new InsertJob();
   departments: any;
-  client: any;
+  //client: any;
   disable:any;
   employmentType: EmploymentType;
   show = false;
@@ -179,9 +180,9 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
     this.appService.currentOpenings.subscribe((data) => {
       this.openings = data; // And he have data here too!
     });
-    this.appService.currentClient.subscribe((data) => {
-      this.client = data; // And he have data here too!
-    });
+    // this.appService.currentClient.subscribe((data) => {
+    //   this.client = data; // And he have data here too!
+    // });
     this.appService.addeddepartmentsChanged.subscribe((data) => {
       this.departments = data; // And he have data here too!
     });
@@ -394,6 +395,17 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
   //   this.insertJob.JobDescription = this.appService.description.value;
   //   this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
   this.insertJob.HideSalary = this.appService.HideSalary;
+  
+  this.insertJob.ClientId = this.appService.clientModel.value.ClientId;
+
+  if(this.appService.clientModel.value.ClientId>0)
+  {
+    this.insertJob.ClientName =   this.appService.clientModel.value.ClientName ;
+  }
+else
+{
+  this.insertJob.ClientName =   ' ';
+}
     this.insertJob.BonusOffered = this.appService.BonusOffered;
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
@@ -404,8 +416,8 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
      // this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
-     this.insertJob.ClientId = this.client.ClientId;
-     this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName;
+    //  this.insertJob.ClientId = this.client.ClientId;
+    //  this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     // this.insertJob.ClientName = localStorage.getItem('clientName');
      this.insertJob.XmlDepartment = this.appService.addeddepartments;  //  this.pjDepartments; // this.departments;
@@ -489,8 +501,9 @@ export class Step3Component implements OnInit,AfterViewChecked,OnDestroy {
     this.insertJob.HiringProcessId = this.intwType.interviewType.InterviewTypeId;
     let val =this.appService.rList!=undefined?this.appService.rList:this.customer.UserId;
     this.insertJob.HiringManagerId = Number(val);
+    //this.insertJob.XmlTechnicalTeam
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
-    this.insertJob.XmlTechnicalTeam = [];
+     this.insertJob.XmlTechnicalTeam = this.appService.teammembers;
     if(this.JobIds&&this.JobIds.length>0)
     {
       var res = new Promise<void>((resolve, reject) => {

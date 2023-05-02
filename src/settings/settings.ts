@@ -147,6 +147,7 @@ export class Settings {
   JobMatchingParameter: string;
   Arytic: string;
   ImageUrl:string;
+  SendJobInterviewer:string;
   QuestionbaseUrl: string;
   QuestionResult: string;
   GetPlans: string;

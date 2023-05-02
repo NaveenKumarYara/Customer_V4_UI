@@ -5,7 +5,7 @@
       <span aria-hidden="true">×</span>
     </button>
     <!-- <span class="profile__count">{{processedProfiles.length}} Profiles</span> -->
-    <h3>Edit Profile</h3>
+    <h3>Update the Arytic matching scores</h3>
 
  
   </div>
@@ -1279,34 +1279,22 @@
                         </ng-container>
                       </div>
                     </div>
+                  
                     <div class="row strip__row flex flex-wrap">
-                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
-                        <div class="box__table">Current Role</div>
-                      </div>
-                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                        <ng-container *ngIf="!editPersonalDetails">
-                          <div class="box__table">{{profileDetails?.ProfileTitle}}</div>
-                        </ng-container>
-                        <ng-container *ngIf="editPersonalDetails">
-                          <div class="box__table">
-                            <input type="text" formControlName="ProfileTitle" id="ProfileTitle"
-                              placeholder="ProfileTitle" value="{{profileDetails?.ProfileTitle}}" class="form-control">
-                          </div>
-                        </ng-container>
-                      </div>
-                    </div>
-                    <!-- <div class="row strip__row flex flex-wrap">
                     <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
                       <div class="box__table">Mobile No.</div>
                     </div>
                     <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
                       <ng-container *ngIf="!editPersonalDetails">
-                          <ng-container *ngIf="profileDetails?.MobilePhone===null">
-                            <div class="box__table" *ngFor="let tel of selectedCandidate?.ContactInformation?.Telephones">{{tel?.Normalized}};</div>
-                          </ng-container>
+                        <ng-container *ngIf="profileDetails?.MobilePhone!=null && profileDetails?.MobilePhone!= undefined">                     
                           <ng-container *ngIf="profileDetails?.MobilePhone!=null">
-                            <div class="box__table">{{profileDetails?.MobilePhone}};</div>
+                            <div class="box__table">{{profileDetails?.MobilePhone | mask: '(000) 000-0000'  }};</div>
                           </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="profileDetails?.MobilePhone===null || profileDetails?.MobilePhone=== undefined">
+                          <div class="box__table">Yet to Provide</div>
+                        </ng-container>
+                 
                       </ng-container>
                       <ng-container *ngIf="editPersonalDetails">
                         <div class="box__table phone__col">
@@ -1314,25 +1302,44 @@
                             <span class="input-group-addon">
                               <i class="fa fa-phone" aria-hidden="true"></i>
                             </span>	
-                            <select class="form-control custom-select-dark">
-                              <option value="+1">+1</option>
+                            <select class="form-control custom-select-dark" (change)="chooseCountry($event.target.value)">
+                   
+                                <option *ngFor="let ls of selectCountry"
+                                    [selected]="ls.name == 'United States'" value="{{ls?.dial_code}}">
+                                    {{ls?.dial_code}}</option>
                             </select>
-                            <ng-container *ngIf="profileDetails?.MobilePhone===null && selectedCandidate.ContactInformation.Telephones!= null">
-                              <input type="text"  formControlName="MobilePhone" 
+                            <ng-container *ngIf="profileDetails?.MobilePhone===null">
+                              <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
                             maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                            placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" value="{{selectedCandidate.ContactInformation.Telephones[0].Raw}}">
+                            placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" >
                             </ng-container>
                             <ng-container *ngIf="profileDetails?.MobilePhone!=null">
-                              <input type="text"  formControlName="MobilePhone" 
+                              <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
                               maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                              placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" value="{{profileDetails?.MobilePhone}}">
+                              placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" value="{{profileDetails?.MobilePhone | mask: '(000) 000-0000'}}">
                             </ng-container>
                          
                           </div>
                         </div>
                       </ng-container>
                     </div>
-                  </div> -->
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Current Role</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">{{profileDetails?.ProfileTitle}}</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <input type="text" formControlName="ProfileTitle" id="ProfileTitle"
+                            placeholder="ProfileTitle" value="{{profileDetails?.ProfileTitle}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
                   </form>
                   <!-- <div class="row strip__row flex flex-wrap">
                     <div class="col-sm-6 strip__col strip__col__td title__col lg__col">

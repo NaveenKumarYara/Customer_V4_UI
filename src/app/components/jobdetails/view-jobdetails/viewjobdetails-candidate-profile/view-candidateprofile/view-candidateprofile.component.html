@@ -53,9 +53,14 @@
 															</h4>
 														</div>
 														<small>
-             
-															<ng-container *ngIf="profile.CompanyName != null" tooltip ="{{profile?.CompanyName}}">  By <strong> {{profile?.CompanyName}} </strong> On  <strong> {{profile?.CreatedOn | date:'mediumDate' }} </strong></ng-container> 
-														   </small>
+															<ng-container *ngIf="profile?.CCPID != null" tooltip ="{{CName}}">
+																 By <strong> {{CName}} </strong>
+																  <!-- of <strong> {{profile?.CompanyName}} </strong> -->
+																   On  <strong> {{profile?.CreatedOn | date:'mediumDate' }} </strong> 
+															<!-- <a href="javascript:void(0)" (click)="openModal()">Add/View Source :-</a>
+															<ng-container> 	<strong> {{DataSource || 'Yet to Provide'}} </strong></ng-container> -->
+														</ng-container>
+														</small>
 														<h5>{{ details?.profileVal?.ProfileTitle }} - {{
 															profileview?.ProfileBasicInfo?.TotalExperience || 0 }} Exp.
 														</h5>
@@ -193,7 +198,8 @@
 									<span class="lname">{{ details?.profileVal?.LastName }}</span>
 								</h4>
 								<span class="job-title">{{ details?.profileVal?.ProfileTitle }} @ {{
-									profileview?.ProfileBasicInfo?.CompanyName }}</span>
+									CName}}</span>
+									<span class="job-title" *ngIf="DataSource!=undefined">	{{DataSource}}</span>
 							</div>
 						</div>
 					</div>

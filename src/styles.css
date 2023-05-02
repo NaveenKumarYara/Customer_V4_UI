@@ -32233,3 +32233,8 @@ body .revamp__radio__grid .icon__col input[type="checkbox"] {
 	font-size: 0;
 	text-align: center;
 }
+
+.ngx-iframe-custom iframe {
+  width: auto !important;
+  height: auto !important;
+}

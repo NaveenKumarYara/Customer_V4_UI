@@ -169,6 +169,8 @@ Job = {
   selectedSubMenuItem: any;
   sideBarMenu: any = [];
   saveUsername: boolean;
+  Ccode:any;
+  selectCountry : any;
   editPersonalDetails: boolean;
   selectedFiles: any= [];
   selecteeJobId: any;

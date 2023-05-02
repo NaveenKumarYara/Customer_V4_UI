@@ -22,6 +22,7 @@ declare var $: any;
 import swal from 'sweetalert2';
 import { ConfirmationDialog } from "./ConfirmationDialog.component";
 import { GetJobDetailCustomer } from "../../../../../../models/GetJobDetailCustomer";
+import { DatasourceComponent } from "../Datasource/datasource/datasource.component";
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
 export interface DialogData {
@@ -37,6 +38,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
+  CName:any=null;
   delProfile = new iDeleteProfile();
   setActive: number = null;
   selectedSlice: number = -1;
@@ -95,6 +97,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     overflow: false,
     realignOnResize: true,
   };
+  DataSource:any;
   graphData: any[] = [];
   graphLabel: any[] = [];
   graphLabelList1: LegendList[] = [];
@@ -327,6 +330,7 @@ export class ViewCandidateprofileComponent implements OnInit {
 
     this.GetBG();
     this.profile = this.data.profile;
+    //debugger
     this.name = this.data.Name;
     this.lname = this.data.Lname;
     this.toastr.setRootViewContainerRef(_vcr);
@@ -443,6 +447,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetCandidateJobFitResult();
     this.GetCandidateSkillFitResult();
     this.GetQuestionnariePersonsList();
+    this.GetJobDataSourceDetails();
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
@@ -483,11 +488,43 @@ export class ViewCandidateprofileComponent implements OnInit {
     console.log(event);
   }
 
+  openModal() {
+    const databoxdialogRef = this.dialog.open(DatasourceComponent, {
+      width: "750",
+      position: { right: "0px" },
+      height: "750px",
+      data: {
+        jobId: this.data.jobId,
+        ProfileId: this.data.ProfileId
+        // status : this.statusid
+      },
+    });
+    databoxdialogRef.afterClosed().subscribe((result) => {
+      this.GetJobDataSourceDetails();
+      console.log("databoxdialogRef Dialog result: ${result}");
+    });
+  }
+
+  GetJobDataSourceDetails()
+  {
+   this._service.GetService('IdentityAPI/api/GetJobDataSource?profileId='+ this.data.ProfileId +'&jobId=',this.data.jobId ).subscribe(
+     data => {
+      if(data != "No records found")
+      {
+        this.DataSource = data.DataSource;
+      }
+
+
+     });
+  }
+
   GetProfileDetails() {
     this._service
       .GetService("JobsAPI/api/GetUserInfoByProfileMapping?profileId=", this.data.ProfileId)
       .subscribe((data) => {
         this.details = data;
+        //debugger
+        this.CName = this.data.CName;
         this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) &&
            this.profile.UserId > 0 && this.profile.IsConfirmed == null
       });
@@ -516,18 +553,18 @@ export class ViewCandidateprofileComponent implements OnInit {
         a.remove();
         this.jobdetailsservice.DeleteCandidateProfile(Id,this.data.jobId).subscribe((data) => {
               if (data >= 0) {
-                if(Email.substring(0, 7) != 'noemail')
-                {
-                  this.DelProfile(Fname,Lname,Email);
-                }
-                else
-                {
+                // if(Email.substring(0, 7) != 'noemail')
+                // {
+                //   this.DelProfile(Fname,Lname,Email);
+                // }
+                // else
+                // {
                   this.toastr.info('profile deleted!', 'Success!');
                   setTimeout(() => {
                     this.toastr.dismissToast;
                     this.dialogRef.close();
                   }, 3000);
-                }
+                //}
               }
               });
         //snack.dismiss();
