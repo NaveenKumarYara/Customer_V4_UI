@@ -918,13 +918,13 @@
 								<span class="icon icon-job-feedback">Icon</span>
 								<span class="number">{{myjobstatistics?.FeedbackCount}}</span>
 							</li> -->
-							<li style="cursor: pointer;" (click)="documentManagerDialog();ttClose()" tooltip="Attachments">
+							<li style="cursor: pointer;" (click)="documentManagerDialog();ttClose()" tooltip="Documents">
 								<div class="flex flex-align-center">
 									<span><i class="fa fa-paperclip"></i></span>
 									<!-- <i class="fa fa-paperclip"></i> -->
 									<span class="number">{{JobDocuments?.length || 0}}</span>
 								</div>
-								<span class="sub-title">Attachments</span>
+								<span class="sub-title">Documents</span>
 							</li>
 							<li style="cursor: pointer;" tooltip="Comments" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								<div class="flex flex-align-center">
