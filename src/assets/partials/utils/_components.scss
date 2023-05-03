@@ -8,6 +8,10 @@
 
 .btn-outlined-default {
   @include btn-outlined-default();
+
+  &.btn-sm {
+    padding: 6px 22px;
+  }
 }
 
 .form-control {

@@ -1,0 +1,72 @@
+@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../assets/partials/utils/mixins';
+
+.pills-navigation {
+	border: 1px solid $stroke-gray;
+	border-radius: 4px;
+	background-color: $lightest-blue; 
+	padding: 20px 30px;
+	margin: 0 0 30px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	h4 {
+		font-size: $font-size-16;
+		text-transform: uppercase;
+		margin: 0;
+		font-weight: 700;
+		color: $dark-gray;
+	}
+
+	.close-btn {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		@include flex();
+
+		li {
+			a {
+				font-size: $font-size-14;
+				display: block;
+				border: 1px solid $stroke-gray;
+				border-right: 0;
+				padding: 6px 12px;
+				color: $dark-gray;
+				text-decoration: none;
+
+				.mdi {
+					margin-right: 4px;
+					font-size: $font-size-14;
+				}
+			}
+
+			&.active {
+				a {
+					background-color: $blue;
+					color: $white;
+				}
+			}
+
+			&:first-child {
+				a {
+					border-radius: 32px 0 0 32px;
+				}
+			}
+
+			&:last-child {
+				a {
+					border-radius: 0 32px 32px 0;
+					border-right: 1px solid $stroke-gray;
+				}
+			}
+		}
+	}
+}

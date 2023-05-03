@@ -1,0 +1,28 @@
+@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../assets/partials/utils/mixins';
+
+.filter-quick-result {
+	border: 1px solid $stroke-gray;
+	border-radius: 4px;
+	background-color: $lightest-blue; 
+	padding: 20px 30px;
+	margin: 0 0 30px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	h4 {
+		font-size: $font-size-16;
+		text-transform: uppercase;
+		margin: 0;
+		font-weight: 700;
+		color: $dark-gray;
+	}
+
+	.close-btn {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+}

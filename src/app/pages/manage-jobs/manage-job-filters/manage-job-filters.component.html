@@ -4,7 +4,9 @@
 			<button class="btn btn-icon" (click)="filterHandler()" [ngClass]="advanceFilter?'active':''">
 				<span class="mdi mdi-filter-outline"></span>
 			</button>
-			<button class="btn btn-icon"><span class="mdi mdi-feature-search-outline"></span></button>
+			<button class="btn btn-icon" (click)="quickHandler()" [ngClass]="quickSearch?'active':''">
+				<span class="mdi mdi-feature-search-outline"></span>
+			</button>
 			<div class="toogle-layout">
 				<button class="btn btn-icon active">
 					<span class="mdi mdi-view-grid-outline"></span>
@@ -16,21 +18,27 @@
 		</div>
 		<div class="search-col">
 			<div class="row">
-				<div class="col-md-3 col-lg-3">
+				<div class="col-md-2 col-lg-2">
 					<select class="form-select">
 						<option value="Sort By">Sort By</option>
 					</select>
 				</div>
-				<div class="col-md-5 col-lg-5 search-sub-col">
+				<div class="col-md-4 col-lg-4 search-sub-col">
 					<input type="text" placeholder="Search Here..." class="form-control">
 				</div>
-				<div class="col-md-4 col-lg-4 button-col">
+				<div class="col-md-5 col-lg-6 button-col">
+					<button class="btn btn-with-icon">
+						<span class="mdi mdi-content-save-outline"></span>
+						Save Search
+					</button>
+					<button class="btn btn-with-icon">
+						<span class="mdi mdi-format-list-text"></span>
+						Search List
+					</button>
+					<button class="btn btn-icon">
+						<span class="mdi mdi-file-arrow-up-down-outline"></span>
+					</button>
 					<button class="btn btn-icon"><span class="mdi mdi-close-circle-outline"></span></button>
-					<select class="form-select">
-						
-						<option value="Saved Search">Saved Search</option>
-						<option value="View Search">View Search</option>
-					</select>
 				</div>
 			</div>
 		</div>
@@ -38,5 +46,13 @@
 </div>
 
 <ng-container *ngIf="advanceFilter">
-	<app-manage-advance-filter [advanceFilter]="advanceFilter" (filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
+	<app-manage-advance-filter [advanceFilter]="advanceFilter"
+		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
 </ng-container>
+
+<ng-container *ngIf="quickSearch">
+	<app-manage-quick-search [quickSearch]="quickSearch"
+	(quickHideHandler)="quickHideHandler()"></app-manage-quick-search>
+</ng-container>
+
+<app-manage-filter-search-result></app-manage-filter-search-result>

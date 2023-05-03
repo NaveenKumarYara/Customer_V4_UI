@@ -25,9 +25,13 @@
   }
 
   .button-col {
-    .btn-icon {
-      margin-right: 15px;
-    }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    padding-right: 0;
+    justify-content: flex-end;
+    
     .form-select {
       display: inline-block;
       width: 45%;
@@ -42,6 +46,7 @@
     color: $dark-gray;
     padding: 0;
     width: 48px;
+    box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
     height: 48px;
 
     &:hover, &.active {

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
+  quickSearch:boolean = false;
   constructor() { }
   ngOnInit(): void {
   }
@@ -17,5 +18,13 @@ export class ManageJobFiltersComponent implements OnInit {
 
   filterHideHandler() {
     this.advanceFilter = false;
+  }
+
+  quickHandler() {
+    this.quickSearch = !this.quickSearch;
+  }
+
+  quickHideHandler() {
+    this.quickSearch = false;
   }
 }

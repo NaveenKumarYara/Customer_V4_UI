@@ -8,6 +8,8 @@ import { ManageJobcardComponent } from './manage-jobcard/manage-jobcard.componen
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ManageAdvanceFilterComponent } from './manage-job-filters/manage-advance-filter/manage-advance-filter.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-search/manage-quick-search.component';
+import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
 
 @NgModule({
 	declarations: [
@@ -15,7 +17,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 		PaginationComponent,
 		ManageJobFiltersComponent,
 		ManageJobcardComponent,
-  	ManageAdvanceFilterComponent
+  	ManageAdvanceFilterComponent,
+   ManageQuickSearchComponent,
+   ManageFilterSearchResultComponent
 	],
 	imports: [
 	 CommonModule,
