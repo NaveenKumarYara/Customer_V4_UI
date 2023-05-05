@@ -14,6 +14,10 @@
   }
 }
 
+.btn-link {
+  @include btn-link();
+}
+
 .form-control {
   font-size: $font-size-15;
   color: $dark-gray;

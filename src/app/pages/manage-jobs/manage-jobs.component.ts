@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageJobsComponent implements OnInit {
   title = 'manage-jobs';
+  viewLayout = 'grid';
+  
+  layoutView(name:string){
+   this.viewLayout = name;
+  }   
 
   constructor() { }
 

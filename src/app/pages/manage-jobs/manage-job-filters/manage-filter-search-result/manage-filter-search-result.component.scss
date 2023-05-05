@@ -25,4 +25,31 @@
 		right: 20px;
 		top: 20px;
 	}
+
+	ul {
+		@include no-style();
+		@include inline-flex();
+		@include flex-wrap(wrap);
+		gap: 10px;
+		margin-left: 10px;
+
+		li {
+			background: $white;
+			border: 1px solid $stroke-gray;
+			border-radius: 4px;
+			position: relative;
+			color: $dark-gray;
+			font-size: $font-size-14;
+			padding: 4px 36px 4px 10px;
+			@include shadowTwo();
+			
+			.mdi {
+				font-size: $font-size-18;
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+	}
 }

@@ -10,6 +10,7 @@ import { ManageAdvanceFilterComponent } from './manage-job-filters/manage-advanc
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-search/manage-quick-search.component';
 import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
+import { ManageJobListComponent } from './manage-job-list/manage-job-list.component';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-f
 		ManageJobcardComponent,
   	ManageAdvanceFilterComponent,
    ManageQuickSearchComponent,
-   ManageFilterSearchResultComponent
+   ManageFilterSearchResultComponent,
+   ManageJobListComponent
 	],
 	imports: [
 	 CommonModule,

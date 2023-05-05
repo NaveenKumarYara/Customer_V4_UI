@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-manage-job-filters',
@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
+
+  @Input() viewLayout = ''; // decorate the property with @Input();
+  @Output() layoutView = new EventEmitter<string>();
+
   constructor() { }
   ngOnInit(): void {
   }
@@ -27,4 +31,9 @@ export class ManageJobFiltersComponent implements OnInit {
   quickHideHandler() {
     this.quickSearch = false;
   }
+
+  layoutSwitch(name: string){
+    this.layoutView.emit(name);
+  }
+  
 }

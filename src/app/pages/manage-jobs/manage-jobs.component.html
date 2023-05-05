@@ -1,28 +1,59 @@
 <app-header></app-header>
 <div id="main-content">
-  <app-manage-job-filters></app-manage-job-filters>
+  <app-manage-job-filters 
+    [viewLayout]="viewLayout" 
+    (layoutView)="layoutView($event)"
+  >
+  </app-manage-job-filters>
   <app-pagination [title]="title"></app-pagination>
-  <div class="manage-listing-grid">
-    <div class="row">
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-manage-jobcard></app-manage-jobcard>
+  <ng-container *ngIf="viewLayout == 'grid'">
+    <div class="manage-listing-grid">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
+        <div class="col-md-4 col-lg-4 job-card">
+          <app-manage-jobcard></app-manage-jobcard>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-container *ngIf="viewLayout == 'table'">
+    <div class="manage-listing-table">
+      <div class="table-row table-row-heading" style="display: none">
+        <div class="table-col name-col">
+          Name
+        </div>
+        <div class="table-col company-col">
+          Company Name
+        </div>
+        <div class="table-col email-col">
+          Email
+        </div>
+        <div class="table-col date-col">
+          Date
+        </div>
+        <div class="table-col location-col">
+          Current Location
+        </div>
+        <div class="table-col others-col">
+          Others
+        </div>
+      </div>
+      <app-manage-job-list></app-manage-job-list>
+    </div>
+  </ng-container>
 </div>
 <app-footer></app-footer>

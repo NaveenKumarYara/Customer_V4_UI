@@ -8,10 +8,10 @@
 				<span class="mdi mdi-feature-search-outline"></span>
 			</button>
 			<div class="toogle-layout">
-				<button class="btn btn-icon active">
+				<button class="btn btn-icon" [ngClass]="viewLayout=='grid'?'active':''" (click)="layoutSwitch('grid')">
 					<span class="mdi mdi-view-grid-outline"></span>
 				</button>
-				<button class="btn btn-icon">
+				<button class="btn btn-icon" [ngClass]="viewLayout=='table'?'active':''" (click)="layoutSwitch('table')">
 					<span class="mdi mdi-menu"></span>
 				</button>
 			</div>
