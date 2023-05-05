@@ -941,7 +941,11 @@ onFileSelected(event) {
   if (this.uploader.queue.length > 0) {
     for (let i = 0; i < this.uploader.queue.length; i++) {
       let file: File = this.uploader.queue[i]._file;
-       this.selectedFiles.push(file);
+      if(file.type != 'text/plain')
+      {
+        this.selectedFiles.push(file);
+      }
+   
     }
     if(this.uploader.queue.length > 1)
     {

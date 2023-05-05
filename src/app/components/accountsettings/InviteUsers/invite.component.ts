@@ -34,6 +34,7 @@ export class InviteUsersComponent implements OnInit,OnDestroy {
   Flag:boolean;
   Forgotform: any;
   ActiveFlag: any;
+  filterUser:number=0;
   customercontacts : CustomerContacts[]=[];
   constructor(private toastr:ToastsManager,private spinner: NgxSpinnerService,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
   { 
@@ -102,12 +103,13 @@ export class InviteUsersComponent implements OnInit,OnDestroy {
 
   GetUsers(val)
   {
+    this.filterUser = val;
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-    if(val == 1)
+    if(this.filterUser == 1)
     {
       this.customercontacts = res.filter(x=> x.IsActive === true );
     }
-    else if(val == 2)
+    else if(this.filterUser == 2)
     {
       this.customercontacts = res.filter(x=> x.IsActive === false );
     }
@@ -479,7 +481,7 @@ EditUser(contact)
  
       //debugger
       //this.customercontacts = res;
-      this.GetUsers(0);
+      this.GetUsers(this.filterUser);
   //});
   }
 

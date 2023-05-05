@@ -16,7 +16,7 @@
 			<ng-template #isactive>
 				<li id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
 			</ng-template>
-			<li><a (click)="OpenShareJobDialog(job.JobId,job.JobTitle)">Share</a></li>
+			<li *ngIf="job.JobStatus != 'Filled' && job.JobStatus != 'Freezed'  && job.IsActive == true "><a (click)="OpenShareJobDialog(job.JobId,job.JobTitle)">Share</a></li>
 			<!-- <li><a (click)="ViewJobdetailsModel(job?.JobId)">Viewjobdetail</a></li> -->
 		</ul>
 	</div>
