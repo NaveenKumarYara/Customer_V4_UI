@@ -434,6 +434,11 @@ else
     this.SendStatusEmail();
     if(this.isChecked == true)
     {
+      let val = $("#chipList").val();
+      if( this.emailList.length == 0)
+      {
+        this.add(val);
+      }
       this.SendEStatusEmail()
     }
    
@@ -694,7 +699,6 @@ SendEStatusEmail()
   this.stat.FullName = "Interviewer";
   this.stat.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
   this.stat.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
-  debugger
   this.appService.SendJobInterviewer(this.stat)
   .subscribe(
   status => {
