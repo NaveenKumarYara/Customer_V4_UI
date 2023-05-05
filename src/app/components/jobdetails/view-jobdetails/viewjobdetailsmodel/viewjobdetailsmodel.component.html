@@ -972,11 +972,12 @@
                         <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam?.length!=0">
                           <h5 *ngFor="let rt of jobdetailscustomer?.TechnicalTeam">
                             {{rt?.FirstName | titlecase}} {{rt?.LastName | titlecase}}
-                           
+                          
                             
                           </h5>
+                          
                           <span>
-                            {{CuserDetails.Email}}
+                            <i class="fa fa-envelope" aria-hidden="true"></i>{{CuserDetails[0]?.Email}}
                           </span>
                         </ng-container>
 
