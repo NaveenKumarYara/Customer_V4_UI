@@ -1246,13 +1246,20 @@ export class ViewCandidateprofileComponent implements OnInit {
         data2 => {
           if (data2 != null) {
             var exp;
+            var role;
             if (data2.ExperienceFit == null) {
               exp = 0;
             }
             else {
               exp = data2.ExperienceFit;
             }
-            this.Job.datasets[0].data = [exp, data2.RoleFit, data2.JobHopping, data2.Education];
+            if (data2.RoleFit == null) {
+              role = 0;
+            }
+            else {
+              role = data2.RoleFit;
+            }
+            this.Job.datasets[0].data = [exp, role, data2.JobHopping, data2.Education];
           }
           this.FitDetails = data2.JobFit;
 
