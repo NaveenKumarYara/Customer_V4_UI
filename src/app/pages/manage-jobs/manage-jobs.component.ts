@@ -8,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class ManageJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
+  rowShow = 0;
   
   layoutView(name:string){
    this.viewLayout = name;
-  }   
+  }
 
+  
   constructor() { }
 
   ngOnInit(): void {

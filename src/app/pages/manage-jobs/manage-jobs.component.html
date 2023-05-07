@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div id="main-content">
   <app-manage-job-filters 
-    [viewLayout]="viewLayout" 
-    (layoutView)="layoutView($event)"
+    [viewLayout] = "viewLayout" 
+    (layoutView) = "layoutView($event)"
   >
   </app-manage-job-filters>
   <app-pagination [title]="title"></app-pagination>
@@ -32,18 +32,21 @@
   </ng-container>
   <ng-container *ngIf="viewLayout == 'table'">
     <div class="manage-listing-table">
-      <div class="table-row table-row-heading" style="display: none">
+      <div class="table-row table-row-heading">
         <div class="table-col name-col">
-          Name
+          Job Title
         </div>
         <div class="table-col company-col">
           Company Name
         </div>
-        <div class="table-col email-col">
-          Email
+        <div class="table-col id-col">
+          Arytic ID
         </div>
-        <div class="table-col date-col">
-          Date
+        <div class="table-col owner-col">
+          Job Owner
+        </div>
+        <div class="table-col assign-col">
+          Job Assignee
         </div>
         <div class="table-col location-col">
           Current Location
@@ -52,7 +55,54 @@
           Others
         </div>
       </div>
-      <app-manage-job-list></app-manage-job-list>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "1"
+         >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "2"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "3"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "4"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "5"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "6"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "7"
+        >
+        </app-manage-job-list>
+      </div>
+      <div class="table-row">
+        <app-manage-job-list
+          [rowShow] = "8"
+        >
+        </app-manage-job-list>
+      </div>
     </div>
   </ng-container>
 </div>

@@ -61,7 +61,7 @@ body {
 	color: $dark-gray;
 	background-color: $white;
 	height: 48px;
-	padding: 6px 15px;
+	padding: 6px 14px;
 	display: flex;
 	align-items: center;
 	box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
@@ -179,16 +179,6 @@ body {
 	padding: 6px 16px;
 	color: $dark-gray;
 	border-color: $stroke-gray;
-}
-
-.col-container {
-  .middle-container {
-    .bottom-section {
-      svg {
-        width: 70px;
-      }
-    }
-  }
 }
 
 @media screen and (min-width:600px) and (max-width:800px){

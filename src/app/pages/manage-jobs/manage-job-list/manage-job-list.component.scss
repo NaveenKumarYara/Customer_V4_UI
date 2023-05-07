@@ -1,55 +1,40 @@
 @import '../../../../assets/partials/utils/variables';
 @import '../../../../assets/partials/utils/mixins';
-.table-row {
-	@include flex();
-	@include flex-wrap(wrap);
-	background-color: rgba(225, 247, 239, 0.3);
-	border-top: 1px solid $stroke-gray;
 
-	&:first-child {
-		border-top: 0;
-	}
+.table-col {
+	font-size: $font-size-14;
+	color: $dark-gray;
+	flex: 0 0 13.75%;
+	padding: 15px;
+	max-width: 13.75%;
 
-	&:nth-child(odd) {
-		background-color: $white;
-	}
-
-	.table-col {
-		font-size: $font-size-14;
+	a {
 		color: $dark-gray;
-		flex: 0 0 12.5%;
-		padding: 15px;
-		max-width: 12.5%;
+		text-decoration: none;
+	}
 
-		a {
-			color: $dark-gray;
-			text-decoration: none;
-		}
+	&.name-col {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
 
-		&.name-col,
-		&.email-col {
-			flex: 0 0 25%;
-			max-width: 25%;
-		}
+	&.company-col {
+		flex: 0 0 15%;
+		max-width: 15%;
+	}
 
-		&.company-col {
-			flex: 0 0 20%;
-			max-width: 20%;
-		}
+	&.others-col {
+		flex: 0 0 5%;
+		max-width: 5%;
+		text-align: right;
+	}
 
-		&.others-col {
-			flex: 0 0 5%;
-			max-width: 5%;
-			text-align: right;
-		}
-
-		&.bottom-col {
-			flex: 0 0 calc(100% - 20px);
-			max-width: calc(100% - 20px);
-			border-top: 1px solid $stroke-gray;
-			padding-top: 10px;
-			margin: 5px 10px;
-		}
+	&.bottom-col {
+		flex: 0 0 calc(100% - 20px);
+		max-width: calc(100% - 20px);
+		border-top: 1px solid $stroke-gray;
+		padding-top: 10px;
+		margin: 5px 10px;
 	}
 }
 
@@ -107,17 +92,12 @@
 	@include justify-content(flex-end);
 	gap: 10px;
 
-	.priority {
-		@include flex();
-		@include align-items(center);
-		font-size: 12px;
-		text-transform: uppercase;
-		font-weight: 600;
-		color: $darker-green;
-
-		.mdi {
-			font-size: $font-size-18;
-			color: $darker-green;
+	.navigation {
+		ul {
+			@include justify-content(flex-end);
+			@include no-style();
+			@include flex();
+			gap: 10px;
 		}
 	}
 

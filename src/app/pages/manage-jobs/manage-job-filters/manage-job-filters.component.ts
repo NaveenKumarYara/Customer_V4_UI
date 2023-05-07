@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
+  saveSearch = false;
 
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Output() layoutView = new EventEmitter<string>();
@@ -36,4 +37,7 @@ export class ManageJobFiltersComponent implements OnInit {
     this.layoutView.emit(name);
   }
   
+  saveClick() {
+    this.saveSearch = !this.saveSearch;
+  }
 }

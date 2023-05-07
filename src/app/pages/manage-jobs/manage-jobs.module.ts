@@ -33,7 +33,10 @@ import { ManageJobListComponent } from './manage-job-list/manage-job-list.compon
 		innerStrokeWidth: 8,
 		outerStrokeColor: "#78C000",
 		innerStrokeColor: "#C7E596",
-		animationDuration: 300
+		animationDuration: 300,
+		titleFontSize: '16',
+		space: -5
+		
 	  })
 	],
 	exports: [

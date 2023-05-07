@@ -26,8 +26,8 @@
 				<div class="col-md-4 col-lg-4 search-sub-col">
 					<input type="text" placeholder="Search Here..." class="form-control">
 				</div>
-				<div class="col-md-5 col-lg-6 button-col">
-					<button class="btn btn-with-icon">
+				<div class="col-md-6 col-lg-6 button-col">
+					<button class="btn btn-with-icon" (click)="saveClick()">
 						<span class="mdi mdi-content-save-outline"></span>
 						Save Search
 					</button>
@@ -35,8 +35,9 @@
 						<span class="mdi mdi-format-list-text"></span>
 						Search List
 					</button>
-					<button class="btn btn-icon">
+					<button class="btn btn-with-icon">
 						<span class="mdi mdi-file-arrow-up-down-outline"></span>
+						Export
 					</button>
 					<button class="btn btn-icon"><span class="mdi mdi-close-circle-outline"></span></button>
 				</div>
@@ -55,4 +56,6 @@
 	(quickHideHandler)="quickHideHandler()"></app-manage-quick-search>
 </ng-container>
 
-<app-manage-filter-search-result></app-manage-filter-search-result>
+<ng-container *ngIf="saveSearch">
+	<app-manage-filter-search-result></app-manage-filter-search-result>
+</ng-container>
