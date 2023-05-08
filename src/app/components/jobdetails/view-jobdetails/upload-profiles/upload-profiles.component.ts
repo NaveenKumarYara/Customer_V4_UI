@@ -167,8 +167,8 @@ Job = {
   source = new soInfo();
   itemsArray: IItem[] = [
     {id:0, itemName: 'Individual' },
-    {id:1,  itemName: '3rd-Party' },
-    {id:2, itemName: 'Agency' },
+    {id:1,  itemName: 'Vendor' },
+    {id:2, itemName: 'Referrals' },
     {id:3, itemName: 'BullHorn' },
     {id:4, itemName: 'Dice' },
     {id:5, itemName: 'Career Builder' },
@@ -177,7 +177,9 @@ Job = {
     {id:8, itemName: 'Facebook' },
     {id:9, itemName: 'Monster' },
     {id:10, itemName: 'Arytic Partners' },
-    {id:11, itemName: 'FreeLancers' }
+    {id:11, itemName: 'Arytic Recruiters' },
+    {id:12, itemName: 'Referrals' },
+    {id:13, itemName: 'Others' }
   ];
   matchingParameterDetails = new MatchingParameterDetails();
   matchingParameterData = new MatchingParameterDetails();
