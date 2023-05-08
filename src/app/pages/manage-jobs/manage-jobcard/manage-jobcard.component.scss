@@ -1,5 +1,5 @@
 @import './../../../../assets/partials/utils/variables';
-
+@import './../../../../assets/partials/utils/mixins';
 
 .sticky-navigation {
   position: absolute;
@@ -148,19 +148,36 @@
 
   .middle-container {
     .top-section {
-      padding:20px 30px 20px 96px;
+      padding:15px 30px 15px 96px;
+      @include flex();
+      @include align-items(center);
+      gap: 10px;
 
       h3 {
         font-size: $font-size-16;
         color: $dark-gray;
+        margin: 0;
       }
 
+      .id {
+        background-color: $light-green;
+        color: $dark-green;
+        font-size: 10px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        display: inline-block;
+        text-transform: uppercase;
+      }
+    }
+
+    .top-bottom-section {
+      padding: 0 20px 15px;
       ul {
         margin: 0;
         padding: 0;
         list-style: none;
         display: flex;
-        gap: 5px;
+        gap: 10px;
 
         li {
           font-size: 11px;
@@ -178,23 +195,6 @@
           &:not(:first-child) {
             border-left: 1px solid $stroke-gray;
             padding-left: 5px;
-          }
-
-          @media only screen and (max-width: 1440px) {
-            &:first-child {
-              flex: 0 0 100%;
-              max-width: 100%;
-            }
-
-            &:not(:first-child) {
-              border-left: 0;
-              padding-left: 0;
-            }
-
-            &:last-child {
-              border-left: 1px solid $stroke-gray;
-              padding-left: 5px;
-            }
           }
         }
 
@@ -228,12 +228,12 @@
         display: flex;
         align-items: flex-start;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
 
         li {
           text-align: center;
           border-left: 1px solid $stroke-gray;
-          padding-left: 15px;
+          padding-left: 20px;
 
           &:first-child {
             padding-left: 0;

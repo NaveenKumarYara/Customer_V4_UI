@@ -33,8 +33,23 @@
 		flex: 0 0 calc(100% - 20px);
 		max-width: calc(100% - 20px);
 		border-top: 1px solid $stroke-gray;
-		padding-top: 10px;
+		padding: 10px 0;
 		margin: 5px 10px;
+		position: relative; 
+
+		.id {
+			background-color: $white;
+			color: $dark-green;
+			font-size: 10px;
+			padding: 2px 4px;
+			border-radius: 4px;
+			display: inline-block;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			top: -10px;
+			text-transform: uppercase;
+		}
 	}
 }
 
@@ -86,18 +101,51 @@
 	margin-left: auto;
 }
 
+.left-col {
+	@include flex();
+	@include align-items(center);
+	gap: 10px;
+}
+
 .right-col {
 	@include flex();
 	@include align-items(center);
 	@include justify-content(flex-end);
 	gap: 10px;
 
+	.date {
+		margin-right: 15px;
+		font-weight: 600
+	}
+
 	.navigation {
 		ul {
+			border: 1px solid $stroke-gray;
+			border-radius: 4px;
 			@include justify-content(flex-end);
 			@include no-style();
 			@include flex();
-			gap: 10px;
+			overflow: hidden;
+			background-color: $white;
+
+			li {
+				a {
+					@include flex();
+					@include align-items(center);
+					@include justify-content(center);
+					width: 36px;
+					height: 36px;
+				
+					&:hover {
+						background-color: $blue;
+						color: $white;
+					}
+				}
+
+				&:not(:first-child) {
+					border-left: 1px solid $stroke-gray;
+				}
+			}
 		}
 	}
 
@@ -144,5 +192,11 @@
 .btn {
 	&.btn-icon-xs {
 		padding: 0;
+	}
+}
+
+.collapse {
+	&.show {
+		display: block;
 	}
 }

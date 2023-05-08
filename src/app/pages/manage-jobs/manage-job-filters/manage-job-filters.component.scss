@@ -21,7 +21,11 @@
         padding-left: 40px;
       }
     }
+  }
 
+  .form-col {
+    flex:0 0 calc(100% - 534px);
+    max-width: calc(100% - 534px);
   }
 
   .button-col {
@@ -31,12 +35,14 @@
     margin-left: auto;
     padding-right: 0;
     justify-content: flex-end;
+    flex: 0 0 534px;
+    max-width: 534px;
     
     .form-select {
       display: inline-block;
       width: 45%;
       vertical-align: middle;
-    }  
+    } 
   }
 
   .btn-icon {

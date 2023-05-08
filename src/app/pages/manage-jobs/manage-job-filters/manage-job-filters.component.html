@@ -18,13 +18,17 @@
 		</div>
 		<div class="search-col">
 			<div class="row">
-				<div class="col-md-2 col-lg-2">
-					<select class="form-select">
-						<option value="Sort By">Sort By</option>
-					</select>
-				</div>
-				<div class="col-md-4 col-lg-4 search-sub-col">
-					<input type="text" placeholder="Search Here..." class="form-control">
+				<div class="col-sm-12 form-col">
+					<div class="row">
+						<div class="col-md-4 col-lg-4">
+							<select class="form-select">
+								<option value="Sort By">Sort By</option>
+							</select>
+						</div>
+						<div class="col-md-8 col-lg-8 search-sub-col">
+							<input type="text" placeholder="Search Here..." class="form-control">
+						</div>
+					</div>
 				</div>
 				<div class="col-md-6 col-lg-6 button-col">
 					<button class="btn btn-with-icon" (click)="saveClick()">
@@ -39,7 +43,10 @@
 						<span class="mdi mdi-file-arrow-up-down-outline"></span>
 						Export
 					</button>
-					<button class="btn btn-icon"><span class="mdi mdi-close-circle-outline"></span></button>
+					<button class="btn btn-with-icon">
+						<span class="mdi mdi-close-circle-outline"></span>
+						Clear
+					</button>
 				</div>
 			</div>
 		</div>

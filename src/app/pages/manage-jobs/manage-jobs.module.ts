@@ -11,22 +11,25 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-search/manage-quick-search.component';
 import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
 import { ManageJobListComponent } from './manage-job-list/manage-job-list.component';
+import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component';
 
 @NgModule({
 	declarations: [
-		ManageJobsComponent,
-		PaginationComponent,
-		ManageJobFiltersComponent,
-		ManageJobcardComponent,
-  	ManageAdvanceFilterComponent,
-   ManageQuickSearchComponent,
-   ManageFilterSearchResultComponent,
-   ManageJobListComponent
+	ManageJobsComponent,
+	PaginationComponent,
+	ManageJobFiltersComponent,
+	ManageJobcardComponent,
+	SlidepanelComponent,
+	ManageAdvanceFilterComponent,
+	ManageQuickSearchComponent,
+	ManageFilterSearchResultComponent,
+
 	],
 	imports: [
 	 CommonModule,
 	 SharedModule,
 	 NgxSliderModule,
+	 ManageJobListComponent,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

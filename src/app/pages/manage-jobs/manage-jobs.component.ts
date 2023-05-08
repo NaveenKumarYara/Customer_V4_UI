@@ -14,7 +14,6 @@ export class ManageJobsComponent implements OnInit {
    this.viewLayout = name;
   }
 
-  
   constructor() { }
 
   ngOnInit(): void {
