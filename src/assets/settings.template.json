@@ -1,0 +1,4 @@
+{
+    "EmployerjobsUrl": "${Employerjobs_URL}",
+    "IdentitybaseUrl": "${Identity_URL}"
+}

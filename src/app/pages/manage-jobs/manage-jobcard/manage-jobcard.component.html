@@ -1,37 +1,37 @@
 <div class="sticky-navigation">
 	<ul>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-view-dashboard-edit-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-list-status"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-share-variant-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-file-arrow-up-down-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-note-multiple-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-folder-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="javascript:void(0)">
 				<span class="mdi mdi-trash-can-outline"></span>
 			</a>
 		</li>
@@ -40,33 +40,37 @@
 <div class="col-container">
 	<div class="top-container">
 		<span class="status active">Active</span>
-		<span class="priority"><span class="mdi mdi-arrow-down-thick"></span>Low</span>
+		<span class="priority">{{job?.JobPriority}}</span>
 		<div class="profile-info">
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-company-small.jpg" alt="">
 			</div>
-			<h3>Salesforce Developer</h3>
+			<h3>{{job?.JobTitle}}</h3>
 			<h4>
 				<span class="mdi mdi-briefcase-outline"></span>
-				Exp Req <strong>8 Years</strong>
+				Exp Req - <strong>{{job?.MaxExperience}} Years</strong>
 			</h4>
 		</div>
 	</div>
 	<div class="middle-container">
 		<div class="top-section">
-			<h3>Google</h3>
-			<span class="id"><strong>Job Ref</strong>: 1003757</span>
+			<h3 *ngIf="job?.ClientName != null"> {{job?.ClientName}} </h3>
+			<span class="id" *ngIf="job?.JobPositionId !=''"> <strong># Job Ref</strong>: {{job?.JobPositionId}} </span>
 		</div>
 		<div class="top-bottom-section">
 			<ul>
-				<li><span class="highlight">Arytic ID: 1003757</span></li>
+				<li><span class="highlight">Arytic ID: {{job?.JobId}}</span></li>
 				<li>
 					<span class="mdi mdi-map-marker-outline"></span>
-					Austin
+					<ng-container *ngFor="let location of job?.JobLocations.split('|');let j = index">
+						
+						<span *ngIf="j<1">
+							{{location}} 
+						</span></ng-container>
 				</li>
 				<li>
 					<span class="mdi mdi-calendar-blank-outline"></span>
-					Mar 14, 2023
+					{{job?.PostedDate | date:'mediumDate'}}
 				</li>
 			</ul>
 		</div>
@@ -74,53 +78,53 @@
 			<div class="row">
 				<div class="col-md-3 col-lg-3 col">
 					<div class="col-box">
-						<h4>5</h4>
+						<h4>{{job?.TotalApplicants}}</h4>
 						<h6>Applicants</h6>
 					</div>
 				</div>
 				<div class="col-md-3 col-lg-3 col">
 					<div class="col-box">
-						<h4>2</h4>
+						<h4>{{job?.ShortListedCount}}</h4>
+						<h6>Shortlisted</h6>
+					</div>
+				</div>
+				<div class="col-md-3 col-lg-3 col">
+					<div class="col-box">
+						<h4>{{job?.InterviewedCount}}</h4>
 						<h6>Interviews</h6>
 					</div>
 				</div>
 				<div class="col-md-3 col-lg-3 col">
 					<div class="col-box">
-						<h4>1</h4>
+						<h4>{{job?.Hired}}</h4>
 						<h6>Hired</h6>
 					</div>
 				</div>
-				<div class="col-md-3 col-lg-3 col">
-					<div class="col-box">
-						<h4>4</h4>
-						<h6>Shortlisted</h6>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 		<div class="bottom-section">
 			<ul>
 				<li>
 					<img src="../../../../assets/images/curve-icon-work.svg" alt="">
-					<h4>Full TIme</h4>
+					<h4>{{job?.EmploymentType}}</h4>
 				</li>
 				<li>
 					<img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
 					<h4>
-						$1000K
+						${{job?.MaximumSalary}} {{job?.SalaryType}}
 					</h4>
 				</li>
 				<li>
 					<div class="progress-circle">
 						<circle-progress
-						[percent]="85"
+						[percent]="job?.JobCompleteness"
 						[radius]="20"
 						[outerStrokeWidth]="4"
 						[innerStrokeWidth]="2"
 						[outerStrokeColor]="'#6262FF'"
 						[innerStrokeColor]="'#C0C0C0'"
-						[animation]="true"
-						[animationDuration]="300"
+						[animationDuration]="0"
 						[responsive] = true
 						[showSubtitle] = false
 						></circle-progress>
@@ -136,16 +140,16 @@
 				<div class="profile-section">
 					<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 					<div class="profile-summary">
-						<h4>Kim Karnika</h4>
-						<h5>Owner</h5>
+						<h4>{{job?.FirstName | titlecase}} {{job?.LastName | titlecase}}</h4>
+						<h5>{{job?.UserRole}}</h5>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-6 right-col">
+			<div class="col-md-6 col-lg-6 right-col" *ngIf="job?.Assignee!=null">
 				<div class="profile-section">
 					<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 					<div class="profile-summary">
-						<h4>Pine Ram</h4>
+						<h4>{{job?.Assignee | titlecase}}</h4>
 						<h5>Assignee</h5>
 					</div>
 				</div>

@@ -12,6 +12,7 @@ export class ManageJobListComponent implements OnInit {
   @Input() rowShow = 0; // decorate the property with @Input();
   public showRow: number = 0;
   expanded = new Set<number>();
+  @Input() ljob: any;
   @Input() collapsing = true;
   public isCollapsed = false;
   
