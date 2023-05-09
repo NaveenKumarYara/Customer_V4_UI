@@ -12,7 +12,10 @@ export class ManageJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
   rowShow = 0;
+  p:number = 1;
   Jobs:any=[];
+  start:number=1;
+  last:any;
   layoutView(name:string){
    this.viewLayout = name;
   }
@@ -22,6 +25,21 @@ export class ManageJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetCustomerJobs(10402,0);
+  }
+
+  listCount(count:any) {
+    this.start = count;
+    
+    this.start = this.start * 6 - 6;
+    if(this.start == 0)
+    {
+      this.start = 1;
+    }
+    this.last = count * 6;
+    if (this.last > this.Jobs.length) {
+      this.last = this.Jobs.length;
+    }
+    //console.log('start'+ '      '+this.start + '      '+'last' + '      '+ this.last);
   }
 
   GetCustomerJobs(CustomerId:number,UserId:number)

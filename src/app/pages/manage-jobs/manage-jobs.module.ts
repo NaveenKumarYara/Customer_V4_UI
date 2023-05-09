@@ -15,6 +15,7 @@ import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component
 import { ManageJobRoutingModule } from './manage-jobs-routing';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
 import { SettingsService } from 'src/settings/settings.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,7 @@ import { SettingsService } from 'src/settings/settings.service';
 	SlidepanelComponent,
 	ManageAdvanceFilterComponent,
 	ManageQuickSearchComponent,
-	ManageFilterSearchResultComponent,
+	ManageFilterSearchResultComponent
 
 	],
 	imports: [
@@ -44,7 +45,8 @@ import { SettingsService } from 'src/settings/settings.service';
 		titleFontSize: '16',
 		space: -5
 		
-	  })
+	  }),
+	  NgxPaginationModule
 	],
 	providers:[SettingsHttpService,SettingsService],
 	exports: [

@@ -88,3 +88,59 @@
 	border: 1px solid $stroke-gray;
 	border-radius: 8px;
 }
+
+
+
+.result {
+	font-size: $font-size-15;
+	color: $dark-gray;
+}
+
+.sorting {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	color: $dark-gray;
+	gap: 10px;
+	font-size: $font-size-15;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		gap: 10px;
+		align-items: center;	
+	}
+
+	.form-control {
+		width: 48px;
+		height: 48px;
+		text-align: center;
+	}
+
+	.btn {
+		&.btn-previous,
+		&.btn-next {
+			width: 48px;
+			height: 48px;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			background-color: $white;
+			color: $dark-gray;
+			justify-content: center;
+			border-color: $stroke-gray;
+			border-radius: 6px;
+
+			&:hover {
+				background-color: $blue;
+				border-color: $blue;
+
+				.mdi {
+					color: $white;
+				}
+			}
+		}
+	}
+}
