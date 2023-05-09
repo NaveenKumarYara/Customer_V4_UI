@@ -9,23 +9,8 @@
   <ng-container *ngIf="viewLayout == 'grid'">
     <div class="manage-listing-grid">
       <div class="row">
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
-        </div>
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
-        </div>
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
-        </div>
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
-        </div>
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
-        </div>
-        <div class="col-md-4 col-lg-4 job-card">
-          <app-manage-jobcard></app-manage-jobcard>
+        <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs; let i=index">
+          <app-manage-jobcard [job]="job"></app-manage-jobcard>
         </div>
       </div>
     </div>
@@ -37,7 +22,7 @@
           Job Title
         </div>
         <div class="table-col company-col">
-          Company Name
+          Client Name
         </div>
         <div class="table-col id-col">
           Arytic ID
@@ -55,36 +40,12 @@
           Others
         </div>
       </div>
-      <div class="table-row">
-        <app-manage-job-list
+      <div class="table-row" *ngFor="let ljob of Jobs; let i=index">
+        <app-manage-job-list [ljob]="ljob"
          >
         </app-manage-job-list>
       </div>
-      <div class="table-row">
-        <app-manage-job-list
-        >
-        </app-manage-job-list>
-      </div>
-      <div class="table-row">
-        <app-manage-job-list
-        >
-        </app-manage-job-list>
-      </div>
-      <div class="table-row">
-        <app-manage-job-list
-         >
-        </app-manage-job-list>
-      </div>
-      <div class="table-row">
-        <app-manage-job-list
-        >
-        </app-manage-job-list>
-      </div>
-      <div class="table-row">
-        <app-manage-job-list
-        >
-        </app-manage-job-list>
-      </div>
+    
     </div>
   </ng-container>
 </div>

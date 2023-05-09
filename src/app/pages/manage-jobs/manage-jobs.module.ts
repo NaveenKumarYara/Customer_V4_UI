@@ -12,6 +12,9 @@ import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-se
 import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
 import { ManageJobListComponent } from './manage-job-list/manage-job-list.component';
 import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component';
+import { ManageJobRoutingModule } from './manage-jobs-routing';
+import { SettingsHttpService } from 'src/settings/settings.http.service';
+import { SettingsService } from 'src/settings/settings.service';
 
 @NgModule({
 	declarations: [
@@ -30,6 +33,7 @@ import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component
 	 SharedModule,
 	 NgxSliderModule,
 	 ManageJobListComponent,
+	 ManageJobRoutingModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
@@ -42,6 +46,7 @@ import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component
 		
 	  })
 	],
+	providers:[SettingsHttpService,SettingsService],
 	exports: [
     ManageJobsComponent
 	]

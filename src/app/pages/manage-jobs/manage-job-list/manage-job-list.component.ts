@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -5,13 +6,14 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-manage-job-list',
   templateUrl: './manage-job-list.component.html',
   standalone: true,
-  imports: [NgbCollapseModule],
+  imports: [NgbCollapseModule,CommonModule],
   styleUrls: ['./manage-job-list.component.scss']
 })
 export class ManageJobListComponent implements OnInit {
   @Input() rowShow = 0; // decorate the property with @Input();
   public showRow: number = 0;
   expanded = new Set<number>();
+  @Input() ljob: any;
   @Input() collapsing = true;
   public isCollapsed = false;
   

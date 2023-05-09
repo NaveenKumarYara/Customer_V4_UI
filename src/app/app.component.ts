@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class AppComponent {
-  title = 'arytic-app';
+  title = 'Customer-app';
   menuOpen: boolean = false;
   public url: any;
   

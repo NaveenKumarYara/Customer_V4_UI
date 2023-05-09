@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
-import { ManageJobModule } from './pages/manage-jobs/manage-jobs.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -18,8 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     SharedModule,
     DashboardModule,
-    NgbModule,
-    ManageJobModule
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

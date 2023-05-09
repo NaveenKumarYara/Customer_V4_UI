@@ -1,24 +1,29 @@
 <div class="table-col name-col">
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-company-small.jpg" alt="">
-		<h4>Salesforce Developer</h4>
-		<span class="status">Active</span>
+		<h4>{{ljob?.JobTitle}}</h4>
+		<span class="status">{{ljob?.JobStatus}}</span>
 	</div>
 </div>
 <div class="table-col company-col">
-	Google
+	{{ljob?.ClientName != null ? ljob?.ClientName : '' }}
 </div>
 <div class="table-col id-col">
-	1003757
+	# {{ljob?.JobId}}
 </div>
 <div class="table-col owner-col">
-	Kim Karnika
+	{{ljob?.FirstName | titlecase}} {{ljob?.LastName | titlecase}}
 </div>
 <div class="table-col assign-col">
-	Pine Ram
+	{{ljob?.Assignee | titlecase}}
 </div>
 <div class="table-col location-col">
-	Austin, Texas
+	<ng-container *ngFor="let location of ljob?.JobLocations.split('|');let lj = index">
+						
+		<span *ngIf="lj<1">
+			{{location}} 
+		</span>
+	</ng-container>
 </div>
 <div class="table-col others-col">
 	<button class="btn btn-arrow" 
@@ -32,65 +37,65 @@
 
 <div class="table-col bottom-col"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
 	<div class="d-flex">
-		<span class="id"><strong>Job Ref</strong>: 1003757</span>
+		<span class="id" *ngIf="ljob?.JobPositionId !=''"><strong>#Job Ref</strong>: {{ljob?.JobPositionId}}</span>
 		<div class="left-col">
 			<div class="statstics">
 				<ul>
 					<li>
-						<h4>5</h4>
+						<h4>{{ljob?.TotalApplicants}}</h4>
 						<h5>Applicants</h5>
 					</li>
 					<li>
-						<h4>4</h4>
+						<h4>{{ljob?.ShortListedCount}}</h4>
 						<h5>Shortlisted</h5>
 					</li>
 					<li>
-						<h4>1</h4>
+						<h4>{{ljob?.InterviewedCount}}</h4>
 						<h5>Interviews</h5>
 					</li>
 					<li>
-						<h4>2</h4>
+						<h4>{{ljob?.Hired}}</h4>
 						<h5>Hired</h5>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="right-col ml-auto">
-			<div class="date"><span>Posted Date: </span>07-05-2023</div>
+			<div class="date"><span>Posted Date: </span>{{ljob?.PostedDate | date:'mediumDate'}}</div>
 			<div class="navigation">
 				<ul>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-view-dashboard-edit-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-list-status"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-share-variant-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-file-arrow-up-down-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-note-multiple-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-folder-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:void(0)">
 							<span class="mdi mdi-trash-can-outline"></span>
 						</a>
 					</li>

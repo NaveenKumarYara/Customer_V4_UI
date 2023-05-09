@@ -9,9 +9,11 @@ const routes: Routes = [
     path:'',
     loadChildren: ()=> import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
+
   {
     path:'login',
     redirectTo:'/'
+    , pathMatch: 'full' 
   },
   {
     path:'register',
@@ -22,13 +24,14 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path:'manage-jobs',
-    component: ManageJobsComponent
+    path: 'manage-jobs',
+    loadChildren: () =>
+      import(`./pages/manage-jobs/manage-jobs.module`).then((m) => m.ManageJobModule),
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
