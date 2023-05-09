@@ -14,7 +14,7 @@ export class ManageJobsComponent implements OnInit {
   rowShow = 0;
   p:number = 1;
   Jobs:any=[];
-  start:any;
+  start:any=1;
   last:any;
   layoutView(name:string){
    this.viewLayout = name;
