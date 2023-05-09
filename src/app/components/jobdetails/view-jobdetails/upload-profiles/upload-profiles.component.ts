@@ -165,6 +165,7 @@ Job = {
   showMenu: boolean;
   selectedDItem = null;
   source = new soInfo();
+  
   itemsArray: IItem[] = [
     {id:0, itemName: 'Individual' },
     {id:1,  itemName: 'Vendor' },
