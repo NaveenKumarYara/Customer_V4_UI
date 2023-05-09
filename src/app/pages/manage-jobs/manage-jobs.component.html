@@ -11,7 +11,7 @@
       Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
     </div>
     <div class="sorting">
-  <pagination-controls     (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
+  <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
   nextLabel=""></pagination-controls>
 </div>
 </div>
@@ -19,7 +19,12 @@
     <div class="manage-listing-grid">
       <div class="row">
         <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs  | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
-          <app-manage-jobcard [job]="job"></app-manage-jobcard>
+          <app-manage-jobcard 
+            [job]="job" 
+            [panelShow]="panelShow"
+            (panelHandler)="panelHandler($event)"
+          >
+          </app-manage-jobcard>
         </div>
       </div>
     </div>
@@ -50,7 +55,10 @@
         </div>
       </div>
       <div class="table-row" *ngFor="let ljob of Jobs | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
-        <app-manage-job-list [ljob]="ljob"
+        <app-manage-job-list 
+          [ljob]="ljob"
+          [panelShow]="panelShow"
+          (panelHandler)="panelHandler($event)"
          >
         </app-manage-job-list>
       </div>
@@ -60,4 +68,48 @@
   
 </div>
 
+{{ panelShow}}
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='view-edit-job'?'show':''"
+  [panelTitle]="'View/Edit Job'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='job-status'?'show':''"
+  [panelTitle]="'Job Status'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='job-share'?'show':''"
+  [panelTitle]="'Job Share'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='upload-resume'?'show':''"
+  [panelTitle]="'Upload Resume'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='notes'?'show':''"
+  [panelTitle]="'Notes'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='documents'?'show':''"
+  [panelTitle]="'Documents'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
 <app-footer></app-footer>

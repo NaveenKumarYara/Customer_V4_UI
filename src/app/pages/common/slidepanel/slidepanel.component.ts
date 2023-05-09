@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-slidepanel',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slidepanel.component.scss']
 })
 export class SlidepanelComponent implements OnInit {
+  @Input() panelTitle = '';
+  @Input() panelShow = '';
+
+  @Output() panelCloseHandler = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  closePanel() {
+    this.panelCloseHandler.emit();
+  }
 }

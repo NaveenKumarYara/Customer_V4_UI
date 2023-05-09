@@ -16,10 +16,20 @@ export class ManageJobsComponent implements OnInit {
   Jobs:any=[];
   start:number=1;
   last:any;
+  panelTitle:any = '';
+  panelShow: any = '';
+
   layoutView(name:string){
    this.viewLayout = name;
   }
 
+  panelHandler(name: string) {
+    this.panelShow = name;
+  }
+
+  panelCloseHandler() {
+    this.panelShow = '';
+  }
  
   constructor(private _service : ApiService) { }
 
@@ -49,7 +59,7 @@ export class ManageJobsComponent implements OnInit {
 		params = params.append("UserId", UserId);
     this._service.GetEmployerService("/api/GetCustomerJobs?", params).subscribe((response) => { 
 
- 
+      console.log(response);
 			this.Jobs = response;
       this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
 		});

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,7 +16,9 @@ export class ManageJobListComponent implements OnInit {
   @Input() ljob: any;
   @Input() collapsing = true;
   public isCollapsed = false;
-  
+  @Input() panelShow: any = '';
+  @Output() panelHandler = new EventEmitter<string>(); 
+
   constructor() {
     this.showRow = 0;
   }
@@ -45,5 +47,9 @@ export class ManageJobListComponent implements OnInit {
     } else {
       this.showRow = 0;
     }
+  }
+
+  panelClick(name: string) {
+    this.panelHandler.emit(name);
   }
 }

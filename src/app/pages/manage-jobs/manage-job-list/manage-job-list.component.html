@@ -2,11 +2,31 @@
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-company-small.jpg" alt="">
 		<h4>{{ljob?.JobTitle}}</h4>
-		<span class="status">{{ljob?.JobStatus}}</span>
+		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
+			<span class="status screening">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Hired'">
+			<span class="status hired">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Interviewing'">
+			<span class="status interviewing">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Filled'">
+			<span class="status filled">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'InActive'">
+			<span class="status inactive">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
+			<span class="status shortlisting">{{ljob?.JobStatus}}</span>
+		</ng-container>
 	</div>
 </div>
 <div class="table-col company-col">
-	{{ljob?.ClientName != null ? ljob?.ClientName : '' }}
+	{{ljob?.ClientName != null ? ljob?.ClientName : '-' }}
 </div>
 <div class="table-col id-col">
 	# {{ljob?.JobId}}
@@ -15,7 +35,12 @@
 	{{ljob?.FirstName | titlecase}} {{ljob?.LastName | titlecase}}
 </div>
 <div class="table-col assign-col">
-	{{ljob?.Assignee | titlecase}}
+	<ng-container *ngIf="ljob?.Assignee">
+		{{ljob?.Assignee | titlecase}}
+	</ng-container>
+	<ng-container *ngIf="!ljob?.Assignee">
+		-
+	</ng-container>
 </div>
 <div class="table-col location-col">
 	<ng-container *ngFor="let location of ljob?.JobLocations.split('|');let lj = index">
@@ -65,32 +90,32 @@
 			<div class="navigation">
 				<ul>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('view-edit-job')">
 							<span class="mdi mdi-view-dashboard-edit-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('job-status')">
 							<span class="mdi mdi-list-status"></span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('job-share')">
 							<span class="mdi mdi-share-variant-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('upload-resume')">
 							<span class="mdi mdi-file-arrow-up-down-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('notes')">
 							<span class="mdi mdi-note-multiple-outline"></span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" (click)="panelClick('documents')">
 							<span class="mdi mdi-folder-outline"></span>
 						</a>
 					</li>

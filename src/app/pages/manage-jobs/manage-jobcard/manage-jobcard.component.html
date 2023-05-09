@@ -1,32 +1,34 @@
+
+
 <div class="sticky-navigation">
 	<ul>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('view-edit-job')">
 				<span class="mdi mdi-view-dashboard-edit-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('job-status')">
 				<span class="mdi mdi-list-status"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('job-share')">
 				<span class="mdi mdi-share-variant-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('upload-resume')">
 				<span class="mdi mdi-file-arrow-up-down-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('notes')">
 				<span class="mdi mdi-note-multiple-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" (click)="panelClick('documents')">
 				<span class="mdi mdi-folder-outline"></span>
 			</a>
 		</li>
@@ -39,8 +41,47 @@
 </div>
 <div class="col-container">
 	<div class="top-container">
-		<span class="status active">{{job?.JobStatus}}</span>
-		<span class="priority">{{job?.JobPriority}}</span>
+		<ng-container *ngIf="job?.JobStatus == 'Active'">
+			<span class="status active">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'Screening'">
+			<span class="status screening">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'Hired'">
+			<span class="status hired">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'Interviewing'">
+			<span class="status interviewing">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'Filled'">
+			<span class="status filled">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'InActive'">
+			<span class="status inactive">{{job?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobStatus == 'ShortListing'">
+			<span class="status shortlisting">{{job?.JobStatus}}</span>
+		</ng-container>
+
+		<ng-container *ngIf="job?.JobPriority == 'Low'">
+			<span class="priority">
+				<span class="mdi mdi-arrow-down-thick"></span>
+				{{job?.JobPriority}}
+			</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobPriority == 'Medium'">
+			<span class="priority medium">
+				<span class="mdi mdi-arrow-left-right-bold"></span>
+				{{job?.JobPriority}}
+			</span>
+		</ng-container>
+		<ng-container *ngIf="job?.JobPriority == 'High'">
+			<span class="priority high">
+				<span class="mdi mdi-arrow-up-thick"></span>
+				{{job?.JobPriority}}
+			</span>
+		</ng-container>
+		
 		<div class="profile-info">
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-company-small.jpg" alt="">
@@ -62,11 +103,13 @@
 				<li><span class="highlight">Arytic ID: {{job?.JobId}}</span></li>
 				<li>
 					<span class="mdi mdi-map-marker-outline"></span>
-					<ng-container *ngFor="let location of job?.JobLocations.split('|');let j = index">
-						
-						<span *ngIf="j<1">
-							{{location}} 
-						</span></ng-container>
+					<span placement="top" ngbTooltip="{{job?.JobLocations.split('|')}}">
+						<ng-container *ngFor="let location of job?.JobLocations.split('|');let j = index">	
+							<span *ngIf="j<1" class="location-trim">
+								{{location}}
+							</span>
+						</ng-container>
+					</span>
 				</li>
 				<li>
 					<span class="mdi mdi-calendar-blank-outline"></span>
