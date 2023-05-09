@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class ManageJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
+  filterTerm: string='';
   rowShow = 0;
   p:number = 1;
   Jobs:any=[];

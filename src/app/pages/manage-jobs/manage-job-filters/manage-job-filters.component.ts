@@ -9,13 +9,15 @@ export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
   saveSearch = false;
-
+  @Input() filterTerm: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Output() layoutView = new EventEmitter<string>();
 
   constructor() { }
   ngOnInit(): void {
   }
+
+
 
   filterHandler() {
     this.advanceFilter = !this.advanceFilter;

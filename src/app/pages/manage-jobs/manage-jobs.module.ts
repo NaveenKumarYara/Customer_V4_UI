@@ -16,7 +16,7 @@ import { ManageJobRoutingModule } from './manage-jobs-routing';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
 import { SettingsService } from 'src/settings/settings.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -35,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 	 NgxSliderModule,
 	 ManageJobListComponent,
 	 ManageJobRoutingModule,
+	 Ng2SearchPipeModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
