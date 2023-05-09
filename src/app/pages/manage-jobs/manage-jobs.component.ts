@@ -14,7 +14,7 @@ export class ManageJobsComponent implements OnInit {
   rowShow = 0;
   p:number = 1;
   Jobs:any=[];
-  start:any=1;
+  start:number=1;
   last:any;
   layoutView(name:string){
    this.viewLayout = name;
@@ -28,9 +28,14 @@ export class ManageJobsComponent implements OnInit {
   }
 
   listCount(count:any) {
-    this.start = count
-    this.start = this.start * 6 - 6
-    this.last = count * 6
+    this.start = count;
+    
+    this.start = this.start * 6 - 6;
+    if(this.start == 0)
+    {
+      this.start = 1;
+    }
+    this.last = count * 6;
     if (this.last > this.Jobs.length) {
       this.last = this.Jobs.length;
     }
