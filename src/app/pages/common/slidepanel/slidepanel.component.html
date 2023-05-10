@@ -1,1 +1,9 @@
-<p>slidepanel works!</p>
+<div class="slide-overlay" (click)="closePanel();"></div>
+<div class="slide-dialog">
+  <div class="slide-heding d-flex align-items-center">
+    <h3>{{ panelTitle}}</h3>
+    <button class="btn slide-close ml-auto" (click)="closePanel();">
+      <span class="mdi mdi-close"></span>
+    </button>
+  </div>
+</div>

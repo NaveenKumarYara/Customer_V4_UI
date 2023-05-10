@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="main-content">
-  <app-manage-job-filters 
+  <app-manage-job-filters  (newItemEvent)="addItem($event)"
     [viewLayout] = "viewLayout" 
     (layoutView) = "layoutView($event)"
   >
@@ -68,46 +68,46 @@
   
 </div>
 
-{{ panelShow}}
+ <!--{{ panelShow}} -->
 
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='view-edit-job'?'show':''"
+  *ngIf="panelShow == 'view-edit-job' ? 'show':''"
   [panelTitle]="'View/Edit Job'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='job-status'?'show':''"
+  *ngIf="panelShow=='job-status'?'show':''"
   [panelTitle]="'Job Status'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='job-share'?'show':''"
+  *ngIf="panelShow=='job-share'?'show':''"
   [panelTitle]="'Job Share'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='upload-resume'?'show':''"
+  *ngIf="panelShow=='upload-resume'?'show':''"
   [panelTitle]="'Upload Resume'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='notes'?'show':''"
+  *ngIf="panelShow=='notes'?'show':''"
   [panelTitle]="'Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='documents'?'show':''"
+  *ngIf="panelShow=='documents'?'show':''"
   [panelTitle]="'Documents'"
   (panelCloseHandler) ="panelCloseHandler()"
 >

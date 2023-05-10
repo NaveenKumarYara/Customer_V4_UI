@@ -13,6 +13,7 @@ export class ManageJobsComponent implements OnInit {
   viewLayout = 'grid';
   rowShow = 0;
   p:number = 1;
+  filterTerm: string='';
   Jobs:any=[];
   start:number=1;
   last:any;
@@ -50,6 +51,10 @@ export class ManageJobsComponent implements OnInit {
       this.last = this.Jobs.length;
     }
     //console.log('start'+ '      '+this.start + '      '+'last' + '      '+ this.last);
+  }
+
+  addItem(newItem: string) {
+    this.filterTerm = newItem;
   }
 
   GetCustomerJobs(CustomerId:number,UserId:number)
