@@ -16,7 +16,8 @@ import { ManageJobRoutingModule } from './manage-jobs-routing';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
 import { SettingsService } from 'src/settings/settings.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -35,7 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 	 NgxSliderModule,
 	 ManageJobListComponent,
 	 ManageJobRoutingModule,
-	 Ng2SearchPipeModule,
+	 NgbTooltipModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

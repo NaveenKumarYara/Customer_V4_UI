@@ -11,21 +11,26 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class ManageJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
-  filterTerm: string='';
   rowShow = 0;
   p:number = 1;
   Jobs:any=[];
   start:number=1;
   last:any;
+  panelTitle:any = '';
+  panelShow: any = '';
+
   layoutView(name:string){
    this.viewLayout = name;
   }
 
-  addItem(newItem: string) {
-    this.filterTerm = newItem;
+  panelHandler(name: string) {
+    this.panelShow = name;
   }
 
-
+  panelCloseHandler() {
+    this.panelShow = '';
+  }
+ 
   constructor(private _service : ApiService) { }
 
   ngOnInit(): void {
@@ -54,7 +59,7 @@ export class ManageJobsComponent implements OnInit {
 		params = params.append("UserId", UserId);
     this._service.GetEmployerService("/api/GetCustomerJobs?", params).subscribe((response) => { 
 
- 
+      console.log(response);
 			this.Jobs = response;
       this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
 		});
