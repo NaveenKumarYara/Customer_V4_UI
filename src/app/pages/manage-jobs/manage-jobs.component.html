@@ -18,7 +18,7 @@
   <ng-container *ngIf="viewLayout == 'grid'">
     <div class="manage-listing-grid">
       <div class="row">
-        <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs  | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+        <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
           <app-manage-jobcard 
             [job]="job" 
             [panelShow]="panelShow"
@@ -54,7 +54,7 @@
           Others
         </div>
       </div>
-      <div class="table-row" *ngFor="let ljob of Jobs | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+      <div class="table-row" *ngFor="let ljob of Jobs | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
         <app-manage-job-list 
           [ljob]="ljob"
           [panelShow]="panelShow"
