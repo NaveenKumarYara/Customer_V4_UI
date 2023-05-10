@@ -1,0 +1,53 @@
+@import '../../../../assets/partials/utils/variables';
+@import '../../../../assets/partials/utils/mixins';
+
+.dashboard-total-jobs {
+  h3 {
+    font-size: $font-size-24;
+    margin: 0 0 20px;
+    font-weight: 600;
+    color: $darker-gray;
+  }
+
+  .row {
+    margin: 0 -10px;
+  }
+
+  .col {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .col-container {
+    background-color: $white;
+    border-radius: 22px;
+    height: 100%;
+    padding: 20px 20px 20px 106px;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
+
+    &:before {
+      content: "";
+      position: absolute;
+      border-left: 16px solid $chatni-dark;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    h4 {
+      font-size: $font-size-30;
+      color: $darkest-blue;
+      font-weight: 600;
+    }
+
+    h6 {
+      font-size: $font-size-18;
+      color: $medium-gray;
+      margin: 0;
+    }
+  }
+}

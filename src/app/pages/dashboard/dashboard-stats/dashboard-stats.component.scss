@@ -1,0 +1,42 @@
+@import '../../../../assets/partials/utils/variables';
+@import '../../../../assets/partials/utils/mixins';
+
+.dashboard-stats {
+  margin: 40px 0;
+  .col-container {
+    background-color: $white;
+    border-radius: 8px;
+    height: 100%;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
+  }
+
+  .info {
+    @include flexbox();
+    @include align-items(center);
+    margin: 20px 0 0;
+
+    h4 {
+      font-size: $font-size-16;
+      color: $medium-gray;
+      margin: 0;
+    }
+
+    h6 {
+      font-size: $font-size-30;
+      color: $darkest-blue;
+      margin: 0 0 0 auto;
+    }
+  }
+
+  .icon {
+    display: block;
+    width: 88px;
+    height: 88px;
+    background-color: $light-green;
+    border-radius: 50%;
+    text-indent: -999em;
+  }
+ 
+}
