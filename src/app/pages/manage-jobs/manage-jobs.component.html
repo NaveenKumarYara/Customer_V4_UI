@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div id="main-content">
   <app-manage-job-filters  (newItemEvent)="addItem($event)"
-    [viewLayout] = "viewLayout" 
+    [viewLayout] = "viewLayout"  [Jobs]="Jobs"
     (layoutView) = "layoutView($event)"
   >
   </app-manage-job-filters>
