@@ -66,7 +66,7 @@ export class ManageJobsComponent implements OnInit {
 
       console.log(response);
 			this.Jobs = response;
-      this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
+      //this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
 		});
   }
 

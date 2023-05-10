@@ -8,7 +8,7 @@
   <!-- <app-pagination [title]="title"></app-pagination> -->
   <div class="sorting-container d-flex align-items-center">
     <div class="result">
-      Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
+      Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs?.length}}  Jobs
     </div>
     <div class="sorting">
   <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
