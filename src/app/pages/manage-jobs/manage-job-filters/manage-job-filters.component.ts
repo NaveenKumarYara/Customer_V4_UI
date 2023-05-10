@@ -9,6 +9,7 @@ export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
   saveSearch = false;
+  @Output() newItemEvent = new EventEmitter<string>();
   @Input() filterTerm: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Output() layoutView = new EventEmitter<string>();
@@ -16,7 +17,11 @@ export class ManageJobFiltersComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
   }
+ 
 
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
+  }
 
 
   filterHandler() {

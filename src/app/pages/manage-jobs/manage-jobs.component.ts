@@ -21,7 +21,11 @@ export class ManageJobsComponent implements OnInit {
    this.viewLayout = name;
   }
 
- 
+  addItem(newItem: string) {
+    this.filterTerm = newItem;
+  }
+
+
   constructor(private _service : ApiService) { }
 
   ngOnInit(): void {
