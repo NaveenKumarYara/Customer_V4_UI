@@ -17,6 +17,7 @@ import { SettingsHttpService } from 'src/settings/settings.http.service';
 import { SettingsService } from 'src/settings/settings.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 	 ManageJobListComponent,
 	 ManageJobRoutingModule,
 	 NgbTooltipModule,
+	 Ng2SearchPipeModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
