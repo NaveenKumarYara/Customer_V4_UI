@@ -60,6 +60,9 @@
   }
 
   .left-col {
+    .top-section {
+      position: relative;
+    }
     .row {
       background-color: $light-green;
       border-radius: 8px;
@@ -85,4 +88,29 @@
       }
     }
   }
+}
+
+.form-group {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .mdi {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: $font-size-20;
+    color: $dark-gray;
+  }
+}
+
+.form-select {
+  padding-left: 33px;
+  height: 36px;
+  padding-right: 30px;
 }

@@ -1,0 +1,9 @@
+@import '../../../assets/partials/utils/variables';
+@import '../../../assets/partials/utils/mixins';
+
+h1  {
+  font-size: $font-size-30;
+  color: $darkest-blue;
+  font-weight: 600;
+  margin: 0 0 30px;
+}

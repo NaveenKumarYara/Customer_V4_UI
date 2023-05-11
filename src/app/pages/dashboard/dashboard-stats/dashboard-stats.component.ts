@@ -16,7 +16,7 @@ export class DashboardStatsComponent implements OnInit {
     navSpeed: 700,
     center:false,
     margin: 20,
-    navText: ['', ''],
+    navText: ['<span class="mdi mdi-chevron-left"></span>', '<span class="mdi mdi-chevron-right"></span>'],
     responsive: {
       0: {
         items: 1

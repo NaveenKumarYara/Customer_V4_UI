@@ -34,9 +34,30 @@
     display: block;
     width: 88px;
     height: 88px;
+    background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
     background-color: $light-green;
     border-radius: 50%;
     text-indent: -999em;
+
+    &.icon-01 {
+      background-position: -19px -98px;
+    }
+
+    &.icon-02 {
+      background-position: -119px -98px;
+    }
+
+    &.icon-03 {
+      background-position: -219px -98px;
+    }
+
+    &.icon-04 {
+      background-position: -319px -98px;
+    }
+
+    &.icon-05 {
+      background-position: -419px -98px;
+    }
   }
  
 }

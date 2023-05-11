@@ -24,13 +24,34 @@
         .icon {
           position: absolute;
           right: 15px;
-          background-color: $light-green;
           border: 4px solid $white;
           border-radius: 50%;
           font-size: 0;
           width: 68px;
           height: 68px;
           top: -34px;
+          background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
+          background-color: $light-green;
+
+          &.icon-01 {
+            background-position: -23px -21px;
+          }
+
+          &.icon-02 {
+            background-position: -101px -21px;
+          }
+
+          &.icon-03 {
+            background-position: -179px -22px;
+          }
+
+          &.icon-04 {
+            background-position: -256px -22px;
+          }
+
+          &.icon-05 {
+            background-position: -335px -22px;
+          }
         }
 
         h3 {
