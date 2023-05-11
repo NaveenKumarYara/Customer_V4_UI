@@ -3,6 +3,7 @@ FROM node:lts-alpine3.16 AS builder
 
 WORKDIR /usr/src/app
 COPY . .
+RUN npm install -g npm@9.6.6
 RUN npm ci && npm run build
 RUN ls /usr/src/app
 
