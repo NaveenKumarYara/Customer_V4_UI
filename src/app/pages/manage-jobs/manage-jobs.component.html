@@ -1,14 +1,20 @@
 <app-header></app-header>
+
 <div id="main-content">
+  <h1>Manage Jobs</h1>
+  <br/>
+  <div>
+
+
   <app-manage-job-filters  (newItemEvent)="addItem($event)"
-    [viewLayout] = "viewLayout"  [Jobs]="Jobs"
+    [viewLayout] = "viewLayout" 
     (layoutView) = "layoutView($event)"
   >
   </app-manage-job-filters>
   <!-- <app-pagination [title]="title"></app-pagination> -->
   <div class="sorting-container d-flex align-items-center">
     <div class="result">
-      Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs?.length}}  Jobs
+      Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
     </div>
     <div class="sorting">
   <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
@@ -18,7 +24,7 @@
   <ng-container *ngIf="viewLayout == 'grid'">
     <div class="manage-listing-grid">
       <div class="row">
-        <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+        <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs   | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
           <app-manage-jobcard 
             [job]="job" 
             [panelShow]="panelShow"
@@ -54,7 +60,7 @@
           Others
         </div>
       </div>
-      <div class="table-row" *ngFor="let ljob of Jobs | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+      <div class="table-row" *ngFor="let ljob of Jobs  | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
         <app-manage-job-list 
           [ljob]="ljob"
           [panelShow]="panelShow"
@@ -65,51 +71,52 @@
     
     </div>
   </ng-container>
-  
+</div>
 </div>
 
  <!--{{ panelShow}} -->
 
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
+  *ngIf="panelShow == 'view-edit-job' ? 'show':''"
   [panelTitle]="'View/Edit Job'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='job-status'?'show':''"
+  *ngIf="panelShow=='job-status'?'show':''"
   [panelTitle]="'Job Status'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='job-share'?'show':''"
+  *ngIf="panelShow=='job-share'?'show':''"
   [panelTitle]="'Job Share'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='upload-resume'?'show':''"
+  *ngIf="panelShow=='upload-resume'?'show':''"
   [panelTitle]="'Upload Resume'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='notes'?'show':''"
+  *ngIf="panelShow=='notes'?'show':''"
   [panelTitle]="'Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='documents'?'show':''"
+  *ngIf="panelShow=='documents'?'show':''"
   [panelTitle]="'Documents'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
+
 <app-footer></app-footer>
