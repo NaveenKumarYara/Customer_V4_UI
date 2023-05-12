@@ -22,7 +22,6 @@ export class ManageJobFiltersComponent implements OnInit {
   }
  
   download(job:any){
-    debugger
     this._service.downloadFile(job, 'MyJobs');
   }
 
