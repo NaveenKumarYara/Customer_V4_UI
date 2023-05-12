@@ -2,7 +2,7 @@
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-company-small.jpg" alt="">
 		<h4>{{ljob?.JobTitle}}</h4>
-		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
+		<!-- <ng-container *ngIf="ljob?.JobStatus == 'Active'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
@@ -22,11 +22,32 @@
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
 			<span class="status shortlisting">{{ljob?.JobStatus}}</span>
+		</ng-container> -->
+		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Hired'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Interviewing'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'Filled'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'InActive'">
+			<span class="status inactive">{{ljob?.JobStatus}}</span>
+		</ng-container>
+		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
+			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>
 	</div>
 </div>
 <div class="table-col company-col">
-	{{ljob?.ClientName != null ? ljob?.ClientName : '-' }}
+	{{ljob?.ClientName != null ? ljob?.ClientName : "Not Provided" }}
 </div>
 <div class="table-col id-col">
 	# {{ljob?.JobId}}
@@ -43,12 +64,22 @@
 	</ng-container>
 </div>
 <div class="table-col location-col">
-	<ng-container *ngFor="let location of ljob?.JobLocations.split('|');let lj = index">
+	<!-- <ng-container *ngFor="let location of ljob?.JobLocations.split('|');let lj = index">
 						
 		<span *ngIf="lj<1">
 			{{location}} 
 		</span>
+	</ng-container> -->
+	<ng-container>
+	
+			<ng-container *ngFor="let location of ljob?.JobLocations.split('|');let j = index">	
+				<span *ngIf="j<1" class="location-trim">
+					{{location}}
+				</span>
+			</ng-container>
+	
 	</ng-container>
+
 </div>
 <div class="table-col others-col">
 	<button class="btn btn-arrow" 
