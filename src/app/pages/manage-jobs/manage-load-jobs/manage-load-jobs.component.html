@@ -1,0 +1,112 @@
+<h1>Manage Jobs</h1>
+<app-manage-job-filters (newItemEvent)="addItem($event)"
+  [viewLayout] = "viewLayout"    [Jobs]="Jobs" 
+  (layoutView) = "layoutView($event)"
+>
+</app-manage-job-filters>
+<!-- <app-pagination [title]="title"></app-pagination> -->
+<div class="sorting-container d-flex align-items-center">
+  <div class="result">
+    Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
+  </div>
+  <div class="sorting">
+    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
+  nextLabel="">
+  </pagination-controls>
+</div>
+</div>
+<ng-container *ngIf="viewLayout == 'grid'">
+  <div class="manage-listing-grid">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs   | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+        <app-manage-jobcard 
+          [job]="job" 
+          [panelShow]="panelShow"
+          (panelHandler)="panelHandler($event)"
+        >
+        </app-manage-jobcard>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="viewLayout == 'table'">
+  <div class="manage-listing-table">
+    <div class="table-row table-row-heading">
+      <div class="table-col name-col">
+        Job Title
+      </div>
+      <div class="table-col company-col">
+        Client Name
+      </div>
+      <div class="table-col id-col">
+        Arytic ID
+      </div>
+      <div class="table-col owner-col">
+        Job Owner
+      </div>
+      <div class="table-col assign-col">
+        Job Assignee
+      </div>
+      <div class="table-col location-col">
+        Current Location
+      </div>
+      <div class="table-col others-col">
+        Others
+      </div>
+    </div>
+    <div class="table-row" *ngFor="let ljob of Jobs  | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+      <app-manage-job-list 
+        [ljob]="ljob"
+        [panelShow]="panelShow"
+        (panelHandler)="panelHandler($event)"
+        >
+      </app-manage-job-list>
+    </div>
+  
+  </div>
+</ng-container>
+
+<!--{{ panelShow}} -->
+
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow == 'view-edit-job' ? 'show':''"
+  [panelTitle]="'View/Edit Job'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow=='job-status'?'show':''"
+  [panelTitle]="'Job Status'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow=='job-share'?'show':''"
+  [panelTitle]="'Job Share'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow=='upload-resume'?'show':''"
+  [panelTitle]="'Upload Resume'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow=='notes'?'show':''"
+  [panelTitle]="'Notes'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>
+<app-slidepanel 
+  class="slide-panel"
+  *ngIf="panelShow=='documents'?'show':''"
+  [panelTitle]="'Documents'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+</app-slidepanel>

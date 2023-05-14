@@ -345,4 +345,18 @@ body {
 			}
 		}
 	}
+
+	.skills-grid {
+		.owl-theme {
+			.owl-nav  {
+				.owl-next {
+					right: -2px;
+				}
+	
+				.owl-prev {
+					left: -2px;
+				}
+			}
+		}
+	}
 }

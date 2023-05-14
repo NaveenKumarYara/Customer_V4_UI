@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'manage-jobs',
     loadChildren: () =>
       import(`./pages/manage-jobs/manage-jobs.module`).then((m) => m.ManageJobModule),
+  },
+  {
+    path: 'manage-jobs/job-activites',
+    redirectTo:'manage-jobs/job-activites'
   }
 ];
 

@@ -331,3 +331,7 @@
 @mixin shadowTwo() {
   box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
 }
+
+@mixin shadowOne() {
+  box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
+}

@@ -1,0 +1,151 @@
+@import '../../../../assets/partials/utils/variables';
+@import '../../../../assets/partials/utils/mixins';
+
+.table-row {
+	@include flex();
+	@include flex-wrap(wrap);
+	background-color: rgba(225, 247, 239, 0.3);
+	border-top: 1px solid $stroke-gray;
+
+	&:first-child {
+		border-top: 0;
+	}
+
+	&:nth-child(odd) {
+		background-color: $white;
+	}
+
+	&.table-row-heading {
+		background-color: transparent;
+		font-weight: 600;
+
+		.table-col {
+			padding-top: 0;
+		}
+	}
+
+	app-manage-job-list {
+		@include flex();
+		flex: 0 0 100%;
+		max-width: 100%;
+		@include flex-wrap(wrap);
+	}
+
+	.table-col {
+		font-size: $font-size-14;
+		color: $dark-gray;
+		flex: 0 0 13.75%;
+		padding: 15px;
+		max-width: 13.75%;
+	
+		a {
+			color: $dark-gray;
+			text-decoration: none;
+		}
+	
+		&.name-col {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+	
+		&.company-col {
+			flex: 0 0 15%;
+			max-width: 15%;
+		}
+	
+		&.others-col {
+			flex: 0 0 5%;
+			max-width: 5%;
+			text-align: right;
+		}	
+	}
+}
+
+.manage-listing-grid {
+	margin: 30px 0 0;
+
+	.row {
+		margin: 0 -18px;
+	}
+
+	.job-card {
+		margin: 0 0 30px;
+		position: relative;
+		padding: 0 18px;
+
+
+		@media only screen and (min-width: 1800px) {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+	}
+}
+
+.manage-listing-table {
+	margin: 30px 0;
+	background: $lightest-blue;
+	padding: 20px;
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+}
+
+.result {
+	font-size: $font-size-15;
+	color: $dark-gray;
+}
+
+.sorting {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	color: $dark-gray;
+	gap: 10px;
+	font-size: $font-size-15;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		gap: 10px;
+		align-items: center;	
+	}
+
+	.form-control {
+		width: 48px;
+		height: 48px;
+		text-align: center;
+	}
+
+	.btn {
+		&.btn-previous,
+		&.btn-next {
+			width: 48px;
+			height: 48px;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			background-color: $white;
+			color: $dark-gray;
+			justify-content: center;
+			border-color: $stroke-gray;
+			border-radius: 6px;
+
+			&:hover {
+				background-color: $blue;
+				border-color: $blue;
+
+				.mdi {
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+h1  {
+	font-size: $font-size-30;
+	color: $darkest-blue;
+	font-weight: 600;
+	margin: 0 0 30px;
+}

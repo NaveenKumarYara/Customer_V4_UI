@@ -5,6 +5,7 @@ import  { SharedModule } from './../../shared/shared.module'
 import  { PaginationComponent } from './../common/pagination/pagination.component';
 import { ManageJobFiltersComponent } from './manage-job-filters/manage-job-filters.component';
 import { ManageJobcardComponent } from './manage-jobcard/manage-jobcard.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ManageAdvanceFilterComponent } from './manage-job-filters/manage-advance-filter/manage-advance-filter.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -18,6 +19,14 @@ import { SettingsService } from 'src/settings/settings.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { JobActivitiesComponent } from './job-activities/job-activities.component';
+import { JobActivitesStatsComponent } from './job-activities/job-activites-stats/job-activites-stats.component';
+import { ManageLoadJobsComponent } from './manage-load-jobs/manage-load-jobs.component';
+import { JobsActivitiesNavComponent } from './job-activities/jobs-activities-nav/jobs-activities-nav.component';
+import { JobCardComponent } from './job-activities/job-card/job-card.component';
+import { JobActivitiesSummaryComponent } from './job-activities/job-activities-summary/job-activities-summary.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
 	declarations: [
@@ -28,7 +37,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 	SlidepanelComponent,
 	ManageAdvanceFilterComponent,
 	ManageQuickSearchComponent,
-	ManageFilterSearchResultComponent
+	ManageFilterSearchResultComponent,
+	JobActivitiesComponent,
+	JobActivitesStatsComponent,
+	ManageLoadJobsComponent,
+	JobsActivitiesNavComponent,
+	JobCardComponent,
+	JobActivitiesSummaryComponent
 
 	],
 	imports: [
@@ -39,6 +54,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 	 ManageJobRoutingModule,
 	 NgbTooltipModule,
 	 Ng2SearchPipeModule,
+	 NgbDropdownModule,
+	 NgbRatingModule,
+	 CarouselModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

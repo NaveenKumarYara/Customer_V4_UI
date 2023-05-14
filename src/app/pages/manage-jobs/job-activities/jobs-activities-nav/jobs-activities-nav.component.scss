@@ -1,0 +1,111 @@
+@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../assets/partials/utils/mixins';
+
+.job-activities-top-container {
+  background-color: $white;
+  border: 1px solid $stroke-gray;
+  border-radius: 8px;
+  padding: 20px;
+  @include flexbox();
+  @include align-items(center);
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    display: block;
+    margin: 0 auto;
+    text-indent: -999em;
+    background: url(../../../../../assets/images/sprites.svg) 0 0 no-repeat;
+
+    &.icon-skills {
+      background-position: -24px -301px;
+    }
+
+    &.icon-job {
+      background-position: -76px -301px;
+    }
+
+    &.icon-team {
+      background-position: -128px -301px;
+    }
+
+    &.icon-personality {
+      background-position: -180px -301px;
+    }
+
+    &.icon-culture {
+      background-position: -232px -301px;
+    }
+  }
+
+  .left-navigation {
+    ul {
+      @include no-style();
+      @include flex();
+      gap: 10px;
+
+      li {
+        text-align: center;
+
+        h6 {
+          font-size: 8px;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin: 10px 0 0;
+        }
+
+        &.active {
+          .icon {
+            &.icon-skills {
+              background-position: -24px -352px;
+            }
+            &.icon-job {
+              background-position: -76px -352px;
+            }
+            &.icon-team {
+              background-position: -128px -352px;
+            }
+            &.icon-personality {
+              background-position: -180px -352px;
+            }
+            &.icon-culture {
+              background-position: -232px -352px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .right-navigation {
+    margin-left: auto;
+    border: 1px solid $stroke-gray;
+    border-radius: 32px;
+    overflow: hidden;
+
+    ul {
+      @include no-style();
+      @include flexbox();
+
+      li {
+        a {
+          width: 44px;
+          height: 40px;
+          @include flexbox();
+          @include align-items(center);
+          @include justify-content(center);
+          color: $medium-gray;
+
+          &:hover {
+            background-color: $blue;
+            color: $white;
+          }
+        }
+
+        &:not(:first-child) {
+          border-left: 1px solid $stroke-gray;
+        }
+      }
+    }
+  }
+}
