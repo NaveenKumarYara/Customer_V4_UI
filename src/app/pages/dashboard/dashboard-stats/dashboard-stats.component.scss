@@ -3,13 +3,27 @@
 
 .dashboard-stats {
   margin: 40px 0;
+
   .col-container {
     background-color: $white;
     border-radius: 8px;
     height: 100%;
+    border: 1px solid transparent;
     padding: 20px;
     position: relative;
     box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: $dark-green;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+    }
   }
 
   .info {
@@ -57,6 +71,48 @@
 
     &.icon-05 {
       background-position: -419px -98px;
+    }
+  }
+
+  .active {
+    &.col-container {
+      background: $lightest-blue;
+      border-color: $dark-green;
+
+      &::before {
+        background: $dark-green;
+      }
+
+      .info {
+        h6 {
+          color: $darker-green;
+        }
+      }
+
+      .icon {
+        background-color: $dark-green;
+        box-shadow: inset 0px 6px 12px rgba(110, 129, 158, 0.2);
+
+        &.icon-01 {
+          background-position: -19px -98px;
+        }
+    
+        &.icon-02 {
+          background-position: -119px -98px;
+        }
+    
+        &.icon-03 {
+          background-position: -219px -98px;
+        }
+    
+        &.icon-04 {
+          background-position: -319px -98px;
+        }
+    
+        &.icon-05 {
+          background-position: -419px -98px;
+        }
+      }
     }
   }
  

@@ -17,6 +17,7 @@ export class ManageJobcardComponent implements OnInit {
   }
   
   panelClick(name: string) {
+    console.log(name);
     this.panelHandler.emit(name);
   }
 }

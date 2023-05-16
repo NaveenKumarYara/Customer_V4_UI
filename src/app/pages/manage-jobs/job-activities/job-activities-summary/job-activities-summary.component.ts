@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-activities-summary.component.scss']
 })
 export class JobActivitiesSummaryComponent implements OnInit {
+  isChecked: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeView() {
+    this.isChecked =  ! this.isChecked;
   }
 
 }

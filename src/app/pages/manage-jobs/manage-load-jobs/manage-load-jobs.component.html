@@ -70,42 +70,42 @@
 
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow == 'view-edit-job' ? 'show':''"
+  [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
   [panelTitle]="'View/Edit Job'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow=='job-status'?'show':''"
+  [ngClass]="panelShow=='job-status'?'show':''"
   [panelTitle]="'Job Status'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow=='job-share'?'show':''"
+  [ngClass]="panelShow=='job-share'?'show':''"
   [panelTitle]="'Job Share'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow=='upload-resume'?'show':''"
+  [ngClass]="panelShow=='upload-resume'?'show':''"
   [panelTitle]="'Upload Resume'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow=='notes'?'show':''"
+  [ngClass]="panelShow=='notes'?'show':''"
   [panelTitle]="'Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
-  *ngIf="panelShow=='documents'?'show':''"
+  [ngClass]="panelShow=='documents'?'show':''"
   [panelTitle]="'Documents'"
   (panelCloseHandler) ="panelCloseHandler()"
 >

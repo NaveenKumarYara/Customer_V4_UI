@@ -161,6 +161,11 @@
         }
       }
 
+      .profile-summary {
+        @include flexbox();
+        gap: 10px;
+      }
+
 			h3 {
 				font-size: $font-size-22;
 				color: $darker-gray;
@@ -171,6 +176,15 @@
         white-space: nowrap;
 				margin: 0 0 8px;
         padding-bottom: 3px;
+
+        a {
+          color: $darker-gray;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
 			}
 
 			h4 {
@@ -179,10 +193,11 @@
 				font-size: $font-size-14;
 				margin: 0;
 
-				.mdi-briefcase-outline {
+				.mdi {
 					font-size: $font-size-16;
 					color: $medium-gray;
 					vertical-align: middle;
+          margin-right: 5px;
 				}
 			}
 		}

@@ -1,0 +1,159 @@
+@import '../../../../../assets/partials/utils/variables';
+@import '../../../../../assets/partials/utils/mixins';
+
+.toggle {
+  --width: 52px;
+  --height: 32px;
+  --border-radius: 32px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle__input {
+  display: none;
+}
+
+.toggle__fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: #dddddd;
+  transition: background 0.2s;
+}
+
+.toggle__fill::after {
+  content: "";
+  font: normal normal normal 18px/1 "Material Design Icons";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  height: 24px;
+  width: 24px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s;
+}
+
+.toggle__input:checked ~ .toggle__fill {
+  background: $darker-green;
+ 
+}
+
+.toggle__input:checked ~ .toggle__fill::after {
+  content: "\F012C";
+  transform: translateX(var(--height));
+  left: -8px;
+  top: 4px;
+}
+
+.table-view {
+  padding: 0 10px;
+
+  .top-container {
+    text-align: center;
+    position: relative;
+
+    .btn {
+      &.btn-link {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        font-size: $font-size-16;
+        font-weight: 600;
+        color: $blue;
+        margin-left: auto;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+.table-row {
+  border: 1px solid rgba($stroke-gray, 0.20);
+  border-radius: 8px;
+  background-color: rgba($white,0.20);
+  @include flexbox();
+  @include flex-wrap(wrap);
+  color: $dark-gray;
+  font-size: $font-size-14;
+
+  &:not(:first-child) {
+    margin-top: 5px;
+  }
+
+  .table-col {
+    padding: 10px 15px;
+    flex: 0 0 11.66666666666667%;
+    max-width: 11.66666666666667%;
+    text-align: center;
+
+    &.name-col {
+      flex: 0 0 30%;
+      max-width: 30%;
+      text-align: left;
+    }
+  }
+
+  &:nth-child(odd) {
+    border: 1px solid rgba($stroke-gray, 0.60);
+    background-color: rgba($white,0.60);
+  }
+
+  &.table-header-row {
+    background-color: $white;
+    border-color: $stroke-gray;
+    .table-col {
+      font-weight: 600;
+      color: $darkest-blue;
+    }
+  }
+}
+
+.chart-view,
+.table-view {
+  h3 {
+    font-size: $font-size-20;
+    color: $darkest-blue;
+  }
+}
+
+.chart-view {
+  figure {
+    text-align: center;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+
+.job-details-section {
+  background: $white;
+  border-radius: 8px;
+  border: 1px solid $stroke-gray;
+  @include flexbox();
+  @include flex-wrap(wrap);
+  margin-bottom: 40px;
+  padding: 30px;
+
+  .pryamid-col {
+    flex: 0 0 430px;
+    max-width: 430px;
+  }
+
+  .data-view-col {
+    flex: 0 0 calc(100% - 430px);
+    max-width: calc(100% - 430px);
+  }
+}
+
+.toogle-container {
+  margin-bottom: 20px;
+}

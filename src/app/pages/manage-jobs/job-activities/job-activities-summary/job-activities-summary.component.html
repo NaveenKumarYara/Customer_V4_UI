@@ -1,1 +1,142 @@
-<p>job-activities-summary works!</p>
+<div class="job-details-section">
+  <div class="pryamid-col">
+    &nbsp;
+  </div>
+  <div class="data-view-col">
+    <div class="d-flex justify-content-end toogle-container">
+      <label class="toggle" for="myToggle">
+        <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="myToggle">
+        <div class="toggle__fill"></div>
+      </label>
+    </div>
+    <div class="chart-view" *ngIf="isChecked == false">
+      <h3 class="text-center">Weekly Status of Jobs</h3>
+      <figure>
+        <img src="../../../../../assets/images/chart-big.png" alt=""/>
+      </figure>
+    </div>
+    <div class="table-view" *ngIf="isChecked == true">
+      <div class="top-container">
+        <h3>Weekly Status of Jobs</h3>
+        <a href="#" class="btn btn-link">Full View</a>
+      </div>
+      <div class="table-container">
+        <div class="table-row table-header-row">
+          <div class="table-col name-col">
+            Job Forwarded
+          </div>
+          <div class="table-col">
+            New
+          </div>
+          <div class="table-col">
+            Active
+          </div>
+          <div class="table-col">
+            Closed
+          </div>
+          <div class="table-col">
+            Interview
+          </div>
+          <div class="table-col">
+            Closure
+          </div>
+          <div class="table-col">
+            Freezed
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <span class="text-ellipsis">Telsa</span>
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            0
+          </div>
+          <div class="table-col">
+            2
+          </div>
+          <div class="table-col">
+            3
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            1
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <span class="text-ellipsis">AFS</span>
+          </div>
+          <div class="table-col">
+            17
+          </div>
+          <div class="table-col">
+            10
+          </div>
+          <div class="table-col">
+            -
+          </div>
+          <div class="table-col">
+            39
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            1
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <span class="text-ellipsis">Quinnax</span>
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            2
+          </div>
+          <div class="table-col">
+            3
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            1
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <span class="text-ellipsis">AFS</span>
+          </div>
+          <div class="table-col">
+            17
+          </div>
+          <div class="table-col">
+            10
+          </div>
+          <div class="table-col">
+            -
+          </div>
+          <div class="table-col">
+            39
+          </div>
+          <div class="table-col">
+            1
+          </div>
+          <div class="table-col">
+            1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
