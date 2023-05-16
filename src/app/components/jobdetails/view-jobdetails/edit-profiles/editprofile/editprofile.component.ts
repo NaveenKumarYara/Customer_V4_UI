@@ -2378,17 +2378,71 @@ GetProfileStatus(mail)
 // }
 
 GetMatchingPercentage(profileId): any {
- 
+  this.GetJobMatching(this.data.jobId);
    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId,this.data.jobId).subscribe((res) => {
      this.matchingParameterDetails = res;
-     this.matchingParameterData.Role = this.matchingParameterDetails.Role;
      this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+     let rolefit = this.matchingParameterDetails.Role;
+     if(rolefit>0)
+     {
+       rolefit = this.matchingParameterDetails.Role/10;
+     }
+     else
+     {
+       rolefit = this.matchingParameterDetails.Role;
+     }
+
+     if(rolefit >this.roleweight)
+     {
+      this.matchingParameterData.Role = this.roleweight;
+     }
+     else if(rolefit< this.roleweight)
+     {
+       this.matchingParameterData.Role = rolefit;
+     }
+     
+   
+     let expFit = this.matchingParameterDetails.Jobfit_Total -  this.matchingParameterData.Role/10;
+     if(expFit>this.expweight)
+     {
+       this.matchingParameterData.JobFit = this.expweight;
+     }
+     else  if(expFit<this.expweight)
+     {
+      if(this.profileDetails.TotalExperience!=null)
+      {
+        if( Number(this.profileDetails.TotalExperience) >  Math.floor(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
+        {
+         this.matchingParameterData.JobFit = this.expweight;
+        }
+        else
+        {
+         this.matchingParameterData.JobFit = expFit;
+        }
+       
+      }
+      else
+      {
+       this.matchingParameterData.JobFit = expFit;
+      }
+     }
+
+     let jobmFit = this.roleweight + this.expweight;
+     if(jobmFit == this.matchingParameterData.Jobfit_Total)
+     {
+      this.matchingParameterData.Role = this.roleweight;
+     }
+    
+    //this.matchingParameterData.Role = this.matchingParameterDetails.Role;
+
+   
      this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
      this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
      this.matchingParameterData.Personalityfit = this.matchingParameterDetails.Personalityfit;
      this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
      this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
-     this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
+
+     //this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
      //debugger
    });
    return this.matchingParameterDetails;
@@ -3165,6 +3219,7 @@ export class ProfileDetails
   public LastName:string;
   public UserName:string;
   public ProfileTitle:string;
+  TotalExperience: any;
 }
 
 export class ProfileEducation

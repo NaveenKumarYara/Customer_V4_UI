@@ -116,7 +116,7 @@
                     <strong>{{matchingParameterData?.Role}}%</strong>
                   </div>
                   <div class="box__table" *ngIf="matchingParameterData?.Role > 0 ">you got
-                    <strong>{{matchingParameterData?.Role/10}}%</strong>
+                    <strong>{{matchingParameterData?.Role}}%</strong>
                   </div>
                 </div>
               </div>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">you got
-                    <strong>{{matchingParameterDetails?.Jobfit_Total - matchingParameterData?.Role/10 }} %</strong>
+                    <strong>{{matchingParameterData?.JobFit}} %</strong>
                   </div>
                   <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
                     <strong>30%</strong>

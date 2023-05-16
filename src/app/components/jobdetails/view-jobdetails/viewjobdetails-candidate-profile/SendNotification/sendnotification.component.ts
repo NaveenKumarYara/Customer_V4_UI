@@ -70,6 +70,7 @@ PUpload: File;
 docFile:string;
 edit:any;
 emailNote = new SendNoteEmail();
+cemailNote = new SendNoteEmailCandidate();
 job = new SendNoteEmail();
 public file_srcs: string[] = [];
 public debug_size_before: string[] = [];
@@ -341,7 +342,7 @@ getcustomerusers()
   this.savenote.isCandidate=true;
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
   this.savenote.OtherInfo = this.savenote.OtherInfo;
-
+  this.SendCandidateEmail();
  }
 
  if(this.isShown1==true&&this.isShown2==true)
@@ -350,7 +351,8 @@ getcustomerusers()
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
- }
+  this.SendCandidateEmail();
+}
 
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
@@ -537,6 +539,22 @@ this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subsc
     
 //  }
 
+SendCandidateEmail()
+{
+  this.cemailNote.Body = this.selectedComments;
+  this.cemailNote.FullName = this.data.FullName;
+  this.cemailNote.ToEmailID = this.data.Email;
+  this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+  this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
+    check=>
+    {
+  
+         
+            this.cemailNote = new SendNoteEmailCandidate();
+       
+    }
+  )
+}
 
 SendEmail()
 {
@@ -547,12 +565,7 @@ SendEmail()
   this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNewU').subscribe(
     check=>
     {
-  
-          this.toastr.success('Email sent successfully','Success');
-          setTimeout(() => {
-            this.toastr.dismissToast;
             this.emailNote = new SendNoteEmail();
-        }, 3000);
     }
   )
 }
@@ -669,5 +682,14 @@ export class SendNoteEmail
   public ToEmailID :string
   public NotesId:number
   public ToUserId:number
+  public Subject:string
+}
+
+
+export class SendNoteEmailCandidate
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
   public Subject:string
 }
