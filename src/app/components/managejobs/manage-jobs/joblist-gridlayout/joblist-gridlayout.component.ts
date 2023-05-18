@@ -7,7 +7,7 @@ import {ShareJobComponent} from '../../../jobdetails/view-jobdetails/share-job/s
 import { ManageJobService } from '../../managejobs.service';
 // import { ApiService } from '../../../../shared/services/api.service/api.service';
 import {deactivate} from '../../models/deactivate';
-import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
+import {LoadJoblistComponent, ParentComponentApi} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
@@ -27,6 +27,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   @Input() job: Jobs;
   @Input() index: number;
   @Input() joblist: JobDetails[];
+  @Input() parentApi: ParentComponentApi;
   jobId: any;
   assignList:any=[];
   customer: any;
@@ -163,16 +164,28 @@ export class JoblistGridlayoutComponent implements OnInit {
     } else if (val === false) {
       $('#Active').replaceWith('#Inactive');
     }
-    this.deactivate.jobId = job.JobId;
-    this.deactivate.customerId = this.customerId;
-    this.deactivate.isActive = val;
-      this.appService.deactivateJob(this.deactivate)
-      .subscribe(
-      data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId, search);
-    },
-      error => console.log(error));
+    this.parentApi.callchangeJobStatus(job,val);
 }
+
+// changeJobStatus(job, val) {
+//   this.alertService.clear();
+//   const search = '';
+//   if (val === true) {
+//    $('#Inactive').replaceWith('#Active');
+
+//   } else if (val === false) {
+//     $('#Active').replaceWith('#Inactive');
+//   }
+//   this.deactivate.jobId = job.JobId;
+//   this.deactivate.customerId = this.customerId;
+//   this.deactivate.isActive = val;
+//     this.appService.deactivateJob(this.deactivate)
+//     .subscribe(
+//     data => {
+//     this.loadJobs.populateJoblist(this.customerId, this.userId, search);
+//   },
+//     error => console.log(error));
+// }
 
 }
 
