@@ -1,14 +1,68 @@
 <div class="job-details-section">
-  <div class="pryamid-col">
-    &nbsp;
-  </div>
-  <div class="data-view-col">
-    <div class="d-flex justify-content-end toogle-container">
+  <div class="title">
+    <div class="left-container">
+      <div class="top">
+        <a href="#" class="btn-back">
+          <span class="mdi mdi-arrow-left"></span>
+        </a>
+        <h3>Developer/Full Stack Developer</h3>
+        <span class="status active">Active</span>
+        <a href="#" class="btn-view">
+          <span class="mdi mdi-account-arrow-right-outline"></span>
+        </a>
+      </div>
+      <div class="bottom">
+        <div class="company">
+          Google
+        </div>
+        <div class="highlight">
+          Arytic ID: 1002365
+        </div>
+        <ul>
+          <li>
+            <span class="mdi mdi-map-marker-outline"></span>
+            Austin
+          </li>
+          <li>
+            <span class="mdi mdi-calendar-blank-outline"></span>
+            Mar 14, 2023
+          </li>
+          <li>
+            <span class="mdi mdi-account-group-outline"></span>
+            5 Positions
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right-container">
       <label class="toggle" for="myToggle">
         <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="myToggle">
         <div class="toggle__fill"></div>
       </label>
     </div>
+  </div>
+  <div class="pryamid-col">
+    <div class="pryamid">
+      <div class="box active">
+        All Applicants
+        <span class="number">1</span>
+      </div>
+      <div class="box box-01">
+        Screening
+        <span class="number">0</span>
+      </div>
+      <div class="box box-02">
+        Shortlisted
+        <span class="number">0</span>
+      </div>
+      <div class="box box-03">
+        Interviewed
+        <span class="number">0</span>
+      </div>
+      <div class="box box-04">&nbsp;</div>
+    </div>
+  </div>
+  <div class="data-view-col">
     <div class="chart-view" *ngIf="isChecked == false">
       <h3 class="text-center">Weekly Status of Jobs</h3>
       <figure>
