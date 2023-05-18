@@ -1311,12 +1311,12 @@
                             <ng-container *ngIf="profileDetails?.MobilePhone===null">
                               <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
                             maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                            placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" >
+                            placeholder="Mobile Number*"  class="form-control" placeholder="Mobile" >
                             </ng-container>
                             <ng-container *ngIf="profileDetails?.MobilePhone!=null">
                               <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
                               maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                              placeholder="Mobile Number*" required class="form-control" placeholder="Mobile" value="{{profileDetails?.MobilePhone | mask: '(000) 000-0000'}}">
+                              placeholder="Mobile Number*"  class="form-control" placeholder="Mobile" value="{{profileDetails?.MobilePhone | mask: '(000) 000-0000'}}">
                             </ng-container>
                          
                           </div>
