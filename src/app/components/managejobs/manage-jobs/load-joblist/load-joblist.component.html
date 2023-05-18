@@ -3,7 +3,7 @@
  </div> -->
  <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
 
- <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+ <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?" *ngIf="customer?.UserRoleId != 1">
     <i class="fa fa-play" aria-hidden="true"></i>
     <div class="circle" style="animation-delay: -3s"></div>
     <div class="circle" style="animation-delay: -2s"></div>
@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-title="Step 5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top'> 
+<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-title="Step 5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top' > 
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->

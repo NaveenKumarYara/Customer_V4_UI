@@ -25,7 +25,12 @@
             <span></span>
             <span></span>
           </div>
-          <a [routerLink]="['/app-dashboardview']" class="main-nav-logo" routerLinkActive="active">
+          <a [routerLink]="['/app-dashboardview']" class="main-nav-logo" routerLinkActive="active" *ngIf="customer?.UserRoleId != 1">
+            <!-- <img src="/assets/images/logo.png" alt="Tenendus" title="Tenendus"> -->
+            <!-- <img src="/assets/images/Tenendus-Logo-1.png" alt="Tenendus" title="Tenendus"> -->
+            <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
+          </a>
+          <a [routerLink]="['/app-manage-jobs']" class="main-nav-logo" routerLinkActive="active" *ngIf="customer?.UserRoleId === 1">
             <!-- <img src="/assets/images/logo.png" alt="Tenendus" title="Tenendus"> -->
             <!-- <img src="/assets/images/Tenendus-Logo-1.png" alt="Tenendus" title="Tenendus"> -->
             <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
@@ -34,7 +39,7 @@
         <div class="navbar-collapse navbar-left page-nav collapse" id="navbar2">
           <ul class="nav navbar-nav">
             <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}"
-              *ngIf="customer?.AccessDetails?.Dashboard==true">
+              *ngIf="customer?.AccessDetails?.Dashboard==true && customer?.UserRoleId != 1" >
               <a [routerLink]="['/app-dashboardview']">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
                   <g id="nav-icon">
@@ -115,7 +120,7 @@
               </a>
             </li>
             <!-- <li role="presentation" routerLinkActive="active" *ngIf="customer?.AccessDetails?.CompanyProfile==true"> -->
-              <li role="presentation" routerLinkActive="active">
+              <li role="presentation" routerLinkActive="active" *ngIf="customer?.UserRoleId != 1">
               <a routerLink="/search" [ngClass]="{'pointer-events-none': active === true}">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="#657789" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
@@ -133,7 +138,7 @@
               </a>
             </li>
 
-            <li role="presentation" routerLinkActive="active">
+            <li role="presentation" routerLinkActive="active"  *ngIf="customer?.UserRoleId != 1">
               <a [routerLink]="['/app-manage-jobs/app-interviewList']" [ngClass]="{'pointer-events-none': active === true}">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="#657789" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"

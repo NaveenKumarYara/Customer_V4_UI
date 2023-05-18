@@ -20,6 +20,7 @@ export class SignUpComponent  implements OnInit{
   signUpform: FormGroup;
   customerId:any;
   companyLogo:any;
+  freelance:boolean = false;
   sizelist:companysize[]=[];
   private selectCountry : any;
   email:any;
@@ -48,7 +49,7 @@ export class SignUpComponent  implements OnInit{
   options = [
     new Options(7, 'Employer' ),
      new Options(4, 'Hiring Agency' ),
-     new Options(8, 'Freelance Recruiter' )
+     new Options(1, 'Freelance Recruiter' )
   ];
   
   constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService, private settingsService: SettingsService) {
@@ -1299,7 +1300,12 @@ export class SignUpComponent  implements OnInit{
     {
       this.signUpform.controls['ContactFirstName'].markAsTouched()
       this.signUpform.controls['ContactLastName'].markAsTouched()
-      this.signUpform.controls['CompanyName'].markAsTouched()
+      if(this.freelance == false)
+      {
+        this.signUpform.controls['CompanyName'].markAsTouched()
+
+      }
+    
       this.signUpform.controls['ContactEmail'].markAsTouched()
       this.signUpform.controls['Password'].markAsTouched()
       this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -1321,6 +1327,10 @@ export class SignUpComponent  implements OnInit{
     }
     else if(this.result.UserId === 0 && this.terms.value === true)
     {
+      if(this.freelance == true)
+      {
+        this.signUpform.value.UserRoleId = 1;
+      }
       this.signUpform.value.CountryCode = this.Ccode != undefined ? this.Ccode : '+1';
         this.appService.signUp(this.signUpform.value)
         .subscribe(
@@ -1401,6 +1411,18 @@ chooseCountry(id)
 
 getValue(optionid) {
   this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+  
+  if(optionid == 1)
+  {
+    this.signUpform.value.CompanyName = 'Arytic_Partner';
+    this.freelance = true;
+
+  }
+  else
+  {
+    this.freelance = false;
+  }
+
  }
 
  AddSubscription()
@@ -1485,7 +1507,7 @@ configurePassword() {
       CandidateIdentifier:  ['', Validators.compose([Validators.nullValidator])],
       CustomerId: [0, Validators.compose([Validators.nullValidator])],
       UserId  : [0, Validators.compose([Validators.required])],
-      CompanyName: ['', Validators.compose([Validators.required])],
+      CompanyName: ['', Validators.compose([Validators.nullValidator])],
       CompanySizeId  : [1, Validators.compose([Validators.nullValidator])],
       CompanyLogo: ['', Validators.compose([Validators.nullValidator])],
       ContactFirstName: ['', Validators.compose([Validators.required])],
@@ -1508,7 +1530,7 @@ configurePassword() {
       WebSite: ['', Validators.compose([Validators.nullValidator])],
       Description: ['', Validators.compose([Validators.nullValidator])],
       TimeZoneId  : [1, Validators.compose([Validators.required])],
-      UserRoleId: ['', Validators.compose([Validators.nullValidator])],
+      UserRoleId: [7, Validators.compose([Validators.nullValidator])],
       ObjCompany: ['', Validators.compose([Validators.nullValidator])],
       ObjTimeZone:  ['', Validators.compose([Validators.nullValidator])],
       IsDomain: [false, Validators.compose([Validators.nullValidator])]

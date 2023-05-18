@@ -149,6 +149,7 @@ export class dLoginComponent {
     //   }, 3000);
     // }
     else  {
+      this.loginform.value.UserName = this.loginform.value.Email;
       this.appService.validateCheckemail(this.loginform.value.Email)
         .subscribe(
           data2 => {
@@ -183,44 +184,52 @@ export class dLoginComponent {
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         this.customerId = data.CustomerId;
                         this.userId = data.UserId;
-                        if (this.preId != null) {
-                          if (this.cid == this.customerId) {
-                            this.router.navigateByUrl('app-view-jobdetails');
-                            // const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
-                            //   {
-                            //     width: '750',
-                            //     position: { right: '0px' },
-                            //     height: '750px',
-                            //     data: {
-                            //       animal: 'panda'
-                            //     }
-                            //   }
-                            // );
-                            // chatboxdialogRef.afterClosed().subscribe(result => {
-                            //   console.log('Chatbox Dialog result: ${result}');
-                            // });
+                        if(data.UserRoleId === 1)
+                        {
+                          this.router.navigateByUrl('app-manage-jobs');
+                        }
+                        else
+                        {
+                          if (this.preId != null) {
+                            if (this.cid == this.customerId) {
+                              this.router.navigateByUrl('app-view-jobdetails');
+                              // const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                              //   {
+                              //     width: '750',
+                              //     position: { right: '0px' },
+                              //     height: '750px',
+                              //     data: {
+                              //       animal: 'panda'
+                              //     }
+                              //   }
+                              // );
+                              // chatboxdialogRef.afterClosed().subscribe(result => {
+                              //   console.log('Chatbox Dialog result: ${result}');
+                              // });
+                            }
+                            else {
+                              this.router.navigateByUrl('app-dashboardview');
+                            }
+                            //this.router.navigate(['/app-Getcandidateprofile']);
                           }
-                          else {
+                          if (this.JobId != null) {
+                            if (this.CId == this.customerId) {
+                              sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
+                              this.router.navigateByUrl('app-view-jobdetails');
+                            }
+                            else {
+                              this.router.navigateByUrl('app-dashboardview');
+                            }
+                            //this.router.navigate(['/app-Getcandidateprofile']);
+                          }
+                          else if (this.preId == null || this.preId == undefined) {
                             this.router.navigateByUrl('app-dashboardview');
                           }
-                          //this.router.navigate(['/app-Getcandidateprofile']);
-                        }
-                        if (this.JobId != null) {
-                          if (this.CId == this.customerId) {
-                            sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
-                            this.router.navigateByUrl('app-view-jobdetails');
-                          }
-                          else {
+                          else if (this.JobId == null || this.JobId == undefined) {
                             this.router.navigateByUrl('app-dashboardview');
                           }
-                          //this.router.navigate(['/app-Getcandidateprofile']);
                         }
-                        else if (this.preId == null || this.preId == undefined) {
-                          this.router.navigateByUrl('app-dashboardview');
-                        }
-                        else if (this.JobId == null || this.JobId == undefined) {
-                          this.router.navigateByUrl('app-dashboardview');
-                        }
+                     
 
                       }
                       if (data.CustomDomain === true && !this.currentURL.includes("esolvit")) {
@@ -231,6 +240,12 @@ export class dLoginComponent {
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         this.customerId = data.CustomerId;
                         this.userId = data.UserId;
+                        if(data.UserRoleId === 1)
+                        {
+                          this.router.navigateByUrl('app-manage-jobs');
+                        }
+                        else
+                        {
                         if (this.preId != null) {
                           if (this.cid == this.customerId) {
                             this.router.navigateByUrl('app-view-jobdetails');
@@ -269,6 +284,7 @@ export class dLoginComponent {
                         else if (this.JobId == null || this.JobId == undefined) {
                           this.router.navigateByUrl('app-dashboardview');
                         }
+                      }
 
                       }
                       if (data.CustomDomain === true && this.currentURL.includes("esolvit")) {
@@ -279,6 +295,12 @@ export class dLoginComponent {
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         this.customerId = data.CustomerId;
                         this.userId = data.UserId;
+                        if(data.UserRoleId === 1)
+                        {
+                          this.router.navigateByUrl('app-manage-jobs');
+                        }
+                        else
+                        {
                         if (this.preId != null) {
                           if (this.cid == this.customerId) {
                       
@@ -318,18 +340,11 @@ export class dLoginComponent {
                         else if (this.JobId == null || this.JobId == undefined) {
                           this.router.navigateByUrl('app-dashboardview');
                         }
+                      }
 
                       }
 
-                      if (data.CustomDomain != true && this.currentURL.includes("esolvit")) {
-                        this.loading = false;
-                        this.toastr.error('Invalid Authentication please try to login from Arytic!', 'Oops!');
-                        setTimeout(() => {
-                          this.loading = false;
-                          this.toastr.dismissToast;
-                        }, 3000);
 
-                      }
 
                     }
                   },

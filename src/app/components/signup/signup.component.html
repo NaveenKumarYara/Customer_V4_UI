@@ -111,7 +111,7 @@
                             <!--Company Name-->
                             <div class="form-group p-rel">
                                 <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
-                                    placeholder="Company Name *" minlength=1 required>
+                                    placeholder="Company Name *" minlength=1>
                                 <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
                                     class="error1">
                                     <div *ngIf="signUpform.controls['CompanyName'].errors.required">
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                             <!--Company Size-->
-                            <div class="form-group p-rel">
+                            <div class="form-group p-rel" *ngIf="freelance ===  false">
                                 <select class="form-control" (change)="onchange($event.target.value)">
                                     <option *ngFor="let list of sizelist" value="{{list?.CompanySizeId}}">
                                         {{list?.CompanySize}}</option>
