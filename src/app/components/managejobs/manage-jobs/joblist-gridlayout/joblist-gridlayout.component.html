@@ -112,11 +112,14 @@
 
 				</h5>
 				<h5>{{job?.PostedOn | date:'mediumDate'}}</h5>
-				<ng-container *ngIf="job?.JobPositionId !=''">
-					<h5 class="jobbl-1" placement="top" tooltip="Job Id : {{job?.JobPositionId}}"><span class="text-overflow-tooltip">Job Id : {{job?.JobPositionId}}</span></h5>
-				</ng-container>
+			
 			</div>
-
+			<ng-container *ngIf="job?.JobPositionId !=''">
+				<h5 class="jobbl-1" placement="top" tooltip="Job Id : {{job?.JobPositionId}}"><span>Job Id : {{job?.JobPositionId}}</span>
+				
+				</h5>
+				<br/>
+			</ng-container>
 		</header>
 		<div class="card-body">
 			<div class="row">
