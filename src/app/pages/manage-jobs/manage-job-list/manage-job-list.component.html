@@ -2,7 +2,7 @@
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-company-small.jpg" alt="">
 		<h4>{{ljob?.JobTitle}}</h4>
-		<!-- <ng-container *ngIf="ljob?.JobStatus == 'Active'">
+		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
@@ -22,8 +22,8 @@
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
 			<span class="status shortlisting">{{ljob?.JobStatus}}</span>
-		</ng-container> -->
-		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
+		</ng-container>
+		<!--<ng-container *ngIf="ljob?.JobStatus == 'Active'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
@@ -43,7 +43,7 @@
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
-		</ng-container>
+		</ng-container>-->
 	</div>
 </div>
 <div class="table-col company-col">

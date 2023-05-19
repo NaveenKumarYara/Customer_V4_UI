@@ -323,6 +323,21 @@
       transform: perspective(100px) rotateX(-20deg);
     }
 
+    .form-select {
+      display: inline-block;
+      width: auto;
+      padding: 6px 34px 6px 12px;
+      font-size: 14px;
+      border: 0;
+      height: auto;
+      background-color: transparent;
+      
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
     &.active {
       color: $white;
       background-color: $darker-green;
@@ -331,9 +346,18 @@
         background-color: $dark-green;
       }
 
-      &.number {
+      .number {
         background-color: $dark-green;
         color: $white;
+      }
+
+      .form-select {
+        color: $white;
+        background-image: url(../../../../../assets/images/arrow-down.svg);
+
+        option {
+          color: $dark-gray;
+        }
       }
     }
 
@@ -363,14 +387,34 @@
     &.box-04{
       width: auto;
       height: auto;
+      position: relative;
       background-color: transparent;
-      border-top: 87px solid #E1F7EF;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      display: block;
-      transform: scale(0.62);
-      transform-origin: center top;
+     
+      .arrow {
+        background-color: transparent;
+        border-top: 166px solid #E1F7EF;
+        border-left: 166px solid transparent;
+        border-right: 166px solid transparent;
+        display: block;
+        transform: scale(0.62);
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: center top;  
+      }
 
+      .mask {
+        position: relative;
+        margin-top: 10px;
+      }
+
+      .number {
+        position: relative;
+        right: 0;
+        top: 0;
+        margin-bottom: 10px;
+      }
+     
       &:after {
         display: none;
       }

@@ -1,0 +1,77 @@
+<div class="table-col name-col">
+	<div class="profile-info">
+		<img src="../../../../assets/images/default-profile-thumb.png" alt="">
+		<h4>Akhilesh Chang</h4>
+	</div>
+</div>
+<div class="table-col position-col">
+	Software Architect 1
+</div>
+<div class="table-col email-col">
+	test15@gmail.com
+</div>
+<div class="table-col number-col">
+	9876543456
+</div>
+<div class="table-col location-col">
+	Austin, Texas
+</div>
+<div class="table-col others-col">
+	<button class="btn btn-arrow" 
+		(click)="isCollapsed = ! isCollapsed"
+		[attr.aria-expanded]="!isCollapsed"
+		aria-controls="collapseExample"
+	>
+		<span class="mdi mdi-chevron-down"></span>
+	</button>
+</div>
+
+<div class="table-col bottom-col"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+	<div class="d-flex">
+		<div class="left-col">
+		
+		</div>
+		<div class="right-col ml-auto">
+			
+			<div class="navigation">
+				<ul>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-view-dashboard-edit-outline"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-list-status"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-share-variant-outline"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-file-arrow-up-down-outline"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-note-multiple-outline"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-folder-outline"></span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="mdi mdi-trash-can-outline"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

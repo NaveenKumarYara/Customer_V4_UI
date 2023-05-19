@@ -27,6 +27,8 @@ import { JobCardComponent } from './job-activities/job-card/job-card.component';
 import { JobActivitiesSummaryComponent } from './job-activities/job-activities-summary/job-activities-summary.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { JobListComponent } from './job-activities/job-list/job-list.component';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	declarations: [
@@ -43,7 +45,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 	ManageLoadJobsComponent,
 	JobsActivitiesNavComponent,
 	JobCardComponent,
-	JobActivitiesSummaryComponent
+	JobActivitiesSummaryComponent,
+ JobListComponent
 
 	],
 	imports: [
@@ -57,6 +60,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 	 NgbDropdownModule,
 	 NgbRatingModule,
 	 CarouselModule,
+	 NgbCollapseModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

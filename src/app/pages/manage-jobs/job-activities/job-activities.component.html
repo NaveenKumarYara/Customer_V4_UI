@@ -21,4 +21,32 @@
       </div>
     </div>
   </div>
-</ng-container>  
+</ng-container>
+
+<ng-container *ngIf="viewLayout == 'table'">
+  <div class="job-listing-table">
+    <div class="table-row table-row-heading">
+      <div class="table-col name-col">
+        Name
+      </div>
+      <div class="table-col position-col">
+        Position
+      </div>
+      <div class="table-col email-col">
+        Email
+      </div>
+      <div class="table-col number-col">
+        Contact Number
+      </div>
+      <div class="table-col location-col">
+        Current Location
+      </div>
+      <div class="table-col others-col">
+        Others
+      </div>
+    </div>
+    <div class="table-row">
+      <app-job-list></app-job-list>
+    </div>
+  </div>
+</ng-container>

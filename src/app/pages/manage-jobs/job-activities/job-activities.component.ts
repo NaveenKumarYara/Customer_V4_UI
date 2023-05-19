@@ -7,7 +7,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 })
 export class JobActivitiesComponent implements OnInit {
   viewLayout = 'grid';
-
   constructor() { }
 
   ngOnInit(): void {

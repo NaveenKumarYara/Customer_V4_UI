@@ -553,20 +553,8 @@
   ul {
     @include no-style();
     @include flexbox();
-    gap: 14px;
+    gap: 30px;
     @include justify-content(center);
-
-    li {
-      text-align: center;
-    }
-
-    h6 {
-      font-size: 8px;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: $medium-gray;
-      margin: 0;
-    }
 
     .icon {
       display: block;
@@ -604,5 +592,72 @@
         background-position: -219px -424px;
       }
     }
+
+    li {
+      text-align: center;
+      position: relative;
+      
+      &.active {
+        .icon {
+          &.icon-submitted {
+            background-position: -27px -477px;
+          }
+
+          &.icon-screening {
+            background-position: -77px -477px;
+          }
+    
+          &.icon-shortlisted {
+            background-position: -124px -477px;
+          }
+    
+          &.icon-interview {
+           background-position: -170px -477px;
+          }
+    
+          &.icon-hired {
+            background-position: -219px -477px;
+          }
+        }
+      }
+
+      &:not(:first-child) {
+        &::before {
+          width: 22px;
+          height: 1px;
+          background-color: $dark-gray;
+          position: absolute;
+          left: -27px;
+          top: 50%;
+          content: "";
+        }
+
+        &:after {
+          content: "\F0142";
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: $blue;
+          box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
+          position: absolute;
+          left: -23px;
+          text-align: center;
+          font: normal normal normal 14px/1 "Material Design Icons";
+          color: $white;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    h6 {
+      font-size: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: $medium-gray;
+      margin: 0;
+    }
+
+   
   }
 }
