@@ -63,6 +63,22 @@
 		-
 	</ng-container>
 </div>
+<div class="table-col date-posted-col">
+	<ng-container *ngIf="ljob?.PostedDate">
+		{{ljob?.PostedDate |  date:'mediumDate'}}
+	</ng-container>
+	<ng-container *ngIf="!ljob?.PostedDate">
+		-
+	</ng-container>
+</div>
+<div class="table-col priority-col">
+	<ng-container *ngIf="ljob?.JobPriority">
+		{{ljob?.JobPriority | titlecase}}
+	</ng-container>
+	<ng-container *ngIf="!ljob?.JobPriority">
+		-
+	</ng-container>
+</div>
 <div class="table-col location-col">
 	<!-- <ng-container *ngFor="let location of ljob?.JobLocations.split('|');let lj = index">
 						
