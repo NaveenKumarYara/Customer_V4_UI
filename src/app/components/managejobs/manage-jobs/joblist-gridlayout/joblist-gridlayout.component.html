@@ -114,8 +114,8 @@
 				<h5>{{job?.PostedOn | date:'mediumDate'}}</h5>
 			
 			</div>
-			<ng-container *ngIf="job?.JobPositionId !=''">
-				<h5 class="jobbl-1" placement="top" tooltip="Job Id : {{job?.JobPositionId}}"><span>Job Id : {{job?.JobPositionId}}</span>
+			<ng-container>
+				<h5 class="jobbl-1" placement="top" tooltip="Job Id : {{job?.JobPositionId}}"><span>Job Id : {{job?.JobPositionId || 'Not Provided'}}</span>
 				
 				</h5>
 				<br/>

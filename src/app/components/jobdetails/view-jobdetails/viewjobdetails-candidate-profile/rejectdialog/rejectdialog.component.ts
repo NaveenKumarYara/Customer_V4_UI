@@ -103,7 +103,10 @@ export class RejectdialogComponent implements OnInit {
       this.jobdetailscustomer = res;
       this.eventStat.emit(null);
       //this.SaveNotes();
+      if(this.isShown1!=false&&this.isShown2!=false)
+      {
       this.SendStatusEmail();
+      }
     });
   }
 

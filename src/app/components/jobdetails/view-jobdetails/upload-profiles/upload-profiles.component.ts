@@ -169,7 +169,7 @@ Job = {
   itemsArray: IItem[] = [
     {id:0, itemName: 'Individual' },
     {id:1,  itemName: 'Vendor' },
-    {id:2, itemName: 'Referrals' },
+    {id:2, itemName: 'Indeed' },
     {id:3, itemName: 'BullHorn' },
     {id:4, itemName: 'Dice' },
     {id:5, itemName: 'Career Builder' },
@@ -947,6 +947,10 @@ onFileSelected(event) {
       if(file.type != 'text/plain')
       {
         this.selectedFiles.push(file);
+      }
+      else{
+        this.selectedFiles = [];
+        this.uploader.clearQueue();
       }
    
     }
