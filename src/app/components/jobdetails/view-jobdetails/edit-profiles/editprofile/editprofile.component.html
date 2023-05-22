@@ -21,9 +21,9 @@
               <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
                   Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
-                  <ng-container *ngIf="FitDetails!=null">
+               
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
-                  </ng-container>
+           
                 </a>
               </li>
               <li [ngClass]="showThis == 'SkillsFit'? 'active': null">

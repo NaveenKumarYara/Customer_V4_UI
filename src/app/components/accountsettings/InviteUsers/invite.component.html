@@ -32,6 +32,12 @@
               <p class="sub-text">You can either let your team members access everything in this site, or assign
                 specific
                 roles to them.</p>
+                <mat-radio-group>
+                  <mat-radio-button value="0" [checked]="filterUser === 0" (click)="GetUsers(0)"> All Members
+                  </mat-radio-button>
+                  <mat-radio-button value="1" [checked]="filterUser === 1" (click)="GetUsers(1)">Active Members</mat-radio-button>
+                  <mat-radio-button value="2" [checked]="filterUser === 2"  (click)="GetUsers(2)">Inactive Members</mat-radio-button>
+                </mat-radio-group>
             </div>
             <div class="col-md-4">
               <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span
@@ -61,10 +67,10 @@
               <div class="col-md-7">
                 <h4>Team Members</h4>
                 <mat-radio-group>
-                  <mat-radio-button value="0" [checked]="true" (click)="GetUsers(0)"> All Members
+                  <mat-radio-button value="0" [checked]="filterUser ===  0" (click)="GetUsers(0)"> All Members
                   </mat-radio-button>
-                  <mat-radio-button value="1" (click)="GetUsers(1)">Active Members</mat-radio-button>
-                  <mat-radio-button value="2" (click)="GetUsers(2)">Inactive Members</mat-radio-button>
+                  <mat-radio-button value="1" [checked]="filterUser ===  1" (click)="GetUsers(1)">Active Members</mat-radio-button>
+                  <mat-radio-button value="2" [checked]="filterUser ===  2"  (click)="GetUsers(2)">Inactive Members</mat-radio-button>
                 </mat-radio-group>
                 </div> 
                 <div class="col-md-2 text-center">
@@ -104,12 +110,12 @@
 
                         </div>
                         <div class="media-body" >
-                          <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName | titlecase}}
-                            {{contact?.LastName | titlecase}}</h5>
+                          <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName   || 'Not Provided' | titlecase}}
+                            {{contact?.LastName || 'Not Provided' | titlecase}}</h5>
                           <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5>
                           <ng-container *ngIf="contact?.IsRemove === false">
                             <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName | titlecase}}</small>
-                            <small *ngIf="contact?.FirstName=='Invited'">Invitation Sent</small>
+                            <small *ngIf="contact?.FirstName=='Invited'"> Invited</small>
                           </ng-container>
                           <ng-container *ngIf="contact?.IsRemove === true">                
                             <small>In Active</small>
