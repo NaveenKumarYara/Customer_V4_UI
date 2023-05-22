@@ -1507,6 +1507,7 @@ Job = {
 
   GetJobMatching(JId)
   {
+    debugger
     this.appService.GetJobMatching(JId).subscribe(data => {
       if (data != "No records found") {
         //  this.minValue = data.SkillFit;
@@ -1743,6 +1744,7 @@ Job = {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
       this.jobdetailscustomer = res;
       this.GetJobMatching(this.data.jobId);
+      this.GetAllProfileDetails(this.data.ProfileId);
     });
 }
   getCandidateExperience(job,Pid) {
@@ -2080,7 +2082,7 @@ Job = {
     this.GetQualifications();
     this.PopulateJobdetail();
     this.GetCustomerSubscription();
-    this.GetAllProfileDetails(this.data.ProfileId);
+
     /** */
     $(function () {
       $('[name="list1"]').change(function () {
@@ -2411,7 +2413,7 @@ GetMatchingPercentage(profileId): any {
      {
       if(this.profileDetails.TotalExperience!=null)
       {
-        if( Number(this.profileDetails.TotalExperience) >=  Math.floor(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
+        if( Number(this.profileDetails.TotalExperience) >  Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
         {
          this.matchingParameterData.JobFit = this.expweight;
         }
@@ -2559,17 +2561,21 @@ GetProfileDetails(Id)
   
   return this._service.GetService('ProfileAPI/api/GetProfileDetailsAndAddress?profileId=',Id).subscribe(
     ta=>{
+      if(ta.length>0)
+    {
     //this.GetPercent(Id);
     this.profileDetails = ta[0];
-    let objIndex = this.uploadRes.findIndex((obj => obj.ProfileId == Id));
-    this.uploadRes[objIndex].FirstName = this.profileDetails.FirstName;
-    this.uploadRes[objIndex].LastName = this.profileDetails.LastName;
-    this.uploadRes[objIndex].ProfileTitle = this.profileDetails.ProfileTitle;
-    this.uploadRes[objIndex].ResumeStatus;  
-    this.selectedCandidate =  this.processedProfiles.find((p => p == objIndex)); 
-    this.currentRecordIndex = objIndex;
+    //let objIndex = this.uploadRes.findIndex((obj => obj.ProfileId == Id));
+    // this.uploadRes[objIndex].FirstName = this.profileDetails.FirstName;
+    // this.uploadRes[objIndex].LastName = this.profileDetails.LastName;
+    // this.uploadRes[objIndex].ProfileTitle = this.profileDetails.ProfileTitle;
+    // this.uploadRes[objIndex].ResumeStatus;  
+    //this.selectedCandidate =  this.processedProfiles.find((p => p == objIndex)); 
+    //this.currentRecordIndex = objIndex;
     // this.profileEdit = true;
     //this.flashcardInputExpanded = true;
+    }
+
   })
 }
 
