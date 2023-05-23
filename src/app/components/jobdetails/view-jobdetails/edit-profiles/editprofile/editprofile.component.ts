@@ -2079,6 +2079,7 @@ Job = {
     this.haveProfiles = false;
     this.alertService.clear();
     this.getYears();
+    this.GetProfileDetails(this.data.ProfileId);
     this.GetQualifications();
     this.PopulateJobdetail();
     this.GetCustomerSubscription();
@@ -2413,6 +2414,7 @@ GetMatchingPercentage(profileId): any {
      {
       if(this.profileDetails.TotalExperience!=null)
       {
+        debugger
         if( Number(this.profileDetails.TotalExperience) >  Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
         {
          this.matchingParameterData.JobFit = this.expweight;
