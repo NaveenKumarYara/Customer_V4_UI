@@ -409,7 +409,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 						const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
 						if (place === null || place.geometry === undefined || place.geometry === null) {
 							this.cityName = '';
-							this.searchCandidates();
+							//this.searchCandidates();
 							return;
 						}
 						if (place.geometry) {
@@ -418,7 +418,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 							let x = locations.split(",");
 							this.cityName = x[0];
 							if (this.cityName !== '') {
-								this.searchCandidates();
+								//this.searchCandidates();
 							}
 							this.childEvent.emit(place.address_components[0].short_name);
 
@@ -492,15 +492,15 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.selectcard = k;
 		if(k>=0)
 		{			
-				this.GetDefaultSkills(profile.ProfileId);	
-				this.GetDefaultProfileDetails(profile.ProfileId);
-				this.GetDefaultProfileCompleteness(profile.ProfileId);
-				this.GetDomain(profile.ProfileId);
-				this.GetEducation(profile.ProfileId);
-				this.GetCertification(profile.ProfileId);
+				this.GetDefaultSkills(profile.profileId);	
+				this.GetDefaultProfileDetails(profile.profileId);
+				this.GetDefaultProfileCompleteness(profile.profileId);
+				this.GetDomain(profile.profileId);
+				this.GetEducation(profile.profileId);
+				this.GetCertification(profile.profileId);
 				this.isfullGridView = true;
 				this.candidates.filter(x => {
-					if(x.ProfileId == profile.ProfileId)
+					if(x.ProfileId == profile.profileId)
 					{
                       x.IsSelected = true;
 					}
@@ -1715,6 +1715,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	onSomeAction(event){
 		if(event.keyCode === 13){
 			this.cancel();
+
 			this.getCandidates();
 		}
 	   }
@@ -1764,14 +1765,14 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 
 	getCandidates() {
-		//debugger;
+		debugger;
 		this.candidatesLoading = true;
 
 
 		let candidateSearch = new CandidateSearch();
 		candidateSearch.PageNumber = this.currentPage;
 		candidateSearch.PageSize = this.pageCount;
-		candidateSearch.SearchValue = this.searchValue;
+		candidateSearch.SearchValue = this.searchValue!=undefined?this.searchValue:'';
 		if(this.selectedSkills != undefined)
 		{
 			candidateSearch.SelectedSkills = this.selectedSkills.toString();
@@ -1780,23 +1781,24 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		{
 			candidateSearch.SelectedSkills = this.selectedSkills;
 		}
-		candidateSearch.MinimumExperience = this.MinimumExperience;
-		candidateSearch.MaximumExperience = this.MaximumExperience;
+		// candidateSearch.MinimumExperience = this.MinimumExperience;
+		// candidateSearch.MaximumExperience = this.MaximumExperience;
 		candidateSearch.JobTitle = this.jobTitle;
 		candidateSearch.CompanyName = this.companyName;
-		candidateSearch.EducatonName = this.educationName;
-		candidateSearch.CertificationName = this.certificationName;
+		// candidateSearch.EducatonName = this.educationName;
+		// candidateSearch.CertificationName = this.certificationName;
 		candidateSearch.SelectedLocation = this.cityName;
-		candidateSearch.SelectedDomains = this.selectedDomains;
+		//candidateSearch.SelectedDomains = this.selectedDomains;
 		candidateSearch.CustomerId = this.customerId;
-		candidateSearch.FilterValue = JSON.stringify(this.filter);
+		//candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
-		this.appService.getCandidates(candidateSearch).subscribe(
+		this.appService.getNewCandidates(candidateSearch).subscribe(
+		//this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
 					//debugger;
-					if (res.Candidates != null && res.Candidates.length > 0) {
-						this.candidates = res.Candidates;
+					if (res.candidates != null && res.candidates.length > 0) {
+						this.candidates = res.candidates;
 						this.totalPageCount = res.TotalPages;
 						// this.totalCandidatesCount = res.TotalRecordsCount;
 						// if (this.totalCandidatesCount < this.pageCount)

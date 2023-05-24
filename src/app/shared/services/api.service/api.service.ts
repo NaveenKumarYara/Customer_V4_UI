@@ -331,6 +331,10 @@ export class ApiService {
       .replace(
         new RegExp("QuestionAPI", "gi"),
         this.settingsService.settings.QuestionbaseUrl
+      )
+      .replace(
+        new RegExp("EmployerAPI", "gi"),
+        this.settingsService.settings.EmployerbaseUrl
       );
   }
 

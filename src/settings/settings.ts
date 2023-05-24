@@ -245,4 +245,5 @@ export class Settings {
   ActiveJobs:string;
   CheckCustProfile:string;
   MyNotes:string;
+  EmployerbaseUrl:string;
 }

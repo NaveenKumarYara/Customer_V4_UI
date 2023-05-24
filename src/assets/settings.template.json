@@ -5,6 +5,7 @@
     "JobbaseUrl": "${Jobs_URL}",
     "SharingbaseUrl": "${Sharing_URL}",
     "EmailbaseUrl": "${Email_URL}",
+    "EmployerbaseUrl":"${EmployerV1baseUrl}",
     "jobTitleEndpoint": "${Jobs_URL}/api/GetJobTitles",
     "getskillsEndpoint": "${Profile_URL}/api/GetSkills",
     "addSkillsEndpoint": "${Profile_URL}/api/AddSkill",

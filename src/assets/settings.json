@@ -5,6 +5,7 @@
   "JobbaseUrl": "https://jobsapi-dev001.arytic.com",
   "SharingbaseUrl": "https://socialsharingapi-dev001.arytic.com",
   "EmailbaseUrl": "https://emailapi-dev001.arytic.com",
+  "EmployerbaseUrl":"https://employerjobsapiv1-dev001.arytic.com",
   "jobTitleEndpoint": "https://jobsapi-dev001.arytic.com/api/GetJobTitles",
   "getskillsEndpoint": "https://profileapi-dev001.arytic.com/api/GetSkills",
   "addSkillsEndpoint": "https://profileapi-dev001.arytic.com/api/AddSkill",
