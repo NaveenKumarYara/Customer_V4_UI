@@ -1640,8 +1640,8 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.candidatesLoading = true;
 		this.searchText = '';
 		this.searchValue = '';
-		this.cityName = '';
-		(<HTMLInputElement>document.getElementById('autocomplete')).value = '';
+		// this.cityName = '';
+		// (<HTMLInputElement>document.getElementById('autocomplete')).value = '';
 		this.selectedSkills = null;
 		this.showFilterCount = 0;
 		if (this.showFilterCount == 0) {
@@ -1703,7 +1703,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		else {
 			this.selectedEdcationCount = 1;
 		}
-		this.autocomplete.set('place', null);
+		// this.autocomplete.set('place', null);
 		this.searchCandidates();
 	}
 	findCandidates() {
@@ -1792,6 +1792,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.CustomerId = this.customerId;
 		//candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
+		debugger
 		this.appService.getNewCandidates(candidateSearch).subscribe(
 		//this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
