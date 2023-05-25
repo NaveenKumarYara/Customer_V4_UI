@@ -251,7 +251,7 @@ numberOnly(event): boolean {
   {
     this.appService.getDomainDetails().subscribe(data=>
       {
-        this.domainsnew = data;
+        this.domainsnew = data.filter(x=>x.DomainName != 'Domain');
     })
   }
   minExperienceChangeStart(changeContext: ChangeContext): void {
