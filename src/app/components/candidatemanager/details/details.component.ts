@@ -1801,8 +1801,8 @@ export class DetailsComponent implements OnInit,OnDestroy {
 					//debugger;
 					if (res.candidates != null && res.candidates.length > 0) {
 						this.candidates = res.candidates;
-						this.totalPageCount = res.TotalPages;
-						// this.totalCandidatesCount = res.TotalRecordsCount;
+						this.totalPageCount = res.totalPages;
+						this.totalCandidatesCount = res.totalRecordsCount;
 						// if (this.totalCandidatesCount < this.pageCount)
 						// 	this.totalPageCount = 1;
 						// else {
