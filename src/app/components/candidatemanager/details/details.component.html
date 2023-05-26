@@ -281,7 +281,7 @@
 					<div class="col-sm-5 col" data-step="2" data-title="Step 2"  data-intro="The search option enables you to search the candidates based on inputs like candidate name, location etc" data-position='top'>
 						<div class="input-group blue">
 							<input class="form-control" id="searchData" name="searchData" placeholder="Search title, location, company here."
-								[(ngModel)]="searchValue" #searchData="ngModel">
+								[(ngModel)]="searchValue" #searchData="ngModel"  (keyup)="findCandidates()">
 							<span class="input-group-btn">
 								<button class="btn btn-primary btn-sm" type="button"  (window:keypress)="onSomeAction($event)" (click)="findCandidates()"><i class="fa fa-search"
 										aria-hidden="true"></i>

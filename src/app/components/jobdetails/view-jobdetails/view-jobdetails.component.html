@@ -618,11 +618,11 @@
 							</a> 
 							<h4 class="cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
-							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus }}</span>
+							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus}}</span>
 							<!-- <span class="edit-btn cursor-pointer" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'&& jobdetailsbasicinfo?.JobStatus != 'Filled'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</span> -->
-							<span class="edit-btn cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
+							<span class="edit-btn cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()" tooltip="Click here to view/edit job" placement="top">
 								<img src="../../../../assets/images/editorview.png" alt="" width="18"/>
 							</span>
 						</div>

@@ -1765,7 +1765,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 
 	getCandidates() {
-		debugger;
 		this.candidatesLoading = true;
 
 
@@ -1792,7 +1791,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.CustomerId = this.customerId;
 		//candidateSearch.FilterValue = JSON.stringify(this.filter);
         candidateSearch.SortBy = this.sortBY;
-		debugger
 		this.appService.getNewCandidates(candidateSearch).subscribe(
 		//this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
