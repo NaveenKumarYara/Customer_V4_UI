@@ -1224,7 +1224,7 @@ GetMatchingPercentage(profileId): any {
      }
      else  if(expFit<this.expweight)
      {
-      if(this.profileDetails.TotalExperience!=null)
+      if(this.profileDetails.TotalExperience!=null && this.profileDetails.TotalExperience!=undefined)
       {
         if( Number(this.profileDetails.TotalExperience) >  Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
         {
