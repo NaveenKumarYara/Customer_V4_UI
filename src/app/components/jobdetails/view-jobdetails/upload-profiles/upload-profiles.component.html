@@ -121,7 +121,7 @@
               <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
                   Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
-                  <ng-container *ngIf="FitDetails!=null">
+                  <ng-container>
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
                 </a>
@@ -216,7 +216,7 @@
                     <strong>{{matchingParameterData?.Role}}%</strong>
                   </div>
                   <div class="box__table" *ngIf="matchingParameterData?.Role > 0 ">you got
-                    <strong>{{matchingParameterData?.Role/10}}%</strong>
+                    <strong>{{matchingParameterData?.Role}}%</strong>
                   </div>
                 </div>
               </div>
@@ -372,8 +372,9 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">you got
-                    <strong>{{matchingParameterDetails?.Jobfit_Total - matchingParameterData?.Role/10 }} %</strong>
+                    <strong>{{matchingParameterData?.JobFit || 0}} %</strong>
                   </div>
+                  
                   <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
                     <strong>30%</strong>
                   </div> -->
