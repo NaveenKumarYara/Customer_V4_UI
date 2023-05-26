@@ -1707,7 +1707,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.searchCandidates();
 	}
 	findCandidates() {
-	
 		this.cancel();
 		this.getCandidates();
 	}
@@ -1772,6 +1771,10 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		candidateSearch.PageNumber = this.currentPage;
 		candidateSearch.PageSize = this.pageCount;
 		candidateSearch.SearchValue = this.searchValue!=undefined?this.searchValue:'';
+		if(candidateSearch.SearchValue != '')
+		{
+			candidateSearch.PageNumber=1;
+		}
 		if(this.selectedSkills != undefined)
 		{
 			candidateSearch.SelectedSkills = this.selectedSkills.toString();
