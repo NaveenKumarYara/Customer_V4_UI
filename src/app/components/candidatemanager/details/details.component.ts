@@ -1707,7 +1707,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.searchCandidates();
 	}
 	findCandidates() {
-		this.cancel();
+		//this.cancel();
 		this.getCandidates();
 	}
 
