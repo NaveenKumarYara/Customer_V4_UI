@@ -2,71 +2,63 @@
 @import '../../../../assets/partials/utils/mixins';
 
 .dashboard-kpis {
-  padding: 40px 0 0;
-  
-  .cols {
-    @include flex();
-    @include flex-wrap();
-    margin: 0 -10px;
+  .col-container {
+    background-color: $white;
+    border-radius: 8px;
+    height: calc(100% - 30px);
+    padding: 20px;
+    position: relative;
+    margin-top: 30px;
 
-    .col {
-      flex: 0 0 20%;
-      max-width: 20%;
-      padding: 0 10px;
+    .icon {
+      position: absolute;
+      right: 15px;
+      border: 4px solid $white;
+      border-radius: 50%;
+      font-size: 0;
+      width: 68px;
+      height: 68px;
+      top: -34px;
+      background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
+      background-color: $light-green;
 
-      .col-container {
-        background-color: $white;
-        border-radius: 8px;
-        height: 100%;
-        padding: 20px;
-        position: relative;
-
-        .icon {
-          position: absolute;
-          right: 15px;
-          border: 4px solid $white;
-          border-radius: 50%;
-          font-size: 0;
-          width: 68px;
-          height: 68px;
-          top: -34px;
-          background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
-          background-color: $light-green;
-
-          &.icon-01 {
-            background-position: -23px -21px;
-          }
-
-          &.icon-02 {
-            background-position: -101px -21px;
-          }
-
-          &.icon-03 {
-            background-position: -179px -22px;
-          }
-
-          &.icon-04 {
-            background-position: -256px -22px;
-          }
-
-          &.icon-05 {
-            background-position: -335px -22px;
-          }
-        }
-
-        h3 {
-          font-size: $font-size-32;
-          color: $darkest-blue;
-          margin: 0 0 5px;
-          font-weight: 600;
-        }
-
-        h4 {
-          font-size: $font-size-16;
-          color: $medium-gray;
-          margin: 0;
-        }
+      &.icon-01 {
+        background-position: -23px -21px;
       }
+
+      &.icon-02 {
+        background-position: -101px -21px;
+      }
+
+      &.icon-03 {
+        background-position: -179px -22px;
+      }
+
+      &.icon-04 {
+        background-position: -256px -22px;
+      }
+
+      &.icon-05 {
+        background-position: -335px -22px;
+      }
+    }
+
+    h3 {
+      font-size: $font-size-28;
+      color: $darkest-blue;
+      margin: 0 0 5px;
+      font-weight: 600;
+
+      @media only screen and (min-width: 1280px) {
+        font-size: $font-size-32;
+      }
+    }
+
+    h4 {
+      font-size: $font-size-16;
+      color: $medium-gray;
+      margin: 0;
     }
   }
 }
+

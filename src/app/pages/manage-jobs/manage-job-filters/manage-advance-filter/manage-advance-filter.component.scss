@@ -26,6 +26,23 @@
 
 	.col {
 		margin-bottom: 20px;
+		flex: 0 0 100%;
+		max-width: 100%;
+		
+		@media only screen and (min-width: 568px) {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+
+		@media only screen and (min-width: 768px) {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+
+		@media only screen and (min-width: 1024px) {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
 	}
 
 	.button-col {

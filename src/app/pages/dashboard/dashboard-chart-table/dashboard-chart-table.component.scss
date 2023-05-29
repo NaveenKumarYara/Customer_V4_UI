@@ -9,11 +9,15 @@
   }
 
   h3 {
-    font-size: $font-size-20;
-    text-align: center;
+    font-size: $font-size-16;
     color: $darkest-blue;
     font-weight: 600;
-    margin-bottom: 30px
+    margin-bottom: 15px;
+
+    @media only screen and (min-width: 1170px) {
+      margin-bottom: 30px;
+      font-size: $font-size-20;
+    }
   }
 
   .col-container {
@@ -21,7 +25,7 @@
     background: $white;
     box-shadow: 0px 3px 6px rgba(110, 129, 158, 0.14);
     height: 100%;
-    padding: 30px;  
+    padding: 20px;  
    
     ul {
       @include no-style();
@@ -62,39 +66,82 @@
         }
       }
     }
+
+    @media only screen and (min-width: 1320px) {
+      padding: 30px;
+    }
   }
 
   .table-cols {
     padding: 0 10px;
+    flex: 0 0 100%;
+    max-width: 100%;
 
     .top-container {
-      text-align: center;
+      text-align: left;
       position: relative;
 
       .btn {
         &.btn-link {
           position: absolute;
           right: 0;
+          padding: 0;
           top: 0;
-          font-size: $font-size-16;
+          font-size: 0;
           font-weight: 600;
           color: $blue;
           margin-left: auto;
           text-decoration: none;
+
+          .mdi {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            position: relative;
+            top: -2px;
+
+            @media only screen and (min-width: 768px) {
+              display: none;
+            }
+          }
+
+          @media only screen and (min-width: 768px) {
+            font-size: $font-size-16;
+          }
         }
       }
+
+      @media only screen and (min-width: 1280px) {
+        text-align: center;
+      }
+    }
+
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 55%;
+      max-width: 55%;
+    } 
+
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 66.6667%;
+      max-width: 66.6667%;
     }
   }
 
   .left-col {
     padding: 0 10px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
 
     figure {
       margin: 0;
 
       img {
-        width: 100%;
+        max-width: 100%;
         height: auto;
+        width: auto;
+        display: block;
+        margin: 0 auto;
       }
     }
 
@@ -122,15 +169,34 @@
         }
       }
     }
+
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 45%;
+      max-width: 45%; 
+      margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 33.33%;
+      max-width: 33.33%;
+    }
   }
 }
+
+.table-container {
+  display: table;
+  table-layout: fixed;
+ 
+  @media only screen and (min-width: 1320px) {
+    display: block;
+  }
+} 
 
 .table-row {
   border: 1px solid rgba($stroke-gray, 0.20);
   border-radius: 8px;
   background-color: rgba($white,0.20);
-  @include flexbox();
-  @include flex-wrap(wrap);
+  display: table-row;
   color: $dark-gray;
   font-size: $font-size-14;
 
@@ -140,14 +206,30 @@
 
   .table-col {
     padding: 10px 15px;
-    flex: 0 0 10.625%;
-    max-width: 10.625%;
+    flex: 0 0 204px;
+    max-width: 204px;
+    width: 204px;
+    display: table-cell;
     text-align: center;
 
+    @media only screen and (min-width: 1320px) {
+      flex: 0 0 10.625%;
+      max-width: 10.625%;
+      width: 10.625%;
+      display: block;
+    }
+
     &.name-col {
-      flex: 0 0 15%;
-      max-width: 15%;
+      flex: 0 0 204px;
+      max-width: 204px;
+      width: 204px;
       text-align: left;
+      
+      @media only screen and (min-width: 1320px) {
+        flex: 0 0 15%;
+        max-width: 15%;
+        width: 15%;
+      }
     }
   }
 
@@ -164,4 +246,14 @@
       color: $darkest-blue;
     }
   }
+
+  @media only screen and (min-width: 1320px) {
+    @include flexbox();
+    @include flex-wrap(wrap);
+  }
+}
+
+.table-box-container {
+  width: 100%;
+  overflow: auto;
 }

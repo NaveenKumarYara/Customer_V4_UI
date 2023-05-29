@@ -38,9 +38,14 @@
     }
 
     h6 {
-      font-size: $font-size-30;
+      font-size: $font-size-28;
       color: $darkest-blue;
+      font-weight: 600;
       margin: 0 0 0 auto;
+
+      @media only screen and (min-width: 1280px) {
+        font-size: $font-size-30;
+      }
     }
   }
 
