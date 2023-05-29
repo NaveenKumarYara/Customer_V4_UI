@@ -31,20 +31,33 @@
 		padding: 0;
 		list-style: none;
 		@include flex();
+		position: absolute;
+		width: 240px;
+		border-radius: 6px;
+		overflow: hidden;
 
 		li {
+			width: 240px;
+			overflow: hidden;
+			white-space: nowrap;
+
 			a {
-				font-size: $font-size-14;
+				font-size: $font-size-16;
 				display: block;
 				border: 1px solid $stroke-gray;
 				border-right: 0;
-				padding: 6px 12px;
+				padding: 6px 40px 6px 12px;
 				color: $dark-gray;
 				text-decoration: none;
 
 				.mdi {
 					margin-right: 4px;
 					font-size: $font-size-14;
+				}
+
+				@media only screen and (min-width: 1280px) {
+					font-size: $font-size-14;
+					padding: 6px 12px;
 				}
 			}
 
@@ -56,17 +69,82 @@
 			}
 
 			&:first-child {
-				a {
-					border-radius: 32px 0 0 32px;
+				border-radius: 0;
+				@media only screen and (min-width: 1280px) {
+					a {
+						border-radius: 32px 0 0 32px;
+					}
 				}
 			}
 
 			&:last-child {
-				a {
-					border-radius: 0 32px 32px 0;
-					border-right: 1px solid $stroke-gray;
+				border-radius: 0;
+				
+				@media only screen and (min-width: 1280px) {
+					a {
+						border-radius: 0 32px 32px 0;
+						border-right: 1px solid $stroke-gray;
+					}
+				}
+			}
+
+			@media only screen and (min-width: 1280px) {
+				width: auto;
+				white-space: normal;
+				overflow: inherit;
+			}
+		}
+
+		&.other-hide {
+			li {
+				display: none;
+
+				&:first-child {
+					display: block;
+					a {
+						border-radius: 0;
+						border: 0;
+					}
+				}
+
+				@media only screen and (min-width: 1280px) {
+					display: block;
+
+					a {
+						border-radius: 32px 0 0 32px;
+					}
 				}
 			}
 		}
+
+		&.other-show {
+			@include flex-direction(column);
+		}
+
+		@media only screen and (min-width: 1280px) {
+			position: relative;
+			width: auto;
+			border-radius: 0;
+		}
+	}
+}
+
+.btn-toogle {
+	padding: 0;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	color: #fff;
+}
+
+.dropdown-list {
+	position: relative;
+	width: 240px;
+	height: 36px;
+
+
+	@media only screen and (min-width: 1280px) {
+		width: auto;
+		height: auto;
 	}
 }

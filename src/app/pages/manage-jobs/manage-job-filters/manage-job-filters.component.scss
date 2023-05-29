@@ -1,4 +1,5 @@
 @import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
 
 .filter-section {
   margin-bottom: 30px;
@@ -6,43 +7,105 @@
   .navigation-col {
     display: flex;
     gap: 10px;
-    flex: 0 0 220px;
-    max-width: 220px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    @include order(2);
+    margin-top: 20px;
+
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 220px;
+      max-width: 220px;
+      @include order(1);
+      margin-top: 0;
+    }
   }
 
   .search-col {
-    padding-left: 15px;
-    flex: 0 0 calc(100% - 240px);
-    max-width: calc(100% - 240px);
+    flex: 0 0 100%;
+    max-width: 100%;
+    @include order(1);
 
     .search-sub-col {
       .form-control {
         background: url(../../../../assets/images/icon-search.svg) 9px 50% no-repeat $white;
-        padding-left: 40px;
+        padding-left: 36px;
+        background-size: 18px auto;
+
+        @media only screen and (min-width: 767px) {
+          padding-left: 40px;
+          background-size: 23px auto;
+        }
+      }
+    }
+
+    .sort-sub-col {
+      margin-bottom: 15px;
+    }
+
+    @media only screen and (min-width: 576px) {
+      .sort-sub-col {
+        margin-bottom: 0;
+      }
+    }
+
+    @media only screen and (min-width: 1023px) {
+      @include order(1);
+      padding-left: 15px;
+      flex: 0 0 calc(100% - 240px);
+      max-width: calc(100% - 240px);
+    }
+
+    > .row {
+      @include flex-direction(column);
+
+      @media only screen and (min-width: 768px) {
+        @include flex-direction(row);
       }
     }
   }
 
   .form-col {
-    flex:0 0 calc(100% - 534px);
-    max-width: calc(100% - 534px);
+    flex:0 0 100%;
+    max-width: 100%;
+
+    @media only screen and (min-width: 768px) {
+      flex:0 0 calc(100% - 224px);
+      max-width: calc(100% - 224px);
+    }
+
+    @media only screen and (min-width: 1280px) {
+      flex:0 0 calc(100% - 534px);
+      max-width: calc(100% - 534px);
+    }
   }
 
   .button-col {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: auto;
     padding-right: 0;
-    justify-content: flex-end;
-    flex: 0 0 534px;
-    max-width: 534px;
+    margin-top: 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
     
     .form-select {
       display: inline-block;
       width: 45%;
       vertical-align: middle;
-    } 
+    }
+
+    @media only screen and (min-width: 768px) {
+      flex: 0 0 224px;
+      max-width: 224px;
+      margin-top: 0;
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 534px;
+      max-width: 534px;
+    }
   }
 
   .btn-icon {
@@ -51,9 +114,9 @@
     border-radius: 6px;
     color: $dark-gray;
     padding: 0;
-    width: 48px;
+    width: 36px;
+    height: 36px;
     box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
-    height: 48px;
 
     &:hover, &.active {
       background-color: $blue;
@@ -61,6 +124,16 @@
       color: $white;
       box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
     }
+
+    .mdi {
+      line-height: 1;
+    }
+
+    @media only screen and (min-width: 767px) {
+      width: 48px;
+      height: 48px;
+    }
+
   }
 
   .toogle-layout {
@@ -68,17 +141,30 @@
     border: 1px solid $stroke-gray;
     border-radius: 6px;
     overflow: hidden;
-    height: 48px;
+    height: 36px;
+    margin-left: auto;
 
     .btn-icon {
       border-radius: 0;
       border: 0;
+
+      .mdi {
+        line-height: 1;
+      }
 
       &.active {
         box-shadow: inset 0px 6px 12px rgba(110, 129, 158, 0.2);
         background-color: $blue;
         color: $white;
       }
+    }
+
+    @media only screen and (min-width: 767px) {
+      height: 48px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      margin-left: 0;
     }
   }
 }
