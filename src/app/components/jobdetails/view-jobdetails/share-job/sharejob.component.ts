@@ -538,8 +538,9 @@ titleCase(str) {
   
 
   async writeClipImg() {
+    
     let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin', 'https://identityapi-dev001.arytic.com/,http://localhost:4800');
+    headers.append('Access-Control-Allow-Origin', 'https://identityapiv1-dev001.arytic.com/,http://localhost:4400');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     headers.append('Content-Type', 'application/json');
@@ -548,7 +549,7 @@ titleCase(str) {
     try {
       const imgURL = this.Image;
       const data = await fetch(imgURL,{
-        mode: 'cors',
+        mode: 'no-cors',
         headers: headers
     });
       const blob = await data.blob();
@@ -569,12 +570,14 @@ titleCase(str) {
     this._service.GetService('IdentityAPI/api/GetJobCard?jobId=', this.data.JobId)
     .subscribe(res => {
       if (res != 'No data') {
-        this.Image = res;
+        res.split('=')[0]
+        let url = 'https://identityapiv1-dev001.arytic.com/home/EsolvitImages?id=';
+        this.Image = url + res.split('=')[1];
       }
       else {
         this.Image = " ";
       }
-      this.Image=res;
+      //this.Image=res;
       this.CompanyName= 'Job Details Preview';
 
 
