@@ -549,7 +549,7 @@ export class ShareJobComponent implements OnInit {
           }).then((res) => {
             res.blob().then((blob) => {
               console.log(blob);
-              let data = [new ClipboardItem({ [blob.type]: blob }), new ClipboardItem({ 'text/plain': url})];
+              let data = [new ClipboardItem({ [blob.type]: blob })];
               window.navigator['clipboard'].write(data).then(
                 () => {
                   alert('copied to clipboard');
