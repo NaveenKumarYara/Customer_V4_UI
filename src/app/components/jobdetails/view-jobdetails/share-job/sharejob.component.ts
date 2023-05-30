@@ -1,25 +1,20 @@
-import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
-import { concat } from 'rxjs/observable/concat';
 import { Component, Inject, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
-import { CustomerUsers, PjTechnicalTeam } from '../../../Postajob/models/jobPostInfo';
+import { CustomerUsers } from '../../../Postajob/models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { CustomerContacts } from '../../../../../models/customercontacts';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { of } from 'rxjs/observable/of';
-import { forEach } from '@angular/router/src/utils/collection';
 import { SettingsService } from '../../../../../settings/settings.service';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services';
 declare var $: any;
 import { DomSanitizer } from "@angular/platform-browser";
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
-import { assert } from 'console';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import swal from 'sweetalert2';
@@ -547,10 +542,31 @@ export class ShareJobComponent implements OnInit {
           let url = 'https://identityapiv1-dev001.arytic.com/home/EsolvitImages?id=';
           url = (url + res.split('=')[1]);
           this.Image = url;
+          /*
+          const queryOpts = { name: 'clipboard-write', allowWithoutGesture: false };
           new Promise((resolve, reject) => {
-            this.writeClipImg();
-            resolve('copied');
-          }).then((data) => {console.log(data);});
+            navigator.permissions.query(queryOpts);
+          }).then(() => console.log('granted'));
+          */
+          fetch(url, {
+            headers: {
+              mode: 'cors',
+            },
+          }).then((res) => {
+            res.blob().then((blob) => {
+              console.log(blob);
+              let data = [new ClipboardItem({ [blob.type]: blob })];
+              window.navigator['clipboard'].write(data).then(
+                () => {
+                  alert('copied to clipboard');
+                },
+                (e) => {
+                  console.log(e);
+                  alert('error');
+                }
+              );
+            });
+          });
         } else {
           this.Image = " ";
         }
