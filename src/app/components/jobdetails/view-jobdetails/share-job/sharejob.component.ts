@@ -542,12 +542,6 @@ export class ShareJobComponent implements OnInit {
           let url = 'https://identityapiv1-dev001.arytic.com/home/EsolvitImages?id=';
           url = (url + res.split('=')[1]);
           this.Image = url;
-          /*
-          const queryOpts = { name: 'clipboard-write', allowWithoutGesture: false };
-          new Promise((resolve, reject) => {
-            navigator.permissions.query(queryOpts);
-          }).then(() => console.log('granted'));
-          */
           fetch(url, {
             headers: {
               mode: 'cors',
