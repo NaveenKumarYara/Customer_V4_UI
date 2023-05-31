@@ -41,10 +41,10 @@
 </div>
 <div class="col-container">
 	<div class="top-container">
-		<ng-container *ngIf="job?.JobStatus == 'Active'">
+		<ng-container *ngIf="job?.JobStatus != 'InActive'">
 			<span class="status active">{{job?.JobStatus}}</span>
 		</ng-container>
-		<ng-container *ngIf="job?.JobStatus == 'Screening'">
+		<!-- <ng-container *ngIf="job?.JobStatus == 'Screening'">
 			<span class="status screening">{{job?.JobStatus}}</span>
 		</ng-container>
 		<ng-container *ngIf="job?.JobStatus == 'Hired'">
@@ -55,13 +55,13 @@
 		</ng-container>
 		<ng-container *ngIf="job?.JobStatus == 'Filled'">
 			<span class="status filled">{{job?.JobStatus}}</span>
-		</ng-container>
+		</ng-container> -->
 		<ng-container *ngIf="job?.JobStatus == 'InActive'">
 			<span class="status inactive">{{job?.JobStatus}}</span>
 		</ng-container>
-		<ng-container *ngIf="job?.JobStatus == 'ShortListing'">
+		<!-- <ng-container *ngIf="job?.JobStatus == 'ShortListing'">
 			<span class="status shortListing">{{job?.JobStatus}}</span>
-		</ng-container>
+		</ng-container> -->
 
 		<ng-container *ngIf="job?.JobPriority == 'Low'">
 			<span class="priority">
@@ -94,7 +94,7 @@
 				</h4>
 				<h4>
 					<span class="mdi mdi-seat-outline"></span>
-					<strong>8</strong> Position
+					<strong>{{job?.NumberOfVacancies}}</strong> Position
 				</h4>
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/components/services/api.service';
 
@@ -11,7 +12,7 @@ export class JobActivitiesSummaryComponent implements OnInit {
   isChecked: boolean = false;
   JobDetail: any;
   @Input() JobId:any;
-  constructor(private _service : ApiService) {
+  constructor(private _service : ApiService,private _location: Location) {
 
    }
 
@@ -21,6 +22,10 @@ export class JobActivitiesSummaryComponent implements OnInit {
       this.GetJobDetail();
     }
    
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   GetJobDetail()

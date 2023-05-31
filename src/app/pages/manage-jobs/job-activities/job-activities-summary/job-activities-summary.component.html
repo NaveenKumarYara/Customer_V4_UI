@@ -2,34 +2,35 @@
   <div class="title">
     <div class="left-container">
       <div class="top">
-        <a href="#" class="btn-back">
+        <a href="javascript:void(0)" class="btn-back" (click)="backClicked()">
           <span class="mdi mdi-arrow-left"></span>
         </a>
         <h3>{{JobDetail?.JobTitle}}</h3>
-        <span class="status active">Active</span>
-        <a href="#" class="btn-view">
+        <span class="status active" *ngIf="JobDetail.JobStatus != 'InActive'">{{JobDetail?.JobStatus}}</span>
+        <span class="status inactive" *ngIf="JobDetail.JobStatus == 'InActive'">{{JobDetail?.JobStatus}}</span>
+        <!-- <a href="#" class="btn-view">
           <span class="mdi mdi-account-arrow-right-outline"></span>
-        </a>
+        </a> -->
       </div>
       <div class="bottom">
         <div class="company">
-          Google
+          {{JobDetail?.ClientName || "Not Provided"}}
         </div>
         <div class="highlight">
-          Arytic ID: 1002365
+          Arytic ID: {{JobDetail?.JobId}}
         </div>
         <ul>
           <li>
             <span class="mdi mdi-map-marker-outline"></span>
-            Austin
+            {{JobDetail?.JobLocations.split('|')[0]}}
           </li>
           <li>
             <span class="mdi mdi-calendar-blank-outline"></span>
-            Mar 14, 2023
+            {{JobDetail?.JobId}}
           </li>
           <li>
             <span class="mdi mdi-account-group-outline"></span>
-            5 Positions
+            {{JobDetail?.NumberOfVacancies}} Positions
           </li>
         </ul>
       </div>
@@ -51,24 +52,24 @@
           <option value="Interviewing">Interviewing</option>
           <option value="Hired">Hired</option>
         </select>
-        <span class="number">1</span>
+        <span class="number">{{JobDetail?.TotalApplicants}}</span>
       </div>
       <div class="box box-01">
         Screening
-        <span class="number">0</span>
+        <span class="number">{{JobDetail?.ScreeningCount}}</span>
       </div>
       <div class="box box-02">
         Shortlisted
-        <span class="number">0</span>
+        <span class="number">{{JobDetail?.ShortListedCount}}</span>
       </div>
       <div class="box box-03">
         Interviewed
-        <span class="number">0</span>
+        <span class="number">{{JobDetail?.InterviewedCount}}</span>
       </div>
       <div class="box box-04">
         <span class="arrow"></span>
         <div class="mask">
-          <span class="number">0</span>
+          <span class="number">{{JobDetail?.Hired}}</span>
           Hired
         </div>
       </div>
