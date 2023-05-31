@@ -2,10 +2,10 @@
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-company-small.jpg" alt="">
 		<h4>{{ljob?.JobTitle}}</h4>
-		<ng-container *ngIf="ljob?.JobStatus == 'Active'">
+		<ng-container *ngIf="ljob?.JobStatus != 'InActive'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>
-		<ng-container *ngIf="ljob?.JobStatus == 'Screening'">
+		<!-- <ng-container *ngIf="ljob?.JobStatus == 'Screening'">
 			<span class="status screening">{{ljob?.JobStatus}}</span>
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'Hired'">
@@ -16,13 +16,13 @@
 		</ng-container>
 		<ng-container *ngIf="ljob?.JobStatus == 'Filled'">
 			<span class="status filled">{{ljob?.JobStatus}}</span>
-		</ng-container>
+		</ng-container> -->
 		<ng-container *ngIf="ljob?.JobStatus == 'InActive'">
 			<span class="status inactive">{{ljob?.JobStatus}}</span>
 		</ng-container>
-		<ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
+		<!-- <ng-container *ngIf="ljob?.JobStatus == 'ShortListing'">
 			<span class="status shortlisting">{{ljob?.JobStatus}}</span>
-		</ng-container>
+		</ng-container> -->
 		<!--<ng-container *ngIf="ljob?.JobStatus == 'Active'">
 			<span class="status active">{{ljob?.JobStatus}}</span>
 		</ng-container>

@@ -86,7 +86,7 @@
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-company-small.jpg" alt="">
 			</div>
-			<h3><a [routerLink]="['/manage-jobs/job-activites']">{{job?.JobTitle}}</a></h3>
+			<h3><a [routerLink]="['/manage-jobs/job-activites']" [queryParams]="{JobId: job.JobId}">{{job?.JobTitle}}</a></h3>
 			<div class="profile-summary">
 				<h4>
 					<span class="mdi mdi-briefcase-outline"></span>
