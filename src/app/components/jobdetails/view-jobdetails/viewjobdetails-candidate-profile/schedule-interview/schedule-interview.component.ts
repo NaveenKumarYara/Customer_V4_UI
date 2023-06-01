@@ -657,7 +657,6 @@ SendStatusEmail()
   this.status.FullName = this.data.FullName;
   this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
   this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
-  debugger
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
