@@ -1340,7 +1340,6 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.isDomainShown = false;
 		//this.showFilterNavBar = false;
 		//this.showMenu = false;
-		debugger
 		this.getCandidates();
 	}
 	selectSkills() {
