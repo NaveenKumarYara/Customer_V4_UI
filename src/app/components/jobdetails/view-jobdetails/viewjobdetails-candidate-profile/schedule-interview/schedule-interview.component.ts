@@ -650,13 +650,14 @@ SendStatusEmail()
   } 
   else if (this.processSelection === 3) {
     this.status.InterviewType = "Video-Conference";
-    this.status.InterviewDetails =  this.skypeId;     
+    this.status.InterviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!';     
    } 
   this.status.FromEmail = this.customer.Email;
   this.status.ToEmailID = this.data.Email;
   this.status.FullName = this.data.FullName;
   this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
   this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+  debugger
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
