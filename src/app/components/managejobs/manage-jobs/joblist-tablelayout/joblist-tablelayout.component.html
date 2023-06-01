@@ -6,7 +6,7 @@
         <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
         <div class="status InActive" *ngIf="job?.Departments === 'Low'"><i class="fa fa-arrow-down" aria-hidden="true"></i> Low</div> 
         <div   class="status rejected" *ngIf="job?.Departments === 'High'"><i class="fa fa-arrow-up" aria-hidden="true"></i> High</div> 
-         <div  class="status uploaded"  *ngIf="job?.Departments === 'Medium'"><i class="fa fa-arrows-h" aria-hidden="true"></i> Medium</div> 
+         <div  class="status Uploaded"  *ngIf="job?.Departments === 'Medium'"><i class="fa fa-arrows-h" aria-hidden="true"></i> Medium</div> 
         <div class="meta h-19">
             <ng-container *ngIf="job?.ClientName != null">
             <svg  fill="#93a2bb"

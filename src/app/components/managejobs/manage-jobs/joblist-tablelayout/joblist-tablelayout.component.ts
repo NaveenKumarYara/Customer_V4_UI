@@ -87,7 +87,9 @@ export class JoblistTablelayoutComponent implements OnInit {
     let jobactive= true;
     localStorage.setItem('jobactive', JSON.stringify(jobactive));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
-    this.router.navigateByUrl('app-view-jobdetails');
+    const url = '/app-view-jobdetails';
+    window.open(url, "_blank");
+    //this.router.navigateByUrl('app-view-jobdetails');
   }
   changeJobStatus(job, val) {
     this.alertService.clear();
