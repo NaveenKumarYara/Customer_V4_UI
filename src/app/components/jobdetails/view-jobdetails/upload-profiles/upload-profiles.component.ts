@@ -1667,7 +1667,7 @@ GetJobRequiredDomain(PId) {
     this.source.userId = this.customerName.UserId;
     this.source.JobId = this.data.jobId;
     this.source.ProfileId = this.CProfileId;
-    this.source.DataSourceId = str.id;
+    this.source.DataSourceId = 1;
     this.source.DataSource = this.selectedDItem;
    this._service.PostService(this.source,'IdentityAPI/api/JobDataSource').subscribe(
      data => {
