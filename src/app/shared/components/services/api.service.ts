@@ -30,6 +30,11 @@ export class ApiService {
       debounceTime(1000), map(res => res));
   }
 
+  GetJobMatching(JobId: number) {
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl+'/api/GetMatchingWeightage?jobId=' + JobId,this.httpOptions).pipe(
+      debounceTime(1000), map(res => res));
+  }
+
   Login(body: any) {
     return this.http
       .post(this.settingsService.settings.IdentitybaseUrl + '/api/CustomerLogin', body)

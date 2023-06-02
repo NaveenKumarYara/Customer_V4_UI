@@ -1,4 +1,4 @@
-<div class="job-details-section">
+<div class="job-details-section" *ngIf="JobDetail">
   <div class="title">
     <div class="left-container">
       <div class="top">
@@ -6,8 +6,11 @@
           <span class="mdi mdi-arrow-left"></span>
         </a>
         <h3>{{JobDetail?.JobTitle}}</h3>
-        <span class="status active" *ngIf="JobDetail.JobStatus != 'InActive'">{{JobDetail?.JobStatus}}</span>
-        <span class="status inactive" *ngIf="JobDetail.JobStatus == 'InActive'">{{JobDetail?.JobStatus}}</span>
+
+          <span class="status active" *ngIf="JobDetail.JobStatus != 'InActive'">{{JobDetail?.JobStatus}}</span>
+          <span class="status inactive" *ngIf="JobDetail.JobStatus === 'InActive'">{{JobDetail?.JobStatus}}</span>
+  
+     
         <!-- <a href="#" class="btn-view">
           <span class="mdi mdi-account-arrow-right-outline"></span>
         </a> -->

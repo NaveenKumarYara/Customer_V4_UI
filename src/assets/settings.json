@@ -1,4 +1,5 @@
 {
     "EmployerjobsUrl": "https://employerjobsapiv1-dev001.arytic.com",
-    "IdentitybaseUrl": "https://identityapi-dev001.arytic.com"
+    "IdentitybaseUrl": "https://identityapi-dev001.arytic.com",
+    "JobbaseUrl": "https://jobsapi-dev001.arytic.com"
 }
