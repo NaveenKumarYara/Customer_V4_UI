@@ -21,8 +21,12 @@
 				<div class="col-sm-12 form-col">
 					<div class="row">
 						<div class="col-sm-6 col-md-4 col-lg-4 sort-sub-col">
-							<select class="form-select">
-								<option value="Sort By">Sort By</option>
+							<select   class="form-select" id="view" name="view" 
+							#mySelect
+							(change)='onOptionsSelected(mySelect.value)'>
+								<option  default [value]="0">Recent</option>
+								<option  [value]="1" >Oldest</option>
+								<option  [value]="2" >Most Applied</option>							
 							</select>
 						</div>
 						<div class="col-sm-6 col-md-8 col-lg-8 search-sub-col">

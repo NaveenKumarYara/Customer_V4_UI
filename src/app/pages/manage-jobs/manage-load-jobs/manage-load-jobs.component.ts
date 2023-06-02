@@ -20,6 +20,7 @@ export class ManageLoadJobsComponent implements OnInit {
   last:any;
   panelTitle:any = '';
   panelShow: any = '';
+  select: any;
 
   layoutView(name:string){
    this.viewLayout = name;
@@ -31,6 +32,55 @@ export class ManageLoadJobsComponent implements OnInit {
 
   panelCloseHandler() {
     this.panelShow = '';
+  }
+
+  onChange(selected: any) {
+    if(Number(selected) == 0)
+    {
+     this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
+       if (n1.PostedDate < n2.PostedDate) {
+         return 1;
+       }
+
+       if (n1.PostedDate > n2.PostedDate) {
+         return -1;
+       }
+
+       return 0;
+     })
+    }
+       if(Number(selected) == 1)
+       {
+        this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
+          if (n1.PostedDate > n2.PostedDate) {
+            return 1;
+          }
+  
+          if (n1.PostedDate < n2.PostedDate) {
+            return -1;
+          }
+  
+          return 0;
+        })
+       }
+
+       if(Number(selected) == 2)
+       {
+        this.Jobs.sort((n1: { TotalApplicants: any; }, n2: { TotalApplicants: any; }) => {
+          if (n1.TotalApplicants < n2.TotalApplicants) {
+            return 1;
+          }
+  
+          if (n1.TotalApplicants > n2.TotalApplicants) {
+            return -1;
+          }
+  
+          return 0;
+        })
+       }
+
+
+
   }
  
   constructor(private _service : ApiService) {
@@ -68,7 +118,7 @@ export class ManageLoadJobsComponent implements OnInit {
 		params = params.append("UserId", UserId);
     this._service.GetEmployerService("/api/GetCustomerJobs?", params).subscribe((response) => { 
 
-      console.log(response);
+      //console.log(response);
 			this.Jobs = response;
       //this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
 		});

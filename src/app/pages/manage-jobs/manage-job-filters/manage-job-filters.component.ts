@@ -11,6 +11,7 @@ export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
   saveSearch = false;
+  @Output() changed = new EventEmitter<string>();
   @Output() newItemEvent = new EventEmitter<string>();
   @Input() filterTerm: any ='';
   @Input() Jobs: any ='';
@@ -24,6 +25,9 @@ export class ManageJobFiltersComponent implements OnInit {
   download(job:any){
     this._service.downloadFile(job, 'MyJobs');
   }
+  onOptionsSelected(value:string){
+    this.changed.emit(value);
+}
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
