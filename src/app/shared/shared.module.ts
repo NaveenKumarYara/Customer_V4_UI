@@ -5,6 +5,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import  { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { SettingsHttpService } from 'src/settings/settings.http.service';
+import { SettingsService } from 'src/settings/settings.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     SidebarComponent
-  ]
+  ],
+  providers:[SettingsHttpService,SettingsService],
 })
 export class SharedModule { }

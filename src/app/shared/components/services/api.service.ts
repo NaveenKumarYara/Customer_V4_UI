@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, debounceTime, map, retry } from 'rxjs/operators';
 import { SettingsService } from 'src/settings/settings.service';
+// import { User } from 'src/app/core/entities';
+import { Router } from '@angular/router';
 
 const API_URL = '';
 @Injectable({
@@ -11,8 +13,7 @@ const API_URL = '';
 
 export class ApiService {
   appUrl: string = '';
-  constructor(private http: HttpClient,private settingsService: SettingsService) { 
-
+  constructor( private router: Router,private http: HttpClient,private settingsService: SettingsService) { 
   }
 
 
@@ -24,7 +25,28 @@ export class ApiService {
     }),
   };
 
+  Login(body: any) {
+    debugger
+    return this.http
+      .post(this.settingsService.settings.IdentitybaseUrl + '/api/CustomerLogin', body)
+      .pipe( debounceTime(1000),map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('customer', JSON.stringify(user));
+        return user;
+    }));
+  }
 
+
+
+
+
+logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('customer');
+    this.router.navigate(['login']);
+}
+
+  
 
   GetEmployerService(url:string, prams : any) {
     return this.http.get( this.settingsService.settings.EmployerjobsUrl+url + prams,this.httpOptions).pipe(

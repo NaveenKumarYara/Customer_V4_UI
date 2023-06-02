@@ -12,6 +12,7 @@ export class ManageLoadJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
   rowShow = 0;
+  customer:any;
   p:number = 1;
   filterTerm: string='';
   Jobs:any=[];
@@ -32,10 +33,13 @@ export class ManageLoadJobsComponent implements OnInit {
     this.panelShow = '';
   }
  
-  constructor(private _service : ApiService) { }
+  constructor(private _service : ApiService) {
+    this.customer = JSON.parse(localStorage.getItem('customer')||'');
+    this.GetCustomerJobs(this.customer.CustomerId,0);
+   }
 
   ngOnInit(): void {
-    this.GetCustomerJobs(10402,0);
+  
   }
 
   listCount(count:any) {
