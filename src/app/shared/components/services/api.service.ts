@@ -25,8 +25,12 @@ export class ApiService {
     }),
   };
 
+  validateCheckemail(email: string): Observable<any> {
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl+'/api/CheckEmailExist?email=' + email,this.httpOptions).pipe(
+      debounceTime(1000), map(res => res));
+  }
+
   Login(body: any) {
-    debugger
     return this.http
       .post(this.settingsService.settings.IdentitybaseUrl + '/api/CustomerLogin', body)
       .pipe( debounceTime(1000),map(user => {

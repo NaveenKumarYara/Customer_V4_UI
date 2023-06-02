@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { SettingsHttpService } from "src/settings/settings.http.service";
 import { SettingsService } from "src/settings/settings.service";
 
+
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 @NgModule({
 	declarations: [
 		LoginComponent,
@@ -16,9 +18,10 @@ import { SettingsService } from "src/settings/settings.service";
 	imports: [
 		CommonModule,
 		AuthRoutingModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		ToastrModule.forRoot()
 	],
-	providers:[SettingsHttpService,SettingsService],
+	providers:[SettingsHttpService,SettingsService,ToastrService],
 })
 
 export class AuthModule {

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/components/services/api.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ApiService]
+  providers: [ApiService,ToastrService]
 })
 export class LoginComponent implements OnInit {
   loginform!: FormGroup;
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$";
   constructor(private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private router: Router,private _service: ApiService) { 
+    private formBuilder: FormBuilder, private router: Router,private _service: ApiService,private toastr: ToastrService) { 
     this.loginform = this.formBuilder.group({
       'Email': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],
@@ -29,24 +29,43 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.submitted = true;
-    this.loading = true;
     if (!this.loginform.valid) {
       this.loginform.reset();
+      this.toastr.error('Please provide the valid details.','Oops!!',{  positionClass: 'toast-bottom-left'});
     }
     else  {
       this.loginform.value.UserName = this.loginform.value.Email;
-      debugger
-              this._service.Login(this.loginform.value)
-                .subscribe(
-                    data => {
+     
+        this._service.validateCheckemail(this.loginform.value.Email)
+        .subscribe((res:any)=>
+        {
+          if (res != 5 && res != 2) {
 
-                       
-                          this.loading = false;
-                          this.router.navigateByUrl('home');
-                       
-          
-                  })
-                }
+          this._service.Login(this.loginform.value)
+          .subscribe(
+              (data:any) => {
+                    if(data.IsActive != false)
+                    {
+                      this.router.navigateByUrl('home');    
+                    }
+                    else
+                    {
+                      this.toastr.error('Please check the email account and activate your Account','Oops!!',{  positionClass: 'toast-bottom-left'});
+                    }
+                        
+            })
+
+          }
+          else
+          {
+            this.toastr.error('Please check details your are trying to sign in as jobseeker','Oops!!',{  positionClass: 'toast-bottom-left'});
+          }
+
+        })
+        
+        }    
+        
+             
   }
 
 }
