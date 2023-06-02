@@ -34,6 +34,13 @@ export class ManageLoadJobsComponent implements OnInit {
     this.panelShow = '';
   }
 
+  clearAll(select:any)
+  {
+    select = 0;
+    this.onChange(select);
+    this.addItem('');
+  }
+
   onChange(selected: any) {
     if(Number(selected) == 0)
     {

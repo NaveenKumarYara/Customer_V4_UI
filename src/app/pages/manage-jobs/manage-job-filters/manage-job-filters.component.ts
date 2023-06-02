@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/shared/components/services/api.service';
 
 @Component({
@@ -11,8 +11,11 @@ export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
   saveSearch = false;
+  @ViewChild('newItem') fullNameInput: any; 
+  @ViewChild('mySelect') fmySelectInput: any; 
   @Output() changed = new EventEmitter<string>();
   @Output() newItemEvent = new EventEmitter<string>();
+  @Output() clearItemEvent = new EventEmitter<string>();
   @Input() filterTerm: any ='';
   @Input() Jobs: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
@@ -31,6 +34,12 @@ export class ManageJobFiltersComponent implements OnInit {
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
+  }
+
+  addclearItem(value: string) {
+    this.clearItemEvent.emit(value);
+    this.fullNameInput.nativeElement.value = '';
+    this.fmySelectInput.nativeElement.value = 0;
   }
 
 
