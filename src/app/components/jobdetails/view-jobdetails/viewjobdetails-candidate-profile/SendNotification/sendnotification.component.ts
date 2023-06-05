@@ -434,9 +434,12 @@ getcustomerusers()
        await this.uploadFile(data);
       }      
     }
-
+   if(this.savenote.toUserId != this.customer.UserId)
+   {
     this.emailNote.NotesId = element; 
     await this.SendEmail();
+   }
+
   });
 
 
@@ -558,16 +561,21 @@ SendCandidateEmail()
 
 SendEmail()
 {
-  this.emailNote.Body =this.selectedComments;
-  this.emailNote.ToUserId = 0; 
-  this.emailNote.FullName = "";
-  this.emailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
-  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNewU').subscribe(
-    check=>
-    {
-            this.emailNote = new SendNoteEmail();
-    }
-  )
+  if(this.emailNote.ToEmailID != this.customer.Email)
+  {
+    debugger
+    this.emailNote.Body =this.selectedComments;
+    this.emailNote.ToUserId = 0; 
+    this.emailNote.FullName = "";
+    this.emailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+    this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNewU').subscribe(
+      check=>
+      {
+              this.emailNote = new SendNoteEmail();
+      }
+    )
+  }
+
 }
 
 
