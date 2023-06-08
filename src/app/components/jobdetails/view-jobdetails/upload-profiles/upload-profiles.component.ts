@@ -1191,6 +1191,7 @@ onItemSelect(itemVal): any {
  
 // }
 
+
 GetMatchingPercentage(profileId): any {
   this.GetJobMatching(this.data.jobId);
    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId,this.data.jobId).subscribe((res) => {
@@ -1223,9 +1224,9 @@ GetMatchingPercentage(profileId): any {
      }
      else  if(expFit<this.expweight)
      {
-      if(this.profileDetails.TotalExperience!=null)
+      if(this.profileDetails.TotalExperience!=null && this.profileDetails.TotalExperience!=undefined)
       {
-        if( Number(this.profileDetails.TotalExperience) >=  Math.floor(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
+        if( Number(this.profileDetails.TotalExperience) >  Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
         {
          this.matchingParameterData.JobFit = this.expweight;
         }
@@ -1262,6 +1263,7 @@ GetMatchingPercentage(profileId): any {
    return this.matchingParameterDetails;
   
  }
+
 
 
  GetCandidateSkillFitResult(ProfileId,jobId) {
@@ -1337,10 +1339,12 @@ GetProfileId(email)
 
 
 GetAllProfileDetails(ProfileId)
-{
+{ 
+  
+  this.getCandidateExperience(this.data.jobId,ProfileId);
               //  this.CProfileId = ProfileId;
                 this.GetProfileDetails(ProfileId);
-                this.getCandidateExperience(this.data.jobId,ProfileId);
+              
                 // this.GetProfileSummaryDetails(ProfileId);
                 // this.GetSkills(ProfileId);
                 // this.GetDomains(ProfileId);
@@ -1663,7 +1667,7 @@ GetJobRequiredDomain(PId) {
     this.source.userId = this.customerName.UserId;
     this.source.JobId = this.data.jobId;
     this.source.ProfileId = this.CProfileId;
-    this.source.DataSourceId = str.id;
+    this.source.DataSourceId = 1;
     this.source.DataSource = this.selectedDItem;
    this._service.PostService(this.source,'IdentityAPI/api/JobDataSource').subscribe(
      data => {
