@@ -76,6 +76,8 @@ b, strong { font-weight: inherit; }
  */
 
 b, strong { font-weight: bolder; }
+
+
 /**
  * Add the correct font style in Android 4.3-.
  */
@@ -151,7 +153,7 @@ button, input, select, textarea { font: inherit; /* 1 */ margin: 0; /* 2 */ }
  * Restore the font weight unset by the previous rule.
  */
 
-optgroup { font-weight: bold; }
+optgroup { font-weight: bold;}
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.

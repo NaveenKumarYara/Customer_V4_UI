@@ -1540,9 +1540,11 @@
 	}
 
 	.data-grid-table .box-table {
-		width: 60%;
+		width: 65%;
 		float: right;
 		text-align: right;
+		
+		
 	}
 
 	.data-grid-table .profile-container,

@@ -98,6 +98,7 @@ abbr[title] {
 b,
 strong {
 	font-weight: bold;
+	word-break: break-word;
 }
 
 dfn {
