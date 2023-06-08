@@ -12,6 +12,7 @@ node_modules
 /.idea
 .project
 .classpath
+.angular
 .c9/
 *.launch
 .settings/

@@ -278,9 +278,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3 col" data-step="2" data-title="Step 2"  data-intro="The search option enables you to search the candidates based on inputs like candidate name, location etc" data-position='top'>
+					<div class="col-sm-5 col" data-step="2" data-title="Step 2"  data-intro="The search option enables you to search the candidates based on inputs like candidate name, location etc" data-position='top'>
 						<div class="input-group blue">
-							<input class="form-control" id="searchData" name="searchData" placeholder="Search"
+							<input class="form-control" id="searchData" name="searchData" placeholder="Search title, location, company here."
 								[(ngModel)]="searchValue" #searchData="ngModel">
 							<span class="input-group-btn">
 								<button class="btn btn-primary btn-sm" type="button"  (window:keypress)="onSomeAction($event)" (click)="findCandidates()"><i class="fa fa-search"
@@ -422,18 +422,39 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3 col">
+
+					<!-- <div class="col-sm-3 col">
 						<div class="input-box">
 							<span class="icon__map__01">Icon</span>
 							<input id="autocomplete" type="text" placeholder=""
 								class="form-control form-control-light filter-location" #locationSearch [(ngModel)]="selectedLocation">
 						</div>
-					</div>
+					</div> -->
 					<div>
 						<button class="btn btn-primary btn-sm" (click)="clearAllFilters()" data-step="3" data-title="Step 3"  data-intro="Clear all the applied filters and search using clear all option." data-position='top'>Clear Filters</button>
 					</div>
-					<div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end pagination-col">
-						<div class="revamp__sorting" *ngIf="candidates.length>0" data-step="4" data-title="Step 4"  data-intro="This information represents the list of candidates existing in the respective database." data-position='top'>
+					<div class="col-sm-2 col" data-step="4" data-title="Step 4"  data-intro="Sort option enables you to sort the candidates based on public and private." data-position='top'>
+
+						<select name="cview" class="styled-select-box " (change)="Filter($event.target.value)" [(ngModel)]="sortBY">
+							<option selected value="0"><a  href="javascript:void(0)">All</a></option>
+							<option  value="1"><a  href="javascript:void(0)">Private Profiles</a></option>
+							<option  value="2"><a  href="javascript:void(0)">Arytic Profiles</a></option>
+						</select>
+						<!-- <ul class="horizontal-list">
+							<li>
+								<a  href="javascript:void(0)" (click)="Filter(0)">Home</a>
+							  </li>
+							  <li>
+								<a  href="javascript:void(0)" (click)="Filter(1)">Private</a>
+							  </li>
+							  <li>
+								<a  href="javascript:void(0)" (click)="Filter(2)">Public</a>
+							  </li>
+						
+						</ul> -->
+					</div>
+					<div class="col-sm-2 flex flex-wrap flex-align-center flex-justify-end pagination-col">
+						<div class="revamp__sorting" *ngIf="candidates.length>0" data-step="5" data-title="Step 5"  data-intro="This information represents the list of candidates existing in the respective database." data-position='top'>
 							<ul>
 								<li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
 										(click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}"
@@ -443,40 +464,23 @@
 										[ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}"
 										[disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
 							</ul>
-							of {{totalPageCount}} pages
+							<br/>
+
+							 {{currentPage}} of {{totalPageCount}} pages 
 						</div>
 					</div>
 				</div>
 			</div>
 			<span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
 			<div *ngIf="!candidatesLoading">
-				<div class="cds" data-step="5" data-title="Step 5"  data-intro="Sort option enables you to sort the candidates based on public and private." data-position='top'>
-
-					<select name="cview" class="styled-select-box " (change)="Filter($event.target.value)" [(ngModel)]="sortBY">
-						<option selected value="0"><a  href="javascript:void(0)">All</a></option>
-						<option  value="1"><a  href="javascript:void(0)">Private</a></option>
-						<option  value="2"><a  href="javascript:void(0)">Public</a></option>
-					</select>
-					<!-- <ul class="horizontal-list">
-						<li>
-							<a  href="javascript:void(0)" (click)="Filter(0)">Home</a>
-						  </li>
-						  <li>
-							<a  href="javascript:void(0)" (click)="Filter(1)">Private</a>
-						  </li>
-						  <li>
-							<a  href="javascript:void(0)" (click)="Filter(2)">Public</a>
-						  </li>
-					
-					</ul> -->
-				</div>
+			
 				<ng-container *ngIf="candidates.length > 0">
 					<div class="data-grid-view" *ngIf="currentView == 'Grid'"
 						[ngClass]="{'open':showFilterNavBar, 'full':!isfullGridView}" data-step="6" data-title="Step 6"  data-intro="The view gives the information of a list of candidates with details like basic info, job title and company name." data-position='top'>
 						<div class="row">
 							<div class="col-sm-7 big-col">
 								<div class="row flex flex-wrap flex-align-equal">
-									<div class="col-sm-3 " [ngClass]="[ candidate.IsPublic ? 'blue' : 'green']"
+									<div class="col-sm-3 " [ngClass]="[ candidate.isPublic ? 'blue' : 'green']"
 										*ngFor="let candidate of candidates;let k = index">
 										<div class="top__container flex flex-wrap flex-align-center">
 											<label class="custom-checkbox custom-checkbox-round">
@@ -487,15 +491,15 @@
 											<ul>
 												<li>
 													<span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip"
-														tooltip="{{candidate.MobileNumber}}" placement="left"></span>
+														tooltip="{{candidate?.contactNumber}}" placement="left"></span>
 												</li>
 												<li>
 													<span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip"
-														tooltip="{{candidate.EmailAddress}}" placement="right"></span>
+														tooltip="{{candidate?.email}}" placement="right"></span>
 												</li>
 												<li>
 													<span class="revamp-icon revamp-icon-note"
-														(click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume"
+														(click)="DownloadResume(candidate.fullName,candidate.profileId)" tooltip="download resume"
 														placement="right"></span>
 												</li>
 											</ul>
@@ -503,21 +507,21 @@
 										<div class="col__container" (click)="fullGridViewShow(candidate,k);tClose()">
 											<div class="info__container">
 												<div class="profile__thumb">
-													<img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}"
+													<img src="https://ui-avatars.com/api/?name={{candidate.fullName}}"
 														alt="">
 												</div>
-												<div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
-												<div class="profile__match__percent" style="display: none;"><a class="text-white"
-														style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
+												<div class="text-profile">{{candidate.isPublic ? 'Arytic Profile' : 'Private Profile'}}</div>
+												<div class="profile__match__percent" ><a class="text-white"
+														style="color: white; text-decoration: none;">{{candidate.profilePercentage}}%</a>
 												</div>
 												<h4><a href="javascript:void(0)"
-														>{{candidate.CandidateName
+														>{{candidate.fullName
 														| titlecase}}</a>
 												</h4>
 
-												<h5>{{candidate.JobTitleName}}</h5>
-												<div class="location">{{candidate.Locations}}</div>
-												<div class="company">{{candidate.Company}}</div>
+												<h5>{{candidate.jobTitleName}}</h5>
+												<div class="location">{{candidate.locations}}</div>
+												<div class="company">{{candidate.company}}</div>
 
 											</div>
 										</div>
@@ -535,7 +539,7 @@
 										<div class="carousel-inner">
 											<ng-container *ngFor="let candidate of candidates;let g = index">
 												<div class="item active" *ngIf="selectcard === g">
-													<div class="page--job-details" id="aas{{ candidate.ProfileId }}">
+													<div class="page--job-details" id="aas{{ candidate.profileId }}">
 														<div class="smart-card">
 															<div class="dropup ch">
 																<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -560,7 +564,7 @@
 															</div>
 															<div  class="smart-sticky-navigation">
 																<ul >
-																	<li  placement="left" tooltip="Share the candidate to team members.">
+																	<!-- <li  placement="left" tooltip="Share the candidate to team members.">
 																		<button  class="active" data-target="#shareCandidate" data-toggle="modal">
 																		<span  class="icon-smart icon-smart-share">Notes</span>
 																		</button>
@@ -569,13 +573,13 @@
 																		<button  class="active" data-toggle="modal" placement="left" tooltip="Notes">
 																		<span  class="icon-smart icon-smart-notes">Notes</span>
 																		</button>
-																	</li>
-																	<li *ngIf="candidate?.UserId === 0">
-																		<button tooltip="Edit Profile" placement="left" (click)="OpenEditProfile(candidate?.ProfileId)">
+																	</li> -->
+																	<li *ngIf="candidate?.userId === 0">
+																		<button tooltip="Edit Profile" placement="left" (click)="OpenEditProfile(candidate?.profileId)">
 																		  <span class="fa fa-pencil"></span>
 																		</button>
 																	  </li> 
-																	<li >
+																	<!-- <li >
 																		<button  placement="left" tooltip="Documents">
 																		<span  class="icon-smart icon-smart-document">Icon</span>
 																		</button>
@@ -584,7 +588,7 @@
 																		<button >
 																		<span  class="icon-smart icon-smart-feedback">Icon</span>
 																		</button>
-																	</li>
+																	</li> -->
 																</ul>
 															</div>
 															<div class="card candidate">
@@ -638,8 +642,8 @@
 																			<img alt="" src="../../../../../assets/images/Pro.png" width="66" height="66">
 																		</figure>
 																		<h1 class="title">
-																			<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,pmatching?.ProfilePercentage)">
-																				{{candidate?.CandidateName
+																			<a href="javascript:void(0)" (click)="OpenCandidate(candidate.profileId,candidate.userId,pmatching?.profilePercentage)">
+																				{{candidate?.fullName
 																					| titlecase}}
 																			</a>
 																			<button tooltip="Wishlist" placement="top">       
@@ -653,13 +657,13 @@
 																			<div class="d-block text-center">
 																				<ul  class="smart-list-icons">
 																					<li >
-																						<button  class="btn" placement="top" tooltip="{{candidate?.Email}}">
+																						<button  class="btn" placement="top" tooltip="{{candidate?.email}}">
 																							<span  class="icon-smart icon-smart-email">Icon</span>
 																						</button>
 																					</li>
 																					<li >
 																						<button  class="btn" placement="top" tooltip="Phone">
-																							<a  href="tel:9876543456"><span  class="icon-smart icon-smart-phone">Icon</span></a>
+																							<a  href="tel:{{candidate.contactNumber}}"><span  class="icon-smart icon-smart-phone">Icon</span></a>
 																						</button>
 																					</li>
 																					<li  class="certificate-list">
@@ -681,10 +685,10 @@
 																								<ul class="custom_dropdown-menu">
 																									<li>
 																										<a class="email-overflow" href="javascript:void(0)"
-																											title="{{candidate?.Email}}">
+																											title="{{candidate?.email}}">
 																										<img alt="email" src="../../../../../assets/images/email-icon.svg" style="width:24px; height: auto;"
-																											title="{{candidate?.Email}}">
-																											{{candidate?.Email}}
+																											title="{{candidate?.email}}">
+																											{{candidate?.email}}
 																										</a>
 																									</li>
 																								</ul>
@@ -726,7 +730,7 @@
 																			</div>
 																			<div class="d-block text-center ptb-5 role-exp-loc">
 																				<h4 class="d-inline l_bl-1" title="{{candidate?.JobTitle}}">
-																					{{candidate?.JobTitle}} | 
+																					{{candidate?.jobTitle}} | 
 																					<span class="experience">{{pdetails?.TotalExperience || 0}}
 																					Yrs</span>
 																				</h4>
@@ -734,7 +738,7 @@
 																			<div class="d-block text-center min-h40">
 																				<div class="d-block ptb-5">
 																					<div class="status Uploaded">
-																						{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}
+																						{{candidate.isPublic ? 'Arytic Profile' : 'Private Profile'}}
 																					</div>
 																				</div>
 																			</div>
@@ -742,19 +746,19 @@
 																		<!--Old Code-->
 																		<div class="hidden">
 																			<div class="candidate-status">
-																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="References">
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.profileId,candidate.userId,candidate.profilePercentage)" title="References">
 																				<img alt="References" src="../../../../../assets/images/card-icons/no-reference.png" width="50"
 																					height="50">
 																				</a>
-																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Achievements">
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.profileId,candidate.userId,candidate.profilePercentage)" title="Achievements">
 																				<img alt="achievement-badge" src="../../../../../assets/images/card-icons/no-achievement.png"
 																					width="50" height="50">
 																				</a>
-																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Background Need to be Verified">
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.profileId,candidate.userId,candidate.profilePercentage)" title="Background Need to be Verified">
 																				<img alt="verfied-badge" class="fade-icon"
 																					src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50">
 																				</a>
-																				<img alt="Consent Accepted" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
+																				<img alt="Consent Accepted" (click)="OpenCandidate(candidate.profileId,candidate.userId,candidate.profilePercentage)" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
 																					title="Consent Not Accepted" width="50" height="50">
 																			</div>
 																		</div>
@@ -803,7 +807,7 @@
 																				<h5>Profile Completeness<i class="fa fa-info-circle" tooltip="Profile Completeness value to these position"
 																					placement="top"></i></h5>
 																				<circle-progress data-toggle="matching-details"
-																				[percent]="pmatching?.ProfilePercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+																				[percent]="candidate?.profilePercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
 																				[outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
 																			</circle-progress>
 																			</div>
@@ -984,7 +988,7 @@
 																		<div class="hidden">
 																			<ul class="actions">
 																				<li>
-																					<a class="ch"  data-placement="left" data-toggle="modal" (click)="shareESidePanel(candidate.Email,candidate.IsPublic,candidate?.CandidateName)" data-toggle="tooltip"
+																					<a class="ch"  data-placement="left" data-toggle="modal" (click)="shareESidePanel(candidate.email,candidate.isPublic,candidate?.fullName)" data-toggle="tooltip"
 																					tooltip="Send Email" href="javascript:void(0)">
 																						<svg xml:space="preserve" xlink="http://www.w3.org/1999/xlink"
 																							enable-background="new 0 0 25 21" height="21px" id="Capa_1" version="1.1"
@@ -1034,7 +1038,7 @@
 																					</a>
 																				</li>
 																				<li>
-																					<a href="javascript:void(0)" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)">
+																					<a href="javascript:void(0)" (click)="DownloadResume(candidate.fullName,candidate.ProfileId)">
 																					<img alt="Resume Document" src="../../../../../assets/images/word-icon.png"
 																						title="Download Resume" width="25">
 																					</a>
@@ -1141,7 +1145,7 @@
 											<img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
 										</figure>
 										<div class="profile-name">
-											{{candidate.FirstName}} {{candidate.MiddleName}} {{candidate.LastName}}
+											{{candidate.fullName}}
 										</div>
 									</div>
 								</div>
@@ -1149,25 +1153,25 @@
 							<div class="grid-col">
 								<div class="grid-heading">Job Title</div>
 								<div class="box-table">
-									{{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
+									{{candidate.jobTitleName != null && candidate.jobTitleName != '' ? candidate.jobTitleName : 'N/A'}}
 								</div>
 							</div>
 							<div class="grid-col">
 								<div class="grid-heading">Email</div>
 								<div class="box-table">
-									{{candidate.Email != null && candidate.Email != '' ? candidate.Email : 'N/A'}}
+									{{candidate.email != null && candidate.email != '' ? candidate.email : 'N/A'}}
 								</div>
 							</div>
 							<div class="grid-col">
 								<div class="grid-heading">Contact Number</div>
 								<div class="box-table">
-									{{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}
+									{{candidate.contactNumber != null && candidate.contactNumber != '' ? candidate.contactNumber : 'N/A'}}
 								</div>
 							</div>
 							<div class="grid-col">
 								<div class="grid-heading">Current Location</div>
 								<div class="box-table">
-									{{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}
+									{{candidate.jobLocations != null && candidate.jobLocations != '' ? candidate.jobLocations : 'N/A'}}
 								</div>
 							</div>
 							<!-- <div class="grid-col">
@@ -1178,7 +1182,7 @@
 							</div> -->
 						</div>
 					</div>
-					<div>
+					<!-- <div>
 						<div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end pagination-col pull-right">
 							<div class="revamp__sorting" *ngIf="candidates.length>0" >
 								<ul>
@@ -1190,10 +1194,10 @@
 											[ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}"
 											[disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
 								</ul>
-								of {{totalPageCount}} pages
+								 of {{totalPageCount}} pages
 							</div>
 						</div>
-					</div>
+					</div> -->
 				
 					<div class="data__table__footer">
 						<ul>

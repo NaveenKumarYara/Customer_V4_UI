@@ -29,6 +29,7 @@ export class JoblistTablelayoutComponent implements OnInit {
   jobId: any;
   clients: any;
   dept: any;
+  assignList:any=[];
   customer: any;
   complete: any;
   userId: any;
@@ -49,6 +50,15 @@ export class JoblistTablelayoutComponent implements OnInit {
     this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
+    this.GetassignedList(this.job.JobId);
+  }
+  GetassignedList(jobId)
+  {
+    return this.managejobservice.GetAssignedList(jobId).subscribe(
+      data=>{
+         this.assignList = data;
+      }
+    )
   }
   OpenShareJobDialog(jobid) {
     const sharedRef = this.dialog.open(ShareJobComponent,
@@ -91,7 +101,9 @@ export class JoblistTablelayoutComponent implements OnInit {
     let jobactive= true;
     localStorage.setItem('jobactive', JSON.stringify(jobactive));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
-    this.router.navigateByUrl('app-view-jobdetails');
+    const url = '/app-view-jobdetails';
+    window.open(url, "_blank");
+    //this.router.navigateByUrl('app-view-jobdetails');
   }
 
 

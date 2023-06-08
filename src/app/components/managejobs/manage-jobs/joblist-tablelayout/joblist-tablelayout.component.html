@@ -4,6 +4,9 @@
         <h3 class="medium" (click)="ViewJobdetails(job?.JobId)">{{add3Dots(job?.JobTitle.split('|')[0],30)}}</h3>
         <h6  class="status artyic-id mlr-9 pull-right">Arytic Id : {{job?.JobId}}</h6>
         <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
+        <div class="status InActive" *ngIf="job?.Departments === 'Low'"><i class="fa fa-arrow-down" aria-hidden="true"></i> Low</div> 
+        <div   class="status rejected" *ngIf="job?.Departments === 'High'"><i class="fa fa-arrow-up" aria-hidden="true"></i> High</div> 
+         <div  class="status Uploaded"  *ngIf="job?.Departments === 'Medium'"><i class="fa fa-arrows-h" aria-hidden="true"></i> Medium</div> 
         <div class="meta h-19">
             <ng-container *ngIf="job?.ClientName != null">
             <svg  fill="#93a2bb"
@@ -22,9 +25,7 @@
                 [ngClass]="{'jobdepartments': job?.Departments  != null ? job?.Departments : ''}"
                 title=" {{job?.Departments  != null ? job?.Departments : ''}}">
                 {{job?.Departments != null ? job?.Departments : ''}}</h5> -->
-                <div class="ribbon2" *ngIf="job?.Departments === 'Low'"><i class="fa fa-arrow-down" aria-hidden="true"></i> Low</div> 
-                <div class="ribbon3"  *ngIf="job?.Departments === 'High'"><i class="fa fa-arrow-up" aria-hidden="true"></i> High</div> 
-                 <div class="ribbon"  *ngIf="job?.Departments === 'Medium'"><i class="fa fa-arrows-h" aria-hidden="true"></i> Medium</div> 
+             
   
             <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="19"
                 height="19.3">
@@ -33,11 +34,29 @@
                 <path class="st0"
                     d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
             </svg>
-            <h5 class="location" *ngIf="job?.JobLocations!=null">                     
-                 <ng-container *ngFor="let location of job?.JobLocations">
-                {{location?.CityName}},{{location?.StateCode}}
-              </ng-container>
-              </h5>
+            <h5 class="location" *ngIf="job?.JobLocations!=null">
+                <div *ngIf="job.JobLocations.length == 1">
+                    <ng-container *ngFor="let location of job?.JobLocations">
+                        {{location?.CityName}},{{location?.StateCode}}
+                    </ng-container>
+                </div>
+                <div *ngIf="job.JobLocations.length > 1">
+                    <div class="tooltip-text">
+                        <span class="text-overflow-tooltip">
+                            {{job.JobLocations[0].CityName}}
+                            <span *ngIf="job.JobLocations[0].StateCode !=''">,</span> 
+                            {{job.JobLocations[0].StateCode}} +
+                        </span>
+                    
+                        <span class="tooltipcontent">
+                            <ng-container *ngFor="let location of job?.JobLocations">
+                                {{location?.CityName}},{{location?.StateCode}}; </ng-container>
+                        </span>
+
+                    </div>
+                </div>
+
+            </h5>
             <h5>{{job?.PostedOn  | date:'mediumDate'}}</h5>
 
             <h5 class="jobbl-1" *ngIf="job?.JobPositionId !=''">Job Id : {{job?.JobPositionId}}</h5>
@@ -69,11 +88,36 @@
         <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic" width="50">
         <div>
             <h3>{{job?.HiringLeaderName | titlecase}}</h3>
-            <h5 class="meta">{{job?.UserRole}}</h5>
-
+            <h5 class="meta">Owner</h5>
         </div>
+  
     </div>
     <div class="stats-group">
+        <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0">
+            <ng-container *ngIf="assignList?.RecruitingMember?.length == 1">
+                <div class="card-footer-title text-right">
+                    {{assignList?.RecruitingMember[0]?.FirstName.split('-')[0] | titlecase}}<br />
+                    <span class="meta font-weight-bold"> Assignee </span>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="assignList?.RecruitingMember?.length>1">
+                <div class="card-footer-title text-right">
+                    {{assignList?.RecruitingMember[0]?.FirstName.split('-')[0] | titlecase}}
+                </div> +
+                <span class="meta font-weight-bold mutliple-assignee-link"> Assignee </span>
+                <span class="tooltipcontent">
+                    <ng-container *ngIf="assignList?.RecruitingMember?.length>0">
+
+                        <div *ngFor="let r of assignList?.RecruitingMember">
+
+                            {{r?.FirstName.split('-')[0] | titlecase}};
+                        </div>
+
+                    </ng-container>
+                </span>
+            </ng-container>
+
+        </div>
         <div class="stats">
             <h1>{{job?.TotalViewCount}}</h1>
             <h5>No. of Views</h5>
@@ -104,4 +148,5 @@
             <h1>{{job?.InterviewedCount}}</h1>
             <h5>Interviews</h5>
         </div>
+    
     </div>

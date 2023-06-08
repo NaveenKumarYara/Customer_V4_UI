@@ -2169,6 +2169,12 @@ export class AppService {
     //return this.http.get<any>(apiUrl, { params }).pipe();
   }
 
+  getNewCandidates(params:any): Observable<any> {
+    const apiUrl = this.settingsService.settings.EmployerbaseUrl + '/api/GetEmployerCandiates';
+    return this.http.post(apiUrl, params).pipe();
+    //return this.http.get<any>(apiUrl, { params }).pipe();
+  }
+
   getActiveJobs(term: any, customerId: any): Observable<string[]> {
     const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term + '&customerId=' + customerId;
     return this.http.get<any>(apiUrl)

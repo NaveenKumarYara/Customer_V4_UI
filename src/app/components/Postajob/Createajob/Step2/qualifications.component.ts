@@ -227,7 +227,7 @@ educationExists(education, list) {​
   GetQualificationsnew()
   {
     this.appService.getQualificationDetails().subscribe(dat=>{
-      this.qualificationsnew =dat;
+      this.qualificationsnew = dat.filter(x=>x.QualificationName != 'Degree');
     })
   }
 

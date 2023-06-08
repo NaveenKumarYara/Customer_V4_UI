@@ -71,6 +71,15 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
   Opening(val) {
     // this.service.
     this.noOfOpenings = val;
+
+
+    if(this.noOfOpenings.charAt(0) === '0')
+    {               
+      this.noOfOpenings = 1;
+    }
+    
+      
+
     this.appService.updateOpenings(this.noOfOpenings);
   }
 
