@@ -121,7 +121,7 @@
               <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
                   Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
-                  <ng-container *ngIf="FitDetails!=null">
+                  <ng-container>
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
                 </a>
@@ -233,10 +233,7 @@
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
                     {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
-                    <button class="btn btn__edit" (click)="editBd()">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
+
                   </div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
                     Not Available
@@ -273,11 +270,6 @@
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
                     <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
                       {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }}
-                      <button class="btn btn__edit" (click)="editt()"
-                      *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
                     </ng-container>
                     <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
                       Not Available
@@ -380,8 +372,9 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">you got
-                    <strong>{{matchingParameterData?.JobFit}} %</strong>
+                    <strong>{{matchingParameterData?.JobFit || 0}} %</strong>
                   </div>
+                  
                   <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
                     <strong>30%</strong>
                   </div> -->
@@ -552,10 +545,7 @@
                       <ng-container *ngIf="skill?.ExpInYears > 0">
                         {{skill?.ExpInYears}}
                       </ng-container>
-                      <button class="btn btn__edit" (click)="editd(sdk,skill.JExpInYears)">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                        <span class="sr-only">edit</span>
-                      </button>
+
                     </div>
                   </div>
 
@@ -698,7 +688,7 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">
-                    you got <strong>{{matchingParameterData?.Skillfit_Total}}%</strong>
+                    you got <strong>{{matchingParameterData?.Skillfit_Total || 0}}%</strong>
                     <!-- <button class="btn btn__edit" (click)="EditSkillHandler()">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
@@ -2595,11 +2585,49 @@
                 [selected]>
                 Select an option
               </option>
-          
-              <!--Data Array Options-->
-              <option [value]="item.itemName" *ngFor="let item of itemsArray">
-                {{ item.itemName }}
-              </option>
+           
+            
+              <option value="Arytic partners">Arytic partners</option>
+              <option  value="Arytic profiles">Arytic profiles</option>
+              <option value="Arytic recruiters">Arytic recruiters</option>
+              <optgroup label="ATS & CRM">
+                <option value="Bullhorn">Bullhorn</option>
+                <option value="Ceipal">Ceipal</option>
+                <option value="Freshworks">Freshworks</option>
+                <option value="Jazz HR">Jazz HR</option>
+                <option value="Workable">Workable</option>
+                <option value="Zoho recruit">Zoho recruit</option>
+              </optgroup>
+              <option  value="Email campaigns">Email campaigns</option>
+              <optgroup label="Job boards">
+                                    <option value="Career builder">Career builder</option>
+                                     <option value="Dice">Dice</option>
+                                     <option value="Glassdoor">Glassdoor</option>
+                                     <option value="Indeed">Indeed</option>
+                                     <option value="Monster">Monster</option>
+                                     <option value="Ziprecruiter">Ziprecruiter</option>
+              </optgroup>
+              <option  value="Referrals">Referrals</option>  
+              <optgroup label="Social network">
+                                     <option value="Facebook">Facebook</option>
+                                     <option value="LinkedIn">LinkedIn</option>
+                                     <option value="Twitter">Twitter</option>                 
+              </optgroup>
+
+              <optgroup label="Non-traditional sources">
+                <option value="Google +">Google +</option>
+                <option value="Meetup">Meetup</option>
+                <option value="Slack">Slack</option>
+                <option value="Reddit">Reddit</option>
+              </optgroup>
+              <optgroup label="Marketing events">
+                                     <option value="Job Fairs">Job Fairs</option>
+                                     <option value="Trade Shows">Trade Shows</option>
+                                     <!-- <option value="Tech expo">Tech expo</option> -->
+                        
+              </optgroup>
+              <option  value="Recruiting agency">Recruiting agency</option>
+              <option  value="Vendors">Vendors</option>
             </select> 
                     </td>
                     <!-- <td *ngIf="uploader.options.isHTML5">
