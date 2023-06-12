@@ -650,7 +650,8 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 	  GetDefaultProfileCompleteness(ProfileId) {
 		this.apiService.GetService('IdentityAPI/api/GetCandidateProfileCompletenessByProfileId?profileId=', ProfileId).subscribe(pr => {
-           this.pmatching=pr;
+          debugger
+			this.pmatching=pr;
 		})
 	  }
 
