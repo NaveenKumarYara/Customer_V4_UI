@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
@@ -47,7 +47,7 @@ declare var $: any;
   styleUrls: ['./view-jobdetails.component.css','./view-job-details-top.css'],
   providers: [AppService, AlertService]
 })
-export class ViewJobdetailsComponent implements OnInit {
+export class ViewJobdetailsComponent implements OnInit,OnDestroy {
   @ViewChild(ViewjobdetailsCandidateProfileComponent) child: ViewjobdetailsCandidateProfileComponent;
   @ViewChild(FilterViewJobsComponent) base: FilterViewJobsComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
@@ -235,6 +235,12 @@ export class ViewJobdetailsComponent implements OnInit {
   {
     this.minValue = event;
     this.JobFitval = this.maxValue-this.minValue;
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem("Preid");
+    localStorage.removeItem('jId');
+    localStorage.removeItem('vjobId');
   }
 
   OpenInviteProfileDialog() {
