@@ -343,7 +343,7 @@ a:hover {
 
 .data-grid-view .text-profile {
     position: absolute;
-    top: 18px;
+    top: -11px;
     background: #485c67;
     padding: 2px 4px 1px;
     color: #fff;
