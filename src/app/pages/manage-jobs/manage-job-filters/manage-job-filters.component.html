@@ -1,9 +1,7 @@
 <div class="filter-section">
 	<div class="d-flex flex-wrap">
 		<div class="navigation-col">
-			<button class="btn btn-icon" (click)="filterHandler()" [ngClass]="advanceFilter?'active':''">
-				<span class="mdi mdi-filter-outline"></span>
-			</button>
+	
 			<button class="btn btn-icon" (click)="quickHandler()" [ngClass]="quickSearch?'active':''">
 				<span class="mdi mdi-feature-search-outline"></span>
 			</button>
@@ -52,15 +50,23 @@
 						<span class="mdi mdi-close-circle-outline"></span>
 						Clear
 					</button>
+					<button class="btn btn-icon">
+						<app-filter
+						[list]="filterList" 
+						(onFilterChange)="filterChange($event)" >
+					 </app-filter>
+					</button>
 				</div>
+				
 			</div>
 		</div>
 	</div>
 </div>
 
 <ng-container *ngIf="advanceFilter">
-	<app-manage-advance-filter [advanceFilter]="advanceFilter"
-		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
+	<!-- <app-manage-advance-filter [advanceFilter]="advanceFilter"
+		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter> -->
+		
 </ng-container>
 
 <ng-container *ngIf="quickSearch">

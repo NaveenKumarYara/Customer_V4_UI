@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -33,7 +33,7 @@ export class DashboardStatsComponent implements OnInit {
     },
     nav: true
   }
-
+  @Input() AdminStats: any ='';
   constructor() { }
 
   ngOnInit(): void {

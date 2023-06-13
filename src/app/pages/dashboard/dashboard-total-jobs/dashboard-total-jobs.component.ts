@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-total-jobs',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-total-jobs.component.scss']
 })
 export class DashboardTotalJobsComponent implements OnInit {
-
+  @Input() AdminStats: any ='';
   constructor() { }
 
   ngOnInit(): void {
