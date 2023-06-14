@@ -198,8 +198,16 @@
 				<div class="profile-section">
 					<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 					<div class="profile-summary">
-						<h4>{{job?.Assignee | titlecase}}</h4>
-						<h5>Assignee</h5>
+						<span placement="top" ngbTooltip="{{job?.Assignee.split('|')}}">
+						<ng-container *ngFor="let assigne of job?.Assignee.split('|');let jk = index">	
+							<span *ngIf="jk<1" class="location-trim">
+								<h4>{{assigne | titlecase}}</h4>
+								<h5>Assignee</h5>
+							</span>
+						</ng-container>
+						</span>
+						<!-- <h4>{{job?.Assignee | titlecase}}</h4> -->
+						
 					</div>
 				</div>
 			</div>
