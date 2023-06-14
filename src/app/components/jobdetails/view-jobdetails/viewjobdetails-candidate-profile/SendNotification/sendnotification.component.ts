@@ -334,6 +334,7 @@ getcustomerusers()
   this.savenote.isCandidate=false;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc = '';
+  this.SendEmail();
  }
 
  if(this.isShown2==true&&this.isShown1==false)
@@ -351,6 +352,7 @@ getcustomerusers()
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
+  this.SendEmail();
   this.SendCandidateEmail();
 }
 
@@ -363,7 +365,6 @@ getcustomerusers()
  Ids.forEach((value, index, array)=>
  {
    this.savenote.toUserId = value;
-   debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -434,11 +435,7 @@ getcustomerusers()
        await this.uploadFile(data);
       }      
     }
-   if(this.savenote.toUserId != this.customer.UserId)
-   {
-    this.emailNote.NotesId = element; 
-    await this.SendEmail();
-   }
+
 
   });
 
@@ -561,20 +558,33 @@ SendCandidateEmail()
 
 SendEmail()
 {
-  if(this.emailNote.ToEmailID != this.customer.Email)
-  {
-    debugger
-    this.emailNote.Body =this.selectedComments;
-    this.emailNote.ToUserId = 0; 
-    this.emailNote.FullName = "";
-    this.emailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
-    this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotesNewU').subscribe(
-      check=>
+    this.teammemberslist.forEach(x=>
       {
-              this.emailNote = new SendNoteEmail();
+        if(x.UserId != this.customer.UserId)
+        {
+
+          this.cemailNote.Body = this.selectedComments;
+          this.cemailNote.FullName = x.FirstName;
+          this.cemailNote.ToEmailID = x.Email;
+          this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+            this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
+              check=>
+              {
+            
+                   
+                      this.cemailNote = new SendNoteEmailCandidate();
+                 
+              }
+            )
+        }
+  
+  
       }
-    )
-  }
+      
+      );
+  
+   
+  
 
 }
 
