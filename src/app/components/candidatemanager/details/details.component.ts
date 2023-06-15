@@ -399,34 +399,34 @@ export class DetailsComponent implements OnInit,OnDestroy {
 			'Url': ['', Validators.nullValidator],
 			'FileExtension': ['', Validators.nullValidator],
 		  });
-		  this.mapsAPILoader.load().then(
-			() => {
-				this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
-				this.autocomplete.setComponentRestrictions({ 'country': ['us'] });
-				this.autocomplete.addListener('place_changed', () => {
-					this.ngZone.run(() => {
-						//debugger;
-						const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
-						if (place === null || place.geometry === undefined || place.geometry === null) {
-							this.cityName = '';
-							//this.searchCandidates();
-							return;
-						}
-						if (place.geometry) {
-							console.log(place.address_components[0].short_name);
-							let locations = place.address_components[0].short_name;
-							let x = locations.split(",");
-							this.cityName = x[0];
-							if (this.cityName !== '') {
-								//this.searchCandidates();
-							}
-							this.childEvent.emit(place.address_components[0].short_name);
+		//   this.mapsAPILoader.load().then(
+		// 	() => {
+		// 		this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
+		// 		this.autocomplete.setComponentRestrictions({ 'country': ['us'] });
+		// 		this.autocomplete.addListener('place_changed', () => {
+		// 			this.ngZone.run(() => {
+		// 				//debugger;
+		// 				const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
+		// 				if (place === null || place.geometry === undefined || place.geometry === null) {
+		// 					this.cityName = '';
+		// 					//this.searchCandidates();
+		// 					return;
+		// 				}
+		// 				if (place.geometry) {
+		// 					console.log(place.address_components[0].short_name);
+		// 					let locations = place.address_components[0].short_name;
+		// 					let x = locations.split(",");
+		// 					this.cityName = x[0];
+		// 					if (this.cityName !== '') {
+		// 						//this.searchCandidates();
+		// 					}
+		// 					this.childEvent.emit(place.address_components[0].short_name);
 
-						}
-					});
-				});
+		// 				}
+		// 			});
+		// 		});
 
-			});
+		// 	});
 	}
 
 	closeSidebarHandler() {
@@ -650,7 +650,8 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 	  GetDefaultProfileCompleteness(ProfileId) {
 		this.apiService.GetService('IdentityAPI/api/GetCandidateProfileCompletenessByProfileId?profileId=', ProfileId).subscribe(pr => {
-           this.pmatching=pr;
+          debugger
+			this.pmatching=pr;
 		})
 	  }
 
@@ -797,6 +798,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 	hideApplySidePanel() {
 		this.applyJobSidePanelShow = false;
+		this.getCandidates();
 	}
 
 	hideShareSidePanel() {
@@ -1828,6 +1830,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 	closeApplyJobWindow() {
 		this.applyJobSidePanelShow = false;
+		this.getCandidates();
 	}
 	showGrid() {
 		this.isGridShown = true;

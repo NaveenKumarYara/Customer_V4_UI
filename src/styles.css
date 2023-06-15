@@ -98,6 +98,7 @@ abbr[title] {
 b,
 strong {
 	font-weight: bold;
+	word-break: break-word;
 }
 
 dfn {
@@ -7797,7 +7798,7 @@ button.close {
 	text-shadow: none;
 	text-transform: none;
 	white-space: normal;
-	word-break: normal;
+	word-break: break-word;
 	word-spacing: normal;
 	word-wrap: normal;
 	font-size: 12px;
