@@ -564,7 +564,7 @@ SendEmail()
         {
 
           this.cemailNote.Body = this.selectedComments;
-          this.cemailNote.FullName = x.FirstName;
+          this.cemailNote.FullName = x.FirstName.split('-')[0];
           this.cemailNote.ToEmailID = x.Email;
           this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
             this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
