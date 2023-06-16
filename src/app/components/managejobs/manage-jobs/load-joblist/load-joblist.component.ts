@@ -185,6 +185,8 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
+      localStorage.removeItem('sortBy');
+      localStorage.removeItem('NsortBy');
     }); 
   }
 
@@ -326,24 +328,25 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
         this.status = this.nsortBy;
         this.newSortBy = 0;
         localStorage.setItem('NsortBy', JSON.stringify(sort));
-        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,0);     
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,this.newSortBy);     
       }
       else
       {
         this.newSortBy = sort;
         localStorage.setItem('NsortBy', JSON.stringify(sort));
-        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,this.newSortBy);     
       }
     
   }
 
   UpdatePopulateSort(filter)
   { 
+      
       this.spinner.show();
       this.sortBy = filter;
       this.isfiltered=0;
       localStorage.setItem('sortBy', JSON.stringify(filter));
-      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,this.newSortBy);     
   }
 
   clearAll()
