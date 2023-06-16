@@ -443,3 +443,71 @@ body {
     width: 120px !important;
   }
 }
+
+.slide-panel {
+	.slide-close {
+		width: 58px;
+		height: 58px;
+		border-radius: 50%;
+		background: $white;
+		@include shadowOne();
+		position: absolute;
+		left: -30px;
+		display: none;
+		top: 50%;
+		transform: translateY(-50%);
+		border: 1px solid $stroke-gray;
+	}
+	
+	&.show {
+		.slide-close {
+			display: block;
+		}
+	}
+}
+
+.form-actions {
+	@include flexbox();
+	@include align-items(center);
+	@include justify-content(flex-end);
+	gap: 20px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid $stroke-gray;
+}
+
+.form-container {
+	.row {
+		@include align-items(center);
+		margin-bottom: 20px;
+	}
+
+	label {
+		font-size: $font-size-16;
+		font-weight: 600;
+		color: $dark-gray;
+	}
+
+	.form-group {
+		position: relative;
+
+		.mdi {
+			position: absolute;
+			left: 15px;
+			top: 10px;
+			font-size: $font-size-20;
+			color: $dark-gray;
+		}
+
+		.form-select,
+		.form-control {
+			padding-left: 40px;
+		}
+
+		textarea {
+			&.form-control {
+				height: 120px;
+			}
+		}
+	}
+}

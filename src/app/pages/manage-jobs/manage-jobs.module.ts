@@ -30,6 +30,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { JobListComponent } from './job-activities/job-list/job-list.component';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
+import { JobStatusComponent } from './job-status/job-status.component';
+import { JobReviewComponent } from './job-review/job-review.component';
+
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -46,8 +49,9 @@ import { GenericListFilterModule } from 'generic-list-filter';
 	JobsActivitiesNavComponent,
 	JobCardComponent,
 	JobActivitiesSummaryComponent,
- JobListComponent
-
+  JobListComponent,
+  JobStatusComponent,
+  JobReviewComponent
 	],
 	imports: [
 	 CommonModule,
