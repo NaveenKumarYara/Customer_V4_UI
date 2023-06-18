@@ -26,6 +26,13 @@
               <img src="../../../../assets/images/default-company-small.jpg" alt="">
             </div>
             <h3>John Doe</h3>
+            <div class="right-info">
+              <span class="period">10 Days AGO</span>
+              <div class="rating">
+                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+              </div>
+              <button class="btn btn-dropdown"><span class="mdi mdi-dots-vertical"></span></button>
+            </div>
           </div>
         </div>
         <div class="middle-container">
@@ -33,7 +40,18 @@
             <h3>Technology Analyst </h3>
           </div>
           <div class="top-bottom-section">
-            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant...
+            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant
+            <button class="btn btn-arrow" 
+              (click)="isCollapsed = ! isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              <span class="mdi mdi-chevron-down"></span>
+            </button>
+
+            <div class="show-more-info"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+              Pellentesque habitant morbi tristique senectus et netus.  Pellentesque habitant morbi tristique senectus et netus. 
+            </div>
           </div>
         </div>
       </div>
@@ -46,6 +64,13 @@
               <img src="../../../../assets/images/default-company-small.jpg" alt="">
             </div>
             <h3>John Doe</h3>
+            <div class="right-info">
+              <span class="period">10 Days AGO</span>
+              <div class="rating">
+                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+              </div>
+              <button class="btn btn-dropdown"><span class="mdi mdi-dots-vertical"></span></button>
+            </div>
           </div>
         </div>
         <div class="middle-container">
@@ -53,7 +78,18 @@
             <h3>Technology Analyst </h3>
           </div>
           <div class="top-bottom-section">
-            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant...
+            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant
+            <button class="btn btn-arrow" 
+              (click)="isCollapsed = ! isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              <span class="mdi mdi-chevron-down"></span>
+            </button>
+
+            <div class="show-more-info"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+              Pellentesque habitant morbi tristique senectus et netus.  Pellentesque habitant morbi tristique senectus et netus. 
+            </div>
           </div>
         </div>
       </div>
@@ -66,6 +102,13 @@
               <img src="../../../../assets/images/default-company-small.jpg" alt="">
             </div>
             <h3>John Doe</h3>
+            <div class="right-info">
+              <span class="period">10 Days AGO</span>
+              <div class="rating">
+                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+              </div>
+              <button class="btn btn-dropdown"><span class="mdi mdi-dots-vertical"></span></button>
+            </div>
           </div>
         </div>
         <div class="middle-container">
@@ -73,7 +116,18 @@
             <h3>Technology Analyst </h3>
           </div>
           <div class="top-bottom-section">
-            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant...
+            Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant
+            <button class="btn btn-arrow" 
+              (click)="isCollapsed = ! isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              <span class="mdi mdi-chevron-down"></span>
+            </button>
+
+            <div class="show-more-info"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+              Pellentesque habitant morbi tristique senectus et netus.  Pellentesque habitant morbi tristique senectus et netus. 
+            </div>
           </div>
         </div>
       </div>

@@ -59,7 +59,7 @@
       position: relative;
 
       .icon {
-        width: 50px;
+        width: 56px;
         height: 100%;
         @include flexbox();
         @include align-items(center);
@@ -67,7 +67,21 @@
         position: absolute;
         left: 0;
         top: 0;
-        background-color: $lighter-blue;
+        background-color: $blue;
+
+        .mdi {
+          color: $white;
+        }
+      }
+
+      &.collapsed { 
+        .icon {
+          background-color: $light-blue;
+          
+          .mdi {
+            color: $dark-gray;
+          }
+        }
       }
 
       .btn-link {

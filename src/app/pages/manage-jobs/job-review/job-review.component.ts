@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobReviewComponent implements OnInit {
   currentRate = 3;
+  public isCollapsed = false;
   
   constructor() { }
 
