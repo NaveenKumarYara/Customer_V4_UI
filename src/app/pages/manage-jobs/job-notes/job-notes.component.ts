@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-job-status',
-  templateUrl: './job-status.component.html',
-  styleUrls: ['./job-status.component.scss']
+  selector: 'app-job-notes',
+  templateUrl: './job-notes.component.html',
+  styleUrls: ['./job-notes.component.scss']
 })
-export class JobStatusComponent implements OnInit {
+export class JobNotesComponent implements OnInit {
+  panels = ['First', 'Second', 'Third'];
   config = {
     uiColor: '#F0F3F4',
     height: '100%',
@@ -42,7 +44,11 @@ export class JobStatusComponent implements OnInit {
   removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
   };
 
-  constructor() { }
+  constructor(config: NgbAccordionConfig) {
+		// customize default values of accordions used by this component tree
+		config.closeOthers = true;
+		config.type = 'info';
+	}
 
   ngOnInit(): void {
   }

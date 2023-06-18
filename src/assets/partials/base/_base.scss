@@ -478,7 +478,7 @@ body {
 
 .form-container {
 	.row {
-		@include align-items(center);
+		@include align-items(flex-start);
 		margin-bottom: 20px;
 	}
 
@@ -486,6 +486,21 @@ body {
 		font-size: $font-size-16;
 		font-weight: 600;
 		color: $dark-gray;
+	}
+
+	.description {
+		@include flexbox();
+		@include align-items(flex-start);
+		font-size: $font-size-14;
+		color: $medium-gray;
+
+		.mdi {
+			font-size: $font-size-18;
+			margin-right: 10px;
+			vertical-align: top;
+			position: relative;
+			top: -2px;
+		}
 	}
 
 	.form-group {
@@ -508,6 +523,106 @@ body {
 			&.form-control {
 				height: 120px;
 			}
+		}
+	}
+}
+
+.cke {
+	border-radius: 8px;
+	overflow: hidden;
+
+	.cke_top,
+	.cke_bottom {
+		background: $white !important;
+	}
+}
+
+.single-col {
+	margin-bottom: 15px;
+}
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+	padding-bottom: 15px;
+	cursor: pointer;
+
+	.btn {
+		border: 1px dashed $stroke-gray;
+		color: $dark-gray;
+		background-color: $white;
+		width: 100%;
+		@include shadowTwo();
+		height: 138px;
+		font-size: $font-size-16;
+		font-weight: 600;
+		color: $dark-gray;
+		@include flexbox();
+		@include justify-content(center);
+		@include flex-direction(column);
+		@include align-items(center);
+	}
+
+	input[type=file] {
+		font-size: 100px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
+	}
+}
+
+.accordion-item {
+	.accordion-header {
+		&.bg-info {
+			background-color: transparent !important;
+		}
+	}
+}
+
+.job-notes {
+	.accordion-item {
+		border: 0;
+		background-color: transparent;
+		
+		&:not(:first-child) {
+			margin-top: 10px;
+		}
+	}
+
+	.accordion-body {
+		padding: 30px 60px;
+
+		h6 {
+			font-size: $font-size-16;
+			font-weight: 600;
+			color: $dark-gray;
+		}
+
+		.name {
+			font-size: $font-size-12;
+			color: $medium-gray;
+		}
+	}
+
+	.accordion-button {
+		border: 1px solid $stroke-gray;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		padding-left: 48px;
+
+		.btn-link {
+			border: 0;
+		}
+
+		&::after {
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 10;
 		}
 	}
 }

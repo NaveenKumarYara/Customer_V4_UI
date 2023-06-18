@@ -1,5 +1,5 @@
 <div class="dashboard-stats">
-  <owl-carousel-o [options]="customOptions">
+  <owl-carousel-o [options]="customOptions" (initialized)="AdminStats" >
     <ng-template carouselSlide>
       <div class="col-container active">
         <span class="icon icon-01">

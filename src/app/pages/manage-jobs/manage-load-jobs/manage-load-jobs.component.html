@@ -88,6 +88,7 @@
   [panelTitle]="'Job Status'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <app-sidepanel-cards></app-sidepanel-cards>
   <app-job-status></app-job-status>
 </app-slidepanel>
 <app-slidepanel 
@@ -105,11 +106,13 @@
 >
 </app-slidepanel>
 <app-slidepanel 
-  class="slide-panel"
+  class="slide-panel show"
   [ngClass]="panelShow=='notes'?'show':''"
-  [panelTitle]="'Notes'"
+  [panelTitle]="'Job Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <app-sidepanel-cards></app-sidepanel-cards>
+  <app-job-notes></app-job-notes>
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"

@@ -12,6 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-search/manage-quick-search.component';
 import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
 import { ManageJobListComponent } from './manage-job-list/manage-job-list.component';
+import  { SidepanelCardsComponent } from './../common/sidepanel-cards/sidepanel-cards.component';
 import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component';
 import { ManageJobRoutingModule } from './manage-jobs-routing';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
@@ -32,6 +33,9 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
 import { JobStatusComponent } from './job-status/job-status.component';
 import { JobReviewComponent } from './job-review/job-review.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { JobNotesComponent } from './job-notes/job-notes.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	declarations: [
@@ -51,7 +55,9 @@ import { JobReviewComponent } from './job-review/job-review.component';
 	JobActivitiesSummaryComponent,
   JobListComponent,
   JobStatusComponent,
-  JobReviewComponent
+  JobReviewComponent,
+	SidepanelCardsComponent,
+ 	JobNotesComponent
 	],
 	imports: [
 	 CommonModule,
@@ -66,6 +72,7 @@ import { JobReviewComponent } from './job-review/job-review.component';
 	 NgbRatingModule,
 	 CarouselModule,
 	 NgbCollapseModule,
+	 CKEditorModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
@@ -77,7 +84,8 @@ import { JobReviewComponent } from './job-review/job-review.component';
 		space: -5
 		
 	  }),
-	  NgxPaginationModule
+	  NgxPaginationModule,
+		NgbAccordionModule
 	],
 	providers:[SettingsHttpService,SettingsService],
 	exports: [

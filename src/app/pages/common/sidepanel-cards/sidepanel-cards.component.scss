@@ -1,5 +1,6 @@
 @import '../../../../assets/partials/utils/variables';
 @import '../../../../assets/partials/utils/mixins';
+
 .job-card {
   .col-container {
     border: 1px solid $stroke-gray;
@@ -256,79 +257,36 @@
   }
 }
 
-.rating-section {
-  width: 640px;
-  margin: 50px auto 30px;
-  .top-container {
-    @include flexbox();
-    @include align-items(center);
-    font-size: $font-size-30;
-    gap: 15px;
-
-    h4 {
-      font-size: $font-size-18;
-      margin: 0;
-      color: $dark-gray;
-    }
-
-    .rating {
-      position: relative;
-      top: -5px;
-    }
-
-    .sorting {
-      @include flexbox();
-      @include align-items(center);
-      gap: 10px;
-      margin-left: auto;
-      font-size: $font-size-14;
-      font-weight: 600;
-      color: $medium-gray;
-
-      .form-select {
-        border-radius: 4px;
-        height: 36px;
-        font-size: $font-size-14;
-        width: 100px;
-      }
-    }
-  }
-}
-
-.rating {
-  color: $dark-green;
-}
-
-.review-listing {
+.right-col {
   .job-card {
-    margin-top: 20px;
-
     .col-container {
       .top-container {
-        padding: 20px;
+        .priority {
+          width: auto;
+        }
       }
 
-      .profile-info {
-        h3 {
-          font-size: $font-size-16;
-          text-transform: uppercase;
-          width: 100%;
-          margin: 0;
-        }
+      .progress-circle {
+        width: 60px;
       }
 
       .middle-container {
+        @include flexbox();
+        @include flex-wrap(wrap);
+
         .top-section {
           h3 {
-            font-size: $font-size-12;
-            text-transform: uppercase;
-            color: $medium-gray;
+            flex: 0 0 90%;
+            max-width: 90%;
           }
         }
 
-        .top-bottom-section {
-          font-size: $font-size-13;
-          color: $medium-gray;
+        .right-container {
+          font-size: 12px;
+          font-weight: 600;
+          color: $dark-gray;
+          @include flexbox();
+          @include align-items(center);
         }
       }
     }
