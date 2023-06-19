@@ -739,12 +739,85 @@ body {
           }
         }
       }
-
-			&:first-child {
-				label {
-
-				}
-			}
     }
   }
+}
+
+.custom-checkbox {
+	label {
+		font-size: $font-size-14 !important;
+		font-weight: 400 !important;
+		cursor: pointer;
+		@include flexbox();
+		@include align-items(center);
+		color: $dark-gray;
+		position: relative;
+		width: 18px;
+		height: 18px;
+	 
+
+		.mdi {
+			line-height: 0;   
+			position: absolute;
+			right: 5px;
+			top: 50%;
+			color: $dark-gray;
+			font-size: $font-size-16;
+			transform: translateY(-50%);
+		}
+
+		input[type="checkbox"] {
+			position: absolute;
+			left: -999em;
+
+			+ .checkmark {
+				background-color: $white;
+				position: relative;
+				
+				&::before {
+					content: "";
+					width: 18px;
+					background: $white;
+					height: 18px;
+					border: 1px solid $stroke-gray;
+					border-radius: 3px;
+					position: absolute;
+					left: 5px;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+
+				&::after {
+					content: "\F0E1E";
+					font: normal normal normal 24px/1 "Material Design Icons";
+					font-size: inherit;
+					text-rendering: auto;
+					position: absolute;
+					left: 7px;
+					top: -10px;
+					line-height: inherit;
+					opacity: 0;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+				}
+			}
+
+			&:checked {
+				+ .checkmark {
+					background-color: $blue;
+					border-color: $blue;
+					color: $white;
+
+					&:after {
+						color: $blue;
+						opacity: 1;
+					}
+
+					+ .mdi {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
 }

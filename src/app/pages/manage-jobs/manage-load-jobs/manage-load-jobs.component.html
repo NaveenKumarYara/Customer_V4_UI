@@ -11,9 +11,9 @@
     Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
   </div>
   <div class="sorting">
-    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
-  nextLabel="">
-  </pagination-controls>
+    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event"
+    previousLabel="" nextLabel="">
+    </pagination-controls>
 </div>
 </div>
 <ng-container *ngIf="viewLayout == 'grid'">

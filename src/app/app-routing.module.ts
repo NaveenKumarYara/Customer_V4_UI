@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import  { ManageJobsComponent } from './pages/manage-jobs/manage-jobs.component';
+import { FindACandidateComponent } from './pages/find-a-candidate/find-a-candidate.component';
 
 const routes: Routes = [
   // -------------------- Auth Routes --------------------
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'manage-jobs/job-activites',
     redirectTo:'manage-jobs/job-activites'
+  },
+  {
+    path: 'find-a-candidates',
+    component: FindACandidateComponent
   }
 ];
 

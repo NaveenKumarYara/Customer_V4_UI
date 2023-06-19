@@ -1,0 +1,31 @@
+@import './../../../assets/partials/utils/variables';
+@import './../../../assets/partials/utils/mixins';
+
+.sorting-container {
+	@include flex-direction(column);
+	justify-content: center;
+
+	.sorting {
+		margin-left: 0;
+	}
+
+	@media only screen and (min-width: 768px) {
+		@include flex-direction(row);
+		justify-content: flex-start;
+
+		.sorting {
+			margin-left: auto;
+		}
+	}
+}
+
+.find-a-candidate-grid {
+	.row {
+		margin: 0 -10px;
+	}
+
+	.find-col {
+		margin-top: 30px;
+		padding: 0 10px;
+	}
+}
