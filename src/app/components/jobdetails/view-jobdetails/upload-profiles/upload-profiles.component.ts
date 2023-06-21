@@ -1784,7 +1784,7 @@ GetJobRequiredDomain(PId) {
     }
     if(this.sdetails.planId ===  "enterprise")
     {
-      this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
+      this.jobdetailsservice.byteStorage1(formData, 'api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
         if (data) {
           this.uploadResponse = data;
           this.processedProfiles.push(this.uploadResponse[0].ResumeData);
