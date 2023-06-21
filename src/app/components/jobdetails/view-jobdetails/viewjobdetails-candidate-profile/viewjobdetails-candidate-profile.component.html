@@ -919,6 +919,9 @@
                     <span *ngIf="profile?.jdsource?.DataSource != null && profile?.jdsource?.DataSource != undefined">
                       Source : {{profile?.jdsource?.DataSource}}
                     </span>
+                    <span *ngIf="profile?.jdsource?.DataSource === null ||  profile?.jdsource?.DataSource === undefined">
+                      Source : Referrals
+                    </span>
                     <br/>
                       By <span> <strong> {{profile?.customerDetails?.FirstName}}  {{profile?.customerDetails?.LastName}}</strong> </span>  On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
                       <br/>
