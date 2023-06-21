@@ -11,13 +11,22 @@
   <div class="job-listing-grid">
     <div class="row">
       <div class="col-md-4 col-lg-4 job-card">
-        <app-job-card></app-job-card>
+        <app-job-card
+          [panelShow]="panelShow"
+          (panelHandler)="panelHandler($event)"
+        ></app-job-card>
       </div>
       <div class="col-md-4 col-lg-4 job-card">
-        <app-job-card></app-job-card>
+        <app-job-card
+          [panelShow]="panelShow"
+          (panelHandler)="panelHandler($event)"
+        ></app-job-card>
       </div>
       <div class="col-md-4 col-lg-4 job-card">
-        <app-job-card></app-job-card>
+        <app-job-card
+          [panelShow]="panelShow"
+          (panelHandler)="panelHandler($event)"
+        ></app-job-card>
       </div>
     </div>
   </div>
@@ -50,3 +59,14 @@
     </div>
   </div>
 </ng-container>
+
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='job-review'?'show':''"
+  [panelTitle]="'Job Review'"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <app-sidepanel-cards></app-sidepanel-cards>
+  <app-job-review></app-job-review>
+</app-slidepanel>

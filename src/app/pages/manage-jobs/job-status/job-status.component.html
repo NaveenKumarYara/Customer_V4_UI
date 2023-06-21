@@ -1,0 +1,47 @@
+<div class="form-actions">
+  <button class="btn btn-outlined-default">Cancel</button>
+  <button class="btn btn-info">Save</button>
+</div>
+<div class="form-container">
+  <div class="row">
+    <div class="col-md-4 col-lg-4 label-col">
+      <label>
+        Current Job Status
+      </label>
+    </div>
+    <div class="col-md-8 col-lg-8 input-col">
+      <div class="form-group">
+        <span class="mdi mdi-information-outline"></span>
+        <input type="text" class="form-control" value="Web Designer">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 label-col">
+      <label>
+        Job Status
+      </label>
+    </div>
+    <div class="col-md-8 col-lg-8 input-col">
+      <div class="form-group">
+        <span class="mdi mdi-information-outline"></span>
+        <select class="form-select">
+          <option value="Select Application Status">Select Application Status</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 label-col">
+      <label>
+        Message
+      </label>
+    </div>
+    <div class="col-md-8 col-lg-8 input-col">
+      <ckeditor  
+        [config]="config"
+        data="<p>Hello, world!</p>">
+      </ckeditor>
+    </div>
+  </div>
+</div>

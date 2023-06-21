@@ -411,191 +411,38 @@
   left: 0;
   top: 0;
   background-color: rgba(0,0,0,.5);
-  z-index: 10;
-
+  z-index: 100;
 }
 .slide-dialog {
-  width: 80vw;
-  height: 100vh;
-  padding: 30px;
-  overflow-y: auto;
   position: fixed;
   right: 0;
+  height: 100%;
   top:0;
+  box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
   z-index: 100;
   background-color: $white;
 
   .slide-heding {
-   // border-bottom: 1px solid $stroke-gray;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    padding: 30px 0 0;
 
     h3 {
       font-size: $font-size-20;
       color: $dark-gray;
-      margin: 0;
+      font-weight: 600;
+      margin: 0 auto;
     }
   }
+}
+
+.slide-body {
+  width: 960px;
+  height: 100vh;
+  overflow: auto;
+  padding: 0 30px 30px;
 }
 
 .ml-auto {
   margin-left: auto;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  padding: 10px;
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-.dropdown-item {
-  padding: 5px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background: #f0f0f0;
-}
-
-.drp{
-  background-color: white;
-  color: gray;
- 
-}
-
-.bts_tm{
-  font-size: 14px;
-  font-weight: 400;
-
-    box-sizing: border-box;
-    width: 100px;
-    height: 45px;
-    background: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
-    border-radius: 4px;
-  }
-
-  .lbl{
-    font-size: 14px;
-     font-weight: 600;
-     color:#53647E;
-  }
-
-  .container_doc {
-   
-    width: 100%;
-    align-items: center;
-    
-    justify-content: center;
-    background-color: #fcfcfc;
-  }
-  
-  .card_doc {
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-    width: 600px;
-    height: 260px;
-    background-color: #ffffff;
-    padding: 10px 30px 40px;
-  }
-  
-  .card h3 {
-    font-size: 22px;
-    font-weight: 600;
-    
-  }
-  
-  .drop_box {
-    margin: 10px 0;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border: 3px dotted #a3a3a3;
-    border-radius: 5px;
-  }
-  
-  .drop_box h4 {
-    font-size: 16px;
-    font-weight: 400;
-    color: #2e2e2e;
-  }
-  
-  .drop_box p {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    color: #a3a3a3;
-  }
-  
-  .btn_doc {
-    text-decoration: none;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    transition: 0.3s;
-  }
-  
-  .btn:hover{
-    text-decoration: none;
-    background-color: #ffffff;
-    color: #005af0;
-    padding: 10px 20px;
-    border: none;
-    outline: 1px solid #010101;
-  }
-  .form input {
-    margin: 10px 0;
-    width: 100%;
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-  }
-  .btn-tag {
-   
-    width: 108px;
-    height: 29px;
-    
-    background: #66DAB5;
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    /* Additional custom styles */
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .status {
-    position: absolute;
-    left: 0;
-    top: 20px;
-    width: 108px;
-    text-align: center;
-    font-size: 12px;
-    border-radius: 0 4px 4px 0;
-    text-transform: uppercase;
-    padding: 3px 4px;
-
-    &.active {
-      background-color: $dark-green;
-      color: $white;
-    }
-  }
-  .bts_tm:hover{
-    cursor:pointer;
-    background-color: #005af0;
-    color:white;
-  }

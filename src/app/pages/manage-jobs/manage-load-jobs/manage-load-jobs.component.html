@@ -11,9 +11,9 @@
     Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
   </div>
   <div class="sorting">
-    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event" 		previousLabel=""
-  nextLabel="">
-  </pagination-controls>
+    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event"
+    previousLabel="" nextLabel="">
+    </pagination-controls>
 </div>
 </div>
 <ng-container *ngIf="viewLayout == 'grid'">
@@ -88,6 +88,8 @@
   [panelTitle]="'Job Status'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <app-sidepanel-cards></app-sidepanel-cards>
+  <app-job-status></app-job-status>
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
@@ -106,9 +108,11 @@
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='notes'?'show':''"
-  [panelTitle]="'Notes'"
+  [panelTitle]="'Job Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <app-sidepanel-cards></app-sidepanel-cards>
+  <app-job-notes></app-job-notes>
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"

@@ -57,8 +57,13 @@
 </div>
 <div class="table-col assign-col">
 	<ng-container *ngIf="ljob?.Assignee">
-		{{ljob?.Assignee | titlecase}}
+		<ng-container *ngFor="let assigne of ljob?.Assignee.split('|');let jk = index">	
+			<span *ngIf="jk<1">
+				{{assigne | titlecase}}
+			</span>
+		</ng-container>
 	</ng-container>
+
 	<ng-container *ngIf="!ljob?.Assignee">
 		-
 	</ng-container>

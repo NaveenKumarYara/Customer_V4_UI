@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div id="main-content">
   <h1>Dashboard</h1>
-  <app-dashboard-kpis></app-dashboard-kpis>
-  <app-dashboard-stats></app-dashboard-stats>
-  <app-dashboard-total-jobs></app-dashboard-total-jobs>
+  <app-dashboard-kpis [AdminStats]="AdminStats"></app-dashboard-kpis>
+  <app-dashboard-stats [AdminStats]="AdminStats"></app-dashboard-stats>
+  <app-dashboard-total-jobs [AdminStats]="AdminStats"></app-dashboard-total-jobs>
   <app-dashboard-chart-table></app-dashboard-chart-table>
   <app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>
 </div>

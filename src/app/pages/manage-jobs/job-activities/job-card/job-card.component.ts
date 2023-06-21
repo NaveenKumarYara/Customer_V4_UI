@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -7,6 +7,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./job-card.component.scss']
 })
 export class JobCardComponent implements OnInit {
+  @Input() panelShow: any = '';
+  @Output() panelHandler = new EventEmitter<string>(); 
+  
   currentRate = 3;
   customOptions: OwlOptions = {
     loop: true,
@@ -38,6 +41,10 @@ export class JobCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  panelClick(name: string) {
+    this.panelHandler.emit(name);
   }
 
 }

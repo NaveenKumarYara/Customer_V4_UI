@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -7,6 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./dashboard-kpis.component.scss']
 })
 export class DashboardKpisComponent implements OnInit {
+  @Input() AdminStats: any ='';
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -16,6 +17,7 @@ export class DashboardKpisComponent implements OnInit {
     navSpeed: 700,
     center:false,
     margin: 20,
+    
     navText: ['<span class="mdi mdi-chevron-left"></span>', '<span class="mdi mdi-chevron-right"></span>'],
     responsive: {
       0: {
@@ -32,6 +34,7 @@ export class DashboardKpisComponent implements OnInit {
       }
     },
     nav: true
+    
   }
   constructor() { }
 

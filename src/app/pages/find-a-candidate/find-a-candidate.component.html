@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div id="main-content">
+  <app-find-a-candidate-filter
+    [viewLayout] = "viewLayout"
+    (layoutView) = "layoutView($event)"
+  >
+  </app-find-a-candidate-filter>
+  <div class="sorting-container d-flex align-items-center">
+    <div class="result">
+      Showing 1 - 6 out of 170 Jobs
+    </div>
+    <div class="sorting">
+      <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event"
+      previousLabel="" nextLabel="">
+      </pagination-controls>
+    </div>
+  </div>
+  <ng-container *ngIf="viewLayout == 'grid'">
+    <div class="find-a-candidate-grid">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+        <div class="col-md-3 col-lg-3 find-col">
+          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<app-footer></app-footer>

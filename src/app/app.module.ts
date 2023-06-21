@@ -9,7 +9,7 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { FindACandidateModule } from './pages/find-a-candidate/find-a-candidate.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DashboardModule,
     NgbModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule 
+    Ng2SearchPipeModule,
+    FindACandidateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
