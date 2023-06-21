@@ -15,47 +15,118 @@
       </pagination-controls>
     </div>
   </div>
+
+  
+
   <ng-container *ngIf="viewLayout == 'grid'">
-    <div class="find-a-candidate-grid">
-      <div class="row">
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
+    <div class="find-a-candidate-grid show-card">
+      <div class="row align-items-start">
+       <div class="col-md-8 col-lg-8 left-col">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
+          <div class="col-md-3 col-lg-3 find-col">
+            <app-find-a-candidate-grid></app-find-a-candidate-grid>
+          </div>
         </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
-        <div class="col-md-3 col-lg-3 find-col">
-          <app-find-a-candidate-grid></app-find-a-candidate-grid>
-        </div>
+       </div>
+       <div class="col-md-4 col-lg-4 left-col">
+        <app-find-a-candidate-card></app-find-a-candidate-card>
+       </div>
       </div>
     </div>
+  </ng-container>
+
+  <ng-container *ngIf="viewLayout == 'table'">
+    <div class="find-listing-table">
+      <div class="table-row table-row-heading">
+        <div class="table-col name-col">
+          Name
+          <span class="mdi mdi-chevron-down"></span>
+        </div>
+        <div class="table-col position-col">
+          Job Title
+          <span class="mdi mdi-chevron-down"></span>
+        </div>
+        <div class="table-col email-col">
+          Email
+          <span class="mdi mdi-chevron-down"></span>
+        </div>
+        <div class="table-col number-col">
+          Contact Number
+          <span class="mdi mdi-chevron-down"></span>
+        </div>
+        <div class="table-col location-col">
+          Current Location
+          <span class="mdi mdi-chevron-down"></span>
+        </div>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+      <div class="table-row">
+        <app-find-a-candidate-table></app-find-a-candidate-table>
+      </div>
+    </div>
+    
   </ng-container>
 </div>
 

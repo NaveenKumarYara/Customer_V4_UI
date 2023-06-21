@@ -130,3 +130,11 @@
     }
   }
 }
+
+.text-trim {
+  width: 90%;
+  display: block;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}

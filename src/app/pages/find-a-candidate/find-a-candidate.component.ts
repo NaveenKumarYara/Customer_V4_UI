@@ -14,8 +14,8 @@ export class FindACandidateComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewLayout = 'grid';
+    window.resizeBy(1,2);
   }
-
 
   listCount(count:any) {
     this.start = count;

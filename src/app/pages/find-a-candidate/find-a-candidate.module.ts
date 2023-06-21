@@ -6,13 +6,17 @@ import { FindACandidateFilterComponent } from './find-a-candidate-filter/find-a-
 import { FindACandidateAdvanceSearchComponent } from './find-a-candidate-advance-search/find-a-candidate-advance-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FindACandidateGridComponent } from './find-a-candidate-grid/find-a-candidate-grid.component';
+import { FindACandidateTableComponent } from './find-a-candidate-table/find-a-candidate-table.component';
+import { FindACandidateCardComponent } from './find-a-candidate-card/find-a-candidate-card.component';
 
 @NgModule({
 	declarations: [
     FindACandidateComponent,
     FindACandidateFilterComponent,
     FindACandidateAdvanceSearchComponent,
-		FindACandidateGridComponent
+		FindACandidateGridComponent,
+  FindACandidateTableComponent,
+  FindACandidateCardComponent
 	],
 	imports: [
 	 CommonModule,

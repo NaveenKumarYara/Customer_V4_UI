@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
@@ -40,4 +40,5 @@ export class DashboardStatsComponent implements OnInit {
  
   ngOnInit(): void {
   }
+  
 }

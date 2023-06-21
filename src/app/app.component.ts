@@ -31,4 +31,5 @@ export class AppComponent {
   hasRoute(route: string) {
     return this.router.url.includes(route);
   }
+
 }

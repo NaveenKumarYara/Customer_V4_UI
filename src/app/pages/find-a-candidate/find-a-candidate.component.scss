@@ -28,4 +28,71 @@
 		margin-top: 30px;
 		padding: 0 10px;
 	}
+
+	&.show-card {
+		.find-col { 
+			flex: 0 0 33.33%;
+			max-width: 33.333%;
+			
+		}
+	}
 }
+
+.find-listing-table {
+	margin: 30px 0;
+	background: $lightest-blue;
+	padding: 20px;
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+}
+
+.table-row {
+	@include flex();
+	@include flex-wrap(wrap);
+	background-color: rgba(225, 247, 239, 0.3);
+	border-top: 1px solid $stroke-gray;
+
+	&:first-child {
+		border-top: 0;
+	}
+
+	&:nth-child(odd) {
+		background-color: $white;
+	}
+
+	&.table-row-heading {
+		background-color: transparent;
+		font-weight: 600;
+
+		.table-col {
+			padding-top: 0;
+		}
+	}
+
+	app-find-a-candidate-table {
+		@include flex();
+		flex: 0 0 100%;
+		max-width: 100%;
+		@include flex-wrap(wrap);
+	}
+
+	.table-col {
+		font-size: $font-size-14;
+		color: $dark-gray;
+		flex: 0 0 20%;
+		padding: 15px;
+		max-width: 20%;
+
+		.mdi {
+			line-height: 1;
+			vertical-align: middle;
+		}
+	
+		a {
+			color: $dark-gray;
+			text-decoration: none;
+		}
+	}
+}
+
+
