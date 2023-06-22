@@ -1,9 +1,7 @@
 <div class="slide-overlay" (click)="closePanel();"></div>
 <div class="slide-dialog">
+  <button class="btn close-btn" (click)="closePanel();"><span class="mdi mdi-close-circle-outline"></span></button>
   <div class="slide-body">
-    <div class="slide-heding d-flex align-items-center">
-      <h3>{{ panelTitle}}</h3>
-    </div>
     <ng-content></ng-content>
   </div>
   <button class="btn slide-close" (click)="closePanel();">

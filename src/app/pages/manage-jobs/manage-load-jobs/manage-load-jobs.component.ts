@@ -21,10 +21,13 @@ export class ManageLoadJobsComponent implements OnInit {
   panelTitle:any = '';
   panelShow: any = '';
   select: any;
+  showJobForm: any = '';
 
   layoutView(name:string){
    this.viewLayout = name;
   }
+
+  
 
   panelHandler(name: string) {
     this.panelShow = name;
@@ -96,7 +99,15 @@ export class ManageLoadJobsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  
+    this.showJobForm = 'false';
+  }
+
+  showJobFormHandler() {
+    this.showJobForm = 'true';
+  }
+
+  showJobFormHideHandler() {
+    this.showJobForm = 'false';
   }
 
   listCount(count:any) {

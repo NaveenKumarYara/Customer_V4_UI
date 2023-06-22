@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,6 +7,8 @@ import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./job-notes.component.scss']
 })
 export class JobNotesComponent implements OnInit {
+  @Input() showJobForm = ''; // decorate the property with @Input();
+
   panels = ['First', 'Second', 'Third'];
   config = {
     uiColor: '#F0F3F4',
