@@ -1,0 +1,217 @@
+<ng-container *ngIf="addNotes">
+	<div class="page page--job-details">
+		<div>
+			<h4 mat-dialog-title class="modal-title text-center">
+				Add Job Note <i class="fa fa-send-o"></i>
+				<ng-container>
+					<h5 class="status {{PStatus}}"> {{PStatus}}.</h5>
+				</ng-container>
+			</h4>
+	
+			<mat-dialog-content class="mat-typography modal-dialog h-auto">
+				<div>
+					<div class="modal-body">
+						<div class="row ">
+							<!-- <div class="col-md-3 w-auto">
+								<label class="radio checkbox">
+									<input type="checkbox" class="radio-input" name="team" [checked]="true" (click)="toggleShow1()">
+									<span class="radio-btn wh-22 ml-0"></span>
+									<span>Team Member</span>
+	
+								</label>
+							</div> -->
+							<!-- <div class="col-md-3 w-auto">
+								<label class="radio checkbox">
+									<input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()">
+									<span class="radio-btn wh-22 ml-0"></span>
+									<span>Candidate</span>
+								</label>
+							</div> -->
+							<!-- <div class="col-md-3 w-auto">
+								<label class="radio checkbox">
+									<input type="checkbox" class="radio-input" name="team" (click)="toggleShow3()">
+									<span class="radio-btn wh-22 ml-0"></span>
+									<span>Other</span>
+								</label>
+							</div> -->
+						</div>
+	
+						<ng-container *ngIf="isShown2">
+								<div class="form-row">
+									<label>
+										Candidate Email : {{checkemail}}
+									</label>
+								</div>						
+						</ng-container>
+	
+						<ng-container *ngIf="isShown1">
+							<form action="">
+								<div class="form-row">
+									<div class="form-group">
+										<label for="">Add Team Member</label>
+										<div class="input-group lg-right-padding">
+											<ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
+												placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
+												bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
+												id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+												#TMemb="ngModel">
+											</ng-select>
+	
+											<span class="input-group-btn">
+												<button class="btn" (click)="addTeammembers()">+</button>
+											</span>
+											<span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+										</div>
+										<ul class="share_candidate team-members-list share__candidates__tags">
+											<li *ngFor="let teammember of teammemberslist; let i = index">
+												<div class="w-100">
+													<!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+													<h4 class="card-body">{{teammember.FirstName | titlecase}}
+													</h4>
+													<span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+												</div>
+											</li>
+										</ul>
+										<div class="inline-radio-tab revamp__inline__radio__tab">
+											<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Email/Call"><label><span><img src="assets/images/check.png"/></span>Email</label></div>
+											<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="General"><label><span><img src="assets/images/check.png"/></span>General</label></div>
+											<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Request for information"><label><span><img src="assets/images/check.png"/></span>Request for information</label></div>
+											<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Interview Related"><label><span><img src="assets/images/check.png"/></span>Interview Related</label></div>
+											<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Other" ><label><span><img src="assets/images/check.png"/></span>Other</label></div>
+										</div>
+									</div>
+								</div>
+								
+							</form>
+	
+						</ng-container>
+						<div class="form-group">
+							<label for="">Notes</label>
+							<textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
+								placeholder="Please add your Notes *" rows="10"></textarea>
+						</div>
+						<div class="culture-card text-center pointer pt-1 w-100" (click)="photo.click()">
+							<input class="hidden" type="file" #photo (click)="photo.value = null" value="" ng2FileSelect
+								[uploader]="uploader" multiple>
+	
+							<button class="file-label btn-sm  pull-left btn-filled"> Add Attachments
+								<br /> <i class="pull-left">* Please add <b>'.png,.pdf,.doc/.docx'</b></i>
+							</button>
+	
+	
+	
+	
+						</div>
+						<!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
+						<div class="file__upload__list__table row">
+							<div class="col-xs-12 mt-5" *ngIf="uploader.queue.length>0">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Size</th>
+										
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of uploader.queue;let i=index">
+											<td>
+												{{ item?.file?.name }}
+											</td>
+											<td>
+												{{ item?.file?.size/1024/1024 | number:'.2' }} MB
+											</td>
+											<!-- <td *ngIf="uploader.options.isHTML5">
+												<div class="progress" style="margin-bottom: 0;">
+												 <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+													<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+														<span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+													</div>
+												</div>
+											</td> -->
+											<td>
+												<button type="button" class="btn btn-danger btn__delete btn-xs" (click)="item.remove(i)">
+													<span class="glyphicon glyphicon-trash"></span>
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</mat-dialog-content>
+			<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+	
+				<button mat-button mat-dialog-close class="btn btn-border">Close</button>
+				<button mat-button (click)="SaveNotes()" [class.spinner]="loading" (click)="loginstyle()" 
+					class="btn btn-filled">Add</button>
+	
+			</mat-dialog-actions>
+		</div>
+	</div>
+</ng-container>
+
+<ng-container *ngIf="!addNotes">
+	<div id="history-activity">
+		<div class="modal-title-box flex flex-align-center">
+			<button mat-button mat-dialog-close class="btn btn-back">
+				<svg fill="#448AFA" height="16.7" width="21.1" xmlns="http://www.w3.org/2000/svg">
+					<path class="st0" d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z"></path>
+					<path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z"></path>
+				</svg>
+			</button>
+			<button class="btn btn-filled btn-plus" mat-button (click)=" OpenAddNoteDialog()">
+				<i class="fa fa-plus-circle"></i>
+			</button>
+			<h4>View Notes</h4>
+		</div>
+		<ng-container *ngIf="JobNotes?.length === 0">
+			<h4>Not yet added.</h4>
+		</ng-container>
+		<ng-container *ngIf="JobNotes?.length>0">
+			<ng-container *ngFor="let n of JobNotes; let i = index">
+		     <div class="history-listing-grid">
+			<div class="history-listing-col" *ngIf="n?.FirstName === customer?.FirstName">
+				<span class="icon icon-01">Icon</span>
+				<div class="history-col-container">
+					<p>{{n?.Others}}</p>
+					<h5>{{n?.CustomerComment}}</h5>
+					<h6>By {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</h6>
+					<!-- <div class="summary">
+						HR Round
+					</div> -->
+					<ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+						<!-- <label>Attachments</label> -->
+						<div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+							 <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+							  <div class="attched"></div>
+							</a>   
+						</div>
+					  </ng-container>
+				</div>
+			</div>
+
+			<div class="history-listing-col"  *ngIf="n?.FirstName != customer?.FirstName">
+				<span class="icon icon-01">Icon</span>
+				<div class="history-col-container">
+					<p>{{n?.Others}}</p>
+					<h5>{{n?.CustomerComment}}</h5>
+					<h6>By {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</h6>
+					<ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+						<!-- <label>Attachments</label> -->
+						<div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+							 <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+							  <div class="attched"></div>
+							</a>   
+						</div>
+					  </ng-container>
+				</div>
+			</div>
+		
+		  </div>
+		  </ng-container>
+		  </ng-container>
+	</div>
+</ng-container>

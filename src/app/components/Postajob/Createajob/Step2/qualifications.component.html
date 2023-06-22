@@ -1,0 +1,179 @@
+<div class="form-group education-group">
+  <label for="PreferredEducation" class="question">Preferred Education criteria? <small>(Optional)</small></label>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  <form #eduForm="ngForm" (ngSubmit)="addQualification()">
+    <div class="row form-sub-rows select-multiple-grid">
+     
+      <div class="col-xs-10 col-md-11 col-sm-11 left-col form-sub-cols">
+          <ng-select class="custom-style" id="PreferredEducation" [items]="qualificationsnew"
+              placeholder="Select Education"
+              bindLabel="QualificationName"
+              bindValue="QualificationId"
+              (ngModelChange)="getSelectedOptionText($event)"             
+              [hideSelected]="true"                 
+              [(ngModel)]="selectedqualificationName"
+              [virtualScroll]="true"
+              #Education="ngModel"
+              name="selectedqualificationName">
+          </ng-select>
+
+          <!-- <small class="text-danger" *ngIf="Education.touched">Required.</small> -->
+          
+      </div>
+
+      <!-- <div class="col-md-5 col-sm-5">
+        <input type="text" class="form-control mt-0" #other="ngModel" name="education" [(ngModel)]="newQualification" (ngModelChange)="updateQualification($event)" placeholder="Other">
+        <small class="text-danger" *ngIf="Education.value === null && other.invalid && other.touched">Required.</small>
+        <small class="text-danger" *ngIf="Education.invalid && Education.touched">Qualification is required.</small> 
+      </div> -->
+
+      <div class="col-xs-2 col-md-1 col-sm-1 right-col form-sub-cols">
+        <button class="btn add-btn form-control mt-0" type="submit">+</button>
+      </div>
+    </div>
+  </form>
+  </div>
+
+  <div class="lists row">
+    <div class="col-md-12" *ngIf="qualificationList.length>0">
+      <p class="description">Qualifications</p>
+      <ul class="data-list key-data-list flex flex-wrap">
+        <li class="col-xs-12 col-md-6 col-sm-6 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
+          <div class="col-container flex flex-wrap flex-align-center">
+            <span title="{{qualifications.QualificationName}}" class="name">{{ add3Dots(qualifications.QualificationName,25) }}</span>
+            <span class="close" (click)="deleteQualifications(i)">&times;</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  
+
+  <div class="form-group education-group">
+    <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
+        <div class="row flex flex-wrap flex-align-center form-sub-rows">
+          <div class="col-xs-12 col-sm-4 form-sub-cols">
+            <div class="form-group">
+                <label for="" class="t-p">
+                  Key Responsibilities  <span class="red">*</span>
+                </label>
+                <div>
+                  <ng-select class="custom-style" [items]="KeyResponses"
+                  (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
+                  [virtualScroll]="true"  [(ngModel)]="SelectKey"
+                  name="key"  #Key="ngModel" required minlength="3" maxlength="25">
+                  <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
+                  <small class="error1" *ngIf="Key.minlength">Min 3 Characters required.</small> 
+                  <small class="error1" *ngIf="Key.maxlength">Max 25 Characters required.</small> 
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-8 form-sub-cols">
+            <label for="" class="t-p">
+              Experience (Yrs) <span class="red">*</span>
+            </label>
+            
+            <div class="form-row row form-sub-rows select-multiple-grid flex flex-wrap flex-align-start">
+              <div class="col-sm-11 form-sub-cols left-col">
+                <div class="row form-sub-rows radio-grid-cols flex flex-wrap">
+                  <div class="checkbox" *ngFor="let option of options">
+                    <label>
+                      <input type="radio" name="price"  (click)="getValue(option.id)"
+                       [checked]="option.id == selectedOption.id"
+                      value= {{option.id}}>
+                      <span class="box">
+                      {{option.name}}
+                      <!-- <em>Yrs</em> -->
+                      </span>
+                    </label>
+                    </div>
+                </div>
+              </div>
+              <div class="col-xs-2 col-sm-1 add-key-btn add__btn right-col">
+                <button  class="btn add-btn form-control ml-5-negative mt-0" type="submit" *ngIf="!keyLoading && keyslist.length<10">+</button>
+              </div>
+            </div>
+
+            <!--Old Code-->
+            <div class="form-row row form-sub-rows flex flex-wrap flex-align-start hidden">
+              <div class="col-xs-5 col-sm-5 form-sub-cols">
+                <div class="form-group xs-padding">
+                  <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)"   placeholder="Min years" type="text">
+                </div>
+                <div>
+                  <!-- <small class="error1 error__required" *ngIf="Minexp.invalid && Minexp.touched">         
+                    *Required
+                  </small>
+                   <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
+                    It can't be greater than Max Experience!
+                  </small>  -->
+                </div>
+              </div>
+              <div class="col-xs-5 col-sm-5 form-sub-cols">
+                <div class="form-group xs-padding">
+                  <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)"  placeholder="Max years" type="text">  
+                </div>
+                <div>
+                  <!-- <small class="error1 error__required"*ngIf="Maxexp.invalid && Maxexp.touched">         
+                    *Required
+                  </small>
+                   <small class="error1" *ngIf="MaximumExperience<MinimumExperience">
+                    It can't be less than Min Experience!
+                  </small>  -->
+                </div>
+              </div>
+              <div class="col-xs-2 col-sm-1 add-key-btn add__btn ">
+                <button  class="btn add-btn form-control mt-0" type="submit" *ngIf="!keyLoading && keyslist.length<10">+</button>
+              </div>
+            </div>
+            <!--Old Code-->
+          </div> 
+        </div>
+      </form>
+      <div class="row form-sub-rows">
+        <div class="col-sm-12 form-sub-cols  single-form-cols">
+          <div class="lists row form-sub-rows">
+            <div class="col-md-12 form-sub-cols" *ngIf="keyslist.length>0">
+              <p class="description">Key Responsibilities</p>
+              <div class="form-check-list">
+                <ul class="flex flex-wrap flex-align-equal">
+                  <li *ngFor="let domain of keyslist; let i = index">   
+                    <div class="col__container" placement="top" tooltip=" {{domain.DCode}}">
+                      <span class="name">
+                        {{domain.DCode}}
+                      </span>
+                      <span class="experience">
+                        {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs
+                      </span>
+                      <span class="close" (click)="deleteDomain(i)">&times;</span>
+                    </div>    
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+    
+  
+  <!--<div class="form-group domain-exp-group">
+   <label for="" class="question">Are you seriously considering that the candidate have the required domain experience? <small>(Optional)</small></label>
+    <p class="description">Share details so we can find you the most eligible candidates.</p> 
+    <div class="clearfix">
+      <label for="yes" class="radio">
+        <input type="radio" id="yes" name="domain-exp" class="radio-input" />
+        <span class="radio-btn"></span>
+        <span>Yes</span>
+      </label>
+      <label for="no" class="radio">
+        <input type="radio" id="no" name="domain-exp" class="radio-input" />
+        <span class="radio-btn"></span>
+        <span>No</span>
+      </label>
+      </div>
+    </div>-->

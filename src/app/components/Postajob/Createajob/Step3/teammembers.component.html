@@ -1,0 +1,170 @@
+
+
+
+<div class="form-group tech-team-group">
+    <!-- <div class="col-sm-6 form-cols single-form-cols">
+        <app-steps-step1-clients>
+        </app-steps-step1-clients>
+    </div> -->
+
+
+
+            <div class="form-group job-title-group reporting-manager-group">
+              <label for="" class="question">Client contact info  <small>(Optional)</small></label>
+            <div class="form-row row">
+                <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
+                <div class="col-md-8">
+                    <div class="p-rel">
+                        <ng-select class="custom-style" [items]="managersList" placeholder="Client Contact" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"  [(ngModel)]="selectedUserName"
+                            [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
+                        <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Info details are required.</small>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn add-btn form-control mt-0"  type="submit" *ngIf="teammemberslist.length === 0">+</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialogs"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                  </div>
+            </form>
+         
+                <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
+           
+            </div>
+            </div>
+        <div class="lists row">
+
+            <div class="col-md-12" *ngIf="teammemberslist.length>0">
+                <!-- <p class="description">Contact Info</p> -->
+                <ul class="data-list">
+                    <li class="col-md-5 no-exp" *ngFor="let teammember of teammemberslist; let i = index">
+                        <span class="name">{{teammember?.FirstName}}    
+                        </span>
+                        <span class="close" (click)="deleteTeammember(i)">&times;</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+   
+   
+  
+   
+</div>
+
+
+
+
+
+<div class="modal fade managereportingmanager" id="othersdialogs" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">Add Contact Info</h4>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="FirstName"
+                    placeholder="First Name *" minlength=3
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                    required>
+                <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)"
+                    class="error1">
+
+                    <div *ngIf="Addform.controls['FirstName'].errors.required">
+                        Required.
+                    </div>
+
+                    <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                        Minimum 3 Characters allowed.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="LastName" minlength=3
+                    placeholder="Last Name *"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                    required>
+                <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)"
+                    class="error1">
+                    <div *ngIf="Addform.controls['LastName'].errors.required">
+                        Required.
+                    </div>
+                    <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                        Minimum 3 Characters allowed.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group p-rel">
+                <input type="email" [pattern]="emailPattern" class="form-control"
+                    placeholder="Work Email *" autocomplete="new-email"
+                    formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
+                    id="semail">
+                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)"
+                    class="error1">
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                        Required.
+                    </div>
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                        Incorrect Email!.
+                    </div>
+                </div>
+                <div *ngIf="show" class="error1">
+                    Email already registered.
+                </div>
+            </div>
+            <div class="col-md-5 form-group">
+               
+                <select class="form-control" (change)="chooseCountry($event.target.value)">
+                    <option *ngFor="let ls of selectCountry"
+                        [selected]="ls.name == 'United States'" value="{{ls?.dial_code}}">
+                        {{ls?.dial_code}} {{ls?.name}}</option>
+                </select>
+          
+         
+        
+        </div>
+            <div class="col-md-6 form-group add-team-member">
+               
+           
+              
+                <input type="tel" autocomplete="false" class="form-control"
+                formControlName="PhoneNumber" mask="(000) 000-0000"
+                placeholder="Phone Number *" maxlength=20
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <div *ngIf="Addform.controls['PhoneNumber'].invalid && (Addform.controls['PhoneNumber'].dirty || Addform.controls['PhoneNumber'].touched)"
+                class="error1">
+                <div *ngIf="Addform.controls['PhoneNumber'].errors.required">
+                    Required
+                </div>
+                <div *ngIf="Addform.controls['PhoneNumber'].errors.minlength">
+                    Invalid Phone number
+                </div>
+            </div>
+            </div>
+            <div class="col-md-12">
+                <div class="d-flex  mb-3">
+                    <div class="mr-auto p-2 ">
+                        <!-- <label class="radio">
+                                <div class="mt--13">
+                                  <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
+                                  <span class="radio-btn"></span>
+                                  Active
+                                </div>
+                              </label> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="modal-footer">
+          <button type="button" [disabled]="!Addform.valid" (click)="SaveUser()"  data-dismiss="modal"  aria-expanded="false" class="btn btn-filled box-shadow-none">Add</button>
+          <button (click)="ResetUser()" class="btn btn-border"
+              data-dismiss="modal"  aria-expanded="false"
+              aria-controls="addUser">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

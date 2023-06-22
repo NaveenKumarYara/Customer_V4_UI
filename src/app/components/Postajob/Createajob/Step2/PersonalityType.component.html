@@ -1,0 +1,103 @@
+<!-- <div class="form-group personality-group">
+    <label for="" class="question">Which type of person you are looking for? <small>(Optional)</small></label>
+    <div class="personality-type row">
+        <checkbox-group [(ngModel)]="selectedItems">
+        <div class="col-md-6 col-sm-12" *ngFor="let disc of discTestResult; let i = index">
+            <label for="{{i}}"> 
+        <input type="checkbox" id="{{i}}" [(ngModel)]="disc.checked" [value]="disc.DISCTestId" [checked]="disc.checked" (change)="onCheckboxChange(disc,$event)" class="radio-input"  />
+        <div class="type">
+          <header>
+            <div>
+              <img [src]="disc.LogoURL" alt="">
+            </div>
+            <h1>{{disc.PersonType}}</h1>
+      <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a> 
+          </header>
+          <p class="disc-description">
+         {{disc.Description}}
+          </p>
+          <h4>Behaviours</h4>
+          <ul class="behaviours">
+            <li>Sees the big picture</li>
+            <li>Can be blunt</li>
+            <li>Accepts challenges</li>
+            <li>Gets straight to the point</li>
+          </ul>
+        </div>
+      </label>
+        </div>
+        <div class="col-md-6 col-sm-12">
+      <label for="personality-i">
+        <input type="checkbox" id="personality-i" ([ngModel])="isSelected(2)" (ngModelChange)="personType(2, $event)"  [value]="2" name="personality-type" class="radio-input" />
+        <div class="type">
+          <header>
+            <div>
+              <img src="../../../../../assets/images/I.png" alt="">
+            </div>
+            <h1>Influence</h1>
+            <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a>
+          </header>
+          <p>
+            Person places emphasis on influencing or persuading others, openness, relationships
+          </p>
+          <h4>Behaviours</h4>
+          <ul class="behaviours">
+            <li>Shows enthusiasm</li>
+            <li>Is optimistic</li>
+            <li>Likes to collaborate</li>
+            <li>Dislikes being ignored</li>
+          </ul>
+        </div>
+      </label>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <label for="personality-s">
+        <input type="checkbox" id="personality-s" ([ngModel])="isSelected(3)" (ngModelChange)="personType(3, $event)"  [value]="3" name="personality-type" class="radio-input" />
+        <div class="type">
+          <header>
+            <div>
+              <img src="../../../../../assets/images/S.png" alt="">
+            </div>
+            <h1>Steadiness</h1>
+            <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a>
+          </header>
+          <p>
+            Person places emphasis on cooperation, sincerity, dependability
+          </p>
+          <h4>Behaviours</h4>
+          <ul class="behaviours">
+            <li>Sees the big picture</li>
+            <li>Can be blunt</li>
+            <li>Accepts challenges</li>
+            <li>Gets straight to the point</li>
+          </ul>
+        </div>
+      </label>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <label for="personality-c">
+        <input type="checkbox" id="personality-c" ([ngModel])="isSelected(4)" (ngModelChange)="personType(4, $event)" (click)="personType(4)" [value]="4" name="personality-type" class="radio-input" />
+        <div class="type">
+          <header>
+            <div>
+              <img src="../../../../../assets/images/C.png" alt="">
+            </div>
+            <h1>Conscientiousness</h1>
+            <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a>
+          </header>
+          <p>
+            Person places emphasis on quality and accuracy, expertise, competency
+          </p>
+          <h4>Behaviours</h4>
+          <ul class="behaviours">
+            <li>Shows enthusiasm</li>
+            <li>Is optimistic</li>
+            <li>Likes to collaborate</li>
+            <li>Dislikes being ignored</li>
+          </ul>
+        </div>
+      </label>
+    </div> -->
+        <!-- </checkbox-group> 
+    </div>
+</div> -->

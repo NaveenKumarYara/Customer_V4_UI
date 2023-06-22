@@ -1,0 +1,184 @@
+.tooltip__link {
+    position: relative;
+  }
+  .custom__tooltip {
+    position: absolute;
+    width: 350px;
+    background: rgba(106,126,156,0.75);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    display:none;
+    padding: 10px 15px;
+    z-index: 10;
+    top:50%;
+    transform: translateY(-50%);
+    left:22px;
+  }
+  .tooltip__link:hover .custom__tooltip { display: block; }
+  .custom__tooltip:before { content:""; position: absolute; left:0; top:0; border-right:6px solid rgba(106,126,156,0.75); border-top:6px solid transparent; border-bottom: 6px solid transparent; left:-6px; top:50%; margin-top:-6px; }
+
+  .custom__tooltip span { display: block; min-height:24px; position:relative; padding-left:40px; }
+  .custom__tooltip span.step__title { font-weight:600; padding-left:0; }
+  .custom__tooltip span:not(:first-child) { margin:5px 0 0; }
+  .custom__tooltip span em { position: absolute; left:0; top:0; font-style: normal; width:24px; height:24px; border-radius:50%; line-height:24px; font-size:11px; background:#fff; color:#23527c; text-align: center; }
+
+  .flex { display: flex; }
+  .flex-wrap { flex-wrap:wrap; }
+  .form__control { margin-top: 15px; }
+  .flex-align-end { align-items: flex-end; }
+  .add__btn { position: relative; top:-10px; }
+  
+
+  @media only screen and (max-width:568px) {
+  .tooltip__link {
+     display:block;
+   }
+   .custom__tooltip {
+     width:260px;
+   }
+  }
+
+  .al{
+    padding: 12px 3px 179px 235px;
+  }
+
+  ul {
+    column-count: 3;
+    column-gap: 0rem;
+    list-style: none;
+  }
+
+  ::ng-deep .custom-slider .ngx-slider .ngx-slider-bar{background:#91d6ed;height:2px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-selection{background:rgb(64, 207, 48);}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer{width:8px;height:16px;/* to remove the default positioning */top:auto;bottom:0;background-color:#333;border-top-left-radius:3px;border-top-right-radius:3px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer:after{display:none;}::ng-deep .custom-slider .ngx-slider .ngx-slider-bubble{bottom:14px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-limit{font-weight:bold;color:#50C878;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick{width:1px;height:10px;margin-left:4px;border-radius:0;background:#ffe4d1;top:-1px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected{background:#50C878;}
+  .custom-checkbox {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+  }
+  
+  .custom-checkbox .checkmark {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      width: 18px;
+      height: 18px;
+  }
+  
+  .custom-checkbox .checkmark:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 18px;
+      width: 18px;
+      border-radius: 4px;
+      border: 1px solid #a6aab3;
+  }
+  
+  .custom-checbox input:checked ~ .checkmark {
+    background-color: #FFF;
+  }
+  
+  .custom-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid #a6aab3;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  .custom-checkbox.lg-select .checkmark {
+    padding-left: 25px;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+  }
+
+  .percentage-slider .skill-chart-right {
+    margin-left: auto;
+  }
+
+  .percentage-slider h4 {
+    font-size: 14px;
+  }
+
+  .job-crietria-section {
+    border-radius: 8px;
+    box-shadow: 4px 4px 20px rgb(158 171 192 / 20%);
+    background-color: #fff;
+    margin: -10px 0 10px;
+    width: 420px;
+    padding: 10px 10px 0;
+  }
+
+  .job-crietria-section h4 {
+    font-size: 14px;
+    margin: 0 0 10px;
+    padding-right: 10px;
+  }
+
+  .job-crietria-section ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .job-crietria-section li {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .job-crietria-section li:not(:first-child) {
+    margin-left: 10px;
+  }
+  
+  .rang-slider-section {
+    margin: 0 0 20px;
+  }
+
+  .rang-slider-section label {
+    font-size: 16px !important;
+  }
+  .custom-slider {
+    margin: 20px 0 0;
+  }
+
+  @media only screen and (max-width:1440px) {
+    .rang-slider-section .col-xs-8 {
+      width: 60%;
+    }
+    .rang-slider-section .col-xs-8 label {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+  }

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1577 -2938 21 21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #41536e;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="nav-icon" transform="translate(-1577 -2938)">
+    <circle id="Ellipse_11" data-name="Ellipse 11" class="cls-1" cx="9.5" cy="9.5" r="9.5" transform="translate(1 1)"/>
+    <path id="Path_23" data-name="Path 23" class="cls-1" d="M14.2,6.9l-2,5.3-5.3,2,2-5.3Z"/>
+  </g>
+</svg>

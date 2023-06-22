@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.cultural-item .img-wrapper h4, .cultural-item .img-wrapper .culture-description{
+    white-space: nowrap; 
+    width: 60%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.cultural-item .img-wrapper .culture-description {
+    width: 120px;
+}

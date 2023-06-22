@@ -1,0 +1,16 @@
+
+.mat-dialog-container {
+    width: 600px;
+    margin: 30px auto;
+    padding: 0 !important;
+}
+
+.disabled {
+    pointer-events: none;
+}
+.manage-achievements-i-d .ach-list-header{
+    border-bottom: 1px solid #e5e5e5;
+}
+.manage-achievements-i-d .modal-header h4{
+  margin-bottom: 0px;
+}

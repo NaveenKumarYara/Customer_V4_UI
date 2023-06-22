@@ -1,0 +1,41 @@
+ 
+<div class="form-group job-title-group">
+  <label for="" class="question">Which Category this job belongs to?</label>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  <ng-select class="custom-style" 
+  [items]="jobcategorylist | async" 
+  placeholder="Type and Select" 
+  bindLabel="Category"
+  bindValue="Category" [typeahead]="jobcategoryinput" 
+  [hideSelected]="true" [loading]="jobtitleloading"
+  [(ngModel)]="selectCategory" [virtualScroll]="true" required #Jobcategory="ngModel" name="Category" (change)="updateJobCategory($event)">
+  <ng-template ng-label-tmp let-item="jobcategorylist">  
+         <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
+         {{selectCategory}}
+         <!-- {{selectedCategory.JobCategoryId}} -->
+         <!-- {{selectedCategory.Category}} -->
+    <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
+</ng-template>
+</ng-select>
+  <!-- <ul class="data-list">
+    <li *ngIf="selectedCategory?.Category && selectedCategory!=undefined &&  selectedCategory?.Category.length > 0"> {{selectedCategory.Category}} </li>
+  </ul> -->
+ 
+  <!-- <span class="help-block" *ngIf="Jobcategory.invalid && Jobcategory.touched">Required.</span> -->
+</div>
+<div class="job-title-suggestions">
+  <div class="checkbox" *ngFor="let  category of suggestedCategory; let i = index">
+    <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+    <label><input type="radio" [(ngModel)]="selectedCategory"  (change)="updateJobCategory(category)" name="jobCategory" [value]="category"><span class="box">{{category.Category}}</span> </label>
+  </div>     
+  
+</div>
+<!-- <ng-select class="custom-style" [items]="jobcategorylist | async"
+             placeholder="e.g. Senior Java Developer"
+             [typeahead]="jobcategoryinput"
+             [hideSelected]="true"
+             [loading]="jobtitleloading"
+             [(ngModel)]="selectedCategory"
+             [virtualScroll]="true"
+             (change)="updateJobCategory()">
+  </ng-select> -->

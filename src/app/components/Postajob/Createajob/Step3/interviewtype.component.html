@@ -1,0 +1,21 @@
+
+<div class="form-group position-group">
+  <label for="" class="question">Interview Type <small>(Optional)</small>
+    <a  href="javascript:void(0)"  class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__01">Select the specific Interview format desired. </span>
+      </span>
+    </a></label>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+
+  <div class="options">
+    <div class="checkbox" *ngFor="let type of interviewtypelist">
+      <!-- <label><input type="radio" (change)="setInterviewType(type.InterviewTypeId)" name="intwtype" value=""><span class="box">{{type.InterviewType}}</span> </label> -->
+      <!-- <label><input type="radio" [(ngModel)]="InterviewType" (change)="setInterviewType(type)" name="intwtype" [value]="type.InterviewTypeId"><span class="box">{{type.InterviewType}}</span> </label> -->
+      <label *ngIf="type?.InterviewTypeId!=4"><input type="radio" [ngModel]="interviewType && interviewType?.InterviewTypeId" (change)="setInterviewType(type)" name="intwtype" [value]="type.InterviewTypeId"><span class="box">
+          {{type?.InterviewType}}
+      </span> </label>
+    </div>
+  </div>
+</div>

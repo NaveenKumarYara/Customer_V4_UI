@@ -1,0 +1,262 @@
+<div class="hidden">
+  <div class="mat-dialog-title">
+    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h3 mat-dialog-title class="modal-title">Send Email</h3>
+  </div>
+  <div class="mat-typography">
+
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+      <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card manage-uploads clearfix">
+        <div class="tab-content">
+          <div id="sendEmail" class="tab-pane fade active in  w-50">
+            <ng-container>
+              <form #form="ngForm" (ngSubmit)="sendEmail()">
+                <div class="input-group col-sm-12">
+                  <label class="mail-label">To : </label>
+                  <input type="email" class="form-control" [disabled]="!mailbox" [(ngModel)]="ToEmailID" name="ToEmailID"
+                    placeholder="Email Address">
+                </div>
+                <div class="input-group col-sm-12 pt-2">
+                  <!-- <label class="mail-label">CC : </label> -->
+                  <!-- <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
+                    placeholder="CC Email Address"> -->
+                    <form [formGroup]="rulesForm">
+                      <mat-form-field>
+                        <mat-label>Favorite Fruits</mat-label>
+                        <mat-chip-list #chipList formArrayName="emails" >
+                          <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                            [selectable]="true" 
+                            [removable]="removable"
+                            (removed)="removeEmail(item)" 
+                            required name="chips">
+                            {{item.value}}
+                            <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                          </mat-chip>
+                          <input placeholder="CC Email Address" 
+                            [matChipInputFor]="chipList"  
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
+                            [matChipInputAddOnBlur]="true "
+                            (matChipInputTokenEnd)="add($event) " />
+                        </mat-chip-list>
+                      </mat-form-field>
+                      
+                      <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+                        
+                  
+                      <!-- <button mat-button type="submit " [disabled]="rulesForm.invalid">Submit</button> -->
+                      <!-- <div style="padding:20px">
+                        {{list}}
+                        </div> -->
+                    </form>
+                </div>
+                <div class="input-group col-sm-12 pt-2">
+                  <label class="mail-label">Subject : </label>
+                  <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
+                </div>
+                <div class="input-group col-sm-12 pt-2">
+                  <label class="mail-label">Body :</label>
+                  <textarea class="form-control col-sm-12" [(ngModel)]="body" name="body" cols="30" rows="40"></textarea>
+                </div>
+                <div class="col-sm-12 p-19 pr-0 edit-mail">
+                  <div class="pull-right">
+                    <button type="submit" class="btn s-btn" *ngIf="!isSendingEmail">Send Email</button>
+                    <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sending Email...
+                      <i class="fa fa-spinner fa-spin"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="share-ui-component">
+  <div class="top-container flex flex-wrap">
+    <h3>Send Email</h3>
+    <button mat-button mat-dialog-close><i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+
+  <div class="middle-container">
+    <div class="form-group">
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-2">
+          <label>From</label>
+        </div>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="From" [(ngModel)]="fromId" name="fromId"  readonly>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="inline-navigation">
+        <ul>
+          <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+          <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+          <!-- <li><button class="btn btn-link"  (click)="showClear()">Clear CC && BCC Address</button></li> -->
+        </ul>
+      </div>
+      <div class="row flex flex-wrap flex-align-center">
+        <div class="col-sm-2">
+          <label>To</label>
+        </div>
+        <div class="col-sm-10">
+          <!-- <ng-multiselect-dropdown class="custom-style"
+            [placeholder]="'Enter Email Address'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          > 
+          </ng-multiselect-dropdown>-->
+          <form [formGroup]="rulesForm">
+            <mat-form-field>
+              <mat-chip-list #chipList formArrayName="emails" >
+                <mat-chip [color]="(item.invalid)?'warn':''" selected *ngFor="let item of emailList; let i=index" 
+                  [selectable]="true" 
+                  [removable]="removable"
+                  (removed)="removeEmail(item)" 
+                  required name="chips">
+                  {{item?.value}}
+                  <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+                </mat-chip>
+                <input placeholder="TO Email Address" 
+                  [matChipInputFor]="chipList"  
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                  [matChipInputAddOnBlur]="true "
+                  (matChipInputTokenEnd)="add($event) " />
+              </mat-chip-list>
+            </mat-form-field>
+            <mat-error *ngIf="rulesForm.get('emails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="row flex flex-wrap flex-align-center" *ngIf="showCC === true">
+      <div class="col-sm-3">
+        <label>CC</label>
+      </div>
+      <div class="col-sm-9">
+        <form [formGroup]="ccrulesForm">
+          <mat-form-field>
+            <mat-chip-list #cchipList formArrayName="CCemails" >
+              <mat-chip [color]="(citem.invalid)?'warn':''" selected *ngFor="let citem of ccemailList; let ci=index" 
+                [selectable]="true" 
+                [removable]="cremovable"
+                (removed)="removeEmailc(citem)" 
+                required name="chips">
+                {{citem?.value}}
+                <mat-icon matChipRemove *ngIf="cremovable">x</mat-icon>
+              </mat-chip>
+              <input placeholder="CC Email Address" 
+                [matChipInputFor]="cchipList"  
+                [matChipInputSeparatorKeyCodes]="ccseparatorKeysCodes" 
+                [matChipInputAddOnBlur]="true "
+                (matChipInputTokenEnd)="addcc($event) " />
+            </mat-chip-list>
+          </mat-form-field>
+          <mat-error *ngIf="ccrulesForm.get('CCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+        </form>
+      </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="row flex flex-wrap flex-align-center" *ngIf="showBCC === true">
+      <div class="col-sm-3">
+        <label>BCC</label>
+      </div>
+      <div class="col-sm-9">
+        <form [formGroup]="bccrulesForm">
+          <mat-form-field>
+            <mat-chip-list #bcchipList formArrayName="BCCemails" >
+              <mat-chip [color]="(bcitem.invalid)?'warn':''" selected *ngFor="let bcitem of bccemailList; let ji=index" 
+                [selectable]="true" 
+                [removable]="bcremovable"
+                (removed)="removeEmailbc(bcitem)" 
+                required name="chips">
+                {{bcitem?.value}}
+                <mat-icon matChipRemove *ngIf="bcremovable">x</mat-icon>
+              </mat-chip>
+              <input placeholder="BCC Email Address" 
+                [matChipInputFor]="bcchipList"  
+                [matChipInputSeparatorKeyCodes]="bccseparatorKeysCodes" 
+                [matChipInputAddOnBlur]="true "
+                (matChipInputTokenEnd)="addbcc($event) " />
+            </mat-chip-list>
+          </mat-form-field>
+          <mat-error *ngIf="bccrulesForm.get('BCCemails').hasError('incorrectEmail')">Invalid email ID</mat-error>
+        </form>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="form-group">
+      <input type="text" class="form-control" placeholder="Job Reference">
+    </div> -->
+    <div class="form-group">
+      <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
+    </div>
+    <!-- <div class="form-group">
+      <div class="flex flex-align-center flex-justify-end">
+        <label class="no-margin">Signature</label>
+        <div class="toggle-switch">
+          <input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'A':'B')" id="chkTest" name="chkTest">
+          <label for="chkTest">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div> -->
+    <div class="form-group">
+   
+      <ckeditor  [(ngModel)]="body" name="body" cols="30" rows="40">
+       
+      </ckeditor>
+  
+    </div>
+    <!-- <div class="form-group" *ngIf="isChecked == true">
+    <app-signature>
+          
+    </app-signature>
+    </div> -->
+    <!-- <div class="form-group">
+      <div class="upload-border">
+        <div class="flex_items_center pointer">
+          <div class="d-block">
+            <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+            <div class="file">
+              <input matinput="" ng2fileselect="" type="file" value="" ng-reflect-uploader="[object Object]">
+            </div>
+            <div>Browse &amp; Upload</div>
+            <h5>We recommended to use Microsoft Word. </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-upload-file">Upload File</button>
+    </div> -->
+    <button  class="btn s-btn pull-right" *ngIf="!isSendingEmail" (click)="sendEmail()">Send Email</button>
+    <button mat-button class="btn btn-filled pull-right" *ngIf="isSendingEmail">Sending Email...
+      <i class="fa fa-spinner fa-spin"></i>
+    </button>
+  </div>
+
+  <!-- <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right"> -->
+
+
+   
+  <!-- </mat-dialog-actions> -->
+  
+
+</div>

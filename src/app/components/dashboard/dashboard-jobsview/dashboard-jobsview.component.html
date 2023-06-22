@@ -1,0 +1,195 @@
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+  <div class="card statistics clearfix">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a data-toggle="tab" href="#jobsDetail">Jobs</a></li>
+      <li role="presentation"><a data-toggle="tab" href="#applicantsDetail">Applicants</a></li>
+      <span class="active-line" style="width: 73.5375px; left: 0px;"></span>
+    </ul>
+    <div class="tab-content">
+      <div id="jobsDetail" class="tab-pane fade in active">
+        <div class="stats job-stats">
+           <!--Jobs Tab-->
+          <div>
+            <h1 (click)="Jobs(0)">{{dashboardstatistics?.JobsPosted}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#ac9af9" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Jobs Posted</span>
+          </div>
+          <div>
+            <h1 (click)="Jobs(3)">{{dashboardstatistics?.JobsFilled}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#84DECB" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Jobs Filled</span>
+          </div>
+          <div>
+            <h1 (click)="Jobs(2)">{{dashboardstatistics?.JobsCancelled}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#4D5360" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Jobs Inactive </span>
+          </div>
+          <!--Jobs Tab-->
+        </div>
+        <div class="stats-tabs">
+          <ul class="nav nav-tabs navbar-right">
+            <li role="presentation" class="active"><a data-toggle="tab" href="#jobsDetail-all" (click)="populateDashboardallStatistics(0)">All</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-week" (click)="populateDashboardallStatistics(1)">Week</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-month" (click)="populateDashboardallStatistics(2)">Month</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-year" (click)="populateDashboardallStatistics(3)">Year</a></li>
+            <span class="active-line" style="width: 45.3125px; left: 0px;"></span>
+          </ul>
+          <div class="tab-content">
+            <div id="jobsDetail-all" class="tab-pane fade in active">
+              <div class="chartjs-size-monitor"
+                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand"
+                  style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                  <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink"
+                  style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                  <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                </div>
+              </div>
+              <!-- <canvas id="jobsDetail-week-chart" height="325" width="486" style="display: block; height: 260px; width: 389px;" class="chartjs-render-monitor"></canvas> -->
+              <div style="display: block;">
+                <canvas id="jobsDetail-all-chart" baseChart width="400" height="400" [datasets]="lineChartDataall"
+                  [labels]="lineChartLabelsall" [options]="lineChartOptionsall" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="jobsDetail-week" class="tab-pane">
+              <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="jobsDetail-week-chart" baseChart width="400" height="400" [datasets]="lineChartData"
+                  [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+
+            <div id="jobsDetail-month" class="tab-pane">
+              <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="jobsDetail-month-chart" baseChart width="400" height="400" [datasets]="lineChartDatamw"
+                  [labels]="lineChartLabelsmw" [options]="lineChartOptionsmw" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+
+            <div id="jobsDetail-year" class="tab-pane">
+              <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="jobsDetail-year-chart" baseChart width="400" height="400" [datasets]="lineChartDatam"
+                  [labels]="lineChartLabelsm" [options]="lineChartOptionsm" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <!-- <div class="row"> -->
+            <!-- <div class="col-md-6"> -->
+
+            <!-- </div> -->
+            <!-- <div class="col-md-6" style="margin-bottom: 10px">
+                <table class="table table-responsive table-condensed">
+                  <tr>
+                    <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                  </tr>
+                  <tr *ngFor="let d of lineChartData">
+                    <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                  </tr>
+                </table>
+                <button (click)="randomize()">CLICK</button>
+              </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+      <div id="applicantsDetail" class="tab-pane fade">
+        <div class="stats stats--column h1_cursor_text applicant-stats">
+          <!--Applicant Tab-->
+          <div>
+            <h1>{{applicantStatistics?.Applicants}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#ac9af9" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Applicants</span>
+          </div>
+          <div>
+            <h1>{{applicantStatistics?.ShortListed}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#84DECB" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Shortlisted</span>
+          </div>
+          <div>
+            <h1>{{applicantStatistics?.Interviewed}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#4D5360" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Interviewed</span>
+          </div>
+          <div>
+            <h1>{{applicantStatistics?.Hired}}</h1>
+            <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
+              <circle fill="#FF0000" cx="5.7" cy="5.7" r="5.7"></circle>
+            </svg>
+            <span>Hired</span>
+          </div>
+           <!--Applicant Tab-->
+        </div>
+        <div class="stats-tabs">
+          <ul class="nav nav-tabs navbar-right">
+            <li role="presentation" class="active"><a data-toggle="tab" href="#applicantsDetail-all" (click)="populateApplicantsStatistics(0)">All</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-week" (click)="populateApplicantsStatistics(1)">Week</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-month" (click)="populateApplicantsStatistics(2)">Month</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-year" (click)="populateApplicantsStatistics(3)">Year</a></li>
+            <span class="active-line" style="width: 0px; left: 0px;"></span>
+          </ul>
+          <div class="tab-content">
+            <div id="applicantsDetail-all" class="tab-pane fade in active">
+              <!-- <canvas height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-week-chart"  baseChart width="400" height="400" [datasets]="ApplicantlineChartDataAll"
+                  [labels]="lineChartLabelsall" [options]="lineChartOptionsall" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="applicantsDetail-week" class="tab-pane">
+              <!-- <canvas height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-week-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartData"
+                  [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="applicantsDetail-month" class="tab-pane">
+              <!-- <canvas height="0" width="0" id="applicantsDetail-month-chart" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-month-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartDatam"
+                  [labels]="lineChartLabelsmw" [options]="lineChartOptionsmw" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="applicantsDetail-year" class="tab-pane">
+              <!-- <canvas height="0" width="0" id="applicantsDetail-month-chart" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-year-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartDatay"
+                  [labels]="lineChartLabelsm" [options]="lineChartOptionsm" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .tab-content -->
+  </div> <!-- .card.statistics -->
+</div>

@@ -1,0 +1,241 @@
+<div class="form-rows row form-main-rows single-form-rows">
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label class="question">Select the Verification required for Candidate
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">Select the specific Verification required for Candidate. </span>
+          </span>
+        </a>
+      </label>
+      <div class="smart-job-card xs-padding">
+        <div class="jdv-button-grid-icon"> 
+          <ul>
+            <li>
+              <label>
+                <input type="checkbox" [(ngModel)]="Education" name="Education" [checked]="Education" (change)="handleChange()"  value="Education"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-education-icon">Icon</span>
+                  Education
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" [(ngModel)]="Employement" name="Employement" [checked]="Employement" (change)="handleChange()" value="Employement"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                  Employment
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" [(ngModel)]="Reference" [checked]="Reference" name="Reference" (change)="handleChange()" value="Reference"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
+                  Reference
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" [(ngModel)]="WFH" [checked]="WFH" name="WFH"  (change)="handleChange()"  value="WFH"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
+                  WFH
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" [(ngModel)]="Background" [checked]="Background" name="Background" (change)="handleChange()" value="Background" />
+                <span class="btn btn-link">               
+                  <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                  Background
+                </span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <label for="" class="question">Do you want to intiate the Verification, if Candidate is not verified
+     
+    </label>
+    <div class="options">
+      <div class="checkbox">
+        <label><input type="radio" name="verificationStatus" [(ngModel)]="statusVal"  [value]="true" [checked]="statusVal==true"  (change)="setValue(statusVal)"><span class="box">
+            Yes
+        </span> </label>
+        <label><input type="radio" name="verificationStatus" [(ngModel)]="statusVal"   [value]="false" [checked]="statusVal==false"  (change)="setValue(statusVal)"><span class="box">
+          No
+      </span> </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols" *ngIf="statusVal === true">
+    <label for="" class="question">From what stage the Verification should be initiated</label>
+    <div class="form-row row">
+      <div class="col-md-12">
+        <ng-select class="custom-style" [items]="JobStatus" placeholder="Type and Select"
+          bindLabel="ReferralStatus"  (change)="updateCStaus($event)" 
+          [hideSelected]="true"  [(ngModel)]="JstatusVal" [virtualScroll]="true"
+          #jstat="ngModel" name="jstat">
+        </ng-select>
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-sm-12 form-cols single-form-cols step3-single-question">
+      <label for="" class="question no-margin">what are the interview rounds for this job? .
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">How many interview rounds need to initiated and who will be an Interviewer.</span>
+          </span>
+        </a>
+      </label>
+    
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Interview Rounds</label>
+     
+      <div class="form-row row">
+        <div class="col-md-12">
+          <ng-select class="custom-style" [items]="options" placeholder="Type and Select"
+            bindLabel="name"  [typeahead]="selectIInput"
+            [hideSelected]="true"  [(ngModel)]="selectedOption" [virtualScroll]="true"
+            #rMngr="ngModel" name="rMgr">
+          </ng-select>
+        </div>
+        
+      </div>
+     
+    </div>
+  </div>
+  
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Select the Interviewer</label>
+      <div class="form-row row">
+        <div class="col-xs-10 col-md-11 col-sm-11">
+          <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
+          bindLabel="FirstName"  [typeahead]="selectedTInput"
+          [hideSelected]="true"  [(ngModel)]="iselectManager" [virtualScroll]="true"
+          #reeMngr="ngModel" name="reeMgr">
+          </ng-select>
+        </div>
+        <div class="col-xs-2 col-md-1 col-sm-1">
+          <button class="btn add-btn form-control mt-0"  type="button" (click)="AddIn()">+</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-sm-12 form-cols single-form-cols">
+    <div class="job-title-suggestions">
+      <div class="checkbox" *ngFor="let  managers of srlist; let i = index">
+        <label><span class="box" (click)="deleteI(i)">{{managers?.Round}} - {{managers?.IPerson}}  x </span>  </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Job Owner</label>
+      <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+      <!-- <ng-select class="custom-style" [items]="managersList | async"
+      placeholder="e.g. Bachelor of Computer Arts"
+      bindLabel="FirstName"
+      bindValue="UserId"
+      [typeahead]="selectedUserInput"
+      [hideSelected]="true"
+      [loading]="usersloading"
+      [virtualScroll]="true"
+      [(ngModel)]="selectedItem"
+      (change)="updateManager()"> -->
+      <!-- <ng-select class="custom-style" [items]="reportingmanagersList | async"
+      placeholder="Select Reporting Manager"
+      bindLabel="FirstName"
+      bindValue="UserId"  
+      (change)="updateManager($event)"
+      [typeahead]="selectedInput"
+      [hideSelected]="true"
+      [loading]="usersload"
+      [(ngModel)]="selectedManager"
+      [virtualScroll]="true">
+    </ng-select> -->
+    
+      <!--ACI-17-UI-Implementation-17-03-2020-->
+      <div class="form-row row">
+        <div class="col-md-12">
+          <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
+            bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
+            [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
+            #rMngr="ngModel" name="rMgr">
+          </ng-select>
+        </div>
+        <!--If Others-->
+                 <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
+        <!-- <div class="col-md-1">
+          <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        </div> -->
+        <!---->
+      </div>
+      <!---->
+    
+      <!-- <ul class="data-list">
+        <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
+      </ul> -->
+    </div>
+  </div>
+  
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Job Assignee</label>
+      <div class="form-row row">
+        <div class="col-xs-10 col-md-11 col-sm-11">
+          <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
+          bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
+          [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
+          #reportMngr="ngModel" name="reportMgr">
+          </ng-select>
+        </div>
+        <div class="col-xs-2 col-md-1 col-sm-1">
+          <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
+        </div>
+      </div>
+      <div class="job-title-suggestions">
+        <div class="checkbox" *ngFor="let  managers of suggestManagers; let i = index">
+          <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+  <!-- <div class="job-title-suggestions">
+    <div class="checkbox" *ngFor="let  managers of sManagers; let i = index">
+      <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
+    </div>
+  
+  </div> -->
+  
+  
+
+ 
+  
+  
+
+  
+  
+  
+  
+  
+  
+  <!--Manage Reporting manager Dialog 17-03-2020-->

@@ -1,0 +1,808 @@
+.upload__resume__modal {
+  width: 95vw !important;
+}
+
+.upload__resume__modal .profile__count {
+  font-size: 14px;
+  color: #fff;
+  background: #66d9b5;
+  border-radius: 6px;
+  position: absolute;
+  left: 20px;
+  display: inline-block;
+  padding: 4px 8px;
+  top: 20px;
+}
+
+.upload__resume__modal .mat-dialog-content {
+  margin:0;
+}
+
+.upload__resume__container .close {
+  right: -10px;
+  position: relative;
+  top: -10px;
+}
+
+.upload__resume__container .top__container {
+  position: relative;
+}
+
+.upload__resume__container .top__container h3 {
+  font-size: 18px;
+  color: #6e819e;
+  text-align: center;
+  margin: 0 0 15px;
+}
+
+.upload__resume__container .top__container h3:last-child {
+  margin: 0;
+}
+
+.upload__resume__container .top__container {
+  border-bottom: 1px solid #e0e3ef;
+  padding: 30px 30px 40px 30px;
+  background-color: #fff;
+}
+
+.upload__resume__container .top__container h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #b1b1ff;
+}
+
+.upload__resume__container .top__container h5 {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 0 5px;
+  color: #6e819e;
+}
+
+.upload__resume__container .top__container p {
+  font-size: 13px;
+  margin: 0;
+  color: #9eabc0;
+}
+
+.upload__resume__modal  .mat-dialog-container {
+  border-radius: 0;
+  background-color: #f9fcfe;
+  padding: 0;
+}
+
+.upload__resume__container .main__section  {
+  padding: 30px;
+}
+
+.upload__resume__container .main__section .primary__col {
+  background: #fff;
+  padding: 30px;
+  border: 1px solid #e0e3ef;
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+  border-radius: 0 6px 6px 6px;
+  position: relative;
+  min-height: 840px;
+}
+
+.upload__resume__container .main__section .primary__col .shadow {
+  position: absolute;
+  left: 40%;
+  width: 28%;
+  background: #f5f6fa;
+  height: 100%;
+  top: 0;
+  margin-left: 6px;
+}
+
+.upload__resume__container .btn.btn__edit  {
+  padding: 0;
+  background: none;
+  position: relative;
+  top: -2px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: url(../../images/upload-resume-spirte.png) -364px -107px no-repeat;
+}
+
+.upload__resume__container .btn.btn__edit  i {
+  display: none;
+}
+
+.upload__resume__container .main__section > .row {
+  margin: 0 -7px;
+}
+
+.upload__resume__container .stripped__table {
+  border: 1px solid #e0e3ef;
+  margin: 30px 0 0;
+  position: relative;
+  z-index: 10;
+}
+
+.upload__resume__container .stripped__table.no__margin {
+  margin:0;
+}
+
+.upload__resume__container .basic__table .basic__col, 
+.upload__resume__container .stripped__table .strip__col  {
+  font-size: 16px;
+  color: #6e819e;
+  font-weight: 600;
+  text-align: center;
+  width: 30%;
+  padding:15px;
+}
+
+.upload__resume__container .basic__table .basic__col.lg__col, 
+.upload__resume__container .stripped__table .strip__col.lg__col {
+ width: 50% 
+}
+
+
+.upload__resume__container .stripped__table .row,
+.upload__resume__container .basic__table .row  {
+  margin:0;
+}
+
+.upload__resume__container .stripped__table .strip__col {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.upload__resume__container .stripped__table .strip__row:nth-child(odd) {
+  background: #deebf7;
+}
+
+.upload__resume__container .stripped__table .strip__col.strip__col__th {
+  background: #deebf7;
+  font-size:16px;
+}
+
+.upload__resume__container .basic__table .basic__col.title__col, 
+.upload__resume__container .stripped__table .strip__col.title__col {
+  width: 40%;
+  text-align: left;
+}
+
+.upload__resume__container .basic__table .basic__col.title__col.lg__col, 
+.upload__resume__container .stripped__table .strip__col.title__col.lg__col {
+  width: 50%;
+}
+
+.upload__resume__container .basic__table .basic__col.xs__col, 
+.upload__resume__container .stripped__table .strip__col.xs__col {
+ width: 15%
+}
+
+.upload__resume__container .basic__table .basic__col.title__col.xs__col, 
+.upload__resume__container .stripped__table .strip__col.title__col.xs__col {
+  width: 40%;
+}
+
+.upload__resume__container .stripped__table .strip__col.title__col__first  {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+
+.upload__resume__container .stripped__table .strip__col.title__col__first:before{
+  content:"";
+  position:absolute;
+  left: 0;
+  top: 0;
+  width:60%;
+  height: 100%;
+  background: #66d9b5;
+}
+
+.upload__resume__container .stripped__table .strip__col.title__col__first:after{
+  content:"";
+  position:absolute;
+  left: 60%;
+  top: 0;
+  width:0;
+  height: 0;
+  border-top: 64px solid #66d9b5;
+  border-right: 40px solid transparent;
+}
+
+.upload__resume__container .stripped__table .strip__col.title__col__first .box__table {
+  position: relative;
+  z-index: 10;
+}
+
+.upload__resume__container .stripped__table .th__heading {
+  display: none;
+}
+
+.upload__resume__container .side__col {
+  background: #f3f4f7;
+  border: 1px solid #e0e3ef;
+  padding: 0;
+  left: 2px;
+  position: relative;
+}
+
+.upload__resume__container .side__col h4 {
+  background: #447afa;
+  color: #fff;
+  padding: 12px 15px;
+  margin: 0;
+  text-align: center;
+}
+
+.upload__resume__container .side__col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.upload__resume__container .side__col li a {
+  display: block;
+  text-align: center;
+  color: #6e819e;
+  padding: 20px 20px 20px 40px;
+  position: relative;
+}
+
+.upload__resume__container .side__col li:first-child a,
+.upload__resume__container .side__col li:nth-child(2) a  {
+  padding: 20px;
+} 
+
+.upload__resume__container .side__col li {
+  border-bottom: 1px solid #e0e3ef;
+}
+
+.upload__resume__container .side__col li.active a  {
+  background: #fff;
+}
+
+.upload__resume__container .side__col li a:before {
+  content: "";
+  width: 8px;
+  height: 12px;
+  position: absolute;
+  right: 20px;
+  top: 24px;
+  background: url(../../images/upload-resume-spirte.png) -287px -15px no-repeat;
+}
+
+.upload__resume__container .side__col li.with__icon a {
+  text-align: left;
+  padding: 30px 30px 30px 80px;
+}
+
+.upload__resume__container .side__col figure {
+  margin: 15px 0 0;
+}
+
+.upload__resume__container .side__col figure img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.upload__resume__container .side__col li.with__icon a:before {
+  top: 50%;
+  margin-top: -6px;
+}
+
+.upload__resume__container .icon {
+  width: 80px;
+  height: 80px;
+  background: url(../../images/upload-resume-spirte.png) 0 0 no-repeat;
+  display: inline-block;
+}
+
+.upload__resume__container .icon.icon__achivement {
+  background-position: -16px -15px;
+}
+
+.upload__resume__container .icon.icon__hobbies {
+  background-position: -106px -15px;
+}
+
+.upload__resume__container .icon.icon__interest {
+  background-position: -196px -15px;
+}
+
+.upload__resume__container .icon.icon__experience {
+  background-position: -80px -107px;
+}
+
+.upload__resume__container .icon.icon__certification {
+  background-position: -169px -107px;
+}
+
+.upload__resume__container .icon.icon__education {
+  background-position: -169px -107px;
+}
+
+.upload__resume__container .icon.icon__languages {
+  background-position: -264px -107px;
+}
+
+.upload__resume__container .side__col li.with__icon .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+
+.upload__resume__container .top__container [type=radio] {
+  display: none;
+}
+
+.upload__resume__container .top__container #slider {
+  height: 194px;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.upload__resume__container .top__container #slider label {
+  margin: auto;
+  width: 250px;
+  height: 100%;
+  text-align: center;
+  border-radius: 4px;
+  position: absolute;
+  left: 0; right: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  background:#fff;
+  color: #6e819e;
+  border: 1px solid #e0e3ef;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: normal;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide4, 
+.upload__resume__container .top__container #s2:checked ~ #slide5,
+.upload__resume__container .top__container #s3:checked ~ #slide1, 
+.upload__resume__container .top__container #s4:checked ~ #slide2,
+.upload__resume__container .top__container #s5:checked ~ #slide3 {
+  transform: translate3d(-196%,0,-250px);
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide5, 
+.upload__resume__container .top__container #s2:checked ~ #slide1,
+.upload__resume__container .top__container #s3:checked ~ #slide2, 
+.upload__resume__container .top__container #s4:checked ~ #slide3,
+.upload__resume__container .top__container #s5:checked ~ #slide4 {
+  transform: translate3d(-90%,0,-100px);
+}
+
+.upload__resume__container .top__container .slider_prev, .upload__resume__container .top__container .slider_next {
+  width: 20px;
+  height: 20px;
+  background:url(../../images/upload-resume-spirte.png) -16px -108px no-repeat;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+}
+
+.upload__resume__container .top__container .slider_next {
+  left: auto;
+  right: 0;
+  background-position: -41px -108px;
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide1, 
+.upload__resume__container .top__container #s2:checked ~ #slide2,
+.upload__resume__container .top__container #s3:checked ~ #slide3, 
+.upload__resume__container .top__container #s4:checked ~ #slide4,
+.upload__resume__container .top__container #s5:checked ~ #slide5 {
+  transform: translate3d(0,0,0);
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide2, #s2:checked ~ #slide3,
+.upload__resume__container .top__container #s3:checked ~ #slide4, #s4:checked ~ #slide5,
+.upload__resume__container .top__container #s5:checked ~ #slide1 {
+  transform: translate3d(90%,0,-100px);
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide3, #s2:checked ~ #slide4,
+.upload__resume__container .top__container #s3:checked ~ #slide5, #s4:checked ~ #slide1,
+.upload__resume__container .top__container #s5:checked ~ #slide2 {
+  transform: translate3d(196%,0,-250px);
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide1,
+.upload__resume__container .top__container #s2:checked ~ #slide2, 
+.upload__resume__container .top__container #s3:checked ~ #slide3,
+.upload__resume__container .top__container #s4:checked ~ #slide4,
+.upload__resume__container .top__container #s5:checked ~ #slide5   {
+  background: #447afa;
+  color: #fff;
+}
+
+.upload__resume__container .top__container #s1:checked ~ #slide1 h4,
+.upload__resume__container .top__container #s1:checked ~ #slide1 h5,
+.upload__resume__container .top__container #s1:checked ~ #slide1 p,
+.upload__resume__container .top__container #s2:checked ~ #slide2 h4,
+.upload__resume__container .top__container #s2:checked ~ #slide2 h5,
+.upload__resume__container .top__container #s2:checked ~ #slide2 p,
+.upload__resume__container .top__container #s3:checked ~ #slide3 h4,
+.upload__resume__container .top__container #s3:checked ~ #slide3 h5,
+.upload__resume__container .top__container #s3:checked ~ #slide3 p,
+.upload__resume__container .top__container #s4:checked ~ #slide4 h4,
+.upload__resume__container .top__container #s4:checked ~ #slide4 h5,
+.upload__resume__container .top__container #s4:checked ~ #slide4 p,
+.upload__resume__container .top__container #s5:checked ~ #slide5 h4,
+.upload__resume__container .top__container #s5:checked ~ #slide5 h5,
+.upload__resume__container .top__container #s5:checked ~ #slide5 p {
+  color: #fff;
+}
+
+.upload__resume__container .question {
+  width: 70%;
+  margin: 0 auto 20px;
+  border: 1px solid #e0e3ef;
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+}
+
+.upload__resume__container .question_col {
+  position: relative;
+}
+
+.upload__resume__container .question_col:before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #e0e3ef;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+}
+
+.upload__resume__container .question .buttons {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.upload__resume__container .question .btn.btn-filled {
+  padding: 6px 12px;
+  min-width: inherit;
+  background-color: #66d9b5;
+}
+
+.upload__resume__container .input-group-btn {
+  border-radius: 0 3px 3px 0;
+  border: 0;
+}
+
+.upload__resume__container .input-group-btn .btn.btn-primary {
+  width: 36px;
+  height: 35px;
+  padding: 0;
+}
+
+.upload__resume__container .tag__container ul {
+  margin: 20px -4px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+.upload__resume__container .tag__container li {
+  display: inline-block;
+  margin: 0 2px 4px;
+}
+
+.upload__resume__container .tag__container li a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #6e819e;
+  background-color: #f5f6fa;
+  border-radius: 3px;
+}
+
+.top__container__before  {
+  padding:20px 24px 0;
+}
+
+.top__container__before  .close {
+  margin-left: auto;
+}
+
+.upload__resume__container .stripped__table.mb-30 {
+  margin: 30px 0;
+}
+
+.personal__details .form__row {
+  margin: 0;
+  padding: 10px 15px 24px;
+  border: 1px solid #e0e3ef;
+  border-top: 0;
+}
+
+.personal__details .form__col {
+  padding: 0 7px;
+  margin: 14px 0 0;
+}
+
+.form__sub__row {
+  margin: 0 -7px !important;
+}
+
+.form__sub__col {
+  padding: 0 7px !important;
+}
+
+.form-control.custom-select-dark {
+  background:url(../../images/arrow.svg) 98% 15px no-repeat #fff;
+  background-size: 16px auto;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.phone__col .form-control {
+  width: calc(100% - 99px) !important;
+}
+
+.phone__col .form-control.custom-select-dark {
+  width: 60px !important;
+}
+
+.phone__col .input-group-addon {
+  width:39px;
+}
+
+.personal__details .title__container .btn.btn__edit { 
+  margin-left: auto; 
+}
+
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.upload__resume__container .custom-checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.upload__resume__container .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.upload__resume__container .custom-checkbox .checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: 4px;
+  border: 1px solid #a6aab3;
+}
+
+.upload__resume__container .custom-checbox input:checked~.checkmark {
+  background-color: #FFF;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.upload__resume__container .custom-checkbox input:checked~.checkmark:after {
+  display: block;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #405de6;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.upload__resume__container .custom-checkbox.lg-select .checkmark {
+  padding-left: 25px;
+  font-size: 0;
+  width: auto;
+  font-weight: 600;
+  color: #6C6E71;
+  height: auto;
+}
+
+.upload__resume__container .custom-checkbox.lg-select .checkmark p {
+    font-size: 13px;
+    margin: 5px 0 0;
+    color: #93A2BB;
+    font-weight: 400;
+}
+
+.upload__resume__container .stripped__table .strip__col.strip__col__th .btn {
+  padding: 3px 9px;
+  line-height: 1.25;
+  font-size: 13px;
+}
+
+.input-group-btn .btn.btn-sm {
+  padding: 3px 10px;
+}
+
+.manage-upload-custom .upload-border {
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.manage-upload-custom .upload-border .flex_items_center {
+  background: #fff;
+}
+
+.manage-upload-custom .upload-border .fa.fa-cloud-upload.fa-5 {
+  color: #447afa
+}
+
+.custom-upload-profile-table.table {
+  border: 1px solid #e1f7e6;
+  background: #fff;
+  box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
+}
+.custom-upload-profile-table.table-striped>tbody>tr:nth-of-type(odd) {
+  background:#f5f6fa;
+}
+.custom-upload-profile-table.table-striped>tbody>tr:nth-of-type(even) {
+  background:#fff;
+}
+
+.custom-upload-profile-table.table>thead>tr>th,
+.custom-upload-profile-table.table>tbody>tr>td {
+  padding: 10px 20px;
+  border:0;
+  color: #6e819e
+}
+
+.custom-upload-profile-table.table>thead>tr>th{
+  color:#447afa;
+}
+
+.custom-upload-profile-table .btn.btn-danger {
+  padding:0;
+  background: none;
+  border:0;
+  font-size: 18px;
+  color: #6e819e
+}
+
+.upload__resume__container .status__box {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 100%;
+  margin: 0 auto;
+  border: 1px solid #e0e3ef;
+  padding:15px;
+  background-color: #fff;
+}
+
+.upload__resume__container .status__box .progress {
+  height: 10px;
+  border-radius: 12px;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.upload__resume__container .status__box .progress-bar {
+  background: #66d9b5;
+  box-shadow: none;
+}
+
+.upload__resume__container .info__label {
+  width: 90%;
+  padding: 20px;
+}
+
+.upload__resume__container .info__label h5 {
+  word-break: break-all;
+}
+
+.upload__resume__container .status__box .notes {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  color: #6C6E71 !important;
+}
+
+.upload__resume__container .question-section {
+  margin: 100px auto 0;
+  text-align: center;
+  width: 90%;
+  border: 1px solid #e0e3ef;
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.upload__resume__container .question-section h4 {
+  color: #6e819e;
+}
+
+.upload__resume__container .question-section .btn.btn-filled {
+  padding: 6px 12px;
+  min-width: inherit;
+  background: #66d9b5;
+  border-color: #66d9b5;
+}
+
+.upload__resume__container .question-sectio .buttons {
+  margin: 15px 0 0;
+}
+
+.upload__resume__container app-radar-chart-large canvas,
+.upload__resume__container .chartjs-render-monitor {
+  height: 200px !important;
+}
+
+.upload__resume__container .no__data {
+  padding: 20px;
+  text-align: center;
+  color: #6e819e;
+}
+
+.upload__resume__container .strip__button__row {
+  text-align: right;
+  padding: 10px 0;
+}
+
+.upload__resume__container .question.with-float {
+  float: right;
+  width: 80%;
+}
+
+.upload__resume__container .question.with-float label {
+  margin: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #93A2BB;
+}

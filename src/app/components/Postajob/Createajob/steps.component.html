@@ -1,0 +1,54 @@
+
+<ul id="steps-tab" class="nav nav-tabs">
+  <li [ngClass]="{ 'tab-list':!step1isClicked, 'tab-list active':step1isClicked }"
+      >
+      <ng-container *ngIf="complete >= 0;else nocomplete">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Job Details"  routerLinkActive="active">
+        <span class="step-check"></span>Job Details</a>
+        </ng-container>
+        <ng-template #nocomplete>
+            <a data-toggle="tab"   title="Job Details"  routerLinkActive="active">
+                <span class="step-check"></span>Job Details</a>
+          </ng-template>
+      </li>
+  <li class="line"></li>  
+  <li [ngClass]="{ 'tab-list':!step2isClicked, 'tab-list active':step2isClicked, 
+'disabled' : stepNumber <= 1  }"  
+      >
+      <ng-container *ngIf="complete >1;else nocompl">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Skills" ><span class="step-check"></span>Skills</a>
+      </ng-container>
+      <ng-template #nocompl>
+          <a href="javascript:void(0)" title="Skills"><span class="step-check"></span>Skills</a>
+      </ng-template>
+    </li>
+  <li class="line"></li> 
+  <li [ngClass]="{ 'tab-list':!step3isClicked, 'tab-list active':step3isClicked, 'disabled' : stepNumber < 2  }" 
+      >
+      <ng-container *ngIf="complete >2;else nocom">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Additional Details"><span class="step-check"></span>Additional Details</a>
+      </ng-container>
+      <ng-template #nocom>
+          <a  href="javascript:void(0)" title="Additional Details" ><span class="step-check"></span>Additional Details       </a>
+      </ng-template>
+    </li>
+  <li class="line"></li> 
+  <li [ngClass]="{ 'tab-list':!step4isClicked, 'tab-list active':step4isClicked, 'disabled' : stepNumber < 3  }" 
+      >
+      <ng-container *ngIf="complete >3;else nocomp">
+        <a data-toggle="tab"  [ngClass]="{'completed':true}"  title="Preview">
+          <span class="step-check"></span>Preview
+        </a>
+      </ng-container>
+      <ng-template #nocomp>
+        <a  href="javascript:void(0)" title="Step 4" >
+          <span class="step-check"></span>Preview
+        </a>
+      </ng-template>   
+  </li>
+</ul>
+<header>
+  <!-- <h1 class="blue text-center">Please tell us about the job.</h1>
+  <p class="description text-center">Share details so we can find you the most eligible candidates.</p> -->
+</header>
+<router-outlet></router-outlet>

@@ -1,0 +1,9 @@
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.top__container__before h3 {
+  font-size: 20px;
+  margin: 0;
+}

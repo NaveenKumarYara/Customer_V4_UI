@@ -1,0 +1,3118 @@
+<div class="col-lg-4 col-md-6 col-sm-6 smart-card" id="aa{{ profile.ProfileId }}" *ngFor="let profile of jobdetailsprofiles?.Profile; let i = index">
+  <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+    <i class="fa fa-comment"></i>
+  </button> -->
+  <!-- <button (click)="check(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button> -->
+  <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
+  <div class="dropup" *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
+    <a href="javascript:void(0)" data-toggle="dropdown"
+      tooltip="Status can be moved when you got response from candidate." placement="left">
+      Tooltip
+    </a>
+    <ng-container *ngIf="profile?.ResponseStatusId === 14">
+      <ul role="menu" class="dropdown-menu dropdown-menu-right">
+      <li role="presentation">
+        <a role="menuitem" href="javascript:void(0)" (click)="
+        RequestCandidate(
+            profile?.JobResponseId,
+            profile?.ProfileId,
+            profile?.Email,
+            profile?.FirstName,
+            profile?.LastName
+          )
+        ">
+          <p class="p6"> Proceed with the application to next stages of the hiring process</p>
+        </a>
+      </li>
+      </ul>
+    </ng-container>
+
+    <ng-container *ngIf="profile?.ResponseStatusId === 13">
+      <ul role="menu" class="dropdown-menu dropdown-menu-right">
+      <li role="presentation">
+        <a role="menuitem" href="javascript:void(0)" (click)="
+        RequestCandidateAp(
+          profile?.NoEmail,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.ResponseStatusId,
+          profile?.CCPID,
+          profile?.UserId,
+          profile.IsUploaded
+          )
+        ">
+          <p class="p6">Request Candidate to Respond via Email </p>
+        </a>
+      </li>
+      </ul>
+    </ng-container>
+  </div>
+  <div class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+    <a href="javascript:void(0)" data-toggle="dropdown" tooltip="Processing profile from one stage to another."
+      placement="left">
+      Tooltip
+    </a>
+    <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14) && jobStatus != 'Closed'">
+      <ul role="menu" class="dropdown-menu dropdown-menu-right">
+        <!-- applied -->
+        <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
+        <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+          <div *ngIf="
+            profile?.ResponseStatusId === 4 ||
+            profile?.ResponseStatusId === 13 ||
+            profile?.ResponseStatusId === 14
+          ">
+            <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
+            <div *ngIf="
+              profile?.ResponseStatusId <= 4 &&
+                profile?.ResponseStatusId > 0 &&
+                profile?.UserId > 0 &&
+                profile?.IsConfirmed == null;
+              else otherMenu
+            ">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenScreeningDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Screening</p>
+                </a>
+              </li>
+            </div>
+            <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
+            <ng-template #otherMenu>
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenScreeningDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Screening</p>
+                </a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenShortListedDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Shortlist</p>
+                </a>
+              </li>
+            </ng-template>
+            <!-- </div> -->
+            <!-- </div> -->
+            <!--start commented as it is not required now -->
+            <!-- <div *ngIf="profile?.IsConfirmed === false">
+                <li role="presentation" disabled>
+                  <p role="menuitem" href="javascript:void(0)"> Screening</p>
+                </li>
+            </div> -->
+            <!-- end -->
+            <!-- <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
+          </div>
+          <!-- shortlisted -->
+          <div *ngIf="profile?.ResponseStatusId == 8">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenShortListedDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Shortlist</p>
+              </a>
+            </li>
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Feedback</p>
+              </a>
+            </li>
+            <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
+          </div>
+          <!-- screening -->
+          <div *ngIf="profile?.ResponseStatusId == 5">
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Feedback</p>
+              </a>
+            </li>
+          </div>
+          <!-- interviewed -->
+          <div *ngIf="profile?.ResponseStatusId == 7">
+            <ng-container
+              *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                  (click)="
+                  OpenScheduleInterviewDialog(
+                    profile?.JobResponseId,
+                    profile.UserId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Schedule Interview</p>
+                </a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="
+              customer?.AccessDetails?.UserRoleId != 4 &&
+              customer?.AccessDetails?.UserRoleId != 8 &&
+              customer?.AccessDetails?.UserRoleId != 9
+            ">
+              <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)" (click)="
+                  OpenHireDialog(
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.UserId,
+                    profile?.MatchingPercentage
+                  )
+                ">
+                  <p class="p6">Hire</p>
+                </a>
+              </li>
+            </ng-container>
+            <!-- <li role="presentation" class="divider"></li> -->
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenRejectDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Not Interested</p>
+              </a>
+            </li>
+          </div>
+          <!-- hired -->
+          <div *ngIf="profile?.ResponseStatusId == 11">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenWithdrawnDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">WithDrawn</p>
+              </a>
+            </li>
+          </div>
+          <div *ngIf="profile?.ResponseStatusId == null">
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenScreeningDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Screening</p>
+              </a>
+            </li>
+            <li role="presentation">
+              <a role="menuitem" href="javascript:void(0)" (click)="
+                OpenShortListedDialog(
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.UserId,
+                  profile?.MatchingPercentage
+                )
+              ">
+                <p class="p6">Shortlist</p>
+              </a>
+            </li>
+          </div>
+        </ng-container>
+      </ul>
+    </ng-container>
+
+  </div>
+
+  <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+    <ul>
+      <ng-container  *ngIf="
+      (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+        profile?.UserId > 0 &&
+        profile?.IsConfirmed == null;else SBlock
+    ">
+    <li tooltip="Candidate had not submitted his consent to share." placement="left">
+      <button class="active">
+        <span class="icon-smart icon-smart-share">Notes</span>
+        <!-- <span class="counter">1</span> -->
+      </button>
+    </li>
+    <li tooltip="Documents cannot visible until candidate approval" placement="left"
+    >
+        <button  >
+          <span class="icon-smart icon-smart-document">Icon</span>
+        </button>
+      </li>
+      </ng-container>
+      <ng-template #SBlock>
+        <li tooltip="Share the candidate" placement="left">
+          <button class="active"  data-toggle="modal" data-target="#shareCandidate"
+          (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+            <span class="icon-smart icon-smart-share">Notes</span>
+            <!-- <span class="counter">1</span> -->
+          </button>
+        </li>
+        <li tooltip="Documents" placement="left">
+          <!-- <button  (click)="callSkills(profile?.ProfileId, 6)" OpenDocuments(profile?.FirstName, profile?.ProfileId)> -->
+            <button  (click)="OpenDocuments(profile?.FirstName, profile?.ProfileId)">
+            <span class="icon-smart icon-smart-document">Icon</span>
+          </button>
+        </li>
+   
+      </ng-template>
+  
+      <li>
+        <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
+          <span class="icon-smart icon-smart-notes">Notes</span>
+          <!-- <span class="counter">1</span> -->
+        </button>
+      </li>
+      <!--Old Code-->
+      <!-- <li>
+        <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+          <i class="fa fa-lightbulb-o"></i>
+        </button>
+      </li> -->
+      <!--Old Code-->
+
+
+
+       <li *ngIf="profile?.UserId === 0 && (profile?.ResponseStatusId > 12 || profile?.ResponseStatusId <= 6)">
+        <button tooltip="Edit Profile" placement="left" (click)="callSkills(profile?.ProfileId, 7)">
+          <span class="fa fa-pencil"></span>
+        </button>
+      </li> 
+
+      <li *ngIf="(profile?.ResponseStatusId > 12 ||   profile?.ResponseStatusId < 5 ) && statusid != 15">
+        <button tooltip="Delete Profile" placement="left" (click)="DeleteProfile(profile?.ProfileId,profile?.FirstName,profile?.LastName,profile?.Email)">
+          <span class="fa fa-trash-o"></span>
+        </button>
+      </li> 
+
+      <!-- <li *ngIf="profile.CompanyName != null">
+        <button tooltip="Profile Source" placement="left" (click)="openModal(profile?.ProfileId)">
+          <span class="fa fa-star-o"></span>
+        </button>
+      </li>  -->
+      
+      <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Feedback" placement="left">
+        <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
+        <button (click)="callSkills(profile?.ProfileId, 4)">
+          <span class="icon-smart icon-smart-feedback">Icon</span>
+          <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
+        </button>
+      </li>
+      <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Feedback"
+        placement="left">
+        <button href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)">
+          <span class="icon-smart icon-smart-feedback">Icon</span>
+        </button>
+      </li>
+      
+      
+    </ul>
+  </div>
+
+  <div class="hidden">
+    <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+      <ul>
+        <li>
+          <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+            <i class="fa fa-star"></i>
+          </button>
+        </li>
+        <li>
+          <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+            <i class="fa fa-lightbulb-o"></i>
+          </button>
+        </li>
+        <li>
+          <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
+            <i class="fa fa-clipboard"></i>
+            <!-- <span class="counter">1</span> -->
+          </button>
+        </li>
+        <li>
+          <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+          <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+          <button *ngIf="profile?.IsSaved === null"   (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="left">       
+            <i class="fa fa-bookmark"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
+  <div class="card candidate">  
+    <header class="p-rel">
+      <div class="ptr">
+        <div class="checkbox">
+          <label class="bookmark-c" >
+            <input type="checkbox" [checked]="profile?.IsSaved" (change)="updateWishlist($event, profile.ProfileId)"
+              class="dnone" />
+
+            <i class="unchecked fa fa-bookmark-o"></i>
+            <i class="checked fa fa-bookmark"></i>
+          </label>
+        </div>
+      </div>
+
+      <!--Old Code-->
+      <div class="hidden">
+        <div class="candidate-badges">
+          <!--New Design of Icon & Badges-->
+          <div class="media col-md-6"
+            *ngIf="profile.CertificationName != null && profile.CertificationName != ''; else nocertification">
+            <div class="media-left">
+              <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+                alt="Certifications" width="40" />
+            </div>
+            <div class="media-body">
+              <small title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">{{
+                profile.CertificationName
+                }}</small>
+              <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 0)">{{
+                profile?.countval?.CertificationCount
+                }}</span>
+            </div>
+          </div>
+          <ng-template #nocertification>
+            <div class="media col-md-6">
+              <div class="media-left">
+                <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+                  alt="Certifications" width="40" />
+              </div>
+              <div class="media-body">
+                <small title="Not Certified">Not Certified</small>
+                <span class="badge badge-light" title="Not Certified">0</span>
+              </div>
+            </div>
+          </ng-template>
+          <!--New Design of Icon & Badges-->
+          <div class="media col-md-6 domain-section" *ngIf="profile.DomainName != null; else nodomain">
+            <div class="media-body">
+              <small title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)">{{
+                profile.DomainName
+                }}</small>
+              <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 1)">{{
+                profile?.countval?.DomainsCount }}
+              </span>
+            </div>
+            <div class="media-right">
+              <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
+                alt="Domain" width="40" />
+            </div>
+          </div>
+          <ng-template #nodomain>
+            <div class="media col-md-6 domain-section">
+              <div class="media-body">
+                <small title="Domains Not Mentioned">No Domains</small>
+                <span class="badge badge-light" title="View More">0</span>
+              </div>
+              <div class="media-right">
+                <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
+                  alt="Domain" width="40" />
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <!--Old Code-->
+
+      <div class="card-profile-image-container flex flex-wrap flex-align-end">
+        <figure class="flex flex-wrap flex-align-center flex-justify-center">
+          <ng-container *ngIf="
+            (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+              profile?.UserId > 0 &&
+              profile?.IsConfirmed == null;
+            else Block
+          "> 
+            <img *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
+            <img *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                profile?.UserId > 0 &&
+                profile?.IsConfirmed == null && !profileImage 
+              " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"  width="66"
+              height="66"  alt="Certifications" />
+          </ng-container>
+          <ng-template #Block>
+            <img  *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
+            <img *ngIf="!profileImage"  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
+            <ng-container *ngIf="profile?.VideoProfile != null && profileFlipVideo?.VideoSizzle != null">
+              <a href="javascript:void(0)"
+                (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
+                *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
+                <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
+                  width="25" />
+              </a>
+            </ng-container>
+          </ng-template>
+             
+         
+        </figure>
+        <ng-container *ngIf="
+            (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+              profile?.UserId > 0 &&
+              profile?.IsConfirmed == null;
+            else firstBlock
+          ">
+          <h1 class="title">
+            <div class="upgrade-pitch-text" *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                  profile?.UserId > 0 &&
+                  profile?.IsConfirmed == null;
+                else firstelseBlock
+              ">
+              <a href="javascript:void(0)"
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
+                {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
+                profile.LastName.charAt(0)
+                }}<img src="../../../../../assets/images/c_name_hide.png"  alt="Certifications"/></a>
+            </div>
+            <ng-template #firstelseBlock>
+              <a href="javascript:void(0)"
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
+                <!-- GetCandidateProfile(profile.ProfileId) -->
+                {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
+              </a>
+            </ng-template>
+            <div class="dropdown">
+              <div class="tooltip1">
+              </div>
+            </div>
+          </h1>
+        </ng-container>
+        <ng-template #firstBlock>
+          <h1 class="title">
+            <div class="upgrade-pitch-text" *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                  profile?.UserId > 0 &&
+                  profile?.IsConfirmed == null;
+                else firstelseBlock
+              ">
+              {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
+              profile.LastName.charAt(0)
+              }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />
+              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                <i class="fa fa-bookmark"></i>
+              </button>
+              <ng-container *ngIf="statusid != 15">
+                <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                  <i class="fa fa-bookmark"></i>
+                </button>
+                <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                  <i class="fa fa-bookmark"></i>
+                </button>
+              </ng-container>
+            
+              
+            </div>
+            <ng-template #firstelseBlock>
+              <a href="javascript:void(0)" class="profileName" title="{{ profile.FirstName  + ' ' + profile.LastName }}"
+                (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
+                <!-- {{ profile.FirstName ? add3Dots(profile.FirstName, 8) : "" }} {{ profile.LastName ? add3Dots(profile.LastName, 5) : "" }} -->
+                 {{ profile.FirstName }} {{ profile.LastName }} 
+              </a>
+              <ng-container *ngIf="statusid != 15">
+              <button *ngIf="profile?.IsSaved === true && profile?.IsSaved != null"  class="active" (click)="updateWishlist(false, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                <i class="fa fa-bookmark"></i>
+              </button>
+              <button  *ngIf="profile?.IsSaved === false && profile?.IsSaved != null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                <i class="fa fa-bookmark"></i>
+              </button>
+              <button *ngIf="profile?.IsSaved === null" (click)="updateWishlist(true, profile.ProfileId)" tooltip="Favorite" placement="top">       
+                <i class="fa fa-bookmark"></i>
+              </button>
+              </ng-container>
+            </ng-template>
+            <div class="profile-title" title="{{ profile.ProfileTitle }}">{{ profile.ProfileTitle ? add3Dots(profile.ProfileTitle, 18) : "" }}</div>
+          </h1>
+        </ng-template>
+      </div>
+      <div class="candidate-info">
+        <div class="meta a">
+          <div class="d-block text-center">
+            <!--Email-->
+            <div class="hidden">
+              <div class="dropdown">
+                <div class="tooltip1">
+                  <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'" class="dropdown-toggle info-dropdown"
+                    type="button" data-toggle="dropdown" >                  
+                    <img 
+                      src="../../../../../assets/images/Yes-Email.svg" 
+                      height="16" alt="email" placement="top"
+                      (click)="
+                        OpenSendEmailDialog(
+                          profile?.NoEmail,
+                          profile?.Email,
+                          profile?.FirstName,
+                          profile?.LastName,
+                          profile?.JobResponseId,
+                          profile?.ProfileId,
+                          profile?.ResponseStatusId,
+                          profile?.CCPID,
+                          profile?.UserId
+                        )" 
+                    />
+                  </ng-container>
+                  <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
+                    <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email" />
+                  </ng-container>
+                  <div class="bottom1">
+                    <ul class="custom_dropdown-menu">
+                      <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'noemail'">
+                        <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" *ngIf="
+                            (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                              profile?.UserId > 0 &&
+                              profile?.IsConfirmed == null;
+                            else firstelseBlock
+                          ">
+                          <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                            title="{{ profile?.Email }}" />
+                        </a>
+                        <ng-template #firstelseBlock>
+                          <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" >
+                            <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                              title="{{ profile?.Email }}" />
+                            {{ profile?.Email }}
+                          </a>
+                        </ng-template>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Email-->
+            <ul class="smart-list-icons">
+           
+              <ng-container *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+              profile?.UserId > 0 &&
+              profile?.IsConfirmed == null;
+              else firtBlck
+            "> 
+            <li>
+              <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                <i class="fa fa-star"></i>
+              </button> -->
+              <button class="btn" 
+                tooltip="Email can visible after candidate's approval" 
+                placement="top"
+              >
+                <span class="icon-smart icon-smart-email">Icon</span>
+              </button>
+            </li>
+            <li>
+              <button class="btn" tooltip="Mobile number can visible after candidate's approval" placement="top">
+                <a><span class="icon-smart icon-smart-phone">Icon</span></a>
+              </button>
+            </li>
+      
+          </ng-container>
+          <ng-template #firtBlck>
+            <li>
+              <!-- <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                <i class="fa fa-star"></i>
+              </button> -->
+              <button class="btn" 
+                tooltip="{{ profile?.Email }}" 
+                placement="top"
+                *ngIf="profile.Email.substring(0, 7) != 'noemail'"
+                (click)="
+                OpenSendEmailDialog(
+                  profile?.NoEmail,
+                  profile?.Email,
+                  profile?.FirstName,
+                  profile?.LastName,
+                  profile?.JobResponseId,
+                  profile?.ProfileId,
+                  profile?.ResponseStatusId,
+                  profile?.CCPID,
+                  profile?.UserId
+                )"
+              >
+                <span class="icon-smart icon-smart-email">Icon</span>
+              </button>
+            </li>
+            <li *ngIf="profile?.MobilePhone != null; else false">
+              <button class="btn" tooltip="{{ profile.MobilePhone }}" placement="top">
+                <a href="tel:{{ profile.MobilePhone }}"><span class="icon-smart icon-smart-phone">Icon</span></a>
+              </button>
+            </li>
+            
+       </ng-template>
+           
+              <!-- <li *ngIf="profile?.MobilePhone != null; else false">
+                <button class="btn" tooltip="{{ profile.MobilePhone }}" placement="top">
+                  <a href="tel:{{ profile.MobilePhone }}"><span class="icon-smart icon-smart-phone">Icon</span></a>
+                </button>
+              </li> -->
+              <li class="certificate-list">
+                <button class="btn" tooltip="Certificate" placement="top" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+                  <span class="icon-smart icon-smart-certificate">Icon</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn" tooltip="Domain" placement="top" title="{{ profile.DomainName }}"  (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+                  <span class="icon-smart icon-smart-domain">Icon</span>
+                </button>
+              </li>
+              
+            </ul>
+            <!--Graduation-->
+            <div class="hidden">
+              <div class="dropdown">
+                <div class="tooltip1">
+                  <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                    <img src="../../../../../assets/images/graduation.svg" style="width: 25px; height: 25px" />
+                  </a>
+                  <div class="bottom1">
+                    <ul class="custom_dropdown-menu">
+                      <li>
+                        <a href="javascript:void(0)">
+                          <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
+  
+                          <div class="media">
+                            <ng-container
+                              *ngIf="profile?.QualificationName != null && profile?.Specialization; else EduTemplate">
+                              <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="" />
+                              <div class="media-body">
+                                <h5 class="mt-0" title="{{ profile.QualificationName }}">
+                                  {{ add3Dots(profile?.QualificationName.split("|")[0], 20) }}
+                                </h5>
+                                {{ add3Dots(profile?.Specialization.split("|")[0], 20) }}
+                              </div>
+                            </ng-container>
+                            <ng-template #EduTemplate>
+                              <h5 align="center">N/A</h5>
+                            </ng-template>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!--Graduation-->
+            <!--Info Icon-->
+            <div class="hidden">
+              <div class="dropdown info-icon">
+                <div class="tooltip1">
+                  <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i </a>
+                  <div class="bottom1" *ngIf="profile?.MobilePhone != null">
+                    <ul class="custom_dropdown-menu">
+                      <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
+                          <a class="email-overflow" href="javascript:void(0)"
+                              title="{{profile.Email}}">
+                              <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                  title="{{profile?.Email}}"> {{profile?.Email}}
+                          </a>
+                      </li> -->
+                      <li>
+                        <ng-container *ngIf="profile?.MobilePhone != null; else false">
+                          <a href="javascript:void(0)" title="{{ profile.MobilePhone }}">
+                            <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number"
+                              title="{{ profile.MobilePhone }}" />
+                            &nbsp;&nbsp;&nbsp; {{ profile.MobilePhone }}
+                          </a>
+                        </ng-container>
+                      </li>
+                      <li>
+                        <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- <div class="dropdown info-icon">
+                <div class="tooltip1">
+                    <ng-container
+                    class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
+                    <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
+                    </ng-container>                          
+                </div>
+            </div> -->
+            <!--Info Icon-->
+          </div>
+          <!--Candidate experience placeholder is in below div -->
+          <div class="d-block text-center ptb-5 role-exp-loc">
+            <h4 class="d-inline " >
+              
+              <ng-container *ngIf="profile?.TotalExperience != null">
+                <span class="experience">{{ profile?.TotalExperience | monthsPipe }} Yrs</span>
+              </ng-container>
+              <ng-container *ngIf="profile?.TotalExperience == null">
+                <span class="experience"> 0 Yrs</span>
+              </ng-container>
+            </h4>
+       
+            <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation != null; else false">
+              <ng-container>
+                <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18" xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg" style="width: 16px">
+                  <path class="st0"
+                    d="m9.1 17.4-0.5-0.4c-0.3-0.2-6.5-4.3-6.5-9.4 0-3.8 3.1-6.9 6.9-6.9s6.9 3.1 6.9 6.9c0 5.1-6.1 9.3-6.4 9.4l-0.4 0.4zm0-15c-2.9 0-5.2 2.3-5.2 5.2 0 3.5 3.8 6.7 5.2 7.7 1.4-1 5.2-4.2 5.2-7.7 0-2.9-2.4-5.2-5.2-5.2z" />
+                  <path class="st0"
+                    d="m9.2 10.4c-1.6 0-2.9-1.3-2.9-2.9s1.3-2.9 2.9-2.9 2.8 1.4 2.8 3-1.3 2.8-2.8 2.8zm0-4c-0.6 0-1.2 0.6-1.2 1.2s0.5 1.1 1.1 1.1 1.1-0.5 1.1-1.1-0.4-1.2-1-1.2z" />
+                </svg>
+              </ng-container>
+              <h5 class="location mr-0 pl-0 pr-0" title="{{ profile.CurrentLocation }}">
+                {{ profile.CurrentLocation }}
+              </h5>
+            </div>
+         
+          </div>
+       
+          <!---->
+          <div class="d-block text-center min-h40">
+            <div class="d-block ptb-5">
+             
+              <!-- <ng-container  *ngIf="DataSource!=undefined"> 	<strong> {{DataSource}} </strong></ng-container> -->
+              <div class="status {{
+                  profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
+                }}">
+                {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
+                <i *ngIf="profile.JobStatus === 'Waiting for response' || profile.JobStatus === 'Uploaded'" class="fa fa-info-circle" tooltip="Status can be moved when candidate had approved for the Job" placement="left" placement="top"></i>
+              </div>
+           
+               <div>
+                <small>
+                
+                  <ng-container *ngIf="profile.CCPID != null" tooltip ="{{profile?.customerDetails?.FirstName}} {{profile?.customerDetails?.LastName}}">
+                    <!-- <a href="javascript:void(0)" (click)="openModal(profile?.ProfileId)">Add/View Source</a> -->
+                    <span *ngIf="profile?.jdsource?.DataSource != null && profile?.jdsource?.DataSource != undefined">
+                      Source : {{profile?.jdsource?.DataSource}}
+                    </span>
+                    <span *ngIf="profile?.jdsource?.DataSource === null ||  profile?.jdsource?.DataSource === undefined">
+                      Source : Referrals
+                    </span>
+                    <br/>
+                      By <span> <strong> {{profile?.customerDetails?.FirstName}}  {{profile?.customerDetails?.LastName}}</strong> </span>  On <span> <strong>{{profile?.CreatedOn | date:'mediumDate' }} </strong></span></ng-container> 
+                      <br/>
+                   
+                </small>
+               </div>
+            </div>
+
+
+
+      
+          
+          
+         
+          
+
+            <!--Old Code-->
+            <div class="hidden">
+              <small *ngIf="profile.CompanyName != null && profile.IsUploaded == true" title="{{ profile.CompanyName }}">
+                <span> Uploaded </span>
+                By <span>{{ profile.CompanyName }}</span>
+              </small>
+              <small *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"
+                title="{{ profile.CompanyName }}">
+                <span> Submitted </span>
+                By <span>Arytic</span>
+              </small>
+              <small *ngIf="profile.CompanyName != null && profile.IsInvited == true" title="{{ profile.CompanyName }}">
+                <span> Invited </span>
+                By <span>{{ profile.CompanyName }}</span>
+              </small>
+
+         
+            </div>
+            <!--if no data -->
+            <!-- <small>
+                  <span>
+                      &nbsp;
+                  </span>
+              </small> -->
+            <!--if no data -->
+          </div>
+        </div>
+       
+        <div class="candidate-status flex flex-wrap flex-align-equal">
+          <h3 class="sub-title"><strong> Arytic Check </strong> </h3>
+          <!-- <ng-container
+              *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
+              <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
+                  <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+              </a>
+          </ng-container> -->
+          <!-- <ng-template #videoTemp>
+              <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
+                  (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
+                  <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px"
+                      alt="Video Profile" title="Video Profile">
+              </a>
+          </ng-template> -->
+          
+          <!--Icons with clicks-->
+          <!--Reference Icons-->
+          <!--With dialog-->
+
+       
+
+          <a href="javascript:void(0)"  title="Education">
+            <span class="jdv-smart-icon jdv-icon-education">Icon</span>
+            <span>Education</span>
+          </a>
+
+          <a href="javascript:void(0)"  title="Employment">
+            <span class="jdv-smart-icon jdv-icon-employment">Icon</span>
+            <span>Employment</span>
+          </a>
+
+          <ng-container  *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)">
+            <a href="javascript:void(0)" class="active" title="Reference"  (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
+              <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
+              <span>Reference</span>
+            </a>
+          </ng-container>
+
+          <ng-container     *ngIf="profile?.DiscResult === '0' && (profile.CompanyName === null || profile.CompanyName === companyname)">
+            <a href="javascript:void(0)"  title="Reference"  (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
+              <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
+              <span>Reference</span>
+            </a>
+          </ng-container>
+      
+
+        <ng-container *ngIf="profile?.BackGroundCheck == false">
+          <a href="javascript:void(0)"  title="Background Need to be Verified"
+          (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+          <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+          height="50" alt="verfied-badge" />
+          <span>BackGround</span>
+          </a>
+        </ng-container>
+
+        <ng-container  *ngIf="profile?.BackGroundCheck == true">
+          <a href="javascript:void(0)" title="Background Verified Profile"
+          (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/verified-badge.png" width="50"
+                height="50" alt="verfied-badge" />
+                <span>BackGround</span>
+          </a>
+        </ng-container>
+       
+
+          <a href="javascript:void(0)"  title="Coming Soon">
+            <span class="jdv-smart-icon jdv-icon-wfh">Icon</span>
+            <span>WFH</span>
+          </a>
+
+
+          <div class="hidden">
+            <a href="javascript:void(0)" title="References"
+              *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
+              (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
+              <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+                alt="References" />
+            </a>
+            <a href="javascript:void(0)"
+              *ngIf="profile?.DiscResult === '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
+              title="References" (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
+              <img src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
+                alt="References" />
+            </a>
+            <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0" title="Achievements"
+              (click)="OpenAchiveDialog(profile?.ProfileId)">
+              <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+                alt="achievement-badge" />
+            </a>
+  
+            <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"
+              title="Achievements" (click)="RequestAchivement(profile)">
+              <img src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
+                alt="achievement-badge" />
+            </a>
+
+            <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == false" title="Background Need to be Verified"
+              (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+                height="50" alt="verfied-badge" />
+            </a>
+
+            <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == true" title="Background Verified Profile"
+              (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+                alt="verfied-badge" />
+            </a>
+            <ng-container *ngIf="profile?.IsConfirmed === true">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-accepted.png" width="50"
+                height="50" alt="Consent Not Accepted" title="Consent Accepted" />
+            </ng-container>
+            <ng-container *ngIf="profile?.IsConfirmed === false">
+              <img src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50"
+                alt="Consent Accepted" title="Consent Not Accepted" />
+            </ng-container>
+          </div>
+
+
+          <!-- <a href="javascript:void(0)" title="References">
+              <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+                  alt="References">
+              </a> -->
+          <!--No Reference Icon-->
+          <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
+              alt="No-References" title="No References"> -->
+          <!--Achievement Icon-->
+          <!--With dialog-->
+          <!-- <a href="javascript:void(0)" title="Achievements">
+            <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+                alt="achievement-badge">
+          </a> -->
+          <!--No achievement icon-->
+          <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
+                        alt="No-achievement-icon" title="No Achievements"> -->
+
+          <!--Recommendations Icon-->
+          <!--With dialog-->
+
+          <!-- <a href="javascript:void(0)" title="Recommendations" data-toggle="modal"
+              data-target=".manage-recommendations-i-d">
+              <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
+                  alt="recommendations-badge">
+          </a> -->
+          <!--Commenting as per received inputs 29-05-2020-->
+          <!-- <a href="javascript:void(0)" title="Recommendations">
+              <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
+                  alt="recommendations-badge">
+          </a> -->
+          <!--No recommendations profile icon-->
+          <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
+                        alt="No-recommendations-badge" title="No Recommendations"> -->
+
+          <!--BG Verification Profile-->
+          <!--With dialog-->
+         
+          <!-- <a href="javascript:void(0)" title="Background Verification - Yet to be Started">
+              <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+                  alt="verfied-badge">
+          </a> -->
+
+          <!--Not verified profile icon-->
+          <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
+                    alt="Not-verfied-profile" title="Not Verified Profile"> -->
+
+         
+        </div>
+      </div>
+    </header>
+    <div class="card-rel">
+      <div class="card-body">
+        <div class="type">
+          <div class="d-r-section">
+            <h5>Arytic Fit <i class="fa fa-info-circle" tooltip="Arytic score of the candidate" placement="top"></i>
+            </h5>
+            <app-radar-smart-chart style="cursor: pointer" (click)="callSkills(profile.ProfileId, 5)"
+              [ProfileId]="profile.ProfileId" [JobId]="jobid" [height]="120" [width]="160"></app-radar-smart-chart>
+          </div>
+          <div class="p-m-section">
+            <h5>Profile Matching <i class="fa fa-info-circle" tooltip="Profile matching value to these position"
+                placement="top"></i></h5>
+            <!--Circle progress trial-->
+            <circle-progress data-toggle="matching-details" (click)="callSkills(profile.ProfileId, 3)"
+              [percent]="profile?.MatchingPercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+            <!--[animationDuration]="300"-->
+            <!---->
+            <!-- <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
+                (click)="callSkills(profile.ProfileId)">
+                <h1>{{profile?.MatchingPercentage | number}}%</h1>
+                <h5>Matching</h5>
+            </a> -->
+          </div>
+        </div>
+       
+        <!-- <div class="smart-card-progress-bar  no-interview-status flex flex-align-center flex-justify-center" *ngIf="profile?.ResponseStatusId != 7">
+          <img src="../../../../../assets/images/interview-status.png" alt="">
+          No Interview Status Available
+        </div> -->
+        <div class="smart-card-progress-bar hidden">
+          <h3>Application Status</h3>
+          <div class="row flex flex-justify-center flex-wrap">
+            <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
+              <div class="col-sm-3 col  active" *ngIf="i === 'Technical'">
+                <h4>{{i}}</h4>
+              </div>
+              <div class="col-sm-3 col in-progress" *ngIf="i === 'Screening'">
+                <h4>{{i}}</h4>
+              </div>
+            </ng-container> -->
+           <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
+            <div class="col-sm-3 col in-progress">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Interview</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+           </ng-container>
+           <ng-container *ngIf="profile?.ResponseStatusId === 5">
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col in-progress">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Interview</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="profile?.ResponseStatusId === 7">
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Shortlisted</h4>
+            </div>
+            <ng-container *ngIf="profile?.InterviewRounds?.length>0">
+              <ng-container *ngIf="profile?.InterviewRounds?.length===1">
+                <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
+                  <h4>Interview</h4>
+                </div>
+              </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===2">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===3">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li></ul>" html="true">
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===4">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+              </ul>" html="true">
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===5">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                {{profile?.InterviewRounds[2]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[4]}}</li>
+              </ul>" html="true">
+                <h4>Interview</h4>
+              </div>
+             </ng-container>
+              
+            </ng-container>
+           
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="profile?.ResponseStatusId === 11">
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Interview</h4>
+            </div>
+            <div class="col-sm-3 col in-progress">
+              <h4>Hired/Rejected</h4>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="profile?.ResponseStatusId === null">
+            <div class="col-sm-3 col">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Interview</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+           </ng-container>
+          </div>
+        </div>
+        <div id="skills-carousel-Changed" class="skills-carousel-Changed">
+          <h4><strong> Skills </strong> </h4>
+          <div class="">
+            <div class="row" *ngIf="profile?.PrimarySkills != null && profile?.PrimarySkills != ''; else noSkillTemplate">
+              <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
+                (click)="prevSkills(profile?.PrimarySkills, i)">
+                < </a>
+                  <div class="col-md-4 skill-click skill-click-sm"
+                    *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates; let j = index">
+                    <div id="i-{{ profile.ProfileId }}">
+                      <div class="item position-relative" *ngIf="currentNo[i] == 0 && j < 3">
+                        <div class="skill">
+                          <h4 class="text-left" title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <div class="star-rating star-rating-sm">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+                      </div>
+                      <div class="item position-relative" *ngIf="currentNo[i] == 1 && j < 6 && j > 2">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating star-rating-sm">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+
+                        <!---->
+                      </div>
+                      <div class="item position-relative" *ngIf="currentNo[i] == 2 && j < 9 && j > 5">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating star-rating-sm">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+                        <!---->
+                      </div>
+                      <div class="item position-relative" *ngIf="currentNo[i] == 3 && j > 8">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating star-rating-sm">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+                        <!---->
+                      </div>
+                    </div>
+                  </div>
+
+                  <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 right-arrow"
+                    (click)="nextSkills(profile?.PrimarySkills, i)">
+                    >
+                  </a>
+
+                  <!-- https://www.npmjs.com/package/ngx-flickity
+                       https://flickity.metafizzy.co/events.html#dragmove
+                       https://www.npmjs.com/package/angular-flickity
+                       https://codepen.io/collection/nNzQxk/ -->
+                  <!-- working demo -->
+                  <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
+                      <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
+                        <div class="item">
+                          <div class="skill">
+                              <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
+                              <div>
+                                <h5>{{ sk.split('|')[1] }} Yrs</h5>
+                                <h5>{{ sk.split('|')[2] }}</h5>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                    </div> -->
+
+                  <!-- // -->
+                  <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                      <div class="item">
+                      <div class="skill" *ngIf="">
+                          <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
+                          <div>
+                            <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+                            <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+                          </div>
+                      </div>
+                    </div></div>
+                          <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
+                      <div class="skill" *ngIf="">
+                          <h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
+                        <div>
+                          <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+                          <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+                        </div>
+                      </div>
+                    </div></div> -->
+            </div>
+            <ng-template #noSkillTemplate>
+              <div class="no-skills text-center">
+                <h5>No skills added</h5>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <!-- <owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
+          <div *ngFor="let prf of profile?.PrimarySkills.split(',')">
+            <p> {{ prf.split('|')[0] }}</p>
+          </div>
+        </owl-carousel> -->
+        <!-- <h2>Sample 2</h2>
+        <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+          <div>
+            <p>{{ profile?.PrimarySkills.split('|')[0] }} </p>
+          </div>
+        </owl-carousel>
+        <h2>Sample 3</h2>
+        <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+          <div>
+            <img src="http://lorempixel.com/400/200/{{img}}"/>
+            {{profile?.PrimarySkills.split('|')[0]}}
+          </div>
+        </owl-carousel> -->
+      </div>
+     
+      <h3 class="sub-title"><strong> Application Status </strong> </h3>
+      <div class="footer">
+        <div class="actions">
+          <div class="smart-card-status">
+            <div class="row flex flex-wrap">
+              <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
+                <div class="col-sm-3 col  active" *ngIf="i === 'Technical'">
+                  <h4>{{i}}</h4>
+                </div>
+                <div class="col-sm-3 col in-progress" *ngIf="i === 'Screening'">
+                  <h4>{{i}}</h4>
+                </div>
+              </ng-container> -->
+             <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.ResponseStatusId === 8">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+             <ng-container *ngIf="profile?.ResponseStatusId === 5">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col in-progress">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 7">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <ng-container *ngIf="profile?.InterviewRounds?.length>0">
+                <ng-container *ngIf="profile?.InterviewRounds?.length===1">
+                  <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
+                    <span class="icon-smart icon-smart-interview"></span>
+                    <h4>Interview</h4>
+                  </div>
+                </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===2">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===3">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li></ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===4">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                </ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+               <ng-container *ngIf="profile?.InterviewRounds?.length===5">
+                <div class="col-sm-2 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li><i class='fa fa-check' aria-hidden='true'></i>{{profile?.InterviewRounds[0]}}</li><li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[1]}}</li><li><i class='fa fa-question-circle-o' aria-hidden='true'></i>
+                  {{profile?.InterviewRounds[2]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[3]}}</li>
+                  <li><i class='fa fa-clock-o' aria-hidden='true'></i>{{profile?.InterviewRounds[4]}}</li>
+                </ul>" html="true">
+                  <span class="icon-smart icon-smart-interview"></span>
+                  <h4>Interview</h4>
+                </div>
+               </ng-container>
+                
+              </ng-container>
+             
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 11 || profile?.ResponseStatusId === 
+            12">
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col active">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col in-progress"  *ngIf="profile?.ResponseStatusId === 11">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+              <div class="col-sm-2 col in-progress"  *ngIf="profile?.ResponseStatusId === 12">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>WithDrawn</h4>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === null || profile?.ResponseStatusId === 9">
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-review"></span>
+                <h4>Submitted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-screening"></span>
+                <h4>Screening</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-shortlisted"></span>
+                <h4>Shorlisted</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-interview"></span>
+                <h4>Interview</h4>
+              </div>
+              <div class="col-sm-2 col">
+                <span class="icon-smart icon-smart-hired"></span>
+                <h4>Hired</h4>
+              </div>
+             </ng-container>
+
+            </div>
+          </div>
+        </div>
+        
+        <div class="hidden">
+          <ul class="actions">
+            <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
+            <li *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                  profile?.UserId > 0 &&
+                  profile?.IsConfirmed == null;
+                else elseBlock">
+              <a 
+                 
+                href="javascript:void(0)"
+                (click)="
+                  OpenSendEmailDialog(
+                    profile?.NoEmail,
+                    profile?.Email,
+                    profile?.FirstName,
+                    profile?.LastName,
+                    profile?.JobResponseId,
+                    profile?.ProfileId,
+                    profile?.ResponseStatusId,
+                    profile?.CCPID,
+                    profile?.UserId
+                  )
+                " 
+                tooltip="Start email Conversation with candidate." placement="top"
+                data-toggle="modal" data-target="#inbox">
+                <!--(click)="OpenChatboxDialog()"-->
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                  viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
+                  <g>
+                    <g>
+                      <g>
+                        <g>
+                          <path fill="#9EABC0"
+                            d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                          c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                          c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                        </g>
+                        <g>
+                          <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                          c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                          l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                          c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                          l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <ng-template #elseBlock>
+              <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
+                <li  tooltip="Email not yet provided to send email." placement="left">
+                  <a
+                    href="javascript:void(0)"
+                    class="disabled"
+                     data-toggle="modal"
+                    data-target="#inbox" 
+                  >
+                    <!--(click)="OpenChatboxDialog()"-->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                      viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
+                      <g>
+                        <g>
+                          <g>
+                            <g>
+                              <path fill="#9EABC0"
+                                d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                          c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                          c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                            </g>
+                            <g>
+                              <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                          c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                          l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                          c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                          l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  </a>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'">
+                <li tooltip="Start email Conversation with candidate." placement="left">
+                  <a href="javascript:void(0)" (click)="
+                      OpenSendEmailDialog(
+                        profile?.NoEmail,
+                        profile?.Email,
+                        profile?.FirstName,
+                        profile?.LastName,
+                        profile?.JobResponseId,
+                        profile?.ProfileId,
+                        profile?.ResponseStatusId,
+                        profile?.CCPID,
+                        profile?.UserId,
+                        profile.IsUploaded
+                      )
+                    " data-toggle="modal" data-target="#inbox">
+                    <!--(click)="OpenChatboxDialog()"-->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                      viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
+                      <g>
+                        <g>
+                          <g>
+                            <g>
+                              <path fill="#9EABC0"
+                                d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+                      c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+                      c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
+                            </g>
+                            <g>
+                              <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                      c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+                      l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+                      c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+                      l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  </a>
+                </li>
+              </ng-container>
+            </ng-template>
+  
+            <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Provide valuable feedback to candidate." placement="top">
+              <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
+              <a href="javascript:void(0)" (click)="callSkills(profile?.ProfileId, 4)">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="#9eabc0">
+             <g>
+               <g>
+                 <g>
+                   <path d="M117.333,149.333H352c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667H117.333
+                     c-5.896,0-10.667,4.771-10.667,10.667C106.667,144.563,111.438,149.333,117.333,149.333z"/>
+                   <path d="M245.333,256h-128c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h128
+                     c5.896,0,10.667-4.771,10.667-10.667C256,260.771,251.229,256,245.333,256z"/>
+                   <path d="M471.167,64c-0.618,0-1.217,0.155-1.833,0.184V64c0-23.531-19.146-42.667-42.667-42.667h-384
+                     C19.146,21.333,0,40.469,0,64v416c0,4.313,2.604,8.208,6.583,9.854c1.313,0.552,2.708,0.813,4.083,0.813
+                     c2.771,0,5.5-1.083,7.542-3.125L121.75,384h304.917c23.521,0,42.667-19.135,42.667-42.667V164.411l30.708-30.703c0,0,0,0,0-0.01
+                     c7.604-7.604,11.958-18.125,11.958-28.865C512,82.313,493.688,64,471.167,64z M448,341.333c0,11.76-9.563,21.333-21.333,21.333
+                     H117.333c-2.833,0-5.542,1.125-7.542,3.125L21.333,454.25V64c0-11.76,9.563-21.333,21.333-21.333h384
+                     C438.438,42.667,448,52.24,448,64v7.286c-2.025,1.392-3.962,2.923-5.708,4.672L326.232,192H117.333
+                     c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h191.785l-10.243,51.24
+                     c-0.708,3.5,0.396,7.115,2.917,9.635c2.021,2.021,4.75,3.125,7.542,3.125c0.688,0,1.396-0.073,2.083-0.208l53.313-10.667
+                     c2.083-0.417,3.979-1.427,5.458-2.917L448,185.742V341.333z M357.396,246.177l-34.458,6.896l6.896-34.5l96.828-96.828
+                     l27.587,27.587L357.396,246.177z M484.958,118.625l-15.625,15.625l-27.589-27.589l15.63-15.63
+                     c3.625-3.615,8.646-5.698,13.792-5.698c10.75,0,19.5,8.75,19.5,19.5C490.667,109.958,488.583,114.99,484.958,118.625z"/>
+                 </g>
+               </g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg>
+             
+                <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
+              </a>
+            </li>
+            <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Provide valuable feedback to candidate."
+              placement="left">
+              <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
+              profile?.ProfileId,
+              profile?.Email,
+              profile?.FirstName,
+              profile?.LastName,
+              profile?.UserId,
+              profile?.MatchingPercentage)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                  <path
+                    d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
+                </svg>
+              </a>
+            </li>
+            <!-- <li
+                *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else loc">
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                      <path
+                          d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
+                  </svg>
+                </a>
+            </li>
+            <ng-template #loc> -->
+            <li tooltip="Share the candidate to team members." placement="top">
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
+                (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+                  <path
+                    d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
+                </svg>
+              </a>
+            </li>
+            <!-- </ng-template> -->
+            <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
+            <li tooltip="Resume can download here." placement="top">
+              <!--Word doc-->
+              <ng-container>
+                <a href="javascript:void(0)" *ngIf="
+                    (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                      profile?.ResponseStatusId > 0 &&
+                      profile?.UserId > 0 &&
+                      profile?.IsConfirmed == null;
+                    else fBlock
+                  ">
+                  <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                    title="Download Resume" />
+                </a>
+                <ng-template #fBlock>
+                  <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
+                    <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                      title="Download Resume" />
+                  </a>
+                  <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
+                </ng-template>
+              </ng-container>
+  
+              <!--Show if Candidate Resume is in PDF-->
+              <!-- <a href="javascript:void(0)">
+                  <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"
+                  title="Download Resume" >
+              </a>
+              -->
+            </li>
+            <!---->
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+    <ng-container>
+      <div class="matching-details h-a sizzlevideo-matching-details" id="sizzleVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+
+        <div class="details">
+          <!-- <div *ngIf="" -->
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <h6 class="video-tittle">Sizzle Video</h6>
+              <!-- <video controls="">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>-->
+              <div *ngIf="profileFlipVideo?.VideoSizzle === null">
+                <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+              </div>
+              <div *ngIf="profileFlipVideo?.VideoSizzle != null">
+                <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4"
+                  #videoPlayer></video>
+              </div>
+              <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+              <div class="status shortlisted pull-right">
+                <a class="show-matching-details"
+                  (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, false)"
+                  data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a>
+              </div>
+            </div>
+            <!--
+        <div class="col-md-6">
+            <h6>Video Sizzle</h6>
+            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+        </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="matching-details h-a sizzlevideo-matching-details" id="profileVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+
+        <div class="details">
+          <!-- <div *ngIf="" -->
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <!--Commented as it is not working *ngIf="profileFlipVideo?.VideoProfile!=null"> -->
+              <h6 class="video-tittle">Candidate Profile</h6>
+              <!-- <video controls="">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>-->
+              <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+              <div *ngIf="profileFlipVideo?.VideoProfile === null">
+                <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+              </div>
+              <div *ngIf="profileFlipVideo?.VideoProfile != null">
+                <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4"
+                  #videoPlayer></video>
+              </div>
+              <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null">
+                <a class="show-matching-details" data-toggle="matching-details"
+                  (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
+                  href="javascript:void(0)">Sizzle Video</a>
+              </div>
+            </div>
+            <!--
+              <div class="col-md-6">
+                  <h6>Video Sizzle</h6>
+                  <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+              </div> -->
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="profileFlipVideo?.VideoSizzle == null && profileFlipVideo?.VideoProfile == null">
+      <div class="matching-details h-a sizzlevideo-matching-details" id="sizzleVideo-{{ profile.ProfileId }}">
+        <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 2)" class="close">×</a>
+        <div class="details">
+          <div class="video-scroll">
+            <div class="w-75 m-auto d-block cls-rel">
+              <h6 class="video-tittle">Video</h6>
+              <img src="../../../assets/images/no-video.png" class="icon" alt="." />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="matching-details bg-fff revamp__arytic__fit" id="matchingDetailRadar-{{ profile.ProfileId }}">
+      <a _ngcontent-c21="" class="revamp__close tooltip1" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
+      </a>
+
+      <div class="top__container">
+        <h2>Arytic Fit</h2>
+      </div>
+      <div class="middle__container"
+        (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName,profile.customerDetails.FirstName,profile.customerDetails.LastName)">
+        <app-radar-chart style="cursor: pointer" (click)="showRadarChart('radar')" [radarChartData]="backRadarChartData"
+          [height]="260" [width]="300"></app-radar-chart>
+      </div>
+      <div class="bottom__container">
+        <div class="row flex flex-wrap flex-align-equal">
+          <div class="col-sm-4">
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.JobFit" [radius]="40"
+              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+            <h5>Job Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.SkillFit" [radius]="40"
+              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#66dab5'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+            <h5>Skill Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.Personalityfit"
+              [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#5781c1'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+            <h5>Personality Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.CultureFit"
+              [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#f9b016'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+            </circle-progress>
+            <h5>Culture Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress data-toggle="matching-details" [percent]="0" [radius]="40" [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3" [outerStrokeColor]="'#147751'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+              [showSubtitle]="false">
+            </circle-progress>
+            <h5>Team Fit</h5>
+            <h6>(Coming Soon)</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Profile percentage view-->
+    <div class="matching-details bg-fff" id="matchingDetail-{{ profile.ProfileId }}">
+      <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
+      <div class="header">
+        <h2>Matching Criteria</h2>
+        <div *ngIf="ProfileId == profile.ProfileId">
+          <!-- placeholder for chart -->
+          <div style="padding-top: 2rem">
+            <canvas #testChart name="profile.ProfileId" width="400" height="400"></canvas>
+            <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
+          </div>
+          <!-- placeholder for chart -->
+
+          <!-- Anchoring dialog for detailed matching criteria charts-->
+          <div class="view-detailed-report">
+            <!-- <a data-toggle="modal" data-target="#matching-criteria" (click)="getDetails()" href="javascript:void(0)">View Detailed Report </a> -->
+          </div>
+          <!-- Anchoring dialog for detailed matching criteria charts-->
+        </div>
+
+        <!-- old data -->
+        <!-- <circle-progress [percent]="matchingDetails?.MatchingPercentage" [radius]="80"
+                    [outerStrokeWidth]="10" [innerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'"
+                    [innerStrokeColor]="'#e7e8ea'" [space]="-8" [titleFontSize]="40" [unitsFontSize]="24"
+                    [showSubtitle]="false" [animation]="true" [animationDuration]="300"></circle-progress> -->
+        <!-- <div class="match">
+                <svg xmlns="http://www.w3.org/2000/svg" width="158.1" height="159.1">
+                    <path
+                        d="M79.03 159.06c-43.6 0-79-35.7-79-79.5s35.5-79.5 79-79.5 79 35.7 79 79.5-35.4 79.5-79 79.5zm0-149.1c-38.1 0-69 31.2-69 69.5s31 69.5 69 69.5 69-31.2 69-69.5-30.9-69.5-69-69.5z"
+                        fill="#d9e1ef" />
+                    <path
+                        d="M79 159.1c-2.8 0-5-2.2-5-5s2.2-5 5-5c38.1 0 69-31.2 69-69.5s-31-69.5-69-69.5c-2.8 0-5-2.2-5-5s2.2-5 5-5c43.6 0 79 35.7 79 79.5.1 43.8-35.4 79.5-79 79.5z"
+                        fill="#787efe" />
+                </svg>
+                <h1>{{matchingDetails?.MatchingPercentage}}%</h1>
+            </div> -->
+      </div>
+      <!-- 
+            <div class="details">
+                <div class="details-row">
+                    <h4>Skills</h4>
+                    <h5>{{matchingDetails?.Skills}}%</h5>
+                </div>
+                <div class="details-row">
+                    <h4>Experience</h4>
+                    <h5>{{matchingDetails?.Experience}}%</h5>
+                </div>
+                <div class="details-row">
+                    <h4>Domain</h4>
+                    <h5>{{matchingDetails?.Domains}}%</h5>
+                </div>
+                <div class="details-row">
+                    <h4>Role</h4>
+                    <h5>{{matchingDetails?.Role}}%</h5>
+                </div>
+            </div> -->
+      <!-- #old data -->
+    </div>
+
+    <!--Notes Overlay-->
+
+    <div class="matching-details bg-fff activities__box" id="matchingDetailNotes-{{ profile.ProfileId }}">
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
+        <div class="bottom1 bottom1-close">Close</div>
+      </a>
+
+      <div class="top__container flex flex-align-center">
+        <h2>Activities & Notes</h2>
+        <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="
+            OpenSendNotificationDialog(
+              profile?.JobResponseId,
+              profile?.ProfileId,
+              profile?.Email,
+              profile?.FirstName,
+              profile?.LastName,
+              profile?.UserId,
+              profile?.MatchingPercentage,
+              profile?.ResponseStatusId
+            )
+          ">
+          <i class="fa fa-plus-circle"></i>
+          <div class="bottom1">Add</div>
+        </button>
+      </div>
+      <div class="middle__container">
+        <div id="accordion">
+          <ng-container *ngIf="CandidateNotes.length > 0">
+            <ng-container *ngFor="let pn of CandidateNotes; let i = index">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
+                      <i class="fa fa-chevron-down"></i>
+                      <span *ngIf="pn?.Others != undefined && pn?.Others != ''"
+                        class="icon icon-{{pn?.Others.toLowerCase()}}"></span>
+                      <span *ngIf="pn?.Others == undefined || pn?.Others == ''"
+                        class="icon icon-{{pn?.ReferralStatus.toLowerCase()}}"></span>
+                      <span *ngIf="pn?.Others == ' '" class="icon icon-reject"></span>
+                      <div class="d-flex justify-content-between">
+                        <ng-container *ngIf="pn?.Others != undefined && pn?.Others != ''">
+                          {{ pn?.Others }}
+                        </ng-container>
+                        <ng-container *ngIf="pn?.Others == undefined || pn?.Others == ''">
+                          {{ pn?.ReferralStatus }}
+                        </ng-container>
+                        <span *ngIf="pn?.Others == ' '"></span>
+                        <i class="fa fade-icon close-icon" style="color: red; cursor: hand"
+                          (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)">×</i>
+                      </div>
+
+                      <div class="d-flex justify-content-between">
+                        <span *ngIf="pn.CustomerComment != null">
+                          By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span>
+                        <span *ngIf="pn.CandidateComment != null">
+                          By {{ profile?.FirstName | titlecase }} {{ profile?.LastName | titlecase }}</span>
+                        <span *ngIf="pn.CandidateComment == null || pn.CustomerComment == null"></span>
+                        <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div>
+                      </div>
+                    </button>
+                    <!-- <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div> -->
+                  </h5>
+                  <!-- <span style="cursor: hand"
+                    ><i
+                      class="fa fade-icon"
+                      style="color: red; cursor: hand"
+                      (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)"
+                      >× delete</i
+                    ></span
+                  > -->
+                </div>
+
+                <div [hidden]="!hideme[i]">
+                  <div class="card-body">
+                    <ng-container *ngIf="pn.CustomerComment != null">
+                      <div class="card-col">
+                        {{ pn?.CustomerComment | titlecase }}
+                        <a *ngIf="customer.UserId==pn.CustomeruserId" class="edit__btn" href="javascript:void(0)"
+                          (click)="showSubItem(i)"><i class="fa fa-pencil"></i></a>
+                      </div>
+
+                      <div class="card-col xs-padding" *ngIf="visibleIndex === i">
+                        <textarea type="text" name="Comments" (input)="newComment= $event.target.value"
+                          placeholder="Please add your Notes *" rows="5" class="form-control"
+                          value="{{pn?.CustomerComment}}"></textarea>
+                        <a href="javascript:void(0)"
+                          (click)="showSubItem(i);saveedit(pn?.CustomerComment,pn.JobId, pn.CustomeruserId,profile?.ProfileId)"
+                          class="btn btn-filled ">Save</a>
+                      </div>
+                      <ng-container *ngIf="pn.attachments.length > 0">
+                        <div class="card-col" *ngFor="let a of pn.attachments">
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="pn.CustomerComment === null && pn.CandidateComment == null">
+                      Notes Not Added
+                      <ng-container *ngIf="pn.attachments.length > 0">
+                        <div class="card-col" *ngFor="let a of pn.attachments">
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="pn.CandidateComment != null">
+                      I am Interested in these position.
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="card">
+										<div class="card-header" id="headingTwo">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
+																aria-expanded="true" aria-controls="collapseTwo">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Agenda"></span>
+																Meet the office team
+																<span>you have an upcoming event</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingThree">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+																aria-expanded="true" aria-controls="collapseThree">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Mail"></span>
+																Investor packet
+																<span>you emailed Andrea Creel</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingFour">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour"
+																aria-expanded="true" aria-controls="collapseFour">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Phone2"></span>
+																Internal Call
+																<span>you logged a call</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingFive">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive"
+																aria-expanded="true" aria-controls="collapseFive">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Menu icon-dark"></span>
+																Invite to coroporate road show
+																<span>you have an upcoming task</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingSix">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix"
+																aria-expanded="true" aria-controls="collapseSix">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Agenda icon-dark"></span>
+																Meet the office team
+																<span>you have an upcoming event</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingSeven">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven"
+																aria-expanded="true" aria-controls="collapseSeven">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Mail icon-dark"></span>
+																Investor packet
+																<span>you emailed Andrea Creel</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div>
+								<div class="card">
+										<div class="card-header" id="headingEight">
+												<h5 class="mb-0">
+														<button class="btn btn-link" data-toggle="collapse" data-target="#collapseEight"
+																aria-expanded="true" aria-controls="collapseEight">
+																<i class="fa fa-chevron-down"></i>
+																<span class="icon icon-Phone2 icon-dark"></span>
+																Internal Call
+																<span>you logged a call</span>
+														</button>
+														<div class="time">2h</div>
+												</h5>
+										</div>
+
+										<div id="collapseEight" class="collapse" aria-labelledby="headingEight"
+												data-parent="#accordion">
+												<div class="card-body">
+														Lorem ipsum dolor sit amet, consecte tempor
+														incididunt ut labore et dolore , quis nostrud.
+												</div>
+										</div>
+								</div> -->
+
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="CandidateNotes.length === 0">
+            <h6>Notes Yet To Add</h6>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="matching-details bg-fff search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="5"
+    [infiniteScrollThrottle]="20"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false" id="matchingDetailCert-{{ profile.ProfileId }}">
+      <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
+      <div class="header scrollbar-inner">
+        <img src="../../../../../assets/images/Certifications/certification.png" width="60" alt="certifications" />
+        <h2>Certifications</h2>
+        <!--List of certifications-->
+        <ul class="certifications-list">
+          <li class="c-details" *ngFor="let cer of CandidateCertification">
+            <div class="col-md-3">
+              <img src="{{ cer?.ImageUrl }}" width="60" alt="certifications" />
+            </div>
+            <div class="col-md-5">
+              <h6>{{ cer?.CertificationName }}</h6>
+            </div>
+            <div class="col-md-4">
+              <h6>{{ cer?.YearOfAchievement | date: "yyyy" }}</h6>
+            </div>
+          </li>
+          <!-- <li class="skill-details">
+							<div class="col-md-3">
+									<img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+											alt="certifications">
+							</div>
+							<div class="col-md-5">
+									<h6>Certificate Name</h6>
+							</div>
+							<div class="col-md-4">
+									<h6>2015</h6>
+							</div>
+					</li>
+					<li class="skill-details">
+							<div class="col-md-3">
+									<img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+											alt="certifications">
+							</div>
+							<div class="col-md-5">
+									<h6>Certificate Name</h6>
+							</div>
+							<div class="col-md-4">
+									<h6>2010</h6>
+							</div>
+					</li> -->
+        </ul>
+      </div>
+    </div>
+    <!---->
+
+    <!--Feedback-->
+    <div class="matching-details bg-fff activities__box" id="matchingDetailFeedback-{{ profile.ProfileId }}">
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
+        <div class="bottom1 bottom1-close">Close</div>
+      </a>
+
+      <div class="top__container flex flex-align-center">
+        <h2>Feedback</h2>
+        <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="OpenRejectDialog(  profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)">
+          <i class="fa fa-plus-circle"></i>
+          <div class="bottom1">Add</div>
+        </button>
+      </div>
+      <div class="middle__container">
+        <div id="accordion">
+          <ng-container *ngIf="CandidateFeedback.length > 0">
+            <ng-container *ngFor="let pn of CandidateFeedback; let i = index">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
+                      <i class="fa fa-chevron-down"></i>
+                      <span class="icon icon-notes"></span>
+                      {{ pn?.FeedbackOption}}
+                      <!-- <ng-container *ngIf="pn?.FeedbackTitle != undefined && pn?.FeedbackTitle != ''">
+                        {{ pn?.FeedbackTitle }}
+                      </ng-container> -->
+                      <!-- <ng-container *ngIf="pn?.Others == undefined || pn?.Others == ''">
+                        {{ pn?.ReferralStatus }}
+                      </ng-container> -->
+
+                      <span *ngIf="pn.Comment != null">
+                        By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span>
+
+                      <!-- <span>
+                       {{ pn?.FeedbackOption}}</span
+                      > -->
+
+                    </button>
+                    <!-- <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div> -->
+                  </h5>
+                  <!-- <span style="cursor: hand"
+                    ><i
+                      class="fa fade-icon"
+                      style="color: red; cursor: hand"
+                      (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)"
+                      >× delete</i
+                    ></span
+                  > -->
+                </div>
+
+                <div [hidden]="hideme[i]">
+                  <div class="card-body">
+                    <ng-container *ngIf="pn.Comment != null">
+                      <div class="card-col">
+                        {{ pn?.Comment | titlecase }}
+                      </div>
+                      <ng-container *ngIf="pn.attachments.length > 0">
+                        <div class="card-col" *ngFor="let a of pn.attachments">
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="pn.Comment === null">
+                      Notes Not Added
+                      <ng-container *ngIf="pn.attachments.length > 0">
+                        <div class="card-col" *ngFor="let a of pn.attachments">
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <!-- <ng-container *ngIf="pn.CandidateComment != null">
+                      I am Interested in these position.
+                    </ng-container> -->
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="CandidateFeedback.length === 0">
+            <h6>Feedback Yet to Add</h6>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+     <!--Documents-->
+     <div class="matching-details bg-fff activities__box" id="matchingDetailDocuments-{{ profile.ProfileId }}">
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
+        <div class="bottom1 bottom1-close">Close</div>
+      </a>
+
+      <div class="top__container flex flex-align-center">
+        <h2>Documents</h2>
+        <!-- <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="OpenRejectDialog(  profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)">
+          <i class="fa fa-plus-circle"></i>
+          <div class="bottom1">Add</div>
+        </button> -->
+      </div>
+
+      <div class="middle__container">
+        <h4>Resume</h4>
+        <div class="griding-document">
+            <div class="row flex flex-wrap flex-aling-equal">
+              <div class="col-sm-6 griding-col">
+                <div class="col-container" >
+                 
+                  <span class="icon icon-pdf">Icon</span>
+                  <h5>Resume _ {{profile?.FirstName | titlecase}} {{
+                    profile?.LastName | titlecase}}</h5>
+                  <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                      profile?.LastName | titlecase}}</h4> -->
+                  <button class="btn btn-download" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word">Icon</span>
+                  <h5>Word Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-notepad">Icon</span>
+                  <h5>Notepad Document</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-word-01">Icon</span>
+                  <h5>Docx File</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div>
+              <div class="col-sm-6 griding-col">
+                <div class="col-container">
+                  <button class="btn btn-close">Close</button>
+                  <span class="icon icon-zip">Icon</span>
+                  <h5>Zip</h5>
+                  <h4>By Aksh Klm</h4>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <h4>Other Documents</h4>
+          <button class="btn btn-sm" (click)="OpenDocuments(profile?.FirstName, profile?.ProfileId)">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+          </button>
+        <div class="griding-document">
+            <div class="row flex flex-wrap flex-aling-equal">
+              <ng-container *ngIf="MyDocuments?.length===0">
+                <div class="col-sm-6 griding-col">
+                  <div class="col-container">
+                    <h5>No Attachments added.</h5>
+                  </div>
+                </div>
+              
+              </ng-container>
+              <ng-container *ngIf="MyDocuments?.length>0">
+              <div class="col-sm-6 griding-col" *ngFor="let d of MyDocuments;let di = index">
+                <div class="col-container" *ngIf="di<5">
+                  <button class="btn btn-close"  (click)="DelDocument(d?.Id,profile?.ProfileId)">Close</button>
+                  <span class="icon icon-pdf"
+                  *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                <span class="icon icon-word"
+                  *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                  <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName.split('aryticDP')[0] |
+                    titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
+                  <!-- <h4>By {{profile?.FirstName | titlecase}} {{
+                    profile?.LastName | titlecase}}</h4> -->
+                </div>
+              </div>
+            </ng-container>
+         
+            </div>
+          </div>
+        
+          <!-- <ng-container *ngIf="CandidateFeedback.length === 0">
+            <h6>Documents Yet to Add</h6>
+          </ng-container>
+        -->
+      </div>
+      
+    </div>
+
+    <!--Domains-->
+    <div class="matching-details bg-fff search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="5"
+    [infiniteScrollThrottle]="20"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false" id="matchingDetailDom-{{ profile.ProfileId }}">
+      <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
+      <div class="header scrollbar-inner">
+        <img src="../../../../../assets/images/Certifications/domain.png" width="60" alt="Domains" />
+        <h2>Domains</h2>
+        <!--List of domains-->
+        <ul class="domains-list">
+          <li class="d-details" *ngFor="let dom of CandidateDomain">
+            <div class="col-md-2">
+              <i class="fa fa-lightbulb-o" aria-hidden="true" *ngIf="dom?.DomainId > 11"></i>
+              <i class="fa fa-flask" aria-hidden="true" *ngIf="dom?.DomainId == 11"></i>
+              <i class="fa fa-university" aria-hidden="true" *ngIf="dom?.DomainId == 6"></i>
+              <i class="fa fa-laptop" aria-hidden="true" *ngIf="dom?.DomainId == 1"></i>
+              <i class="fa fa-industry" aria-hidden="true" *ngIf="dom?.DomainId == 8"></i>
+              <i class="fa fa-medkit" aria-hidden="true" *ngIf="dom?.DomainId == 5"></i>
+              <i class="fa fa-balance-scale" aria-hidden="true" *ngIf="dom?.DomainId == 10"></i>
+              <i class="fa fa-briefcase" aria-hidden="true" *ngIf="dom?.DomainId == 2"></i>
+              <i class="fa fa-usd" aria-hidden="true" *ngIf="dom?.DomainId == 3"></i>
+              <i class="fa fa-phone-square" aria-hidden="true" *ngIf="dom?.DomainId == 4"></i>
+              <i class="fa fa-bolt" aria-hidden="true" *ngIf="dom?.DomainId == 7"></i>
+              <i class="fa fa-road" aria-hidden="true" *ngIf="dom?.DomainId == 9"></i>
+            </div>
+            <div class="col-md-5">
+              <h6>{{ dom?.DomainName }}</h6>
+            </div>
+            <div class="col-md-5">
+              <h6>{{ dom?.ExpInYears }}.{{ dom?.ExpInMonths }} Years</h6>
+              <h6>{{ dom?.LastUsed }}</h6>
+            </div>
+          </li>
+          <!-- <li class="d-details">
+								<div class="col-md-2">
+										<i class="fa fa-university" aria-hidden="true"></i>
+								</div>
+								<div class="col-md-5">
+										<h6>Government</h6>
+								</div>
+								<div class="col-md-5">
+										<h6>Project/Company</h6>
+								</div>
+						</li>
+						<li class="d-details">
+								<div class="col-md-2">
+										<i class="fa fa-heartbeat" aria-hidden="true"></i>
+								</div>
+								<div class="col-md-5">
+										<h6>Health</h6>
+								</div>
+								<div class="col-md-5">
+										<h6>Project/Company</h6>
+								</div>
+						</li> -->
+        </ul>
+      </div>
+    </div>
+    <!---->
+  </div>
+
+  <!-- .card.candidate -->
+</div>
+<div class="result">
+</div>
+
+<mat-spinner *ngIf="Rloading" style="margin: 0 auto" class="" [color]="color" [mode]="mode" strokeWidth="3"
+  [diameter]="50">
+</mat-spinner>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<ng-container *ngIf="jobdetailsprofiles?.Profile == null || jobdetailsprofiles?.Profile.length == 0">
+  <div style="text-align: center">
+    <h5>No Profiles Matched!!</h5>
+  </div>
+</ng-container>
+
+<alert></alert>
+
+
+
+<div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" id="matching-criteria">
+  <div class="modal-dialog" role="document">
+    <!--Slide 3 Result Draft View-->
+    <div class="modal-content vh100 p1">
+      <div class="modal-header">
+        <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Matching Criteria</div>
+      <div>
+        <canvas #testChart1 width="200" height="200"></canvas>
+        <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
+      </div>
+
+      <div class="modal-footer modal-p">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Icon Modal Dialogs 11-05-2020-->
+
+<!--Manage References-->
+<div class="modal fade manage-reference-i-d" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="header scrollbar-inner">
+          <img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References" />
+          <h4>Manage References</h4>
+          <!--List of certifications-->
+          <ul class="references-list">
+            <li class="references-details">
+              <div class="col-md-4">
+                <h6>Manager 1</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company 1</h6>
+              </div>
+              <div class="col-md-4">
+                <h6 class="text-warning">Waiting for Response</h6>
+              </div>
+            </li>
+            <li class="references-details">
+              <div class="col-md-4">
+                <h6>Manager 2</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company 2</h6>
+              </div>
+              <div class="col-md-4">
+                <h6 class="text-warning">Waiting for Response</h6>
+              </div>
+            </li>
+            <li class="references-details">
+              <div class="col-md-4">
+                <h6>Manager 3</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company 3</h6>
+              </div>
+              <div class="col-md-4">
+                <h6 class="text-success">Received Response</h6>
+                <small><a href="javascript:void(0)"><i class="fa fa-file-text" aria-hidden="true"></i> </a></small>
+              </div>
+            </li>
+          </ul>
+          <a class="pull-right" href="javascript:void(0)">Request Info</a>
+          <div class="clearfix">&nbsp;</div>
+          <div class="col-md-10 col-md-offset-1 send-req-form">
+            <form>
+              <div class="form-group text-left">
+                <label for="reqcandidate">Request to Candidate</label>
+                <input type="text" class="form-control col-md-12" id="reqcandidate" placeholder="Your Request" />
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <div class="form-group pull-right">
+                <button class="btn btn-default">Cancel</button>
+                <button class="btn btn-filled">Send Request</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--Manage Achievements-->
+<div class="modal fade manage-achievements-i-d" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="header scrollbar-inner">
+          <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="60" alt="certifications" />
+          <h4>Achievements</h4>
+          <!--List of Achievements-->
+          <ul class="achievements-list">
+            <li class="a-details">
+              <div class="col-md-4">
+                <h6>Best Employee</h6>
+              </div>
+              <div class="col-md-4 text-left">
+                <h6>Company</h6>
+                <small>Project Name</small>
+              </div>
+              <div class="col-md-4">
+                <h6>2020</h6>
+              </div>
+            </li>
+            <li class="a-details">
+              <div class="col-md-4">
+                <h6>Award</h6>
+              </div>
+              <div class="col-md-4 text-left">
+                <h6>Company</h6>
+                <small>Project Name</small>
+              </div>
+              <div class="col-md-4">
+                <h6>2020</h6>
+              </div>
+            </li>
+            <li class="a-details">
+              <div class="col-md-4">
+                <h6>Award</h6>
+              </div>
+              <div class="col-md-4 text-left">
+                <h6>Company</h6>
+                <small>Project Name</small>
+              </div>
+              <div class="col-md-4">
+                <h6>2020</h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--Manage recommendations-->
+<div class="modal fade manage-recommendations-i-d" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="header scrollbar-inner">
+          <img src="../../../../../assets/images/card-icons/recommendations.png" width="60" alt="Recommendations" />
+          <h4>Recommendations</h4>
+          <!--List of Recommendations-->
+          <ul class="recommendations-list">
+            <li class="r-details text-left">
+              <div class="col-md-4">
+                <h6>James Barret</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company</h6>
+              </div>
+              <div class="col-md-4">
+                <p>Good at commuication skills</p>
+              </div>
+            </li>
+            <li class="r-details text-left">
+              <div class="col-md-4">
+                <h6>Employee Name</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company</h6>
+              </div>
+              <div class="col-md-4">
+                <p>Recommendations</p>
+              </div>
+            </li>
+            <li class="r-details text-left">
+              <div class="col-md-4">
+                <h6>Employee Name</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Company</h6>
+              </div>
+              <div class="col-md-4">
+                <p>Recommendations</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--Manage BG Verified Profile-->
+<div class="modal fade manage-bgv-i-d" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="header scrollbar-inner">
+          <img src="../../../../../assets/images/card-icons/verified-badge.png" width="60" alt="References" />
+          <h4>Background Verification</h4>
+          <!--List of skills-->
+          <ul class="bg-list">
+            <li class="bg-details">
+              <div class="col-md-3 text-left">
+                <label>Details</label>
+              </div>
+              <div class="col-md-3">
+                <label>3rd Party</label>
+              </div>
+              <div class="col-md-3">
+                <label>Date</label>
+              </div>
+              <div class="col-md-3">
+                <label>Feedback</label>
+              </div>
+            </li>
+
+            <li class="bg-details">
+              <div class="col-md-3 text-left">
+                <h6>Experience</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>XYZ services</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>20-02-2020</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-success">Verified</h6>
+              </div>
+            </li>
+            <li class="bg-details">
+              <div class="col-md-3 text-left">
+                <h6>Immigration</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>-</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>-</h6>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-filled">Request Verification</button>
+              </div>
+            </li>
+            <li class="bg-details">
+              <div class="col-md-3 text-left">
+                <h6>Criminal</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>ABC services</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>20-02-2020</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-success">No Active Cases</h6>
+              </div>
+            </li>
+
+            <li class="bg-details">
+              <div class="col-md-3 text-left">
+                <h6>Medical</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>XYZ services</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>20-02-2020</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-success">All Clear</h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--Manage Skill Verifications-->
+<div class="modal fade manage-s-v-i-d" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="header scrollbar-inner">
+          <img src="../../../../../assets/images/Certifications/skills.png" width="60" alt="References" />
+          <h4>Skills Verification</h4>
+          <!--List of skills-->
+          <ul class="skills-list">
+            <li class="skill-details">
+              <div class="col-md-3 text-left">
+                <label>Skill</label>
+              </div>
+              <div class="col-md-3">
+                <label>Experience</label>
+              </div>
+              <div class="col-md-3">
+                <label>Rating/5</label>
+              </div>
+              <div class="col-md-3">
+                <label>Skill Test</label>
+              </div>
+            </li>
+            <li class="skill-details">
+              <div class="col-md-3 text-left">
+                <h6>Skill 1</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>4 Years</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>4</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-warning">Yet to be verified</h6>
+                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+              </div>
+            </li>
+            <li class="skill-details">
+              <div class="col-md-3 text-left">
+                <h6>Skill 2</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>2 Years</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>3</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-warning">Yet to be verified</h6>
+                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+              </div>
+            </li>
+            <li class="skill-details">
+              <div class="col-md-3 text-left">
+                <h6>Skill 3</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>3 Years</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>4</h6>
+              </div>
+              <div class="col-md-3">
+                <h6 class="text-success">Skill verified</h6>
+                <small><a href="javascript:void(0)">View</a></small>
+              </div>
+            </li>
+            <li class="skill-details">
+              <div class="col-md-3 text-left">
+                <h6>Skill 4</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>4 Years</h6>
+              </div>
+              <div class="col-md-3">
+                <h6>4</h6>
+              </div>
+
+              <div class="col-md-3">
+                <h6 class="text-warning">Yet to be verified</h6>
+                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+
+<!-- /.modal -->

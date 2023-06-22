@@ -1,0 +1,871 @@
+<mat-dialog-content class="mat-typography manage-achievements-i-d m-r-d">
+  <div class="modal-header text-center">
+    <img src="../../../../../assets/images/card-icons/verified-badge.png" width="40" alt="Background-Verification">
+    <h4>Background Screening Services </h4>
+    <p>Make timely and informed hiring decisions with Arytic's comprehensive suite of employment screening services</p>
+  </div>
+  <div class="modal-body">
+    <div class="form-group bg-panels">
+      <div class="bg-row row">
+
+        <ng-container *ngIf="ShowVer">
+
+          <!-- <ng-container *ngIf="showone">
+            <div class="col-md-12 existing-heading">
+              <h4>Existing Reports of : <strong>{{name | titlecase}} {{lname | titlecase}}</strong></h4>
+            </div>
+
+            <div class="col-md-12">
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.CriminalOptionSelected == 1">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i class="fa fa-gavel" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Criminal Record Checks</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5 *ngIf="bgverification.CriminalOptionSelected == 1">In-Progress</h5>
+                  </div>
+                 <div class="col-md-4">
+                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
+                  </div> 
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.CriminalOptionSelected == 2">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i class="fa fa-gavel" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Civil Court Checks</h4>
+                  </div>
+                  <div class="col-md-3">
+                    <h5 *ngIf="bgverification.CriminalOptionSelected == 2">In-Progress</h5>
+                  </div>
+                  <div class="col-md-4">
+                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
+                  </div> 
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.DrugOptionSelected>0">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <img src="../../../../../assets/images/card-icons/drug.svg" width="35"
+                      alt="Background-Verification">
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Drug Screening</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 *ngIf="bgverification.DrugOptionSelected>0">In-Progress</h5>
+                   <h5 class="failed">Failed</h5> 
+                  </div>
+                  <div class="col-md-2 text-center download-report">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a href="javascript:void(0)"> Download Report</a>
+                  </div>
+                   <div class="col-md-3">
+                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
+                  </div> 
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.Employment == true">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Prior Employment Verification</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 *ngIf="bgverification.Employment == true">In-Progress</h5>
+                   <h5 class="success">Success</h5> 
+                  </div>
+                  <div class="col-md-2 text-center download-report">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a href="javascript:void(0)"> Download Report</a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.Education == true">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i aria-hidden="true" class="fa fa-graduation-cap"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Education Verification</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 *ngIf="bgverification.Education == true">In-Progress</h5>
+                   <h5 class="success">Success</h5> 
+                  </div>
+                  <div class="col-md-2 text-center download-report">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a href="javascript:void(0)"> Download Report</a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.Certification == true">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i aria-hidden="true" class="fa fa-certificate"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Certification Verification</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 *ngIf="bgverification.Certification == true">In-Progress</h5>
+                    <h5 class="failed">Failed</h5> 
+                  </div>
+                  <div class="col-md-2 text-center download-report">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a href="javascript:void(0)"> Download Report</a>
+                  </div>
+                  <div class="col-md-3">
+                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default existing-panel" *ngIf="bgverification.Reference == true">
+                <div class="panel-body row">
+                  <div class="col-md-1">
+                    <i aria-hidden="true" class="fa fa-handshake-o"></i>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Reference Check</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 *ngIf="bgverification.Reference == true && usersList.length===0">In-Progress</h5>
+                    <h5 class="success" *ngIf="bgverification.Reference == true && usersList.length>0">Available</h5>
+                  </div>
+                  <div class="col-md-2 text-center download-report">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a href="javascript:void(0)"> View References</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container> -->
+          <!-- Existing Reports Ends-->
+          <!--Availed Services Screen-->
+          <ng-container *ngIf="!showone">
+            <div class="col-md-12">
+              <div class="panel panel-default availed-panel">
+                <div class="panel-heading text-center">
+                  <h3 class="panel-title">Availed Services Screen</h3>
+                  <small>Candidate Name: <strong>{{name | titlecase}} {{lname | titlecase}}</strong></small>
+                </div>
+                <div class="panel-body">
+                  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
+                    <div class="media-body">
+                      <h4 class="media-heading">Criminal Record Checks</h4>
+                      <ul class="bg-features">
+                        <li>Social Security Number Trace</li>
+                        <li>Nationwide Criminal Database Search</li>
+                        <li>Sex Offender Registry Search</li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+                  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 2">
+                    <div class="media-body">
+                      <h4 class="media-heading">Civil Court Checks</h4>
+                      <ul class="bg-features">
+                        <li>Criminal Record Checks</li>
+                        <li>County Criminal Court Search - 7 Years...</li>
+                        <li>Domestic Watch List Search</li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+
+                  <div class="media" *ngIf="bgverification.DrugOptionSelected>0">
+                    <div class="media-body">
+                      <h4 class="media-heading">Drug Screening</h4>
+                      <ul class="bg-features">
+                        <ng-container *ngFor="let d of Dlist">
+                          <li *ngIf="bgverification.DrugOptionSelected==d.Id">{{d.DrugVerification}}</li>
+                        </ng-container>
+
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+
+                  <div class="media" *ngIf="bgverification.Employment == true">
+                    <div class="media-body">
+                      <h4 class="media-heading">Employment Verification</h4>
+                      <ul class="bg-features">
+                        <li>Current or past employment and Job Titles</li>
+                        <li>Current Verification / Single Employer</li>
+                        <li>Additional third-party pass-through fees ...</li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+
+                  <div class="media" *ngIf="bgverification.Education == true">
+                    <div class="media-body">
+                      <h4 class="media-heading">Education Verification</h4>
+                      <ul class="bg-features">
+                        <li>Attendance dates </li>
+                        <li>Major(s); and degree(s), diploma(s)...</li>
+                        <li>Current Verification / Single Institution</li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+
+                  <div class="media" *ngIf="bgverification.Certification == true">
+                    <div class="media-body">
+                      <h4 class="media-heading">Certification Verification</h4>
+                      <ul class="bg-features">
+                        <li>Certification dates </li>
+                        <li>Certification Provider</li>
+                        <li>Certification Duration</li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1>In-Progress</h1>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+                  <div class="media" *ngIf="bgverification.Reference == true">
+                    <div class="media-body">
+                      <h4 class="media-heading">Reference Check</h4>
+                      <ul class="bg-features">
+                        <li>Arytic Premium service exclusively FREE Add On </li>
+                      </ul>
+                    </div>
+                    <div class="media-right">
+                      <h1 *ngIf="bgverification.Reference == true && usersList.length===0">In-Progress</h1>
+                      <h1 class="success" *ngIf="bgverification.Reference == true && usersList.length>0">Available</h1>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="panel-footer total-section">
+                  <div class="clearfix">&nbsp;</div>
+                </div>
+                <p class="cta-text">If you would like to avail additional Background Screening Services. Please click
+                  Proceed.</p>
+              </div>
+            </div>
+          </ng-container>
+          <!---->
+        </ng-container>
+
+
+        <mat-spinner *ngIf="loading" diameter="70"></mat-spinner>
+
+        <div class="revamp__radio__grid revamp__lg__radio__grid">
+          <div class="row flex flex-wrap flex-align-equal">
+            <ng-container *ngIf="!ShowVer">
+              <ng-container *ngIf="!showRes">
+                <ng-container *ngFor="let bg of Bglist">
+                  <ng-container *ngIf="bg.Id==1">
+                    <div class="row flex flex-wrap flex-align-equal">
+                      <div class="col-sm-6 col">
+                        <label for="bg-civil">
+                          <input type="radio" [(ngModel)]="bgverification.CriminalOptionSelected" (change)="SaveBg(1)"
+                            [value]="1" id="bg-civil" name="bg-civil" class="radio-input" />
+                          <div class="col__container">
+                            <div class="row sub__row flex flex-wrap flex-align-center">
+                              <div class="col-sm-6">
+                                <h4 class="media-heading">Criminal Record Checks</h4>
+                                <ul class="bg-features">
+                                  <li>Social Security Number Trace</li>
+                                  <li>Nationwide Criminal Database Search</li>
+                                  <li>Sex Offender Registry Search</li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6">
+                                $49.99
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <span class="or">(OR)</span>
+                      <div class="col-md-6 col">
+                        <label for="bg-civil1">
+                          <input type="radio" [(ngModel)]="bgverification.CriminalOptionSelected" (change)="SaveBg(1)"
+                            [value]="2" id="bg-civil1" name="bg-civil" class="radio-input" />
+                          <div class="col__container">
+                            <div class="row sub__row flex flex-wrap flex-align-center">
+                              <div class="col-sm-6">
+                                <h4 class="media-heading">Civil Court Checks</h4>
+                                <ul class="bg-features">
+                                  <li>Criminal Record Checks</li>
+                                  <li>County Criminal Court Search - 7 Years...</li>
+                                  <li>Domestic Watch List Search</li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6">
+                                $49.99
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="bg.Id==2">
+                    <div class="row multiple__radio__row">
+                      <div class="col-sm-12 col">
+                        <div class="col__container flex flex-wrap flex-align-center">
+                          <div class="left__col">
+                            <h4>{{bg.Code}} *</h4>
+                            <div class="bottom__container">
+                              <img src="../../../../../assets/images/card-icons/drug.svg"
+                                  width="35"
+                                  alt="Background-Verification" />
+                                  <ul>
+                                    <li>
+                                      <input type="radio" [value]="1" name="options" (change)="SaveBg(1)"
+                                        [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off">
+                                      <label for='option1'>4 - Panel Drug Test</label>
+                                    </li>
+                                    <li>
+                                      <input type="radio" [value]="2" name="options" (change)="SaveBg(1)"
+                                        [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">
+                                      <label for='option2'>5 - Panel Drug Test</label>
+                                    </li>
+                                    <li>
+                                      <input type="radio" [value]="3" name="options" (change)="SaveBg(1)"
+                                        [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off">
+                                      <label for='option3'>9 - Panel Drug Test</label>
+                                    </li>
+                                    <li>
+                                      <input type="radio" [value]="4" name="options" (change)="SaveBg(1)"
+                                        [(ngModel)]="bgverification.DrugOptionSelected" id="option4" autocomplete="off">
+                                      <label for='option4'>10 - Panel Drug Test</label>
+                                    </li>
+                                    <li>
+                                      <input type="radio" [value]="5" name="options" (change)="SaveBg(1)"
+                                        [(ngModel)]="bgverification.DrugOptionSelected" id="option5" autocomplete="off">
+                                      <label for='option5'> 8 - Panel + MQL Drug Test</label>
+                                    </li>
+                                  </ul>
+                            </div>
+                          </div>
+                          <div class="right__col">
+                            $49.99
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row info__row flex flex-wrap flex-align-center">
+                      <div class="col-md-8">
+                        <p>* In Order to get Drug Screening, Criminal History Verification (County Search) need
+                          to
+                          be included with it.
+                        </p>
+                      </div>
+                      <div class="col-md-4 about-drug-test">
+                        <!-- Single button -->
+                        <div class="btn-group">
+                          <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+      
+                            About Drug Tests
+                          </a>
+                          <ul class="dropdown-menu">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                            <img src="../../../../../assets/images/card-icons/drug-test.png" width="490" alt="Drug-Tests">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container>
+                    <div class="col-sm-6 col icon__col" *ngIf="bg.Id==3">
+                      <div class="row sub__row sub__row__height flex flex-wrap flex-align-center">
+                          <label for="bg-emp" class="label__row">
+                            <input type="checkbox" [(ngModel)]="bgverification.Employment" id="bg-emp" name="bg-emp"
+                              class="radio-input" />
+                            <div class="col__container">
+                              <h4 class="media-heading">{{bg.Code}} *</h4>
+                              <div class="col-sm-12">
+                                <ul class="bg-features">
+                                  <li>Current or past employment and Job Titles</li>
+                                  <li>Current Verification / Single Employer</li>
+                                  <li>Additional third-party pass-through fees ...</li>
+                                </ul>
+                              </div>
+                              <div class="price__icon">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                <h1>FREE</h1>
+                              </div>
+                            </div>
+                          </label>
+                      
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col icon__col"  *ngIf="bg.Id==4">
+                      <div class="row sub__row sub__row__height flex flex-wrap flex-align-center">
+                        <label for="bg-edu" class="label__row">
+                          <input type="checkbox" [(ngModel)]="bgverification.Education" (change)="SaveBg(1)" id="bg-edu"
+                            name="bg-edu" class="radio-input" />
+                          <div class="col__container">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <div class="col-sm-12">
+                              <ul class="bg-features">
+                                <li>Attendance dates </li>
+                                <li>Major(s); and degree(s), diploma(s)...</li>
+                                <li>Current Verification / Single Institution</li>
+                              </ul>
+                            </div>
+                            <div class="price__icon">
+                              <i class="fa fa-bookmark" aria-hidden="true"></i>
+                              <h1>$39.99</h1>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col icon__col"  *ngIf="bg.Id==5">
+                      <div class="row sub__row sub__row__height flex flex-wrap flex-align-center">
+                        <label for="bg-cer" class="label__row">
+                          <input type="checkbox" [(ngModel)]="bgverification.Certification" (change)="SaveBg(1)" id="bg-cer"
+                            name="bg-cer" class="radio-input" />
+                          <div class="col__container">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <div class="col-sm-12">
+                              <ul class="bg-features">
+                                <li>Certification dates </li>
+                                <li>Certification Provider</li>
+                                <li>Certification Duration</li>
+                              </ul>
+                            </div>
+                            <div class="price__icon">
+                              <i class="fa fa-bookmark" aria-hidden="true"></i>
+                              <h1>$69.99</h1>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col icon__col"  *ngIf="bg.Id==6">
+                      <div class="row sub__row sub__row__height flex flex-wrap flex-align-center">
+                        <label for="bg-ref" class="label__row">
+                          <input type="checkbox" [(ngModel)]="bgverification.Reference" id="bg-ref" name="bg-ref"
+                            class="radio-input" />
+                          <div class="col__container">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <div class="col-sm-12">
+                              <ul class="bg-features">
+                                <li>Arytic Premium service exclusively FREE Add On </li>
+                              </ul>
+                            </div>
+                            <div class="price__icon">
+                              <i class="fa fa-bookmark" aria-hidden="true"></i>
+                              <h1>FREE</h1>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <!---->
+                  <!--Civil Verification-->
+                  <!-- <div class="panel panel-default civil-panel" *ngIf="bg.Id==1">
+                    <div class="panel-body">
+                      <div class="col-md-5 c-r-c">
+                        <label for="bg-civil">
+                          <input type="radio" [(ngModel)]="bgverification.CriminalOptionSelected" (change)="SaveBg(1)"
+                            [value]="1" id="bg-civil" name="bg-civil" class="radio-input" />
+                          <div class="type">
+                            <div class="media">
+                              <div class="media-body">
+                                <h4 class="media-heading">Criminal Record Checks</h4>
+                                <ul class="bg-features">
+                                  <li>Social Security Number Trace</li>
+                                  <li>Nationwide Criminal Database Search</li>
+                                  <li>Sex Offender Registry Search</li>
+                                </ul>
+                              </div>
+                              <div class="media-right">
+                                <h1>$49.99</h1>
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="col-md-1 text-center civil-icon">
+                        <i class="fa fa-gavel" aria-hidden="true"></i>
+                        <h3>(OR)</h3>
+                      </div>
+                      <div class="col-md-5 c-c-c">
+                        <label for="bg-civil1">
+                          <input type="radio" [(ngModel)]="bgverification.CriminalOptionSelected" (change)="SaveBg(1)"
+                            [value]="2" id="bg-civil1" name="bg-civil" class="radio-input" />
+                          <div class="type">
+                            <div class="media">
+                              <div class="media-body">
+                                <h4 class="media-heading">Civil Court Checks</h4>
+                                <ul class="bg-features">
+                                  <li>Criminal Record Checks</li>
+                                  <li>County Criminal Court Search - 7 Years...</li>
+                                  <li>Domestic Watch List Search</li>
+                                </ul>
+                              </div>
+                              <div class="media-right">
+                                <h1>$49.99</h1>
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div> -->
+                  <!--Drug Screening-->
+                  <!--<div class=" panel panel-default bg-drug" *ngIf="bg.Id==2">
+                    <div class="panel-body">
+                      <div class="media">
+                        <div class="media-left">
+                          <img src="../../../../../assets/images/card-icons/drug.svg" width="35"
+                            alt="Background-Verification">
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">{{bg.Code}} *</h4>
+                          <div class="btn-group drug-s">
+                            <ul>
+                              <li>
+                                <input type="radio" [value]="1" name="options" (change)="SaveBg(1)"
+                                  [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off">
+                                <label for='option1'>4 - Panel Drug Test</label>
+                              </li>
+                              <li>
+                                <input type="radio" [value]="2" name="options" (change)="SaveBg(1)"
+                                  [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">
+                                <label for='option2'>5 - Panel Drug Test</label>
+                              </li>
+                              <li>
+                                <input type="radio" [value]="3" name="options" (change)="SaveBg(1)"
+                                  [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off">
+                                <label for='option3'>9 - Panel Drug Test</label>
+                              </li>
+                              <li>
+                                <input type="radio" [value]="4" name="options" (change)="SaveBg(1)"
+                                  [(ngModel)]="bgverification.DrugOptionSelected" id="option4" autocomplete="off">
+                                <label for='option4'>10 - Panel Drug Test</label>
+                              </li>
+                              <li>
+                                <input type="radio" [value]="5" name="options" (change)="SaveBg(1)"
+                                  [(ngModel)]="bgverification.DrugOptionSelected" id="option5" autocomplete="off">
+                                <label for='option5'> 8 - Panel + MQL Drug Test</label>
+                              </li>
+                            </ul>
+    
+                          </div>
+                        </div>
+                        <div class="media-right">
+                          <h1>$49.99</h1>
+                        </div>
+                      </div>
+                    </div>
+    
+                  </div> -->
+                  <!--About Drug test Added on 01-09-2020-->
+                  <!-- <div class="row" *ngIf="bg.Id==2">
+                    <div class="col-md-8">
+                      <p>* In Order to get Drug Screening, Criminal History Verification (County Search) need
+                        to
+                        be included with it.
+                      </p>
+                    </div>
+                    <div class="col-md-4 about-drug-test">
+                      <div class="btn-group">
+                        <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+    
+                          About Drug Tests
+                        </a>
+                        <ul class="dropdown-menu">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                              aria-hidden="true">&times;</span></button>
+                          <img src="../../../../../assets/images/card-icons/drug-test.png" width="490" alt="Drug-Tests">
+                        </ul>
+                      </div>
+                    </div>
+                  </div> -->
+                  <!--About Drug test-->
+    
+                  <!--Employment Verification-->
+                  <!-- <div class="bg-emp col-md-12 col-sm-12" *ngIf="bg.Id==3">
+                    <label for="bg-emp">
+                      <input type="checkbox" [(ngModel)]="bgverification.Employment" id="bg-emp" name="bg-emp"
+                        class="radio-input" />
+                      <div class="type">
+                        <div class="media">
+                          <div class="media-left">
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <ul class="bg-features">
+                              <li>Current or past employment and Job Titles</li>
+                              <li>Current Verification / Single Employer</li>
+                              <li>Additional third-party pass-through fees ...</li>
+                            </ul>
+                          </div>
+                          <div class="media-right text-center">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            <h1>FREE</h1>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+    
+                  </div> -->
+                  <!--Education Verification-->
+                  <!-- <div class="bg-edu col-md-12 col-sm-12" *ngIf="bg.Id==4">
+                    <label for="bg-edu">
+                      <input type="checkbox" [(ngModel)]="bgverification.Education" (change)="SaveBg(1)" id="bg-edu"
+                        name="bg-edu" class="radio-input" />
+                      <div class="type">
+                        <div class="media">
+                          <div class="media-left">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <ul class="bg-features">
+                              <li>Attendance dates </li>
+                              <li>Major(s); and degree(s), diploma(s)...</li>
+                              <li>Current Verification / Single Institution</li>
+                            </ul>
+                          </div>
+                          <div class="media-right">
+                            <h1>$39.99</h1>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  </div> -->
+                  <!--Certification Verification-->
+                  <!-- <div class="bg-cer col-md-12 col-sm-12" *ngIf="bg.Id==5">
+                    <label for="bg-cer">
+                      <input type="checkbox" [(ngModel)]="bgverification.Certification" (change)="SaveBg(1)" id="bg-cer"
+                        name="bg-cer" class="radio-input" />
+                      <div class="type">
+                        <div class="media">
+                          <div class="media-left">
+                            <i class="fa fa-certificate" aria-hidden="true"></i>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <ul class="bg-features">
+                              <li>Certification dates </li>
+                              <li>Certification Provider</li>
+                              <li>Certification Duration</li>
+                            </ul>
+                          </div>
+                          <div class="media-right">
+                            <h1>$69.99</h1>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  </div> -->
+                  <!--Reference Check-->
+                  <!-- <div class="bg-ref col-md-12 col-sm-12" *ngIf="bg.Id==6">
+                    <label for="bg-ref">
+                      <input type="checkbox" [(ngModel)]="bgverification.Reference" id="bg-ref" name="bg-ref"
+                        class="radio-input" />
+                      <div class="type">
+                        <div class="media">
+                          <div class="media-left">
+                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading">{{bg.Code}} *</h4>
+                            <ul class="bg-features">
+                              <li>Arytic Premium service exclusively FREE Add On </li>
+                            </ul>
+                          </div>
+                          <div class="media-right text-center">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            <h1>FREE</h1>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  </div> -->
+                </ng-container>
+                <!--Total section-->
+                <div class="col-md-12 total-section">
+                  <span class="pull-right">Total(Including Taxes): <strong>$ {{subtotal}}</strong></span>
+                </div>
+              </ng-container>
+              <!--Summary Screen-->
+              <ng-container *ngIf="showRes">
+                <div class="col-md-12">
+                  <div class="panel panel-default summary-panel">
+                    <div class="panel-heading text-center">
+                      <h3 class="panel-title">Summary</h3>
+                      <small>Candidate Name: <strong>{{name | titlecase}} {{lname | titlecase}}</strong></small>
+                    </div>
+                    <div class="panel-body">
+                      <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
+                        <div class="media-body">
+                          <h4 class="media-heading">Criminal Record Checks</h4>
+                          <ul class="bg-features">
+                            <li>Social Security Number Trace</li>
+                            <li>Nationwide Criminal Database Search</li>
+                            <li>Sex Offender Registry Search</li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>$49.99</h1>
+                        </div>
+                      </div>
+                      <div class="media" *ngIf="bgverification.CriminalOptionSelected == 2">
+                        <div class="media-body">
+                          <h4 class="media-heading">Civil Court Checks</h4>
+                          <ul class="bg-features">
+                            <li>Criminal Record Checks</li>
+                            <li>County Criminal Court Search - 7 Years...</li>
+                            <li>Domestic Watch List Search</li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>$49.99</h1>
+                        </div>
+                      </div>
+    
+                      <div class="media" *ngIf="bgverification.DrugOptionSelected>0">
+                        <div class="media-body">
+                          <h4 class="media-heading">Drug Screening</h4>
+                          <ul class="bg-features">
+                            <ng-container *ngFor="let d of Dlist">
+                              <li *ngIf="bgverification.DrugOptionSelected==d.Id">{{d.DrugVerification}}</li>
+                            </ng-container>
+    
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>$49.99</h1>
+                        </div>
+                      </div>
+    
+                      <div class="media" *ngIf="bgverification.Employment == true">
+                        <div class="media-body">
+                          <h4 class="media-heading">Employment Verification</h4>
+                          <ul class="bg-features">
+                            <li>Current or past employment and Job Titles</li>
+                            <li>Current Verification / Single Employer</li>
+                            <li>Additional third-party pass-through fees ...</li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>Free</h1>
+                        </div>
+                      </div>
+    
+                      <div class="media" *ngIf="bgverification.Education == true">
+                        <div class="media-body">
+                          <h4 class="media-heading">Education Verification</h4>
+                          <ul class="bg-features">
+                            <li>Attendance dates </li>
+                            <li>Major(s); and degree(s), diploma(s)...</li>
+                            <li>Current Verification / Single Institution</li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>$39.99</h1>
+                        </div>
+                      </div>
+    
+                      <div class="media" *ngIf="bgverification.Certification == true">
+                        <div class="media-body">
+                          <h4 class="media-heading">Certification Verification</h4>
+                          <ul class="bg-features">
+                            <li>Certification dates </li>
+                            <li>Certification Provider</li>
+                            <li>Certification Duration</li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>$69.99</h1>
+                        </div>
+                      </div>
+    
+    
+    
+    
+    
+    
+    
+                      <div class="media" *ngIf="bgverification.Reference == true">
+                        <div class="media-body">
+                          <h4 class="media-heading">Reference Check</h4>
+                          <ul class="bg-features">
+                            <li>Arytic Premium service exclusively FREE Add On </li>
+                          </ul>
+                        </div>
+                        <div class="media-right">
+                          <h1>Free</h1>
+                        </div>
+                      </div>
+    
+    
+                    </div>
+                    <div class="panel-footer total-section">
+                      <span class="pull-right">Total: <strong>${{subtotal}}</strong></span>
+                      <div class="clearfix">&nbsp;</div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+  <ng-container *ngIf="ShowVer">
+
+    <div class="modal-footer bg-footer">
+      <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+      <!-- <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
+      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button> -->
+      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(3)">Proceed</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!ShowVer">
+    <div class="modal-footer bg-footer">
+      <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+      <button class="btn btn-default pull-left" *ngIf="showRes" (click)="SaveBg(1)">Back</button>
+      <button class="btn btn-filled pull-right" *ngIf="!showRes" (click)="SaveBg(2)">Next</button>
+      <button class="btn btn-filled pull-right" *ngIf="showRes" (click)="SaveBg(3)">Proceed</button>
+    </div>
+  </ng-container>
+</mat-dialog-content>

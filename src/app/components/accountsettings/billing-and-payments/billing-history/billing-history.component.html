@@ -1,0 +1,69 @@
+
+    
+
+            <ng-container *ngIf="InvoicesList">
+              <div class="tr-scroll" *ngIf="InvoicesList.length>0">
+                <div class="table-responsive" style="width: 100%">
+              <table class="table adduser-checkbox">
+      
+              <thead>
+              <tr>
+                <th>Invoice Id</th>
+                <th>Due Date</th>
+                <th>Paid On</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Invoice Copy</th>              
+              </tr>
+            </thead>          
+            <tbody>
+              <tr *ngFor="let history of InvoicesList">
+                <td>Invoice #{{history?.id}} </td>
+                <td>{{history?.dueDate | date:'mediumDate'}} </td>
+                <td>{{history?.paidAt  | date:'mediumDate'}} </td>
+                <td> $ {{history?.total/100}}</td>
+                <td>Paid</td>
+                <td>
+                    <!-- <div class="dropdown notes-dropdown d-inline">
+                        <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
+                          id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
+                          
+                        </a>
+                        <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
+                          <div class="p10-20">
+                          Email : {{contactdetails?.email}}
+                          </div>
+                        </div>
+                      </div>   -->
+                      <div class="dropdown notes-dropdown d-inline">
+                          <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button" (click)="GetInvoicePdfDownLoad(history?.id)">
+                            <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
+                          </a>
+                          
+                        </div> 
+                </td>
+              </tr>  
+            </tbody>
+             </table>
+            </div>
+          </div>        
+            </ng-container>
+            <ng-container *ngIf="InvoicesList.length==0">
+                <div class="no-billing-view text-center">
+              <img src="./../../../../assets/images/no-billing-image.png">
+              <h5>No Billing History</h5>
+              <p>Your Billing history snippet will be shown here</p>
+            </div> 
+            </ng-container>
+         
+
+  
+<div id="billing-history-calendar" class="fc fc-unthemed fc-ltr" style="display: none">
+  <div class="fc-toolbar fc-header-toolbar"><div class="fc-left">
+    <div class="fc-button-group">
+      <button type="button" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Week</button>
+      <button type="button" class="fc-listMonth-button fc-button fc-state-default fc-corner-right">Month</button>
+    </div></div><div class="fc-right"><div><button type="button" class="fc-prev-button fc-button fc-state-default"><span class="fc-icon fc-icon-left-single-arrow"></span></button><h2>Aug 12 – 18, 2018</h2><button type="button" class="fc-next-button fc-button fc-state-default"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div></div><div class="fc-center"></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-billingWeek-view"><div class="fc-emptyState"><p>Sorry no transactions to show</p></div></div></div>
+
+</div>

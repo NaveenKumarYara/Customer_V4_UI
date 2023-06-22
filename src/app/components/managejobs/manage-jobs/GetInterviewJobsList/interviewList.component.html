@@ -1,0 +1,582 @@
+<!-- <app-Logoheader></app-Logoheader> -->
+<!--Old Code Starts-->
+
+<!--Old Code Ends-->
+
+<!--New Code Start-->
+<!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+<a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+  <i class="fa fa-play" aria-hidden="true"></i>
+  <div class="circle" style="animation-delay: -3s"></div>
+  <div class="circle" style="animation-delay: -2s"></div>
+  <div class="circle" style="animation-delay: -1s"></div>
+  <div class="circle" style="animation-delay: 0s"></div>
+</a>
+<div class="inteview-schedule-section flex flex-wrap flex-align-equal">
+
+  <!--Vertical Tabs-->
+  <ul class="nav nav-tabs verticalTab" id="verticalTab" role="tablist">
+    <li class="nav-item active" data-step="2" data-title="Step 2" data-intro="All the list of scheduled interviews in this week can be found here." data-position='top'>
+      <a class="nav-link" id="thisweek-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(3)" aria-controls="thisweek" aria-selected="true">
+        <span class="icon icon-week">Icon</span>
+        This Week
+      </a>
+    </li>
+    <li class="nav-item" data-step="3" data-title="Step 3" data-intro="All the list of upcoming scheduled interviews can be found here." data-position='top'>
+      <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(2)" aria-controls="upcoming" aria-selected="false">
+        <span class="icon icon-upcoming">Icon</span>
+        Upcoming
+      </a>
+    </li>
+    <li class="nav-item" data-step="4" data-title="Step 4" data-intro="All the list of completed interviews can be found here." data-position='top'>
+      <a class="nav-link" id="completed-tab" data-toggle="tab" href="#thisweek" role="tab" (click)="SortTheProfile(1)" aria-controls="completed" aria-selected="false">
+        <span class="icon icon-completed">Icon</span>
+        Completed
+      </a>
+    </li>
+    <li class="nav-item" data-step="5" data-title="Step 5" data-intro="The calendar enables you to view the list of scheduled interviews based on date (The calendar is coming soon)." data-position='top'>
+      <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" (click)="SortTheProfile(4)" aria-selected="false">
+        <span class="icon icon-calendar">Icon</span>
+        Calendar
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="comment-tab" data-step="6" data-title="Step 6" data-intro="The messenger enables you to communicate with the candidate whom the interview is scheduled for (The messenger is coming soon)." data-position='top'  data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">
+        <span class="icon icon-comment">Icon</span>
+        Message
+      </a>
+    </li>
+  </ul>
+  <!--Vertical Tabs-->
+
+  <!--Interview Schedule Box-->
+  <div class="inteview-schedule-box flex flex-wrap flex-align-equal">
+    <div class="tab-content" id="myTabContent">
+      <div class="search-box-container" data-step="1" data-title="Step 1" data-intro="All the scheduled interview details can be viewed here using the search option." data-position='top'>
+        <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
+        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Enter Search Here..." [(ngModel)]="searchString"   #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr" />
+        <div class="searchList" *ngIf="SearchList.length>0">
+          <ul class="searchList-dropdown">
+            <li class="searchList-options" *ngFor="let slist of SearchList"
+              (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+          </ul>
+        </div>
+        <button class="btn btn-search"  (keyDown)="SearchEnter(searchString)" style="display: none;">Search</button>
+        </form>
+      </div>
+      <!--Week Tabs-->
+      <div class="tab-pane fade active in" id="thisweek" role="tabpanel" aria-labelledby="thisweek-tab">
+        <div class="horizontalTabs">
+          <ul class="nav nav-tabs" id="thisWeekTab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link" id="this-week-interview-tab" data-toggle="tab" href="#this-week-interview" role="tab" aria-controls="home" aria-selected="true">
+                Interview Schedule
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" id="this-week-event-tab" data-toggle="tab" href="#this-week-event" role="tab" aria-controls="profile" aria-selected="false">
+                Events
+              </a>
+            </li> -->
+          </ul>
+          <div class="tab-content" id="thisWeekContent" >
+            <!--This Week Interview Tab-->
+            <div class="tab-pane fade active in" id="this-week-interview" role="tabpanel" aria-labelledby="this-week-interview-tab">
+              <div class="listing-grid" *ngIf="joblist?.Jobs?.length>0">
+                  <div class="listing-col" *ngFor="let job of joblist.Jobs | valueArray;let i=index" [class.active]="setActive === i" (click)="detailIntviewHandler(i);" >
+                    <span class="date">
+                      <span class="month">{{job?.InterviewDate  | date: 'MMM'}}</span>
+                      <span class="day">{{job?.InterviewDate  | date: 'dd'}}</span>
+                      <span class="year">{{job?.InterviewDate  | date: 'yyyy'}}</span>
+                    </span>
+                    <div class="top-box-container flex flex-align-center">
+                      <div class="profile-box flex flex-align-center">
+                        <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                      width="32" alt="">
+                      <h5>   {{job?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                        {{job?.ProfileBasicInfo?.LastName  | titlecase }}</h5>
+                      </div>
+                      <span class="time ml-auto">{{job?.StartTime}}</span>
+                    </div>
+                    <h4>{{ job?.JobTitle | titlecase }}</h4>
+                    <ul class="icon-ul-list flex flex-align-center">
+                      <li><i class="fa fa-hand-o-right"></i> {{ job?.BridgeUrl  || 'TECHNICAL'}}</li>
+                      <li> <i class="fa fa-university"></i> {{ job?.AccessId | titlecase }}</li>
+                    </ul>
+                    
+                    <button class="btn btn-zoom" *ngIf="job?.InterviewTypeId == 3">{{job?.InterviewType}}</button>
+                    <!-- <div class="address">
+                        {{job?.JobLocations.split('|')[0]}}
+                    </div> -->
+                  </div>
+              
+                <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
+                  <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateListCount()">
+                    Load More
+                  </div>
+                </ng-container>
+              </div>
+              <ng-container *ngIf="joblist?.Jobs?.length===0">
+                <p class="no-result-found"> No Upcoming Interviews found!!</p>
+              </ng-container>
+            </div>
+            <!--This Week Interview Tab-->
+
+            <!--This Week Event Tab-->
+            <div class="tab-pane fade" id="this-week-event" role="tabpanel" aria-labelledby="this-week-event-tab">
+              <div class="listing-grid">
+                <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
+                  <span class="date">
+                    <span class="month">{{item.date | date: 'MMM'}}</span>
+                    <span class="day">{{item.date | date: 'dd'}}</span>
+                    <span class="year">{{item.date | date: 'yyyy'}}</span>
+                  </span>
+                  <span class="time">{{item.time}}</span>
+                  <h4>{{ item.title }}</h4>
+                  <h5>{{ item.round }}</h5>
+                  <h6>{{ item.company }}</h6>
+                  <button class="btn btn-zoom" *ngIf="item.type">Zoom</button>
+                  <div class="address" *ngIf="item.address">
+                    {{ item.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--This Week Event Tab-->
+          </div>
+        </div>
+      </div>
+
+      <!--Upcoming Tabs-->
+      <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+        <div class="horizontalTabs">
+          <ul class="nav nav-tabs" id="upcomingTab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link" id="upcoming-interview-tab" data-toggle="tab" href="#upcoming-interview" role="tab" aria-controls="upcoming-interview" aria-selected="true">
+                Interview Schedule
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="upcoming-event-tab" data-toggle="tab" href="#upcoming-event" role="tab" aria-controls="profile" aria-selected="false">
+                Events
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="upcomingEventContent">
+            <!--Upcoming Interview Tab-->
+            <div class="tab-pane fade active in" id="upcoming-interview" role="tabpanel" aria-labelledby="upcoming-interview-tab">
+              <div class="listing-grid">
+                <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
+                  <span class="date">
+                    <span class="month">{{item.date | date: 'MMM'}}</span>
+                    <span class="day">{{item.date | date: 'dd'}}</span>
+                    <span class="year">{{item.date | date: 'yyyy'}}</span>
+                  </span>
+                  <span class="time">{{item.time}}</span>
+                  <h4>{{ item.title }}</h4>
+                  <h5>{{ item.round }}</h5>
+                  <h6>{{ item.company }}</h6>
+                  <button class="btn btn-zoom" *ngIf="item.type">Zoom</button>
+                  <div class="address" *ngIf="item.address">
+                    {{ item.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Upcoming Interview Tab-->
+
+            <!--Upcoming Event Tab-->
+            <div class="tab-pane fade" id="upcoming-event" role="tabpanel" aria-labelledby="upcoming-event-tab">
+              <div class="listing-grid">
+                <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
+                  <span class="date">
+                    <span class="month">{{item.date | date: 'MMM'}}</span>
+                    <span class="day">{{item.date | date: 'dd'}}</span>
+                    <span class="year">{{item.date | date: 'yyyy'}}</span>
+                  </span>
+                  <span class="time">{{item.time}}</span>
+                  <h4>{{ item.title }}</h4>
+                  <h5>{{ item.round }}</h5>
+                  <h6>{{ item.company }}</h6>
+                  <button class="btn btn-zoom" *ngIf="item.type">Zoom</button>
+                  <div class="address" *ngIf="item.address">
+                    {{ item.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Upcoming Event Tab-->
+          </div>
+        </div>
+      </div>
+
+      <!--Completed Tabs-->
+      <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+        <div class="horizontalTabs">
+          <ul class="nav nav-tabs" id="completedab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link" id="completed-interview-tab" data-toggle="tab" href="#completed-interview" role="tab" aria-controls="completed-interview" aria-selected="true">
+                Interview Schedule
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="completed-event-tab" data-toggle="tab" href="#completed-event" role="tab" aria-controls="profile" aria-selected="false">
+                Events
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="upcomingEventContent">
+            <!--Completed Interview Tab-->
+            <div class="tab-pane fade active in" id="completed-interview" role="tabpanel" aria-labelledby="completed-interview-tab">
+              <div class="listing-grid">
+                <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
+                  <span class="date">
+                    <span class="month">{{item.date | date: 'MMM'}}</span>
+                    <span class="day">{{item.date | date: 'dd'}}</span>
+                    <span class="year">{{item.date | date: 'yyyy'}}</span>
+                  </span>
+                  <span class="time">{{item.time}}</span>
+                  <h4>{{ item.title }}</h4>
+                  <h5>{{ item.round }}</h5>
+                  <h6>{{ item.company }}</h6>
+                  <button class="btn btn-zoom" *ngIf="item.type">Zoom</button>
+                  <div class="address" *ngIf="item.address">
+                    {{ item.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Completed Interview Tab-->
+
+            <!--Completed Event Tab-->
+            <div class="tab-pane fade" id="completed-event" role="tabpanel" aria-labelledby="completed-event-tab">
+              <div class="listing-grid">
+                <div class="listing-col" *ngFor = "let item of invetviewListArray let i = index" [class.active]="setActive === i" (click)="detailIntviewHandler(item.id, i);">
+                  <span class="date">
+                    <span class="month">{{item.date | date: 'MMM'}}</span>
+                    <span class="day">{{item.date | date: 'dd'}}</span>
+                    <span class="year">{{item.date | date: 'yyyy'}}</span>
+                  </span>
+                  <span class="time">{{item.time}}</span>
+                  <h4>{{ item.title }}</h4>
+                  <h5>{{ item.round }}</h5>
+                  <h6>{{ item.company }}</h6>
+                  <button class="btn btn-zoom" *ngIf="item.type">Zoom</button>
+                  <div class="address" *ngIf="item.address">
+                    {{ item.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Completed Event Tab-->
+          </div>
+        </div>
+      </div>
+
+      <!--Calendar Tabs-->
+      <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
+        <div class="horizontalTabs">
+          <ul class="nav nav-tabs" id="completedab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link" id="completed-interview-tab" data-toggle="tab" href="#completed-interview" role="tab" aria-controls="completed-interview" aria-selected="true">
+                Interview Schedule
+              </a>
+            </li>
+    
+          </ul>
+          <div class="tab-content" id="completed-interview">
+            <!--Completed Interview Tab-->
+            <div class="tab-pane fade active in" id="completed-interview" role="tabpanel" aria-labelledby="completed-interview-tab">
+              <div class="listing-grid">
+                <div class="listing-col">
+                     Sample Calendar..
+                </div>
+              </div>
+            </div>
+            <!--Completed Interview Tab-->
+
+            <!--Completed Event Tab-->
+         
+
+ 
+            <!--Completed Event Tab-->
+          </div>
+        </div>
+
+ 
+      </div>
+
+      <!--Comment Tabs-->
+      <div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+        Coming Soon.
+      </div>
+    </div>
+ 
+
+    <ng-container *ngIf="filterInterviewDetail.length>0">    
+   
+    <ng-container *ngFor="let jo of filterInterviewDetail;let j=index" >
+      <div class="interview-detail-section" *ngIf="j === setActive"  data-intro="Find more details of your Scheduling." data-position='top'>
+
+        <div class="top-title flex flex-wrap" data-step="7" data-title="Step 7" > 
+          <a href="javascript:void(0)" (click)="ViewJobdetails(jo?.JobId)">
+          <h4 >{{ jo?.JobTitle | titlecase }}
+            <i class="fa fa-info-circle" tooltip="View the job posting details." placement="right"></i>
+          </h4>
+      
+          </a>
+          <div class="icon-navigation ml-auto">
+            <ul>
+              <li [ngClass]="this.subNavigationActive == 'Summary'?'active':''" tooltip="View the Summary details." placement="top" ><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Summary'"><span class="icon icon-summary">Icon</span></a></li>
+              <li [ngClass]="this.subNavigationActive == 'History'?'active':''" tooltip="View the History." placement="top" ><a href="javascript:void(0)" (click)="this.subNavigationActive = 'History'"><span class="icon icon-list">Icon</span></a></li>
+              <li [ngClass]="this.subNavigationActive == 'Document'?'active':''" tooltip="View the Documents." placement="top"><a href="javascript:void(0)" (click)="this.subNavigationActive = 'Document'"><span class="icon icon-document">Icon</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <ng-container *ngIf="this.subNavigationActive == 'Summary'">
+          <ul class="inline-listing">
+            <li>From <strong>{{jo?.StartTime}} To {{jo?.EndTime || "N/A"}}</strong></li>
+            <li>{{jo?.InterviewDate  | date }}</li>
+            <li> <ng-container
+              *ngIf="jo?.IsCandidateAccepted === 1 && jo?.IsCPNewDate === null && jo?.IsCPNewDate != 1">
+              Confirmed
+            </ng-container>
+            <ng-container *ngIf="jo?.IsCandidateAccepted === 0 && jo?.IsCPNewDate === null">
+              Not interested
+            </ng-container>
+            <ng-container *ngIf="jo?.IsCPNewDate === 1">
+              New proposal ({{jo?.CPDate | date:'mediumDate'}} @ {{jo?.CPFromTime}})
+            </ng-container></li>
+          </ul>
+          <div class="grid-table-section">
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Candiate Name
+              </div>
+              <a href="javascript:void(0)" (click)="GetRedirect(jo?.JobId,jo?.ProfileId)">
+                <div class="col-sm-8 grid-col grid-right-col" >
+                  <img class="align-self-center mr-10" src="{{jo?.ProfileBasicInfo.ProfilePic}}" height="32"
+                  width="32" alt="">
+                  {{jo?.ProfileBasicInfo?.FirstName  | titlecase  }}
+                  {{jo?.ProfileBasicInfo?.LastName  | titlecase }}
+                  <i class="fa fa-info-circle" tooltip="View the profile details." placement="right"></i>
+                </div>
+              </a>
+              
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Location
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <p >
+                  {{jo?.JobLocations.split('|')[0]}}
+                  </p>
+                
+              </div>
+             
+              <div class="col-sm-4 grid-col grid-left-col">
+                Interviewer
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <p *ngIf="jo?.HiringLeaderFirstName != null">
+                  <img  class="align-self-center mr-10" src="{{jo?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
+                    {{jo?.HiringLeaderFirstName  | titlecase}} {{jo?.HiringLeaderLastName  | titlecase}}
+                  </p>
+                <p *ngIf="jo?.HiringLeaderFirstName === null">Not Mentioned.</p>
+              </div>
+           
+              <div class="col-sm-4 grid-col grid-left-col">
+               Interview Round
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+               {{ jo?.BridgeUrl  || 'TECHNICAL'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Mode of Interview
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                {{ jo?.InterviewType | titlecase }}
+              </div>
+            </div>  
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Mode Details
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col more-detial-info">
+                {{jo?.SkypeId || 'Not Provided'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Candidate Comments
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                {{jo?.CandidateComments || 'No Comments Provided'}}
+              </div>
+            </div>
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col">
+                Customer Comments
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <div class="image-container">
+                  {{jo?.CandidateMiddleName || 'No Comments Provided'}}
+                </div>
+              </div>
+            </div> 
+            <div class="row grid-row">
+              <div class="col-sm-4 grid-col grid-left-col no-left-col">
+                &nbsp;
+              </div>
+              <div class="col-sm-8 grid-col grid-right-col">
+                <a href="javascript:void(0)" class="btn btn-border" (click)="ViewJobdetails(jo?.JobId)">View job details</a>
+                <a href="javascript:void(0)" class="btn btn-filled" (click)="GetRedirect(jo?.JobId,jo?.ProfileId)">View Candidate Profile</a>
+              </div>
+             
+            </div>
+            <!-- <div class="row grid-row full-grid-row">
+              <div class="icon-navigation">
+                <ul>
+                  <li><a href="javascript:void(0)"><span class="icon icon-detail">Icon</span></a></li>
+                  <li><a href="javascript:void(0)"><span class="icon icon-chat">Icon</span></a></li>
+                </ul>
+              </div>  
+            </div> -->
+          </div>
+        </ng-container>
+        <ng-container *ngIf="this.subNavigationActive == 'History'">
+          <div class="horizontalTabs">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#history-activity">Activity</a></li>
+              <li><a data-toggle="tab" href="#history-feedback">Feedback</a></li>
+            </ul>
+            <div class="tab-content">
+              <div id="history-activity" class="tab-pane fade in active">
+                <h4>Activity</h4>
+                <div class="history-listing-grid">
+                  <div class="history-listing-col" *ngFor="let js of MyActvity">
+                    <span class="icon icon-01">Icon</span>
+                    <div class="history-col-container">
+                      <p>{{js?.Rounds}}</p>
+                      <h5>Interview Scheduled</h5>
+                      <h6>By     
+                        {{Pro?.HiringLeaderFirstName  | titlecase}} {{Pro?.HiringLeaderLastName  | titlecase}}
+                        </h6>
+                      <!-- <button class="btn btn-remove">Remove</button> -->
+                      <div class="summary">
+                        {{js?.Comments}}
+                        <!-- <button class="btn btn-edit">Edit</button> -->
+                      </div>
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+              <div id="history-feedback" class="tab-pane fade">
+                <h4>Feedback</h4>
+
+                <div class="history-listing-grid">
+                  <ng-container *ngIf="CandidateFeedback.length > 0">
+                    <ng-container *ngFor="let pn of CandidateFeedback; let i = index">
+                  <div class="history-listing-col">
+                    <span class="icon icon-05">Icon</span>
+                    <div class="history-col-container">
+                      <p>{{ pn?.FeedbackOption}}</p>
+                      <h5> {{ pn?.FeedbackTitle }}</h5>
+                      <h6>By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</h6>
+                      <!-- <button class="btn btn-remove">Remove</button> -->
+                      <div class="summary">
+                        {{ pn?.Comment | titlecase }}
+                        <!-- <button class="btn btn-edit">Edit</button> -->
+                        <!-- <div class="listing-document">
+                          <ul>
+                            <li>document.docx</li>
+                          </ul>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+    
+              <ng-container *ngIf="CandidateFeedback.length === 0">
+                <h6>Feedback Yet to Add</h6>
+              </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </ng-container>
+        <ng-container *ngIf="this.subNavigationActive == 'Document'">
+          <h4>Documents</h4>
+          <div class="griding-document">
+            <div class="row flex flex-wrap flex-aling-equal">
+              <ng-container *ngIf="MyDocuments?.length===0">
+                <div class="col-sm-6 griding-col">
+                  <div class="col-container">
+                    <h5>No Attachments added.</h5>
+                  </div>
+                </div>
+              
+              </ng-container>
+              <ng-container *ngIf="MyDocuments?.length>0">
+              <div class="col-sm-6 griding-col" *ngFor="let d of MyDocuments;let di = index">
+                <div class="col-container">
+                  <!-- <button class="btn btn-close">Close</button> -->
+                  <span class="icon icon-pdf"
+                  *ngIf="d.DocName.split('_')[0].includes('.pdf')">Icon</span>
+                <span class="icon icon-word"
+                  *ngIf="!d.DocName.split('_')[0].includes('.pdf')">Icon</span>
+                  <h5 class="address" (click)="DownloadDocument(d?.DocName)">{{d?.DocName?.split("_")[0] | titlecase}} <i class="fa fa-download" aria-hidden="true"></i></h5>
+                  <!-- <h4>By  {{Pro?.HiringLeaderFirstName  | titlecase}} {{Pro?.HiringLeaderLastName  | titlecase}}</h4> -->
+                </div>
+              </div>
+            </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <div class="buttons">
+          <a href="javascript:void(0)"  class="btn btn-border" *ngIf="job?.IsCPNewDate == 1" (click)="UpdateInterviewAccept(jo?.ProfileBasicInfo?.UserId,jo?.JobId,jo?.CPDate,jo?.StartTime,jo?.IsCandidateAccepted,jo?.IsCPNewDate)"> Accept</a>
+          <!-- <a href="javascript:void(0)" class="btn btn-border">Cancel</a> -->
+          <a href="javascript:void(0)" class="btn btn-filled"
+            (click)="OpenScheduleInterviewDialog(jo?.JobInterviewId,jo?.JobResponseId,jo?.JobId,jo?.ProfileBasicInfo?.ProfileId,jo?.ProfileBasicInfo?.UserId,jo?.InterviewDate,jo?.StartTime)">Re-Schedule
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    </ng-container>
+    <ng-container *ngIf="filterInterviewDetail.length===0">
+      <ng-container *ngIf="show === false">
+      <p class="no-result-found"> No records found!!</p>
+      </ng-container>
+<!--       
+        <ng-container *ngIf="show === true">
+ 
+          <div class="interview-detail-section">
+            <dx-scheduler
+            timeZone="America/Los_Angeles"
+            [dataSource]="appointmentsData"
+            [views]="['week', 'month']"
+            currentView="week"
+            [currentDate]="currentDate"
+            [startDayHour]="9"
+            [height]="600"
+          >
+          </dx-scheduler>
+          </div>
+        
+     
+        
+      </ng-container> -->
+      
+    </ng-container>
+
+  
+
+   
+</div>

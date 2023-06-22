@@ -1,0 +1,1185 @@
+.job-summary-card {
+  border: 1px solid #ebebeb;
+  background: #fff;
+  box-shadow: 4px 4px 5px -1px rgb(158 171 192 / 45%);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  padding: 20px 20px 0;
+}
+
+.job-summary-card .edit-btn {
+  margin-left: 5px;
+}
+
+.job-summary-card .title-container h4 {
+  font-size: 18px;
+  color: var(--gray-blue-400);
+  margin: 0 8px 10px 0;
+  padding-left: 24px;
+  position: relative
+}
+
+.job-summary-card .title-container h4:before {
+  content: "";
+  width: 16px;
+  height: 14px;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  /* background: url(../../../../assets/images/manage-job-sprites.svg) -19px -19px no-repeat; */
+}
+
+.job-summary-card .title-container  ul {
+  margin: 0 0 20px;
+  padding: 0;
+  font-size: 0;
+  list-style: none;
+}
+
+.job-summary-card .title-container li {
+  display: inline-block;
+  font-size: 12px;
+  color: #6e819e;
+}
+
+.job-summary-card .title-container li:not(:first-child) {
+  margin-left: 10px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.job-summary-card .title-container li span.highlight {
+  color: #fff;
+  font-size: 12px;
+  background: #90a4ad;
+  border-radius: 6px;
+  display: block;
+  padding: 5px 10px;
+}
+
+.job-summary-card .title-container li.location::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 18px;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -45px -17px no-repeat;
+  left: 0;
+  top: 0;
+}
+
+.job-summary-card .title-container li.calendar, 
+.job-summary-card .title-container li.view {
+  padding-left: 20px;
+}
+
+.job-summary-card .title-container li.calendar::before,
+.job-summary-card .title-container li.view::before {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 18px;
+  background: url(../../../../assets/images/manage-job-sprites.svg) -70px -17px no-repeat;
+  left: 0;
+  top: 0;
+}
+
+.job-summary-card .title-container li.view::before {
+  width: 18px;
+  height: 11px;
+  background-position: -43px -105px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.praymid-container {
+  position: relative;
+  width: 324px;
+  overflow: hidden;
+  padding-right: 20px;
+}
+
+.praymid-container::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 189px;
+  background: url(../../../../assets/images/shadow-strip.png) 0 0 no-repeat;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.praymid-container::after {
+  content: "";
+  position: absolute;
+  border-bottom: 296px solid #fff;
+  border-right: 110px solid transparent;
+  top: -10px;
+  left: -2px;
+}
+
+
+.praymid-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.praymid-container li {
+  padding: 9px 30px 9px 12px;
+  color: #00a4bc;
+  text-align: right;
+  position: relative;
+  cursor: pointer;
+  background: #f5f6fa;
+}
+
+.praymid-container li:hover,
+.praymid-container li.active {
+  background: #00a4bc;
+  color: #fff;
+}
+
+.praymid-container li.green {
+  background-color: #01bda7;
+}
+
+.praymid-container li.yellow {
+  background-color: #f5c26a;
+}
+
+.praymid-container li.red {
+  background-color: #ff7a5a;
+}
+
+.praymid-container li.blue {
+  background-color: #448afa;
+}
+
+.praymid-container li:not(:first-child) {
+  margin-top: 8px;
+}
+
+.praymid-container .tag {
+  position: absolute;
+  font-size: 10px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 4px 1px;
+  color: #fff;
+  background: #66dab5;
+  width: 80px;
+  opacity: 0;
+  transition: all 550ms linear;
+}
+
+.praymid-container li:hover .tag {
+  opacity: 1;
+}
+
+.praymid-container li:nth-child(2) .tag {
+  left: 4px;
+}
+
+.praymid-container li:nth-child(3) .tag {
+  left: 27px;
+}
+
+.praymid-container li:nth-child(4) .tag {
+  left: 58px;
+}
+
+.praymid-container li:nth-child(5) .tag {
+  left: 63px;
+}
+
+.praymid-container .number {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #66dab5;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #66dab5;
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, .20);
+}
+
+.praymid-container li:hover .number{
+  background-color:#fff;
+  color: #00a4bc;
+  border-color: #eee;
+}
+
+.icon-listing ul {
+  margin: 20px  0 0;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-listing li {
+  color: #6e819e;
+  padding: 0 15px;
+  position: relative;
+  text-align: center;
+  border-left: 1px solid #eee;
+  cursor: pointer;
+}
+
+.icon-listing li .flex {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.icon-listing li:first-child {
+  border-left: 0;
+}
+
+/* .icon-listing li:hover {
+  background-color: #66dab5;
+  border-color: #66dab5;
+} */
+
+.icon-listing li .number {
+  font-size: 18px;
+  padding-left: 10px;
+  font-weight: 600;
+  color: #90a4ad;
+}
+
+.icon-listing li .sub-title {
+  font-size: 12px;
+}
+
+.icon {
+  background: url(../../../../assets/images/manage-job-sprites.png) 0 0 no-repeat;
+  background-size: 366px auto;
+  display: inline-block;
+  font-size: 0;
+}
+
+.icon.icon-skills {
+  width: 30px;
+  height: 30px;
+  background-position: -176px -170px;
+}
+
+.icon.icon-job-fit {
+  width: 30px;
+  height: 30px;
+  background-position: -27px -170px;
+}
+
+.icon.icon-personality {
+  width: 30px;
+  height: 30px;
+  background-position: -68px -170px;
+}
+
+.icon.icon-culture {
+  width: 30px;
+  height: 30px;
+  background-position: -103px -170px;
+}
+
+.icon.icon-team {
+  width: 30px;
+  height: 30px;
+  background-position: -140px -170px;
+}
+
+.icon.icon-notes {
+  width: 40px;
+  height: 40px;
+  background-position: -244px -15px;
+}
+
+.icon.icon-job-feedback {
+  width: 40px;
+  height: 40px;
+  background-position: -295px -15px;
+}
+
+.icon-listing {
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+.icon-listing li .icon {
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.icon.icon-like {
+  width: 18px;
+  height: 18px;
+  background-position: -231px -111px;
+}
+
+.icon.icon-dislike {
+  width: 18px;
+  height: 18px;
+  background-position: -257px -112px;
+}
+
+.icon.icon-notes {
+  width: 17px;
+  height: 21px;
+  background-position: -145px -110px;
+}
+
+.icon.icon-job-feedback {
+  width: 21px;
+  height: 20px;
+  background-position: -171px -111px;
+}
+
+.icon.icon-save {
+  width: 14px;
+  height: 13px;
+  background-position: -72px -62px;
+}
+
+.icon.icon-comments {
+  width: 21px;
+  height: 19px;
+  background-position: -200px -111px;
+}
+
+.icon.icon-share {
+  width: 18px;
+  height: 13px;
+  background-position: -17px -105px;
+}
+
+.icon.icon-view {
+  width: 18px;
+  height: 11px;
+  background-position: -43px -105px;
+}
+
+.icon.icon-add {
+  width: 10px;
+  height: 10px;
+  background-position: -69px -106px;
+}
+
+.icon.icon-email {
+  width: 18px;
+  height: 10px;
+  background-position: -85px -105px;
+}
+
+/* .icon-listing li:hover .icon.icon-notes {
+  background-position: -145px -140px;
+}
+
+.icon-listing li:hover .icon.icon-job-feedback {
+  background-position: -171px -141px;
+}
+
+.icon-listing li:hover .icon.icon-comments {
+  background-position: -200px -141px;
+}
+
+.icon-listing li:hover .icon.icon-like {
+  background-position: -232px -141px;
+}
+
+.icon-listing li:hover .icon.icon-dislike {
+  background-position: -257px -143px;
+} */
+
+
+.stats-icon {
+  width: 500px;
+  margin: 0 20px 30px auto;
+}
+
+.stats-icon .row .row {
+  margin: 0 -7px;
+}
+
+.stats-icon .stats-col {
+  flex: 0 0 20%;
+  padding: 0 7px;
+  max-width: 20%;
+}
+
+
+.stats-icon .stats-col .col-container {
+  padding: 28px 5px 10px;
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, .20);
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.stats-icon .stats-col:last-child {
+  border-left: 0;
+}
+
+.stats-icon .stats-col h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6e819e;
+  margin: 0;
+}
+
+.stats-icon .stats-col h4.xs-font {
+  font-size: 12px;
+}
+
+.stats-icon .stats-col:first-child h4 {
+  color: #6e819e;
+}
+
+.stats-icon .stats-col h6 {
+  font-size: 10px;
+  color: #90a4ad;
+  margin: 0 0 5px;
+}
+
+.stats-icon .stats-col .icon {
+  position: relative;
+}
+
+.stats-icon .stats-cols {
+  padding: 0;
+}
+
+.stats-icon .stats-col .icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #66dab5;
+  border-radius: 50%;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%);
+}
+
+.stats-icon .stats-col .icon.light {
+  background-color: #90a4ad;
+}
+
+/* .stats-icon .stats-col:hover .icon {
+  background-color: #66dab5;
+} */
+
+
+.buttons {
+  margin: 0 0 40px auto;
+  text-align: right;
+}
+
+.buttons .btn.btn-filled {
+  padding: 9px 16px;
+}
+
+.btn.btn-outline-secondary {
+  color: #fff;
+  border: 0;
+  background: #66dab5;
+  padding: 9px 48px 9px 16px;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
+  overflow: hidden;
+  transition: all 550ms linear;
+}
+
+.btn.btn-outline-secondary:hover {
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 35%);
+  background: #01bda7;
+}
+
+.btn.btn-outline-secondary:before {
+  content: "";
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  border-radius: 32px;
+  background-color: #01bda7;
+}
+
+.btn.btn-outline-secondary .no {
+  position: absolute;
+  width: 28px;
+  height: 38px;
+  right: -2px;
+}
+
+.btn.btn-outline-secondary:hover::before { 
+  background-color: #66dab5;
+}
+
+.btn.btn-outline-primary {
+  color: #fff;
+  border: 0;
+  background: #448afa;
+  padding: 9px 35px 9px 16px;
+  border-radius: 6px;
+  margin-left: 8px;
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
+  position: relative;
+  overflow: hidden;
+  transition: all 550ms linear;
+}
+
+.btn.btn-outline-primary:hover {
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 35%);
+}
+
+.btn.btn-outline-primary::before {
+  content: "";
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  border-radius: 32px;
+  background-color: #3a75d5;
+}
+
+.btn.btn-outline-primary .no {
+  position: absolute;
+  width: 28px;
+  height: 38px;
+  right: -2px;
+}
+
+.btn.btn-outline-primary:hover {
+  background: #3a75d5;
+}
+
+.btn.btn-outline-primary:hover:before {
+  background-color: #448afa;
+}
+
+.btn.btn-outline-primary.light {
+  background: #fff;
+  border:1px solid #f5f6fa;
+  color: #6e819e;
+}
+
+.btn.btn-outline-primary.light::before {
+  background: #f5f6fa;
+  color: #90a4ad;
+}
+
+.custom-select {
+  background-color: transparent;
+  text-align: right;
+  border: 0;
+}
+
+.active .custom-select {
+  color: #fff;
+}
+
+.custom-select option {
+  color: #6e819e;
+  margin: 5px 0;
+  text-align: left;
+}
+
+.top-navigation ul {
+  margin: 0 0 40px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.top-navigation li {
+  position: relative;
+  border-left: 1px solid #ccc;
+}
+
+.top-navigation li:first-child {
+  border-left: 0;
+}
+
+.top-navigation li .btn {
+  border-radius: 0;
+  background-color: #fff;
+  padding: 10px 40px 10px 20px;
+  color: #6e819e;
+  display: flex;
+  border: 1px solid #ccc;
+  position: relative;
+  align-items: center;
+  height: 100%;
+}
+
+.top-navigation li .btn:focus {
+  outline: none;
+}
+
+.top-navigation li .btn:before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: url(../../../../assets/images/manage-job-sprites.png) -115px -108px no-repeat;
+  background-size: 366px auto;
+  right: 10px;
+  top: 50%;
+  margin-top: -4px;
+}
+
+.top-navigation li .btn .icon {
+  margin-right: 10px;
+}
+
+.top-navigation li .btn:hover, .top-navigation li.open .btn {
+  background-color: #448afa;
+  color: #fff;
+}
+
+.top-navigation li .btn:hover:before, .top-navigation li.open .btn::before {
+  background-position: -115px -128px;
+}
+
+.top-navigation .dropdown-menu {
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, .20);
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 250px;
+  margin-top: 8px;
+  left: auto;
+  right: 0;
+  z-index: 100;
+}
+
+.top-navigation .dropdown-menu:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  border-bottom: 8px solid #ccc;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  right: 20px;
+}
+
+.top-navigation .dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #9eabc0;
+  border-bottom: 1px solid #ccc;
+}
+
+.top-navigation .dropdown-menu a:hover {
+  background-color: #f5f6f0;
+}
+
+.top-navigation .dropdown-menu a:last-child {
+  border-bottom: 0;
+}
+
+.top-navigation li .btn:hover .icon.icon-share,
+.top-navigation li.open .btn .icon.icon-share {
+  background-position: -17px -126px;
+}
+
+.top-navigation li .btn:hover .icon.icon-view,
+.top-navigation li.open .btn .icon.icon-view {
+  background-position: -43px -126px;
+}
+
+.top-navigation li .btn:hover .icon.icon-add,
+.top-navigation li.open .btn .icon.icon-add {
+  background-position: -69px -126px;
+}
+
+.top-navigation li .btn:hover .icon.icon-email,
+.top-navigation li.open .btn .icon.icon-email {
+  background-position: -85px -125px;
+}
+
+.top-navigation li:first-child .btn {
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 1480px) {
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .buttons .btn {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .top-navigation li .btn {
+    font-size: 13px;
+    padding: 8px 40px 8px 10px;
+  }
+
+  .stats-icon {
+    width: 100%;
+  }
+
+  .icon-listing li h4 {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 1170px) {
+  .job-summary-card .left-col,
+  .job-summary-card .right-col {
+    width: 100%;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .buttons .btn {
+    flex: 0 0 calc(33.33% - 14px);
+    max-width: calc(33.33% - 14px);
+    margin: 5px;
+  }
+
+  .row.stats-rows,
+  .row.stats-row {
+    margin: 0;
+  }
+
+  .praymid-container {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+    padding-right: 20px;
+    margin: 0 auto 20px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .stats-icon .stats-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    float: left;
+    margin: 30px 0 0;
+  }
+
+  .buttons .btn {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
+  }
+
+  .job-summary-card .title-container li {
+    margin: 0 2px 4px;
+  }
+
+  .stats-icon .stats-cols {
+    margin-bottom: 20px;
+  }
+
+  .icon-listing ul {
+    flex-wrap: wrap;
+  }
+
+  .icon-listing li {
+    flex: 0  0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    margin: 5px;
+  }
+
+  .top-navigation li {
+    width: 100%;
+    border-left: 0;
+  }
+
+  .top-navigation li .btn {
+    width: 100%;
+  }
+
+  .top-navigation li:last-child .btn {
+    border-radius: 4px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .praymid-container { 
+    width: 100%;
+  }
+
+  .praymid-container::after {
+    display: none;
+  }
+  
+  .buttons .btn {
+    flex: 0 0 calc(100% - 14px);
+    max-width: calc(100% - 14px);
+    margin: 5px;
+  }
+
+  .btn.btn-outline-primary {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .praymid-container {
+    overflow: inherit;
+    padding-right: 0;
+  }
+
+  .praymid-container::before {
+    display: none;
+  }
+
+  .buttons .btn {
+    white-space: normal;
+  }
+
+  .buttons .btn:before {
+    display: none !important;
+  }
+}
+
+.job-details-top-container {
+  text-align: right;
+  margin: 0 0 20px;
+}
+
+.tooltip__link {
+  position: relative;
+}
+.custom__tooltip {
+  position: absolute;
+  width: 350px;
+  background: rgba(106,126,156,0.75);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  display:none;
+  padding: 10px 15px;
+  z-index: 10;
+  top:50%;
+  transform: translateY(-50%);
+  left:22px;
+}
+.tooltip__link:hover .custom__tooltip { display: block; }
+.custom__tooltip:before { content:""; position: absolute; left:0; top:0; border-right:6px solid rgba(106,126,156,0.75); border-top:6px solid transparent; border-bottom: 6px solid transparent; left:-6px; top:50%; margin-top:-6px; }
+
+.custom__tooltip span { display: block; min-height:24px; position:relative; padding-left:40px; }
+.custom__tooltip span.step__title { font-weight:600; padding-left:0; }
+.custom__tooltip span:not(:first-child) { margin:5px 0 0; }
+.custom__tooltip span em { position: absolute; left:0; top:0; font-style: normal; width:24px; height:24px; border-radius:50%; line-height:24px; font-size:11px; background:#fff; color:#23527c; text-align: center; }
+
+/* 
+	get rid of the fieldset styling and keep 
+	this all on a single line 
+*/
+
+.radio-switch {
+  border: none;
+  padding: 0 20px 0 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/*
+	radio button groups often benefit from a legend to
+	provide context as to what the different
+	options pertain to. Ideally this would be visible to all
+	users, but you know...
+*/
+.radio-switch legend {
+  font-size: 2px;
+  opacity: 0;
+  position: absolute;
+}
+
+/*
+	relative labels to help position the pseudo elements
+	the z-index will be handy later, when the labels that
+	overlap the visual switch UI need to be adjusted
+	to allow for a user to toggle the switch without
+	having to move their mouse/finger to the different
+	sides of the UI
+*/
+.radio-switch label {
+  display: inline-block;
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+
+/*
+	inputs set to opcacity 0 are still accessible.
+	Apparently there can be issues targetting inputs with
+	Dragon speech recognition software if you use the typical
+	'visually-hidden' class...so might as well just avoid that issue...
+*/
+.radio-switch input {
+  opacity: 0;
+  position: absolute;
+}
+
+/*
+	a 2 option toggle can only have 2 options...so instead of
+	adding more classes, i'm just going to use some
+	structural pseudo-classes to target them...
+	cause why let all that good work go to waste?!
+
+  the large padding is used to position the labels
+  on top of the visual UI, so the switch UI itself
+  can be mouse clicked or finger tapped to toggle
+  the current option
+*/
+.radio-switch label:first-of-type {
+  padding-right: 5em;
+}
+
+.radio-switch label:last-child {
+  margin-left: -4.25em;
+  padding-left: 5em;
+}
+
+/*
+	oh focus within, I can't wait for you to have even more support.
+	But you'll never be in IE11, so we're going to need a
+	polyfill for you for a bit...
+ */
+.radio-switch:focus-within label:first-of-type:after {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f3a621;
+}
+
+/* polyfill class*/
+.radio-switch.focus-within label:first-of-type:after {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f3a621;
+}
+
+/* making the switch UI.  */
+.radio-switch label:first-of-type:before,
+.radio-switch label:first-of-type:after {
+  border: 0;
+  content: "";
+  height: 26px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  vertical-align: middle;
+}
+
+.radio-switch label:first-of-type:before {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 100%;
+  position: absolute;
+  right: -0.075em;
+  transform: translateX(0em);
+  transition: transform 0.2s ease-in-out;
+  width: 30px;
+  box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
+  height: 30px;
+  z-index: 2;
+}
+
+.radio-switch label:first-of-type:after {
+  background: #66dab5;
+  border-radius: 1em;
+  margin: 0 1em;
+  transition: background 0.2s ease-in-out;
+  width: 4em;
+  top: 2px;
+}
+
+/*
+	Visually change the switch UI to match the
+	checked state of the first radio button
+*/
+.radio-switch input:first-of-type:checked ~ label:first-of-type:after {
+  background: #e3a957;
+}
+
+.radio-switch input:first-of-type:checked ~ label:first-of-type:before {
+  transform: translateX(-2em);
+}
+
+/* Move the 2nd label to have a lower z-index, so when that
+   option is toggled, the first label will overlay on top of the
+   Switch ui, and the switch can be pressed again to toggle back
+   to the prevoius state. */
+.radio-switch input:last-of-type:checked ~ label:last-of-type {
+  z-index: 1;
+}
+
+.stats-col .edit-btn {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  margin-left: 0;
+  color: #90a4ad;
+}
+
+
+
+::ng-deep .custom-slider .ngx-slider .ngx-slider-bar{background:#91d6ed;height:2px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-selection{background:rgb(64, 207, 48);}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer{width:8px;height:16px;/* to remove the default positioning */top:auto;bottom:0;background-color:#333;border-top-left-radius:3px;border-top-right-radius:3px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer:after{display:none;}::ng-deep .custom-slider .ngx-slider .ngx-slider-bubble{bottom:14px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-limit{font-weight:bold;color:#50C878;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick{width:1px;height:10px;margin-left:4px;border-radius:0;background:#ffe4d1;top:-1px;}::ng-deep .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected{background:#50C878;}
+.custom-checkbox {
+  display: block;
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom-checkbox .checkmark {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+}
+
+.custom-checkbox .checkmark:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius: 4px;
+    border: 1px solid #a6aab3;
+}
+
+.custom-checbox input:checked ~ .checkmark {
+  background-color: #FFF;
+}
+
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #a6aab3;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.custom-checkbox.lg-select .checkmark {
+  padding-left: 25px;
+  font-size: 14px;
+  width: auto;
+  height: auto;
+}
+
+.percentage-slider .skill-chart-right {
+  margin-left: auto;
+}
+
+.percentage-slider h4 {
+  font-size: 14px;
+}
+
+.job-crietria-section {
+  border-radius: 8px;
+  box-shadow: 4px 4px 20px rgb(158 171 192 / 20%);
+  background-color: #fff;
+  margin: -10px 0 10px;
+  width: 420px;
+  padding: 10px 10px 0;
+}
+
+.job-crietria-section h4 {
+  font-size: 14px;
+  margin: 0 0 10px;
+  padding-right: 10px;
+}
+
+.job-crietria-section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.job-crietria-section li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.job-crietria-section li:not(:first-child) {
+  margin-left: 10px;
+}
+
+.rang-slider-section {
+  margin: 0 0 20px;
+}
+
+.rang-slider-section label {
+  font-size: 16px !important;
+}
+.custom-slider {
+  margin: 20px 0 0;
+}
+
+
+.job-summary-card .title-container li:last-child {
+  padding-left: 0;
+  margin-left: 0;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width:1440px) {
+  .rang-slider-section .col-xs-8 {
+    width: 60%;
+  }
+  .rang-slider-section .col-xs-8 label {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .job-summary-card .title-container li:last-child { 
+    margin-left: 10px;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

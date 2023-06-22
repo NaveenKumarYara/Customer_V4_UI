@@ -1,0 +1,172 @@
+.share-ui-component {
+  width: 750px;
+}
+
+.share-ui-component .form-group {
+  margin-bottom: 20px;
+}
+
+.share-ui-component .top-container {
+  padding: 15px 20px;
+  position: relative;
+  margin: -24px -24px 24px;
+  box-shadow: 0 6px 12px rgba(58,58,58,0.24);
+}
+
+.share-ui-component .top-container h3 {
+  color: #41536e;
+  font-size: 18px;
+  margin: 0;
+}
+
+.share-ui-component .top-container button {
+  background: none;
+  margin-left: auto;
+  border: 0;
+}
+
+.share-ui-component .middle-container {
+  padding: 20px;
+}
+
+.share-ui-component .middle-container label {
+  font-weight: 600;
+  color: #6e819e;
+  font-size: 14px;
+}
+
+.share-ui-component .inline-navigation  {
+  margin-bottom: 10px;
+}
+
+.share-ui-component .inline-navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+
+.share-ui-component .inline-navigation li {
+  display: inline-block;
+}
+
+.share-ui-component .inline-navigation .btn-link {
+  color: #6e819e;
+  text-transform: uppercase;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.form-control {
+  height: 52px;
+  padding: 6px 16px;
+}
+
+.share-ui-component .btn-filled,
+.share-ui-component .btn-border {
+  padding: 11px 24px!important;
+}
+
+.upload-border {
+  -webkit-box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
+  box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.upload-border .flex_items_center {
+  background: #fff;
+}
+
+.upload-border .fa.fa-cloud-upload.fa-5 {
+  color: #447afa;
+}
+
+.file {
+  position: relative;
+  overflow: hidden;
+}
+
+.file input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.share-ui-component .toogle-button-group {
+  border: 1px solid #e0e3ef;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 5px 0 0;
+  display: inline-block;
+  font-size: 0;
+}
+
+.share-ui-component .toogle-button-group .btn-link:first-child {
+  border-right:  1px solid #e0e3ef;
+}
+
+.share-ui-component .toogle-button-group .btn-link:focus {
+  outline: none;
+  border: 0;
+}
+
+.share-ui-component .toogle-button-group .btn-link.active {
+  box-shadow: inset 0 3px 6px rgba(58,58,58,0.14);
+  background: #66dab5;
+  color: #fff;
+}
+
+.share-ui-component .btn.btn-upload-file {
+  background: #66dab5;
+  border: 1px solid #66dab5;
+  color: #fff;
+  padding: 14px 30px;
+}
+
+.share-ui-component .middle-container label.label-block {
+  display: block;
+}
+
+.mat-form-field {
+  width: 100%;
+  border: 1px solid #e0e3ef;
+  border-radius: 3px;
+  padding: 12px 16px;
+  background: #fff !important;
+}
+
+.toggle-switch input[type=checkbox] {display:none}
+.toggle-switch label {cursor:pointer; margin: 0;}
+.toggle-switch label .toggle-track {
+  display:block;
+  height:26px;
+  width:50px;
+  background:#f5f6fa;
+  border-radius:20px;
+  position:relative;
+  margin-left: 10px;
+  border:1px solid #e0e3ef;
+}
+
+.toggle-switch .toggle-track:before{
+  content:'';
+  display:inline-block;
+  height: 24px;
+  width: 24px;
+  background:#e0e3ef;
+  border-radius:20px;
+  position:absolute;
+  top:0;
+  right:0;
+  transition:right .2s ease-in;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label .toggle-track:before{
+  background:#66dab5;
+  right:24px;
+}
+
+label.no-margin { margin: 0; }

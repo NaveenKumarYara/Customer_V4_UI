@@ -1,0 +1,77 @@
+<app-Logoheader></app-Logoheader>
+  <main>
+    <div class="container">
+
+      <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+        <i class="fa fa-play" aria-hidden="true"></i>
+        <div class="circle" style="animation-delay: -3s"></div>
+        <div class="circle" style="animation-delay: -2s"></div>
+        <div class="circle" style="animation-delay: -1s"></div>
+        <div class="circle" style="animation-delay: 0s"></div>
+      </a>
+
+      <div class="card-row row">
+        <!-- <div class="col-md-12">
+          <div class="row pb-30">
+            <div class="col-md-6 pr-0">
+                <a class="card brw-0" >
+                    <div>
+                      <img src="../../../assets/images/jd-parser-icon.svg" width="103px" height="91.5px" alt="">
+                      <h4>Parser</h4>
+                      <small>(It Does Automatically)</small>
+                    </div>
+                  </a>
+            </div>
+            <div class="col-md-6 pl-0">
+                <a class="card blw-0" (click)="createJob()"   routerLinkActive="active">
+                    <div>
+                      <img src="assets/images/create-a-job.svg" width="103px" height="91.5px" alt="">
+                      <h4>Create a job</h4>
+                      <small>(Manual Entry)</small>
+                    </div>
+                  </a>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-3 card" data-step="1" data-title="Step 1" data-intro=" Post a job enables you to provide important details required for the job and converts the data provided into a job card" data-position='top'>
+          <a class="card" (click)="createJob()"   routerLinkActive="active">
+            <!-- routerLink="/app-createajob" -->
+            <div>
+              <img src="assets/images/create-a-job.svg" width="103px" height="91.5px" alt="">
+              <h4>Post new Job</h4>
+              <small>(Manual Entry)</small>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 card" data-step="2" data-title="Step 2" data-intro=" A job description can be parsed using the parser option and the parser will capture most important fields in the job description" data-position='top'>
+          <a class="card" style="cursor:default">
+            <div (click)="photo.click()">
+              <img src="../../../assets/images/jd-parser-icon.svg" width="103px" height="91.5px" alt="">
+              <h4>Parser</h4>
+                <input class="hidden" id="whitepapers_input" type="file" #photo (click)="photo.value = null"
+                  value="" (change)="getFileDetails($event)">
+              <small><i>Parser may not provide accurate details.</i></small>
+              <div class="loading" data-loading-text="Loading..." *ngIf="parser === true"></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 card" data-step="3" data-title="Step 3" data-intro=" The saved templates enable you to post a job quickly by saving time and restricts filling the details multiple times to similar positions." data-position='top'>
+          <a href="javascript:void(0)" (click)="editTemplate()" class="card">
+            <div>
+              <img src="assets/images/choose-template.svg" width="103px" height="91.5px" alt="">
+              <h4>Choose From Templates</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 card" data-step="4" data-title="Step 4" data-intro="The jobs which are saved as drafts can be found here and continue to edit and post the job." data-position='top'>
+          <a href="javascript:void(0)" (click)="editDraft()" class="card">
+            <div>
+              <img src="assets/images/edit-draft.svg" width="103px" height="91.5px" alt="">
+              <h4>Drafts</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+

@@ -1,0 +1,958 @@
+<div class="profile-pg public-profile">
+  <app-Logoheader></app-Logoheader>
+  <main class="main-wrapper">
+    <div class="container">
+      <div class="clearfix">
+        <div class="pull-left">
+          <!-- <a  routerLink="/app-editcprofile" routerLinkActive="active" class="green-btn">Edit Profile</a> -->
+        </div>
+        <ul class="nav nav-pills navbar-right">
+          <li><a data-toggle="pill" href="#summaryView">Summary View</a></li>
+          <li class="active"><a data-toggle="pill" href="#detailView">Detail View</a></li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="summaryView" class="tab-pane fade summary-view">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="left">
+                <div class="pic-lg">
+                  <img class="profile-pic-lg" src="{{profileview?.ProfileBasicInfo?.ProfilePic}}" alt="">
+                  <h1>{{profileview?.ProfileBasicInfo?.FirstName}} {{profileview?.ProfileBasicInfo?.LastName}}</h1>
+                  <h4 class="meta">{{profileview?.ProfileBasicInfo?.ProfileTitle}} @
+                    {{profileview?.ProfileBasicInfo?.CompanyName}}
+                  </h4>
+                </div>
+                <hr class="divider">
+                <div class="contact">
+                  <h2>Contact</h2>
+                  <address>
+                    <p>{{profileview?.ProfileBasicInfo?.Email}}</p>
+                    <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
+                    <p>{{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
+                      {{profileview?.ProfileBasicInfo?.CountryName}}
+                    </p>
+                  </address>
+                </div>
+                <hr class="divider">
+                <div>
+                  <h2>Summary</h2>
+                  <p>
+                    <span [innerHTML] class="more">
+                      {{profileview?.ProfileBasicInfo?.AboutMe}}
+                    </span>
+                    <ng-container *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
+                      <p>No Summary Is Added</p>
+                    </ng-container>
+                  </p>
+                </div>
+                <hr class="divider">
+                <div>
+                  <h2>Roles &amp; Responsibilities</h2>
+                  <ul>
+                    <ng-container *ngFor="let roles of profileview?.ProfileExperience">
+                      <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
+                        <li *ngFor="let role of roles?.Roles">
+                          {{role}}
+                        </li>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                      No Roles Added
+                    </ng-container>
+                  </ul>
+                </div>
+                <hr class="divider">
+                <div>
+                  <h2>Achievements</h2>
+                  <ul>
+                    <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+                      <span *ngIf="achivements.Achievements!=null&&achivements.Achievements!=''">
+                        <li *ngFor="let achivement of achivements?.Achievements">
+                          {{achivement}}
+                        </li>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                      No Achievements Added
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <div class="right">
+                <div class="top-tech-skills">
+                  <h2 class="section-title">Top Technical Skills</h2>
+                  <div class="flex-row">
+                    <div class="skill">
+                      <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="116.5px"
+                          height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                          xml:space="preserve">
+                          <defs>
+                          </defs>
+                          <g>
+                            <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2" />
+                            <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5" />
+                          </g>
+                        </svg>
+                        <h4 class="level">Expert</h4>
+                      </div>
+                      <h4 class="name">ASP .net</h4>
+                    </div>
+                    <div class="skill">
+                      <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="116.5px"
+                          height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                          xml:space="preserve">
+
+                          <defs>
+                          </defs>
+                          <g>
+                            <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2" />
+                            <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5" />
+                          </g>
+                        </svg>
+                        <h4 class="level">Expert</h4>
+                      </div>
+                      <h4 class="name">JQuery</h4>
+                    </div>
+                    <div class="skill">
+                      <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="116.5px"
+                          height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                          xml:space="preserve">
+
+                          <defs>
+                          </defs>
+                          <g>
+                            <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2" />
+                            <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5" />
+                          </g>
+                        </svg>
+                        <h4 class="level">Expert</h4>
+                      </div>
+                      <h4 class="name">SQL</h4>
+                    </div>
+                    <div class="skill">
+                      <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="116.5px"
+                          height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                          xml:space="preserve">
+
+                          <defs>
+                          </defs>
+                          <g>
+                            <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2" />
+                            <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5" />
+                          </g>
+                        </svg>
+                        <h4 class="level">Expert</h4>
+                      </div>
+                      <h4 class="name">JavaScript</h4>
+                    </div>
+                    <div class="skill">
+                      <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="116.5px"
+                          height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                          xml:space="preserve">
+
+                          <defs>
+                          </defs>
+                          <g>
+                            <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2" />
+                            <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5" />
+                          </g>
+                        </svg>
+                        <h4 class="level">Expert</h4>
+                      </div>
+                      <h4 class="name">Angular</h4>
+                    </div>
+                  </div>
+                </div>
+                <!-- top-tech-skills end -->
+                <div class="other-skills-row row">
+                  <div class="col-md-6">
+                    <div class="skills-section">
+                      <h2 class="section-title">Other Skills</h2>
+                      <ul class="skills clearfix">
+                        <ng-container *ngFor="let skills of otherSkills">
+                          <li>
+                            <span class="skill tag " *ngIf="skills.ExpInYears ===0 &&skills.SkillName!=''||skills.ExpInYears ==null&& skills.SkillName!='' ">
+                              {{skills.SkillName }}</span>
+                          </li>
+
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="skills-section">
+                      <h2 class="section-title">Domain Skills</h2>
+                      <ul class="skills clearfix">
+                        <div>
+                          <li *ngFor=" let domain of profileview?.ProfileDomain ">
+                            <span class="skill tag " *ngIf="domain.DomainName!=null&&domain.DomainName!='' ">
+                              {{domain.DomainName}}</span>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="personal-skills">
+                  <h2 class="section-title">Personal Skills</h2>
+                  <div class="skills">
+                    <div class="letter">D</div>
+                    <div class="text">
+                      <h2 class="title">Dominance</h2>
+                      <p>
+                        Person places emphasis on accomplishing
+                        results, the bottom line, confidence
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="professional-experience">
+                  <h2 class="section-title">Professional Experience</h2>
+                  <div class="timeline-wrap clearfix">
+                    <ul class="timeline">
+                      <li class="clearfix " *ngFor="let exp of profileview?.ProfileExperience ">
+                        <div class="date ">
+                          {{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}
+                        </div>
+                        <div class="badge-circle "></div>
+                        <div class="details ">
+                          <h3 class="title ">{{exp.JobRole}}</h3>
+                          <div class="info ">
+                            <img src="assets/images/oxford.png" alt=" ">
+                            <h4 class="name ">{{exp.CompanyName}}</h4>
+                            <h5 class="meta meta-dark ">
+                              <span class="icon-location "></span> {{exp.JobLocation}}</h5>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="certifications">
+                  <h2 class="section-title">Certifications</h2>
+                  <div class="row">
+                    
+                   
+                    <div *ngIf="profileview?.Certifications?.length>0">
+                      <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngFor="let certificate of profileview?.Certifications ">
+                        <div class="cert-card ">
+                          <div class="settings-dot ">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <div class="logo ">
+                            <img [src]="certificate.ImageUrl" alt=" ">
+                          </div>
+                          <div class="info ">
+                            <h2 class="title " data-toggle="tooltip" title={{certificate.CertificationName}}>{{certificate.CertificationName}}</h2>
+                            <h4 class="year ">{{certificate.YearOfAchievement| date:'mediumDate'}}</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngIf="profileview?.Certifications?.length==0">
+                      <p>No Certifications added</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 class="section-title">Professional Education</h2>
+                  <div class="timeline-wrap clearfix">
+                    <ul class="timeline">
+                      <li class="clearfix " *ngFor="let education of profileview?.Education ">
+                        <div class="date ">
+                          {{education.FromYear}} - {{education.ToYear}}
+                        </div>
+                        <div class="badge-circle "></div>
+                        <div class="details ">
+                          <h3 class="title ">{{education.QualificationName}} in {{education.Specialization}}</h3>
+                          <div class="info ">
+                            <img src="assets/images/oxford.png " alt=" ">
+                            <h4 class="name ">{{education.InstituteORUniversity}}</h4>
+                            <h5 class="meta meta-dark ">
+                              <span class="icon-location "></span> {{education.Location}}</h5>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="clearfix " *ngIf="profileview?.Education.length==0">
+                        <p>No Professional Education added</p>
+                      </li>
+                     
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- col-md-8 -->
+          </div>
+        </div>
+
+
+        <div id="detailView" class="tab-pane fade in active">
+          <main class="main-wrapper">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="profile-info">
+                    <div class="row">
+                      <div class="pic col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div>
+                          <img class="profile-pic" src="{{profileview?.ProfileBasicInfo?.ProfilePic}}" alt="">
+                        </div>
+                        <!-- <div>
+                          <a href="#" class="btn green-btn">Public Profile</a>                
+                        </div> -->
+                      </div>
+                      <div class="info-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <h1 class="name">{{profileview?.ProfileBasicInfo?.FirstName}}
+                          {{profileview?.ProfileBasicInfo?.LastName}}</h1>
+        
+                          <h4 class="meta">
+                            {{profileview?.ProfileBasicInfo?.ProfileTitle}}
+                          </h4>
+        
+                        <div class="social-media">
+                          <a href="javascript:void(0)">
+                            <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
+                          </a>
+                          <a href="javascript:void(0)">
+                            <img src="../../../../assets/images/fb-icon.svg" alt="Linkedin">
+                          </a>
+                          <a href="javascript:void(0)">
+                            <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
+                          </a>
+                        </div>
+                      </div>
+                      
+                      <div class="contact-info-col col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="divider"></div>
+                        <a href="profile-edit-name-and-location.html" style="visibility:hidden;">
+                          <!-- Edit Icon -->
+                          <svg version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                            x="0px" y="0px" width="19.8px" height="20px" viewBox="0 0 19.8 20" style="enable-background:new 0 0 19.8 20;"
+                            xml:space="preserve" class="icon">
+                          
+                            <defs>
+                            </defs>
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" x="0" width="19.8" height="20"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <path class="st0" d="M16.8,11.7v5.5c0,1-0.8,1.8-1.8,1.8H2.8c-1,0-1.8-0.8-1.8-1.8V5c0-1,0.8-1.8,1.8-1.8h5.5"/>
+                              <polygon class="st0" points="17,1 18.8,2.9 9.2,12.5 6.6,13.3 7.3,10.6 	"/>
+                            </g>
+                          </svg>
+                        </a>
+                        <div>
+                          <p>
+                            <!-- <svg version="1.1"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                              x="0px" y="0px" width="22.1px" height="17px" viewBox="0 0 22.1 17" style="enable-background:new 0 0 22.1 17;"
+                              xml:space="preserve" class="icon">
+                            <defs>
+                            </defs>
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" x="0" y="0" width="22.1" height="17"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <path class="st0" d="M3,1h16c1.1,0,2,0.9,2,2v11c0,1.1-0.9,2-2,2H3c-1.1,0-2-0.9-2-2V3C1,1.9,1.9,1,3,1z"/>
+                              <polyline class="st0" points="21.1,3 11,10 1,3 	"/>
+                            </g>
+                            </svg> -->
+                            <span>
+                              <img src="../../../../assets/images/email-icon.svg" alt="Email">
+                            </span>
+                            {{profileview?.ProfileBasicInfo?.UserName}}
+                          </p>
+                          <p class="meta">
+                            <!-- <svg version="1.1"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                              x="0px" y="0px" width="17.5px" height="22.2px" viewBox="0 0 17.5 22.2" style="enable-background:new 0 0 17.5 22.2;"
+                              xml:space="preserve" class="icon">
+        
+                            <defs>
+                            </defs>
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" x="0" width="17.5" height="22.2"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <path class="st0" d="M16.5,8.5c0,1.8-0.5,3.3-1.4,4.6c-1.8,2.6-3.7,5.1-5.5,7.6c-0.4,0.6-1.2,0.6-1.6,0c-1.9-2.5-3.7-5.1-5.6-7.6
+                                C1.3,11.6,0.9,10,1,8.1C1.3,4.8,3.6,2,6.9,1.2c4.4-1.1,8.7,1.8,9.5,6.2C16.4,7.8,16.5,8.3,16.5,8.5z"/>
+                              <circle class="st0" cx="8.7" cy="8.6" r="3.2"/>
+                            </g>
+                            </svg> -->
+                            <label for="">
+                              <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
+                            
+                            </label>
+                            {{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
+                            {{profileview?.ProfileBasicInfo?.CountryName}}
+                          </p>
+                          <p class="meta">
+                            <!-- <svg version="1.1"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                              x="0px" y="0px" width="20.7px" height="20.7px" viewBox="0 0 20.7 20.7" style="enable-background:new 0 0 20.7 20.7;"
+                              xml:space="preserve" class="icon">
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" x="0" width="20.7" height="20.7"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <path class="st0" d="M12.6,4.6c1.8,0.3,3.2,1.7,3.5,3.5 M12.6,1c3.7,0.4,6.7,3.4,7.1,7.1 M18.8,15.3V18c0,1-0.8,1.8-1.8,1.8
+                                c-0.1,0-0.1,0-0.2,0c-2.8-0.3-5.4-1.2-7.7-2.8c-2.2-1.4-4-3.2-5.4-5.4C2.2,9.3,1.3,6.6,1,3.8C0.9,2.9,1.6,2,2.6,1.9
+                                c0.1,0,0.1,0,0.2,0h2.7c0.9,0,1.7,0.7,1.8,1.5C7.4,4.3,7.6,5.1,7.9,6C8.1,6.6,8,7.3,7.5,7.8L6.4,9c1.3,2.2,3.1,4.1,5.4,5.4l1.1-1.1
+                                c0.5-0.5,1.2-0.6,1.9-0.4c0.8,0.3,1.7,0.5,2.5,0.6C18.2,13.6,18.8,14.4,18.8,15.3z"/>
+                            </g>
+                            </svg> -->
+                            <span>
+                              <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
+                            </span>
+                            {{profileview?.ProfileBasicInfo?.MobilePhone}}
+                          </p>
+                        </div>
+                        <!-- <div class="v-divider hidden-sm hidden-xs"></div> -->
+                        <div class="divider"></div>
+                        
+                      </div>
+                      <div class="video-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div>
+                          <svg version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                            x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"
+                            class="icon">
+                          <g>
+                            <defs>
+                              <rect id="SVGID_1_" width="32" height="32"/>
+                            </defs>
+                            <clipPath id="SVGID_2_">
+                              <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                            </clipPath>
+                            <path class="st0" d="M16,1C7.7,1,1,7.7,1,16c0,8.3,6.7,15,15,15c8.3,0,15-6.7,15-15C31,7.7,24.3,1,16,1z M22.5,17
+                              c-0.3,0.2-9.4,5.8-9.4,5.8s-1.6,0.8-1.6-1.1V10.2c0,0,0-1.6,1.6-0.9l9.4,5.4c0,0,1,0.6,1,1.2C23.5,16.4,22.8,16.8,22.5,17z"/>
+                          </g>
+                          </svg>
+        
+                          <h4>Video Profile</h4>                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Profile Info -->
+                </div>
+                <!-- col-lg-12 -->
+              </div>
+              <!-- row -->
+              <div class="card row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <!-- <div class="upload-resume row">
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                      <h2 class="title">Upload Resume</h2>
+                      <p>
+                        Upload your resume and we will automatically parse your data
+                        to your profile.
+                      </p>
+                    </div>
+               
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                      <h4><form class="form-inline" action="" enctype="multipart/form-data"><label for="browse">Browse<input id="browse" type="file"></label></form><small>OR</small>Upload</h4>
+                      <div class="upload-options">
+                        <a href="">
+                          <img src="images/g-drive-logo.png" alt="">
+                        </a>
+                        <a href="">
+                          <img src="images/dropbox-logo.png" alt="">                
+                        </a>
+                        <a href="">
+                          <img src="images/cloud-logo.png" alt="">                
+                        </a>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="row">
+                  
+                      <div class="summary">
+                        <div>
+                          <span [innerHTML] class="moreDetails">
+                            {{profileview?.ProfileBasicInfo?.AboutMe}}
+                          </span>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
+                            <p>No Summary Is Added</p>
+                          </ng-container>
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+                <!-- col-lg-9 Ends -->
+                <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="profile-completeness row">
+                    <h2>Profile Completeness</h2>
+                    <div class="progress-wrap">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100" style="width:75%">
+                        <span class="sr-only">75% Complete</span>
+                        </div>
+                      </div>
+                      <h4>75%</h4> 
+                    </div>
+                  </div>
+                </div> -->
+                <!-- col-lg-3 -->
+              </div>
+              <!-- <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="summary">
+                    <div>
+                      <h2>Summary</h2>
+                      <p>Adding summary will help employers to know about your personality and background. </p>
+                    </div>
+                    <a href="#" class="add-btn" style="visibility:hidden"><span >+</span><p>Add Summary</p></a>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div id="technical-skills" class="technical-skills card left hasModal">
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Technical Skills</h2>
+                      <a href="#" class="add-btn modalBtn" data-toggle="modal" data-target="#technicalSkills" style="visibility:hidden"><span >+</span><p>Add Skills</p></a>    
+                      <div class="view-toggle pull-right hidden-xs">
+                        <div>
+                          <a data-toggle="tab" href="#topSkillsListView" aria-expanded="false">
+                            <svg version="1.1"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                              x="0px" y="0px" width="20px" height="20px" 
+                              viewBox="0 0 20 20" 
+                              style="enable-background:new 0 0 20 20;" 
+                              xml:space="preserve"
+                              class="icon">
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" width="20" height="20"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <rect x="1" y="1" class="st0" width="18" height="6"/>
+                              <rect x="1" y="12.9" class="st0" width="18" height="6"/>
+                            </g>
+                            </svg>
+                          </a>
+                        </div>
+                        <div>
+                          <a data-toggle="tab" href="#topSkillsGridView" aria-expanded="true">
+                            <svg version="1.1"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                              x="0px" y="0px" width="20px" height="20px" 
+                              viewBox="0 0 20 20" 
+                              style="enable-background:new 0 0 20 20;" 
+                              xml:space="preserve"
+                              class="icon">
+                            
+                            <defs>
+                            </defs>
+                            <g>
+                              <defs>
+                                <rect id="SVGID_1_" width="20" height="20"/>
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                              </clipPath>
+                              <rect x="1" y="1" class="st0" width="6" height="6"/>
+                              <rect x="12.9" y="1" class="st0" width="6" height="6"/>
+                              <rect x="1" y="12.9" class="st0" width="6" height="6"/>
+                              <rect x="12.9" y="12.9" class="st0" width="6" height="6"/>
+                            </g>
+                            </svg>          
+                          </a>
+                        </div>
+                      </div>               
+                    </header>
+                    <div class="card-content scrollbar-inner" >
+                      
+                        <div class="tab-content">
+                        <div id="topSkillsListView" class="top-skills tab-pane fade hidden-xs">
+                          <table>
+                            <tr>
+                              <th>Skills Name</th>
+                              <th>Experience</th>
+                              <th>Last Used</th>
+                              <th>Skill level</th>
+                              <th></th>
+                            </tr>
+                            <tr *ngFor="let skill of list">
+                              <ng-container>
+                                <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
+                                <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
+                                <td>{{skill.Lastused}}</td>
+                                <td>{{skill.SkillRating}}</td>
+                              </ng-container>
+                            </tr>
+                           
+                          </table>
+                        </div>
+                        <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
+                          <h4 class="label-caps">Top Skills</h4>
+                          <div class="row">
+                            <ng-container *ngFor="let skill of list">
+                              <div class="col-md-6 tech_width">
+                                <div class="skills card">
+  
+                                  <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
+                                  <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</h2>
+                                  <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                      <h5 class="label-caps light">Rating</h5>
+                                      <p>{{skill.SkillRating}}</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                      <h5 class="label-caps light">Last used</h5>
+                                      <p>{{skill.Lastused}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                        </div>
+                        <!-- Top Skills End -->
+                        <div class="other-skills ">
+                          <h4 class="label-caps">Other Skills</h4>
+                          <div *ngIf="otherSkills!=null">
+                            <ul class="skills clearfix">
+                              <!-- <ng-container *ngFor="let skill of list"> -->
+                              <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
+                                    (click)="EditSkill(skill)">
+                                    {{skill.SkillName}}
+                                  </li>
+  
+                                  <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
+                                      {{searchResult.name}}
+                                      <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
+                                    </li> -->
+  
+                              <!-- <li *ngFor="let skill of otherSkills">
+                                  <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
+                                    {{skill.SkillName}}</a>
+                                  <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
+                                </li> -->
+  
+                              <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">{{skill.SkillName}}</li>
+                              <!-- <li class="skill more">
+                                <a href="javascript:void(0)">+5 more</a>
+                              </li> -->
+                            </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Other Skills End -->
+                        <div class="alert job-alert">
+              
+                        </div>
+                      
+                    </div>
+                    
+                  </div>
+                  <div class="blackLayer modalClose"></div>
+                </div>
+                <div class="personal-skills card right">
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Personal Skills</h2>
+                      <div class="pull-right">
+                        <a href="#" class="add-btn" style="visibility:hidden"><span >+</span><p>Retake Test</p></a>                                  
+                      </div>
+                    </header>
+                    <div class="card-content">
+                      <div class="skills">
+                        <div class="letter">D</div>
+                        <div class="text">
+                          <h2 class="title">Dominance</h2>
+                          <p>
+                            Person places emphasis on accomplishing
+                            results, the bottom line, confidence
+                          </p>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="education card right hasModal ">
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Education</h2>    
+                      <div class="pull-right">
+                        <a href="#" class="add-btn modalBtn" data-toggle="modal" data-target="#education" style="visibility:hidden"><span >+</span><p>Add Education</p></a>                                  
+                      </div>        
+                    </header>
+                    <div class="card-content scrollbar-inner">
+                      <div class="education-row " *ngFor="let educations of profileview?.Education">
+
+                        <div class="institute ">
+                          <img src="assets/images/oxford.png " class="logo" alt="logo">
+                          <h4 class="name ">{{educations.InstituteORUniversity}}</h4>
+                          <h5 class="meta meta-dark ">
+                            <span class="icon-location "></span> {{educations.Location}}</h5>
+                        </div>
+                        <h2 class="title ">{{educations.QualificationName}}</h2>
+                        <div class="duration ">
+                          <span class="icon-calendar "></span>
+                          <span class="from ">{{educations.FromYear}}</span>
+                          <span> - </span>
+                          <span class="to ">{{educations.ToYear}}</span>
+                        </div>
+                        <div class="study-fields ">
+                          <h4 class="label-caps ">Fields of Study</h4>
+                          <ul class="list clearfix ">
+                            <li>
+                              <span class="skill tag " *ngIf="educations.Specialization!='' ;else falTemplate ">
+                                {{educations.Specialization}}
+                                <ng-template #falTemplate>
+  
+                                </ng-template>
+                              </span>
+  
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+               
+                     
+                    </div>
+                  </div>
+                  <div class="blackLayer modalClose"></div>
+                </div>
+                <div class="domain-skills card left hasModal ">
+           
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Domain Skills</h2>      
+                      <div class="pull-right">
+                        <a href="#" class="add-btn modalBtn" data-target="#domain-skills" data-toggle="modal" style="visibility:hidden"><span >+</span><p>Add Domain</p></a>                                  
+                      </div>        
+                    </header>
+                    <div class="card-content scrollbar-inner">
+                      <div class="row">
+                        <div *ngIf="profileview?.ProfileDomain?.length>0">
+                          <div class="col-md-4 domainRecords" *ngFor="let domains of profileview?.ProfileDomain ">
+                            <div class="skills-box ">
+                              <header>
+                                <h5 class="title "> {{domains.DomainName}}</h5>
+  
+                              </header>
+                              <div class="skill-row row ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h6>Experience</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h5>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</h5>
+                                </div>
+                              </div>
+                              <div class="skill-row row ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h6>Last used</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h5>{{domains.LastUsed}}</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 " *ngIf="profileview?.ProfileDomain?.length==0">
+                          <p>No domains added</p>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                  </div> 
+                  <div class="blackLayer modalClose"></div>
+                </div>
+                <div class="professional-experience card left hasModal ">
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Professional Experience</h2>
+                      <div class="pull-right">
+                        <a href="#" class="add-btn modalBtn" data-target="#professional-experience" data-toggle="modal" style="visibility:hidden"><span >+</span><p>Add Experience</p></a>                                  
+                      </div>
+                    </header>
+                    <div class="card-content scrollbar-inner">
+                      <ng-container *ngFor="let exps of profileview?.ProfileExperience;let i=index ">
+                        <div class="job-row row ">
+                          <div class="col-md-4 ">
+                            <div class="institute ">
+                              <img src="assets/images/oxford.png " class="logo " alt="logo">
+                              <h4 class="name">{{exps.CompanyName}}</h4>
+                              <h5 class="meta meta-light ">Digital Design</h5>
+                            </div>
+                            <h2 class="title ">{{exps.JobRole}}</h2>
+                            <div class="duration ">
+                              <span class="icon-calendar "></span>
+                              <span class="from "> {{exps.StartDate | date:'mediumDate'}}</span>
+                              <span> - </span>
+                              <span class="to ">{{exps.EndDate | date:'mediumDate'}}</span>
+                            </div>
+                            <h5 class="meta meta-light ">
+                              <span class="icon-location "></span>{{exps.JobLocation}}</h5>
+                            <div class="radio-box inline ">
+                              
+                            </div>
+                          </div>
+                          <div class="v-divider "></div>
+                          <div class="col-md-8 col-sm-12 ">
+                            <ul class="nav nav-tabs ">
+                              <li class="active ">
+                                <a data-toggle="tab" href="#description{{i}} ">
+                                  Description
+                                </a>
+                              </li>
+                              <li>
+                                <a data-toggle="tab" href="#achievements{{i}} ">
+                                  Achievements
+                                </a>
+                              </li>
+                              <li>
+                                <a data-toggle="tab" href="#responsibilities{{i}} ">
+                                  Roles and Responsibilities
+                                </a>
+                              </li>
+  
+  
+                            </ul>
+                            <div class="tab-content">
+                              <div id="description{{i}}" class="tab-pane active">
+                                <div class="scrollbar-inner ">
+                                  <p class="text ">
+                                    {{exps.Description}}
+                                  </p>
+                                  <ng-container *ngIf="exps.Description==null||exps.Description==''">
+                                    <p>No Description Added </p>
+                                  </ng-container>
+                                </div>
+                          
+                              </div>
+                              <div id="achievements{{i}}" class="tab-pane">
+                                <div class="scrollbar-inner ">
+                                  <div class="list">
+                                    <div class=" ">
+                                      <ng-container *ngFor="let i of exps?.Achievements ">
+                                        <p>{{i}}</p>
+                                      </ng-container>
+                                      <ng-container *ngIf="exps?.Achievements==null||exps?.Achievements==''">
+                                        No Achievements Added
+                                      </ng-container>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="responsibilities{{i}}" class="tab-pane">
+                                <div class="scrollbar-inner ">
+                                  <div class="list">
+                                      <ng-container *ngFor="let r of exps?.Roles ">
+                                        <p>{{r}}</p>
+                                      </ng-container>
+                                      <ng-container *ngIf="exps?.Roles==null|| exps?.Roles==''">
+                                        No Roles Added
+                                      </ng-container>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="profileview?.ProfileExperience.length==0">
+                        <div>
+                          <p>
+                            No Professional Experience added.
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="blackLayer modalClose"></div>
+                </div>
+                <div class="certifications card left hasModal">
+        
+                  <div class="wrap">
+                    <header class="card-header">
+                      <h2 class="card-title">Certifications</h2>
+                      <div class="pull-right">
+                        <a href="#" class="add-btn modalBtn" data-target="#certifications" data-toggle="modal" style="visibility:hidden"><span >+</span><p>Add Certification</p></a>                                  
+                      </div>   
+                    </header>
+                    <div class="card-content scrollbar-inner">
+                      <div class="cert-row row ">
+                        <div *ngIf="profileview?.Certifications?.length > 0">
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngFor="let certificates of profileview?.Certifications ">
+                            <div class="cert-card ">
+                              <div class="logo">
+                                <img width="160" [src]="certificates.ImageUrl"  alt="certification">
+                              </div>
+                              <div class="info ">
+                                <h2 class="title" title="{{certificates.CertificationName}}">{{certificates.CertificationName}}</h2>
+                                <h4 class="year ">{{certificates.YearOfAchievement| date:'mediumDate'}}</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngIf="profileview?.Certifications?.length==0">
+  
+                          <p>No Certifications added</p>
+  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="blackLayer modalClose"></div>
+                </div>
+              </div>
+            </div>
+            <!-- container -->
+          </main>
+
+        </div>
+      </div>
+    </div>
+    <!-- container -->
+  </main>
+</div>
+
+
+
+<!--Vardhini Code-->
+
+<!--End-->

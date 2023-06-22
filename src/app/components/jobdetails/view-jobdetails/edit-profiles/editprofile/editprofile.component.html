@@ -1,0 +1,2248 @@
+<!-- <div class="upload__resume__container" *ngIf="haveProfiles"> -->
+<div class="upload__resume__container" >
+  <div class="top__container">
+    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <!-- <span class="profile__count">{{processedProfiles.length}} Profiles</span> -->
+    <h3>Update the Arytic matching scores</h3>
+
+ 
+  </div>
+  <div class="main__section" >
+    <!-- <div class="main__section"> -->
+    <ng-container >
+      <div class="row flex flex-wrap">
+        <!-- <div class="row flex flex-wrap"> -->
+        <div class="col-sm-3 side__col">
+          <div class="side__panel__navigation">
+            <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4>
+            <ul>
+              <li [ngClass]="showThis == 'JobFit'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
+                  Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
+               
+                    <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
+           
+                </a>
+              </li>
+              <li [ngClass]="showThis == 'SkillsFit'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'SkillsFit'">
+                  Skills Fit ({{matchingParameterData?.Skillfit_Total}}%)
+                  <ng-container *ngIf="skillfitcheck.length>0">
+                    <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
+
+                  </ng-container>
+                  <ng-container *ngIf="skillfitcheck.length===0">
+                    <div class="no__data__found">
+                      <h3>Skills does not match</h3>
+                    </div>
+                  </ng-container>
+                </a>
+              </li>
+
+
+              <li class="with__icon" [ngClass]="showThis == 'Personal Details'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Personal Details'">
+                  <span class="icon icon__interest"><span class="sr-only">Icon</span></span>
+                  Personal Details
+                </a>
+              </li>
+              <li class="with__icon" [ngClass]="showThis == 'WorkExperience'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'WorkExperience'">
+                  <span class="icon icon__experience"><span class="sr-only">Icon</span></span>
+                  Work Experience
+                </a>
+              </li>
+              <li class="with__icon" [ngClass]="showThis == 'Education'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Education'">
+                  <span class="icon icon__education"><span class="sr-only">Icon</span></span>
+                  Education
+                </a>
+              </li>
+              <li class="with__icon" [ngClass]="showThis == 'Certification'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Certification'">
+                  <span class="icon icon__certification"><span class="sr-only">Icon</span></span>
+                  Certification
+                </a>
+              </li>
+              <!-- <li class="with__icon" [ngClass]="showThis == 'Achievement'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Achievement'">
+                  <span class="icon icon__achivement"><span class="sr-only">Icon</span></span>
+                  Achievement
+                </a>
+              </li>  -->
+              <!-- <li class="with__icon" [ngClass]="showThis == 'Hobbies'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Hobbies'">
+                  <span class="icon icon__hobbies"><span class="sr-only">Icon</span></span>
+                  Hobbies and Interest
+                </a>
+              </li> -->
+              <!-- <li class="with__icon" [ngClass]="showThis == 'Languages'? 'active': null">
+                <a href="javascript:void(0)" (click)="showThis = 'Languages'">
+                  <span class="icon icon__languages"><span class="sr-only">Icon</span></span>
+                  Languages
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-9 primary__col">
+          <ng-container *ngIf="showThis == 'JobFit'">
+            <span class="shadow">&nbsp;</span>
+            <div class="basic__table">
+              <div class="row basic__row flex flex-wrap">
+                <div class="col-sm-6 basic__col title__col">
+                  <div class="box__table">&nbsp;</div>
+                </div>
+                <div class="col-sm-3 basic__col">
+                  <div class="box__table">Job Details</div>
+                </div>
+                <div class="col-sm-3 basic__col">
+                  <div class="box__table">Resume Details</div>
+                </div>
+              </div>
+            </div>
+            <div class="stripped__table no__margin">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Role Fit</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>{{roleweight}}  %</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got
+                    <strong>{{matchingParameterData?.Role}}%</strong>
+                  </div>
+                  <div class="box__table" *ngIf="matchingParameterData?.Role > 0 ">you got
+                    <strong>{{matchingParameterData?.Role}}%</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Industry</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table"> {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
+                    {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
+                    <button class="btn btn__edit" (click)="editBd()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
+                    Not Available
+                    <button class="btn btn__edit" (click)="editBd()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-12 question_col" *ngIf="EditBD">
+                  <div class="question">
+                    If you want to update Industry {{roleFitDetails?.CustomerJobIndustries[0].Code | titlecase }}?
+                    <div class="buttons">
+                      <button class="btn btn-filled"
+                        (click)="updateBD(roleFitDetails?.CustomerJobIndustries[0])">Update</button>
+                      <!-- <button class="btn btn-default" (click)="EditBD=!EditBD">No</button> -->
+                      <button class="btn btn-default" (click)="EditBD=!EditBD">Skip</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Title</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table"> {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
+                    <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
+                      {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }}
+                      <button class="btn btn__edit" (click)="editt()"
+                      *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                    </ng-container>
+                    <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
+                      Not Available
+                      <button class="btn btn__edit" (click)="editt()"
+                        *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </ng-container>
+
+                  </div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
+                    Not Available
+                    <button class="btn btn__edit" (click)="editt()"
+                      *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-12 question_col" *ngIf="EditT">
+                  <div class="question">
+                    If you want to update Title {{roleFitDetails?.CustomerJobTitle[0]?.JobTitle | titlecase }}?
+                    <div class="buttons">
+                      <button class="btn btn-filled" (click)="updateTitle(r)">Update</button>
+                      <!-- <button class="btn btn-default" (click)="EditT=!EditT">No</button> -->
+                      <button class="btn btn-default" (click)="EditT=!EditT">Skip</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="roleFitDetails?.CustomerJobKeyResponses?.length>0">
+                <div class="row strip__row flex flex-wrap"
+                  *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Title</div>
+
+                    <div class="box__table" *ngIf="srk === 0">Key Requirements</div>
+
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{r?.Code | titlecase}}
+                      <!-- <span class="tooltipcontent">
+                        <ng-container
+                        *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
+                        {{r?.Code | titlecase}}
+                        </ng-container>
+                      </span>             -->
+                    </div>
+                  </div>
+                  <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length>0">
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Resume Details</div>
+                      <div class="box__table">{{r?.Code | titlecase}}
+                        <!-- <span class="tooltipcontent">
+                          <ng-container
+                          *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
+                          {{r?.Code | titlecase}}
+                          </ng-container>
+                        </span>             -->
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length===0">
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Resume Details</div>
+                      <div class="box__table">
+                        Not Available
+                        <button class="btn btn__edit" (click)="editk(0)"
+                          *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <span class="sr-only">edit</span>
+                        </button>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <div class="col-sm-12 question_col" *ngIf="EditKey && srk<1">
+                    <div class="question">
+                      If you want to update Key requirements related to Job?
+                      <div class="buttons">
+                        <button class="btn btn-filled" (click)="updateKey()">Update</button>
+                        <!-- <button class="btn btn-default" (click)="EditKey=!EditKey">No</button> -->
+                        <button class="btn btn-default" (click)="EditKey=!EditKey">Skip</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+            </div>
+            <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Experience Fit</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>{{expweight}}%</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">you got
+                    <strong>{{matchingParameterData?.JobFit}} %</strong>
+                  </div>
+                  <!-- <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=Percentweightage?.JobFit">you got
+                    <strong>30%</strong>
+                  </div> -->
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Total Experience</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table"> {{jobdetailscustomer?.JobInfo?.MaxExperience | monthsPipe }}</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    <ng-container *ngIf="profileDetails?.TotalExperience > 0">
+                      {{profileDetails?.TotalExperience}}
+                    </ng-container>
+                    <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
+                      Not Available
+                    </ng-container>
+                    <button class="btn btn__edit" (click)="edite()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-12 question_col" *ngIf="EditE">
+                  <div class="question with-float">
+                    <div class="row flex flex-wrap flex-align-center">
+                      <div class="col-sm-8">
+                        If you want to update Experience
+                        <div class="buttons">
+                          <button class="btn btn-filled"
+                            (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
+                          <!-- <button class="btn btn-default" (click)="EditE=!EditE">No</button> -->
+                          <button class="btn btn-default" (click)="EditE=!EditE">Skip</button>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span>
+                              <input class="form-control" [(ngModel)]="expYearExp" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }"></span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </span>
+                          </div>
+                          <div class="col-sm-6">
+                            <span>
+                              <input class="form-control" [(ngModel)]="expMonthExp" type="text"
+                                (input)="onChnage($event.target.value)"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="Jdomains.length > 0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jdomains;let sdk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Domain</div>
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                      <ng-container *ngIf="skill?.ExpInYears ===  0">
+                        Not Available
+                      </ng-container>
+
+                      <button class="btn btn__edit" (click)="editd(sdk,skill.JExpInYears)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 question_col" *ngIf="EditDomain && selectedDomain === sdk">
+                    <div class="question with-float">
+                      <div class="row flex flex-wrap flex-align-center">
+                        <div class="col-sm-8">
+                          If you want to update Experience
+                          <div class="buttons">
+                            <button class="btn btn-filled" (click)="updateList(skill)">Update</button>
+                            <!-- <button class="btn btn-default" (click)="EditDomain=!EditDomain">No</button> -->
+                            <button class="btn btn-default" (click)="EditDomain=!EditDomain">Skip</button>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <span class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expYear" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                              </span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </span>
+                            <span class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expMonth" type="text"
+                                (input)="onChnage($event.target.value)"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="Jdomains.length===0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Domain</div>
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                      <button class="btn btn__edit" (click)="editd(sdk,skill.JExpInYears)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </ng-container>
+
+
+            </div>
+            <!-- <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Job Hopping</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>25%</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">you got <strong>10%</strong></div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">ABC LTD.</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">5</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    4
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Infosys</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Education</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>25%</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">you got <strong>10%</strong></div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Bechalor of Engineering</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">5</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    4
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Master of Engineering</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </ng-container>
+          <ng-container *ngIf="showThis == 'SkillsFit'">
+            <span class="shadow">&nbsp;</span>
+            <div class="basic__table">
+              <div class="basic__table">
+                <div class="row basic__row flex flex-wrap">
+                  <div class="col-sm-6 basic__col title__col">
+                    <div class="box__table">&nbsp;</div>
+                  </div>
+                  <div class="col-sm-3 basic__col">
+                    <div class="box__table">Job Details</div>
+                  </div>
+                  <div class="col-sm-3 basic__col">
+                    <div class="box__table">Resume Details</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stripped__table no__margin">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Skills</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>{{Percentweightage?.SkillFit}}%</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">
+                    you got <strong>{{matchingParameterData?.Skillfit_Total}}%</strong>
+                    <!-- <button class="btn btn__edit" (click)="EditSkillHandler()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button> -->
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="Jskills.length > 0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jskills;let sk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Title</div>
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                      <ng-container *ngIf="skill?.ExpInYears ===  0">
+                        Not Available
+                      </ng-container>
+                      <button class="btn btn__edit" (click)="edits(sk,skill.JExpInYears)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
+                    <div class="question with-float">
+                      <div class="row flex felx-wrap flex-align-center">
+                        <div class="col-sm-8">
+                          If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
+                          <div class="buttons">
+                            <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
+                            <!-- <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button> -->
+                            <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expsYear" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                              </span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </div>
+                            <div class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expsMonth" type="text"
+                                (input)="onChnage($event.target.value)"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <ng-container *ngIf="JMskills.length > 0">
+                  <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills;let sk = index">
+                    <div class="col-sm-6 strip__col strip__col__td title__col">
+                      <div class="th__heading">Title</div>
+  
+                      <div class="box__table">{{skill?.Code}}</div>
+  
+                    </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Job Details</div>
+                      <div class="box__table">{{skill?.JExpInYears}}</div>
+                    </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Resume Details</div>
+                      <div class="box__table">
+                        <ng-container *ngIf="skill?.ExpInYears > 0">
+                          {{skill?.ExpInYears}}
+                        </ng-container>
+                        <ng-container *ngIf="skill?.ExpInYears ===  0">
+                          Not Available
+                        </ng-container>
+                        <button class="btn btn__edit" (click)="edits(sk,skill.JExpInYears)">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <span class="sr-only">edit</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
+                      <div class="question with-float">
+                        <div class="row flex felx-wrap flex-align-center">
+                          <div class="col-sm-8">
+                            If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
+                            <div class="buttons">
+                              <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
+                              <!-- <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button> -->
+                              <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <input class="form-control" [(ngModel)]="expsYear" type="text"
+                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                  (input)="onYearChnage($event.target.value)" value="Year" required>
+                                <span class="highlight"></span>
+                                <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                                </span>
+                                <label *ngIf="yearerror==0">
+                                  Yrs
+                                </label>
+                                <label *ngIf="yearerror==1" style="color: red;">
+                                  Yrs less than 50 valid.
+                                </label>
+                              </div>
+                              <div class="col-sm-6">
+                                <input class="form-control" [(ngModel)]="expsMonth" type="text"
+                                  (input)="onChnage($event.target.value)"
+                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                  value="Month" required>
+                                <span class="highlight"></span>
+                                <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                                <label *ngIf="errorText==0">Months</label>
+                                <label *ngIf="errorText==1" style="color: red;">
+                                  Months less than 12 valid.
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="Jskills.length === 0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills;let sk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Title</div>
+
+                    <div class="box__table">{{skill?.Code}}</div>
+
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                      <ng-container *ngIf="skill?.ExpInYears ===  0">
+                        Not Available
+                      </ng-container>
+                      <button class="btn btn__edit" (click)="edits(sk,skill.JExpInYears)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
+                    <div class="question with-float">
+                      <div class="row flex felx-wrap flex-align-center">
+                        <div class="col-sm-8">
+                          If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
+                          <div class="buttons">
+                            <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
+                            <!-- <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button> -->
+                            <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expsYear" type="text"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                (input)="onYearChnage($event.target.value)" value="Year" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                              </span>
+                              <label *ngIf="yearerror==0">
+                                Yrs
+                              </label>
+                              <label *ngIf="yearerror==1" style="color: red;">
+                                Yrs less than 50 valid.
+                              </label>
+                            </div>
+                            <div class="col-sm-6">
+                              <input class="form-control" [(ngModel)]="expsMonth" type="text"
+                                (input)="onChnage($event.target.value)"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                                value="Month" required>
+                              <span class="highlight"></span>
+                              <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                              <label *ngIf="errorText==0">Months</label>
+                              <label *ngIf="errorText==1" style="color: red;">
+                                Months less than 12 valid.
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+      
+              <!-- <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Vision</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">1</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    2
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">3</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    5
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">4</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    4
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Graphi Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Optionals</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">can be <strong>25%</strong></div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">you got <strong>10%</strong></div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Strategic Thinking</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Vision</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">1</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    2
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">3</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    5
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">4</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    4
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Graphi Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Other Skills</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">&nbsp;</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">&nbsp;</div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Strategic Thinking</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Vision</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">1</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    2
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">3</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    5
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Development</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">4</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    4
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Web Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Graphi Design</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Job Details</div>
+                  <div class="box__table">2</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">Resume Details</div>
+                  <div class="box__table">
+                    1
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </ng-container>
+
+          <ng-container *ngIf="showThis == 'Personal Details'">
+            <div class="personal__details">
+
+              <ng-container>
+                <div class="stripped__table no__margin">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Personal Details</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">
+                          <button class="btn btn__edit"
+                            (click)="editPesonalDetailHandler();EditProfile(profileDetails)">
+                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                            <span class="sr-only">Edit</span>
+                          </button>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <button class="btn btn-default" (click)="closePersonalDetailHandler()">Cancel</button>
+                          <button class="btn btn-primary" (click)="SaveProfile()">Save</button>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <form class="row" [formGroup]="proForm">
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">First Name</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table"> {{profileDetails?.FirstName | titlecase}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table">
+                            <input type="text" formControlName="FirstName" id="FirstName" placeholder="FirstName"
+                              value="{{profileDetails?.FirstName | titlecase}}" class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">Last Name</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table">{{profileDetails?.LastName | titlecase}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table">
+                            <input type="text" formControlName="LastName" id="LastName" placeholder="LastName"
+                              value="{{profileDetails?.LastName | titlecase}}" class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">Email</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <ng-container *ngIf="!editPersonalDetails">
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">{{profileDetails?.UserName}}</div>
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) == 'noemail'">Yet to provide</div>
+                        </ng-container>
+                        <ng-container *ngIf="editPersonalDetails">
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) == 'noemail'">
+                            <input type="text" formControlName="Email" value="Yet to provide"
+                              class="form-control">
+                          </div>
+                          <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">
+                            <input type="text" formControlName="Email" value="{{profileDetails?.UserName}}" readonly
+                              class="form-control">
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  
+                    <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Mobile No.</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <ng-container *ngIf="profileDetails?.MobilePhone!=null && profileDetails?.MobilePhone!= undefined">                     
+                          <ng-container *ngIf="profileDetails?.MobilePhone!=null">
+                            <div class="box__table">{{profileDetails?.MobilePhone | mask: '(000) 000-0000'  }};</div>
+                          </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="profileDetails?.MobilePhone===null || profileDetails?.MobilePhone=== undefined">
+                          <div class="box__table">Yet to Provide</div>
+                        </ng-container>
+                 
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table phone__col">
+                          <div class="input-group  flex flex-wrap flex-align-equal">
+                            <span class="input-group-addon">
+                              <i class="fa fa-phone" aria-hidden="true"></i>
+                            </span>	
+                            <select class="form-control custom-select-dark" (change)="chooseCountry($event.target.value)">
+                   
+                                <option *ngFor="let ls of selectCountry"
+                                    [selected]="ls.name == 'United States'" value="{{ls?.dial_code}}">
+                                    {{ls?.dial_code}}</option>
+                            </select>
+                            <ng-container *ngIf="profileDetails?.MobilePhone===null">
+                              <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
+                            maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                            placeholder="Mobile Number*"  class="form-control" placeholder="Mobile" >
+                            </ng-container>
+                            <ng-container *ngIf="profileDetails?.MobilePhone!=null">
+                              <input type="text"  formControlName="MobilePhone"  mask="(000) 000-0000"
+                              maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                              placeholder="Mobile Number*"  class="form-control" placeholder="Mobile" value="{{profileDetails?.MobilePhone | mask: '(000) 000-0000'}}">
+                            </ng-container>
+                         
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Current Role</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">{{profileDetails?.ProfileTitle}}</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <input type="text" formControlName="ProfileTitle" id="ProfileTitle"
+                            placeholder="ProfileTitle" value="{{profileDetails?.ProfileTitle}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  </form>
+                  <!-- <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Gender</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">
+                          Male
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <select class="form-control custom-select-dark">
+                            <option value="Gender" selected>Male</option>
+                          </select>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div> -->
+                  <!-- <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Technology</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">Generation</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <select class="form-control custom-select-dark">
+                            <option value="Generation" selected>Generation</option>
+                          </select>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Immigration Status</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">H1B Visa</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <select class="form-control custom-select-dark">
+                            <option value="H1B Visa" selected>H1B Visa</option>
+                          </select>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">LinkedIn</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">http://www.linkedin.com</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="http://www.linkedin.com">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Facebook</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">http://www.facebook.com</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="http://www.facebook.com">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Twitter</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">https://www.twitter.com</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="https://www.twitter.com">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Skype Id</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">Skype Name</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-skype" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="Skype ID">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div> -->
+
+
+                  <!-- <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Address</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">San Antonio,Texas 78209,USA</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="San Antonio,Texas 78209,USA">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Zip Code</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                      <ng-container *ngIf="!editPersonalDetails">
+                        <div class="box__table">87377</div>
+                      </ng-container>
+                      <ng-container *ngIf="editPersonalDetails">
+                        <div class="box__table">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </span>	
+                            <input type="text" class="form-control" value="87377">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div> -->
+                </div>
+
+              </ng-container>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="showThis == 'WorkExperience'">
+            <ng-container *ngFor="let exp of experience;let e= index;">
+              <div class="stripped__table no__margin" *ngIf="!editWorkExperience">
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                    <div class="box__table">Job Details</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                    <div class="box__table">
+                      <ng-container>
+                        <button class="btn btn__edit" (click)="editExp(exp,e)">
+                          <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="btn btn__delete" (click)="DeleteExperience(exp.ExperienceId)">
+                          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </ng-container>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Job Title</div>
+                  </div>
+                  <ng-container>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <div class="box__table">{{exp?.JobTitle}}</div>
+                    </div>
+                  </ng-container>
+
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">From - To</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <ng-container>
+                      <div class="box__table">{{exp?.StartDate | date: 'MM-yyyy'}} to {{exp?.EndDate | date: 'MM-yyyy'}}
+                      </div>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Company Name</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <ng-container *ngIf="showInput != 'editWorkExperience'">
+                      <div class="box__table">{{exp?.CompanyName}}</div>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Company Location</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <div class="th__heading">&nbsp;</div>
+                    <ng-container *ngIf="showInput != 'editWorkExperience'">
+                      <div class="box__table">{{exp?.JobLocation || 'Not Available'}}</div>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Description</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <ng-container *ngIf="showInput != 'editWorkExperience'">
+                      <div class="box__table">
+                        <p [innerHTML]="exp?.Description | slice:0:100">
+
+                        </p>
+                        <ng-container *ngIf="moreShow == e">
+                          <p [innerHTML]="exp?.Description| slice:100:15000">
+                          </p>
+                        </ng-container>
+                        <a href="javascript:void(0)" *ngIf="exp?.Description?.length>100 && moreShow!=e" (click)="moreContent(e)"
+                          class="show__more">
+                         <span>Show More</span>
+                        </a>
+                      </div>
+                      <a href="javascript:void(0)"  *ngIf="exp?.Description?.length>100 && moreShow==e"  (click)="lessContent()"
+                        class="show__more">
+                        <span>Show Less</span>
+                      </a>
+                    </ng-container>
+
+                  </div>
+                </div>
+              </div>
+              <div class="stripped__table no__margin" *ngIf="editWorkExperience && selectedIndex == e">
+                <form [formGroup]="expForm">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Job Details</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                      <div class="box__table">
+                        <ng-container>
+                          <button class="btn btn-default"
+                            (click)="editWorkExperience=!editWorkExperience">Cancel</button>
+                          <button class="btn btn-primary" (click)="SaveExperience()">Save</button>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Job Title</div>
+                    </div>
+                    <ng-container>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <div class="th__heading">&nbsp;</div>
+                        <div class="box__table">
+                          <input type="text" formControlName="JobTitle" aria-label="text"
+                            placeholder="Job Title / Role / Designation" class="form-control" value="{{exp?.JobTitle}}">
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">From - To</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
+                      <ng-container>
+                        <div class="box__table">
+                          <div class="row form__sub__row flex flex-wrap flex-align-center">
+                            <div class="col-sm-5 form__sub__col">
+                              <input type="text" class="form-control" aria-label="text" bsDatepicker
+                                [bsConfig]="{dateInputFormat: 'MM-YYYY' ,adaptivePosition: true}"
+                                (onShown)="onOpenCalendar($event)" formControlName="StartDate" placeholder="Start"
+                                value="{{exp?.StartDate | date: 'MM-yyyy'}}">
+                            </div>
+                            <div class="col-sm-2 form__sub__col text-center">
+                              To
+                            </div>
+                            <div class="col-sm-5 form__sub__col">
+                              <input type="text" formControlName="EndDate" aria-label="text" bsDatepicker
+                                [bsConfig]="{dateInputFormat: 'MM-YYYY',adaptivePosition: true }"
+                                (onShown)="onOpenCalendar($event)" placeholder="End" class="form-control"
+                                value="{{exp?.EndDate | date: 'MM-yyyy'}}">
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Company Name</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="CompanyName" placeholder="Company Name" required
+                            value="{{exp?.CompanyName}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Company Location</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <div class="th__heading">&nbsp;</div>
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="JobLocation" placeholder="Location"
+                            value="{{exp?.JobLocation}}" class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Description</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
+                      <ng-container>
+                        <div class="box__table">
+                          <textarea class="form-control" formControlName="Description" placeholder="Summary">{{exp?.Description}}
+                        </textarea>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </ng-container>
+
+          </ng-container>
+          <ng-container *ngIf="showThis == 'Education'">
+            <ng-container *ngFor="let study of education;let ed= index;">
+              <div class="stripped__table no__margin" *ngIf="!editEducation">
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                    <div class="box__table">Qualification</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                    <div class="box__table">
+                      <ng-container>
+                        <button class="btn btn__edit" (click)="EditEducation(study,ed)">
+                          <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="btn btn__delete" (click)="DeleteEducation(study.EducationId)">
+                          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </ng-container>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Qualification</div>
+                  </div>
+                  <ng-container>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <div class="box__table">{{study?.QualificationName}}</div>
+                    </div>
+                  </ng-container>
+
+                </div>
+                 <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">From - To</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <ng-container>
+                      <div class="box__table">{{study?.FromYear}} to {{study?.ToYear}}</div>
+                    </ng-container>
+
+                  </div>
+                </div> 
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Specialization</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                    <ng-container *ngIf="showInput != 'editWorkExperience'">
+                      <div class="box__table">{{study?.Specialization}}</div>
+                    </ng-container>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="stripped__table no__margin" *ngIf="editEducation && selectedeIndex == ed">
+                <form [formGroup]="eduForm">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Qualification</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                      <div class="box__table">
+                        <ng-container>
+                          <button class="btn btn-default" (click)="editEducation=!editEducation">Cancel</button>
+                          <button class="btn btn-primary" (click)="SaveEducation()">Save</button>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Qualification</div>
+                    </div>
+                    <ng-container>
+                      <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                        <div class="th__heading">&nbsp;</div>
+                        <div class="box__table">
+                          <div class="custom-select">
+                            <select class="form-control" required formControlName="QualificationId">
+                              <option label="Graduation"></option>
+                              <option *ngFor="let degree of degreeList" [value]="degree.QualificationId">
+                                {{degree.QualificationName | titlecase}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">From - To</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+
+                      <ng-container>
+                        <div class="box__table">
+                          <div class="row form__sub__row flex flex-wrap flex-align-center">
+                            <div class="col-sm-5 form__sub__col">
+                              <select class="form-control" required formControlName="FromYear">
+                                <option label="From Year"></option>
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                              </select>
+                            </div>
+                            <div class="col-sm-2 form__sub__col text-center">
+                              To
+                            </div>
+                            <div class="col-sm-5 form__sub__col">
+                              <select class="form-control" required formControlName="ToYear">
+                                <option label="To Year"></option>
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div> 
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">Specialization</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="Specialization" placeholder="Specialization"
+                            aria-label="text"  required class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">School/University</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                      <ng-container>
+                        <div class="box__table">
+                          <input type="text" formControlName="InstituteOrUniversity" id="School_university"
+                            placeholder="School/University" aria-label="text"  required
+                            class="form-control">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </ng-container>
+
+          </ng-container>
+          <ng-container *ngIf="showThis == 'Certification'">
+            <ng-container *ngIf="certificate.length>0">
+              <ng-container *ngFor="let certified of certificate;let cd= index;">
+                <div class="stripped__table no__margin" *ngIf="!editCertification">
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                      <div class="box__table">Certification</div>
+                    </div>
+                    <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                      <div class="box__table">
+                        <ng-container>
+                          <button class="btn btn__edit" (click)="EditCert(certified,cd)">
+                            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                            <span class="sr-only">Edit</span>
+                          </button>
+                          <button class="btn btn__delete" (click)="DeleteCertification(certified.CertificationId)">
+                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                            <span class="sr-only">Delete</span>
+                          </button>
+                        </ng-container>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row strip__row flex flex-wrap">
+                    <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                      <div class="box__table">CertificationName</div>
+                    </div>
+                    <ng-container>
+                      <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                        <div class="box__table">{{certified?.CertificationName}}</div>
+                      </div>
+                    </ng-container>
+
+                  </div>
+
+
+
+                </div>
+                <div class="stripped__table no__margin" *ngIf="editCertification && selectedcIndex == cd">
+                  <form [formGroup]="certForm">
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                        <div class="box__table">Certification</div>
+                      </div>
+                      <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                        <div class="box__table">
+                          <ng-container>
+                            <button class="btn btn-default"
+                              (click)="editCertification=!editCertification">Cancel</button>
+                            <button class="btn btn-primary" (click)="SaveCertification()">Save</button>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="row strip__row flex flex-wrap">
+                      <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                        <div class="box__table">CertificationName</div>
+                      </div>
+                      <ng-container>
+                        <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                          <div class="th__heading">&nbsp;</div>
+                          <div class="box__table">
+                            <input placeholder="Certification Provider" class="form-control" aria-label="text"
+                              formControlName='CertificationName' required>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+
+
+
+
+                  </form>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="certificate.length===0">
+              <div class="row strip__row flex flex-wrap">
+                <div class="no__data">No Certificates Provided</div>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="showThis == 'Languages'">
+            <div class="stripped__table no__margin">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first xs__col">
+                  <div class="box__table">Languages</div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__th xs__col">
+                  <div class="box__table">
+                    Read
+                  </div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__th xs__col">
+                  <div class="box__table">
+                    Write
+                  </div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__th xs__col">
+                  <div class="box__table">
+                    Speak
+                  </div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__th xs__col text-right">
+                  <div class="box__table">
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                  <div class="box__table">English</div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox" checked disabled>
+                    <span class="checkmark">Read</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox" checked disabled>
+                    <span class="checkmark">Write</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox" checked disabled>
+                    <span class="checkmark">Speak</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                  <div class="box__table">Hindi</div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox" checked disabled>
+                    <span class="checkmark">Read</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">Write</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">Speak</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                  <div class="box__table">Gujrati</div>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">Read</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">Write</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">Speak</span>
+                  </label>
+                </div>
+                <div class="col-sm-6 strip__col strip__col__td xs__col">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="showThis == 'Achievement'">
+            <div class="tag__container">
+              <h4>Achievement</h4>
+              <!-- <div class="input-group">
+                <input type="text" placeholder="Enter Achievement" class="form-control">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button">+</button>
+                </span>
+              </div> -->
+              <!-- <ul>
+                <li><a href="#">Angular js</a></li>
+                <li><a href="#">React Js</a></li>
+                <li><a href="#">Vue JS</a></li>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Reporting</a></li>
+                <li><a href="#">Accountability</a></li>
+                <li><a href="#">Service Standards</a></li>
+                <li><a href="#">Aviation</a></li>
+                <li><a href="#">Pharma</a></li>
+              </ul> -->
+            </div>
+            <div class="stripped__table">
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                  <div class="box__table">Achievement</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">&nbsp;</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__th">
+                  <div class="box__table">&nbsp;</div>
+                </div>
+              </div>
+              <ng-container *ngIf="achievements.length>0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let a of achievements;let a= index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Title</div>
+                    <div class="box__table ach" title="{{a?.Achievement | titlecase}}">{{a?.Achievement | titlecase}}
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">&nbsp;</div>
+                    <div class="box__table">
+                      <button class="btn btn__edit">
+                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                        <span class="sr-only">Edit</span>
+                      </button>
+                    </div>
+                  </div> -->
+                  <!-- <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">&nbsp;</div>
+                    <div class="box__table">
+                      <button class="btn btn__edit">
+                        <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                        <span class="sr-only">Delete</span>
+                      </button>
+                    </div>
+                  </div> -->
+                </div>
+              </ng-container>
+              <ng-container *ngIf="achievements.length===0">
+                <div class="row strip__row flex flex-wrap">
+                  <p class="no__data">No Achievements Provided</p>
+                </div>
+              </ng-container>
+
+              <!-- <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">React JS</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Vue JS</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row strip__row flex flex-wrap">
+                <div class="col-sm-6 strip__col strip__col__td title__col">
+                  <div class="th__heading">Title</div>
+                  <div class="box__table">Documentation</div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-3 strip__col strip__col__td">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </ng-container>
+
+  </div>
+
+</div>
+
+
+
+
+<!--Old Code Ends-->
+
+<!--Rchilli Old Code Start-->
+
+<!--Rchilli Old Code Ends-->

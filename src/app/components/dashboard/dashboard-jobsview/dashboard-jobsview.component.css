@@ -1,0 +1,6 @@
+.page--dashboard .statistics.card > .nav-tabs > li{
+    margin-bottom: 0px;
+}
+.h1_cursor_text h1{
+    cursor: text !important;
+}

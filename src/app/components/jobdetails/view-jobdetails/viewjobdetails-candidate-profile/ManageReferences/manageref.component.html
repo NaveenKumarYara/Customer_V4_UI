@@ -1,0 +1,205 @@
+<mat-dialog-content class="mat-typography manage-reference-i-d">
+	<button mat-button mat-dialog-close class="close">×</button>
+	<div class="modal-header text-center">
+		<img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References">
+		<h4> Manage References</h4>
+	</div>
+	<div class="modal-body">
+		<div class="row radio-btns">
+			<div class="col-md-12">
+				<mat-radio-group>
+					<mat-radio-button value="0" [checked]="true" (click)="GetQuestionnariePersonsList(5)">Show All
+					</mat-radio-button>
+					<mat-radio-button value="1" (click)="GetQuestionnariePersonsList(4)">Professional</mat-radio-button>
+					<mat-radio-button value="2" (click)="GetQuestionnariePersonsList(3)">Personal</mat-radio-button>
+				</mat-radio-group>
+			</div>
+		</div>
+		<!-- <div class="clearfix">&nbsp;</div> -->
+		<div class="row sort-labels" matSort (matSortChange)="sortData($event)">
+			<div class="col-md-3 ref-type">
+				<h5 *ngIf="checkId===2">Professional</h5>
+				<h5 *ngIf="checkId===1">Personal</h5>
+				<h5 *ngIf="checkId===0">All</h5>
+			</div>
+			<!-- <div class="col-md-2 ref-details">
+				<h5>Referrer Details</h5>
+			</div>
+			<div class="col-md-2 ref-status">
+				<h5>Status</h5>
+			</div>
+			<div class="col-md-2" (click)="sort('user.CreatedOn')" mat-sort-header="carbs">
+				<h5>Date</h5>
+			</div> -->
+			<!-- <div class="col-md-3" mat-sort-header="protein">
+				<h5>Details</h5>
+			</div> -->
+		</div>
+		<!--Sort-->
+		<!-- <div class="ref-scroll"> -->
+			<!-- <mat-accordion> -->
+				<!-- <mat-expansion-panel *ngFor="let dessert of sortedData">
+						<mat-expansion-panel-header>
+								<div class="col-md-3 ">
+									<h3>{{dessert.name}}</h3>
+									<small>Request more info</small>
+								</div>
+								<div class="col-md-2">
+									<h5>{{dessert.calories}}</h5>
+									<h6>Referrer Role</h6>
+								</div>
+								<div class="col-md-2">
+									<h5>{{dessert.fat}}</h5>
+								</div>
+								<div class="col-md-2">
+									<h5>{{dessert.carbs}}</h5>
+								</div>
+								<div class="col-md-3">
+									<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+									<small>{{dessert.protein}}</small>
+								</div>
+						</mat-expansion-panel-header>
+						<p>I'm visible because I am open</p>
+				</mat-expansion-panel> -->
+
+				<ng-container *ngIf="usersList.length===0">
+					<span>No References</span>
+				</ng-container>
+				<ng-container *ngIf="usersList.length>0">
+					<div class="reference__grid__container">
+						<div class="row flex flex-wrap flex-align-equal">
+							<div class="col-sm-4 col" *ngFor="let user of usersList | slice: lowValue : highValue | orderBy:sortingName:isDesc ">
+								<div class="col__container">
+									<div class="top__container">
+										<h4>{{user?.FullName | titlecase}} <span class="reference-card-date">{{user?.CreatedOn | date : 'longDate'}}</span></h4>
+										<button class="btn btn__information" (click)="OpenRequest()">
+											<i class="fa fa-info-circle"></i>
+										</button>
+										<h5>{{user?.ReferenceStatus}}</h5>
+									</div>
+									<div class="middle__container">
+										<div class="information">
+											<ul>
+												<li class="mail">{{user?.RequestedTo || 'N/A'}}</li>
+												<li class="phone">{{user?.PhoneNumber || 'N/A'}}</li>
+											</ul>
+										</div>
+									</div>
+									<div class="bottom__container">
+										<h6>Comments</h6>
+										{{user?.ResponseValue}}
+									</div>
+								</div>
+							</div>
+
+							<!--Old Code-->
+							<mat-expansion-panel style="display: none !important;" [disabled]="true"	#mep="matExpansionPanel">
+								<mat-expansion-panel-header>
+									<div class="col-md-3">
+										<h3>{{user?.FullName | titlecase}}</h3>
+										<!-- <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a> -->
+										<a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequest()">
+											Request Info</a>
+									</div>
+									<div class="col-md-3">
+										<h5>{{user?.KnownOrWorkedAt}}</h5>
+										<h6>{{user?.ReferRelation || 'N/A'}}</h6>
+										<!-- <h6>Referrer Role</h6> -->
+									</div>
+									<div class="col-md-2">
+										<h5>{{user?.ReferenceStatus}}</h5>
+									</div>
+									<div class="col-md-3">
+										<h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
+									</div>
+									<div class="col-md-2 more-info">
+										<a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>
+									</div>
+									<!-- <div class="col-md-3">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+										<small>Download Report</small>
+									</div> -->
+								</mat-expansion-panel-header>
+								<div class="container" *ngIf="user?.IsPublish === true">
+									<div class="row">
+										<div class="col-md-3">
+											<h5>More Details:</h5>
+											<h6>Email: <span>{{user?.RequestedTo || 'N/A'}}</span></h6>
+											<h6>Phone: <span>{{user?.PhoneNumber || 'N/A'}}</span></h6>
+										</div>
+										<div class="col-md-9">
+											<h5>Comments:</h5>
+											<h6>{{user?.ResponseValue}}</h6>
+										</div>
+									</div>
+								</div>
+		
+		
+							</mat-expansion-panel>
+							<!--Old Code-->
+
+						</div>
+					</div>
+				</ng-container>
+			<!-- </mat-accordion> -->
+		<!-- </div> -->
+
+		<!---->
+		<!-- <div class="ref-scroll scrollbar-inner">
+				<ul class="references-list">
+					<li class="references-details">
+						<div class="col-md-4">
+							<h5>Microsoft Inc.</h5>
+						</div>
+						<div class="col-md-4">
+							<h5>Referrer Name</h5>
+							<small>Role</small>
+						</div>
+						<div class="col-md-4">
+							<h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+							</h5>
+						</div>
+					</li>
+					<li class="references-details">
+						<div class="col-md-4">
+							<h5>ABC Inc.</h5>
+						</div>
+						<div class="col-md-4">
+							<h5>Referrer Name</h5>
+								<small>Role</small>
+						</div>
+						<div class="col-md-4">
+							<h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+							</h5>
+						</div>
+				</li>
+			</ul>
+		</div> -->
+
+	</div>
+	<div class="modal-footer dropdown">
+		<!-- <a href="javascript:void(0)" class="dropdown-toggle pull-left" id="drop3" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"> Request Info</a> -->
+		<!-- <div class="dropdown-menu col-md-10 col-md-offset-1 send-req-form" aria-labelledby="drop3">
+					<form>
+						<div class="form-group text-left">
+							<label for="reqcandidate">Request to Candidate</label>
+							<textarea class="form-control" id="reqcandidate" name="CommentProfile" [(ngModel)]="CommentProfile" placeholder="Your Request" rows="2"></textarea>
+						</div>
+						<div class="form-group pull-right">
+							<button class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button class="btn btn-filled" (click)="Request()">Send</button>
+						</div>
+					</form>
+			</div> -->
+		<div class="col-md-2 close-btn">
+			<button mat-button mat-dialog-close class="btn btn-default pull-left">Close</button>
+		</div>
+		<div class="col-md-10" *ngIf="usersList.length>9">
+			<!--Static Paginator implementation 31-07-2020-->
+			<mat-paginator #paginator [length]="usersList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+				(page)="getPaginatorData($event)">
+			</mat-paginator>
+		</div>
+	</div>
+</mat-dialog-content>

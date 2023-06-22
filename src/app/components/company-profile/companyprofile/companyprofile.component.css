@@ -1,0 +1,470 @@
+.f-right{
+    float: right;
+}
+.d-inline-b{
+    display: inline-block !important;
+}
+.progress-cos{
+    width: 60%;
+    height: 10px;
+    margin: 0px !important;
+}
+.r--90{
+    transform: rotate(-90deg);
+    display: inline-block;
+    fill: none;
+    stroke: #93a2bb;
+    stroke-linecap: round;
+    stroke-width: 2px;
+}
+.pl-2{
+    padding-left: 2rem;
+}
+.p5-10{
+    padding: 5px 10px !important;
+}
+.f-20{
+    font-size: 20px;
+}
+.p19-30{
+    padding: 19px 30px !important;
+}
+.skip-link{
+    padding-left: 30px;
+    padding-left: 30px;
+    margin: 18px 0px;
+    font-size: smaller;
+}
+.m-0{
+    margin: 0px;
+}
+.f-10{
+    font-size: 10px !important;
+}
+.italic{
+    font-style: italic;
+}
+.no-pad{
+    padding: 0px !important;
+}
+.progress.no-pad{
+    height: 3px;
+    margin: 7px 0px;
+}
+.table td{
+    text-align: center;
+}
+.table th{
+    font-weight: 500 !important;
+}
+.table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td, .table>tfoot>tr>th, .table>tfoot>tr>td {
+    border-top-width: 0px !important;
+}
+.table>thead>tr>th {
+    border-bottom-width: 0px !important; 
+}
+.table{
+    border-collapse: collapse;
+border-spacing: 0;
+}
+.radio-box.inline{
+    text-align: center;
+    display: inline-block;
+}
+.page--company-profile .card-header{
+    border-bottom-width: 0px !important;
+    text-align: center;
+    display: block;
+}
+.page--company-profile .card-header.cultur-header {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #E0E3EF !important;
+}
+.radio .radio-btn { 
+height: 20px;
+width: 20px;
+border: 1px solid #b8c4d7;
+border-radius: 50%;
+display: inline-block;
+vertical-align: middle;
+margin-right: 5px;
+background-size: 8px;
+}
+.mtbr-5-17-25 {
+    margin-top: 5px;
+    margin-bottom: 17px;
+    margin-right: 25px;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+.social-media-share a{
+    padding:0px 10px;
+}
+.social-media-share a:last-child{
+    padding:0px 0px 0px 10px;
+}
+.img-middle .img-responsive{
+    margin: auto;
+}
+.m2{
+    margin: 2rem;
+}
+
+/* .personality-test-dialog .modal-body {
+    padding: 1rem;
+} */
+.personality-test-dialog .modal-body h5, .personality-test-dialog .modal-body p{
+    text-align: center;
+}
+/* .personality-test-dialog .modal-title{
+    padding: 2rem;
+}
+.personality-test-dialog .modal-body h5{
+    padding: 4rem 1rem;
+} */
+.personality-test-dialog .modal-body p{
+    font-size:13px;
+}
+.personality-test-dialog .modal-body .thumbnail{
+    border:none;
+}
+.personality-test-dialog .modal-body .thumbnail img{
+    width:80%;
+}
+/* .personality-test-dialog .modal-content .modal-footer{
+    padding: 9rem 3.5rem;
+} */
+.personality-test-dialog .modal-header button{
+    background-color: transparent;
+    border: transparent;
+    color: #a8a8a8;
+}
+.no-pad{
+    padding:0px;
+}
+
+.personality-test-dialog .table th{
+    font-weight: 400;
+    font-size: 12px;
+}
+.personality-test-dialog .table td{
+    vertical-align: center;
+    text-align: center;
+    color: #707070;
+}
+.personality-test-dialog .table .radio-box{
+    margin-top:0px;
+}
+.personality-test-dialog .modal-body .progress{
+    margin: 5px 0px;
+    height: 5px;
+}
+.personality-test-dialog .modal-content .modal-footer a{
+font-size: 12px;
+text-decoration: underline;
+padding-top: 2rem;
+}
+
+.radio-input input:checked ~ .radio-btn:after {
+    display: block;
+    color : black;
+  }
+.personality-test-dialog .modal-footer .btn-success{
+  background-color:   #66dab5;
+    }
+
+.personality-test-results .progress{
+    width:100%;
+    height: 10px;
+    margin-top: 0.7rem;
+}
+.personality-test-results h3{
+    margin: 0;
+}
+.personality-test-results h4 {
+    font-size:16px;
+   }
+.personality-test-results h4 i.test-status{
+ font-size:12px;
+}
+
+.personality-test-results .personality-result-view, .personality-test-results .culture-result-view{
+border: 1px solid #ebebeb;
+padding: 10px;
+border-radius: 5px;
+margin-left: 10px;
+   }
+.personality-test-results .personality-result-view{
+width:47%;
+margin-left:15px;
+}
+.personality-test-results .culture-result-view{
+width:47%;
+}
+.personality-test-results .btn-success{
+background-color: #66dab5;
+border-color: #66dab5;
+}
+.disabledLink{
+color: gray;
+cursor: not-allowed;
+text-decoration: none !important;
+}
+
+.personality-test-dialog  .social-media-share a {
+display: inline-block;
+padding: 3px 20px;
+}
+
+.personality-test-dialog .social-media-share a:not(:last-of-type) {
+border-right: 1px solid #e0e3ec;
+}
+
+.radiobtn{
+cursor: pointer;
+margin-left:0 !important;
+height: 20px;
+width: 20px;
+}
+.d-inline-b{
+display: inline-block;
+padding-right: 14px;
+font-size: 12px;
+cursor: pointer;
+}
+.chart-label{
+display: inline-block;
+width:30px;height:10px;
+border:1px solid #000;
+}
+.vdivider {
+position: absolute;
+top: 50%;
+left: 50%;
+-webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+width: 1px;
+height: 70%;
+border-left: 1px solid #9EABC0;
+}
+.p-rel {
+position: relative;
+}
+.test-title{
+display: inline-block;
+}
+.test-title-sub{
+display: inline-block;
+}
+.test-title .f-l{
+font-size:2em;
+}
+.whoami{
+color:#7689a5;
+text-align: center;
+}
+.nodata{
+opacity: 0.5;
+width: 50%;
+margin: auto;
+}
+.div-m-auto div {
+margin: auto;
+}
+.modal-footer.modal-p{
+padding: 1rem 3.5rem !important;
+}
+.pointer{
+cursor: pointer;
+}
+.w-80{
+width: 80%;
+}
+.modal-content.vh100.p1{
+min-height: 100% !important;
+padding: 1em !important;
+}
+.div-m-auto{
+margin: auto;
+}
+.pl-0{
+padding-left: 0px !important;
+}
+
+.canvas-rel{
+    position: relative;
+    width: 250px;
+    height: 250px;
+  }
+.mw-110{
+    max-width: 110px;
+}
+.br-1{
+    border-right: 1px solid #b8c4d7;
+}
+.progress-bar.progress-bar-striped.active{
+    background-color: #5cb85c;
+}
+.nxt{
+    padding: 10px 30px;
+    color: #ffffff;
+    background-color: #448AFA;
+    min-width: 120px;
+    border: none;
+}
+.mt-0{
+    margin-top: 0px;
+}
+.mr-0{
+    margin: 0px;
+}
+.col-md-4.w-auto{
+    width: auto;
+    padding: 0px;
+}
+.col-md-8.w-inherit{
+    width: inherit;
+    padding: 0px 0px 0px 15px;
+}
+.col-md-8.w-inherit .progress{
+    margin: 2px 0px 9px 0px;
+}
+/*24-dec-19*/
+#personality-test .modal-content{
+    border-radius: 0px;
+    height: 100vh;
+}
+#personality-test .modal-dialog{
+    position: absolute;
+    right: 0px;
+    margin: 0px;
+    width: 890px;
+}
+#personality-test .modal-body{
+padding: 0px;
+}
+#personality-test .modal-header, #personality-test .modal-footer{
+    border: 0px solid #ffffff00;
+
+}
+#personality-test .table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd !important;
+}
+#personality-test .table>tbody>tr>th,
+#personality-test .table>tbody>tr>td{
+    border-top: 1px solid #ddd !important;
+}
+.take-cultural-test button.cultural-test-btn{
+margin-left: 11rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .roundedCorner
+{
+    border: 0px none;
+    height: 30px;
+    color: #2556a0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-radius:25px;
+}
+.cust-p-test .modal-header {
+    padding: 5px;
+}
+.cust-p-test .modal-title {
+  font-size: 1rem;
+}
+.cust-p-test .modal-body .table th{
+    padding: 3px 0px;
+}
+.cust-p-test .modal-body .table td {
+    padding: 0px;
+    vertical-align: center;
+    text-align: center;
+    color: #707070;
+}
+.cust-p-test .modal-body .table tr {
+   cursor: move;
+}
+.page--company-profile.edit-mode label{
+    margin: 30px 80px;
+}

@@ -1,0 +1,271 @@
+/* Absolute Center Spinner */
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*ShowCount Styles*/
+
+.view-group label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.show-count {
+  float: left;
+  font-size: 13px;
+}
+
+.manage-searchjobs {
+  display: flex;
+  justify-content: flex-end
+}
+
+/*Filter Labels styles*/
+
+.show-count-label {
+  padding-left: 0px;
+  padding-right: 5px;
+}
+
+.filter-labels {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.filter-labels h6 {
+  font-size: 13px;
+  display: inline-block;
+}
+
+.filter-labels .label {
+  padding: .4em .6em .4em;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: .50em;
+}
+
+.filter-labels .label-primary {
+  background-color: #448AFA;
+}
+.filter-labels .label-recent {
+  background-color: #fff;
+  color: #41536E;
+  border: 1px solid #CCCCCC; 
+  height: 32px;
+}
+
+
+.filter-labels .label-primary a {
+  padding-left: 0.3em;
+  color:#fff;
+}
+
+.filter-settings .dropdown-toggle {
+  font-size: 11px;
+  padding-right: 5px;
+  vertical-align: sub;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.filter-settings a {
+  font-size: 11px;
+  padding-left: 5px;
+  vertical-align: sub;
+  text-decoration: underline;
+}
+
+.filter-settings ul.dropdown-menu {
+  padding: 0.5rem;
+  min-width: 140px;
+}
+
+.filter-settings ul.save-filter {
+  min-width: 250px;
+  left: -90px;
+}
+.filter-settings ul.save-filter .btn {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.filter-settings ul.save-filter .btn-success {
+  background-color: #448AFA;
+  border-color: #448AFA;
+}
+.filter-settings ul.dropdown-menu li {
+  text-align: left;
+  font-size: 11px;
+}
+
+.filter-settings ul.dropdown-menu a {
+  vertical-align: middle;
+  float: right;
+}
+.mt-15{margin-top: 15px;}
+.show-jobs{padding-left: 25px;}
+
+
+@media only screen and (max-width: 1199px) {
+  .custom-filter-post-a-job {
+    width: 100%;
+  }
+  .custom-filter-post-a-job .manage-searchjobs {
+    justify-content: flex-start;
+    padding-left: 15px !important;
+  }
+  
+  .manage-searchjobs.load-manage-searchjobs {
+    justify-content: flex-start;
+    padding-left: 15px;
+  }
+
+  .custom-filter-navigation {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and  (max-width: 1460px) {
+  .col-md-10.custom-filter-post-a-job {
+    width: 100%;
+  }
+
+  .load-manage-searchjobs {
+    flex-wrap: wrap;
+    padding-left: 15px;
+  }
+
+  .load-manage-searchjobs app-manage-searchjobs {
+    flex: 0 0 calc(100% - 116px);
+    max-width: calc(100% - 116px);
+  }
+  .load-manage-searchjobs .new-filter-btn {
+    flex: 0 0 106px;
+    max-width: 106px;
+    margin: 0 0 0 auto;
+  }
+}

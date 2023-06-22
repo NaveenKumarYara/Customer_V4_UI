@@ -1,0 +1,388 @@
+a {
+    color: #69C;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #F60;
+}
+
+h1 {
+    font: 1.7em;
+    line-height: 110%;
+    color: #000;
+}
+
+p {
+    margin: 0 0 20px;
+}
+
+input {
+    outline: none;
+}
+
+input[type=text] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.ml-2 {
+    margin-left: 1rem;
+}
+.ml-r{
+    margin-right: 0.6rem;
+}
+
+input[type=text] {
+    background: #f7f2f2 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 0px 10px 0px 32px;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    position: relative;
+    left: auto;
+}
+
+input[type=search]:focus {
+    width: 130px;
+    background-color: #fff;
+    border-color: #66CC75;
+    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+}
+
+input:-moz-placeholder {
+    color: #999;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
+#demo-2 input[type=search] {
+    width: 15px;
+    padding-left: 10px;
+    color: transparent;
+    cursor: pointer;
+}
+
+#demo-2 input[type=search]:hover {
+    background-color: #fff;
+}
+
+#demo-2 input[type=search]:focus {
+    width: 130px;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+}
+
+#demo-2 input:-moz-placeholder {
+    color: transparent;
+}
+
+#demo-2 input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+
+/*Styles 23-10-2018*/
+
+.searchList {
+    overflow: auto;
+}
+
+.searchList ul.searchList-dropdown {
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    list-style: none;
+    padding: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    display: block;
+    margin-top: -2px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.searchList li.searchList-options {
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.searchList li.searchList-options:hover,
+.searchList li.searchList-options::selection {
+    background-color: #ebf5ff;
+}
+
+
+/* search animation */
+
+.search_area {
+    /* float: right; */
+    display: inline;
+}
+
+.toggle-pointer {
+    cursor: pointer;
+    padding: 0px !important;
+}
+
+.search_area .search_f {
+    border: 0px;
+    position: relative;
+    top: -4px;
+    left: 0;
+    width: 0px;
+    outline: none;
+    border-radius: 0em !important;
+    background: transparent;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+.search_area input[type=checkbox]:checked~.search_f {
+    width: 200px;
+    border-bottom: 1px solid #6a7e9c;
+    right: 100%;
+    top: -4px;
+    height: 50px;
+}
+
+.search_area input[type=text] {
+    border-radius: 0em !important;
+}
+
+.search_area .search-icon {
+    background-color: #ffffff;
+    padding: 14px 15px;
+    border: 1px solid #E5E6EB;
+}
+
+.search_area .search_area img {
+    margin: auto;
+}
+
+.search-toggle form>input[type=text]#searchStr {
+    background: #ffffff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 0px 10px 0px 32px;
+    border-radius: 0em;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    position: relative;
+    left: auto;
+    margin-right: 1.2rem;
+    border-radius: 3px;
+}
+
+.cls-rel {
+    position: relative;
+}
+
+.searchList {
+    position: absolute;
+    z-index: 999;
+    height: 50vh;
+}
+
+.prl-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+/*QuickSort Css*/
+/* .filters .quick-sort {
+ margin-left: 1%;
+} */
+
+.filters .quick-sort .options {
+    padding-top: 0px;
+}
+
+.filters .quick-sort label[for="title"] {
+    font-size: 0.8rem;
+   margin-bottom: 5px;
+}
+
+.filters .quick-sort .options>* {
+    display: inline-block;
+}
+
+ .filters .quick-sort .options .form-control {
+    width: 114px;
+    margin-top: 0;
+}
+
+ .filters .quick-sort .options h4 {
+    margin: 0;
+    margin-right: 15px;
+}
+
+.filters .quick-sort .options .checkbox {
+    /* margin: 0 13px 0 0; */
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+
+.filters .quick-sort .options .checkbox label {
+    padding: 0 !important;
+}
+
+.filters .quick-sort .options .checkbox input  {
+    opacity: 0;
+    position: absolute;
+}
+
+ .filters .quick-sort .options .checkbox .box {
+    text-align: center;
+    display: block;
+    padding: 20px 10px;
+    height: 57px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/*New Design Styles 28-04-2020*/
+
+.filters .quick-sort .options .upload-combo .box {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.filters .quick-sort .options .arytic-combo .box {
+    padding: 0.875rem 1rem;
+}
+.filters .quick-sort .options .upload-combo  a{
+    padding: 0.85rem 0.95rem 0.95rem 1rem;
+    background: #9eabc0;
+    border: 1px solid #9eabc0;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: -5px;
+}
+.filters .quick-sort .options .upload-combo a i, 
+.filters .quick-sort .options .checkbox span i{
+    color: #ffffff;
+    font-size: 25px;
+    vertical-align: middle;
+}
+ .filters .quick-sort .options .checkbox input:checked~.box, 
+ .filters .quick-sort .options .checkbox input:checked~.box i {
+    background-color: #66DAB5;
+    border-color: #66DAB5;
+    color: #ffffff;
+    font-weight: 500;
+}
+.filters .quick-sort .options .wishlist-combo .box{
+    padding: 0.875rem 1rem;
+} 
+.filters .quick-sort .options .wishlist-combo .fa-star, 
+.filters .quick-sort .options .arytic-combo img{
+    padding-left: 0.3rem;
+} 
+/*QuickSort Css*/
+
+/*Upload & Invite Buttons CSS starts*/
+.adv-filters.mrll0-tb8 {
+    margin-top: 20px;
+}
+
+.adv-filters-btn i.fa{
+    color: #9eabc0;
+    font-size:25px;
+}
+.adv-filters-btn.btn{
+    padding: 12px 14px;
+}
+
+.disabled:hover {
+    cursor:not-allowed
+ }
+/*Upload & Invite Buttons CSS ends*/
+
+
+/*Count CSS*/
+.badge.badge-light{
+    background-color: #9eabc0;
+    border-radius: 7px;
+}
+
+.filters .quick-sort .options .checkbox input:checked~.box span.badge.badge-light{
+    background-color: #fff;
+    color: #6a7e9c;
+}
+.filters .r-s-f .sm-f-none,
+.filters .r-s-f .sm-w-100
+{
+display: inline-block;
+}
+
+.tooltip__link {
+    position: relative;
+  }
+  .custom__tooltip {
+    position: absolute;
+    width: 350px;
+    background: rgba(106,126,156,0.75);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 11px;
+    display:none;
+    padding: 10px 15px;
+    z-index: 10;
+    top:50%;
+    transform: translateY(-50%);
+    left:22px;
+  }
+  .tooltip__link:hover .custom__tooltip { display: block; }
+  .custom__tooltip:before { content:""; position: absolute; left:0; top:0; border-right:6px solid rgba(106,126,156,0.75); border-top:6px solid transparent; border-bottom: 6px solid transparent; left:-6px; top:50%; margin-top:-6px; }
+
+  .custom__tooltip span { display: block; min-height:24px; position:relative; padding-left:40px; }
+  .custom__tooltip span.step__title { font-weight:600; padding-left:0; }
+  .custom__tooltip span:not(:first-child) { margin:5px 0 0; }
+  .custom__tooltip span em { position: absolute; left:0; top:0; font-style: normal; width:24px; height:24px; border-radius:50%; line-height:24px; font-size:11px; background:#fff; color:#23527c; text-align: center; }
+
+  .flex { display: flex; }
+  .flex-wrap { flex-wrap:wrap; }
+  .form__control { margin-top: 15px; }
+  .flex-align-end { align-items: flex-end; }
+  .add__btn { position: relative; top:-10px; }
+  
+
+  @media only screen and (max-width:568px) {
+  .tooltip__link {
+     display:block;
+   }
+   .custom__tooltip {
+     width:260px;
+   }
+  }

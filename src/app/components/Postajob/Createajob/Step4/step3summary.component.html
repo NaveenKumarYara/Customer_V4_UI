@@ -1,0 +1,141 @@
+<section>
+  <h1>Additional Details</h1>
+ 
+<!--New placement Interview Type-->
+<div class="form-data-group">
+  <h3 class="question">
+    Interview Type</h3>
+  <h4 class="data" *ngIf="interviewType!=''||interviewType!=null">
+    {{interviewType}}
+  </h4>
+  <h6 class="data" *ngIf="interviewType==''||interviewType==null">
+    N/A
+  </h6>
+</div>
+
+<!--New Placement Recruiting manager-->
+<!-- <div class="form-data-group">
+  <h3 class="question">
+    Recruiting Manager</h3>
+    <ng-container *ngIf="rManager.length===0">
+      <h6 class="data">N/A</h6>
+    </ng-container>
+    <ng-container *ngIf="rManager.length>0">
+      <ng-container *ngFor="let r of rManager">
+        <h6 class="data">{{r?.FirstName}}</h6>
+      </ng-container>
+</ng-container>
+ 
+
+</div> -->
+
+<!--New Placement Technical team for screening-->
+<!-- <div class="form-data-group tech-team-group">
+  <h3 class="question">
+    Technical Team for Screening</h3>
+  <ng-container *ngIf="teamMembers.length!=0">
+    <h6 class="data" *ngFor="let user of teamMembers">{{user.FirstName}}</h6>
+  </ng-container>
+  <ng-container *ngIf="teamMembers?.length==0">
+    <h6 class="data"> N/A </h6>
+  </ng-container>
+
+</div> -->
+
+<!--New Placement Reporting Manager-->
+<div class="form-data-group">
+  <h3 class="question">
+    Select the team to work on this Job? </h3>
+    <ng-container *ngIf="rManager.length===0">
+      <h6 class="data">N/A</h6>
+    </ng-container>
+    <ng-container *ngIf="rManager.length>0">
+  <ng-container *ngFor="let rs of rManager">
+    <h6 class="data">{{rs?.FirstName}}</h6>
+  </ng-container>
+</ng-container>
+
+</div>
+
+<!--New Placement Video sizzle-->
+<div class="form-data-group row">
+  <div class="col-md-12">
+    <h3 class="question">
+      Video Sizzle</h3>
+  </div>
+
+  <div class="col-md-6" *ngIf="videoProfile!='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
+    <video controls>
+      <source [src]="videoProfile" type="video/mp4">
+    </video>
+  </div>
+  <div class="col-md-6" *ngIf="videoProfile=='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
+    <img src="../../../../assets/images/no-video.png" class="video" alt="">
+  </div>
+</div>
+
+<!--Below are old data-->
+  <!-- <div class="form-data-group">
+    <h3 class="question">
+      Matching Percentage needed to Apply</h3>
+    <div>
+      <ng-container *ngIf="matchingPersentage.length!=0">
+        <ng-container *ngFor="let percent of matchingPersentage">
+          <ng-container *ngIf="percent.ParameerId == 4">
+            <h5 class="data"> Skills : <span class="big"> {{percent.Percentage}} %</span></h5>
+          </ng-container>
+          <ng-container *ngIf="percent.ParameerId == 1">
+            <h5 class="data"> Domain : <span class="big"> {{percent.Percentage}} %</span></h5>
+          </ng-container>
+          <ng-container *ngIf="percent.ParameerId == 2">
+            <h5 class="data"> Experience : <span class="big"> {{percent.Percentage}} %</span></h5>
+          </ng-container>
+          <ng-container *ngIf="percent.ParameerId == 3">
+            <h5 class="data"> Role : <span class="big"> {{percent.Percentage}} %</span></h5>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <ng-container class="data" *ngIf="matchingPersentage.length==0">
+        N/A
+      </ng-container>
+       <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5>
+    </div>
+  </div> -->
+  <!-- <div class="form-data-group salary-package-group">
+    <h3 class="question">
+      What is the Employment Type?</h3>
+    <div>
+      <h5 class="data"> {{employmentType}} :
+        <ng-container *ngIf="salaryTypeId=='2'">
+          <span class="big">$ {{minAnnualRate}} - {{maxAnnualRate}}</span>
+        </ng-container>
+        <ng-container *ngIf="salaryTypeId=='1'">
+          <span class="big">$ {{minHourRate}} - {{maxHourRate}}</span>
+        </ng-container>
+
+        <ng-container *ngIf="employmentType=='Employee'">
+          On W2
+        </ng-container>
+
+        <ng-container *ngIf="employmentType=='Contractor'">
+          Contract By Length
+        </ng-container>
+      </h5>
+       <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5>
+    </div>
+  </div> -->
+
+  <!-- <div class="form-data-group">
+    <h3 class="question">What Immigration Status type you are looking for?</h3>
+    <ng-container *ngFor="let ims of immigrationsList">
+      <h4 class="data">{{ims?.ImmigrationStatus}}</h4>
+    </ng-container>
+
+  </div> -->
+ <!-- <div class="form-data-group">
+    <h3 class="question">
+     How many open positions do you currently have for this Job Title?</h3>
+      <h4 class="data">Any</h4>
+  </div> -->
+
+</section>

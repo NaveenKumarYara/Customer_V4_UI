@@ -1,0 +1,220 @@
+<div class="page page--job-details">
+  <div id="rejectCandidate">
+    <h4 mat-dialog-title class="modal-title">
+      Hire Candidate
+    </h4>
+    <ng-container *ngIf="matching<=49">
+      <h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.</h6>
+    </ng-container>
+    <ng-container *ngIf="matching>49">
+      <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
+    </ng-container>
+      <div class="modal-body">
+        <form action="">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="hjobtype">Job Type</label>
+              <select class="form-control" (change)="gotit($event.target.value)">
+                <ng-container *ngFor="let type of employmenttypelist">
+                  <option [value]="type.EmploymentTypeId"  [selected]="type.EmploymentTypeId == TypeId" *ngIf="type.EmploymentTypeId!=4">{{type?.EmploymentType}} </option>
+                </ng-container>
+            
+            </select>
+                <!-- <ng-container *ngIf="salaryDetails?.EmploymentTypeId==1">                  
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="FullTime" class="form-control">
+                </ng-container>
+                <ng-container *ngIf="salaryDetails?.EmploymentTypeId==2">
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="Contract" class="form-control">
+                </ng-container> -->
+               
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="hsalary">Salary <small *ngIf="salaryDetails?.SalaryTypeId==1">(Per Hour)</small><small *ngIf="salaryDetails?.SalaryTypeId==2">(Per Annum*)</small></label>
+                <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal" required
+                [ngModelOptions]="{standalone: true}" #val="ngModel" placeholder="Salary" class="form-control">
+                <!-- <span *ngIf="salaryDetails?.SalaryTypeId==1">
+                   Per Hour
+                </span>
+                <span *ngIf="salaryDetails?.SalaryTypeId==2">
+                  Per Annum*
+               </span> -->
+               <span *ngIf="val.invalid && val.touched"  class="text-danger">Sal Required.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="hjoining">Joining</label>
+                <input class="form-control datepicker" id="hjoining" placeholder="mm-dd-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker"
+                [(ngModel)]="IDate" required #dataPicker="ngModel" name="IDate" (click)="d.toggle()">
+                <span *ngIf="dataPicker.invalid && dataPicker.touched"
+                class="text-danger">Date Required.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <ng-container *ngIf="TypeId==2">
+                  <label for="hduration">Duration</label>
+                  <select class="form-control" (change)="gott($event.target.value)">
+                    <ng-container *ngFor="let t of contractdurationlist">
+                      <option [value]="t.ContractDuration"  [selected]="t.ContractDuration== contract">{{t?.ContractDuration}} </option>
+                    </ng-container>
+                
+                </select>
+                  <!-- <input type="text" id="hduration" value="{{salaryDetails?.ContractDuration}}" placeholder="Duration" class="form-control"> -->
+                </ng-container>
+               
+              </div>
+            </div>
+         
+            <div class="col-md-12">
+              <div class="row ">
+                <div class="col-md-3 w-auto">
+                  <label class="radio checkbox">
+                    <input type="checkbox" class="radio-input" name="team" [checked]="true" (click)="toggleShow1()">
+                    <span class="radio-btn wh-22 ml-0"></span>
+                    <span>Team Member</span>
+    
+                  </label>
+                </div>
+                <div class="col-md-3 w-auto">
+                  <label class="radio checkbox">
+                    <input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()">
+                    <span class="radio-btn wh-22 ml-0"></span>
+                    <span>Candidate</span>
+                  </label>
+                </div>
+                <!-- <div class="col-md-3 w-auto">
+                  <label class="radio checkbox">
+                    <input type="checkbox" class="radio-input" name="team" (click)="toggleShow3()">
+                    <span class="radio-btn wh-22 ml-0"></span>
+                    <span>Other</span>
+                  </label>
+                </div> -->
+              </div>
+
+
+
+
+              <ng-container *ngIf="isShown1">
+                <form action="">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="">Add Team Member</label>
+                      <div class="input-group lg-right-padding">
+                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
+                          placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
+                          bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
+                          id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+                          #TMemb="ngModel">
+                        </ng-select>
+    
+                        <span class="input-group-btn">
+                          <button class="btn" (click)="addTeammembers()">+</button>
+                        </span>
+                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                      </div>
+                      <ul class="share_candidate team-members-list share__candidates__tags">
+                        <li *ngFor="let teammember of teammemberslist; let i = index">
+                          <div class="w-100">
+                            <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+                            <h4 class="card-body">{{teammember.FirstName}}
+                            </h4>
+                            <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="inline-radio-tab revamp__inline__radio__tab">
+                        <div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Email/Call"><label>Email/Call</label></div>
+                        <div><input type="radio" name="title"   [(ngModel)]="savenote.OtherInfo" value="General"><label>General</label></div>
+                        <div><input type="radio" name="title"  [(ngModel)]="savenote.OtherInfo" value="Request for information"><label>Request for information</label></div>
+                        <div><input type="radio" name="title"  [(ngModel)]="savenote.OtherInfo" value="Interview Related"><label>Interview Related</label></div>
+                        <div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Other" ><label>Other</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </form>
+    
+              </ng-container>
+              <ng-container *ngIf="isShown2">
+                <form action="">
+                  <div class="form-row">
+                    <label>
+                      {{checkemail}}
+    
+                    </label>
+                  </div>						
+                </form>
+    
+              </ng-container>
+              <div class="form-group">
+                <label for="">Notes</label>
+                <textarea type="text" [(ngModel)]="Comment" name="Comments" class="form-control resize-none"
+                  placeholder="Please add your Notes *" rows="10"></textarea>
+              </div>
+              <div class="culture-card text-center pointer pt-1 w-100" (click)="photo.click()">
+                <input class="hidden" type="file" #photo (click)="photo.value = null" value="" ng2FileSelect
+                  [uploader]="uploader" multiple>
+    
+                <button class="file-label btn-sm  pull-left btn-filled"> Add Attachments
+                  <br /> <i class="pull-left">* Please add <b>'.png,.pdf,.doc/.docx'</b></i>
+                </button>
+    
+    
+    
+    
+              </div>
+              <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
+              <div class="file__upload__list__table row">
+                <div class="col-xs-12 mt-5" *ngIf="uploader.queue.length>0">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of uploader.queue;let i=index">
+                        <td>
+                          {{ item?.file?.name }}
+                        </td>
+                        <td>
+                          {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                        </td>
+                        <!-- <td *ngIf="uploader.options.isHTML5">
+                          <div class="progress" style="margin-bottom: 0;">
+                           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                              <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                            </div>
+                          </div>
+                        </td> -->
+                        <td>
+                          <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="item.remove(i)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>      
+        </form>
+      </div>
+
+    <mat-dialog-actions class="modal-footer pull-right">
+        <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
+        <button mat-button  type= "button" (click)="Hire()" [class.spinner]="loading"
+        (click)="loginstyle()"
+          class="btn btn-filled btn__spinner">Hire</button>
+    </mat-dialog-actions>
+  </div>
+</div>

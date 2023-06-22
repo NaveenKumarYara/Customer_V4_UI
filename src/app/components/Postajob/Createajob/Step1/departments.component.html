@@ -1,0 +1,130 @@
+<!-- <div class="form-group"> 
+        <div class="col-md-5 col-sm-5">
+        <label for="Department" class="question">Department</label>   
+            <ng-select class="custom-style" 
+            [items]="departmentList | async" 
+            placeholder="Type and Select" 
+            bindLabel="CustomerDepartment"
+            bindValue="DepartmentId"
+            [typeahead]="departmentInput" 
+            [hideSelected]="true" 
+            [loading]="departmentLoading"
+            [(ngModel)]="selectDepartment" 
+            [virtualScroll]="true" 
+            required 
+            #Department="ngModel" 
+            name="Department" 
+            (change)="updateDepartment($event)">
+            <ng-template ng-label-tmp let-item="departmentList">   
+                   {{selectDepartment}} 
+          </ng-template>
+          </ng-select>
+        <small class="text-danger error1" *ngIf="Department.invalid && Department.touched">Required.</small>
+    </div>
+     </div> -->
+    <!-- <div class="col-md-2 col-sm-2">
+      <button class="btn add-btn form-control m-42" type="submit">+</button>
+    </div> -->
+  <!-- </form> -->
+
+  <!-- <div class="job-title-suggestions">
+    <div class="checkbox" *ngFor="let  client of suggestedClients; let i = index">
+       <label><input type="radio" [(ngModel)]="selectedClient"  (change)="updateClient(client)" name="jobClient" [value]="client"><span class="box">{{client.ClientName}}</span> </label>
+    </div>     
+    
+  </div> -->
+    <!-- </div> -->
+
+ 
+
+
+  <div class="form-group education-group t-35">
+
+    <div class="row">
+        
+      <form #deptForm="ngForm" (ngSubmit)="addDepartment()"> 
+          
+      <div class="col-md-8 col-sm8">
+          <label for="Department" class="question">Which Department does the Job belongs to? <small>(Optional)</small></label>
+          <ng-select class="custom-style" 
+          [items]="departmentList | async" 
+          placeholder="Type and Select"  
+          bindLabel="CustomerDepartment" 
+          bindValue="CustomerDepartment" 
+          [addTag]="addDepartments"
+          addTagText="Add Department"
+          [typeahead]="departmentInput" 
+          [hideSelected]="true" 
+          [loading]="departmentLoading"
+          [(ngModel)]="selectDepartment" 
+          [virtualScroll]="true" 
+          required 
+          #Department="ngModel" 
+          name="Department" 
+          (change)="updateDepartment($event)">
+          <ng-template ng-label-tmp let-item="departmentList">   
+                 {{selectDepartment}}  
+        </ng-template>
+        </ng-select>
+        <input type hidden id="depts">
+      <small class="text-danger error1" *ngIf="Department.invalid && Department.touched">Required.</small>
+      </div>
+     
+      <div class="col-md-4 col-sm-4">
+        <button class="btn add-btn form-control m-42" [disabled]="!deptForm.valid" type="submit">+</button>
+      </div>
+   </form> 
+      </div>
+    </div>
+  
+    <div class="lists row">
+      <div class="col-md-12" *ngIf="departmentsList.length > 0">
+        <p class="description">Departments</p>
+        <ul class="data-list">
+          <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
+              <!-- <ng-container *ngIf="department?.DepartmentName != null >= 0;else customDept"> -->
+              <ng-container *ngIf="department?.DepartmentName != null; else customDept">
+            <span  title="{{department?.DepartmentName}}" class="name">{{ department?.DepartmentName}}</span></ng-container>
+            <ng-template  #customDept>
+                  <span title="{{department?.CustomerDepartment}}" class="name">{{ department?.CustomerDepartment}}</span>
+          </ng-template>
+          
+            <span class="close" (click)="deleteDepartment(i)">&times;</span>
+          </li>
+          <!-- {{department | json}} -->
+          <!-- <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
+              <span title="{{department.DepartmentName}}" class="name">{{ department.DepartmentName}}</span>
+              {{department | json}}
+             
+              <span class="close" (click)="deleteDepartment(i)">&times;</span>
+            </li> -->
+        </ul>
+      </div>
+    </div>
+
+<!-- 
+    <div class="form-group">
+      <label for="jobPri" class="jobid">Job Due On <small>*</small></label>
+      <ng-select class="custom-style" [items]="jobDuelist"  placeholder="Select Jobdue" bindLabel="DueIn" bindValue="Id"  [(ngModel)]="Expiry"  required #JobDue="ngModel"
+      name="JobDue" (change)="updateJobDue()">
+    </ng-select>
+    <span class="text-danger"
+    *ngIf="JobDue.invalid && JobDue.touched">Due Date Required.</span>
+
+  </div>
+
+  <div class="form-group poj-custom-date">   
+  <ng-container *ngIf="showDate">
+    <label for="jobPri" class="jobid">Custom Date </label>
+   <angular2-date-picker [(ngModel)]="ExpiryDate" (onDateSelect)="changeMethod($event)" [settings]="settings"></angular2-date-picker>  
+     <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required>
+  </ng-container>
+  <ng-container *ngIf="!showDate">
+    <label for="jobPri" class="jobid">Custom Date </label>
+   <angular2-date-picker [(ngModel)]="ExpiryDate" [ngClass]="'pointernone'" [settings]="settings"></angular2-date-picker>  
+    <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required>
+  </ng-container>
+</div>  -->
+  
+
+    

@@ -1,0 +1,178 @@
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+    
+/* This parent can be any width and height */
+#domainLoader {
+  text-align: center;
+    background:#ccc;
+    opacity: 0.85;
+    margin-bottom:10px;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position:absolute;
+    display:none;
+    z-index: 999999;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+#domainLoader:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+#domainLoader > div {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+
+.demo-progress-spinner {
+    width: 100%;
+  
+    .mat-progress-spinner,
+    .mat-spinner {
+      display: inline-block;
+    }
+  
+  }
+  
+  .demo-progress-spinner-controls {
+    margin: 10px 0;
+  }
+
+  .tooltip__link {
+    position: relative;
+  }
+  .custom__tooltip {
+    position: absolute;
+    width: 350px;
+    background: rgba(106,126,156,0.75);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    display:none;
+    padding: 10px 15px;
+    z-index: 10;
+    top:50%;
+    transform: translateY(-50%);
+    left:22px;
+  }
+  .tooltip__link:hover .custom__tooltip { display: block; }
+  .custom__tooltip:before { content:""; position: absolute; left:0; top:0; border-right:6px solid rgba(106,126,156,0.75); border-top:6px solid transparent; border-bottom: 6px solid transparent; left:-6px; top:50%; margin-top:-6px; }
+
+  .custom__tooltip span { display: block; min-height:24px; position:relative; padding-left:40px; }
+  .custom__tooltip span.step__title { font-weight:600; padding-left:0; }
+  .custom__tooltip span:not(:first-child) { margin:5px 0 0; }
+  .custom__tooltip span em { position: absolute; left:0; top:0; font-style: normal; width:24px; height:24px; border-radius:50%; line-height:24px; font-size:11px; background:#fff; color:#23527c; text-align: center; }
+
+  .flex { display: flex; }
+  .flex-wrap { flex-wrap:wrap; }
+  .form__control { margin-top: 15px; }
+  .flex-align-end { align-items: flex-end; }
+  .add__btn { position: relative; top:-10px; }
+  
+
+  @media only screen and (max-width:568px) {
+  .tooltip__link {
+     display:block;
+   }
+   .custom__tooltip {
+     width:260px;
+   }
+  }
+
+
+  .ribbon {
+    position: absolute;
+    padding: 0.1em 1em;
+    font-size: 1em;
+    right: -1px;
+    bottom: 5em;
+    line-height: 1.125em;
+    color: rgb(250, 247, 247);
+    background: #eb9175;
+    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+  }
+  .ribbon2 {
+    position: absolute;
+    padding: 0.1em 1em;
+    font-size: 1em;
+    right: -1px;
+    bottom: 5em;
+    line-height: 1.125em;
+    color: rgb(250, 247, 247);
+    background: #c7c52b;
+    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+  }
+  .ribbon3 {
+    position: absolute;
+    padding: 0.1em 1em;
+    font-size: 1em;
+    right: -1px;
+    bottom: 5em;
+    line-height: 1.125em;
+    color: rgb(250, 247, 247);
+    background: #f24434;
+    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+  }
+  .ribbon:before,
+  .ribbon:after {
+    position: absolute;
+    content: "";
+    display: block;
+  }
+  
+  .ribbon:before {
+    width: 0.5em;
+    height: 2.05em;
+    padding: 0 0 0.5em;
+    top: 0;
+    right: -0.5em;
+    background: #eb9175;
+    border-radius: 0 0 0.5em 0;
+  }
+  
+  .ribbon:after {
+    width: 0.4em;
+    height: 0.4em;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: -0.4em;
+    right: -0.4em;
+    border-radius: 0 0 0.4em 0;
+    box-shadow: inset -1px 2px 2px rgba(0, 0, 0, 0.3);
+  }

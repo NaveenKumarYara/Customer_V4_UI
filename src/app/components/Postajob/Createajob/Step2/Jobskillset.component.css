@@ -1,0 +1,52 @@
+.ng-select.custom-style > .ng-select-container {            
+    border: 1px solid #E0E3EF;
+    color: #9EABC0;
+    height: 55px!important;
+    margin-top: 15px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    display: flex;
+    padding: 6px 12px;
+    line-height: 1.42857;
+    background-color: #fff;
+    background-image: none;
+    width:100%;
+}
+
+/* .ng-select.custom-style > .ng-input{
+    top: 12px !important;
+}
+ */
+
+
+
+ .ng-select .ng-select-container .ng-value-container .ng-input > input{
+    top: 12px;
+    margin : 8px;
+  }
+
+  .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+  .red{
+    color: #ff0000;
+  }
+  .skill-title{font-size: 12px;margin-top: 7px;}
+  .skill-year{font-size: 10px;margin-top: -5px;}
+  .jdv-skill-list .col-container{
+    height: 65%;
+    padding: 0px 40px 25px 10px;
+  }
+
+  
+
+  .add-btn-minus {
+    margin-left: -2px;
+  }

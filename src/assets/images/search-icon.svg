@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1396 -2937 18.914 18.914">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #93a2bb;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="search-icon" transform="translate(-1396 -2937)">
+    <circle id="XMLID_2_" class="cls-1" cx="7.1" cy="7.1" r="7.1" transform="translate(1 1)"/>
+    <line id="XMLID_1_" class="cls-1" x2="4.4" y2="4.4" transform="translate(13.1 13.1)"/>
+  </g>
+</svg>

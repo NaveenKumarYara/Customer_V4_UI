@@ -1,0 +1,96 @@
+/* only ipad 1024 and bigger screen landscape screen */
+@media only screen and (min-width: 768px) {
+	#mainmenu > ul { display:block !important; }
+}
+
+/*==========================================================================================================*/
+@media only screen and (max-width: 1023px) {
+	body { min-width:320px; }
+	img{ max-width: 100%; width:auto; height:auto; }
+	.wrap { width:auto; padding:0 20px; }
+	
+	.default-grid.form-grid.cols2 .col { width:auto; float:none; }
+	.buttonset .col a { margin:0 5px 8px 0; }
+	.default-grid.cols4 .col { width:50%; }
+	.cols2.default-grid.tab-grid .col { width:100%; }
+	
+	.image-block figure { width:45%; }
+} 
+
+/*==========================================================================================================*/
+@media only screen and (max-width: 767px) {
+	
+	#header { position:relative; }
+	#mainmenu > ul { display:none; position:absolute; left:0; width:100%; top:100%; background:#6d6d83; z-index:5; }
+	#mainmenu ul li { float:none; margin:0; padding:0; border-bottom:solid 1px #616176; }
+	#mainmenu ul li a { padding:8px 15px; display:block;  }
+	#mainmenu ul li a:after { display:none; }
+	
+	/* Responsive Menu line icon*/
+	#menu { display:block;  }
+	.menulines-button { padding:0; cursor: pointer; user-select: none; text-transform:uppercase; font-size:16px; color:#fff; text-decoration:none; }
+	.menulines-button em { font-style:normal; font-weight:bold; margin-left:10px; }
+	.menulines-button:hover { text-decoration:none; }
+	.menulines { display: inline-block; width: 20px; height: 3px; background: #fff; position: relative; float: left; margin:9px 0 0 0; -moz-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); -ms-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); -webkit-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); opacity:1; }
+	.menulines:before, .menulines:after { display: inline-block; width:20px; height: 3px; background: #fff; position: absolute; left: 0; content:''; -moz-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); -ms-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); -webkit-transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); transition:all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000); -webkit-transform-origin: 0.28571rem center; -moz-transform-origin: 0.28571rem center; -ms-transform-origin: 0.28571rem center; transform-origin: 0.28571rem center; }
+	.menulines:before { top: 7px; }
+	.menulines:after { top: -7px; }
+	.menuopen .menulines { background:none; }
+	.menuopen .menulines:before, .menuopen .menulines:after {  -webkit-transform-origin: 50% 50%;  -moz-transform-origin: 50% 50%;  -ms-transform-origin: 50% 50%; transform-origin: 50% 50%; top: 0; } 
+	.menuopen .menulines:before { -webkit-transform: rotate3d(0, 0, 1, 45deg); transform: rotate3d(0, 0, 1, 45deg); } 
+	.menuopen .menulines:after {  -webkit-transform: rotate3d(0, 0, 1, -45deg); transform: rotate3d(0, 0, 1, -45deg); }
+	
+	.default-grid.cols3 .col { width:50%; }
+	.default-grid.cols3 .col:nth-child(3) { clear:left; }
+	.tabnav { display:none; }
+	.tab-container { padding:0; border:none;}
+	.tab-data { margin:0 0 30px; }
+	.tab-data .tabnav { display:none; }
+	.tab-container .tabMobiletrigger { background:#f3f3f3; border:medium none; font-size:15px !important; text-transform:uppercase; margin:0 0 7px; padding:16px 54px 16px 16px; position:relative; cursor:pointer; font-weight:bold; }
+	.tabMobiletrigger:after { border-left:8px solid rgba(0, 0, 0, 0); border-right:8px solid rgba(0, 0, 0, 0); border-top:8px solid #848690; content:""; margin-top:-3px; position:absolute; right:19px; top:50%; }
+	.tabMobiletrigger:before { background:rgba(0, 0, 0, 0.08); content:""; height:100%; position:absolute; right:0; top:0; width:54px; z-index:1; }
+	.tabcontent { padding:15px 0; margin:0; }
+	.tabMobiletrigger.rotate:after { border-top-color:#272c2f; -webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); }
+	
+	.heading-listblock.cols2 .col, .dropcaps-box.cols2 .col { width:100%; float:none; }
+	h1, h2 { font-size:40px; }
+}
+/*==========================================================================================================*/
+/* only iphone4 landscape & Potriat 300 by 480*/
+@media only screen and (max-width: 567px) {
+	
+	
+	.default-grid.cols3 .col, .default-grid.cols2 .col, .default-grid.cols4 .col { width:auto; float:none; }
+	table.res-table tr th { display:none; }
+	table.res-table tr td { display:block; position:relative; padding-left:50%; }
+	table.res-table td:before { content: attr(data-th) ": "; font-weight: bold; width: 50%; display:block; padding-right:10px; position:absolute; left:0; top:0; padding:10px 10px; } 
+	table.res-table { border-top:0; }	
+	#logo { width:200px; }
+	
+	.list-block.cols3 .col { width:100%; float:none; }
+	.image-block figure { width:100%; float:none; padding-right:0; }
+	.image-block.right-align figure { padding-left:0; }
+	h1, h2 { font-size:34px; }
+}
+/*==========================================================================================================*/
+/* only iphone landscape 340 by 478*/
+@media only screen and (max-width: 480px) {
+
+	 .form-inline .form-group label, .form-inline .form-group .field-box { float:none; display:block; width:auto; }
+	.form-inline .form-group label.blank { display:none; }
+	h1, h2 { font-size:30px; }
+}
+/*==========================================================================================================*/
+/* only iphone portrait 300 by 479*/
+@media only screen and (max-width: 479px) {
+	
+	#logo { width:150px; }
+	#mainmenu { margin:12px 0 0; }
+		
+} 
+/*==========================================================================================================*/
+/* Retina css */ 
+/*@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
+	.sprites, .sp-after:after, .sp-before:before { background-image:url(../images/bgi/sprites@2x.png);
+	-moz-background-size:237px 207px; -ms-background-size:237px 207px; -o-background-size:237px 207px; -webkit-background-size:237px 207px; background-size:237px 207px;}
+}*/

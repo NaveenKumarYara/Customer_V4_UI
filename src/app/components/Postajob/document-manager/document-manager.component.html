@@ -1,0 +1,210 @@
+<div class="documents-container">
+  <div class="upload__resume__container">
+    <div class="top__container__before flex flex-wrap flex-align-center">
+      <h3 mat-dialog-title class="modal-title">Job Attachments</h3>
+      <span>
+        <i class="fa fa-info">* Upload .doc, .docx, .pdf and .txt files only</i>
+      </span>
+      <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+  
+    </div>
+    <mat-dialog-content class="mat-typography vh-100 s-none">
+      <!--Tab View-->
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ptb-24">
+        <div class="card manage-uploads manage-upload-custom clearfix">
+      
+          <div class="tab-content">
+            <div id="uploadProfiles" class="tab-pane fade active in" >
+              <div class="upload-border">
+                <div class="flex_items_center pointer" (click)="browse.click()">
+                  <div class="d-block">
+                    <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+                    <div class="file">
+                      <input  type="file" ng2FileSelect [uploader]="uploader" #browse 
+                        (click)="browse.value = null" value="" multiple (change)="onFileSelected($event)">
+                    </div>
+                    <div>Browse & Upload</div>
+                    <h5>Upload the documents required  for these Job position. </h5>
+                    <!-- <h6>We recommended to use Microsoft Word.</h6> -->
+                  </div>
+                </div>
+              </div>
+  
+              <!-- <div class="file btn btn-lg btn-primary"> -->
+              <!-- Browse & Upload -->
+              <!-- <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)"> -->
+              <!-- </div> -->
+  
+  
+              <div class="d-flex justify-content-between mb-3 w-100">
+                <div class="p-2 upload-input">
+                  <!-- <label class="radio checkbox">
+                    <input type="checkbox" class="radio-input" checked [(ngModel)]="emailCheck">
+                    <span class="radio-btn"></span>
+                    <span>Notify</span>
+                  </label>
+                  <label class="radio checkbox">
+                    <input type="checkbox" [(ngModel)]="isPublic" class="radio-input">
+                    <span class="radio-btn l11"></span>
+                    <span>Make it Public</span>
+                  </label> -->
+                </div>
+  
+                <div class="p-2 upload-alerts">
+                  <a href="javascript:void(0)">
+                    <span class="alert-success">
+                      Uploaded
+                      <span class="badge badge-light">{{uploader.queue.length}}</span>
+                    </span>
+                  </a>
+                  <!-- <a href="javascript:void(0)">
+                    <span class="alert-warning">
+                      Issues
+                      <span class="badge badge-light">{{issueCount}}</span>
+                    </span>
+                  </a> -->
+                </div>
+              </div>
+              <div>
+                <table class="table custom-upload-profile-table table-hover table-bordered table-striped"
+                  *ngIf="selectedFiles.length>0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Size</th>
+                      <th *ngIf="!isProcessing">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of uploader.queue;let i=index">
+                      <td>
+                        {{ item?.file?.name }}
+                      </td>
+                      <td>
+                        {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                      </td>
+                      <!-- <td *ngIf="uploader.options.isHTML5">
+                      <div class="progress" style="margin-bottom: 0;">
+                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                          <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                        </div>
+                      </div>
+                    </td> -->
+                      <td *ngIf="!isProcessing">
+                        <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DeleteRecord(i)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                      </td>
+                      <!-- <td>
+                      <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="processResumes()">
+                        <span class="fa fa-send-o"></span>
+                      </button>
+                    </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-primary pull-right"
+                  *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<6"
+                  (click)="processResumes()">Save</button>
+                <button class="btn btn-primary pull-right"
+                  *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<6">
+                  <span>Saving...</span>
+                </button>
+                <!-- <span *ngIf="uploader.queue.length>=3">
+                  <h5 style="color: red
+                ;" class="pull-right"> *Please upload maximum of 1 profiles </h5>
+                </span> -->
+              </div>
+     
+            
+              <h4>My Documents</h4>
+              <div class="row flex flex-wrap flex-aling-equal">
+                <ng-container *ngIf="JobDocuments?.length === 0">
+                  <div class="col-sm-4 griding-col">
+                    <div class="col-container">
+                      <h5>No Attachments added.</h5>
+                      </div>
+                      </div>
+                </ng-container>
+                <ng-container *ngIf="JobDocuments?.length>0">
+                  <table class="table custom-upload-profile-table table-hover table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Uploaded By</th>
+                      <th>Action</th>
+                      <th>Download</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let d of JobDocuments;let di = index">
+                      <tr *ngIf="di<5">
+                        <td>
+                          {{d?.DocName.split('aryticDP')[0] | titlecase}}
+                        </td>
+                        <td>
+                         {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}
+                        </td>
+                        <!-- <td *ngIf="uploader.options.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                         <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                            <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                          </div>
+                        </div>
+                      </td> -->
+                        <td>
+                          <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DelDocument(d?.Id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </td>
+                         <td>
+                        <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DownloadDocument(d?.DocName)">
+                          <span class="fa fa-download"></span>
+                        </button>
+                      </td> 
+                      </tr>
+                    </ng-container>
+                
+                  </tbody>
+                </table>
+                  <!-- <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
+                    <div class="col-container">
+                      <button class="btn btn-close" (click)="DelDocument(d?.Id)">×</button>
+                      <span class="fas fa-file-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                      <span class="fa fa-file-word-o" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')"></span>
+                      <h5  (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}}  <i class="fa fa-download" aria-hidden="true"></i></h5>
+                      <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
+                    </div>
+                  </div> -->
+                </ng-container>
+              
+          
+              </div>
+  
+              
+              <!--Empty View-->
+              <div class="clearfix">&nbsp;</div>
+              <!-- <div class="jumbotron">
+                  <p class="lead text-center">Uploaded Profiles will be shown here!</p>
+                </div> -->
+              <alert></alert>
+              <!-- <h4>Uploaded Profiles will be shown here!</h4> -->
+              <!--End of Empty View-->
+            </div>
+          </div>
+  
+          <!-- .tab-content -->
+        </div>
+        <!-- .card.statistics -->
+      </div>
+  
+    
+      <!--Tab View End-->
+    </mat-dialog-content>
+    <!--END-->
+  </div>
+</div>

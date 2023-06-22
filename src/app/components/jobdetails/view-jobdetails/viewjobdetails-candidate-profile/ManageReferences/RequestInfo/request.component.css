@@ -1,0 +1,21 @@
+
+
+h3{
+    font-family: "Poppins", sans-serif !important;
+    color: #55536E;
+}
+.disabled {
+    pointer-events: none;
+}
+.sort-labels{
+    padding-left: 2.5rem;
+}
+.sort-labels h5{
+    color: #9EABC0;
+}
+.manage-reference-i-d .radio-btns{
+    padding-left: 2.5rem;
+}
+.send-req-form .btn-filled{
+    padding: 6px 30px!important;
+}

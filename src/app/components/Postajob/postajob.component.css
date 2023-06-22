@@ -1,0 +1,46 @@
+
+
+  .loading {
+    left: 50%;
+    top: 90%;
+    font-size: 36px;
+    font-family: serif;
+    font-weight: bold;
+    letter-spacing: 3.4px;
+    text-transform: capitalize;
+    position: absolute;
+    overflow: hidden;
+    transform: translate(-50%, -60%);
+  }
+  .loading:before {
+    color: rgb(252, 248, 248);
+    content: attr(data-loading-text);
+  }
+  .loading:after {
+    top: 0;
+    left: 0;
+    width: 0;
+    opacity: 1;
+    color: rgb(19 126 194);
+    overflow: hidden;
+    position: absolute;
+    content: attr(data-loading-text);
+    -webkit-animation: loading 5s infinite;
+            animation: loading 5s infinite;
+  }
+  @-webkit-keyframes loading {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  @keyframes loading {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1753 -2939 21.925 19.3">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #9eabc0;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-linecap: round;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="post-icon" transform="translate(-1753 -2939)">
+    <line id="Line_163" data-name="Line 163" class="cls-1" x2="8.8" transform="translate(6.8 10.1)"/>
+    <line id="Line_164" data-name="Line 164" class="cls-1" x2="4.1" transform="translate(11.5 13.6)"/>
+    <path id="Path_219" data-name="Path 219" class="cls-2" d="M20.3,18.3H1.7a.684.684,0,0,1-.7-.7V4.3a.684.684,0,0,1,.7-.7H20.2a.684.684,0,0,1,.7.7V17.5A.641.641,0,0,1,20.3,18.3Z"/>
+    <circle id="Ellipse_42" data-name="Ellipse 42" class="cls-3" cx="2.6" cy="2.6" r="2.6" transform="translate(8.9 1)"/>
+  </g>
+</svg>

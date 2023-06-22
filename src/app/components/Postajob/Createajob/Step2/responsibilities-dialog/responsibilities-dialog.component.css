@@ -1,0 +1,53 @@
+.pt-2{
+    padding-top:2rem; 
+}
+.pr-0{
+    padding-right: 0rem;
+}
+.pb-2{
+    padding-bottom: 2rem;
+}
+textarea.form-control{
+    border-color: #E0E3EF;
+    color: #9EABC0;
+    resize: none;
+}
+.theme-color{
+    color: #9EABC0;
+}
+.page--company-profile .card .list--filled{
+    color:#fff;
+}
+.radio-btn {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version%3D%221.0%22 encoding%3D%22utf-8%22%3F%…7L255.7%2C259.576z%22%2F%3E%0D%09%3C%2Fg%3E%0D%3C%2Fg%3E%0D%3C%2Fsvg%3E%0D");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.btn-prev.s-btn{
+    color: #9eabc0;
+    background-color: #fff; 
+}
+
+.btn-border{
+    min-width: 120px;
+    padding: 15px 30px;
+    font-size: 14px;
+}
+.table tbody tr td{
+    vertical-align: middle !important;
+} 
+
+/*Added on 18-04-2019*/
+.responsibilities-step-2{
+    display: inline-flex;
+}
+.responsibilities-step-2 .btn-delete{
+    margin-right: 10px;
+}
+
+/*Scroll styles for Roles and Responsbilities*/
+.e-r-r .scrollbar-inner{
+    height: 450px;
+    max-height: 450px;
+    padding-right: 10px;
+}

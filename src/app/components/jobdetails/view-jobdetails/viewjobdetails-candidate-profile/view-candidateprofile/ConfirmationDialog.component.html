@@ -1,0 +1,21 @@
+<div class="page page--job-details">
+<h4 mat-dialog-title class="modal-title text-center">
+  Delete Profile
+  </h4>
+
+<mat-dialog-content class="mat-typography vh-100 s-none">
+    <div class="text-center">
+        <div>
+		{{message}}
+	</div>
+    </div>
+</mat-dialog-content>
+<div>
+    <mat-dialog-actions align="center" class="modal-footer pull-right">
+        <button mat-raised-button color="primary"  class="btn btn-filled"  (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+    
+        <button mat-raised-button mat-dialog-close tabindex="-1"   class="btn btn-border" >{{cancelButtonText}}</button>
+    </mat-dialog-actions>
+</div>
+
+</div>

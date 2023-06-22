@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17.481px" height="17.879px" viewBox="-1724.994 -3022.712 17.481 17.879">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #93a2bb;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="globe-icon" transform="translate(-2150 -3481)">
+    <ellipse id="XMLID_12_" class="cls-1" cx="7.9" cy="7.7" rx="7.9" ry="7.7" transform="translate(426.01 475.093) rotate(-89.74)"/>
+    <ellipse id="XMLID_11_" class="cls-1" cx="7.9" cy="3" rx="7.9" ry="3" transform="translate(430.71 475.114) rotate(-89.74)"/>
+    <line id="XMLID_10_" class="cls-1" x2="13.9" y2="0.1" transform="translate(426.9 465.1)"/>
+    <line id="XMLID_9_" class="cls-1" x2="13.5" transform="translate(426.9 469.6)"/>
+    <path id="XMLID_8_" class="cls-1" d="M272.6,347.6" transform="translate(167.6 119.6)"/>
+    <line id="XMLID_7_" class="cls-1" x2="14.1" transform="translate(426.9 469.6)"/>
+  </g>
+</svg>

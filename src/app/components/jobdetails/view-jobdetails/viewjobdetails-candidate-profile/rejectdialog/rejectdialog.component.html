@@ -1,0 +1,290 @@
+<div class="page page--job-details">
+  <div id="rejectCandidate">
+    <h4 mat-dialog-title class="modal-title">Feedback</h4>
+    <ng-container *ngIf="matching <= 49">
+      <h6><i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{ matching }}%.</h6>
+    </ng-container>
+    <ng-container *ngIf="matching > 49">
+      <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{ matching }}%.</h6>
+    </ng-container>
+
+    <mat-dialog-content class="mat-typography modal-dialog h-auto">
+      <div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3 w-auto">
+              <label class="radio checkbox">
+                <input type="checkbox" class="radio-input" name="team" [checked]="true" (click)="toggleShow1()" />
+                <span class="radio-btn wh-22 ml-0"></span>
+                <span>Team Member</span>
+              </label>
+            </div>
+            <div class="col-md-3 w-auto" *ngIf="customer.UserRoleId!=9">
+              <label class="radio checkbox">
+                <input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()" />
+                <span class="radio-btn wh-22 ml-0"></span>
+                <span>Candidate</span>
+              </label>
+            </div>
+            <!-- <div class="col-md-3 w-auto">
+                <label class="radio checkbox">
+                  <input type="checkbox" class="radio-input" name="team" (click)="toggleShow3()">
+                  <span class="radio-btn wh-22 ml-0"></span>
+                  <span>Other</span>
+                </label>
+              </div> -->
+          </div>
+
+          <ng-container *ngIf="isShown2">
+            <form action="">
+              <div class="form-row">
+                <label>
+                  {{ checkemail }}
+                </label>
+              </div>
+            </form>
+          </ng-container>
+
+          <ng-container *ngIf="isShown1">
+            
+            <form action="">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="">Please share the person to share the feedback</label>
+                  <div class="input-group lg-right-padding">
+                    <ng-select
+                      class="custom-style interview-schedule-popup"
+                      [items]="customercontacts"
+                      name="team"
+                      placeholder="Please share the person to share the feedback"
+                      (change)="changeTeam($event)"
+                      bindLabel="FirstName"
+                      bindValue="UserId"
+                      [typeahead]="selectedUserInput"
+                      [hideSelected]="true"
+                      [loading]="usersloading"
+                      id="teamMbr"
+                      [(ngModel)]="selectedUserName"
+                      name="selectedUserName"
+                      [virtualScroll]="true"
+                      #TMemb="ngModel"
+                    >
+                    </ng-select>
+
+                    <span class="input-group-btn">
+                      <button class="btn" (click)="addTeammembers()">+</button>
+                    </span>
+                    <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                  </div>
+                  <ul class="share_candidate team-members-list share__candidates__tags">
+                    <li *ngFor="let teammember of teammemberslist; let i = index">
+                      <div class="w-100">
+                        <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+                        <h4 class="card-body">{{ teammember.FirstName }}</h4>
+                        <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="inline-radio-tab revamp__inline__radio__tab">
+                    <div>
+                      <input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Email/Call" /><label
+                        ><span><img src="assets/images/check.png" /></span>Email</label
+                      >
+                    </div>
+                    <div>
+                      <input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="General" /><label
+                        ><span><img src="assets/images/check.png" /></span>General</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="title"
+                        [(ngModel)]="savenote.OtherInfo"
+                        value="Request for information"
+                      /><label
+                        ><span><img src="assets/images/check.png" /></span>Request for information</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="title"
+                        [(ngModel)]="savenote.OtherInfo"
+                        value="Interview Related"
+                      /><label
+                        ><span><img src="assets/images/check.png" /></span>Interview Related</label
+                      >
+                    </div>
+                    <div>
+                      <input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Other" /><label
+                        ><span><img src="assets/images/check.png" /></span>Other</label
+                      >
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="" style="margin-bottom: 0px">Feedback Result</label>
+                    <div class="inline-radio-tab revamp__inline__radio__tab">
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Selected"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Selected</label
+                        >
+                      </div>
+                      <div>
+                        <input type="radio" name="title" [(ngModel)]="savenote.FeedbackOption" value="Refer to next round" /><label
+                          ><span><img src="assets/images/check.png" /></span>Refer to Next Round</label
+                        >
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Rejected"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Rejected</label
+                        >
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Tentative"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Tentative</label
+                        >
+                      </div>
+                      <div>
+                        <input type="radio" name="title" [(ngModel)]="savenote.FeedbackOption" value="Others" /><label
+                          ><span><img src="assets/images/check.png" /></span>Others</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="inline-dropdown">
+                    <!-- <ng-select
+                      class="custom-style interview-schedule-popup"
+                      [items]="feedbackOptions"
+                      placeholder="Select Feedback"
+                      [typeahead]="selectedUserInput"
+                      [hideSelected]="false"
+                      [(ngModel)]="savenote.FeedbackOption"
+                      name="selectedFeedbackOption"
+                      [virtualScroll]="true"
+                    >
+                    </ng-select> -->
+                    <ng-select
+                      class="custom-style interview-schedule-popup"
+                      [items]="interviewType"
+                      placeholder="List of Schedule Interview"
+                      [typeahead]="selectedUserInput"
+                      [hideSelected]="false"
+                      [(ngModel)]="savenote.InterviewMode"
+                      name="selectedInterviewType"
+                      [virtualScroll]="true"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </ng-container>
+      
+
+          <!-- <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="savenote.FeedbackTitle"
+              name="feedbackTitle"
+              class="form-control resize-none"
+              placeholder="Feedback Title"
+            />
+          </div> -->
+          <div class="form-group">
+            <textarea
+              type="text"
+              [(ngModel)]="Comment"
+              name="feedback"
+              class="form-control resize-none"
+              placeholder="Summary of Feedback"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="culture-card text-center pointer pt-1 w-100" (click)="photo.click()">
+            <input
+              class="hidden"
+              type="file"
+              #photo
+              (click)="photo.value = null"
+              value=""
+              ng2FileSelect
+              [uploader]="uploader"
+              multiple
+            />
+
+            <button class="file-label btn-sm pull-left btn-filled">
+              Add Attachments <br />
+              <i class="pull-left">* Please add <b>'.png,.pdf,.doc/.docx'</b></i>
+            </button>
+          </div>
+          <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
+          <div class="file__upload__list__table row">
+            <div class="col-xs-12 mt-5" *ngIf="uploader.queue.length > 0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of uploader.queue; let i = index">
+                    <td>
+                      {{ item?.file?.name }}
+                    </td>
+                    <td>{{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB</td>
+                    <!-- <td *ngIf="uploader.options.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                         <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> 
+                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+                            <span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>Success</span> 
+                          </div>
+                        </div>
+                      </td> -->
+                    <td>
+                      <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="item.remove(i)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="modal-footer">
+      <div class="modal-footer pull-right">
+        <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
+        <button
+          mat-button
+          cdkFocusInitial
+          (click)="SaveNotes()"
+          [disabled]="Comment === undefined || Comment === ''"
+          class="btn btn-filled btn__spinner"
+          [class.spinner]="loading"
+          (click)="loginstyle()"
+        >
+          Feedback
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

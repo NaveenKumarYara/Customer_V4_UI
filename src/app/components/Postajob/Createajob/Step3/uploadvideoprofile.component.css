@@ -1,0 +1,74 @@
+.d-inline-block {
+    display: inline-block;
+}
+
+.p-4 {
+    padding: 4rem;
+}
+
+.video-col>div {
+    padding: 0px;
+}
+
+.ml-2 {
+    margin-left: 2rem;
+}
+
+.pt-2, label img {
+    padding-top: 2rem;
+}
+
+.wrap-icon label {
+    font-weight: normal;
+}
+
+/*Added enhancement styles on 23-10-2019 */
+.d-inline-block label img, label p{
+    cursor: pointer;
+}
+
+.video-scrollbar  a{
+    cursor: pointer;
+    }
+.video-scrollbar .video-upload-control{
+margin-bottom:10px;
+}
+.upload-video-dialog h3{
+    color: #6A7E9C;
+}
+.upload-video-dialog p, h4{
+    color: #9CA5B4;
+}
+.video-col .video{
+    border: 1px solid #e0e3ec;   
+}
+.video-col img.video{
+    height:auto;
+}
+.video-upload-control .radio{
+   display: inline-block;
+}
+.video-upload-control .radio-btn{
+    height: 25px;
+    width: 25px;
+}
+ .video-upload-control   a{
+        position: absolute;
+        top: 8px;
+        left: 37px;
+        font-size: 13px;
+        padding: 5px 10px;
+        background-color: #ebebeb;
+        border-radius: 5px;
+        color: #222;
+    }
+.video-col img[alt="RecordIcon"],p.record-text{
+    cursor: default;
+}
+
+.upload-video-dialog-section {
+    height: 90vh;
+    padding-right: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

@@ -1,0 +1,214 @@
+<div class="col-lg-9">
+  <div class="right">
+    <div class="tab-content">
+
+      <div id="users" class="tab-pane fade active in">
+        <header>
+          <h1>Users</h1>
+          <a  class=" add-btn" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser"><span class="add">+</span>Add Users</a>
+
+        </header>
+        
+        <div class="collapse" id="addUser" role="addUser">
+          <div class="">
+            <div class="col-md-12">
+                <label for="">Enter Details</label>
+            </div>
+            <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name *" minlength=3  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                required>
+            <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)" class="error1">
+
+                <div *ngIf="Addform.controls['FirstName'].errors.required">
+                    Required.
+                </div>
+
+                <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                    Minimum 3 Characters allowed.
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="LastName" minlength=3  placeholder="Last Name *"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                required>
+               <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)" class="error1">
+                <div *ngIf="Addform.controls['LastName'].errors.required">
+                    Required.
+                </div>
+                <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                    Minimum 3 Characters allowed.
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6 form-group p-rel">
+                <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
+                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                        Required.
+                    </div>
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                        Incorrect Email!.
+                    </div>
+                </div>
+                <div *ngIf="show" class="error1">
+                    Email already registered.
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <select name="Value" id="view" class="styled-select-box w-100"  (change)="PopulateRoles($event.target.value)">
+                <option default selected="selected" value=8>Hiring Leader</option>
+                <option value=6>Reporting Manager</option>
+            </select>
+            </div>
+            <div class="col-md-12">
+              
+                <div class="d-flex  mb-3">
+                    <div class="mr-auto p-2 ">
+                        <!-- <label class="radio">
+                            <div class="mt--13">
+                              <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
+                              <span class="radio-btn"></span>
+                              Active
+                            </div>
+                          </label> -->
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-filled box-shadow-none">Add User</button>
+                        <button (click)="ResetUser()" class="btn btn-border" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser">Cancel</button>
+                    </div>
+                  </div>
+               
+                
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- add user table view-->
+        <!-- <table class="table add_user collapse" id="addUser" role="addUser">
+          <button type="button" class="close" data-dismiss="addUser" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <tbody>
+              <tr class="form-group">
+              
+                <td>
+                <label for="">Enter Details</label>
+                <input type="text" class="form-control" placeholder="Name" />
+                </td>
+                <td>
+                <label for="">&nbsp;</label>
+                <input type="mail" class="form-control" placeholder="Email" />
+                </td>
+                <td>
+                <label for="">&nbsp;</label>
+                 <input list="selectrole" class="form-control" placeholder="Type and Select" >
+
+<datalist id="selectrole">
+  <option value="Hiring Leader">
+  <option value="Technical Person">
+</datalist> 
+                </td>
+                <td>
+                 <label for="">&nbsp;</label>
+                <label for="q1" class="radio pr-0">
+                                      <div>
+                                        <input type="checkbox" id="q1" name="q1" class="radio-input" />
+                                        <span class="radio-btn radio-active"></span>
+                                        
+                                      </div>
+                                    </label>
+                </td>
+                <td>
+               <label for="">&nbsp;</label>
+<button class="btn btn-filled">Add User</button>
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
+          <!-- #add User table view-->
+           <div [ngClass]="customercontacts.length>3 ? 'tr-scroll' : 'unscroll' "> 
+
+            
+              <div class="table-responsive" style="width: 100%">
+          <table class="table adduser-checkbox">
+            <thead>
+              <tr>
+                <th colspan="2">Name</th>
+                <th class="w-250">Email</th>
+                <th class="tdw-100">Role</th>
+                <th>Active</th>
+               
+              </tr>
+            </thead>
+            
+            <tbody>
+          
+                 
+                   
+                        
+                
+             
+            
+                <ng-container  *ngFor="let contact of customercontacts">
+                    <tr  *ngIf="contact?.IsActive == false" class="user-unchecked">
+                      <td> <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50"></td>
+                    <td>
+                        <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
+                      </td>
+                      <td><h3 class="email w-250">{{contact?.Email}}</h3></td>
+                      <td><h3 class="role tdw-100">{{contact?.RoleName}}</h3></td>
+                      <td>
+                        <label class="radio">
+                          <div>
+                            <input type="checkbox"  class="radio-input"  (change)="userDeactivate(contact, $event.target.checked)"/>
+                            <span class="radio-btn"></span>
+                          </div>
+                        </label>                        
+                      </td>
+                    </tr>  
+                    <tr  *ngIf="contact?.IsActive == true">
+                      <td>
+                          <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                      </td>
+                        <td>
+                            
+                            <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
+                          </td>
+                          <td><h3 class="email w-250">{{contact?.Email}}</h3></td>
+                          <td><h3 class="role">{{contact?.RoleName}}</h3></td>
+                          <td>
+                            <label class="radio">
+                              <div>
+                                <input type="checkbox"  class="radio-input" checked="checked"  (change)="userDeactivate(contact, $event.target.checked)"/>
+                                <span class="radio-btn"></span>
+                              </div>
+                            </label>                           
+                          </td>
+                        </tr>     
+                </ng-container>
+              
+
+                <ng-container *ngIf="customercontacts.length==0">
+                  <tr>
+                    <td colspan="4" class="text-center border-none">
+                        <h5 class="c-6A7E9C"> No Users Added!</h5>
+                    </td>
+                  </tr>
+                     
+                </ng-container>
+              
+            
+        
+               
+                 
+            </tbody>
+         
+          </table>
+        </div>
+      
+        
+          
+         </div>
+      </div>     
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+export class GetBillingCardDetails
+{
+    paymentSourceId:string;
+    status:number;
+    gateway:number;
+    gatewayAccountId:string;
+    refTxId:string;
+    firstName:string;
+    lastName:string;
+    iin:string;
+    last4:string;
+    cardType:number;
+    fundingType:number;
+    expiryMonth:number;
+    expiryYear:number;
+    issuingCountry:string;
+    billingAddr1:string;
+    billingAddr2:string;
+    billingCity:string;
+    billingStateCode:string;
+    billingState:string;
+    billingCountry:string;
+    billingZip:string;
+    createdAt:Date;
+    resourceVersion:number;
+    updatedAt:Date;
+    ipAddress:string;
+    customerId:string;
+    maskedNumber:string;
+}

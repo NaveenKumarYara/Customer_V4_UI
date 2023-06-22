@@ -1,0 +1,74 @@
+<div class="table-layout">
+  <div class="table-row" *ngIf="sdetails">
+    <h4>Bill Estimate</h4>
+    <div class="currency">
+      <ng-container>
+        {{amount}}
+      </ng-container>
+      <small>(Inclusive of tax)</small>
+    </div>
+  </div>
+  <div class="table-row">
+    <h4>Next Charge</h4>
+    <div>
+      <div class="date" *ngIf="sdetails?.nextBillingAt!=null">{{sdetails?.nextBillingAt | date}}</div>
+      <div class="date" *ngIf="sdetails?.nextBillingAt==null">Plan Expired/Cancelled</div>
+      <!-- <div class="date">{{sdetails?.nextBillingAt | date}}</div> -->
+    </div>
+  </div>
+  <div class="table-row">
+    <h4  *ngIf="InvoicesList.length>0">Estimate Detail:
+    </h4>
+    <div>
+      <table class="table adduser-checkbox"  *ngIf="InvoicesList.length>0">
+      
+        <thead>
+        <tr>
+          <th>Due Date</th>
+          <th>Charge</th>   
+          <th>Amount</th>           
+        </tr>
+      </thead>          
+      <tbody>
+        <tr *ngFor="let history of InvoicesList">
+          <td>{{history?.dueDate | date:'mediumDate'}}</td>
+          <td *ngIf="history?.amountDue>1000">Plan Renew/Change</td>
+          <td *ngIf="history?.amountDue<1000">AddOn</td>
+          <td>$ {{history?.amountDue/100}}</td>
+        </tr>
+        </tbody>
+      </table>
+       <!-- <div class="details-row" *ngFor="let history of InvoicesList">
+
+          <div class="desc">{{history?.dueDate | date:'mediumDate'}}</div>
+          <div class="amount">{{history?.amountDue/100}}</div>
+          <div >Renewal</div>
+          <div  >AddOn</div>
+        </div> -->
+        <!-- <div class="details-row">
+          <div class="desc">Feature 1</div>
+          <div class="amount">54.53</div>
+        </div>
+        <div class="details-row">
+          <div class="desc">Feature 1</div>
+          <div class="amount">54.53</div>
+        </div> -->
+
+
+
+      <div class="details-row total">
+        <div class="desc">Total</div>
+        <div class="amount">{{amount}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="fc-button-group">
+      <button type="button" (click)="openPortal()"
+        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>
+      <!-- <button type="button" data-cb-type="portal" [style.backgroundColor]="makeDifferent"
+        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button> -->
+       </div>
+  </div>
+</div>

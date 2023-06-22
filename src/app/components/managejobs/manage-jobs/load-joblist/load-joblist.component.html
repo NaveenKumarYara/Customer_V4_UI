@@ -1,0 +1,225 @@
+<!-- <div class="col-md-12" *ngIf="!loaddata">
+    <div class="loading">Loading&#8230;</div>
+ </div> -->
+ <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+
+ <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?" *ngIf="customer?.UserRoleId != 1">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  
+ 
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<!-- <div style="width:100%;height:0;padding-bottom:92%;position:relative;"><iframe src="https://giphy.com/embed/FVUeTJckIPL7t0uVCp" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div> -->
+<div class="filters col-md-10 custom-filter-post-a-job">
+
+    <div class="pull-left">
+        <form class="form-inline" action="">
+            <div class="form-group view-group  custom-view-group">
+                <!-- <label for="view">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="21.7" height="14.4">
+              <path d="M11.4 14.4C5 14.4 2.1 10.1 2 9.9c-.3-.3-.2-.9.2-1.1.4-.3.9-.2 1.1.2.1.1 2.6 3.7 8 3.7 4.7 0 7.7-4.4 8.5-5.7-.6-1.2-3.1-5.3-9-5.3-6.8 0-9.3 5.8-9.3 5.9-.1.4-.5.6-1 .4s-.6-.7-.5-1.1C.1 6.9 2.9 0 10.9 0s10.7 6.6 10.7 6.7c.1.2.1.5 0 .7-.2.3-3.8 7-10.2 7z" />
+              <path d="M10.9 10.9a3.8 3.8 0 1 1 0-7.6 3.8 3.8 0 0 1 0 7.6zm0-5.9c-1.2 0-2.1.9-2.1 2.1 0 1.2.9 2.1 2.1 2.1S13 8.3 13 7.1C13 5.9 12 5 10.9 5z" />
+              <title>View</title>
+            </svg>
+
+          </label> -->
+         
+                <div class="show-jobs pull-right" data-step="1" data-title="Step 1" data-intro="This filter enables you to view all the active jobs, inactive jobs and closed jobs.
+                " data-position='top'>
+                    <label class="show-count mt-15"> Sort By </label>
+                
+
+                  <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
+                    <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Arytic Job ID</option>
+                    <option value="1" [selected]="nsortBy === '1' || nsortBy === 1">Oldest</option>
+                    <option value="2" [selected]="nsortBy === '2' || nsortBy === 2">Most Viewed</option>
+                    <option value="3" [selected]="nsortBy === '3' || nsortBy === 3">Most Applied</option>
+                    <option value="4" [selected]="nsortBy === '4' || nsortBy === 4">Low Prioritized Jobs</option>
+                    <option value="5" [selected]="nsortBy === '5' || nsortBy === 5">Medium Prioritized Jobs</option>
+                    <option value="6" [selected]="nsortBy === '6' || nsortBy === 6">High Prioritized Jobs</option>
+                </select>
+                </div>
+
+                <div class="show-jobs show-job-first" data-step="2" data-title="Step 2" data-intro="This sort by option enables you to 
+                sort the jobs based on recent, older, most viewed and applied." data-position='top'>
+                <div class="show-jobs pull-right">
+                    <label class="show-count mt-15"> Job Status</label> 
+                    <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
+                        <option default value="0" [selected]="sortBy=== '0' || sortBy=== 0">All Jobs</option>
+                        <option value="2" [selected]="sortBy==='2' || sortBy === 2">Inactive Jobs</option>
+                        <option value="3" [selected]="sortBy==='3' || sortBy === 3">Filled Jobs</option>
+                        <option value="5" [selected]="sortBy==='5' || sortBy === 5">Shortlisting Jobs</option>
+                        <option value="6" [selected]="sortBy==='6' || sortBy === 6">Screening Jobs</option>
+                        <option value="7" [selected]="sortBy==='7' || sortBy === 7">Interviewing Jobs</option>
+                        <!-- <option value="8" [selected]="sortBy==='8' || sortBy === 8">Hiring Jobs</option> -->
+                        <option value="1" [selected]="sortBy==='1' || sortBy === 1">Active Jobs</option>
+                        <!-- <option value="4" [selected]="sortBy==='4' || sortBy === 4">Expired Jobs</option> -->
+                    </select>
+                </div>
+                 
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div class="manage-searchjobs  load-manage-searchjobs">
+        <!--Recent Filters need to be shown under below section-->
+        <div class="filter-labels" style="display: none;">
+            <h6>Recent Filters:</h6>
+            <span class="label label-recent">Job Type <a href="javascript:void(0)">x</a></span>
+            <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
+        </div>
+        <!---->
+        <app-manage-searchjobs [parentApi]="getParentApi()" data-step="3" data-title="Step 3" data-intro="The search enables you to search the jobs posted using different parameters like location, job title, job id etc." data-position='top'></app-manage-searchjobs>
+        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()" data-step="4" data-title="Step 4" data-intro="Clear the search inputs, filter selection using clear all option." data-position='top'>
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            Clear 
+        </div>
+    </div>
+</div>
+
+<div class="col-md-2 pull-right custom-filter-navigation"  data-step="5" data-title="Step 5" data-intro="Advanced filters enable you to add more filters to search the jobs." data-position='top' > 
+    <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
+</div>
+<!--Save Filters UI placement 20-07-2020-->
+<div class="col-md-12"  data-step="6" data-title="Step 6" data-intro="This count gives the information of the jobs displayed for the present page out of total jobs." data-position='top'>
+    <div class="col-md-2 show-count-label">
+        <ng-container *ngIf="joblist?.TotalCount>=5">
+            <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+        </ng-container>
+        <ng-container *ngIf="joblist?.TotalCount<5">
+            <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+        </ng-container>
+    </div>
+    <!--Generate Max 10 filters via loop here-->
+    <div class="col-md-8 filter-labels" style="display: none;">
+        <h6>Filters Applied:</h6>
+        <span class="label label-primary">Job Type <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Location <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Job Title <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Job Status <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Clients <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Skills <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Last Posted <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Immigration Status <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Experience <a href="javascript:void(0)">x</a></span>
+        <span class="label label-primary">Users <a href="javascript:void(0)">x</a></span>
+    </div>
+    <!--More Filters starts-->
+    <div class="col-md-2 filter-settings btn-group" style="display: none;">
+        <div class="btn-group">
+            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More (3)
+            </button>
+            <ul class="dropdown-menu">
+                <li>Client (2) <a href="javascript:void(0)">x</a></li>
+                <li role="separator" class="divider"></li>
+                <li>Department (2) <a href="javascript:void(0)">x</a></li>
+                <li role="separator" class="divider"></li>
+                <li>Skills (5) <a href="javascript:void(0)">x</a></li>
+            </ul>
+        </div>
+        <!--More Filters ends-->
+        <!--Save Filter Starts-->
+        <div class="btn-group" style="display: none;">
+            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Save Filter
+            </button>
+            <ul class="dropdown-menu save-filter">
+                <form>
+                    <div class="form-group">
+                        <label for="filtername">Filter Name</label>
+                        <input type="text" class="form-control" id="filtername" placeholder="">
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </ul>
+        </div>
+        <!--Save Filter Ends-->
+        <!--Clear Filters-->
+        <a href="javascript:void(0)">Clear All</a>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<!-- <div>
+    <app-manage-advance-search [parentApi]="getParentApi()"></app-manage-advance-search>
+</div> -->
+
+
+
+<div id="grid-view" class="grid grid-view-custom tab-pane fade in active" *ngIf="id==1">
+    <div class="col-md-12"  data-step="7" data-title="Step 7" data-intro="A detailed view of posted jobs can be found here." data-position='top'>
+        <div class="row grid-custom-row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-custom-col" *ngFor="let job of joblist.Jobs; let i=index">
+                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">
+                </app-manage-joblist-gridlayout>
+            </div>
+        </div>
+        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+        </mat-progress-spinner>
+    </div>
+    <div class="col-md-12" *ngIf="loaddata">
+        <ng-container *ngIf="joblist.TotalCount == 0 || joblist.TotalCount == null">
+            <div>
+                <div class="nojobbg m-auto">
+                    <div class="w-50c">
+                        <h4 class="text-left h4t">Oh Snap! <br /> No Jobs Posted yet...</h4>
+                    </div>
+                    <div class="w-50c">
+                        <img src="../../../../../assets/images/nojob.png" class="m-auto" />
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
+            <div class="load-more btn btn-border btn-block" (click)="updateJobListCount(); change()">
+                Load More
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div class="" *ngIf="id==2">
+    <div class="clearfix">&nbsp;</div>
+    <div class="tab-content">
+        <div id="list-view">
+            <ul class="job-list">
+                <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
+                    <app-manage-joblist-tablelayout [job]="job" [joblist]="joblist" [index]="i">
+                    </app-manage-joblist-tablelayout>
+                </li>
+            </ul>
+            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+            </mat-progress-spinner>
+        </div>
+        <ng-container *ngIf="joblist.TotalCount == 0 || joblist.TotalCount == null">
+            <div>
+                <div class="nojobbg m-auto">
+                    <div class="w-50c">
+                        <h4 class="text-left h4t">Oh Snap! <br /> No Jobs Posted yet...</h4>
+                    </div>
+                    <div class="w-50c">
+                        <img src="../../../../../assets/images/nojob.png" class="m-auto" />
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
+            <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+                Load More
+            </div>
+        </ng-container>
+    </div>
+</div>

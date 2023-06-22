@@ -1,0 +1,169 @@
+.form {
+  max-width: 600px;
+  font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 1.625;
+  margin: 8px auto;
+  padding: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.progress {
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(7, 122, 24);
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.share__candidates__tags {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+  max-height: 70px;
+  overflow: auto;
+}
+.share__candidates__tags li {
+  border: 1px solid #e0e3ef;
+  margin: 0 3px 6px;
+  display: inline-block;
+  background: #f5f6fa;
+  color: #9eabc0;
+  font-size: 14px;
+  padding: 2px 30px 2px 10px;
+  position: relative;
+}
+.share__candidates__tags li h4 {
+  padding: 0;
+  margin: 0;
+}
+.share__candidates__tags li .close {
+  position: absolute;
+  right: 6px;
+  top: 4px;
+  margin-top: 0;
+}
+.lg-right-padding .custom-style {
+  padding-right: 14px;
+}
+.lg-right-padding .btn:focus {
+  outline: none;
+}
+.inline-radio-tab {
+  display: flex;
+  border-radius: 3px;
+  flex-wrap: wrap;
+  border: 1px solid #e4e4e4;
+}
+.inline-radio-tab input {
+  height: 25px;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.revamp__inline__radio__tab.inline-radio-tab {
+  border: 0;
+  height: 40px;
+  align-items: center;
+}
+.inline-radio-tab label {
+  top: 0;
+  left: 0;
+  color: #909090;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+  box-shadow: 0px 0px 2px 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  height: 35px;
+  background: #fff;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.revamp__inline__radio__tab.inline-radio-tab label {
+  width: auto;
+  left: 2px;
+  right: 2px;
+  border-radius: 5px;
+}
+.inline-radio-tab div {
+  position: relative;
+  display: flex;
+  margin: 5px;
+}
+.inline-radio-tab input:checked + label {
+  background: #66dab5;
+  font-weight: 500;
+  color: #fff;
+}
+.inline-radio-tab input:checked + label span img {
+  display: unset;
+  height: 7px;
+  width: 7px;
+}
+.inline-radio-tab label span img {
+  display: none;
+}
+.inline-radio-tab label span {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8e8e8;
+}
+
+.inline-dropdown ng-select {
+  margin-top: 30px;
+}
+.culture-card .btn-filled {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  border: 1px dashed #ccc;
+  color: #41536e;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  height: 100px;
+}
+
+.btn-danger.btn__delete {
+  background: none;
+  color: #41536e;
+  border: 0;
+}
+.btn-danger.btn__delete:focus {
+  outline: none;
+}
+.ng-star-inserted .progress {
+  background: #f1f2f6;
+  box-shadow: none;
+}
+.ng-star-inserted .progress-bar {
+  background: #448afa;
+}

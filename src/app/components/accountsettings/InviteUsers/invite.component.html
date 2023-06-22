@@ -1,0 +1,450 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="col-lg-9">
+  <!-- <a href="javascript:void(0)" (click)="start()" class="pull-right"><i class="fa fa-info"></i> How it works?</a> -->
+  <a id="toTop" (click)="start()" class="go-to-top" href="javascript:void(0)" title=" How it works?">
+    <i class="fa fa-play" aria-hidden="true"></i>
+    <div class="circle" style="animation-delay: -3s"></div>
+    <div class="circle" style="animation-delay: -2s"></div>
+    <div class="circle" style="animation-delay: -1s"></div>
+    <div class="circle" style="animation-delay: 0s"></div>
+  </a>
+  <div class="right">
+    <div class="tab-content i-t-m" data-step="1" data-title="Step 1" data-intro="Manage your team members here and assign the hiring duties based on role." data-position='top'>
+      <div class="row i-t-m-header">
+        <div class="col-md-9">
+          <h1 ><a href="javascript:void(0)" (click)="Rest()">Manage Team Members </a></h1>
+         
+        </div>
+        <div class="col-md-3 mr-t-3" data-step="2" data-title="Step 2" data-intro="Invite a team member here." data-position='top'>
+          <a href="javascript:void(0)" (click)="showStep=!showStep;tClose();" class="add-btn pull-right" data-toggle="modal">
+            <span class="add">+</span>Invite
+            Member</a>
+          
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <ng-container *ngIf="!showStep">
+        <ng-container *ngIf="customercontacts.length==0">
+          <div class="row">
+            <div class="col-md-8">
+              <p class="sub-text">You can either let your team members access everything in this site, or assign
+                specific
+                roles to them.</p>
+                <mat-radio-group>
+                  <mat-radio-button value="0" [checked]="filterUser === 0" (click)="GetUsers(0)"> All Members
+                  </mat-radio-button>
+                  <mat-radio-button value="1" [checked]="filterUser === 1" (click)="GetUsers(1)">Active Members</mat-radio-button>
+                  <mat-radio-button value="2" [checked]="filterUser === 2"  (click)="GetUsers(2)">Inactive Members</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="col-md-4">
+              <!-- <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span
+                  class="add">+</span>Invite
+               Member</a> -->
+            </div>
+          </div>
+
+          <div class="clearfix">&nbsp;</div>
+          <div class="text-center invite-icon">
+            <div class="clearfix">&nbsp;</div>
+            <div>
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div>
+            <p>No records are found!!</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="customercontacts.length>0">
+          <div class="r-i-t">
+            <div class="row r-i-t-header">
+              <div class="col-md-7">
+                <h4>Team Members</h4>
+                <mat-radio-group>
+                  <mat-radio-button value="0" [checked]="filterUser ===  0" (click)="GetUsers(0)"> All Members
+                  </mat-radio-button>
+                  <mat-radio-button value="1" [checked]="filterUser ===  1" (click)="GetUsers(1)">Active Members</mat-radio-button>
+                  <mat-radio-button value="2" [checked]="filterUser ===  2"  (click)="GetUsers(2)">Inactive Members</mat-radio-button>
+                </mat-radio-group>
+                </div> 
+                <div class="col-md-2 text-center">
+                  <h5>{{customercontacts?.length}} Members</h5>
+                </div>
+          
+              <div class="col-md-3 pull-right" data-step="3" data-title="Step 3" data-intro="You can Search
+              team member here." data-position='top'>
+                <!-- <div class="form-group i-s"  *ngIf="customercontacts.length>5">
+                  <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
+                    placeholder="Search Here..">
+                </div> -->
+                <div class="input-group i-s" *ngIf="customercontacts.length>5"> 
+                  <span class="input-group-addon" id="i-s-search"><i class="fa fa-search" aria-hidden="true"></i>
+                  </span> 
+                  <input type="text" class="form-control"  [(ngModel)]="searchText" id="searchinvite" placeholder="" aria-describedby="i-s-search"> 
+                </div>
+              </div>
+              <!-- <div class="col-md-9">
+                <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right"
+                  data-toggle="modal"> <span class="add">+</span>Invite
+                  New Member</a>
+              </div> -->
+            </div>
+
+            <div class="row" data-step="4" data-title="Step 4" data-intro="Here are the team-members-list added by you." data-position='top'>
+              <div class="col-md-12 i-u-l scrollbar-inner">
+                <ul class="list-group ">
+                  <ng-container *ngFor="let contact of customercontacts |  filter : searchText   | sortBy:'Email' | sortBy:'FirstName'">
+                    <li class="list-group-item" [ngClass]="{'disabled': contact?.IsRemove === true}">
+                      <div class="media">
+                        <div class="media-left">
+                          <p>
+                            <img src="https://ui-avatars.com/api/?name={{contact?.FirstName}}&rounded=true&length=1"
+                              alt="" class="img-cricle">
+                          </p>
+
+                        </div>
+                        <div class="media-body" >
+                          <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName   || 'Not Provided' | titlecase}}
+                            {{contact?.LastName || 'Not Provided' | titlecase}}</h5>
+                          <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5>
+                          <ng-container *ngIf="contact?.IsRemove === false">
+                            <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName | titlecase}}</small>
+                            <small *ngIf="contact?.FirstName=='Invited'"> Invited</small>
+                          </ng-container>
+                          <ng-container *ngIf="contact?.IsRemove === true">                
+                            <small>In Active</small>
+                          </ng-container>
+
+                        </div>
+                        <div class="media-right">
+                          <div class="dropdown card-dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                              aria-expanded="true">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                                <path
+                                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                                  fill="#448afa"></path>
+                              </svg>
+                            </button>
+                            <ul class="dropdown-menu">
+
+                              <li>
+                                <a (click)="EditUser(contact)">Edit Role</a>
+                              </li>
+                              <li>
+                                <ng-container *ngIf="contact?.IsRemove === false">
+                                  <a (click)="RemoveUser(contact?.Email)">Inactive</a>
+                                </ng-container>
+                                <ng-container *ngIf="contact?.IsRemove === false">
+                                  <a (click)="ResendEmail(contact)">Re-Send Email</a>
+                                </ng-container>
+                                <ng-container *ngIf="contact?.IsRemove === true">
+                                  <a (click)="ActivateInviteUsers(contact)">Active</a>
+                                </ng-container>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ng-container>
+
+                  <!-- <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left"> <p data-letters="A"></p></div>
+                      <div class="media-body">
+                        <h5 class="media-heading">abc@test.com</h5> 
+                        <small>Invitation Sent</small>
+                      </div>
+                      <div class="media-left"> 
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path
+                                d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                                fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                           
+                            <li>
+                              <a (click)="EditUser(contact)">Edit Role</a>
+                            </li>
+                            <li>
+                              <a (click)="RemoveUser(contact?.UserId)">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left"> <p data-letters="A"></p></div>
+                      <div class="media-body">
+                        <h5 class="media-heading">abc@test.com</h5> 
+                        <small>Invitation Sent</small>
+                      </div>
+                      <div class="media-left"> 
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path
+                                d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                                fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                           
+                            <li>
+                              <a (click)="EditUser(contact)">Edit Role</a>
+                            </li>
+                            <li>
+                              <a (click)="RemoveUser(contact?.UserId)">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left"> <p data-letters="A"></p></div>
+                      <div class="media-body">
+                        <h5 class="media-heading">abc@test.com</h5> 
+                        <small>Invitation Sent</small>
+                      </div>
+                      <div class="media-left"> 
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path
+                                d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                                fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                           
+                            <li>
+                              <a (click)="EditUser(contact)">Edit Role</a>
+                            </li>
+                            <li>
+                              <a (click)="RemoveUser(contact?.UserId)">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li> -->
+
+                </ul>
+              </div>
+            </div>
+
+
+
+            <!-- <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th>Invitee Details </th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let contact of customercontacts">
+                    <td>
+                      <h5>Invitee Name</h5>
+                      <small>{{contact?.RoleName}}</small>
+                    </td>
+                    <td>
+                      <h5 class="email">{{contact?.Email}}</h5>
+                      <small>Invitation Sent</small>
+                    </td>
+
+                    <td>
+                      <h5 class="role">{{contact?.RoleName}}</h5>
+                    </td>
+                    <td>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="dropdown card-dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                            <path
+                              d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                              fill="#448afa"></path>
+                          </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                              <a>Make Ownner</a>
+                            </li>
+                          <li>
+                            <a (click)="EditUser(contact)">Edit Role</a>
+                          </li>
+                          <li>
+                            <a (click)="RemoveUser(contact?.UserId)">Remove</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+
+        </ng-container>
+
+      </ng-container>
+
+      <ng-container *ngIf="showStep">
+        <ng-container *ngIf="!IsEdit">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default invite-panel">
+                <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+                  <div class="panel-body">
+                    <div class="form-group">
+                      <label for="iemailaddress">Email address</label>
+                      <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *"
+                        autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
+                        id="semail">
+                      <div
+                        *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)"
+                        class="error1">
+                        <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                          Required.
+                        </div>
+                        <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                          Incorrect Email!.
+                        </div>
+                      </div>
+                      <div *ngIf="show" class="error1">
+                        Email already registered.
+                      </div>
+                    </div>
+                    <div class="u-l-a row">
+                      <div class="col-md-12">
+                        <h5>User Level Access</h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5" *ngFor="let level of userLevels">
+                          <label class="checkbox-inline">
+                            <input type="radio" name="AccessId" id="inlineradio1" formControlName="AccessId"
+                              value="{{level?.Id}}"> {{level?.AccessLevel}}
+                          </label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                      <label class="checkbox-inline">
+                        <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
+                      </label> 
+                    </div>-->
+
+                      <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
+                        <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let roles of userRoles">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId"
+                                  value="{{roles?.Id}}">
+                              </div>
+                              <div class="media-body">
+                                <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
+                                <small>{{roles?.AccessRoles}}
+                                  will work from resumes or by actively soliciting individuals qualified for
+                                  positions.</small>
+                              </div>
+                            </div>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="pull-right">
+                      <button class="btn btn-border" (click)="ResetUser();showStep=!showStep">Cancel</button>
+                      <button class="btn btn-filled" type="submit" [disabled]="!Addform.valid">Invite</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </ng-container>
+        <ng-container *ngIf="IsEdit">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default invite-panel">
+                <form [formGroup]="Addform" (ngSubmit)="EditTheUser()">
+                  <div class="panel-body">
+                    <div class="form-group">
+                      <label for="iemailaddress">Email address</label>
+                      <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *"
+                        autocomplete="new-email" formControlName="ContactEmail" required readonly id="semail">
+                    </div>
+                    <div class="u-l-a row">
+                      <div class="col-md-12">
+                        <h5>User Level Access</h5>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-5" *ngFor="let level of userLevels">
+                          <label class="checkbox-inline">
+                            <input type="radio" name="AccessId" id="inlineradio1" formControlName="AccessId"
+                              value="{{level?.Id}}"> {{level?.AccessLevel}}
+                          </label>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                      <label class="checkbox-inline">
+                        <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
+                      </label> 
+                    </div>-->
+
+                      <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
+                        <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let roles of userRoles">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId"
+                                  value="{{roles?.Id}}">
+                              </div>
+                              <div class="media-body">
+                                <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
+                                <small>{{roles?.AccessRoles}}
+                                  will work from resumes or by actively soliciting individuals qualified for
+                                  positions.</small>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="pull-right">
+                      <button class="btn btn-border" (click)="ResetUser();showStep=!showStep">Cancel</button>
+                      <button class="btn btn-filled" type="submit">Update</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </ng-container>
+        <div class="clearfix">&nbsp;</div>
+      </ng-container>
+    </div>
+  </div>
+</div>

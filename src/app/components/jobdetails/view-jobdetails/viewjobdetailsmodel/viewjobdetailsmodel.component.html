@@ -1,0 +1,1308 @@
+<div class="page page--job-details">
+  <mat-dialog-content class="mat-typography mat__revamp">
+    <div class="revamp__view__job__details">
+      <div class="top__section">
+        <div class="row flex flex-align-center flex-wrap">
+          <div class="col-sm-6 left__col">
+            <figure class="logo">
+              <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
+            </figure>
+            <div class="summary__box">
+              <h4>{{jobdetailscustomer?.JobInfo?.JobTitle}} <span
+                  class="status {{jobdetailscustomer?.JobInfo?.JobStatus}}">{{jobdetailscustomer?.JobInfo?.JobStatus}}</span>
+              </h4>
+              <div class="action__icon">
+                <ul>
+                  <li *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Filled'">
+                    <button class="btn btn__edit"
+                      (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)"><i
+                        class="fa fa-pencil" aria-hidden="true"></i></button>
+                  </li>
+                 
+                   <li>
+                    <button type="btn btn__edit" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <ul class="inline__listing">
+                <li>{{jobdetailscustomer?.JobInfo?.CompanyName}}</li>
+                <li>
+                  <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
+                      <span *ngFor="let location of jobdetailscustomer?.JobLocation">
+                        {{location?.CityName}}
+                      </span>
+                    </ng-container>
+
+                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">
+                      <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+
+                        <span class="tooltipcontent">
+                          <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                            {{location?.CityName}};
+                          </ng-container>
+                        </span>
+                      </span>
+                    </ng-container>
+
+                  </ng-container>
+                </li>
+
+              </ul>
+              <div class="inline__icon__listing">
+                <ul>
+                  <!-- <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length!=0">
+                    <li class="icon__department">
+                      <ng-container *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
+                        {{dept?.Code | titlecase}}
+                      </ng-container>
+                    </li>
+                  </ng-container>
+
+                  <li class="icon__department" *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length==0">
+                    N/A
+                  </li> -->
+                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.ModifiedDate
+                    | date:'mediumDate'}}</li>
+                  <li class="icon__position">Number of Positions <span>
+                      {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 right__col">
+            <button class="btn btn__dark" *ngIf="jobdetailscustomer?.JobInfo?.JobStatus==='Active'"
+              (click)="changeJobStat(jobdetailscustomer,false)">Inactive</button>
+            <button class="btn btn__dark" *ngIf="jobdetailscustomer?.JobInfo?.JobStatus==='InActive'"
+              (click)="changeJobStat(jobdetailscustomer,true)">Active</button>
+            <ul>
+              <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===1"><img
+                  src="../../../../../assets/images/icon__04.png" title="Work Type "><span>Remote</span>
+              <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===0"><img
+                  src="../../../../../assets/images/icon__04.png" title="Work Type "><span>N/A</span>
+              </li>
+
+
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
+                <li><img src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
+                  <span>
+                    <span
+                      class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}+
+                      <span class="tooltipcontent">
+                        <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                          {{job.WorkAuthorizationType}}
+                        </ng-container>
+                      </span>
+                    </span>
+                  </span>
+                </li>
+              </ng-container>
+
+
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===1">
+                <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0].WorkAuthorizationTypeId!=0"><img
+                    src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
+                  <span>
+                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                      {{job.WorkAuthorizationType}}
+                    </ng-container>
+                  </span>
+                </li>
+              </ng-container>
+
+              <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
+                <img src="../../../../../assets/images/icon__01.png" title="Work Authorization"><span> N/A</span>
+              </li>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
+                <li><img src="../../../../../assets/images/icon__02.png" title="Salary"><span
+                   >
+                    ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
+                    ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
+                  <!-- <span *ngIf="viewJobDetails?.HideSalary === false">
+                    Not willing to reveal</span> -->
+                  <!-- <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
+                      On W2 </span>                      
+                  <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
+                      Contract By Length
+                  </span> -->
+              </ng-container>
+
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
+                <li><img src="../../../../../assets/images/icon__02.png" title="Salary"><span>
+                    Open for Conversation.
+                  </span></li>
+              </ng-container>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length == 1">
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
+                  <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                    <span>
+                      {{imi?.ImmigrationStatus}}
+                    </span>
+                  </ng-container>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 1">
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
+                  <span class="tooltip-text">{{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
+                    <span class="tooltipcontent">
+                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                        {{imi?.ImmigrationStatus}},
+                      </ng-container>
+                    </span>
+                  </span>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 0">
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration"><span>
+                    N/A
+                  </span></li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="middle__section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#job-card">Job Card</a></li>
+          <li><a data-toggle="tab" href="#job-details">Job Details</a></li>
+          <li><a data-toggle="tab" href="#skills">Skills</a></li>
+          <li><a data-toggle="tab" href="#tab-documents">Documents</a></li>
+          <li><a data-toggle="tab" href="#tab-Notes">Job Notes</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+          <div id="job-card" class="tab-pane fade in active">
+           <!-- <button (click)="check(jobdetailscustomer?.JobInfo?.JobId)"><i class="fa fa-camera" aria-hidden="true"></i></button>  -->
+            <div class="jdv-listing lg__paading smart-job-card">
+              <div class="row no__margin">
+                <div class="col-sm-6 col-md-6">
+                  <div class="job-leftcard" id="aaa{{jobdetailscustomer?.JobInfo?.JobId}}">
+                    <div class="col-container">
+                      <!--Old Code-->
+                      <div class="top-container hidden">
+                        <div class="row d-flex flex-wrap">
+                          <div class="col-sm-6">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            <h6>Domain</h6>
+                            <ng-container *ngIf="jobdetailscustomer?.JobRequiredDomain.length==1">
+                              <p *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                                {{domain?.DomainName}}
+                              </p>
+                            </ng-container>
+                            <ng-container *ngIf="jobdetailscustomer?.JobRequiredDomain.length>1">
+                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.DomainName}}+
+                                <span class="tooltipcontent">
+                                  <ng-container
+                                    *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                                    {{domain?.DomainName}}
+                                  </ng-container>
+                                </span>
+                              </p>
+                            </ng-container>
+                            <p *ngIf="jobdetailscustomer?.JobRequiredDomain.length === 0">
+                              N/A
+                            </p>
+                          </div>
+                          <div class="col-sm-6">
+                            <i class="fa fa-building-o" aria-hidden="true"></i>
+                            <h6>Departments</h6>
+                            <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length==1">
+                              <p *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
+                                {{dept?.Code | titlecase}}
+                              </p>
+                            </ng-container>
+                            <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType.length>1">
+                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.Code}}+
+                                <span class="tooltipcontent">
+                                  <ng-container *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
+                                    {{dept?.Code}}
+                                  </ng-container>
+                                </span>
+                              </p>
+                            </ng-container>
+
+                            <p *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length === 0">
+                              N/A
+                            </p>
+                          </div>
+                        </div>
+                        <!--/.row-->
+                      </div>
+                      <!--/.top-container-->
+                      <!--Old Code-->
+
+                      <div class="middle-container">
+                        <div class="jdv-company-profile flex flex-align-center">
+                          <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                            <span class="remote" *ngIf="location?.CityName ===  'Remote, , '">
+                              <em>Remote</em>
+                            </span>
+                          </ng-container>
+                        
+                          <div class="company-logo flex flex-justify-center flex-align-center">
+                            <img *ngIf="!profileImage" src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
+                            <img *ngIf="profileImage" src="../../../../../assets/images/noclogo.png" alt="">
+                          </div>
+                          <div class="company-title">
+                            <h3>{{jobdetailscustomer?.JobInfo?.CompanyName | titlecase}}</h3>
+                            <h2>{{jobdetailscustomer?.JobInfo?.JobTitle }}</h2>
+                            <div class="two-grid-icon">
+                              <nav class="icon-navigation">
+                                <!-- <ul>
+                                  <li placement="top" tooltip="Health">
+                                    <span class="jdv-smart-icon jdv-icon-heart-sm">Icon</span>
+                                  </li>
+                                  <li placement="top" tooltip="Food"><span
+                                      class="jdv-smart-icon jdv-icon-food-sm">Icon</span>
+                                  </li>
+                                  <li placement="top" tooltip="Travel">
+                                    <span class="jdv-smart-icon jdv-icon-bus-sm">Icon</span>
+                                  </li>
+                                  <li data-placement="top" tooltip="Home">
+                                    <span class="jdv-smart-icon jdv-icon-home-sm">Icon</span>
+                                  </li>
+                                </ul> -->
+                              </nav>
+                            </div>
+                          </div>
+                        </div>
+                        <!--/.jdv-company-profile-->
+                        <div class="inline-icon-list">
+                          <ul class="flex flex-wrap flex-align-center flex-justify-center">
+                            <ng-container>
+                              <li *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                                <span class="jdv-icon jdv-icon-map" title="Locations">Icon</span>
+                                <span class="tooltip-text">
+                                  <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
+                                    <span class="address" *ngFor="let location of jobdetailscustomer?.JobLocation">
+                                      {{location?.CityName}}
+                                    </span>
+                                  </ng-container>
+                                  <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">
+                                    <span class="tooltip-text">
+                                      <span class="address">
+                                        {{jobdetailscustomer?.JobLocation[0].CityName}}+
+                                      </span>
+                                      <span class="tooltipcontent">
+                                        <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                                          {{location?.CityName}};
+                                        </ng-container>
+                                      </span>
+                                    </span>
+                                  </ng-container>
+                                </span>
+                              </li>
+                            </ng-container>
+                            <li><span class="jdv-icon jdv-icon-work"
+                                title="Experience">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience
+                              |monthsPipe}} -
+                              {{jobdetailscustomer?.JobInfo?.MaxExperience |monthsPipe }} Y</li>
+                            <!-- <li><span
+                                class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
+                              | date:'mediumDate'}}</li> -->
+                            <li>
+                              <span class="jdv-smart-icon jdv-icon-position" title="Positions">Icon</span>
+                              {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}} Positions
+                            </li>
+                            <li *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length>0">
+                              <span class="jdv-smart-icon jdv-icon-immigration" title="Immigration Status">Icon</span>
+                              <span class="tooltip-text">
+                                {{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
+                                <span class="tooltipcontent">
+                                  <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                    {{imi?.ImmigrationStatus}}
+                                  </ng-container>
+                                </span>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <!--/.inline-icon-list-->
+                        <div class="icon-listing hidden">
+                          <ul class="flex flex-wrap flex-justify-center">
+                            <li>
+                              <span class="jdv-icon jdv-icon-status" title="Work Authorization">Icon</span>
+
+                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
+                                <span
+                                  class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}
+                                  <span class="tooltipcontent">
+                                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                      {{job.WorkAuthorizationType}}
+                                    </ng-container>
+                                  </span>
+                                </span>
+                              </h4>
+                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length==1">
+                                <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+
+                                  {{job.WorkAuthorizationType}}
+                                </ng-container>
+                              </h4>
+                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
+                                N/A
+                              </h4>
+                            </li>
+                            <li>
+                              <span class="jdv-icon jdv-icon-ribbon"><span
+                                  class="number">{{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></span>
+                              <h4>Positions</h4>
+                            </li>
+                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 1">
+                              <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
+                                <h4 class="tooltip-text">
+                                  {{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
+                                  <span class="tooltipcontent">
+                                    <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                      {{imi?.ImmigrationStatus}}
+                                    </ng-container>
+                                  </span>
+                                </h4>
+                              </li>
+                            </ng-container>
+                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 1">
+                              <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
+                                <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                  <h4>{{imi?.ImmigrationStatus}}</h4>
+                                </ng-container>
+                              </li>
+                            </ng-container>
+                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 0">
+                              <li>
+                                <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
+                                <h4>N/A</h4>
+                              </li>
+                            </ng-container>
+                          </ul>
+                        </div>
+
+                        <div class="two-grid-icon">
+                          <div class="row">
+                            <div class="col-sm-6 flex flex-wrap flex-align-center">
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <span class="jdv-smart-icon jdv-shape-work-icon">Icon</span>
+                                  <h4>{{jobdetailscustomer?.JobInfo?.EmploymentType}}
+                                      <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentTypeId===2">
+                                      <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
+                                        <span
+                                          class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}
+                                          <span class="tooltipcontent">
+                                            <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                              {{job.WorkAuthorizationType}}
+                                            </ng-container>
+                                          </span>
+                                        </span>
+                                      </ng-container>
+                                      <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length==1">
+                                        <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+        
+                                          {{job.WorkAuthorizationType}}
+                                        </ng-container>
+                                      </ng-container>
+                                  </span></h4>
+                                </div>
+                                 <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
+                             
+
+                                  <div class="col-sm-6">
+                                    <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
+                                    <h4 class="word-wrap">${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
+                                      <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
+                                        hours/month)</span>
+                                      <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
+                                        hours/Yearly)</span>
+                                    </h4>
+                                  </div>
+                                  <!-- <div class="col-sm-6" *ngIf="viewJobDetails?.HideSalary === false">
+                                    <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
+                                    <h4>Not willing to reveal
+                                     <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
+                                        hours/month)</span>
+                                      <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
+                                        hours/Yearly)</span>
+                                    </h4>
+                                    <!-- <nav class="icon-navigation">
+                                      <ul>
+                                        <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                        </li>
+                                        <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                            class="jdv-icon jdv-icon-food">Icon</span></li>
+                                        <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div> -->
+                        
+                                </ng-container>
+                                <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
+                                  <div class="col-sm-6">
+                                    <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
+                                    <h4 class="word-wrap"> Open for Conversation.</h4>
+                                  </div>
+                                </ng-container>
+                              </div>
+                            </div>
+                            <!--/.col-sm-6-->
+                            <div class="col-sm-6 flex flex-align-center">
+                              <!-- <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862" width="70" height="70"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none"
+                                  cx="16.91549431" cy="16.91549431" r="15.91549431"></circle>
+                                <circle class="circle-chart__circle" stroke="#448afa" stroke-width="2"
+                                  stroke-dasharray="75,100" stroke-linecap="round" fill="none" cx="16.91549431"
+                                  cy="16.91549431" r="15.91549431"></circle>
+                                <g class="circle-chart__info">
+                                  <text class="circle-chart__percent" x="16.91549431" y="18.5" alignment-baseline="central"
+                                    text-anchor="middle" font-size="8">70%</text>
+                                </g>
+                              </svg> -->
+                              <div style="display: block" class="svg-progress">
+                                <circle-progress [percent]="getjobCompleteinfo?.JobCompleteness" [radius]="40"
+                                  [outerStrokeWidth]="8"   [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
+                                  [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300"
+                                  [showSubtitle]="false">
+                                </circle-progress>
+                              </div>
+                              <h4>Job Completeness</h4>
+                              <!-- <a href="javascript:void(0)" class="tooltip__link"
+                                (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span class="custom__tooltip">
+                                  Complete your job.
+                                </span>
+                              </a> -->
+                            </div>
+                            <!--/.col-sm-6-->
+                          </div>
+                          <!--/.row-->
+                        </div>
+                        <!--/.two-grid-icon-->
+
+                        <div class="jdv-gray-section">
+                          <div class="jdv-skills">
+                            <div class="section__title flex flex-wrap flex-align-center">
+                              <h4>Skills</h4>
+                              <div class="jdv-stauts-listing">
+                                <ul>
+                                  <li class="beginner">Mandatory</li>
+                                  <li class="master">Optional</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="scrollbar-container">
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills;let i = index">
+                                  <ng-container *ngIf="i<6">
+                                    <div class="col-sm-4 beginner" *ngIf="skill?.SkillType === true">
+                                      <div class="col-container"  placement="top" tooltip="{{skill?.SkillName}}">
+                                        <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
+                                        <div class="info-container">
+                                          <h5>{{skill?.SkillName}}</h5>
+                                          <h6>Exp: {{skill?.MinimumExp | monthsPipe}} - {{skill?.MaximumExp | monthsPipe}} Years</h6>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-4 master" *ngIf="skill?.SkillType === false">
+                                      <div class="col-container" placement="top" tooltip="{{skill?.SkillName}}">
+                                        <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
+                                        <div class="info-container">
+                                          <h5>{{skill?.SkillName}}</h5>
+                                          <h6>Exp: {{skill?.MinimumExp | monthsPipe}} - {{skill?.MaximumExp | monthsPipe}} Years</h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </ng-container>
+                                </ng-container>
+                                <!--/.col-sm-4-->
+                              </div>
+                              <!--/.row-->
+                            </div>
+                            <!--/.jdv-status-listing-->
+                          </div>
+                          <!--/.jdv-skills-->
+
+                          <div class="jdv-key-section" *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                            <div class="section__title flex flex-wrap flex-align-center">
+                              <h4>Key Responsibilities</h4>
+                              <div class="jdv-stauts-listing">
+                                <ul>
+                                  <li class="beginner">0-2</li>
+                                  <li class="teal">3-6</li>
+                                  <li class="orange">7-10</li>
+                                  <li class="blue">10+</li>
+                                </ul>
+                              </div>
+                            </div>
+
+                            <ul class="flex flex-wrap flex-align-equal">
+                              <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                                <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
+                                  <div class="col__container beginner" *ngIf="r?.CustomerKeyMaxExperienceId<=24" placement="top" tooltip="{{r?.Code | titlecase}}">
+                                    <span class="jdv-smart-icon jdv-work-icon">Icon</span>
+                                    <span class="title"> {{r?.Code | titlecase}} </span>
+                                    <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
+                                      {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
+                                  </div>
+                                  <div class="col__container teal" *ngIf="r?.CustomerKeyMaxExperienceId>24 && r?.CustomerKeyMaxExperienceId<=72" placement="top" tooltip="{{r?.Code | titlecase}}">
+                                    <span class="jdv-smart-icon jdv-work-icon">Icon</span>
+                                    <span class="title"> {{r?.Code | titlecase}} </span>
+                                    <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
+                                      {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
+                                  </div>
+                                  <div class="col__container orange" *ngIf="r?.CustomerKeyMaxExperienceId>72 && r?.CustomerKeyMaxExperienceId<=120" placement="top" tooltip="{{r?.Code | titlecase}}">
+                                    <span class="jdv-smart-icon jdv-work-icon">Icon</span>
+                                    <span class="title"> {{r?.Code | titlecase}} </span>
+                                    <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
+                                      {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
+                                  </div>
+                                  <div class="col__container blue" *ngIf="r?.CustomerKeyMaxExperienceId>120" placement="top" tooltip="{{r?.Code | titlecase}}">
+                                    <span class="jdv-smart-icon jdv-work-icon">Icon</span>
+                                    <span class="title"> {{r?.Code | titlecase}} </span>
+                                    <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
+                                      {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
+                                  </div>
+                                </li>
+                              </ng-container>
+                            </ul>
+                          </div>
+
+                          <div class="jdv-button-grid-icon">
+                            <div class="section__title">
+                              <h4>Verification</h4>
+                            </div>
+                            <ul>
+                              <li>
+                                <label>
+                                  <input  readonly type="checkbox" name="Education" [checked]="Education"  value="Education"/>
+                                  <span class="btn btn-link">
+                                    <span class="jdv-smart-icon jdv-education-icon">Icon</span>
+                                    Education
+                                  </span>
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input  readonly type="checkbox"    name="Employement" [checked]="Employement"  value="Employement" />
+                                  <span class="btn btn-link">
+                                    <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                                    Employment
+                                  </span>
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input readonly type="checkbox" [checked]="Reference" name="Reference"   value="Reference" />
+                                  <span class="btn btn-link">
+                                    <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
+                                    Reference
+                                  </span>
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input readonly type="checkbox" [checked]="WFH" name="WFH"   value="WFH" />
+                                  <span class="btn btn-link">
+                                    <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
+                                    WFH
+                                  </span>
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input readonly type="checkbox" [checked]="Background" name="Background" value="Background" />
+                                  <span class="btn btn-link">
+                                    <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                                    Background
+                                  </span>
+                                </label>
+                              </li>
+                              </ul>
+                          </div>
+                        </div>
+
+                        <div class="inline-icon-list lg-padding">
+                          <ul class="flex flex-wrap flex-align-center flex-justify-center">
+                            <ng-container>
+                              <li *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                                <div class="btn-group dropup">
+                                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="jdv-smart-icon jdv-interview-icon" title="Interview">Icon</span>
+                                    Interview
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <ul>
+                                      <ng-container *ngIf="srlist.length>0">
+                                        <li *ngFor="let a of srlist"><a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>{{a}}</a></li>
+                                      </ng-container>
+                                      <ng-container *ngIf="srlist.length===0">
+                                        <li>No Rounds Mentioned</li>
+                                      </ng-container>
+                                   
+                                   
+                                    </ul>
+                                  </div>
+                                </div>
+                              </li>
+                            </ng-container>
+                            <!-- <li>
+                              <button class="btn btn-link">
+                                <span class="jdv-smart-icon jdv-check-icon" title="Apply">Icon</span>
+                                Apply
+                              </button>
+                            </li> -->
+                            <!-- <li><span
+                                class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
+                              | date:'mediumDate'}}</li> -->
+                            <li>
+                              <button class="btn btn-link" (click)="OpenShareJobDialog()" *ngIf="!profileImage">
+                                <span class="jdv-smart-icon jdv-share-icon" title="Share">Icon</span>
+                                Share
+                              </button>
+                            </li>
+                            <!-- <li>
+                              <button class="btn btn-link">
+                                <span class="jdv-smart-icon jdv-explore-icon" title="Expoler">Icon</span>
+                                Expoler
+                              </button>
+                            </li> -->
+                          </ul>
+                        </div>
+                        <!--/.gray-section-->
+                      </div>
+                      <!--/.middle-container-->
+                    </div>
+                    <!--/.col-container-->
+                  </div>
+                  <!-- <div class="results">
+                  </div> -->
+                  <!--/.job-leftcard-->
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  <div class="job__info__grid">
+                    <div class="row flex flex-wrap flex-align-equal">
+                      <div class="col-sm-12 col views__col">
+                        <div class="row">
+                          <div class="col-sm-6 col-md-6 col">
+                            <div class="col__container">
+                              <h4>No. of Views</h4>
+                              <span class="lg__number">{{viewJobDetails?.TotalViewCount || '0'}}</span>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-6 col">
+                            <div class="col__container">
+                              <h4>No. of Applicants</h4>
+                              <span class="lg__number">{{viewJobDetails?.TotalApplicants || '0'}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col flex flex-wrap flex-align-equal icons__col">
+                        <div class="col-sm-4 col-md-4 col">
+                          <div class="col__container">
+                            <img src="../../../../../assets/images/like-icon-select.png">
+                            <h5>Like({{viewJobDetails?.NumberOfLikes || '0' }})</h5>
+                          </div>
+                        </div>
+                        <!-- <div class="col-sm-3 col-md-3 col">
+                          <div class="col__container">
+                            <a href="javascript:void(0)" class="saved_in">
+                              <span class="icon icon-save" style="font-size:18px"></span>
+                            </a>
+                            <h5>Saved</h5>
+                          </div>
+                        </div> -->
+                        <div class="col-sm-4 col-md-4 col">
+                          <div class="col__container">
+                            <img src="../../../../../assets/images/like-icon.png">
+                            <h5>DisLike({{viewJobDetails?.NumberOfDislikes || '0' }})</h5>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col">
+                          <div class="col__container">
+                            <div class="comment__icon">
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px"
+                                width="22.2px" height="22.2px" viewBox="0 0 22.2 22.2"
+                                style="enable-background:new 0 0 22.2 22.2;" xml:space="preserve" class="icon">
+                                <g>
+                                  <g id="XMLID_1_">
+                                    <path id="XMLID_2_" class="st0"
+                                      d="M21.2,14.4c0,1.2-1,2.2-2.2,2.2H5.5L1,21.2V3.2C1,2,2,1,3.2,1h15.7c1.2,0,2.2,1,2.2,2.2V14.4z" />
+                                  </g>
+                                  <g>
+                                    <line class="st0" x1="6" y1="6.7" x2="16.2" y2="6.7" />
+                                    <line class="st0" x1="6" y1="11.1" x2="16.2" y2="11.1" />
+                                  </g>
+                                </g>
+                              </svg>
+                            </div>
+                            <h5>Comments ({{viewJobDetails?.JobCommentsCount || '0'}})</h5>
+                          </div>
+                        </div>
+                    
+                        <div class="col-sm-12 col col-big border-top"
+                          *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
+                          <div class="section">
+                            <h3 class="margin-top-sml">Tips</h3>
+                            <div class="slidingVertical contain"
+                              *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
+                              <ul>
+                                <li *ngIf="getjobCompleteinfo?.JobDomain===0">Please review and provide
+                                  <strong>Domain</strong> arytic will make your job easy to find best.<a
+                                    href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.JobDesc===0"> Please review and provide <strong>Job
+                                    description</strong> arytic will make your job easy to find best. <a
+                                    href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.OptionalSkill===0"> There are many profiles matching to
+                                  this position.<strong> "please provide OptionalSkill" </strong> arytic will make your
+                                  job easy to find best. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.WorkAuthorise===0">Please review and provide <strong>
+                                    "WorkAuthorise to this position" </strong> arytic will make your job easy to find
+                                  best.<a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.Qualification===0">Please review and provide <strong>
+                                    "Qualification to this position".</strong> arytic will make your job easy to find
+                                  best. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.JobAssigned===0">There are many profiles matching to this
+                                  position <strong> "please assign job" </strong> one who can do his job with passionately
+                                  to find best as arytic provided many profiles. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.Video===0">There are many profiles matching to this
+                                  position <strong> "please do add Job details through Video" </strong> Where
+                                  professionals can have a look apply for your position. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-12 col col-big">
+                          <div class="reviews section">
+                            <h3>Reviews ({{viewJobDetails?.JobCommentsCount || '0'}})</h3>
+                            <ng-container *ngIf="jobComments.length>0">
+                              <div class="review" *ngFor="let comments of jobComments">
+                                <header>
+                                  <img alt="" class="company-logo" src="{{comments?.ProfilePic}}">
+                                  <h4> {{comments?.FirstName | titlecase}} {{comments?.LastName | titlecase}}</h4>
+                                  <div class="flex-row">
+                                    <span> {{comments?.ProfileTitle | titlecase}}</span>
+                                    <span class="time">{{comments?.CommentedDate | date}}</span>
+                                  </div>
+                                </header>
+                                <div class="review-content">
+                                  <p>
+                                    {{comments?.CommentText}}
+                                  </p>
+                                </div>
+                              </div>
+                            </ng-container>
+                            <ng-container *ngIf="jobComments.length===0">
+                              <h4>No Reviews</h4>
+                            </ng-container>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+           
+          </div>
+          <div id="job-details" class="tab-pane fade">
+            <div class="revamp__jd__description">
+              <div class="col__container description__container">
+                <div class="title__container"><span>Description</span></div>
+                <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                </p>
+                <p *ngIf="jobdetailscustomer?.JobInfo?.JobDescription==''">
+                  Description yet to provide.
+                </p>
+                <span class="icon icon__description icon__hide">Icon</span>
+              </div><!-- /.col__container -->
+
+              <div class="col__container">
+                <div class="title__container gray"><span>Responsibility</span></div>
+                <div class="revamp__uneven__grid">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <div class="col-sm-9">
+                      <h4>Key Responsibility</h4>
+                      <div class="revamp__tag__list">
+                        <ul>
+                          <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                            <ng-container *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
+                              <li><a href="javascript:void(0)"> {{r?.Code | titlecase}}
+                                  <span>Exp: {{r?.CustomerKeyMinExperienceId |monthsPipe}} -
+                                    {{r?.CustomerKeyMaxExperienceId |monthsPipe}} Years</span></a> </li>
+                            </ng-container>
+
+                          </ng-container>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__video">Icon</span>
+                        <h4>Video Sizzles</h4>
+                        <div>
+                          <video _ngcontent-c21="" class="video-align" controls="" type="video/mp4" width="440"
+                            [src]="jobdetailscustomer.JobInfo?.VideoURL"></video>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="icon icon__responsiblity icon__hide">Icon</span>
+              </div><!-- /.col__container -->
+
+              <div class="col__container">
+                <div class="title__container blue"><span>Details</span></div>
+                <div class="icon__small__grid__section">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <!-- <div class="col-sm-4">
+                      <div class="box__container">
+                        <span class="icon icon__department">Icon</span>
+                        <h4>Department</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length!=0">
+                          <p *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
+                            {{dept?.Code | titlecase}}
+                          </p>
+                        </ng-container>
+
+                        <p *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length===0">
+                          Yet to provide.
+                        </p>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-sm-4">
+                      <div class="box__container">
+                        <span class="icon icon__department">Icon</span>
+                        <h4>Category</h4>
+                        <ng-container *ngFor="let i of jobdetailscustomer?.CustomerJobCategory">
+                          <p>
+                            {{i?.Code | titlecase}}
+                          </p>
+                        </ng-container>
+                      </div>
+                    </div> -->
+                    <div class="col-sm-4">
+                      <div class="box__container">
+                        <span class="icon icon__domain">Icon</span>
+                        <h4>Domain</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.JobRequiredDomain.length>0">
+                          <p *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                            {{domain?.DomainName | titlecase}}
+                          </p>
+                        </ng-container>
+                        <p *ngIf="jobdetailscustomer?.JobRequiredDomain.length === 0">
+                          Yet to provide.
+                        </p>
+                      </div><!-- /.box__container -->
+                    </div><!-- /.col-sm-4 -->
+                  </div><!-- /.row -->
+                </div><!-- /.icon__small__grid__section -->
+                <span class="icon icon__settings icon__hide">Icon</span>
+              </div><!-- /.col__container -->
+
+              <div class="col__container xs-padding">
+                <div class="title__container"><span>Other Details</span></div>
+                <div class="icon__big__grid__container">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__education">Icon</span>
+                        <h4>Education Criteria</h4>
+                        <h5 *ngIf="jobdetailscustomer?.EducationDetails.length===0">
+                          Yet to provide.
+                        </h5>
+
+                        <ng-container *ngIf="jobdetailscustomer?.EducationDetails.length>0">
+                          <h5 *ngFor="let education of jobdetailscustomer?.EducationDetails">
+
+                            {{education?.QualificationName | titlecase}}
+                          </h5>
+                        </ng-container>
+                      </div><!-- /.box__container -->
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__manager">Icon</span>
+                        <h4>Job Assignee</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
+                          <h5 *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
+                            {{rpt?.FirstName | titlecase}} {{rpt?.LastName | titlecase}}
+                          </h5>
+
+                        </ng-container>
+
+                        <h5 *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length===0">
+                          Not yet Added.
+                        </h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__manager">Icon</span>
+                        <h4>Contact Person</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam?.length!=0">
+                          <h5 *ngFor="let rt of jobdetailscustomer?.TechnicalTeam">
+                            {{rt?.FirstName | titlecase}} {{rt?.LastName | titlecase}}
+                          
+                            
+                          </h5>
+                          
+                          <span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>{{CuserDetails[0]?.Email}}
+                          </span>
+                        </ng-container>
+
+                        <h5 *ngIf="jobdetailscustomer?.TechnicalTeam?.length===0">
+                          Not yet Added.
+                        </h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col__container xs-padding">
+                <div class="title__container"><span>Job Details</span></div>
+                <div class="icon__big__grid__container">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__job">Icons</span>
+                        <h4>Job ID</h4>
+                        <h5 *ngIf="jobdetailscustomer?.JobInfo?.JobPositionId!=''">
+                          {{jobdetailscustomer?.JobInfo?.JobPositionId}}</h5>
+                        <h5 *ngIf="jobdetailscustomer?.JobInfo?.JobPositionId===''">Yet to provide</h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__priority">Icon</span>
+                        <h4>Priority</h4>
+                        <h5> {{jobdetailscustomer?.JobInfo?.JobPriority | titlecase}}</h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__date">Icon</span>
+                        <h4>Due Date</h4>
+                        <h5> {{jobdetailscustomer?.JobInfo?.ExpiryDate | date:'mediumDate'}}</h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="box__container">
+                        <span class="icon icon__duration">Icon</span>
+                        <h4>Duration</h4>
+                        <h5 *ngIf="jobdetailscustomer?.JobInfo?.ContractDuration != null">
+                          {{jobdetailscustomer?.JobInfo?.ContractDuration}}</h5>
+                        <h5 *ngIf="jobdetailscustomer?.JobInfo?.ContractDuration === null"> Yet to provide</h5>
+                      </div><!-- /.box__container -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col__container">
+                <div class="title__container gray"><span>Benefits</span></div>
+                <div class="review__check__list">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <div class="col-sm-4" *ngFor="let benfit of getcompanybenfit">
+                      <div class="box__container">
+                        <h4>{{benfit?.CompanyBenefit}}</h4>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <span class="icon icon__star icon__hide">Icon</span>
+              </div>
+              <!-- <div class="col__container">
+                <div class="title__container blue"><span>Reviews</span></div>
+                <div class="review__check__list">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <ng-container *ngIf="jobComments.length>0">
+                      <div class="col-sm-4" *ngFor="let comments of jobComments">
+                        <div class="box__container">
+                          <h4>Job Review</h4>
+                          <p>{{comments?.CommentText}} - {{comments?.CommentedDate | date}}</p>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="jobComments.length===0">
+                      <h4>No Reviews</h4>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <span class="icon icon__comment icon__hide">Icon</span>
+              </div> -->
+            </div>
+          </div>
+          <div id="skills" class="tab-pane fade">
+            <div class="revamp__jd__description revamp__jd__skills">
+              <div class="col__container">
+                <div class="title__container blue"><span>Domain</span></div>
+                <div class="icon__small__grid__section">
+                  <div class="row flex flex-wrap flex-align-equal">
+                    <div class="col-sm-4">
+                      <div class="box__container">
+                        <span class="icon icon__domain">Icon</span>
+                        <h4>Domain</h4>
+                        <ng-container *ngIf="jobdetailscustomer?.JobRequiredDomain.length>0">
+                          <p *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                            {{domain?.DomainName | titlecase}}
+                          </p>
+                        </ng-container>
+                        <p *ngIf="jobdetailscustomer?.JobRequiredDomain.length === 0">
+                          Yet to provide.
+                        </p>
+                      </div><!-- /.box__container -->
+                    </div><!-- /.col-sm-4 -->
+                  </div><!-- /.row -->
+                </div><!-- /.icon__small__grid__section -->
+                <span class="icon icon__settings icon__hide">Icon</span>
+              </div><!-- /.col__container -->
+              <div class="col__container description__container">
+                <div class="title__container"><span>Skills</span></div>
+                <div class="skills__row">
+                  <h4>Mandatory</h4>
+                  <div class="jdv-listing">
+                    <div class="jdv-skills">
+                      <div class="scrollbar-container">
+                        <div class="row flex flex-wrap flex-align-equal">
+                          <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills">
+                            <div class="col-sm-3 beginner" *ngIf="skill?.SkillType === true">
+                              <div class="col-container">
+                                <div class="info-container">
+                                  <h5>{{skill?.SkillName}}</h5>
+                                  <div class="flex summary">
+                                    <h6>Exp: {{skill?.MinimumExp / 12 | number:'1.0-1'}} - {{skill?.MaximumExp / 12 |
+                                      number:'1.0-1'}} years</h6>
+                                  </div>
+                                </div>
+                              </div>
+                              <!--/.col-container-->
+                            </div>
+
+                          </ng-container>
+                        </div>
+                        <!--/.row-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skills__row">
+                  <h4>Optional</h4>
+                  <div class="jdv-listing">
+                    <div class="jdv-skills">
+                      <div class="scrollbar-container">
+                        <div class="row flex flex-wrap flex-align-equal">
+                          <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills">
+                            <div class="col-sm-4 master" *ngIf="skill?.SkillType === false">
+                              <div class="col-container">
+                                <h5>{{skill?.SkillName}}</h5>
+                                <div class="flex summary">
+                                  <h6>Exp: {{skill?.MinimumExp / 12 | number:'1.0-1'}} - {{skill?.MaximumExp / 12 |
+                                    number:'1.0-1'}} years</h6>
+                                </div>
+                              </div>
+                              <!--/.col-container-->
+                            </div>
+                          </ng-container>
+
+                        </div>
+                        <!--/.row-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="icon icon__skills icon__hide">Icon</span>
+              </div><!-- /.col__container -->
+            </div>
+          </div>
+          <div id="tab-documents" class="tab-pane fade">
+            <div class="griding-document">
+              <div class="griding-top-container flex flex-align-center">
+                <h4>Documents</h4>
+                <a href="javascript:void(0)"  class="btn btn-border btn-prev ml-auto" (click)="documentManagerDialog()"> Add Job Attachments</a>
+              </div>
+            
+              <div class="row flex flex-wrap flex-aling-equal">
+                <ng-container *ngIf="JobDocuments?.length === 0">
+                  <div class="col-sm-4 griding-col">
+                    <div class="col-container">
+                      <h5>No Attachments added.</h5>
+                      </div>
+                      </div>
+                </ng-container>
+                <ng-container *ngIf="JobDocuments?.length>0">
+                  <div class="col-sm-4 griding-col" *ngFor="let d of JobDocuments;let di = index">
+                    <div class="col-container" *ngIf="di<5">
+                      <button class="btn btn-close" (click)="DelDocument(d?.Id)">Delete</button>
+                      <span class="icon icon-pdf" *ngIf="d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                      <span class="icon icon-word" *ngIf="!d.DocName.split('aryticDP')[0].includes('.pdf')">Icon</span>
+                      <h5  class="address" (click)="DownloadDocument(d?.DocName)" >{{d?.DocName.split('aryticDP')[0] | titlecase}} </h5><i class="fa fa-download" (click)="DownloadDocument(d?.DocName)"  aria-hidden="true"></i>
+                      <h4>By {{d?.FirstName | titlecase}}  {{d?.LastName | titlecase}}</h4>
+                    </div>
+                  </div>
+                </ng-container>
+              
+          
+              </div>
+            </div>
+          </div>
+          <div id="tab-Notes" class="tab-pane fade">
+            <div class="griding-document">
+              <div class="griding-top-container flex flex-align-center">
+                <h4>Job Notes</h4>
+                <a href="javascript:void(0)"  class="btn btn-border btn-prev ml-auto"  (click)="OpenJobDialog(jobdetailscustomer?.JobInfo?.JobId)"> Add Job Notes</a>
+              </div>
+            
+              <div class="row flex flex-wrap flex-aling-equal">
+                <ng-container *ngIf="JobNotes?.length === 0">
+                  <div class="col-sm-4 griding-col">
+                    <div class="col-container">
+                      <h5>No Notes added.</h5>
+                      </div>
+                      </div>
+                </ng-container>
+                <ng-container *ngIf="JobNotes?.length>0">
+                  <ng-container *ngFor="let n of JobNotes; let i = index">
+                    <div class="container">
+            
+                    
+
+<div class="container1" *ngIf="n?.FirstName === customer?.FirstName">
+
+ 
+ 
+  <h5><i class="fa fa-hand-o-right" aria-hidden="true"></i>    <b>  {{n?.Others}}</b></h5>
+  <p><i class="fa fa-weixin" aria-hidden="true"></i>   {{n?.CustomerComment}}</p>
+ 
+
+  <ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+    <label>Attachments</label>
+    <div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+         <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+          <div class="attched"></div>
+        </a>   
+    </div>
+  </ng-container>
+
+  <span class="time-right">  <img src="https://ui-avatars.com/api/?name={{n?.FirstName}}+{{n?.LastName}}"
+    alt="Avatar" class="time-right"  style="width:100%;"> <b> {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</b> </span>
+</div>
+
+<div class="container1 darker"  *ngIf="n?.FirstName != customer?.FirstName">
+  <h5 ><i class="fa fa-hand-o-right" aria-hidden="true"></i>   <b>{{n?.Others}}</b> </h5>
+  <p><i class="fa fa-weixin" aria-hidden="true"></i>   {{n?.CustomerComment}}</p>
+ 
+
+  <ng-container *ngIf="n?.attachmentsNew[0]?.Attaches!=null">
+    <label>Attachments</label>
+    <div class="message-timestamp-left" *ngFor="let p of n?.attachmentsNew[0]?.Attaches">
+         <a href="javascript:void(0)" (click)="DownloadResumeNote(p.aDocUrl, p.aDocName)"><i class="fa fa-paperclip"></i>{{p?.aDocName?.split("_")[0] }}
+          <div class="attched"></div>
+        </a>   
+    </div>
+  </ng-container>
+
+  <span class="time-right">  <img src="https://ui-avatars.com/api/?name={{n?.FirstName}}+{{n?.LastName}}"
+    alt="Avatar" class="time-right"  style="width:100%;">  <b> {{n?.FirstName | titlecase}} {{n?.LastName | titlecase}}</b>  </span>
+</div>
+
+
+
+                     
+                  </div>
+      
+                  </ng-container>
+                </ng-container>
+              
+          
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+
+<div Id="shareModal" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex flex-wrap flex-align-center header-title">
+        <h4 class="title">
+          <span>Share Job</span>
+        </h4>
+        <alert class="basic-info-alert"></alert>
+        <div class="layout layout--btn">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+      </div> <!-- .header -->
+      <div class="modal-body">
+        <div class="top__container">
+          <h3>Share this job through Social Media</h3>
+          <div class="social">
+            <ul>
+              <li>
+                <button class="btn"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+              </li>
+              <li>
+                <button class="btn"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+              </li>
+              <li>
+                <button class="btn"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
+              </li>
+            </ul>
+          </div>
+          <span class="or"><em>Or</em></span>
+        </div>
+        <h4>Share it to your friends</h4>
+        <p>FRIENDS ALREADY REFERRED</p>
+        <p class="highlight">No Friends Referred! Refer Now.</p>
+        <div class="link__input form-group">
+          <input type="text" class="form-control" placeholder="Public Link">
+          <button class="btn btn-filled">Copy</button>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Enter Email" class="form-control">
+        </div>
+        <div class="notes">Enter email addresses seperated by commas</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-filled">Share</button>
+        <button class="btn btn-border" data-dismiss="modal" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

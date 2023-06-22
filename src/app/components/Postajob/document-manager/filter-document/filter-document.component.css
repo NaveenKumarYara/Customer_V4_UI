@@ -1,0 +1,61 @@
+.input-group {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fff;
+  display: block;
+}
+.input-group .form-control {
+  box-shadow: none;
+  border: 0;
+  height: 46px;
+  float: none;
+  border-radius: 6px;
+}
+.input-group .btn-search {
+  padding: 0;
+  font-size: 0;
+  width: 48px;
+  height: 48px;
+  background: url(../../../../../assets/images/document-sprites.png) -271px -28px no-repeat;
+  background-size: 600px auto;
+  display: block;
+}
+.input-group .form-control {
+  border: 0;
+  padding: 6px 15px;
+}
+.input-group .form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+.input-group-append {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+.filter-navigation {
+  margin: 0 0 20px;
+  padding: 0%;
+  list-style: none;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 10px rgba(158, 171, 192, 0.20);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.filter-navigation li {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+.filter-navigation li a {
+  display: block;
+  padding: 13px 14px;
+  text-align: center;
+  color: #495f75;
+  text-decoration: none;
+}
+.filter-navigation li.active a {
+  background: #448afa;
+  color: #fff;
+}
