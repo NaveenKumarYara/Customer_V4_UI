@@ -120,7 +120,7 @@
             <ul>
               <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
-                  Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
+                  Job Fit ({{matchingParameterDetails?.Jobfit_Total || 0}}%)
                   <ng-container>
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
@@ -128,7 +128,7 @@
               </li>
               <li [ngClass]="showThis == 'SkillsFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'SkillsFit'">
-                  Skills Fit ({{matchingParameterData?.Skillfit_Total}}%)
+                  Skills Fit ({{matchingParameterData?.Skillfit_Total || 0}}%)
                   <ng-container *ngIf="skillfitcheck.length>0">
                     <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
 
