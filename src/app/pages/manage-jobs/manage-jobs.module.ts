@@ -12,6 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ManageQuickSearchComponent } from './manage-job-filters/manage-quick-search/manage-quick-search.component';
 import { ManageFilterSearchResultComponent } from './manage-job-filters/manage-filter-search-result/manage-filter-search-result.component';
 import { ManageJobListComponent } from './manage-job-list/manage-job-list.component';
+import  { SidepanelCardsComponent } from './../common/sidepanel-cards/sidepanel-cards.component';
 import { SlidepanelComponent } from './../common/slidepanel/slidepanel.component';
 import { ManageJobRoutingModule } from './manage-jobs-routing';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
@@ -30,7 +31,16 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { JobListComponent } from './job-activities/job-list/job-list.component';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
+<<<<<<< HEAD
 import { NgSelectModule } from '@ng-select/ng-select';
+=======
+import { JobStatusComponent } from './job-status/job-status.component';
+import { JobReviewComponent } from './job-review/job-review.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { JobNotesComponent } from './job-notes/job-notes.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
+>>>>>>> e78cd6e0b772c763025e91f77e32131abf9454e1
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -47,8 +57,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 	JobsActivitiesNavComponent,
 	JobCardComponent,
 	JobActivitiesSummaryComponent,
- JobListComponent
-
+  JobListComponent,
+  JobStatusComponent,
+  JobReviewComponent,
+	SidepanelCardsComponent,
+ 	JobNotesComponent
 	],
 	imports: [
 	 CommonModule,
@@ -64,6 +77,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 	 NgbRatingModule,
 	 CarouselModule,
 	 NgbCollapseModule,
+	 CKEditorModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
@@ -75,7 +89,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 		space: -5
 		
 	  }),
-	  NgxPaginationModule
+	  NgxPaginationModule,
+		NgbAccordionModule
 	],
 	providers:[SettingsHttpService,SettingsService],
 	exports: [

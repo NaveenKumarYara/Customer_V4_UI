@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DashboardTopPerformingJobsComponent } from './dashboard-top-performing-jobs/dashboard-top-performing-jobs.component';
 import { DashboardChartTableComponent } from './dashboard-chart-table/dashboard-chart-table.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
 	declarations: [
@@ -24,7 +24,8 @@ import { DashboardChartTableComponent } from './dashboard-chart-table/dashboard-
 	 CommonModule,
 	 SharedModule,
 	 BrowserAnimationsModule,
-	 CarouselModule
+	 CarouselModule,
+	 NgChartsModule
 	],
 	exports: [
 	 DashboardComponent

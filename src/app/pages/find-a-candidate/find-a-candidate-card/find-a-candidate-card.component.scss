@@ -1,0 +1,454 @@
+@import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
+
+
+.col-container {
+  margin-top: 30px;
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+	background-color: $white;
+  height: 100%;
+	overflow: hidden;
+	box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
+
+	.top-container{
+		background-color: $light-bg;
+		padding: 40px 20px 20px;
+    position: relative;
+
+    .dropdown {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+
+		.profile-info {
+			padding-left: 76px;
+      position: relative;
+
+      .profile-thumb {
+        font-size: 0;
+        width: 72px;
+        height: 72px;
+        background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
+        background-size: 72px auto;
+        position: absolute;
+        left: -7px;
+        top: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -24px;
+
+        img {
+          width: 32px;
+          border-radius: 50%;
+          position: relative;
+          top: -5px;
+        }
+      }
+
+			h3 {
+				font-size: $font-size-22;
+				color: $darker-gray;
+				font-weight: 600;
+        margin: 0;
+        display: inline-flex;
+
+        .mdi {
+          color: $blue;
+        }
+
+        .text-trim {
+          width: 95%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          margin: 0 5px 8px 0;
+          padding-bottom: 3px;
+          display: inline-block;
+        }
+			}
+
+			h4 {
+				color: $dark-gray;
+				font-weight: 400;
+				font-size: $font-size-14;
+				margin: 0;
+
+				.mdi-briefcase-outline {
+					font-size: $font-size-16;
+					color: $medium-gray;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+
+  .middle-container {
+    .top-section {
+      padding:15px 30px 15px 96px;
+      @include flex();
+      @include align-items(center);
+      gap: 10px;
+      @include flex-wrap(wrap);
+
+      .location {
+        font-size: $font-size-14;
+        color: $dark-gray;
+        padding-left: 30px;
+        position: relative;
+
+        .mdi {
+          font-size: $font-size-20;
+          position: absolute;
+          left: 0;
+          color: $medium-gray;
+          top: -4px;
+        }
+      }
+
+      ul {
+        flex: 0 0 100%;
+        max-width: 100%;
+        @include no-style();
+        @include flex();
+        @include align-items(center);
+        gap: 10px;
+
+        li {
+          font-size: $font-size-14;
+          font-weight: 600;
+
+          &:not(:first-child) {
+            padding-left: 10px;
+            border-left: 1px solid $stroke-gray;
+          }
+
+          &.job-title {
+            position: relative;
+            padding-left: 26px;
+            
+            .mdi {
+              font-size: $font-size-20;
+              position: absolute;
+              left: 0;
+              color: $medium-gray;
+              top: -4px;
+            }
+          }
+        }
+      }  
+    }
+  }
+
+  .legend-list {
+    margin-left: auto;
+
+    ul {
+      @include no-style();
+      @include flexbox();
+      @include flex-wrap(wrap);
+      @include align-items(center);
+      li {
+        position: relative;
+        padding-left: 20px;
+
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
+
+        .box {
+          width: 12px;
+          height: 12px;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          background-color: $dark-green;
+        }
+
+        em {
+          display: block;
+          font-size: 8px;
+          color: $medium-gray;
+          font-style: normal;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .skills-grid {
+    background: $light-bg;
+    padding: 10px 20px 10px;
+
+    h4 {
+      font-size: $font-size-14;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $dark-gray;
+      margin: 0;
+      text-align: left;
+    }
+
+    .top-grid-section {
+      @include flexbox();
+      @include flex-wrap(wrap);
+      margin-bottom: 10px;
+      @include align-items(center);
+    }
+
+    .skills-col {
+      @include flexbox();
+      @include flex-wrap(wrap);
+      gap: 12px;
+      margin: 0 0 20px;
+
+      .skill-container {
+        flex: 0 0 calc(33.33% - 8px);
+        border: 1px solid $stroke-gray;
+        border-radius: 8px;
+        background-color: $white;
+        @include shadowTwo();
+        overflow: hidden;
+        max-width: calc(33.33% - 8px);
+        padding: 8px 5px;
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include align-items(center);
+
+        .mdi {
+          font-size: $font-size-18;
+          position: relative;
+          left: 5px;
+          top: -2px;
+          flex: 0 0 18px;
+          max-width: 18px;
+        }
+
+        .skill-info {
+          flex: 0 0 calc(100% - 18px);
+          max-width: calc(100% - 18px);
+        }
+
+        h3 {
+          font-size: $font-size-14;
+          font-weight: 600;
+          color: $dark-gray;
+          padding: 0 10px;
+          margin: 0;
+          width: 85%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-transform: none;
+        }
+
+        h4 {
+          font-size: 10px;
+          color: $medium-gray;
+          text-align: left;
+          padding: 0 10px;
+          text-transform: none;
+          font-weight: 400;
+          width: 85%;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-transform: none;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-toggle {
+  padding: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: $dark-green;
+  border-color: $dark-green;
+  color: $white;
+  @include shadowOne();
+
+  &:after {
+    display: none;
+  }
+}
+
+.rating {
+  color: $dark-green;
+}
+
+.process-section {
+  background: $light-bg;
+  padding: 20px;
+
+  h4 {
+    font-size: $font-size-14;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $dark-gray;
+    text-align: center;
+  }
+
+  ul {
+    @include no-style();
+    @include flexbox();
+    gap: 30px;
+    @include justify-content(center);
+
+    .icon {
+      display: block;
+      margin: 0 auto 10px;
+      background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
+      text-indent: -999em;
+
+      &.icon-submitted {
+        width: 38px;
+        height: 36px;
+        background-position: -27px -424px;
+      }
+
+      &.icon-screening {
+        width: 36px;
+        height: 36px;
+        background-position: -77px -424px;
+      }
+
+      &.icon-shortlisted {
+        width: 35px;
+        height: 36px;
+        background-position: -124px -424px;
+      }
+
+      &.icon-interview {
+        width: 36px;
+        height: 36px;
+        background-position: -170px -424px;
+      }
+
+      &.icon-hired {
+        width: 23px;
+        height: 36px;
+        background-position: -219px -424px;
+      }
+    }
+
+    li {
+      text-align: center;
+      position: relative;
+      
+      &.active {
+        .icon {
+          &.icon-submitted {
+            background-position: -27px -477px;
+          }
+
+          &.icon-screening {
+            background-position: -77px -477px;
+          }
+    
+          &.icon-shortlisted {
+            background-position: -124px -477px;
+          }
+    
+          &.icon-interview {
+           background-position: -170px -477px;
+          }
+    
+          &.icon-hired {
+            background-position: -219px -477px;
+          }
+        }
+      }
+
+      &:not(:first-child) {
+        &::before {
+          width: 22px;
+          height: 1px;
+          background-color: $dark-gray;
+          position: absolute;
+          left: -27px;
+          top: 50%;
+          content: "";
+        }
+
+        &:after {
+          content: "\F0142";
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: $blue;
+          box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14);
+          position: absolute;
+          left: -23px;
+          text-align: center;
+          font: normal normal normal 14px/1 "Material Design Icons";
+          color: $white;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    h6 {
+      font-size: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: $medium-gray;
+      margin: 0;
+    }
+  }
+}
+
+.verification-grid {
+  padding: 15px 20px 20px;
+
+  .col-container {
+    border-radius: 8px;
+    margin: 0;
+    text-align: center;
+    padding: 10px 0
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #53647E;
+    margin: 0 0 15px;
+    text-align: center;
+  }
+
+  ul {
+    @include no-style();
+    @include flexbox();
+    @include flex-wrap(wrap);
+
+    li {
+      flex:0 0 20%;
+      max-width: 20%;
+      padding: 0 2px;
+
+      .icon {
+        width: 26px;
+        height: 26px;
+        display: block;
+        text-indent: -999em;
+        margin: 0 auto 10px;
+      }
+
+      h5 {
+        font-size: 8px;
+        text-transform: uppercase;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
+
 @Component({
   selector: 'app-dashboard-stats',
   templateUrl: './dashboard-stats.component.html',
   styleUrls: ['./dashboard-stats.component.scss']
 })
 export class DashboardStatsComponent implements OnInit {
+  
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -35,9 +37,8 @@ export class DashboardStatsComponent implements OnInit {
   }
   @Input() AdminStats: any ='';
   constructor() { }
-
+ 
   ngOnInit(): void {
   }
   
-
 }

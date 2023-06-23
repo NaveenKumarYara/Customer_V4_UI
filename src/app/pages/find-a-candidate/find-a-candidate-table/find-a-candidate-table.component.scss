@@ -1,0 +1,47 @@
+@import '../../../../assets/partials/utils/variables';
+@import '../../../../assets/partials/utils/mixins';
+
+.table-col {
+	font-size: $font-size-14;
+	color: $dark-gray;
+	flex: 0 0 20%;
+	padding: 15px;
+	max-width: 20%;
+
+	a {
+		color: $dark-gray;
+		text-decoration: none;
+	}
+
+	&.name-col {
+		h4 {
+			font-weight: 600;
+		}
+	}
+}
+
+.profile-info {
+	@include flex();
+	@include align-items(center);
+	gap: 10px;
+
+	h4 {
+		font-size: $font-size-14;
+		color: $dark-gray;
+		width: 156px;
+		text-overflow: ellipsis;
+		margin: 0;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	img {
+		width: 30px;
+		height: auto;
+		border-radius: 50%;
+	}
+}
+
+.ml-auto {
+	margin-left: auto;
+}

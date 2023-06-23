@@ -28,7 +28,7 @@ export class ManageJobFiltersComponent implements OnInit {
   @Output() layoutView = new EventEmitter<string>();
 
   constructor(private _service : ApiService) {
-   }
+   } 
   ngOnInit(): void {
   }
  

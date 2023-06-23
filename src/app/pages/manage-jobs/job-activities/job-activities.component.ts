@@ -12,6 +12,8 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class JobActivitiesComponent implements OnInit {
   viewLayout = 'grid';
   JobDetail: any;
+  panelTitle:any = '';
+  panelShow: any = '';
   JobId: any;
   constructor(private _service : ApiService, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(
@@ -22,17 +24,17 @@ export class JobActivitiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
 
- 
- 
-   
-   
+  panelHandler(name: string) {
+    this.panelShow = name;
   }
 
   layoutView(name:string){
     this.viewLayout = name;
   }
 
-
-
+  panelCloseHandler() {
+    this.panelShow = '';
+  }
 }

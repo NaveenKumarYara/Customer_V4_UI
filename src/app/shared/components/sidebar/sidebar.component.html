@@ -9,12 +9,6 @@
         <em>Home</em>
       </a>
     </li>
-    <li >
-      <a href="javascript:void(0)">
-        <span class="mdi mdi-view-grid-outline"></span>
-        <em>Dashboard</em>
-      </a>
-    </li>
     <li>
       <a href="javascript:void(0)">
         <span class="mdi mdi-briefcase-search-outline"></span>
@@ -33,8 +27,8 @@
         <em>Manage Profile</em>
       </a>
     </li>
-    <li>
-      <a href="javascript:void(0)"> 
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/find-a-candidates']">
         <span class="mdi mdi-magnify"></span>
         <em>Find A Job</em>
       </a>

@@ -3,9 +3,14 @@
     <div class="col-md-4 col-lg-4 left-col">
       <div class="col-container">
         <h3>Job Weekly Report</h3>
-        <figure>
-          <img src="../../../../assets/images/chart.png" alt="">
-        </figure>
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [type]="'bar'"
+        >
+        </canvas>
         <!-- <chart [type]="type" [data]="data" [options]="options"></chart> -->
       </div>
     </div>
