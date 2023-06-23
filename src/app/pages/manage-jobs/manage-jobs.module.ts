@@ -31,16 +31,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { JobListComponent } from './job-activities/job-list/job-list.component';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
-<<<<<<< HEAD
 import { NgSelectModule } from '@ng-select/ng-select';
-=======
 import { JobStatusComponent } from './job-status/job-status.component';
 import { JobReviewComponent } from './job-review/job-review.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { JobNotesComponent } from './job-notes/job-notes.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
->>>>>>> e78cd6e0b772c763025e91f77e32131abf9454e1
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
