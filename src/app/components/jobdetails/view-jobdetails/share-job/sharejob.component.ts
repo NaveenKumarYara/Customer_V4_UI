@@ -13,11 +13,12 @@ import { SettingsService } from '../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services';
 declare var $: any;
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 // import { copyImageToClipboard } from 'copy-image-clipboard'
 const URL = 'http://localhost:4800/fileupload/';
 export interface mailtoAsset {
@@ -131,7 +132,7 @@ export class ShareJobComponent implements OnInit {
   defaultComments: any;
   jobdetailscustomer = new GetJobDetailCustomer();
 
-  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer, 
+  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer, private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private fb: FormBuilder, 
     private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, 
     private toastr: ToastsManager, private settingsService: SettingsService) 
@@ -331,22 +332,58 @@ export class ShareJobComponent implements OnInit {
     });
   }
 
-  getStringifiedAssets(assets: mailtoAsset[]) {
-    let subject = this.Title + '  had shared the job to you';
 
-    let str = "";
-    assets.forEach(asset => {
-      asset.Id = 'JobId: #' + this.data.JobId;
-      asset.Title = 'Job Title: ' + this.jobdetailscustomer.JobInfo.JobTitle;
-      asset.Location = 'Job Location: ' + this.jobdetailscustomer.JobLocation[0].CityName;
-      asset.Link = 'Job Link: ' + this.referLink;
-      str = str + this.breakStr + this.joinLines(asset.Id) + this.breakStr + this.joinLines(asset.Title) + this.breakStr + this.joinLines(asset.Location) + this.breakStr + this.joinLines(asset.Link) + this.breakStr;
-    })
 
-    const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
-    //return this.sanitizer.bypassSecurityTrustUrl(url)
-    window.location.href = url;
-  }
+// Function to encode the image URL as base64
+
+
+// Usage:
+
+openMailWithImage() {
+  const imageSrc = this.Image; // Replace with the path to your image
+  const attachmentName = 'image.png';
+
+  // Convert the image source to a base64 data URL
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    const base64data = reader.result as string;
+    const safeImageUrl: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(base64data);
+
+    // Generate the mailto link
+    const mailto = `mailto:recipient@example.com?subject=Email with Image&body=Please see the attached image.%0D%0A%0D%0A`;
+    const attachment = `data:image/png;base64,${encodeURIComponent(base64data)}`;
+
+    // Open the mail client with the mailto link
+    window.location.href = `${mailto}attachment=${attachmentName};name=${attachment}`;
+  };
+
+  // Read the image file
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', imageSrc);
+  xhr.responseType = 'blob';
+  xhr.onload = () => {
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.send();
+}
+
+
+getStringifiedAssets(assets: mailtoAsset[]) {
+  let subject = this.Title + '  had shared the job to you';
+
+  let str = "";
+  assets.forEach(asset => {
+    asset.Id = 'JobId: #' + this.data.JobId;
+    asset.Title = 'Job Title: ' + this.jobdetailscustomer.JobInfo.JobTitle;
+    asset.Location = 'Job Location: ' + this.jobdetailscustomer.JobLocation[0].CityName;
+    asset.Link = 'Job Link: ' + this.referLink;
+    str = str + this.breakStr + this.joinLines(asset.Id) + this.breakStr + this.joinLines(asset.Title) + this.breakStr + this.joinLines(asset.Location) + this.breakStr + this.joinLines(asset.Link) + this.breakStr;
+  })
+
+  const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
+  //return this.sanitizer.bypassSecurityTrustUrl(url)
+  window.location.href = url;
+}
 
   joinLines(lines: string) {
     return lines + this.breakStr;
