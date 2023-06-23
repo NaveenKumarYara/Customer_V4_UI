@@ -63,7 +63,7 @@
 
 <app-slidepanel 
   class="slide-panel"
-  [ngClass]="panelShow=='job-review'?'show':''"
+  [ngClass]="panelShow=='job-review'?'job-review-panel show':''"
   [panelTitle]="'Job Review'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
@@ -73,8 +73,7 @@
     </div>
     <app-sidepanel-cards></app-sidepanel-cards>
     <div class="form-actions">
-      <button class="btn btn-outlined-default">Cancel</button>
-      <button class="btn btn-info">Save</button>
+     &nbsp;
     </div>
   </div>
   <div class="slide-container">

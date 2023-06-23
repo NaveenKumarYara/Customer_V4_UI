@@ -11,6 +11,7 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	@include flex-direction(column);
 
 	h4 {
 		font-size: $font-size-16;
@@ -32,12 +33,12 @@
 		list-style: none;
 		@include flex();
 		position: absolute;
-		width: 240px;
+		width: 180px;
 		border-radius: 6px;
 		overflow: hidden;
 
 		li {
-			width: 240px;
+			width: 180px;
 			overflow: hidden;
 			white-space: nowrap;
 
@@ -87,12 +88,8 @@
 					}
 				}
 			}
-
-			@media only screen and (min-width: 1280px) {
-				width: auto;
-				white-space: normal;
-				overflow: inherit;
-			}
+		
+			
 		}
 
 		&.other-hide {
@@ -101,17 +98,22 @@
 
 				&:first-child {
 					display: block;
-					a {
-						border-radius: 0;
-						border: 0;
-					}
 				}
 
 				@media only screen and (min-width: 1280px) {
 					display: block;
 
-					a {
-						border-radius: 32px 0 0 32px;
+					li {
+						&:first-child {
+							a {
+								border-radius: 32px 0 0 32px;
+							}
+						}
+						&:last-child {
+							a {
+								border-radius: 0 32px 32px 0;
+							}
+						}
 					}
 				}
 			}
@@ -119,6 +121,35 @@
 
 		&.other-show {
 			@include flex-direction(column);
+			background: $white;
+			position: relative;
+			z-index: 100;
+			border: 1px solid $stroke-gray;
+			border-radius: 8px;
+
+			li {
+				a {
+					border: 0;
+					border-radius: 0 !important;
+				}
+			}
+		
+		}
+
+		@media only screen and (min-width: 768px) {
+			width: 240px;
+
+			li {
+				width: 240px;
+			}
+		}
+
+		@media only screen and (min-width: 1280px) {
+			li {
+				width: auto;
+				white-space: normal;
+				overflow: inherit;
+			}
 		}
 
 		@media only screen and (min-width: 1280px) {
@@ -127,6 +158,10 @@
 			border-radius: 0;
 		}
 	}
+
+	@media only screen and (min-width: 768px) {
+		@include flex-direction(row);
+	}
 }
 
 .btn-toogle {
@@ -134,14 +169,28 @@
 	position: absolute;
 	right: 10px;
 	top: 0;
+	z-index: 100;
+	display: block;
 	color: #fff;
+
+	&:focus {
+		outline: none;
+		border: 0;
+	}
+
+	@media only screen and (min-width: 1280px) {
+		display: none;
+	}
 }
 
 .dropdown-list {
 	position: relative;
-	width: 240px;
+	width: 180px;
 	height: 36px;
 
+	@media only screen and (min-width: 768px) {
+		width: 240px;
+	}
 
 	@media only screen and (min-width: 1280px) {
 		width: auto;

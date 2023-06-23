@@ -237,6 +237,7 @@ body {
 .ngx-pagination {
 	li {
 		vertical-align: middle;
+		display: none !important;
 
 		a {
 			border-radius: 4px;

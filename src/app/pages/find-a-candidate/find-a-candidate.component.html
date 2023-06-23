@@ -19,50 +19,62 @@
   
 
   <ng-container *ngIf="viewLayout == 'grid'">
-    <div class="find-a-candidate-grid show-card">
+    <div class="find-a-candidate-grid" [ngClass]="showCardCarousel?'show-card':''">
       <div class="row align-items-start">
-       <div class="col-md-8 col-lg-8 left-col">
+       <div class="left-col" [ngClass]="showCardCarousel?'col-md-8 col-lg-8':''">
         <div class="row">
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
-          <div class="col-md-3 col-lg-3 find-col">
+          <div class="col-md-3 col-lg-3 find-col" (click)="showCardCarouselHandler()">
             <app-find-a-candidate-grid></app-find-a-candidate-grid>
           </div>
         </div>
        </div>
-       <div class="col-md-4 col-lg-4 left-col">
-        <app-find-a-candidate-card></app-find-a-candidate-card>
+       <div class="col-md-4 col-lg-4 right-col" *ngIf="showCardCarousel">
+        <div class="card-actions d-flex align-items-end justify-content-end">
+          <button class="btn close-btn" (click)="showCardCarouselHideHandler()">
+            <span class="mdi mdi-close-circle-outline"></span>
+          </button>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <app-find-a-candidate-card></app-find-a-candidate-card>
+          </ng-template>
+          <ng-template carouselSlide>
+            <app-find-a-candidate-card></app-find-a-candidate-card>
+          </ng-template>
+        </owl-carousel-o>
        </div>
       </div>
     </div>

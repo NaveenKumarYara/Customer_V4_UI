@@ -90,11 +90,11 @@
 >
   <div class="slide-static-section">
     <div class="slide-heding d-flex align-items-center">
-      <h3>Job Status</h3>
+      <h3>Change Job Status</h3>
     </div>
     <app-sidepanel-cards></app-sidepanel-cards>
     <div class="form-actions">
-      <button class="btn btn-outlined-default">Cancel</button>
+      <button class="btn btn-outlined-default">Clear</button>
       <button class="btn btn-info">Save</button>
     </div>
   </div>
@@ -125,7 +125,7 @@
 >
   <div class="slide-static-section">
     <div class="slide-heding d-flex align-items-center">
-      <h3>Job Status</h3>
+      <h3>Job Notes</h3>
     </div>
     <app-sidepanel-cards></app-sidepanel-cards>
     <div class="form-actions">
@@ -133,7 +133,7 @@
         <button class="btn btn-info" (click)="showJobFormHandler()">Add Job Notes</button>
       </ng-container>
       <ng-container *ngIf="showJobForm == 'true'">
-        <button class="btn btn-outlined-default" (click)="showJobFormHideHandler()">Cancel</button>
+        <button class="btn btn-outlined-default" (click)="showJobFormHideHandler()">Clear</button>
         <button class="btn btn-info">Save</button>
       </ng-container>
     </div>

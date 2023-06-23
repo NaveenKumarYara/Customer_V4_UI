@@ -2,8 +2,8 @@
 @import './../../../../assets/partials/utils/mixins';
 
 
+
 .col-container {
-  margin-top: 30px;
 	border: 1px solid $stroke-gray;
 	border-radius: 8px;
 	background-color: $white;
@@ -15,6 +15,30 @@
 		background-color: $light-bg;
 		padding: 40px 20px 20px;
     position: relative;
+
+    .remote {
+      width: 66px;
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      text-align: center;
+
+      em {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-style: normal;
+        color: $medium-gray;
+      }
+
+      .icon-remote {
+        width: 20px;
+        height: 22px;
+        background: url(../../../../assets/images/sprites.svg) -307px -403px no-repeat;
+        display: block;
+        font-size: 0;
+        margin: 0 auto 2px;
+      }
+    }
 
     .dropdown {
       position: absolute;
@@ -104,6 +128,9 @@
           font-size: $font-size-20;
           position: absolute;
           left: 0;
+
+
+
           color: $medium-gray;
           top: -4px;
         }
@@ -167,6 +194,18 @@
           left: 0;
           top: 0;
           background-color: $dark-green;
+
+          &.blue {
+            background-color: $blue;
+          }
+
+          &.medium-blue {
+            background-color: $medium-blue;
+          }
+
+          &.orange {
+            background-color: $orange-dark;
+          }
         }
 
         em {
@@ -182,7 +221,7 @@
 
   .skills-grid {
     background: $light-bg;
-    padding: 10px 20px 10px;
+    padding: 20px 20px 10px;
 
     h4 {
       font-size: $font-size-14;
@@ -225,6 +264,7 @@
           left: 5px;
           top: -2px;
           flex: 0 0 18px;
+          color: $dark-green;
           max-width: 18px;
         }
 
@@ -438,9 +478,47 @@
       .icon {
         width: 26px;
         height: 26px;
-        display: block;
+        display: flex;
+        align-items: flex-end;
         text-indent: -999em;
         margin: 0 auto 10px;
+        background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
+
+        &.icon-01 {
+          background-position: -339px -401px;
+        }
+        &.icon-02 {
+          background-position: -376px -401px;
+        }
+        &.icon-03 {
+          background-position: -416px -401px;
+        }
+        &.icon-04 {
+          background-position: -452px -401px;
+        }
+        &.icon-05 {
+          background-position: -307px -401px;
+        }
+      }
+
+      &.active {
+        .icon {
+          &.icon-01 {
+            background-position: -339px -438px;
+          }
+          &.icon-02 {
+            background-position: -376px -438px;
+          }
+          &.icon-03 {
+            background-position: -416px -438px;
+          }
+          &.icon-04 {
+            background-position: -452px -438px;
+          }
+          &.icon-05 {
+            background-position: -307px -438px;
+          }
+        }
       }
 
       h5 {
