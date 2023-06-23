@@ -350,6 +350,7 @@ openMailWithImage() {
     const safeImageUrl: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(base64data);
 
     // Generate the mailto link
+    
     const mailto = `mailto:''?subject=Email with Image&body=Please see the attached image.%0D%0A%0D%0A`;
     const attachment = `data:image/png;base64,${encodeURIComponent(base64data)}`;
 
