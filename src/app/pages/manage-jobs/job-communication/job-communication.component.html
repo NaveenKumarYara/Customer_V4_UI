@@ -1,0 +1,231 @@
+<div class="job-notes">
+  <div class="toogle-container">
+    Notes
+    <label class="toggle" for="toogleView">
+      <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="toogleView">
+      <div class="toggle__fill"></div>
+    </label>
+    Feedback
+  </div>
+  <h4 class="mr-bottom-40">Add New Notes</h4>
+  <div class="form-container">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">
+        <label>
+          Type of  Notes
+        </label>
+      </div>
+      <div class="col-md-8 col-lg-8 input-col">
+        <div class="form-group">
+          <span class="mdi mdi-information-outline"></span>
+          <select class="form-select">
+            <option value="Select Application Status">Select Application Status</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 single-col">
+        <label>Add Team Members</label>
+      </div>
+      <div class="col-sm-12">
+        <div class="input-group">
+          <div class="form-group">
+            <span class="mdi mdi-account-multiple-outline"></span>
+            <select class="form-select">
+              <option value="Select Team Member">Select Team Member</option>
+            </select>
+          </div>
+          <button class="btn btn-icon"><span class="mdi mdi-plus"></span></button>
+        </div>
+        <div class="checkbox-list">
+          <ul>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">
+                  Jhon Doe
+                </span>
+                <span class="mdi mdi-close-thick"></span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">
+                  Pawan Bothra
+                </span>
+                <span class="mdi mdi-close-thick"></span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">
+                  Kinjal Mehta
+                </span>
+                <span class="mdi mdi-close-thick"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 single-col">
+        <label>Notes</label>
+      </div>
+      <div class="col-sm-12">
+        <ckeditor  
+          [config]="config"
+          data="<p>Hello, world!</p>">
+        </ckeditor>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 single-col">
+        <div class="file-upload">
+          <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
+          <input type="file" name="myfile" />
+        </div>
+        <div class="description">
+          <span class="mdi mdi-information-outline"></span>
+          Upload .doc, .docx, .pdf, .txt file only
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4>List of Notes</h4>
+  <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+    <ngb-panel id="custom-panel-1">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+          <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="icon">
+              <span class="mdi mdi-file-edit-outline"></span>
+            </span>
+            <div class="info">
+              General
+              <span class="date">Mar 27, 2023 </span>
+            </div>
+          </button>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="accordion-information">
+          <h6>I am Interested in these position.</h6>
+          <div class="name">By Kim Karnika</div>
+          <div class="file-listing">
+            <div class="file-row">
+              <span class="mdi mdi-link-variant"></span>
+              Screenshot 2023-06-07.png
+              <div class="buttons">
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                <a href="#"><span class="mdi mdi-progress-download"></span></a>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="custom-panel-2">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+          <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="icon">
+              <span class="mdi mdi-file-edit-outline"></span>
+            </span>
+            <div class="info">
+              General
+              <span class="date">Mar 27, 2023 </span>
+            </div>
+          </button>
+
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="accordion-information">
+          <h6>I am Interested in these position.</h6>
+          <div class="name">By Kim Karnika</div>
+          <div class="file-listing">
+            <div class="file-row">
+              <span class="mdi mdi-link-variant"></span>
+              Screenshot 2023-06-07.png
+              <div class="buttons">
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                <a href="#"><span class="mdi mdi-progress-download"></span></a>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="custom-panel-3">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+          <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="icon">
+              <span class="mdi mdi-file-edit-outline"></span>
+            </span>
+            <div class="info">
+              General
+              <span class="date">Mar 27, 2023 </span>
+            </div>
+          </button>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="accordion-information">
+          <h6>I am Interested in these position.</h6>
+          <div class="name">By Kim Karnika</div>
+          <div class="file-listing">
+            <div class="file-row">
+              <span class="mdi mdi-link-variant"></span>
+              Screenshot 2023-06-07.png
+              <div class="buttons">
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                <a href="#"><span class="mdi mdi-progress-download"></span></a>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="custom-panel-4">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+          <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="icon">
+              <span class="mdi mdi-file-edit-outline"></span>
+            </span>
+            <div class="info">
+              General
+              <span class="date">Mar 27, 2023 </span>
+            </div>
+          </button>
+
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="accordion-information">
+          <h6>I am Interested in these position.</h6>
+          <div class="name">By Kim Karnika</div>
+          <div class="file-listing">
+            <div class="file-row">
+              <span class="mdi mdi-link-variant"></span>
+              Screenshot 2023-06-07.png
+              <div class="buttons">
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                <a href="#"><span class="mdi mdi-progress-download"></span></a>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

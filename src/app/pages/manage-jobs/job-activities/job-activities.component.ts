@@ -15,6 +15,8 @@ export class JobActivitiesComponent implements OnInit {
   panelTitle:any = '';
   panelShow: any = '';
   JobId: any;
+  jobCard: boolean = false;
+  
   constructor(private _service : ApiService, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(
       (queryParams: Params) => {

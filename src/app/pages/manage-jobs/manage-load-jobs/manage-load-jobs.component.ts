@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
   styleUrls: ['./manage-load-jobs.component.scss'],
   providers: [ApiService]
 })
+
 export class ManageLoadJobsComponent implements OnInit {
   title = 'manage-jobs';
   viewLayout = 'grid';
@@ -20,14 +21,13 @@ export class ManageLoadJobsComponent implements OnInit {
   last:any;
   panelTitle:any = '';
   panelShow: any = '';
+  jobCard: boolean = false;
   select: any;
   showJobForm: any = '';
 
-  layoutView(name:string){
+  layoutView(name:string) {
    this.viewLayout = name;
   }
-
-  
 
   panelHandler(name: string) {
     this.panelShow = name;
@@ -37,60 +37,53 @@ export class ManageLoadJobsComponent implements OnInit {
     this.panelShow = '';
   }
 
-  clearAll(select:any)
-  {
+  clearAll(select:any) {
     select = 0;
     this.onChange(select);
     this.addItem('');
   }
 
   onChange(selected: any) {
-    if(Number(selected) == 0)
-    {
-     this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
-       if (n1.PostedDate < n2.PostedDate) {
-         return 1;
-       }
+    if(Number(selected) == 0) {
+      this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
+        if (n1.PostedDate < n2.PostedDate) {
+          return 1;
+        }
 
-       if (n1.PostedDate > n2.PostedDate) {
-         return -1;
-       }
+        if (n1.PostedDate > n2.PostedDate) {
+          return -1;
+        }
 
-       return 0;
-     })
+        return 0;
+      })
     }
-       if(Number(selected) == 1)
-       {
-        this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
-          if (n1.PostedDate > n2.PostedDate) {
-            return 1;
-          }
-  
-          if (n1.PostedDate < n2.PostedDate) {
-            return -1;
-          }
-  
-          return 0;
-        })
-       }
+    if(Number(selected) == 1) {
+      this.Jobs.sort((n1: { PostedDate: any; }, n2: { PostedDate: any; }) => {
+        if (n1.PostedDate > n2.PostedDate) {
+          return 1;
+        }
 
-       if(Number(selected) == 2)
-       {
-        this.Jobs.sort((n1: { TotalApplicants: any; }, n2: { TotalApplicants: any; }) => {
-          if (n1.TotalApplicants < n2.TotalApplicants) {
-            return 1;
-          }
-  
-          if (n1.TotalApplicants > n2.TotalApplicants) {
-            return -1;
-          }
-  
-          return 0;
-        })
-       }
+        if (n1.PostedDate < n2.PostedDate) {
+          return -1;
+        }
 
+        return 0;
+      })
+      }
 
+      if(Number(selected) == 2) {
+      this.Jobs.sort((n1: { TotalApplicants: any; }, n2: { TotalApplicants: any; }) => {
+        if (n1.TotalApplicants < n2.TotalApplicants) {
+          return 1;
+        }
 
+        if (n1.TotalApplicants > n2.TotalApplicants) {
+          return -1;
+        }
+
+        return 0;
+      })
+      }
   }
  
   constructor(private _service : ApiService) {

@@ -60,7 +60,6 @@
   </div>
 </ng-container>
 
-
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='job-review'?'job-review-panel show':''"
@@ -78,5 +77,27 @@
   </div>
   <div class="slide-container">
     <app-job-review></app-job-review>
+  </div>
+</app-slidepanel>
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='communication'?'show':''"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Job Review</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "true"
+    >
+    </app-sidepanel-cards>
+    <div class="form-actions">
+      <button class="btn btn-info">Add New Notes</button>
+    </div>
+  </div>
+  <div class="slide-container">
+    <app-job-communication></app-job-communication>
   </div>
 </app-slidepanel>

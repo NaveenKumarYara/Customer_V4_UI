@@ -5,7 +5,7 @@
   (layoutView) = "layoutView($event)"
 >
 </app-manage-job-filters>
-<!-- <app-pagination [title]="title"></app-pagination> -->
+
 <div class="sorting-container d-flex align-items-center">
   <div class="result">
     Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
@@ -73,8 +73,6 @@
   </div>
 </ng-container>
 
-<!--{{ panelShow}} -->
-
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
@@ -92,7 +90,9 @@
     <div class="slide-heding d-flex align-items-center">
       <h3>Change Job Status</h3>
     </div>
-    <app-sidepanel-cards></app-sidepanel-cards>
+    <app-sidepanel-cards
+      [jobCard] = "false"
+    ></app-sidepanel-cards>
     <div class="form-actions">
       <button class="btn btn-outlined-default">Clear</button>
       <button class="btn btn-info">Save</button>
@@ -110,6 +110,7 @@
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
+
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='upload-resume'?'show':''"
@@ -117,6 +118,7 @@
   (panelCloseHandler) ="panelCloseHandler()"
 >
 </app-slidepanel>
+
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='notes'?'show':''"
@@ -142,10 +144,24 @@
     <app-job-notes [showJobForm]="showJobForm"></app-job-notes>
   </div>  
 </app-slidepanel>
+
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='documents'?'show':''"
-  [panelTitle]="'Documents'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Job Documents</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "false"
+    ></app-sidepanel-cards>
+    <div class="form-actions">
+      <button class="btn btn-info">Add Job Document</button>
+    </div>
+  </div>
+  <div class="slide-container">
+    <app-job-documents></app-job-documents>
+  </div>
 </app-slidepanel>
