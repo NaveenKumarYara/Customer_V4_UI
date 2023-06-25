@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 
 const API_URL = '';
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class ApiService {
   appUrl: string = '';
-  constructor( private router: Router,private http: HttpClient,private settingsService: SettingsService) { 
+  constructor(private router: Router, private http: HttpClient, private settingsService: SettingsService) {
   }
 
 
@@ -21,56 +21,79 @@ export class ApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'content-type':'application/x-www-form-urlencoded'
+      'content-type': 'application/x-www-form-urlencoded'
     }),
   };
 
   validateCheckemail(email: string): Observable<any> {
-    return this.http.get(this.settingsService.settings.IdentitybaseUrl+'/api/CheckEmailExist?email=' + email,this.httpOptions).pipe(
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/CheckEmailExist?email=' + email, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
   }
 
   GetJobMatching(JobId: number) {
-    return this.http.get(this.settingsService.settings.IdentitybaseUrl+'/api/GetMatchingWeightage?jobId=' + JobId,this.httpOptions).pipe(
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/GetMatchingWeightage?jobId=' + JobId, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
   }
+
+
+   // Start-- Section to call the API here related JobAPI
+//---------------------------------------------------------------------
+
+getJobApi<T>(apiUrl:string):Observable<T>{
+  let url=`${this.settingsService.settings.JobbaseUrl}${apiUrl}`
+  return this.http.get<T>(url);
+}
+//----------------------------------------------------------------
+  // End -- JobAPI Realted Intigration section 
+
+
+  // Start-- Section to call the API here related ProfileAPI
+//---------------------------------------------------------------------
+
+getProfileApi<T>(apiUrl:string):Observable<T>{
+  let url=`${this.settingsService.settings.ProfilebaseUrl}${apiUrl}`
+  return this.http.get<T>(url);
+}
+//----------------------------------------------------------------
+  // End -- ProfileAPI Realted Intigration section 
+
 
   Login(body: any) {
     return this.http
       .post(this.settingsService.settings.IdentitybaseUrl + '/api/CustomerLogin', body)
-      .pipe( debounceTime(1000),map(user => {
+      .pipe(debounceTime(1000), map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('customer', JSON.stringify(user));
         return user;
-    }));
+      }));
   }
 
 
 
 
 
-logout() {
+  logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('customer');
     this.router.navigate(['login']);
-}
+  }
 
-  
 
-  GetEmployerService(url:string, prams : any) {
-    return this.http.get( this.settingsService.settings.EmployerjobsUrl+url + prams,this.httpOptions).pipe(
+
+  GetEmployerService(url: string, prams: any) {
+    return this.http.get(this.settingsService.settings.EmployerjobsUrl + url + prams, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
   }
 
-  downloadFile(data:any, filename='data') {
-    let csvData = this.ConvertToCSV(data, ['JobTitle','JobId', 'ClientName', 'JobStatus', 'PostedDate','Assignee','JobPriority','TotalApplicants','ShortListedCount','InterviewedCount','Hired','NumberOfVacancies','JobLocations']);
+  downloadFile(data: any, filename = 'data') {
+    let csvData = this.ConvertToCSV(data, ['JobTitle', 'JobId', 'ClientName', 'JobStatus', 'PostedDate', 'Assignee', 'JobPriority', 'TotalApplicants', 'ShortListedCount', 'InterviewedCount', 'Hired', 'NumberOfVacancies', 'JobLocations']);
     console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);
     let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
     if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
-        dwldLink.setAttribute("target", "_blank");
+      dwldLink.setAttribute("target", "_blank");
     }
     dwldLink.setAttribute("href", url);
     dwldLink.setAttribute("download", filename + ".csv");
@@ -78,29 +101,29 @@ logout() {
     document.body.appendChild(dwldLink);
     dwldLink.click();
     document.body.removeChild(dwldLink);
-}
+  }
 
-ConvertToCSV(objArray:any, headerList:any) {
-     let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-     let str = '';
-     let row = 'S.No,';
+  ConvertToCSV(objArray: any, headerList: any) {
+    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    let str = '';
+    let row = 'S.No,';
 
-     for (let index in headerList) {
-         row += headerList[index] + ',';
-     }
-     row = row.slice(0, -1);
-     str += row + '\r\n';
-     for (let i = 0; i < array.length; i++) {
-         let line = (i+1)+'';
-         for (let index in headerList) {
-            let head = headerList[index];
+    for (let index in headerList) {
+      row += headerList[index] + ',';
+    }
+    row = row.slice(0, -1);
+    str += row + '\r\n';
+    for (let i = 0; i < array.length; i++) {
+      let line = (i + 1) + '';
+      for (let index in headerList) {
+        let head = headerList[index];
 
-             line += ',' + array[i][head];
-         }
-         str += line + '\r\n';
-     }
-     return str;
- }
+        line += ',' + array[i][head];
+      }
+      str += line + '\r\n';
+    }
+    return str;
+  }
 
 
 
@@ -121,5 +144,8 @@ ConvertToCSV(objArray:any, headerList:any) {
       return errorMessage;
     });
   }
+
+
+ 
 
 }

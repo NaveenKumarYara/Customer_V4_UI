@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import  { ManageJobsComponent } from './pages/manage-jobs/manage-jobs.component';
 import { FindACandidateComponent } from './pages/find-a-candidate/find-a-candidate.component';
-
+import { ScheduleInterviewExternalComponent } from './pages/manage-jobs/schedule-interview-external/schedule-interview-external.component';
 const routes: Routes = [
   // -------------------- Auth Routes --------------------
   {
@@ -36,7 +36,11 @@ const routes: Routes = [
   {
     path: 'find-a-candidates',
     component: FindACandidateComponent
-  }
+  },
+   {
+    path:'schedule-interview-external',
+    component: ScheduleInterviewExternalComponent
+   }
 ];
 
 @NgModule({

@@ -75,13 +75,28 @@
 
 <!--{{ panelShow}} -->
 
+
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
-  [panelTitle]="'View/Edit Job'"
+  [panelTitle]="'Change Applicant Status'"
   (panelCloseHandler) ="panelCloseHandler()"
->
+  >
+<app-sidepanel-cards></app-sidepanel-cards>
+  <app-schedule-interview></app-schedule-interview>
+
 </app-slidepanel>
+
+<!-- <app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
+  [panelTitle]="'Change Applicant Status'"
+  (panelCloseHandler) ="panelCloseHandler()"
+  >
+<app-sidepanel-cards></app-sidepanel-cards>
+  <app-schedule-interview-external></app-schedule-interview-external>
+
+</app-slidepanel> -->
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='job-status'?'show':''"
@@ -114,10 +129,11 @@
   <app-sidepanel-cards></app-sidepanel-cards>
   <app-job-notes></app-job-notes>
 </app-slidepanel>
-<app-slidepanel 
+<app-slidepanel
   class="slide-panel"
   [ngClass]="panelShow=='documents'?'show':''"
   [panelTitle]="'Documents'"
   (panelCloseHandler) ="panelCloseHandler()"
->
+  >
+  <app-job-documents></app-job-documents>
 </app-slidepanel>
