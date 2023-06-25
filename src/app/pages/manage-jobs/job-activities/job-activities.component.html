@@ -93,11 +93,37 @@
       [jobCard] = "true"
     >
     </app-sidepanel-cards>
-    <div class="form-actions">
-      <button class="btn btn-info">Add New Notes</button>
+    <div class="form-actions d-flex align-items-center">
+      <div class="toogle-container">
+        Notes
+        <label class="toggle" for="toogleView">
+          <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="toogleView">
+          <div class="toggle__fill"></div>
+        </label>
+        Feedback
+      </div>
+    
+      <ng-container *ngIf="isChecked == false && showNoteForm == false">
+        <button class="btn btn-info" (click)="showNoteFormHandler()">Add New Notes</button>
+      </ng-container>
+      <ng-container *ngIf="isChecked == false && showNoteForm == true">
+        <button class="btn btn-info" (click)="hideNoteFormhandler()">Save</button>
+      </ng-container>
+      <ng-container *ngIf="isChecked == true && showFeedbackForm == false">
+        <button class="btn btn-info" (click)="showFeedbackFormHandler()">Add Feedback</button>
+      </ng-container>
+      <ng-container *ngIf="isChecked == true && showFeedbackForm == true">
+        <button class="btn btn-info" (click)="hideFeedbackFormhandler()">Save</button>
+      </ng-container>
     </div>
   </div>
   <div class="slide-container">
-    <app-job-communication></app-job-communication>
+    <app-job-communication
+      [isChecked]="isChecked"
+      [showNoteForm] = "showNoteForm"
+      (changeView)="changeView()"
+      [showFeedbackForm] = "showFeedbackForm"
+    >
+    </app-job-communication>
   </div>
 </app-slidepanel>

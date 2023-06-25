@@ -87,3 +87,61 @@
 		padding-top: 0;
 	}
 }
+
+.toogle-container {
+	margin-right: auto;
+	margin-left: 40px;
+  @include flex();
+  @include align-items(center);
+  gap: 10px;
+}
+
+.toggle {
+  --width: 52px;
+  --height: 32px;
+  --border-radius: 32px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle__input {
+  display: none;
+}
+
+.toggle__fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: #dddddd;
+  transition: background 0.2s;
+}
+
+.toggle__fill::after {
+  content: "";
+  font: normal normal normal 18px/1 "Material Design Icons";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  height: 24px;
+  width: 24px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s;
+}
+
+.toggle__input:checked ~ .toggle__fill {
+  background: $darker-green;
+ 
+}
+
+.toggle__input:checked ~ .toggle__fill::after {
+  content: "\F012C";
+  transform: translateX(var(--height));
+  left: -8px;
+  top: 4px;
+}

@@ -16,7 +16,10 @@ export class JobActivitiesComponent implements OnInit {
   panelShow: any = '';
   JobId: any;
   jobCard: boolean = false;
-  
+  isChecked: boolean = false;
+  showNoteForm: boolean = false;
+  showFeedbackForm: boolean = false;
+
   constructor(private _service : ApiService, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
@@ -36,7 +39,27 @@ export class JobActivitiesComponent implements OnInit {
     this.viewLayout = name;
   }
 
+  changeView() {
+    this.isChecked =  ! this.isChecked;
+  }
+
   panelCloseHandler() {
     this.panelShow = '';
+  }
+
+  showNoteFormHandler() {
+    this.showNoteForm = true;
+  }
+
+  hideNoteFormhandler() {
+    this.showNoteForm = false;
+  }
+
+  showFeedbackFormHandler() {
+    this.showFeedbackForm = true;
+  }
+
+  hideFeedbackFormhandler() {
+    this.showFeedbackForm = false;
   }
 }

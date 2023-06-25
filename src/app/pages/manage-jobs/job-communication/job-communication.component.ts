@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,10 @@ import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./job-communication.component.scss']
 })
 export class JobCommunicationComponent implements OnInit {
-  isChecked: boolean = false;
+  @Input() isChecked: boolean = false;
+  @Input() showNoteForm: boolean = false;
+  @Input() showFeedbackForm: boolean = false;
+
   constructor(config: NgbAccordionConfig) {
 		// customize default values of accordions used by this component tree
 		config.closeOthers = true;
@@ -50,11 +53,6 @@ export class JobCommunicationComponent implements OnInit {
   removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
   };
   
-  changeView() {
-    this.isChecked =  ! this.isChecked;
-  }
-
   ngOnInit(): void {
   }
-
 }
