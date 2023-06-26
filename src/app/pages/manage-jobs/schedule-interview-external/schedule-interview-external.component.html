@@ -1,0 +1,234 @@
+<div>
+    <div class="clschbtns">
+        <button class="btn btn-outline-secondary">Close</button>
+        <button class="btn btn-primary">Schedule</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <label id="cap">Change Application
+            Status</label>
+    </div>
+    <div class="col-lg-9 ">
+        <form>
+            <select class="form-select">
+                <option value="Select Application Status">Select Application Status</option>
+                <option value="Shortlisted">Shortlisted</option>
+                <option value="Screening">Screening</option>
+                <option value="Schedule Interview">Schedule Interview</option>
+                <option value="Hired">Hired</option>
+            </select>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6" id="toi">
+        <div>
+            <label>Type Of Interview</label>
+        </div>
+        <div class="toidrpdwn">
+            <!-- <form>
+                <select class="form-select" *ngFor="let type of typeList" >
+                     <option value="Select">Select</option> -->
+            <!-- <option value={{type?.InterviewTypeId}}>{{type?.InterviewType}}</option> -->
+            <!-- <option value="Offline">Offline</option>  -->
+            <!-- </select> -->
+            <!-- </form> -->
+            <!-- <ng-select class="custom-style interview-schedule-popup" [items]="typeList" placeholder="Select"
+                bindLabel="InterviewType" bindValue="InterviewTypeId" [virtualScroll]="true">
+            </ng-select> -->
+        </div>
+    </div>
+    <div class="col-lg-6" id="moi">
+        <div>
+            <label>Mode Of Interview</label>
+        </div>
+        <div class="moidrpdwn">
+            <form>
+                <select class="form-select">
+                    <option value="Select">Select</option>
+                    <option value="Video">Video</option>
+                    <option value="Telephonic">Telephonic</option>
+                    <option value="Face-to-Face">Face-to-Face</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="linkbtns">
+    <div class="zmtmbtns">
+        <button class="btn_zm"><img src="assets/images/Vector.png"
+                style="float:left; padding-left:10px; padding-top: 5px; color:blue;">Zoom</button>
+        <button class="btn_tm"><img src="assets/images/teams.png" style="float:left;padding-left:10px;">Teams</button>
+    </div>
+    <div class="container">
+        <div class="form-group" id="linkinput">
+            <input type="text" class="form-control custom-input" id="exampleInput" placeholder=" Please Add Link Here">
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-3" id="doi">
+        <label for="" style="padding-bottom: 5px;">Date of Interview</label>
+        <input type="date" class="form-control" placeholder="Enter date">
+    </div>
+    <div class="col-lg-3" id="tioi">
+        <label for="" style="padding-bottom: 5px;">Time of Interview</label>
+        <input type="time" class="form-control" placeholder="Enter date">
+    </div>
+    <div class="col-lg-3" id="am/pm">
+        <label for="" style="padding-bottom: 5px;">AM/PM</label>
+        <form>
+            <select class="form-select" aria-placeholder="AM/PM">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </form>
+    </div>
+    <div class="col-lg-3" id="tf">
+        <label for="" style="padding-bottom: 5px;">Time Format</label>
+        <form>
+            <select class="form-select">
+                <option value="12 Hours">12 Hours</option>
+                <option value="24 Hours">24 Hours</option>
+            </select>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6" id="tz">
+        <div>
+            <label>Time Zone</label>
+        </div>
+        <div class="tzdrpdwn">
+            <form>
+                <select class="form-select">
+                    <option value="Select">Select</option>
+                    <option value="IST">IST</option>
+                    <option value="UTC">UTC</option>
+                    <option value="GMT">GMT</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-6" id="dur">
+        <div>
+            <label>Duration</label>
+        </div>
+        <div class="durdrpdwn">
+            <form>
+                <select class="form-select">
+                    <option value="">30 Mins</option>
+                    <option value="">45 Mins</option>
+                    <option value="">60 Mins</option>
+                    <option value="">120 Mins</option>
+
+                </select>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="tmschkbtn">
+    <div class="form-check" style="padding-left: 2.5em;">
+        <input class="form-check-input" type="checkbox" id="teamcheckbox">
+        <label class="form-check-label lbl" style="padding-top: 10px;" for="exampleCheckbox">Team Members</label>
+    </div>
+    <div class="form-check" id="emcheck">
+        <input class="form-check-input" type="checkbox" id="externalcheckbox">
+        <label class="form-check-label lbl" style="padding-top: 10px;" for="exampleCheckbox">External Recuirters</label>
+    </div>
+    <div class="form-check" id="secheck">
+        <input class="form-check-input" type="checkbox" id="sendcheckbox">
+        <label class="form-check-label lbl" style="padding-top: 10px;" for="exampleCheckbox">Send Email To
+            Candidate</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-11" style="padding-top: 20px;">
+        <div>
+            <label class="sltm">Select Team Members</label>
+        </div>
+        <div class="seltmdrpdwn">
+            <form>
+                <select class="form-select">
+                    <option value="Select Application Status">Select Application Status</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Screening">Screening</option>
+                    <option value="Schedule Interview">Schedule Interview</option>
+                    <option value="Hired">Hired</option>
+                </select>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-lg-1">
+        <div class="addbtn">
+            <button class="addbut"><img src="assets/images/add.png"></button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div id="tmchkbtns">
+            <button class="tm1chkbtn">
+                <input class="form-check-input" type="checkbox" value="" id="tm1check">
+                <label class="form-check-label" id="tm1label" for="">
+                    Jhon Doe
+                </label>
+            </button>
+
+            <button class="tm2chkbtn">
+                <input class="form-check-input" type="checkbox" value="" id="tm2check">
+                <label class="form-check-label" id="tm2label" for="">
+                    Pawan Bothra
+                </label>
+            </button>
+
+            <button class="tm3chkbtn">
+                <input class="form-check-input" type="checkbox" value="" id="tm3check">
+                <label class="form-check-label" id="tm3label" for="">
+                    Kinjal Mehta
+                </label>
+            </button>
+
+            <button class="tm4chkbtn">
+                <input class="form-check-input" type="checkbox" value="" id="tm4check">
+                <label class="form-check-label" id="tm4label" for="">
+                    Jhon Doe
+                </label>
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="emailbtn">
+            <button class="sendemail">Send Email</button>
+        </div>
+    </div>
+</div>
+<div class="row" id="adddoc">
+    <div class="col-sm-12 single-col">
+        <div>
+            <label class="adddoc">Add Documents</label>
+        </div>
+        <div class="file-upload">
+            <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Add Attachments * Please add .PNG,
+                .DOC, .PDF </button>
+            <input type="file" name="myfile" />
+        </div>
+    </div>
+</div>
+<div class="row" id="addcommts">
+    <div>
+        <label class="addcomments">Add Comments</label>
+    </div>
+    <div class="form-control" id="commentsbox" contenteditable="true" rows="5">
+        <p>Please Enter Comments</p>
+    </div>
+</div>

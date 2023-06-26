@@ -1,6 +1,409 @@
 @import '../../../../assets/partials/utils/variables';
 @import '../../../../assets/partials/utils/mixins';
 
+.col-container {
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+	background-color: $white;
+ width:40%;
+	overflow: hidden;
+	box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
+  margin-top:40px;
+
+	.top-container{
+		background-color: $light-bg;
+		padding: 50px 20px 20px;
+    position: relative;
+
+    .status {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 108px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 0 4px 4px 0;
+      text-transform: uppercase;
+      padding: 3px 4px;
+
+      &.active {
+        background-color: $dark-green;
+        color: $white;
+      }
+
+      &.screening {
+        background-color: $medium-blue;
+        color: $white;
+      }
+
+      &.hired {
+        background-color: $darker-green;
+        color: $white;
+      }
+
+      &.interviewing {
+        background-color: $orange-dark;
+        color: $white;
+      }
+
+      &.filled {
+        background-color: $red;
+        color: $white;
+      }
+
+      &.inactive {
+        background-color: $light-blue;
+        color: $medium-gray;
+      }
+
+      &.shortlisting {
+        background-color: $dark-blue;
+        color: $white;
+      }
+    }
+
+    .priority {
+      border-radius: 4px 0 0 4px;
+      background-color: $light-green;
+      font-size: 12px;
+      color: $dark-green;
+      text-transform: uppercase;
+      position: absolute;
+      right: 0;
+      width: 90px;
+      text-align: center;
+      top: 20px;
+      font-weight: 600;
+      padding: 3px 4px;
+
+      .mdi {
+        font-size: 12px;
+        vertical-align: middle;
+      }
+
+      &.medium {
+        background-color: $orange-light;
+        color: $orange-dark;
+      }
+
+      &.high {
+        background-color: $darker-green;
+        color: $white;
+      }
+    }
+
+		.profile-info {
+			padding-left: 76px;
+      position: relative;
+
+      .profile-thumb {
+        font-size: 0;
+        width: 72px;
+        height: 72px;
+        background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
+        background-size: 72px auto;
+        position: absolute;
+        left: -7px;
+        top: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -24px;
+
+        img {
+          width: 32px;
+          border-radius: 50%;
+          position: relative;
+          top: -5px;
+        }
+      }
+
+      .profile-summary {
+        @include flexbox();
+        gap: 10px;
+      }
+
+			h3 {
+				font-size: $font-size-22;
+				color: $darker-gray;
+				font-weight: 600;
+        width: 85%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+				margin: 0 0 8px;
+        padding-bottom: 3px;
+
+        a {
+          color: $darker-gray;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+			}
+
+			h4 {
+				color: $dark-gray;
+				font-weight: 400;
+				font-size: $font-size-14;
+				margin: 0;
+
+				.mdi {
+					font-size: $font-size-16;
+					color: $medium-gray;
+					vertical-align: middle;
+          margin-right: 5px;
+				}
+			}
+		}
+	}
+
+  .middle-container {
+    .top-section {
+      padding:15px 30px 15px 96px;
+      @include flex();
+      @include align-items(center);
+      gap: 10px;
+      @include flex-wrap(wrap);
+
+      h3 {
+        font-size: $font-size-16;
+        color: $dark-gray;
+        margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 0 0 calc(100% - 120px);
+        max-width: calc(100% - 120px);
+      }
+
+      .id {
+        background-color: $light-green;
+        color: $dark-green;
+        font-size: 10px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        display: inline-block;
+        text-transform: uppercase;
+        flex: 0 0 100px;
+        max-width: 100px;
+        text-align: center;
+      }
+    }
+
+    .top-bottom-section {
+      padding: 0 20px 15px;
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 10px;
+
+        li {
+          font-size: 11px;
+          color: $medium-gray;
+          display: flex;
+          align-items: center;
+          
+          .mdi {
+            font-size: $font-size-14;
+            margin-right: 2px;
+            position: relative;
+            top: 0;
+
+            &.mdi-map-marker-outline {
+              top: -1px;
+            }
+          }
+          
+          &:not(:first-child) {
+            border-left: 1px solid $stroke-gray;
+            padding-left: 5px;
+          }
+        }
+
+        .highlight {
+          font-size: 10px;
+          background-color: $medium-gray;
+          text-transform: uppercase;
+          color: $white;
+          display: inline-block;
+          padding: 2px 4px;
+          border-radius: 4px;
+        }
+
+        @media only screen and (max-width: 1440px) {
+          flex-wrap: wrap;
+        }
+      }
+    }
+
+    .bottom-section {
+      padding: 10px 20px;
+      background-color: $light-bg;
+      margin-top: 20px;
+      border-top: 1px solid $stroke-gray;
+      border-bottom: 1px solid $stroke-gray;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+
+        li {
+          text-align: center;
+          border-left: 1px solid $stroke-gray;
+          padding-left: 20px;
+
+          &:first-child {
+            padding-left: 0;
+            border-left: 0;
+          }
+
+          h4 {
+            font-size: 10px;
+            color: $dark-gray;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            span {
+              display: block;
+              font-size: 8px;
+              font-weight: 400;
+              text-transform: none;
+            }
+          }
+
+          .progress-circle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            circle-progress {
+              display: block;
+              width: 40px;
+              height: 40px; 
+              margin: 0 auto;
+            }
+
+            h4 {
+              text-transform: none;
+              font-size: $font-size-14;
+
+              strong {
+                display: block;
+                font-weight: 600;
+              }
+
+              @media (min-width: 1600px) {
+                font-size: $font-size-16;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .statstics {
+    padding: 10px 0 0;
+    border-top: 1px solid $stroke-gray;
+    margin: 0 34px 10px 20px;
+
+    .col {
+      text-align: center;
+      margin: 0;
+
+      &:not(:first-child) {
+        border-left: 1px solid $stroke-gray;
+      }
+
+      h4 {
+        font-size: $font-size-30;
+        font-weight: 600;
+        color: $dark-gray;
+      }
+
+      h6 {
+        font-size: $font-size-12;
+        color: $medium-gray;
+        margin: 0;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .bottom-container {
+    padding: 20px;
+
+    .right-col {
+      text-align: right;
+      
+      h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 5px;
+        color: $dark-gray;
+      }
+
+      h5 {
+        font-size: 12px;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 30px;
+        height: auto;
+        border-radius: 50%;
+      }
+
+      h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 5px;
+        color: $dark-gray;
+      }
+
+      h5 {
+        font-size: 12px;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+
+    .right-col {
+      .profile-section {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+
+.location-trim {
+  width: 50px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+
+
 .slide-overlay {
   width: 100%;
   height: 100%;

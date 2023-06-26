@@ -73,14 +73,18 @@
   </div>
 </ng-container>
 
+<!--{{ panelShow}} -->
+
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow == 'view-edit-job' ? 'show':''"
-  [panelTitle]="'View/Edit Job'"
+  [panelTitle]="'Change Applicant Status'"
   (panelCloseHandler) ="panelCloseHandler()"
->
-</app-slidepanel>
+  >
+<app-sidepanel-cards></app-sidepanel-cards>
+  <app-schedule-interview></app-schedule-interview>
 
+</app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='job-status'?'show':''"
@@ -144,24 +148,9 @@
     <app-job-notes [showJobForm]="showJobForm"></app-job-notes>
   </div>  
 </app-slidepanel>
-
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='documents'?'show':''"
   (panelCloseHandler) ="panelCloseHandler()"
 >
-  <div class="slide-static-section">
-    <div class="slide-heding d-flex align-items-center">
-      <h3>Job Documents</h3>
-    </div>
-    <app-sidepanel-cards
-      [jobCard] = "false"
-    ></app-sidepanel-cards>
-    <div class="form-actions">
-      <button class="btn btn-info">Add Job Document</button>
-    </div>
-  </div>
-  <div class="slide-container">
-    <app-job-documents></app-job-documents>
-  </div>
 </app-slidepanel>
