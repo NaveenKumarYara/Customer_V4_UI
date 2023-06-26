@@ -153,4 +153,14 @@
   [ngClass]="panelShow=='documents'?'show':''"
   (panelCloseHandler) ="panelCloseHandler()"
 >
+  <div class="slide-heding d-flex align-items-center">
+    <h3>Job Documents</h3>
+  </div>
+  <app-sidepanel-cards
+    [jobCard] = "false"
+  ></app-sidepanel-cards>
+  <div class="form-actions">
+    <button class="btn btn-info">Add Job Documents</button>
+  </div>
+  <app-job-documents></app-job-documents>
 </app-slidepanel>

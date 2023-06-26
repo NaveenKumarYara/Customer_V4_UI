@@ -27,12 +27,69 @@
 	.find-col {
 		margin-top: 30px;
 		padding: 0 10px;
+		flex: 0 0 100%;
+		max-width: 100%;
+
+		@media only screen and (min-width: 640px) {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+
+		@media only screen and (min-width: 991px) {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+
+		@media only screen and (min-width: 1280px) {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
 	}
 
 	&.show-card {
 		.find-col { 
-			flex: 0 0 33.33%;
-			max-width: 33.333%;
+			flex: 0 0 100%;
+			max-width: 100%;
+
+			@media only screen and (min-width: 640px) {
+				flex: 0 0 50%;
+				max-width: 50%;
+			}
+	
+			@media only screen and (min-width: 1600px) {
+				flex: 0 0 33.33%;
+				max-width: 33.33%;
+			}
+		}
+
+		.left-col {
+			flex: 0 0 100%;
+			max-width: 100%;
+
+			@media only screen and (min-width: 1023px){
+				flex: 0 0 60%;
+				max-width: 60%;
+			}
+
+			@media only screen and (min-width: 1600px) {
+				flex: 0 0 70%;
+				max-width: 70%;
+			}
+		}
+
+		.right-col {
+			display: none;
+
+			@media only screen and (min-width: 1023px) {
+				display: block;
+				flex: 0 0 40%;
+				max-width: 40%;
+			}
+
+			@media only screen and (min-width: 1600px) {
+				flex: 0 0 30%;
+				max-width: 30%;
+			}
 		}
 	}
 }
@@ -45,9 +102,21 @@
 	border-radius: 8px;
 }
 
+.table-box-container {
+	width: 100%;
+	overflow: auto;
+}
+
+.find-listing-table {
+	display: table;
+	table-layout: fixed;
+
+	@media only screen and (min-width: 1320px){	
+		display: block;
+	}
+}
+
 .table-row {
-	@include flex();
-	@include flex-wrap(wrap);
 	background-color: rgba(225, 247, 239, 0.3);
 	border-top: 1px solid $stroke-gray;
 
@@ -62,25 +131,29 @@
 	&.table-row-heading {
 		background-color: transparent;
 		font-weight: 600;
+		display: table-row;
 
 		.table-col {
 			padding-top: 0;
 		}
+
+		@media only screen and (min-width: 1320px) {
+			@include flex();
+			@include flex-wrap(wrap);
+		}
 	}
 
-	app-find-a-candidate-table {
-		@include flex();
-		flex: 0 0 100%;
-		max-width: 100%;
-		@include flex-wrap(wrap);
-	}
 
 	.table-col {
 		font-size: $font-size-14;
 		color: $dark-gray;
-		flex: 0 0 20%;
+		flex: 0 0 204px;
+		max-width: 204px;
+		width: 204px;
+		text-align: left;
+		white-space: nowrap;
 		padding: 15px;
-		max-width: 20%;
+		display: table-cell;
 
 		.mdi {
 			line-height: 1;
@@ -91,9 +164,39 @@
 			color: $dark-gray;
 			text-decoration: none;
 		}
+
+		@media only screen and (min-width: 1320px) {
+			flex: 0 0 20%;
+			max-width: 20%;
+			display: block;
+			white-space: normal;
+		}
+	}
+
+	@media only screen and (min-width: 1320px) {
+		@include flex();
+		@include flex-wrap(wrap);
 	}
 }
 
 .card-actions {
 	margin: 30px 0 20px;
+}
+
+app-find-a-candidate-table {
+	display: table-row;
+	width: 100%;
+	background-color: rgba(225, 247, 239, 0.3);
+	vertical-align: top;
+
+	&:nth-child(odd) {
+		background-color: $white;
+	}
+
+	@media only screen and (min-width: 1320px) {
+		@include flex();
+		@include flex-wrap(wrap);
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 }

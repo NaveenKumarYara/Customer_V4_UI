@@ -4,10 +4,15 @@
 .table-col {
 	font-size: $font-size-14;
 	color: $dark-gray;
-	flex: 0 0 20%;
+	flex: 0 0 204px;
+	max-width: 204px;
+	width: 204px;
+	text-align: left;
 	padding: 15px;
-	max-width: 20%;
-
+	display: table-cell;
+	vertical-align: top;
+	white-space: nowrap;
+	
 	a {
 		color: $dark-gray;
 		text-decoration: none;
@@ -18,7 +23,15 @@
 			font-weight: 600;
 		}
 	}
+
+	@media only screen and (min-width: 1320px) {
+		flex: 0 0 20%;
+		max-width: 20%;
+		display: block;
+		white-space: normal;
+	}
 }
+
 
 .profile-info {
 	@include flex();

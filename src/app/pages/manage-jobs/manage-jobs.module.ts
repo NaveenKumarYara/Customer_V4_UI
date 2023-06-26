@@ -40,6 +40,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
 import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
+import { JobCommunicationComponent } from './job-communication/job-communication.component';
 
 @NgModule({
 	declarations: [
@@ -64,6 +65,7 @@ import { ScheduleInterviewExternalComponent } from './schedule-interview-externa
  	JobNotesComponent,
    ScheduleInterviewComponent,
    JobDocumentsComponent,
+	 JobCommunicationComponent,
    ScheduleInterviewExternalComponent
 	],
 	imports: [
