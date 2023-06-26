@@ -20,7 +20,6 @@ export class JobsActivitiesNavComponent implements OnInit {
   GetJobMatching()
   {       
       this._service.GetJobMatching(Number(this.JobId)).subscribe((response:any) => { 
-        debugger
         this.Percentweightage =  response;
       });
 

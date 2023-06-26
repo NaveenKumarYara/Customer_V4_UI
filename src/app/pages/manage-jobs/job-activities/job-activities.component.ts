@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,12 +16,14 @@ export class JobActivitiesComponent implements OnInit {
   panelTitle:any = '';
   panelShow: any = '';
   JobId: any;
+  Profiles:any=[];
   jobCard: boolean = false;
   isChecked: boolean = false;
   showNoteForm: boolean = false;
   showFeedbackForm: boolean = false;
-
+  customer:any;
   constructor(private _service : ApiService, private route: ActivatedRoute) { 
+    this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
           this.JobId = queryParams['JobId'];
@@ -29,7 +32,25 @@ export class JobActivitiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.GetJobAppliedProfilesDetail(0,'');
   }
+
+
+  
+  GetJobAppliedProfilesDetail(FilterStatus: string | number | boolean,Search: string)
+  {       
+    let params = new HttpParams();
+		params = params.append("CustomerId", this.customer.CustomerId);
+		params = params.append("JobId",  Number(this.JobId));
+    params = params.append("FilterStatus",FilterStatus );
+    params = params.append("SearchString",Search);
+      this._service.GetEmployerService("/api/GetCustomerApplicantJobProfiles?",params).subscribe((response:any) => { 
+        this.Profiles =  response;
+      });
+
+
+  }
+
 
   panelHandler(name: string) {
     this.panelShow = name;

@@ -9,7 +9,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class JobCardComponent implements OnInit {
   @Input() panelShow: any = '';
   @Output() panelHandler = new EventEmitter<string>(); 
-  
+  @Input() profile : any;
   currentRate = 3;
   customOptions: OwlOptions = {
     loop: true,

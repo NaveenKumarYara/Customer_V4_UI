@@ -41,7 +41,7 @@
 <div class="col-container">
   <div class="top-container">
     <span class="status active">
-      Uploaded
+      {{profile?.JobStatus  | titlecase}}
       <span class="mdi mdi-information-outline"></span>
     </span>
     <div ngbDropdown class="d-inline-block">
@@ -59,11 +59,11 @@
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
 			<h3>
-        <span class="text-trim">Akhilesh Chang</span>
+        <span class="text-trim">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
         <span class="mdi mdi-bookmark-outline"></span>
       </h3>
 			<h4>
-				By <strong>KLM</strong> On <strong>Mar 28, 2023</strong>
+				By <strong>{{profile?.CompanyName}}</strong> On <strong>{{profile?.CreatedOn | date:'mediumDate'}}</strong>
 			</h4>
 		</div>
   </div>
@@ -72,13 +72,13 @@
       <ul>
         <li class="job-title">
           <span class="mdi mdi-school-outline"></span>
-          Software Architect 1
+          {{profile?.ProfileTitle}}
         </li>
-        <li>10.8 Yrs</li>
+        <li>  {{profile?.TotalExperience}} Yrs</li>
       </ul>
       <div class="location">
         <span class="mdi mdi-map-marker-outline"></span>
-        San Antonio, Texas
+        {{profile?.CurrentLocation || "Yet to provide"}}
       </div>
     </div>
     <div class="middle-section">
@@ -86,13 +86,13 @@
         <div class="grid-col">
           <div class="col-container">
             <span class="icon icon-email">Icon</span>
-            <a href="mailto:test15@gmail.com">test15@gmail.com</a>
+            <a href="mailto:{{profile?.Email}}">{{profile?.Email}}</a>
           </div>
         </div>
         <div class="grid-col">
           <div class="col-container">
             <span class="icon icon-phone">Icon</span>
-            9876543456
+            {{profile?.MobilePhone || "Yet to Provide"}}
           </div>
         </div>
       </div>
@@ -151,122 +151,177 @@
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
           <div class="skills-col">
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+            <ng-container *ngFor="let skill of profile?.PrimarySkill.split(',');let s = index">
+              <div class="skill-container" *ngIf="s<6">
+              
+                <h3>{{ skill.split("|")[0] }}</h3>
+                                              <h4>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
+                                                }} years</h4>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="skill.split('|')[3] "  aria-readonly="true" [max]="5"></ngb-rating>
+                  </div>
+             
+               
               </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
+            </ng-container>
+       
+       
           </div>
         </ng-template>
-        <ng-template carouselSlide>
-          <div class="skills-col">
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-            <div class="skill-container">
-              <h3>SQL</h3>
-              <h4>Exp:  5.8 Years</h4>
-              <div class="rating">
-                <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-              </div>
-            </div>
-          </div>
-        </ng-template>
+    
       </owl-carousel-o>
     </div>
   </div>
   <div class="process-section">
     <h4>Application Status</h4>
-    <ul>
-      <li class="active">
-        <span class="icon icon-submitted">Icon</span>
-        <h6>Submitted</h6>
-      </li>
-      <li class="active">
-        <span class="icon icon-screening">Icon</span>
-        <h6>Screening</h6>
-      </li>
-      <li>
-        <span class="icon icon-shortlisted">Icon</span>
-        <h6>Shortlisted</h6>
-      </li>
-      <li>
-        <span class="icon icon-interview">Icon</span>
-        <h6>Interview</h6>
-      </li>
-      <li>
-        <span class="icon icon-hired">Icon</span>
-        <h6>Hired</h6>
-      </li>
-    </ul>
+    <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
+      <ul>
+          <li class="active">
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li>
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li>
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li>
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li>
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 8">
+          
+      <ul>
+          <li class="active">
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li>
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li>
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li>
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
+            <ng-container *ngIf="profile?.ResponseStatusId === 5">
+          
+      <ul>
+          <li class="active">
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li>
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li>
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
+      
+              <ng-container *ngIf="profile?.ResponseStatusId === 7">
+            <ul>
+          <li class="active">
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li>
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
+      
+                <ng-container *ngIf="profile?.ResponseStatusId === 11 || profile?.ResponseStatusId === 12">
+            <ul>
+          <li class="active">
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li class="active">
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
+      
+                <ng-container *ngIf="profile?.ResponseStatusId === null || profile?.ResponseStatusId === 9">
+            <ul>
+          <li>
+            <span class="icon icon-submitted">Icon</span>
+            <h6>Submitted</h6>
+          </li>
+          <li>
+            <span class="icon icon-screening">Icon</span>
+            <h6>Screening</h6>
+          </li>
+          <li>
+            <span class="icon icon-shortlisted">Icon</span>
+            <h6>Shortlisted</h6>
+          </li>
+          <li>
+            <span class="icon icon-interview">Icon</span>
+            <h6>Interview</h6>
+          </li>
+          <li>
+            <span class="icon icon-hired">Icon</span>
+            <h6>Hired</h6>
+          </li>
+        </ul>
+      </ng-container>
   </div>
 </div>

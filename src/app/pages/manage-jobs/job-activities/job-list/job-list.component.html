@@ -1,20 +1,20 @@
 <div class="table-col name-col">
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-profile-thumb.png" alt="">
-		<h4>Akhilesh Chang</h4>
+		<h4>{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</h4>
 	</div>
 </div>
 <div class="table-col position-col">
-	Software Architect 1
+	{{profile?.ProfileTitle}} {{profile?.TotalExperience}}
 </div>
 <div class="table-col email-col">
-	test15@gmail.com
+	{{profile?.Email}}
 </div>
 <div class="table-col number-col">
-	9876543456
+	{{profile?.MobilePhone || "Yet to Provide"}}
 </div>
 <div class="table-col location-col">
-	Austin, Texas
+	{{profile?.CurrentLocation || "Yet to provide"}}
 </div>
 <div class="table-col others-col">
 	<button class="btn btn-arrow" 

@@ -10,7 +10,17 @@
 <ng-container *ngIf="viewLayout == 'grid'">
   <div class="job-listing-grid">
     <div class="row">
-      <div class="col-md-4 col-lg-4 job-card">
+      <ng-container *ngFor="let profile of Profiles">
+        <div class="col-md-4 col-lg-4 job-card" >
+          <app-job-card [profile]="profile"
+            [panelShow]="panelShow"
+            (panelHandler)="panelHandler($event)"
+          ></app-job-card>
+        </div>
+        <br/>
+      </ng-container>
+ 
+      <!-- <div class="col-md-4 col-lg-4 job-card">
         <app-job-card
           [panelShow]="panelShow"
           (panelHandler)="panelHandler($event)"
@@ -21,14 +31,9 @@
           [panelShow]="panelShow"
           (panelHandler)="panelHandler($event)"
         ></app-job-card>
-      </div>
-      <div class="col-md-4 col-lg-4 job-card">
-        <app-job-card
-          [panelShow]="panelShow"
-          (panelHandler)="panelHandler($event)"
-        ></app-job-card>
-      </div>
+      </div> -->
     </div>
+
   </div>
 </ng-container>
 
@@ -55,7 +60,9 @@
       </div>
     </div>
     <div class="table-row">
-      <app-job-list ></app-job-list>
+      <ng-container *ngFor="let profile of Profiles">
+      <app-job-list [profile]="profile"></app-job-list>
+      </ng-container>
     </div>
   </div>
 </ng-container>
