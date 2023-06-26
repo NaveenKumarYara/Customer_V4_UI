@@ -19,4 +19,14 @@ export class SlidepanelComponent implements OnInit {
   closePanel() {
     this.panelCloseHandler.emit();
   }
+
+  isDropdownOpen: boolean = false;
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  panelHandler(name: string) {
+    this.panelShow = name;
+  }
+  Job:any=[];
 }

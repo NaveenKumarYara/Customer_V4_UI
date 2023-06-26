@@ -37,8 +37,9 @@ import { JobReviewComponent } from './job-review/job-review.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { JobNotesComponent } from './job-notes/job-notes.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
 import { JobDocumentsComponent } from './job-documents/job-documents.component';
-import { JobCommunicationComponent } from './job-communication/job-communication.component';
+import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
 
 @NgModule({
 	declarations: [
@@ -61,8 +62,9 @@ import { JobCommunicationComponent } from './job-communication/job-communication
   JobReviewComponent,
 	SidepanelCardsComponent,
  	JobNotesComponent,
-  JobDocumentsComponent,
-  JobCommunicationComponent
+   ScheduleInterviewComponent,
+   JobDocumentsComponent,
+   ScheduleInterviewExternalComponent
 	],
 	imports: [
 	 CommonModule,
