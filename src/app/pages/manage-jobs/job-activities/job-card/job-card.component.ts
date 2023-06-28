@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js'
 
 @Component({
   selector: 'app-job-card',
@@ -11,6 +12,34 @@ export class JobCardComponent implements OnInit {
   @Output() panelHandler = new EventEmitter<string>(); 
   @Input() profile : any;
   currentRate = 3;
+
+  public chart = {
+    "datasets": [
+      { 
+        "data": [15, 50, 60], 
+        "label": "Line", 
+        "type": "radar",
+        borderColor: '#fbc849',
+        pointBackgroundColor: '#fbc849',
+        backgroundColor:'#fbc849',
+        pointBorderColor:'#fbc849'
+      }
+    ],
+    "labels": ["", "", ""],
+    "options": {
+      "legend": {
+        "text": "You awesome chart with average line",
+        "display": false,
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+
+    }
+  };  
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,

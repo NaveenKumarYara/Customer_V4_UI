@@ -8,142 +8,319 @@
 		</li>
 		<li>
 			<a href="javascript:void(0)">
-				<span class="mdi mdi-folder-outline"></span>
+				<span class="mdi mdi-list-status"></span>
 			</a>
 		</li>
 		<li>
 			<a href="javascript:void(0)">
-        <span class="mdi mdi-note-outline"></span>
+        <span class="mdi mdi-bookmark-outline"></span>
 			</a>
 		</li>
 		<li>
 			<a href="javascript:void(0)">
-        <span class="mdi mdi-note-edit-outline"></span>
+        <span class="mdi mdi-line-scan"></span>
 			</a>
 		</li>
 		<li>
 			<a href="javascript:void(0)">
-        <span class="mdi mdi-delete-outline"></span>
+        <span class="mdi mdi-view-dashboard-edit-outline"></span>
 			</a>
 		</li>
     <li>
+      <a href="javascript:void(0)">
+        <span class="mdi mdi-folder-outline"></span>  
+      </a>
+    </li>
+    <li>
 			<a href="javascript:void(0)" placement="left" ngbTooltip="Communication"  (click)="panelClick('communication')">
-				<span class="mdi mdi-forum-outline"></span>
+				<span class="mdi mdi-chat-outline"></span>
 			</a>
 		</li>
-		<li>
-			<a href="javascript:void(0)" placement="left" ngbTooltip="Job Review"  (click)="panelClick('job-review')">
-				<span class="mdi mdi-thumb-up-outline"></span>
-			</a>
+    <li>
+			<a href="javascript:void(0)">
+        <span class="mdi mdi-delete-outline"></span>
+      </a>
 		</li>
 	</ul>
 </div>
 <div class="col-container">
   <div class="top-container">
     <span class="status active">
-      {{profile?.JobStatus  | titlecase}}
-      <span class="mdi mdi-information-outline"></span>
+      <span class="status-info">
+        {{profile?.JobStatus  | titlecase}}
+        <span class="mdi mdi-information-outline"></span>
+      </span>
     </span>
-    <div ngbDropdown class="d-inline-block">
-			<button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-				<span class="mdi mdi-dots-horizontal"></span>
-			</button>
-			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-				<button ngbDropdownItem>Action - 1</button>
-				<button ngbDropdownItem>Action - 2</button>
-				<button ngbDropdownItem>Action - 3</button>
-			</div>
-		</div>
+    <span class="priority">
+      <span class="priority-info">
+        Resume Source
+      </span>
+    </span>
+   
     <div class="profile-info">
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
 			<h3>
         <span class="text-trim">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
-        <span class="mdi mdi-bookmark-outline"></span>
       </h3>
-			<h4>
+      <h4>
+        {{profile?.ProfileTitle}}
+      </h4>
+			<!-- <h4>
 				By <strong>{{profile?.CompanyName}}</strong> On <strong>{{profile?.CreatedOn | date:'mediumDate'}}</strong>
-			</h4>
+			</h4> -->
 		</div>
   </div>
   <div class="middle-container">
     <div class="top-section">
       <ul>
-        <li class="job-title">
-          <span class="mdi mdi-school-outline"></span>
-          {{profile?.ProfileTitle}}
+        <li>
+          <div class="location">
+            <span class="mdi mdi-map-marker-outline"></span>
+            {{profile?.CurrentLocation || "Yet to provide"}}
+          </div>
         </li>
-        <li>  {{profile?.TotalExperience}} Yrs</li>
+        <li>
+          <div class="location">
+            <span class="mdi mdi-briefcase-outline"></span>
+            {{profile?.TotalExperience}} Yrs
+          </div>
+        </li>
       </ul>
-      <div class="location">
-        <span class="mdi mdi-map-marker-outline"></span>
-        {{profile?.CurrentLocation || "Yet to provide"}}
-      </div>
     </div>
     <div class="middle-section">
       <div class="grid-cols">
         <div class="grid-col">
-          <div class="col-container">
-            <span class="icon icon-email">Icon</span>
-            <a href="mailto:{{profile?.Email}}">{{profile?.Email}}</a>
-          </div>
+          <span class="mdi mdi-email-arrow-right-outline"></span>
+          <a href="mailto:{{profile?.Email}}">
+            <span class="text-trim">
+              {{profile?.Email}}
+            </span>
+          </a>
         </div>
         <div class="grid-col">
-          <div class="col-container">
-            <span class="icon icon-phone">Icon</span>
+          <span class="mdi mdi-phone-classic"></span>
+          <span class="text-trim">
             {{profile?.MobilePhone || "Yet to Provide"}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="process-section">
+      <h4>Application Status</h4>
+      <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
+        <ul>
+            <li class="active">
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li>
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li>
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li>
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li>
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-container *ngIf="profile?.ResponseStatusId === 8">
+          <ul>
+            <li class="active">
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li>
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li>
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li>
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-container *ngIf="profile?.ResponseStatusId === 5">
+          <ul>
+            <li class="active">
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li>
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li>
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+        
+        <ng-container *ngIf="profile?.ResponseStatusId === 7">
+          <ul>
+            <li class="active">
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li>
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+        
+        <ng-container *ngIf="profile?.ResponseStatusId === 11 || profile?.ResponseStatusId === 12">
+          <ul>
+            <li class="active">
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li class="active">
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+        
+                  <ng-container *ngIf="profile?.ResponseStatusId === null || profile?.ResponseStatusId === 9">
+              <ul>
+            <li>
+              <span class="icon icon-submitted">Icon</span>
+              <h6>Submitted</h6>
+            </li>
+            <li>
+              <span class="icon icon-screening">Icon</span>
+              <h6>Screening</h6>
+            </li>
+            <li>
+              <span class="icon icon-shortlisted">Icon</span>
+              <h6>Shortlisted</h6>
+            </li>
+            <li>
+              <span class="icon icon-interview">Icon</span>
+              <h6>Interview</h6>
+            </li>
+            <li>
+              <span class="icon icon-hired">Icon</span>
+              <h6>Hired</h6>
+            </li>
+          </ul>
+        </ng-container>
+    </div>
+  </div>
+  <div class="card-chart-section">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 left-chart-col">
+        <div class="box-container">
+          <h4>
+            Arytic Check
+          </h4>
+          <div class="">
+            <canvas baseChart
+            chartType="radar"
+            [datasets]="chart.datasets"
+            [labels]="chart.labels"
+            [options]="chart.options">
+          </canvas>
           </div>
         </div>
       </div>
-      <div class="icon-nav">
-        <ul>
-          <li>
-            <a href="javascript:void(0)">
-              <span class="icon icon-education">Icon</span>
-              <h6>Education</h6>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <span class="icon icon-certificate">Icon</span>
-              <h6>Certification</h6>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <span class="icon icon-domain">Icon</span>
-              <h6>Domain</h6>
-            </a>
-          </li>
-        </ul>
+      <div class="col-md-6 col-lg-6 right-chart-col">
+        <div class="box-container">
+          <h4>
+            Profile Matching
+          </h4>
+          <div class="progress-circle">
+            <circle-progress
+            [percent]="profile?.MatchingPercentage"
+            [radius]="30"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="2"
+            [outerStrokeColor]="'#6262FF'"
+            [innerStrokeColor]="'#C0C0C0'"
+            [animationDuration]="0"
+            [responsive] = true
+            [showSubtitle] = false
+            ></circle-progress>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="bottom-section">
-      <h4>Arytic Certified</h4>
-      <ul>
-        <li class="active">
-          <span class="icon icon-skills">Icon</span>
-          <h6>Skills Fit</h6>
-        </li>
-        <li class="active">
-          <span class="icon icon-job">Icon</span>
-          <h6>Job Fit</h6>
-        </li>
-        <li>
-          <span class="icon icon-team">Icon</span>
-          <h6>Team Fit</h6>
-        </li>
-        <li>
-          <span class="icon icon-personality">Icon</span>
-          <h6>Personality Fit</h6>
-        </li>
-        <li>
-          <span class="icon icon-culture">Icon</span>
-          <h6>Culture Fit</h6>
-        </li>
-      </ul>
-    </div>
+  </div>
+  <div class="bottom-section">
+    <h4>Arytic Certified</h4>
+    <ul>
+      <li class="active">
+        <span class="icon icon-skills">Icon</span>
+        <h6>Skills Fit</h6>
+      </li>
+      <li class="active">
+        <span class="icon icon-job">Icon</span>
+        <h6>Job Fit</h6>
+      </li>
+      <li>
+        <span class="icon icon-team">Icon</span>
+        <h6>Team Fit</h6>
+      </li>
+      <li>
+        <span class="icon icon-personality">Icon</span>
+        <h6>Personality Fit</h6>
+      </li>
+      <li>
+        <span class="icon icon-culture">Icon</span>
+        <h6>Culture Fit</h6>
+      </li>
+    </ul>
   </div>
   <div class="skills-grid">
     <h4>Skills</h4>
@@ -172,156 +349,5 @@
       </owl-carousel-o>
     </div>
   </div>
-  <div class="process-section">
-    <h4>Application Status</h4>
-    <ng-container *ngIf="profile?.ResponseStatusId > 12 || profile?.ResponseStatusId === 4">
-      <ul>
-          <li class="active">
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li>
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li>
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li>
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li>
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-            <ng-container *ngIf="profile?.ResponseStatusId === 8">
-          
-      <ul>
-          <li class="active">
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li>
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li>
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li>
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-            <ng-container *ngIf="profile?.ResponseStatusId === 5">
-          
-      <ul>
-          <li class="active">
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li>
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li>
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-      
-              <ng-container *ngIf="profile?.ResponseStatusId === 7">
-            <ul>
-          <li class="active">
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li>
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-      
-                <ng-container *ngIf="profile?.ResponseStatusId === 11 || profile?.ResponseStatusId === 12">
-            <ul>
-          <li class="active">
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li class="active">
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-      
-                <ng-container *ngIf="profile?.ResponseStatusId === null || profile?.ResponseStatusId === 9">
-            <ul>
-          <li>
-            <span class="icon icon-submitted">Icon</span>
-            <h6>Submitted</h6>
-          </li>
-          <li>
-            <span class="icon icon-screening">Icon</span>
-            <h6>Screening</h6>
-          </li>
-          <li>
-            <span class="icon icon-shortlisted">Icon</span>
-            <h6>Shortlisted</h6>
-          </li>
-          <li>
-            <span class="icon icon-interview">Icon</span>
-            <h6>Interview</h6>
-          </li>
-          <li>
-            <span class="icon icon-hired">Icon</span>
-            <h6>Hired</h6>
-          </li>
-        </ul>
-      </ng-container>
-  </div>
+ 
 </div>

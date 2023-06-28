@@ -41,6 +41,7 @@ import { ScheduleInterviewComponent } from './schedule-interview/schedule-interv
 import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
 import { JobCommunicationComponent } from './job-communication/job-communication.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
 	declarations: [
@@ -83,6 +84,7 @@ import { JobCommunicationComponent } from './job-communication/job-communication
 	 CarouselModule,
 	 NgbCollapseModule,
 	 CKEditorModule,
+	 NgChartsModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

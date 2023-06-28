@@ -44,13 +44,11 @@ export class JobActivitiesComponent implements OnInit {
 		params = params.append("JobId",  Number(this.JobId));
     params = params.append("FilterStatus",FilterStatus );
     params = params.append("SearchString",Search);
-      this._service.GetEmployerService("/api/GetCustomerApplicantJobProfiles?",params).subscribe((response:any) => { 
-        this.Profiles =  response;
-      });
-
-
+    this._service.GetEmployerService("/api/GetCustomerApplicantJobProfiles?",params).subscribe((response:any) => { 
+      this.Profiles =  response;
+      console.log(response);
+    });
   }
-
 
   panelHandler(name: string) {
     this.panelShow = name;

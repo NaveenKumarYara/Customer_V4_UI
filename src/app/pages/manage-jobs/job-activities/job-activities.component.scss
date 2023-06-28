@@ -4,6 +4,7 @@
 .job-listing-grid {
   .job-card {
     position: relative;
+		margin-bottom: 20px;
   }
 }
 
@@ -71,6 +72,44 @@
 			text-align: right;
 		}	
 	}
+}
+
+.job-title-section {
+	@include flexbox();
+	@include align-items(center);
+	margin-bottom: 30px;
+
+	.right-navigation {
+    margin-left: auto;
+    border: 1px solid $stroke-gray;
+    border-radius: 32px;
+    overflow: hidden;
+
+    ul {
+      @include no-style();
+      @include flexbox();
+
+      li {
+        a {
+          width: 44px;
+          height: 40px;
+          @include flexbox();
+          @include align-items(center);
+          @include justify-content(center);
+          color: $medium-gray;
+
+          &:hover {
+            background-color: $blue;
+            color: $white;
+          }
+        }
+
+        &:not(:first-child) {
+          border-left: 1px solid $stroke-gray;
+        }
+      }
+    }
+  }
 }
 
 .job-listing-table {
