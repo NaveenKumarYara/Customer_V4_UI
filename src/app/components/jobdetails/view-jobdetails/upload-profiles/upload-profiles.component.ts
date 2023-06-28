@@ -1663,12 +1663,25 @@ GetJobRequiredDomain(PId) {
 
   SaveJobDataSource()
   {
-    let str = this.itemsArray.find(x=>x.itemName == this.selectedDItem);
-    this.source.userId = this.customerName.UserId;
-    this.source.JobId = this.data.jobId;
-    this.source.ProfileId = this.CProfileId;
-    this.source.DataSourceId = 1;
-    this.source.DataSource = this.selectedDItem;
+    if(this.selectedDItem != undefined)
+    {
+      let str = this.itemsArray.find(x=>x.itemName == this.selectedDItem);
+      this.source.userId = this.customerName.UserId;
+      this.source.JobId = this.data.jobId;
+      this.source.ProfileId = this.CProfileId;
+      this.source.DataSourceId = 1;
+      this.source.DataSource = this.selectedDItem;
+    }
+    else
+    {
+      let str = this.itemsArray.find(x=>x.itemName == this.selectedDItem);
+      this.source.userId = this.customerName.UserId;
+      this.source.JobId = this.data.jobId;
+      this.source.ProfileId = this.CProfileId;
+      this.source.DataSourceId = 1;
+      this.source.DataSource = 'Individual';
+    }
+
    this._service.PostService(this.source,'IdentityAPI/api/JobDataSource').subscribe(
      data => {
       this.source = new soInfo();

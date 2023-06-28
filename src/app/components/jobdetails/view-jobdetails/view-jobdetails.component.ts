@@ -656,6 +656,11 @@ export class ViewJobdetailsComponent implements OnInit,OnDestroy {
     }
   }
 
+  MyProfilesExport()
+  {
+    this.child.export();
+  }
+
   updateinprogressstatusp(val) {
     this.sortBy = 1;
     this.statusid = 17;

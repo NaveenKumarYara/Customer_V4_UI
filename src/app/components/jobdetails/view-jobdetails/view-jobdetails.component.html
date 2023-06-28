@@ -1023,7 +1023,9 @@
 		
 		</div>
 
-
+		<button class="btn btn-border pull-right">
+			<a href="javascript:void(0)" (click)="MyProfilesExport()"> Export to CSV </a>
+		</button>
 
 
 		<div class="row" data-step="9" data-title="Step 9" data-intro="This section enables the user to search the profiles and apply filters, sort by matching." data-position='top'>
@@ -1034,13 +1036,20 @@
 			
 			<div *ngIf="showDetailadvancesearch">
 				<app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
+			
+			
 			</div>
-		</div>
-	
 
+		
+		</div>
+
+	
+	
+	
 		<div class="row" data-step="10" data-title="Step 10" data-intro="This section enables the user to view the list of smart cards of the candidate profiles." data-position='top'>
 
 			<div>
+	
 				<div class="tab-content">
 					<div id="applied" class="tab-pane fade in active">
 						<app-viewjobdetails-candidate-profile [jobid]="jobid" [statusid]="statusid" [jobStatus]="jobStatus"

@@ -7,8 +7,8 @@
     <span class="profile__count">{{processedProfiles.length}} Profiles</span>
     <h3>Upload Profiles</h3>
     <section id="slider">
-      <span class="slider_prev" *ngIf="currentRecordIndex>=0" (click)="selectPreviousCandidate()"><span
-          class="sr-only">Previous</span></span>
+      <!-- <span class="slider_prev" *ngIf="currentRecordIndex>=0" (click)="selectPreviousCandidate()"><span
+          class="sr-only">Previous</span></span> -->
       <ng-container *ngFor="let c of  processedProfiles;let j = index">
 
         <input type="radio" name="slider" id="{{'s'+[j+1]}}" *ngIf="j === currentRecordIndex" checked>
@@ -35,7 +35,7 @@
           <span class="notes">InProgress</span>
         </div>
       </label>
-      <span class="slider_next" (click)="selectNextCandidate()"><span class="sr-only">Next</span></span>
+      <!-- <span class="slider_next" (click)="selectNextCandidate()"><span class="sr-only">Next</span></span> -->
     </section>
     <div class="question-section xs-margin" *ngIf="uploadRes.length>0">
       <!-- <div class="question-section xs-margin"> -->
@@ -120,7 +120,7 @@
             <ul>
               <li [ngClass]="showThis == 'JobFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'JobFit'">
-                  Job Fit ({{matchingParameterDetails?.Jobfit_Total}}%)
+                  Job Fit ({{matchingParameterDetails?.Jobfit_Total || 0}}%)
                   <ng-container>
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
@@ -128,7 +128,7 @@
               </li>
               <li [ngClass]="showThis == 'SkillsFit'? 'active': null">
                 <a href="javascript:void(0)" (click)="showThis = 'SkillsFit'">
-                  Skills Fit ({{matchingParameterData?.Skillfit_Total}}%)
+                  Skills Fit ({{matchingParameterData?.Skillfit_Total || 0}}%)
                   <ng-container *ngIf="skillfitcheck.length>0">
                     <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
 
