@@ -1447,7 +1447,6 @@ Job = {
     {
       this.proForm.value.PhoneNumber = '+1' + this.proForm.value.PhoneNumber;
     }
-
     this._service.PostService(this.proForm.value,'ProfileAPI/api/InsertUserProfile').subscribe(
       data1 => {
         this.editPersonalDetails = false;
@@ -1586,7 +1585,27 @@ Job = {
 
   EditProfile(pro)
   {
-    this.editPersonalDetails = true;  
+    debugger
+    if(pro.UserName.includes('@noemail.com'))
+    {
+      this.editPersonalDetails = true;  
+      this.proForm = this.fb.group({
+        'ProfileId': [pro.ProfileId, Validators.required],
+        'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
+        'FirstName': [pro.FirstName, Validators.nullValidator],
+        'LastName': [pro.LastName, Validators.nullValidator],
+        'Email': ['yet to provide',[Validators.required, Validators.email]],
+        'MobilePhone': [pro.MobilePhone, Validators.nullValidator],
+        'Address1': [' ', Validators.nullValidator],
+        'CityName': ['', Validators.nullValidator],
+        'StateName': ['', Validators.nullValidator],
+        'StateId': [0, Validators.nullValidator],
+        'ZipCode': ['', Validators.nullValidator]   
+      })   
+    }
+    else
+    {
+      this.editPersonalDetails = true;  
       this.proForm = this.fb.group({
         'ProfileId': [pro.ProfileId, Validators.required],
         'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
@@ -1599,7 +1618,9 @@ Job = {
         'StateName': ['', Validators.nullValidator],
         'StateId': [0, Validators.nullValidator],
         'ZipCode': ['', Validators.nullValidator]   
-      })   
+      }) 
+    }
+  
     
 
   }
