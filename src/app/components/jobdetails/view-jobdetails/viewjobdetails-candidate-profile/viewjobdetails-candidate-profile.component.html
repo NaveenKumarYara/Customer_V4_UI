@@ -50,12 +50,12 @@
       </ul>
     </ng-container>
   </div>
-  <div class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+  <div class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14) && profile?.ResponseStatusId != 9">
     <a href="javascript:void(0)" data-toggle="dropdown" tooltip="Processing profile from one stage to another."
       placement="left">
       Tooltip
     </a>
-    <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14) && jobStatus != 'Closed'">
+    <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14) && jobStatus != 'Closed' && profile?.ResponseStatusId != 9">
       <ul role="menu" class="dropdown-menu dropdown-menu-right">
         <!-- applied -->
         <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
