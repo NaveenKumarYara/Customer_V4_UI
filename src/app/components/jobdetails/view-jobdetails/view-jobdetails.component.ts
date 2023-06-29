@@ -243,7 +243,7 @@ export class ViewJobdetailsComponent implements OnInit,OnDestroy {
     localStorage.removeItem('vjobId');
   }
 
-  OpenInviteProfileDialog() {
+  OpenInviteProfileDialog(jobId, jobtitle, ClientName) {
     // if (this.jobStatus !== 'InActive') {
       if (this.closedjob === 2)
       {
@@ -269,7 +269,9 @@ export class ViewJobdetailsComponent implements OnInit,OnDestroy {
         height : '100vh',
         data: {
           animal: 'panda',
-          jobId: this.jobid
+          jobId: jobId,
+          jobTitle: jobtitle,
+          ClientName: ClientName
 
         }
       }

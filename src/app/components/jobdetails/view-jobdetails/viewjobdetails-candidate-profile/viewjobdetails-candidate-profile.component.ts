@@ -787,14 +787,24 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         if (result.value === true) {
           this.requestRef.CustomerId = this.customer.CustomerId;
           this.requestRef.UserId = this.customer.UserId;
-          this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-          this.requestRef.FromEmail = this.customer.Email;
-          this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
           this.requestRef.ProfileId = profile.ProfileId;
-          this.requestRef.ToEmailID = profile.Email;
           this.requestRef.UserName = profile.FirstName;
+          this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          
+          this.requestRef.ToEmailID = profile.Email;
+          this.requestRef.ApplicationName = profile.CompanyName;
+          this.requestRef.CompanyName = profile.CompanyName;
+          this.requestRef.FromId = "donotreply@arytic.com";
+          
+          debugger;
+          console.log(this.requestRef)
+          
+          //this.requestRef.FromEmail = this.customer.Email;
+          //this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
+          
+
           this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
-            this.CommentProfile = undefined;
+            //this.CommentProfile = undefined;
             this.requestRef = new RequestRefernce();
             // let message = "Requested Reference!";
             // let action = "Success";
@@ -2046,7 +2056,9 @@ export class RequestRefernce {
   public AppLink: string;
   public FromEmail: string;
   public CompanyName: string;
-  public Comment: string;
+ // public Comment: string;
+  public ApplicationName:string;
+  public FromId: string;
 }
 
 export class JobStatus {

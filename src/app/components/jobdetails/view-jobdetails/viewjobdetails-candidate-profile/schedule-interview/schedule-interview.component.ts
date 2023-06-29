@@ -122,7 +122,8 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService,private _service: ApiService, 
+  private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -277,7 +278,7 @@ export class ScheduleInterviewComponent implements OnInit {
       'toUserId': [0, Validators.required],
       'Title':['', Validators.nullValidator],
       'Attachment': [null, Validators.nullValidator],
-      'FileExtension': ['', Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],  
       'DocUrl': ['', Validators.nullValidator]
     });
     this.Addform = this.fb.group({

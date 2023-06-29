@@ -111,7 +111,7 @@
 								Active</button>
 						</ng-template>
 					
-						<button class="btn btn-border" (click)="OpenInviteProfileDialog()">
+						<button class="btn btn-border" (click)="OpenInviteProfileDialog(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo?.JobTitle,jobdetailsbasicinfo?.ClientName)">
 							<span class="icon-forward">Icon</span>
 							Invite
 						</button>
@@ -850,7 +850,7 @@
 							<span class="no"><i class="fa fa-eye"></i></span>
 						</a> -->
 
-						<a  tooltip="Invite Candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog();ttClose()" class="btn btn-outline-primary light">
+						<a  tooltip="Invite Candidate to current job position" placement="top" href="javascript:void(0);" (click)="OpenInviteProfileDialog(jobdetailsbasicinfo?.JobId,jobdetailsbasicinfo?.JobTitle);ttClose()" class="btn btn-outline-primary light">
 							Invite Candidate 
 							<span class="no"><i class="fa fa-envelope"></i></span>
 						</a>

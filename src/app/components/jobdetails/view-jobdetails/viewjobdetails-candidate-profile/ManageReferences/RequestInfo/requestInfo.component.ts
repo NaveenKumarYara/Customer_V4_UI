@@ -98,12 +98,13 @@ export class RequestdialogComponent {
   this.requestRef.CustomerId= this.customer.CustomerId;
   this.requestRef.UserId= this.customer.UserId;
   this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin +';RsId=' + this.data.Qid;
-  this.requestRef.FromEmail = this.customer.Email;
-  this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
+  // this.requestRef.FromEmail = this.customer.Email;
+  // this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
   this.requestRef.ProfileId = this.data.ProfileId;
   this.requestRef.ToEmailID = this.data.Email;
   this.requestRef.UserName = this.data.FirstName;
   this.requestRef.CompanyName = this.data.CompanyName;
+  this.requestRef.FromId = "donotreply@arytic.com";
   this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
     this.loading = false;
     this.CommentProfile = undefined;
@@ -201,14 +202,16 @@ export class GetQuestionnarieResponse {
 
 export class RequestRefernce
 {
-   public  ToEmailID: string;
-   public  CustomerId:number;
-   public  UserId:number;
-   public  ProfileId:number;
-   public  UserName: string;
-   public  AppLink: string;
-   public  FromEmail: string;
-   public  CompanyName: string;
-   public  Comment: string;
+  public ToEmailID: string;
+  public CustomerId: number;
+  public UserId: number;
+  public ProfileId: number;
+  public UserName: string;
+  public AppLink: string;
+  public FromEmail: string;
+  public CompanyName: string;
+ // public Comment: string;
+  public ApplicationName:string;
+  public FromId: string;
 }
 

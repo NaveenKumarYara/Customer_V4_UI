@@ -246,4 +246,5 @@ export class Settings {
   CheckCustProfile:string;
   MyNotes:string;
   EmployerbaseUrl:string;
+  customerName: string;
 }

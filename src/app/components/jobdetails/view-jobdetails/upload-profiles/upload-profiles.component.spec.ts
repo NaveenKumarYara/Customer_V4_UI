@@ -1993,6 +1993,7 @@ GetJobRequiredDomain(PId) {
     this.inviteinfo.CandFullName = email;
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
+    this.inviteinfo.fromID = this.data.fromId;
     this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp;
     this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data === 0) {
@@ -2081,6 +2082,7 @@ export class InviteInfo {
   ToEmailId: string;
   ApplicationName: string;
   ClientLogo: string;
+  fromID: string;
 }
 
 export class UploadResponse {

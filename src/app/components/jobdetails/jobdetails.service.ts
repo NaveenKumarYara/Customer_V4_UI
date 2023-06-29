@@ -36,7 +36,8 @@ import { debounceTime } from 'rxjs/operators';
 export class JobdetailsService {
   // baseUrll = 'http://api.tenendus.com:1090/';
   baseUrll1 = 'http://localhost:61297/';
-  constructor(private _http: Http, private route: ActivatedRoute, private router: Router,private spinner: NgxSpinnerService,private http: HttpClient, private settingsService: SettingsService) {
+  constructor(private _http: Http, private route: ActivatedRoute, private router: Router,private spinner: NgxSpinnerService,private http: HttpClient, 
+    private settingsService: SettingsService) {
   }
 
   private detailsAdvanceSearch = new BehaviorSubject(false);
@@ -542,6 +543,7 @@ export class JobdetailsService {
 }
 
   RequestRefernce(body) {
+    debugger;
     return this.http.post(this.settingsService.settings.CustomerRequestRefernce, body)
     .map((res: Response) => res)
     .catch((error: any) => {

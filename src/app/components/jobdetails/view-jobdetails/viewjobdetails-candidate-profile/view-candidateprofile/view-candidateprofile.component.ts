@@ -1691,9 +1691,8 @@ export class GetQuestionnarieResponse {
     public ResponseValue: string
   ) { }
 }
-
 export class RequestRefernce {
-  public ToEmailID: string;
+  public ToEmailId: string;
   public CustomerId: number;
   public UserId: number;
   public ProfileId: number;
@@ -1701,7 +1700,9 @@ export class RequestRefernce {
   public AppLink: string;
   public FromEmail: string;
   public CompanyName: string;
-  public Comment: string;
+ // public Comment: string;
+  public ApplicationName:string;
+  public FromId: string;
 }
 
 
