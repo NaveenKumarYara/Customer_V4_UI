@@ -386,7 +386,26 @@ Job = {
 
   EditProfile(pro)
   {
-    this.editPersonalDetails = true;  
+    if(pro.UserName.includes('@noemail.com'))
+    {
+      this.editPersonalDetails = true;  
+      this.proForm = this.fb.group({
+        'ProfileId': [pro.ProfileId, Validators.required],
+        'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
+        'FirstName': [pro.FirstName, Validators.nullValidator],
+        'LastName': [pro.LastName, Validators.nullValidator],
+        'Email': ['yet to provide',[Validators.required, Validators.email]],
+        'MobilePhone': [pro.MobilePhone, Validators.nullValidator],
+        'Address1': [' ', Validators.nullValidator],
+        'CityName': ['', Validators.nullValidator],
+        'StateName': ['', Validators.nullValidator],
+        'StateId': [0, Validators.nullValidator],
+        'ZipCode': ['', Validators.nullValidator]   
+      })   
+    }
+    else
+    {
+      this.editPersonalDetails = true;  
       this.proForm = this.fb.group({
         'ProfileId': [pro.ProfileId, Validators.required],
         'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
@@ -399,7 +418,8 @@ Job = {
         'StateName': ['', Validators.nullValidator],
         'StateId': [0, Validators.nullValidator],
         'ZipCode': ['', Validators.nullValidator]   
-      })   
+      }) 
+    }  
     
 
   }
