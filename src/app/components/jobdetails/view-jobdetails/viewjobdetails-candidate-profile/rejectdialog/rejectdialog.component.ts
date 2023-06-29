@@ -103,7 +103,7 @@ export class RejectdialogComponent implements OnInit {
       this.jobdetailscustomer = res;
       this.eventStat.emit(null);
       //this.SaveNotes();
-      if(this.isShown1!=false&&this.isShown2!=false)
+      if(this.isShown2==true)
       {
       this.SendStatusEmail();
       }
@@ -290,6 +290,9 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = " ";
       this.savenote.Doc = this.data.CUserId.toString() + "," + this.customer.UserId.toString();
+      this.SendEmail();
+      this.selectedComments = "";
+      this.EmailId = " ";
     }
 
     if (this.isShown1 == true && this.isShown2 == true) {
@@ -297,6 +300,9 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = this.savenote.OtherInfo;
       this.savenote.Doc =this.teammemberslist.map((x) => x.UserId).toString() + "," +this.data.CUserId.toString() +"," +this.customer.UserId.toString();
+      this.SendEmail();
+      this.selectedComments = "";
+      this.EmailId = " ";
     }
     if(this.isShown1==false&&this.isShown2==false)
     {
@@ -381,12 +387,7 @@ export class RejectdialogComponent implements OnInit {
      
     
      });
-     if(this.isShown2=true)
-  {
-    this.SendEmail();
-    this.selectedComments = "";
-    this.EmailId = " ";
-  } 
+
    }
   uploadMultiple() {
     for (let i = 0; i < this.uploader.queue.length; i++) {

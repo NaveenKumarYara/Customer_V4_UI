@@ -872,6 +872,20 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     Email,
     FirstName,
     LastName) {
+      if(Email.includes('@noemail.com'))
+      {
+        swal(
+          {
+            
+            title: 'Please add valid email to request ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            confirmButtonText: 'ok.',
+          });
+      }
+      else
+      {
     swal(
       {
         
@@ -921,6 +935,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
         }
       })
+    }
   }
 
 
@@ -933,23 +948,39 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     ResponseStatusId,
     CCPID,
     UserId,IsUploaded) {
-    swal(
+      if(Email.includes('@noemail.com'))
       {
-        
-        title: 'Hey would you like to resend email to ' + FirstName + ' ' + LastName,
-        showConfirmButton: true,
-        showCancelButton: true,
-        type: "info",
-        confirmButtonColor: '#66dab5',
-        cancelButtonColor: '#FF0000',
-        confirmButtonText: 'Yes,Proceed.',
-        cancelButtonText: 'No'
-      }).then((result) => {
-        if (result.value === true) {
-             this.OpenSendEmailDialog(NoEmail,Email,FirstName,LastName,JobResponseId,ProfileId,ResponseStatusId,CCPID,UserId,IsUploaded);
+        swal(
+          {
+            
+            title: 'Please add valid email to request ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            confirmButtonText: 'ok.',
+          });
+      }
+      else
+      {
+        swal(
+          {
+            
+            title: 'Hey would you like to resend email to ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            showCancelButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            cancelButtonColor: '#FF0000',
+            confirmButtonText: 'Yes,Proceed.',
+            cancelButtonText: 'No'
+          }).then((result) => {
+            if (result.value === true) {
+                 this.OpenSendEmailDialog(NoEmail,Email,FirstName,LastName,JobResponseId,ProfileId,ResponseStatusId,CCPID,UserId,IsUploaded);
+    
+            }
+          })
+      }
 
-        }
-      })
   }
 
   RequestAchivement(profile) {
