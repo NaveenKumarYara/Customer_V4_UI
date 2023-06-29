@@ -1,47 +1,93 @@
 <div class="job-title-section">
-  <div class="right-navigation">
-    <ul>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-briefcase-edit-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-briefcase-eye-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-tray-arrow-up"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-share-all-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-email-arrow-right-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-note-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-folder-outline"></span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="mdi mdi-star-outline"></span>
-        </a>
-      </li>
-    </ul>
+  <div class="title"  *ngIf="JobDetail">
+    <div class="left-container">
+      <div class="top">
+        <h3>{{JobDetail?.JobTitle}}</h3>
+        <span class="status active" *ngIf="JobDetail?.JobStatus != 'InActive'">{{JobDetail?.JobStatus}}</span>
+        <span class="status inactive" *ngIf="JobDetail?.JobStatus === 'InActive'">{{JobDetail?.JobStatus}}</span>
+      </div>
+      <div class="bottom">
+        <div class="company">
+          {{JobDetail?.ClientName || "Not Provided"}}
+        </div>
+        <div class="highlight">
+          Arytic ID: {{JobDetail?.JobId}}
+        </div>
+        <ul>
+          <li>
+            <span class="mdi mdi-map-marker-outline"></span>
+            {{JobDetail?.JobLocations.split('|')[0]}}
+          </li>
+          <li>
+            <span class="mdi mdi-calendar-blank-outline"></span>
+            {{JobDetail?.JobPositionId || "Not Provided"}}
+          </li>
+          <li>
+            <span class="mdi mdi-account-group-outline"></span>
+            {{JobDetail?.NumberOfVacancies}} Positions
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right-navigation">
+      <ul>
+        <li>
+          <a href="#" placement="top" ngbTooltip="View Edit Job">
+            <span class="mdi mdi-view-dashboard-edit-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Upload Resume">
+            <span class="mdi mdi-tray-arrow-up"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Job Share">
+            <span class="mdi mdi-share-all-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Job Email">
+            <span class="mdi mdi-email-arrow-right-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Job Note">
+            <span class="mdi mdi-note-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Job Documents">
+            <span class="mdi mdi-folder-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Add Candidate">
+            <span class="mdi mdi-account-star-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Add Job">
+            <span class="mdi mdi-briefcase-plus-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Add Team Member">
+            <span class="mdi mdi-email-plus-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Add Contact">
+            <span class="mdi mdi-account-multiple-plus-outline"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" placement="top" ngbTooltip="Reviews">
+            <span class="mdi mdi-star-outline"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 

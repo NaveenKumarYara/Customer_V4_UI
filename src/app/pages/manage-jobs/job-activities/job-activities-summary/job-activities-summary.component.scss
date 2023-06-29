@@ -115,11 +115,19 @@
   }
 }
 
+.buttons-cols {
+  @include flexbox();
+  @include align-items(center);
+  gap: 20px;
+}
+
 .chart-view,
 .table-view {
   h3 {
     font-size: $font-size-20;
     color: $darkest-blue;
+    margin-bottom: 20px;
+    font-weight: 600;
   }
 }
 
@@ -152,6 +160,21 @@
 
     .right-container {
       margin-left: auto;
+      gap: 15px;
+      @include flexbox();
+
+      .form-group {
+        .mdi {
+          left: 9px;
+          top: 5px;
+        }
+      }
+
+      .form-select {
+        height: 36px;
+        padding-left: 30px;
+        padding-right: 36px;
+      }
     }
 
     .top {
@@ -268,13 +291,15 @@
   }
 
   .pryamid-col {
-    flex: 0 0 430px;
-    max-width: 430px;
+    flex: 0 0 400px;
+    max-width: 400px;
   }
 
   .data-view-col {
-    flex: 0 0 calc(100% - 430px);
-    max-width: calc(100% - 430px);
+    border-left: 1px solid $stroke-gray;
+    flex: 0 0 calc(100% - 400px);
+    max-width: calc(100% - 400px);
+    padding-left: 30px;
   }
 }
 
@@ -418,6 +443,23 @@
       &:after {
         display: none;
       }
+    }
+  }
+}
+
+.table-box-container {
+  height: 250px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.table-bottom {
+  margin-top: 15px;
+  
+  .btn {
+    &.btn-link {
+      font-weight: 600;
+      text-decoration: none;
     }
   }
 }

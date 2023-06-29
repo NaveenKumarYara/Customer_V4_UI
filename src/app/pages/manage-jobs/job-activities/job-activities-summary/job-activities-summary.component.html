@@ -1,44 +1,26 @@
 <div class="job-details-section" *ngIf="JobDetail">
   <div class="title">
     <div class="left-container">
-      <div class="top">
-        <a href="javascript:void(0)" class="btn-back" (click)="backClicked()">
-          <span class="mdi mdi-arrow-left"></span>
-        </a>
-        <h3>{{JobDetail?.JobTitle}}</h3>
-
-          <span class="status active" *ngIf="JobDetail.JobStatus != 'InActive'">{{JobDetail?.JobStatus}}</span>
-          <span class="status inactive" *ngIf="JobDetail.JobStatus === 'InActive'">{{JobDetail?.JobStatus}}</span>
-  
-     
-        <!-- <a href="#" class="btn-view">
-          <span class="mdi mdi-account-arrow-right-outline"></span>
-        </a> -->
-      </div>
-      <div class="bottom">
-        <div class="company">
-          {{JobDetail?.ClientName || "Not Provided"}}
-        </div>
-        <div class="highlight">
-          Arytic ID: {{JobDetail?.JobId}}
-        </div>
-        <ul>
-          <li>
-            <span class="mdi mdi-map-marker-outline"></span>
-            {{JobDetail?.JobLocations.split('|')[0]}}
-          </li>
-          <li>
-            <span class="mdi mdi-calendar-blank-outline"></span>
-            {{JobDetail?.JobPositionId || "Not Provided"}}
-          </li>
-          <li>
-            <span class="mdi mdi-account-group-outline"></span>
-            {{JobDetail?.NumberOfVacancies}} Positions
-          </li>
-        </ul>
+      <div class="buttons-cols">
+        <button class="btn btn-with-icon">
+          <span class="mdi mdi-lightbulb-outline"></span> 
+          Suggested Profiles
+        </button>
+        <button class="btn btn-with-icon">
+          <span class="mdi mdi-star-outline"></span> 
+          Wishlisted Profile
+        </button>
       </div>
     </div>
-    <div class="right-container">
+    <div class="right-container ">
+      <div class="form-container">
+        <div class="form-group">
+          <span class="mdi mdi-swap-vertical"></span>
+          <select class="form-select">
+            <option value="Sort">Sort</option>
+          </select>
+        </div>
+      </div>
       <label class="toggle" for="myToggle">
         <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="myToggle">
         <div class="toggle__fill"></div>
@@ -87,125 +69,129 @@
     </div>
     <div class="table-view" *ngIf="isChecked == true">
       <div class="top-container">
-        <h3>Weekly Status of Jobs</h3>
-        <a href="#" class="btn btn-link">Full View</a>
+        <h3>Weekly status of Applicants based on Resume Source</h3>
       </div>
-      <div class="table-container">
-        <div class="table-row table-header-row">
-          <div class="table-col name-col">
-            Job Forwarded
+      <div class="table-box-container">
+        <div class="table-container">
+          <div class="table-row table-header-row">
+            <div class="table-col name-col">
+              Resume Sources (300)
+            </div>
+            <div class="table-col">
+              Uploaded
+            </div>
+            <div class="table-col">
+              Applied
+            </div>
+            <div class="table-col">
+              Screening
+            </div>
+            <div class="table-col">
+              Shorlisted
+            </div>
+            <div class="table-col">
+              Interviewed
+            </div>
+            <div class="table-col">
+              Hired
+            </div>
           </div>
-          <div class="table-col">
-            New
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+              <span class="text-ellipsis">Linkedin (250)</span>
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              0
+            </div>
+            <div class="table-col">
+              2
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              1
+            </div>
           </div>
-          <div class="table-col">
-            Active
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+              <span class="text-ellipsis">Bullhorn (300)</span>
+            </div>
+            <div class="table-col">
+              17
+            </div>
+            <div class="table-col">
+              10
+            </div>
+            <div class="table-col">
+              -
+            </div>
+            <div class="table-col">
+              39
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              1
+            </div>
           </div>
-          <div class="table-col">
-            Closed
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+              <span class="text-ellipsis">Quinnax (150)</span>
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              2
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              1
+            </div>
           </div>
-          <div class="table-col">
-            Interview
-          </div>
-          <div class="table-col">
-            Closure
-          </div>
-          <div class="table-col">
-            Freezed
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+              <span class="text-ellipsis">AFS (10)</span>
+            </div>
+            <div class="table-col">
+              17
+            </div>
+            <div class="table-col">
+              10
+            </div>
+            <div class="table-col">
+              -
+            </div>
+            <div class="table-col">
+              39
+            </div>
+            <div class="table-col">
+              1
+            </div>
+            <div class="table-col">
+              1
+            </div>
           </div>
         </div>
-        <div class="table-row table-col-row">
-          <div class="table-col name-col">
-            <span class="text-ellipsis">Telsa</span>
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            0
-          </div>
-          <div class="table-col">
-            2
-          </div>
-          <div class="table-col">
-            3
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            1
-          </div>
-        </div>
-        <div class="table-row table-col-row">
-          <div class="table-col name-col">
-            <span class="text-ellipsis">AFS</span>
-          </div>
-          <div class="table-col">
-            17
-          </div>
-          <div class="table-col">
-            10
-          </div>
-          <div class="table-col">
-            -
-          </div>
-          <div class="table-col">
-            39
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            1
-          </div>
-        </div>
-        <div class="table-row table-col-row">
-          <div class="table-col name-col">
-            <span class="text-ellipsis">Quinnax</span>
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            2
-          </div>
-          <div class="table-col">
-            3
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            1
-          </div>
-        </div>
-        <div class="table-row table-col-row">
-          <div class="table-col name-col">
-            <span class="text-ellipsis">AFS</span>
-          </div>
-          <div class="table-col">
-            17
-          </div>
-          <div class="table-col">
-            10
-          </div>
-          <div class="table-col">
-            -
-          </div>
-          <div class="table-col">
-            39
-          </div>
-          <div class="table-col">
-            1
-          </div>
-          <div class="table-col">
-            1
-          </div>
-        </div>
+      </div>
+      <div class="d-flex justify-content-end table-bottom">
+        <a href="javascript:void(0)" class="btn btn-link">Full View</a>
       </div>
     </div>
   </div>

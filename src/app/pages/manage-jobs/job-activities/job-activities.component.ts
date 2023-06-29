@@ -33,9 +33,17 @@ export class JobActivitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetJobAppliedProfilesDetail(0,'');
+    if(this.JobId!=null)
+    {
+      this.GetJobDetail();
+    }
   }
 
-
+  GetJobDetail() {       
+    this._service.GetEmployerService("/api/GetCustomerJobDetailsInfo?JobId=", Number(this.JobId)).subscribe((response:any) => { 
+      this.JobDetail =  response[0];
+    });
+  }
   
   GetJobAppliedProfilesDetail(FilterStatus: string | number | boolean,Search: string)
   {       

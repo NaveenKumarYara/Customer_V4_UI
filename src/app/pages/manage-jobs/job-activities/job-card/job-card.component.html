@@ -2,42 +2,42 @@
 <div class="sticky-navigation">
 	<ul>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" placement="start" ngbTooltip="Share Profile">
         <span class="mdi mdi-share-all-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" placement="start" ngbTooltip="Change Application Status">
 				<span class="mdi mdi-list-status"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" placement="start" ngbTooltip="Bookmark">
         <span class="mdi mdi-bookmark-outline"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" placement="start" ngbTooltip="Arytic Scan">
         <span class="mdi mdi-line-scan"></span>
 			</a>
 		</li>
-		<li>
-			<a href="javascript:void(0)">
+    <li>
+			<a href="javascript:void(0)" placement="start" ngbTooltip="View/Edit Profile">
         <span class="mdi mdi-view-dashboard-edit-outline"></span>
 			</a>
 		</li>
-    <li>
-      <a href="javascript:void(0)">
+		<li>
+			<a href="javascript:void(0)" placement="start" ngbTooltip="Document">
         <span class="mdi mdi-folder-outline"></span>  
-      </a>
-    </li>
+			</a>
+		</li>
     <li>
 			<a href="javascript:void(0)" placement="left" ngbTooltip="Communication"  (click)="panelClick('communication')">
 				<span class="mdi mdi-chat-outline"></span>
 			</a>
 		</li>
     <li>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" placement="left" ngbTooltip="Delete Profile">
         <span class="mdi mdi-delete-outline"></span>
       </a>
 		</li>
@@ -48,7 +48,6 @@
     <span class="status active">
       <span class="status-info">
         {{profile?.JobStatus  | titlecase}}
-        <span class="mdi mdi-information-outline"></span>
       </span>
     </span>
     <span class="priority">
@@ -61,47 +60,42 @@
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
-			<h3>
+			<h3 placement="top" ngbTooltip="{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}">
         <span class="text-trim">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
       </h3>
-      <h4>
-        {{profile?.ProfileTitle}}
+      <h4 placement="top" ngbTooltip="{{profile?.ProfileTitle}}">
+        <span class="text-trim">{{profile?.ProfileTitle}}</span>
       </h4>
-			<!-- <h4>
-				By <strong>{{profile?.CompanyName}}</strong> On <strong>{{profile?.CreatedOn | date:'mediumDate'}}</strong>
-			</h4> -->
 		</div>
   </div>
   <div class="middle-container">
-    <div class="top-section">
-      <ul>
-        <li>
-          <div class="location">
-            <span class="mdi mdi-map-marker-outline"></span>
-            {{profile?.CurrentLocation || "Yet to provide"}}
-          </div>
-        </li>
-        <li>
-          <div class="location">
-            <span class="mdi mdi-briefcase-outline"></span>
-            {{profile?.TotalExperience}} Yrs
-          </div>
-        </li>
-      </ul>
-    </div>
     <div class="middle-section">
+      <div class="grid-cols">
+        <div class="grid-col">
+          <span class="mdi mdi-map-marker-outline"></span>
+          <span class="text-trim" placement="top" ngbTooltip="{{profile?.CurrentLocation || 'Yet to provide'}}">
+            {{profile?.CurrentLocation || "Yet to provide"}}
+          </span>
+        </div>
+        <div class="grid-col">
+          <span class="mdi mdi-briefcase-outline"></span>
+          <span class="text-trim" placement="top" ngbTooltip="{{profile?.TotalExperience}} Yrs">
+            {{profile?.TotalExperience}} Yrs
+          </span>
+        </div>
+      </div>
       <div class="grid-cols">
         <div class="grid-col">
           <span class="mdi mdi-email-arrow-right-outline"></span>
           <a href="mailto:{{profile?.Email}}">
-            <span class="text-trim">
+            <span class="text-trim" placement="top" ngbTooltip="{{profile?.Email}}">
               {{profile?.Email}}
             </span>
           </a>
         </div>
         <div class="grid-col">
           <span class="mdi mdi-phone-classic"></span>
-          <span class="text-trim">
+          <span class="text-trim" placement="top" ngbTooltip="{{profile?.MobilePhone || 'Yet to Provide'}}">
             {{profile?.MobilePhone || "Yet to Provide"}}
           </span>
         </div>
@@ -330,24 +324,40 @@
           <div class="skills-col">
             <ng-container *ngFor="let skill of profile?.PrimarySkill.split(',');let s = index">
               <div class="skill-container" *ngIf="s<6">
-              
-                <h3>{{ skill.split("|")[0] }}</h3>
-                                              <h4>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
-                                                }} years</h4>
-                  <div class="rating">
-                    <ngb-rating [(rate)]="skill.split('|')[3] "  aria-readonly="true" [max]="5"></ngb-rating>
-                  </div>
-             
-               
+                <h3 placement="top" ngbTooltip="{{ skill.split('|')[0] }}">{{ skill.split("|")[0] }}</h3>
+                <h4 placement="top" ngbTooltip="Exp : {{ skill?.split('|')[1] }}.{{ skill?.split('|')[2]
+              }} years">Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
+                  }} years</h4>
+                <div class="rating">
+                  <ngb-rating [(rate)]="skill.split('|')[3] "  aria-readonly="true" [max]="5"></ngb-rating>
+                </div>
               </div>
-            </ng-container>
-       
-       
+            </ng-container>      
           </div>
         </ng-template>
-    
       </owl-carousel-o>
     </div>
   </div>
- 
+  <div class="bottom-container">
+		<div class="row">
+			<div class="col-md-6 col-lg-6 left-col">
+				<div class="profile-section">
+					<img src="../../../../assets/images/default-company-small.jpg" alt="">
+					<div class="profile-summary">
+						<h4>Uploaded By</h4>
+						<h5>{{profile?.CompanyName}}</h5>
+					</div>
+				</div>
+			</div>
+      <div class="col-md-6 col-lg-6 right-col">
+				<div class="profile-section">
+					<img src="../../../../assets/images/default-profile-thumb.png" alt="">
+					<div class="profile-summary">
+						<h4>Uploaded on</h4>
+						<h5>{{profile?.CreatedOn | date:'mediumDate'}}</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

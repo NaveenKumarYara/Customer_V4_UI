@@ -18,70 +18,86 @@
 
   .col-container {
     background-color: $white;
-    border-radius: 8px;
+    border-radius: 22px;
     height: 100%;
-    padding: 20px;
+    padding: 20px 20px 20px 106px;
     position: relative;
     box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
 
-    &::before {
+    &:before {
       content: "";
       position: absolute;
-      right: 20px;
-      top: 20px;
-      background-color: $dark-green;
-      border-radius: 50%;
-      width: 14px;
-      height: 14px;
+      border-left: 16px solid $chatni-dark;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
-  }
-
-  .info {
-    @include flexbox();
-    @include align-items(center);
-    margin: 20px 0 0;
 
     h4 {
-      font-size: $font-size-16;
-      color: $medium-gray;
-      margin: 0;
+      font-size: $font-size-26;
+      color: $darkest-blue;
+      font-weight: 600;
+      margin-bottom: 5px;
+      line-height: 1.05;
+
+      @media only screen and (min-width: 1280px) {
+        font-size: $font-size-28;
+      }
     }
 
     h6 {
-      font-weight: 600;
-      font-size: $font-size-30;
-      color: $darkest-blue;
-      margin: 0 0 0 auto;
+      font-size: $font-size-16;
+      color: $medium-gray;
+      margin: 0;
+
+      @media only screen and (min-width: 1280px) {
+        font-size: $font-size-18;
+      }
     }
   }
 
+ 
   .icon {
-    display: block;
-    width: 88px;
-    height: 88px;
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    left: 28px;
+    font-size: 0;
+    top: 50%;
+    transform: translateY(-50%);
     background: url(../../../../../assets/images/sprites.svg) 0 0 no-repeat;
-    background-color: $light-green;
-    border-radius: 50%;
-    text-indent: -999em;
 
     &.icon-01 {
-      background-position: -19px -98px;
+      background-position: -559px -33px;
+      width: 40px;
+      height: 45px;
     }
 
     &.icon-02 {
-      background-position: -119px -98px;
+      background-position: -621px -33px;
+      width: 56px;
+      height: 43px;
     }
 
     &.icon-03 {
-      background-position: -219px -98px;
+      background-position: -689px -33px;
+      width: 42px;
+      height: 42px;
     }
 
     &.icon-04 {
-      background-position: -319px -98px;
+      background-position: -743px -33px;
+      width: 40px;
+      height: 42px;
     }
 
     &.icon-05 {
-      background-position: -419px -98px;
+      background-position: -797px -33px;
+      width: 42px;
+      height: 42px;
     }
   }
  

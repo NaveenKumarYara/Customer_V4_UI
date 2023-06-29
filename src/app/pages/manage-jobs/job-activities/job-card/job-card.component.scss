@@ -50,7 +50,9 @@
 	border-radius: 8px;
 	background-color: $white;
   height: 99%;
+  padding-bottom: 80px;
 	overflow: hidden;
+  position: relative;
 	box-shadow: 0px 4px 8px rgba(144, 164, 173, 0.3);
 
 	.top-container{
@@ -68,13 +70,13 @@
       position: absolute;
       left: 0;
       top: 15px;
-      width: 110px;
+      width: 140px;
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
       border-radius: 0 4px 4px 0;
       text-transform: uppercase;
-      padding: 3px 4px;
-      height: 36px;
+      padding: 2px;
+      height: 30px;
       line-height: 1.25;
       @include flexbox();
       @include align-items(center);
@@ -125,15 +127,15 @@
     .priority {
       border-radius: 4px 0 0 4px;
       background-color: $light-green;
-      font-size: 11px;
+      font-size: 10px;
       color: $dark-green;
       text-transform: uppercase;
       position: absolute;
       right: 0;
-      width: 110px;
+      width: 140px;
       text-align: center;
       top: 15px;
-      height: 36px;
+      height: 30px;
       font-weight: 600;
       @include flexbox();
       @include align-items(center);
@@ -192,18 +194,18 @@
         .mdi {
           color: $blue;
         }
-
-        .text-trim {
-          width: 100%;
-          max-width: 250px;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-          margin: 0 5px 5px 0;
-          padding-bottom: 3px;
-          display: inline-block;
-        }
 			}
+
+      .text-trim {
+        width: 100%;
+        max-width: 250px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 5px 5px 0;
+        padding-bottom: 3px;
+        display: inline-block;
+      }
 
 			h4 {
 				color: $dark-gray;
@@ -262,7 +264,7 @@
     }
 
     .middle-section {
-      padding: 0 20px;
+      padding:40px 20px 10px;
 
       .grid-cols {
         @include flexbox();
@@ -307,6 +309,10 @@
         a {
           color: $dark-gray;
           text-decoration: none;
+        }
+
+        &:first-child {
+          margin-bottom: 10px;
         }
       }
     }
@@ -375,6 +381,64 @@
           white-space: nowrap;
           text-transform: none;
         }
+      }
+    }
+  }
+
+  .bottom-container {
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $light-bg;
+    padding: 10px 20px;
+
+    .right-col {
+      text-align: right;
+      
+      h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 5px;
+        color: $dark-gray;
+      }
+
+      h5 {
+        font-size: 12px;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 30px;
+        height: auto;
+        border-radius: 50%;
+      }
+
+      h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 5px;
+        color: $dark-gray;
+      }
+
+      h5 {
+        font-size: 12px;
+        color: $dark-gray;
+        margin: 0;
+      }
+    }
+
+    .right-col {
+      .profile-section {
+        flex-direction: row-reverse;
       }
     }
   }

@@ -28,13 +28,10 @@ export class JobActivitiesSummaryComponent implements OnInit {
     this._location.back();
   }
 
-  GetJobDetail()
-  {       
-      this._service.GetEmployerService("/api/GetCustomerJobDetailsInfo?JobId=", Number(this.JobId)).subscribe((response:any) => { 
-        this.JobDetail =  response[0];
-      });
-
-
+  GetJobDetail() {       
+    this._service.GetEmployerService("/api/GetCustomerJobDetailsInfo?JobId=", Number(this.JobId)).subscribe((response:any) => { 
+      this.JobDetail =  response[0];
+    });
   }
 
   changeView() {
