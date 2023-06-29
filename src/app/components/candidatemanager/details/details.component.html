@@ -470,6 +470,10 @@
 						</div>
 					</div>
 				</div>
+
+				<button class="btn btn-border pull-right">
+					<a href="javascript:void(0)" (click)="MyCProfilesExport()"> <i class="fa fa-arrow-up"></i> Export to CSV </a>
+				</button>
 			</div>
 			<span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
 			<div *ngIf="!candidatesLoading">
