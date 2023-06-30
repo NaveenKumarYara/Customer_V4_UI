@@ -386,6 +386,7 @@ Job = {
 
   EditProfile(pro)
   {
+    
     if(pro.UserName.includes('@noemail.com'))
     {
       this.editPersonalDetails = true;  
