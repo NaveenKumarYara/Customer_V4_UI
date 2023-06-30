@@ -106,6 +106,18 @@ export class JoblistTablelayoutComponent implements OnInit {
     //this.router.navigateByUrl('app-view-jobdetails');
   }
 
+  ViewJobdetailsModel(jobId) {
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    localStorage.setItem('vjobId', JSON.stringify(jobId));
+    const url = '/app-view-jobdetails';
+    window.open(url, "_blank");
+    //this.router.navigateByUrl('app-view-jobdetails');
+
+  }
+
 
 // GetCustomerClients()
 // {
