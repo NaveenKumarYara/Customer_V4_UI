@@ -3,7 +3,7 @@
 
 
 .job-notes {
-  width: 800px;
+  width: 100%;
   margin: 30px auto;
 
   h4 {
@@ -11,6 +11,10 @@
     color: $dark-gray;
     font-weight: 600;
     margin-bottom: 30px;
+  }
+
+  @media only screen and  (min-width: 991px) {
+    width: 800px;
   }
 }
 

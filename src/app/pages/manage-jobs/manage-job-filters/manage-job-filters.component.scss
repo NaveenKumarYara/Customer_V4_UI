@@ -126,12 +126,16 @@
     }
 
     .mdi {
-      line-height: 1;
+      line-height: 20px;
     }
 
     @media only screen and (min-width: 767px) {
       width: 48px;
       height: 48px;
+
+      .mdi {
+        line-height: 1;
+      }
     }
 
   }

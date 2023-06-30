@@ -136,7 +136,8 @@
     }
 
 		.profile-info {
-			padding-left: 76px;
+			padding-left: 0;
+      text-align: center;
       position: relative;
 
       .profile-thumb {
@@ -145,13 +146,10 @@
         height: 72px;
         background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
         background-size: 72px auto;
-        position: absolute;
-        left: -7px;
-        top: 100%;
         display: flex;
         align-items: center;
+        margin: 0 auto;
         justify-content: center;
-        margin-top: -24px;
 
         img {
           width: 32px;
@@ -159,18 +157,29 @@
           position: relative;
           top: -5px;
         }
+
+        @media only screen and (min-width: 568px) {
+          position: absolute;
+          left: -7px;
+          top: 100%;
+          margin-top: -24px;
+        }
       }
 
       .profile-summary {
         @include flexbox();
-        gap: 10px;
+        @include flex-direction(column);
+        
+        @media only screen and (min-width: 991px) {
+          @include flex-direction(row);
+          gap: 10px;
+        }
       }
 
 			h3 {
-				font-size: $font-size-22;
+				font-size: $font-size-18;
 				color: $darker-gray;
 				font-weight: 600;
-        width: 85%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -184,6 +193,14 @@
           &:hover {
             text-decoration: none;
           }
+        }
+
+        @media only screen and (min-width: 1023px) {
+          font-size: $font-size-22;
+        }
+
+        @media only screen and (min-width: 767px) {
+          width: 85%;
         }
 			}
 
@@ -200,16 +217,22 @@
           margin-right: 5px;
 				}
 			}
+
+      @media only screen and (min-width: 568px) {
+        text-align: left;
+        padding-left: 76px;
+      }
 		}
 	}
 
   .middle-container {
     .top-section {
-      padding:15px 30px 15px 96px;
+      padding:15px 20px;
       @include flex();
       @include align-items(center);
       gap: 10px;
       @include flex-wrap(wrap);
+      @include flex-direction(column);
 
       h3 {
         font-size: $font-size-16;
@@ -230,9 +253,19 @@
         border-radius: 4px;
         display: inline-block;
         text-transform: uppercase;
-        flex: 0 0 100px;
-        max-width: 100px;
         text-align: center;
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        @media only screen and (min-width: 568px) {
+          flex: 0 0 100px;
+          max-width: 100px;
+        }
+      }
+
+      @media only screen and (min-width: 568px) {
+        padding:15px 30px 15px 96px;
+        @include flex-direction(row);
       }
     }
 
@@ -244,6 +277,7 @@
         list-style: none;
         display: flex;
         gap: 10px;
+        @include justify-content(center);
 
         li {
           font-size: 11px;
@@ -266,6 +300,28 @@
             border-left: 1px solid $stroke-gray;
             padding-left: 5px;
           }
+
+          &:first-child {
+            flex: 0 0 100%;
+            @include justify-content(center);
+            max-width: 100%;
+
+            @media only screen and (min-width: 568px) { 
+              flex: 0 0 auto;
+              max-width: inherit;
+              @include justify-content(flex-start);
+            }
+          }
+
+          &:nth-child(2) {
+            border-left: 0;
+            padding-left: 0;
+
+            @media only screen and (min-width: 568px) {
+              border-left: 1px solid $stroke-gray;
+              padding-left: 5px;
+            }
+          }
         }
 
         .highlight {
@@ -276,6 +332,10 @@
           display: inline-block;
           padding: 2px 4px;
           border-radius: 4px;
+        }
+
+        @media only screen and (min-width: 568px) {
+          @include justify-content(flex-start)
         }
 
         @media only screen and (max-width: 1440px) {
@@ -299,15 +359,32 @@
         align-items: flex-start;
         justify-content: center;
         gap: 20px;
+        @include flex-wrap(wrap);
 
         li {
           text-align: center;
           border-left: 1px solid $stroke-gray;
-          padding-left: 20px;
+          padding-left: 14px;
 
           &:first-child {
             padding-left: 0;
             border-left: 0;
+          }
+
+          &:last-child {
+            flex:0 0 100%;
+            max-width: 100%;
+            border-left: 0;
+            border-top: 1px solid $stroke-gray;
+            padding-top: 10px;
+
+            @media only screen and (min-width: 991px) {
+              flex: 0 0 auto;
+              max-width: inherit;
+              border-left: 1px solid $stroke-gray;
+              border-top: 0;
+              padding-top: 0;
+            }
           }
 
           h4 {
@@ -350,6 +427,10 @@
               }
             }
           }
+
+          @media only screen and (min-width: 568px) {
+            padding-left: 14px;
+          }
         }
       }
     }
@@ -363,9 +444,19 @@
     .col {
       text-align: center;
       margin: 0;
+      flex: 0 0 50%;
+      max-width: 50%;
 
       &:not(:first-child) {
         border-left: 1px solid $stroke-gray;
+      }
+
+      &:nth-child(3) {
+        border-left: 0;
+        
+        @media only screen and (min-width: 568px) {
+          border-left: 1px solid $stroke-gray;
+        }
       }
 
       h4 {
@@ -375,11 +466,24 @@
       }
 
       h6 {
-        font-size: $font-size-12;
+        font-size: 10px;
         color: $medium-gray;
         margin: 0;
         font-weight: normal;
+
+        @media only screen and (min-width: 991px) {
+          font-size: $font-size-12;
+        }
       }
+
+      @media only screen and (min-width: 568px) {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+
+    .row {
+      @include flex-wrap(wrap);
     }
   }
 
@@ -431,6 +535,28 @@
     .right-col {
       .profile-section {
         flex-direction: row-reverse;
+      }
+    }
+
+    .left-col, .right-col {
+      @include flexbox();
+      @include justify-content(center);
+
+      @media only screen and (min-width: 568px) {
+        @include justify-content(flex-start);
+      }
+    }
+
+    .right-col {
+      border-top: 1px solid $stroke-gray;
+      padding-top: 10px;
+      margin-top: 10px;
+
+      @media only screen and (min-width: 568px) {
+        border-top: 0;
+        padding-top: 0;
+        margin-top: 0;
+        @include justify-content(flex-end);
       }
     }
   }

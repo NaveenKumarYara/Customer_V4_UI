@@ -447,17 +447,27 @@ body {
 
 .slide-panel {
 	.slide-close {
-		width: 58px;
-		height: 58px;
+		width: 36px;
+		height: 36px;
 		border-radius: 50%;
 		background: $white;
 		@include shadowOne();
 		position: absolute;
-		left: -30px;
+		left: -19px;
 		display: none;
 		top: 50%;
 		transform: translateY(-50%);
 		border: 1px solid $stroke-gray;
+
+		.mdi {
+			line-height: 1;
+		}
+
+		@media only screen and (min-width: 768px) {
+			width: 58px;
+			height: 58px;
+			left: -30px;
+		}
 	}
 	
 	&.show {
@@ -483,30 +493,62 @@ body {
 		margin-bottom: 20px;
 	}
 
+	.label-col {
+		label {
+			margin-bottom: 15px;
+
+			@media only screen and (min-width: 768px) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
 	.input-group {
 		margin-bottom: 20px;
 		.btn {
 			&.btn-icon {
 				background-color: $dark-green;
 				color: $white;
-				flex: 0 0 48px;
-				max-width: 48px;
-				height: 48px;
+				flex: 0 0 36px;
+				max-width: 36px;
+				height: 36px;
 				border-radius: 8px !important;
 				margin-left: auto !important;
+				padding: 0;
+				border-radius: 4px;
+
+				.mdi {
+					line-height: 1;
+				}
+				
+				@media only screen and (min-width: 768px) {
+					flex: 0 0 48px;
+					max-width: 48px;
+					height: 48px;
+					border-radius: 8px;	
+				}
 			}
 		}
 
 		.form-group {
-			flex: 0 0 calc(100% - 70px);
-			max-width: calc(100% - 70px);
+			flex: 0 0 calc(100% - 60px);
+			max-width: calc(100% - 60px);
+
+			@media only screen and (min-width: 768px) {
+				flex: 0 0 calc(100% - 70px);
+				max-width: calc(100% - 70px);
+			}
 		}
 	}
 
 	label {
-		font-size: $font-size-16;
+		font-size: $font-size-14;
 		font-weight: 600;
 		color: $dark-gray;
+
+		@media only screen and (min-width: 767px) {
+			font-size: $font-size-16;
+		}
 	}
 
 	.description {
@@ -529,15 +571,25 @@ body {
 
 		.mdi {
 			position: absolute;
-			left: 15px;
-			top: 10px;
 			font-size: $font-size-20;
 			color: $dark-gray;
+			left: 10px;
+			top: 5px;
+
+			@media only screen and (min-width: 768px) {
+				left: 15px;
+				top: 10px;	
+			}
 		}
 
+		
 		.form-select,
 		.form-control {
-			padding-left: 40px;
+			padding-left: 36px;
+
+			@media only screen and (min-width: 768px) {
+				padding-left: 40px;
+			}
 		}
 
 		textarea {
@@ -612,7 +664,7 @@ body {
 	}
 
 	.accordion-body {
-		padding: 30px 60px;
+		padding: 20px 0;
 
 		h6 {
 			font-size: $font-size-16;
@@ -623,6 +675,10 @@ body {
 		.name {
 			font-size: $font-size-12;
 			color: $medium-gray;
+		}
+
+		@media only screen and  (min-width: 991px) {
+			padding: 30px 60px;
 		}
 	}
 
@@ -858,10 +914,14 @@ body {
 }
 
 .slide-static-section {
-	position: sticky;
+	position: static;
 	top: 0;
 	background-color: $white;
 	z-index: 100;
+
+	@media only screen and (min-width: 1170px) {
+		position: sticky;
+	}
 }
 
 .slide-heding {
@@ -899,4 +959,8 @@ body {
 	.tooltip {
 		width: 150px !important;
 	}
+}
+
+.tooltip {
+	font-size: $font-size-14;
 }

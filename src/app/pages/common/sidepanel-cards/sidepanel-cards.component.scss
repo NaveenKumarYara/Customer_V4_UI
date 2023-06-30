@@ -2,6 +2,8 @@
 @import '../../../../assets/partials/utils/mixins';
 
 .job-card {
+  height: 100%;
+
   .col-container {
     border: 1px solid $stroke-gray;
     border-radius: 8px;
@@ -98,8 +100,9 @@
       }
   
       .profile-info {
-        padding-left: 76px;
+        padding-left: 0;
         position: relative;
+        text-align: center;
   
         .profile-thumb {
           font-size: 0;
@@ -107,13 +110,10 @@
           height: 72px;
           background: url(../../../../assets/images/profile-thumb.svg) 0 0 no-repeat;
           background-size: 72px auto;
-          position: absolute;
-          left: -7px;
-          top: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-top: -24px;
+          margin: 0 auto;
   
           img {
             width: 32px;
@@ -121,18 +121,31 @@
             position: relative;
             top: -5px;
           }
+
+          @media only screen and (min-width: 768px) {
+            position: absolute;
+            left: -7px;
+            top: 100%;
+            margin-top: -24px;
+          }
         }
   
         .profile-summary {
           @include flexbox();
-          gap: 10px;
+          @include flex-direction(column); 
+          gap: 5px;
+
+          @media only screen and (min-width: 991px) {
+            @include flex-direction(row);
+            gap: 10px;
+          }
         }
   
         h3 {
-          font-size: $font-size-22;
+          font-size: $font-size-18;
           color: $darker-gray;
           font-weight: 600;
-          width: 85%;
+          width: 100%;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -146,6 +159,14 @@
             &:hover {
               text-decoration: none;
             }
+
+            @media only screen and (min-width: 768px) {
+              width: 85%;
+            }
+          }
+
+          @media only screen and  (min-width: 1024px) {
+            font-size: $font-size-22;
           }
         }
   
@@ -162,17 +183,24 @@
             margin-right: 5px;
           }
         }
+
+        @media only screen and (min-width: 768px) {
+          padding-left: 76px;
+          text-align: left;
+        }
       }
     }
   
     .middle-container {
       .top-section {
-        padding:15px 30px 6px 96px;
+        padding:15px 20px 6px 20px;
         @include flex();
         @include align-items(center);
         gap: 10px;
         @include flex-wrap(wrap);
-  
+        @include flex-direction(column);
+        
+
         h3 {
           font-size: $font-size-16;
           color: $dark-gray;
@@ -192,27 +220,57 @@
           border-radius: 4px;
           display: inline-block;
           text-transform: uppercase;
-          flex: 0 0 100px;
-          max-width: 100px;
+          flex: 0 0 100%;
+          max-width: 100%;
           text-align: center;
+
+          @media only screen and (min-width: 991px) {
+            flex: 0 0 100px;
+            max-width: 100px;
+          }
+        }
+
+        @media only screen and (min-width: 991px) {
+          @include flex-direction(row);
+          
+        }
+        
+        @media only screen and (min-width: 768px) {
+          padding:15px 30px 6px 96px;
+          @include align-items(flex-start);
         }
       }
   
       .top-bottom-section {
-        padding: 0 20px 15px 96px;
+        padding: 0 20px 15px;
+
         ul {
           margin: 0;
           padding: 0;
           list-style: none;
           display: flex;
           gap: 10px;
+          @include flex-wrap(wrap);
+          @include justify-content(center);
   
           li {
             font-size: 11px;
             color: $medium-gray;
             display: flex;
             align-items: center;
-            
+
+            &:first-child {
+              flex: 0 0 100%;
+              max-width: 100%;
+              @include justify-content(center);
+
+              @media only screen and (min-width: 768px) {
+                flex: 0 0 auto;
+                max-width: auto;
+                @include justify-content(flex-start);
+              }
+            }
+
             .mdi {
               font-size: $font-size-14;
               margin-right: 2px;
@@ -227,6 +285,16 @@
             &:not(:first-child) {
               border-left: 1px solid $stroke-gray;
               padding-left: 5px;
+            }
+
+            &:nth-child(2) {
+              border-left: 0;
+              padding-left: 0;
+
+              @media only screen and (min-width: 991px) {
+                border-left: 1px solid $stroke-gray;
+                padding-left: 5px;
+              }
             }
           }
   
@@ -243,6 +311,14 @@
           @media only screen and (max-width: 1440px) {
             flex-wrap: wrap;
           }
+
+          @media only screen and (min-width: 768px) {
+            @include justify-content(flex-start);
+          }
+        }
+
+        @media only screen and (min-width: 768px) {
+          padding:  0 20px 15px 96px;
         }
       }
     }
@@ -273,6 +349,7 @@
       .middle-container {
         @include flexbox();
         @include flex-wrap(wrap);
+        @include flex-direction(column);
 
         .top-section {
           h3 {
@@ -287,8 +364,26 @@
           color: $dark-gray;
           @include flexbox();
           @include align-items(center);
+          @include justify-content(center);
+
+          @media only screen and (min-width: 768px) {
+            @include justify-content(flex-start);
+            padding-left: 96px;
+          }
+        }
+
+        @media only screen and (min-width: 991px) {
+          @include flex-direction(row);
+          padding-left: 0;
         }
       }
     }
   }
 }
+
+
+@media only screen and  (max-width: 767px) {
+  .left-col {
+     margin-bottom: 30px;
+   }
+ }

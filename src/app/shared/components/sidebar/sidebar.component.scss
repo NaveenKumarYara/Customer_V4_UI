@@ -119,7 +119,7 @@
 }
 
 .btn-menu {
-	margin: 0;
+	margin: 6px 6px 0;
 	display: block;
 	background-color: transparent;
 	border: 0;
@@ -131,6 +131,10 @@
 		background-color: transparent;
 		border: 0;
 		color: $dark-gray;
+	}
+
+	@media only screen and  (min-width: 600px) {
+		margin: 6px 3px 0;
 	}
 
 	@media only screen and (min-width: 1280px) {
