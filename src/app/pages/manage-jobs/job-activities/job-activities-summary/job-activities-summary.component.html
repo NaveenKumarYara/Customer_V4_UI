@@ -62,10 +62,16 @@
   </div>
   <div class="data-view-col">
     <div class="chart-view" *ngIf="isChecked == false">
-      <h3 class="text-center">Weekly Status of Jobs</h3>
-      <figure>
-        <img src="../../../../../assets/images/chart-big.png" alt=""/>
-      </figure>
+      <h3 class="text-center">Weekly status of Applicants based on Resume Source</h3>
+      <div class="chart-grid">
+        <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'bar'"
+      ></canvas>
+      </div>
     </div>
     <div class="table-view" *ngIf="isChecked == true">
       <div class="top-container">
