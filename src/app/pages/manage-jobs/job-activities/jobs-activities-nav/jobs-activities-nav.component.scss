@@ -11,6 +11,7 @@
   @include align-items(center);
   @include justify-content(center);
   @include flex-wrap(wrap);
+  text-align: center;
 
   .col-container {
     display: inline-block;
@@ -27,6 +28,10 @@
   .row {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  @media only screen and (min-width: 768px) {
+    text-align: left;
   }
 }
 
@@ -63,6 +68,8 @@
   ul {
     @include no-style();
     @include flex();
+    @include flex-wrap(wrap);
+    @include justify-content(center);
     gap: 10px;
 
     li {
@@ -104,10 +111,25 @@
         }
       }
     }
+
+    @media only screen and (min-width: 768px) {
+      @include flex-wrap(inherit);
+      @include justify-content(flex-start);
+    }
   }
 }
 
 .right-col {
   @include flexbox();
-  @include justify-content(flex-end);
+  @include justify-content(center);
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid $stroke-gray;
+
+  @media only screen and (min-width: 767px) {
+    @include justify-content(flex-end);
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
 }

@@ -20,7 +20,7 @@
     background-color: $white;
     border-radius: 22px;
     height: 100%;
-    padding: 20px 20px 20px 106px;
+    padding: 20px 20px 20px 94px;
     position: relative;
     box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
 
@@ -37,11 +37,12 @@
     }
 
     h4 {
-      font-size: $font-size-26;
+      font-size: $font-size-22;
       color: $darkest-blue;
       font-weight: 600;
       margin-bottom: 5px;
       line-height: 1.05;
+
 
       @media only screen and (min-width: 1280px) {
         font-size: $font-size-28;
@@ -49,7 +50,7 @@
     }
 
     h6 {
-      font-size: $font-size-16;
+      font-size: $font-size-14;
       color: $medium-gray;
       margin: 0;
 

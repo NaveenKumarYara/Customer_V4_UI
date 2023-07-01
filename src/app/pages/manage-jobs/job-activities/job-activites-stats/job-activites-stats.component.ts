@@ -22,10 +22,10 @@ export class JobActivitesStatsComponent implements OnInit {
         items: 1
       },
       400: {
-        items: 1
+        items: 2
       },
       740: {
-        items: 1
+        items: 3
       },
       940: {
         items: 5

@@ -361,6 +361,18 @@ body {
 	}
 }
 
+.job-actitives-stats {
+	.owl-carousel {
+		.owl-item {
+			width: 20%;
+
+			.slide {
+				height: 100%;
+			}
+		}
+	}
+}
+
 .chartjs-render-monitor {
 	height: 240px;
 }
@@ -421,7 +433,8 @@ body {
 	}
 }
 
-.dashboard-kpis {
+.dashboard-kpis,
+.job-actitives-stats {
 	.owl-stage {
 		@include flexbox();
 		@include flex-wrap(wrap);

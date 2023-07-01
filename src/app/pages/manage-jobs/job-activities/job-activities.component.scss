@@ -12,7 +12,8 @@
 	flex: 0 0 100%;
 	max-width: 100%;
 	@include flexbox();
-	@include align-items(center);
+	@include flex-direction(column);
+	@include flex-wrap(wrap);
 
 	.right-container {
 		margin-left: auto;
@@ -83,7 +84,7 @@
 		@include flexbox();
 		@include align-items(center);
 		gap: 10px;
-
+		@include flex-wrap(wrap);
 		.company {
 			font-size: $font-size-16;
 			font-weight: 600;
@@ -103,6 +104,7 @@
 		ul {
 			@include flexbox();
 			@include no-style();
+			@include flex-wrap(wrap);
 			gap: 10px;
 
 			li {
@@ -113,6 +115,26 @@
 				&:not(:first-child) {
 					border-left: 1px solid $stroke-gray;
 					padding-left: 10px;
+				}
+
+				&:nth-child(2) {
+					border-left: 0;
+					padding-left: 0;
+
+					@media only screen and (min-width: 568px) {
+						border-left: 1px solid $stroke-gray;
+						padding-left: 10px;
+					}
+				}
+
+				&:first-child {
+					flex: 0 0 100%;
+					max-width: 100%;
+
+					@media only screen and (min-width: 568px) {
+						flex: 0 0 auto;
+						max-width: inherit;
+					}
 				}
 
 				.mdi {
@@ -127,6 +149,19 @@
 				}
 			}
 		}
+
+		@media only screen and  (min-width: 1280px) {
+			@include flex-wrap(inherit);
+			ul {
+				@include flex-wrap(inherit);
+			}
+		}
+	}
+
+	@media only screen and (min-width: 1280px) {
+		@include flex-direction(row);
+		@include align-items(center);
+		@include flex-wrap(inherit);
 	}
 }
 
@@ -203,36 +238,63 @@
 	margin-bottom: 30px;
 
 	.right-navigation {
-    margin-left: auto;
-    border: 1px solid $stroke-gray;
-    border-radius: 32px;
-    overflow: hidden;
-		background-color: $white;
-
+		margin-top: 30px;
     ul {
       @include no-style();
-      @include flexbox();
+      display: inline-flex;
+			overflow: hidden;
+			gap: 10px;
+			@include flex-wrap(wrap);
 
       li {
         a {
-          width: 44px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
           @include flexbox();
           @include align-items(center);
           @include justify-content(center);
           color: $medium-gray;
+					background-color: $white;
+					border: 1px solid $stroke-gray;
+					border-radius: 6px;
 
           &:hover {
             background-color: $blue;
             color: $white;
+						border-color: $blue;
           }
+
+					@media only screen and (min-width: 640px) {
+						width: 44px;
+						height: 40px;
+						background-color: transparent;
+						border: 0;
+						border-radius: 0;
+					}
         }
 
         &:not(:first-child) {
-          border-left: 1px solid $stroke-gray;
+          border-left: 0;
+
+					@media only screen and (min-width: 640px) {
+						border-left: 1px solid $stroke-gray;
+					}
         }
       }
+
+			@media only screen and (min-width: 640px) {
+				@include flex-wrap(inherit);
+				border-radius: 32px;
+				border: 1px solid $stroke-gray;
+				background-color: $white;
+				gap: 0;
+			}
     }
+
+		@media only screen and (min-width: 1280px) {
+			margin-left: auto;
+			margin-top: 0;
+		}
   }
 }
 
