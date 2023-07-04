@@ -11,15 +11,15 @@
     Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
   </div>
   <div class="sorting">
-    <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event"
-    previousLabel="" nextLabel="">
+    <pagination-controls  (pageChange)="listCount($event)"  [autoHide]="true" *ngIf="Jobs.length>0"  (pageChange)="p = $event"
+    previousLabel="" nextLabel="" id="first">
     </pagination-controls>
 </div>
 </div>
 <ng-container *ngIf="viewLayout == 'grid'">
   <div class="manage-listing-grid">
     <div class="row">
-      <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs   | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+      <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs   | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p, id: 'first' }; let i=index">
         <app-manage-jobcard 
           [job]="job" 
           [panelShow]="panelShow"
@@ -61,7 +61,7 @@
         Others
       </div>
     </div>
-    <div class="table-row" *ngFor="let ljob of Jobs  | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p }; let i=index">
+    <div class="table-row" *ngFor="let ljob of Jobs  | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p, id: 'first' }; let i=index">
       <app-manage-job-list 
         [ljob]="ljob"
         [panelShow]="panelShow"

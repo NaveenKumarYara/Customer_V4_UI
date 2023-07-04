@@ -119,6 +119,9 @@ export class ManageLoadJobsComponent implements OnInit {
   }
 
   addItem(newItem: string) {
+    this.p = 1;
+    this.start = 1;
+    this.last = 6;
     this.filterTerm = newItem;
   }
 

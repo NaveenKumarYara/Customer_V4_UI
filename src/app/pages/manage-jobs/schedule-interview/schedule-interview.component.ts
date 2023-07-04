@@ -26,7 +26,7 @@ export class ScheduleInterviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetInterView();
-    this.Recrutingteam();
+    //this.Recrutingteam();
     
   }
   onBtnClick(){
