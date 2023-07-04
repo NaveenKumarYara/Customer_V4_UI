@@ -370,6 +370,10 @@
             @include justify-content(flex-start);
             padding-left: 96px;
           }
+
+          @media only screen and (min-width: 991px) {
+            padding-left: 0;
+          }
         }
 
         @media only screen and (min-width: 991px) {
