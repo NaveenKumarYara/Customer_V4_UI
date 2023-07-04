@@ -8,9 +8,9 @@
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
-      <h4>KLM</h4>
+      <h4>{{CandidateDetails?.company}}</h4>
 			<h3>
-        <span class="text-trim">Analyst</span>
+        <span class="text-trim">{{CandidateDetails?.fullName | titlecase}}</span>
       </h3>
 			
 		</div>
@@ -20,13 +20,13 @@
       <ul>
         <li class="job-title">
           <span class="mdi mdi-school-outline"></span>
-          Software Architect 1
+          {{CandidateDetails?.jobTitleName | titlecase}}
         </li>
         <li>10.8 Yrs</li>
       </ul>
       <div class="location">
         <span class="mdi mdi-map-marker-outline"></span>
-        San Antonio, Texas
+        {{CandidateDetails?.locations}}
       </div>
     </div>
   </div>
