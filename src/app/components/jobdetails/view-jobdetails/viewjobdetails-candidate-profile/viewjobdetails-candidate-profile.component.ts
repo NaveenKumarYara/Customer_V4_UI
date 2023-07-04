@@ -1331,6 +1331,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;  
+          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -1792,8 +1793,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.ProfileId = profileId;
     this.iconHide = true;
     this.profileFlipVideo.VideoProfile = videoProfile;
-    this.profileFlipVideo.VideoSizzle = videoSizzle;
+    this.profileFlipVideo.VideoSizzle = this.settingsService.settings.IdentityV1baseUrl + videoSizzle;
     // $('.matching-details').removeClass('open');
+    debugger
     // $('#matchingDetails-' + profileId).toggleClass('open');
     if (profileOrSizzle === true) {
       if (this.profileFlipVideo.VideoSizzle == null && this.profileFlipVideo.VideoProfile != null) {

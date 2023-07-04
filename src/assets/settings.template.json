@@ -1,6 +1,7 @@
 {
     "ProfilebaseUrl": "${Profile_URL}",
     "IdentitybaseUrl": "${Identity_URL}",
+    "IdentityV1baseUrl": "${Identityv1_URL}",
     "RefralbaseUrl": "${Referral_URL}",
     "JobbaseUrl": "${Jobs_URL}",
     "SharingbaseUrl": "${Sharing_URL}",
