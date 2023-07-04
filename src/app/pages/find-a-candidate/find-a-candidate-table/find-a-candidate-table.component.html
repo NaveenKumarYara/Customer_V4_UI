@@ -1,19 +1,19 @@
 <div class="table-col name-col">
 	<div class="profile-info">
 		<img src="../../../../assets/images/default-profile-thumb.png" alt="">
-		<h4>Akhilesh Chang</h4>
+		<h4>{{tcandidate.fullName | titlecase}}</h4>
 	</div>
 </div>
 <div class="table-col position-col">
-	Software Architect 1
+	{{tcandidate.jobTitleName}}
 </div>
 <div class="table-col email-col">
-	test15@gmail.com
+	{{tcandidate?.email}}
 </div>
 <div class="table-col number-col">
-	9876543456
+	{{tcandidate?.contactNumber}}
 </div>
 <div class="table-col location-col">
-	Austin, Texas
+	{{tcandidate.locations}}
 </div>
 

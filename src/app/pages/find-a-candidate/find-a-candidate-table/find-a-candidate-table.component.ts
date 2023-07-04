@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-find-a-candidate-table',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./find-a-candidate-table.component.scss']
 })
 export class FindACandidateTableComponent implements OnInit {
-
+  @Input() tcandidate: any;
   constructor() { }
 
   ngOnInit(): void {

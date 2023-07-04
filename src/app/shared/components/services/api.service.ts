@@ -54,6 +54,12 @@ getProfileApi<T>(apiUrl:string):Observable<T>{
   let url=`${this.settingsService.settings.ProfilebaseUrl}${apiUrl}`
   return this.http.get<T>(url);
 }
+
+getNewCandidates(params:any): Observable<any> {
+  const apiUrl = this.settingsService.settings.EmployerjobsUrl + '/api/GetEmployerCandiates';
+  return this.http.post(apiUrl, params).pipe();
+  //return this.http.get<any>(apiUrl, { params }).pipe();
+}
 //----------------------------------------------------------------
   // End -- ProfileAPI Realted Intigration section 
 

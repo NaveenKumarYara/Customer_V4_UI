@@ -9,36 +9,41 @@
     <div class="profile-thumb">
       <img src="../../../../assets/images/default-profile-thumb.png" alt="">
     </div>
-    <span class="status">Public Profile</span>
+    <span class="status">{{candidate.isPublic ? 'Arytic Profile' : 'Private Profile'}}</span>
     <ul>
       <li>
-        <a href="#">
+        <a href="javascript:void(0)">
           <span class="mdi mdi-phone-in-talk-outline"></span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="javascript:void(0)">
           <span class="mdi mdi-email-arrow-right-outline"></span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="javascript:void(0)">
           <span class="mdi mdi-progress-download"></span>
         </a>
       </li>
     </ul>
   </div>
   <div class="bottom-container">
-    <h4>Sagar Jeh</h4>
-    <h6>Senior Informatica Developer/Data Quality Architect</h6>
+    <h4>{{candidate.fullName
+      | titlecase}}</h4>
+    <h6>{{candidate.jobTitleName}}</h6>
     <ul>
       <li>
         <span class="mdi mdi-email-arrow-right-outline"></span>
-        <a href="mailto:chalapathi.esolvit@gmail.com" class="text-trim">chalapathi.esolvit@gmail.com</a>
+        <a href="mailto:{{candidate?.email}}" class="text-trim">{{candidate?.email}}</a>
       </li>
       <li>
         <span class="mdi mdi-home-variant-outline"></span>
-        <span class="text-trim">Communications Ltd</span> 
+        <span class="text-trim">{{candidate.locations}}</span> 
+      </li>
+      <li>
+        <span class="mdi mdi-home-variant-outline"></span>
+        <span class="text-trim">{{candidate.company}}</span> 
       </li>
     </ul>
   </div>
