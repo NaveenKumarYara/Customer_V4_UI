@@ -16,6 +16,7 @@ export class Settings {
   JobShareInvite: string;
   DeleteCandidateProfile:string;
   AJobShareInvite:string;
+  IdentityV1baseUrl:string;
   CustomerInterviewAccept: string;
   // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
   SuggestJobTitleEndPoint: string;

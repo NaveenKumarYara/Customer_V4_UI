@@ -1,6 +1,7 @@
 {
   "ProfilebaseUrl": "https://profileapi-dev001.arytic.com",
   "IdentitybaseUrl": "https://identityapi-dev001.arytic.com",
+  "IdentityV1baseUrl": "https://identityapiv1-dev001.arytic.com",
   "RefralbaseUrl": "https://referalapi-dev001.arytic.com",
   "JobbaseUrl": "https://jobsapi-dev001.arytic.com",
   "SharingbaseUrl": "https://socialsharingapi-dev001.arytic.com",
