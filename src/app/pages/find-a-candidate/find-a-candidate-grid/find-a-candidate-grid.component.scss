@@ -268,3 +268,12 @@
   white-space: normal;
   text-overflow: ellipsis;
 }
+
+.text-triml {
+  width: 75%;
+  max-width: 85%;
+  display: block;
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+}

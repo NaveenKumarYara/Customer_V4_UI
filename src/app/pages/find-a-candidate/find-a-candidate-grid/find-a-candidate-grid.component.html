@@ -13,28 +13,27 @@
     <ul>
       <li>
         <a href="javascript:void(0)" style="cursor: default;" data-toggle="tooltip"
-        tooltip="{{candidate?.contactNumber}}" placement="left">
+        tooltip="{{candidate?.contactNumber}}" placement="bottom">
           <span class="mdi mdi-phone-in-talk-outline"></span>
         </a>
       </li>
       <li>
         <a href="javascript:void(0)" style="cursor: default;" data-toggle="tooltip"
-        tooltip="{{candidate?.email}}" placement="right">
+        tooltip="{{candidate?.email}}" placement="bottom">
           <span class="mdi mdi-email-arrow-right-outline"></span>
         </a>
       </li>
       <li>
         <a href="javascript:void(0)" (click)="DownloadResume(candidate.fullName,candidate.profileId)" tooltip="download resume"
-        placement="right">
+        placement="bottom">
           <span class="mdi mdi-progress-download"></span>
         </a>
       </li>
     </ul>
   </div>
   <div class="bottom-container">
-    <h4>{{candidate.fullName
-      | titlecase}}</h4>
-    <h6>{{candidate.jobTitleName}}</h6>
+    <h4>{{candidate.fullName | titlecase}}</h4>
+    <h6 class="text-triml">{{candidate.jobTitleName}}</h6>
     <ul>
       <li>
         <span class="mdi mdi-email-arrow-right-outline"></span>
@@ -46,7 +45,7 @@
       </li>
       <li>
         <span class="mdi mdi-home-variant-outline"></span>
-        <span class="text-trim">{{candidate.company}}</span> 
+        <span class="text-triml">{{candidate.company}}</span> 
       </li>
     </ul>
   </div>
