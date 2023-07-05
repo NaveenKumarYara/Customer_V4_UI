@@ -18,6 +18,7 @@ export class FindACandidateComponent implements OnInit {
 	totalPageCount: number = 1;
 	pageCount: number = 16;
   selectedSkills: any ;
+  sortBy: any= 0;
   showCardCarousel:boolean = false;
   np:number = 1;
   CandidateDetails:any;
@@ -35,7 +36,7 @@ export class FindACandidateComponent implements OnInit {
     nav: true
   }
   customer: any;
-  searchValue: undefined;
+  searchValue :any= undefined;
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.getCandidates();
@@ -49,6 +50,25 @@ export class FindACandidateComponent implements OnInit {
   showCardCarouselHandler(cand: any) {
     this.showCardCarousel = true;
     this.CandidateDetails = cand; 
+  }
+
+  clearAll(select:any) {
+    select = 0;
+    this.onfChange(select);
+    this.addfItem('');
+  }
+
+  addfItem(newItem: string) {
+    this.np = 1;
+    this.fstart = 1;
+    this.flast = 16;
+    this.searchValue = newItem;
+    this.getCandidates();
+  }
+
+  onfChange(selected: any) {
+    this.sortBy = Number(selected);
+    this.getCandidates();
   }
 
   getCandidates() {
@@ -81,7 +101,7 @@ export class FindACandidateComponent implements OnInit {
 		//candidateSearch.SelectedDomains = this.selectedDomains;
 		candidateSearch.CustomerId = this.customer.CustomerId;
 		//candidateSearch.FilterValue = JSON.stringify(this.filter);
-        candidateSearch.SortBy = 0;
+        candidateSearch.SortBy = this.sortBy;
 		this._service.getNewCandidates(candidateSearch).subscribe(
 		//this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {

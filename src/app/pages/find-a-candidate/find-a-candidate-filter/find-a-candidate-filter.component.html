@@ -21,14 +21,15 @@
 				<div class="col-sm-12 form-col">
 					<div class="row">
 						<div class="col-sm-6 col-md-4 col-lg-4 sort-sub-col">
-							<select   class="form-select" id="view" name="view">
+							<select   class="form-select" id="view" name="view" 	#mSelect
+							(change)='onOptionsSelected(mSelect.value)'>
 								<option selected value="0"><a  href="javascript:void(0)">All</a></option>
 								<option  value="1"><a  href="javascript:void(0)">Private Profiles</a></option>
 								<option  value="2"><a  href="javascript:void(0)">Arytic Profiles</a></option>				
 							</select>
 						</div>
 						<div class="col-sm-6 col-md-8 col-lg-8 search-sub-col">
-							<input type="text" placeholder="Search Job title, location, Job Id ..." class="form-control">
+							<input type="text" placeholder="Search Job title, location, Job Id ..." #newfItem (input)="addfNewItem(newfItem.value)" class="form-control">
 						</div>
 					</div>
 				</div>
@@ -46,7 +47,7 @@
 						<span class="mdi mdi-file-arrow-up-down-outline"></span>
 						Export
 					</button>
-					<button class="btn btn-with-icon">
+					<button class="btn btn-with-icon" #clearfItem (click)="addfclearItem(clearfItem.value)">
 						<span class="mdi mdi-close-circle-outline"></span>
 						Clear
 					</button>

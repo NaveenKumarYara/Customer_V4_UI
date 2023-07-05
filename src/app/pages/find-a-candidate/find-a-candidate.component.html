@@ -3,6 +3,9 @@
   <app-find-a-candidate-filter
     [viewLayout] = "viewLayout"
     (layoutView) = "layoutView($event)"
+    (newfItemEvent)="addfItem($event)"
+   [candidates]="candidates"   
+  (fchanged)="onfChange($event)"  (clearfItemEvent)="clearAll($event)"
   >
   </app-find-a-candidate-filter>
   <div class="sorting-container d-flex align-items-center">
