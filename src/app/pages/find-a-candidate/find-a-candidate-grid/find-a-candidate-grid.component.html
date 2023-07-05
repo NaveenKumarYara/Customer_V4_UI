@@ -12,19 +12,17 @@
     <span class="status">{{candidate.isPublic ? 'Arytic Profile' : 'Private Profile'}}</span>
     <ul>
       <li>
-        <a href="javascript:void(0)" style="cursor: default;" data-toggle="tooltip"
-        tooltip="{{candidate?.contactNumber}}" placement="bottom">
+        <a href="javascript:void(0)" style="cursor: default;" ngbTooltip="{{candidate?.contactNumber}}" placement="bottom">
           <span class="mdi mdi-phone-in-talk-outline"></span>
         </a>
       </li>
       <li>
-        <a href="javascript:void(0)" style="cursor: default;" data-toggle="tooltip"
-        tooltip="{{candidate?.email}}" placement="bottom">
+        <a href="javascript:void(0)" style="cursor: default;" ngbTooltip="{{candidate?.email}}" placement="bottom">
           <span class="mdi mdi-email-arrow-right-outline"></span>
         </a>
       </li>
       <li>
-        <a href="javascript:void(0)" (click)="DownloadResume(candidate.fullName,candidate.profileId)" tooltip="download resume"
+        <a href="javascript:void(0)" (click)="DownloadResume(candidate.fullName,candidate.profileId)" ngbTooltip="download resume"
         placement="bottom">
           <span class="mdi mdi-progress-download"></span>
         </a>

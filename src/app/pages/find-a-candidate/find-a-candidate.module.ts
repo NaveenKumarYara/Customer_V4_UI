@@ -12,6 +12,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
 	declarations: [
 		FindACandidateComponent,
@@ -27,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 		NgxPaginationModule,
 		CarouselModule,
 		ToastrModule.forRoot(),
-		TooltipModule,
+		NgbTooltipModule,
 		NgCircleProgressModule.forRoot({
 			radius: 100,
 			outerStrokeWidth: 16,
