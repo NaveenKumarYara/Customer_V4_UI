@@ -22,6 +22,7 @@ export class JobActivitiesComponent implements OnInit {
   showNoteForm: boolean = false;
   showFeedbackForm: boolean = false;
   customer:any;
+  isDocumentType: boolean = false;
   constructor(private _service : ApiService, private route: ActivatedRoute) { 
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.route.queryParams.subscribe(
@@ -68,6 +69,10 @@ export class JobActivitiesComponent implements OnInit {
 
   changeView() {
     this.isChecked =  ! this.isChecked;
+  }
+
+  documentType() {
+    this.isDocumentType = !this.isDocumentType;
   }
 
   panelCloseHandler() {

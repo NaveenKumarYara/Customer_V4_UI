@@ -42,6 +42,9 @@ import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
 import { JobCommunicationComponent } from './job-communication/job-communication.component';
 import { NgChartsModule } from 'ng2-charts';
+import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
+import { JobShareComponent } from './job-share/job-share.component';
+import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component';
 
 @NgModule({
 	declarations: [
@@ -67,7 +70,10 @@ import { NgChartsModule } from 'ng2-charts';
    ScheduleInterviewComponent,
    JobDocumentsComponent,
 	 JobCommunicationComponent,
-   ScheduleInterviewExternalComponent
+   ScheduleInterviewExternalComponent,
+   CandidateDocumentComponent,
+   JobShareComponent,
+   ViewEditJobsComponent
 	],
 	imports: [
 	 CommonModule,

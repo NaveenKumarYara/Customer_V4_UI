@@ -1,21 +1,16 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap'; 
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-job-communication',
-  templateUrl: './job-communication.component.html',
-  styleUrls: ['./job-communication.component.scss']
+  selector: 'app-job-share',
+  templateUrl: './job-share.component.html',
+  styleUrls: ['./job-share.component.scss']
 })
-export class JobCommunicationComponent implements OnInit {
-  @Input() isChecked: boolean = false;
-  @Input() showNoteForm: boolean = false;
-  @Input() showFeedbackForm: boolean = false;
+export class JobShareComponent implements OnInit {
 
-  constructor(config: NgbAccordionConfig) {
-		// customize default values of accordions used by this component tree
-		config.closeOthers = true;
-		config.type = 'info';
-	}
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   config = {
     uiColor: '#F0F3F4',
@@ -52,7 +47,5 @@ export class JobCommunicationComponent implements OnInit {
   // Remove the redundant buttons from toolbar groups defined above.
   removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
   };
-  
-  ngOnInit(): void {
-  }
+
 }

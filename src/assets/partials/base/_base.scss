@@ -497,6 +497,17 @@ body {
 	margin-top: 30px;
 	padding-top: 20px;
 	border-top: 1px solid $stroke-gray;
+
+	h4 {
+		font-size: $font-size-16;
+		margin-bottom: 0;
+		font-weight: 600;
+	}
+
+	.ml-auto {
+		margin-left: auto !important;
+		margin-right: 0 !important;
+	}
 }
 
 .form-container {
@@ -646,6 +657,12 @@ body {
 		@include justify-content(center);
 		@include flex-direction(column);
 		@include align-items(center);
+
+		h4 {
+			font-size: $font-size-14;
+			font-weight: normal;
+			margin: 0;
+		}
 	}
 
 	input[type=file] {
@@ -975,4 +992,24 @@ body {
 
 .tooltip {
 	font-size: $font-size-14;
+}
+
+.fieldset {
+	border: 1px solid $stroke-gray;
+	border-radius: 8px;
+	padding: 24px 20px 20px;
+	position: relative;
+
+	legend {
+		font-size: $font-size-12;
+		font-weight: 600;
+		position: absolute;
+		left: 20px;
+		text-transform: uppercase;
+		top: -9px;
+		color: $dark-gray;
+		background-color: $white;
+		padding: 4px 10px;
+		width: auto;
+	}
 }

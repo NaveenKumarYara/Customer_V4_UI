@@ -1,0 +1,94 @@
+<div class="form-container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="fieldset">
+        <legend>Share Via</legend>
+        <div class="checkbox-list">
+          <ul>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">Email</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">Social Media</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">Job Base</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark">Contact US Pages</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>From</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Email Address">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>To</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Email Address">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>Subject</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Subject Here">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>Message</label>
+    </div>
+    <div class="col-sm-12">
+      <ckeditor  
+        [config]="config"
+        data="<p>Hello, world!</p>">
+      </ckeditor>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <div class="file-upload">
+        <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
+        <input type="file" name="myfile" />
+      </div>
+      <div class="description">
+        <span class="mdi mdi-information-outline"></span>
+        Add Attachments  * Please add .PNG,  .DOC, .PDF 
+      </div>
+    </div>
+  </div>
+</div>
