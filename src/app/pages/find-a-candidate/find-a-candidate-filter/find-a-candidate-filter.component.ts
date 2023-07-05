@@ -27,8 +27,8 @@ export class FindACandidateFilterComponent implements OnInit {
     this.layoutView.emit('grid');
   }
 
-  download(job:any){
-    this._service.downloadFile(job, 'MyJobs');
+  download(){
+    this._service.downloadFindCandidatesFile(this.candidates, 'My Profiles');
   }
   onOptionsSelected(value:string){
     this.fchanged.emit(value);
