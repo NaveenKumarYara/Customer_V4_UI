@@ -10,7 +10,8 @@ import { FindACandidateTableComponent } from './find-a-candidate-table/find-a-ca
 import { FindACandidateCardComponent } from './find-a-candidate-card/find-a-candidate-card.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
 	declarations: [
 		FindACandidateComponent,
@@ -25,6 +26,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 		SharedModule,
 		NgxPaginationModule,
 		CarouselModule,
+		ToastrModule.forRoot(),
+		TooltipModule,
 		NgCircleProgressModule.forRoot({
 			radius: 100,
 			outerStrokeWidth: 16,
