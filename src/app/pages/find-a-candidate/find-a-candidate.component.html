@@ -7,12 +7,12 @@
   </app-find-a-candidate-filter>
   <div class="sorting-container d-flex align-items-center">
     <div class="result">
-      Showing 1 - 16 out of {{totalCandidatesCount || 0}} Profiles
+      Showing {{fstart==null?1:fstart }} - {{flast==null?16:flast}} out of {{totalCandidatesCount || 0}} Profiles
     </div>
     <div class="sorting">
-      <!-- <pagination-controls  (pageChange)="listCount($event)" (pageChange)="p = $event"
+      <pagination-controls  (pageChange)="listCount($event)" [autoHide]="true" *ngIf="candidates.length>0"
       previousLabel="" nextLabel="">
-      </pagination-controls> -->
+      </pagination-controls>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
         <div class="left-col" [ngClass]="showCardCarousel?'col-md-8 col-lg-8':''">
         <div class="row">
 
-          <div class="col-md-3 col-lg-3 find-col" *ngFor="let candidate of candidates;let k = index" (click)="showCardCarouselHandler(candidate)">
+          <div class="col-md-3 col-lg-3 find-col" *ngFor="let candidate of candidates | paginate: { itemsPerPage: 16 , currentPage: np, totalItems: totalCandidatesCount };let k = index" (click)="showCardCarouselHandler(candidate)">
             <app-find-a-candidate-grid [candidate]="candidate"></app-find-a-candidate-grid>
           </div>
         
@@ -70,7 +70,7 @@
             <span class="mdi mdi-chevron-down"></span>
           </div>
         </div>
-       <ng-container *ngFor="let tcandidate of candidates;let j = index">
+       <ng-container *ngFor="let tcandidate of candidates | paginate: { itemsPerPage: 16 , currentPage: np, totalItems: totalCandidatesCount };let j = index">
         <app-find-a-candidate-table [tcandidate]="tcandidate"></app-find-a-candidate-table>
        </ng-container>
     

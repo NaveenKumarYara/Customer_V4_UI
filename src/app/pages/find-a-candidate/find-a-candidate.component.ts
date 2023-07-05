@@ -56,7 +56,7 @@ export class FindACandidateComponent implements OnInit {
 
 
 		let candidateSearch = new CandidateSearch();
-		candidateSearch.PageNumber = this.currentPage;
+		candidateSearch.PageNumber = this.np;
 		candidateSearch.PageSize = this.pageCount;
 		candidateSearch.SearchValue = this.searchValue!=undefined?this.searchValue:'';
 		if(candidateSearch.SearchValue != '')
@@ -117,16 +117,14 @@ export class FindACandidateComponent implements OnInit {
 
   listCount(count:any) {
     this.fstart = count;
-    
-    this.fstart = this.fstart * 6 - 6;
+    this.np = this.fstart;
+    this.fstart = this.fstart * 16 - 16;
     if(this.fstart == 0)
     {
       this.fstart = 1;
     }
-    this.flast = count * 6;
-    if (this.flast > 10) {
-      this.flast = 10;
-    }
+    this.flast = count * 16;
+    this.getCandidates();
   }
 
   
