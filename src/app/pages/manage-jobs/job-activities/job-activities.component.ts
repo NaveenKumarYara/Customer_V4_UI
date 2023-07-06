@@ -16,6 +16,10 @@ export class JobActivitiesComponent implements OnInit {
   panelTitle:any = '';
   panelShow: any = '';
   JobId: any;
+  jp:number = 1;
+  jfilterTerm: string='';
+  jstart:number=1;
+  jlast:any;
   Profiles:any=[];
   jobCard: boolean = false;
   isChecked: boolean = false;
@@ -45,6 +49,78 @@ export class JobActivitiesComponent implements OnInit {
       this.JobDetail =  response[0];
     });
   }
+
+  clearAll(select:any) {
+    select = 0;
+    this.onChange(select);
+    this.addItem('');
+  }
+
+  addItem(newItem: string) {
+    this.jp = 1;
+    this.jstart = 1;
+    this.jlast = 6;
+    this.jfilterTerm = newItem;
+  }
+
+  onChange(selected: any) {
+    if(Number(selected) == 0) {
+      this.Profiles.sort((n1: { MatchingPercentage: any; }, n2: { MatchingPercentage: any; }) => {
+        if (n1.MatchingPercentage < n2.MatchingPercentage) {
+          return 1;
+        }
+
+        if (n1.MatchingPercentage > n2.MatchingPercentage) {
+          return -1;
+        }
+
+        return 0;
+      })
+      }
+
+    if(Number(selected) == 1) {
+      this.Profiles.sort((n1: { MatchingPercentage: any; }, n2: { MatchingPercentage: any; }) => {
+        if (n1.MatchingPercentage > n2.MatchingPercentage) {
+          return 1;
+        }
+
+        if (n1.MatchingPercentage < n2.MatchingPercentage) {
+          return -1;
+        }
+
+        return 0;
+      })
+      }
+      if(Number(selected) == 2) {
+        this.Profiles.sort((n1: { TotalExperience : any; }, n2: { TotalExperience: any; }) => {
+          if (n1.TotalExperience < n2.TotalExperience) {
+            return 1;
+          }
+  
+          if (n1.TotalExperience > n2.TotalExperience) {
+            return -1;
+          }
+  
+          return 0;
+        })
+      }
+  
+  }
+
+  jlistCount(count:any) {
+    this.jstart = count;
+    
+    this.jstart = this.jstart * 6 - 6;
+    if(this.jstart == 0)
+    {
+      this.jstart = 1;
+    }
+    this.jlast = count * 6;
+    if (this.jlast > this.Profiles.length) {
+      this.jlast = this.Profiles.length;
+    }
+    //console.log('start'+ '      '+this.start + '      '+'last' + '      '+ this.last);
+  }
   
   GetJobAppliedProfilesDetail(FilterStatus: string | number | boolean,Search: string)
   {       
@@ -55,6 +131,17 @@ export class JobActivitiesComponent implements OnInit {
     params = params.append("SearchString",Search);
     this._service.GetEmployerService("/api/GetCustomerApplicantJobProfiles?",params).subscribe((response:any) => { 
       this.Profiles =  response;
+      this.Profiles.sort((n1: { MatchingPercentage: any; }, n2: { MatchingPercentage: any; }) => {
+        if (n1.MatchingPercentage < n2.MatchingPercentage) {
+          return 1;
+        }
+
+        if (n1.MatchingPercentage > n2.MatchingPercentage) {
+          return -1;
+        }
+
+        return 0;
+      })
       console.log(response);
     });
   }

@@ -8,7 +8,7 @@
 
 <div class="sorting-container d-flex align-items-center">
   <div class="result">
-    Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{Jobs.length}}  Jobs
+    Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{(Jobs|filter: filterTerm).length}}   Jobs
   </div>
   <div class="sorting">
     <pagination-controls  (pageChange)="listCount($event)"  [autoHide]="true" *ngIf="Jobs.length>0"  (pageChange)="p = $event"
@@ -79,8 +79,9 @@
   [panelTitle]="'Change Applicant Status'"
   (panelCloseHandler) ="panelCloseHandler()"
   >
-<app-sidepanel-cards></app-sidepanel-cards>
-  <app-schedule-interview></app-schedule-interview>
+  <app-view-edit-jobs></app-view-edit-jobs>
+<!-- <app-sidepanel-cards></app-sidepanel-cards> -->
+  <!-- <app-schedule-interview></app-schedule-interview> -->
 
 </app-slidepanel>
 <app-slidepanel 

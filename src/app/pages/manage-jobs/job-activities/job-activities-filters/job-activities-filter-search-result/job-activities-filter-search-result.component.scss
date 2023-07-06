@@ -1,0 +1,73 @@
+@import './../../../../../../assets/partials/utils/variables';
+@import './../../../../../../assets/partials/utils/mixins';
+
+.filter-quick-result {
+	border: 1px solid $stroke-gray;
+	border-radius: 4px;
+	background-color: $lightest-blue; 
+	padding: 15px;
+	margin: 0 0 30px;
+	position: relative;
+	display: flex;
+	gap: 10px;
+	@include flex-direction(column);
+
+	h4 {
+		font-size: $font-size-16;
+		text-transform: uppercase;
+		margin: 0;
+		font-weight: 700;
+		color: $dark-gray;
+	}
+
+	.close-btn {
+		position: absolute;
+		right: 15px;
+		top: 15px;
+
+		@media only screen and (min-width: 767px) {
+			right: 20px;
+			top: 20px;
+		}
+	}
+
+	ul {
+		@include no-style();
+		@include inline-flex();
+		@include flex-wrap(wrap);
+		gap: 10px;
+
+		li {
+			background: $white;
+			border: 1px solid $stroke-gray;
+			border-radius: 4px;
+			position: relative;
+			color: $dark-gray;
+			font-size: $font-size-14;
+			padding: 4px 26px 4px 10px;
+			@include shadowTwo();
+			
+			.mdi {
+				font-size: $font-size-14;
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+		@media only screen and  (min-width: 767px) {
+			margin-left: 10px;
+
+			li {
+				padding: 4px 36px 4px 10px;
+			}
+		}
+	}
+
+	@media only screen and (min-width: 767px) {
+		@include flex-direction(row);
+		padding: 20px 30px;
+		align-items: center;
+	}
+}

@@ -1,0 +1,75 @@
+@import './../../../../../assets/partials/utils/variables';
+
+.advance-filter {
+	border: 1px solid $stroke-gray;
+	border-radius: 4px;
+	background-color: $lightest-blue;
+	padding: 20px 30px;
+	margin: 0 0 30px;
+	position: relative;
+	
+	.close-btn {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+
+	label {
+		font-size: $font-size-16;
+		color: $dark-gray;
+		display: block;
+		margin-bottom: 10px;
+		.sub-label{
+			font-size: $font-size-12;
+		}
+	}
+
+	.col {
+		margin-bottom: 20px;
+		flex: 0 0 100%;
+		max-width: 100%;
+		
+		@media only screen and (min-width: 568px) {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+
+		@media only screen and (min-width: 768px) {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+
+		@media only screen and (min-width: 1024px) {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+	}
+
+	.button-col {
+		display: flex;
+		gap: 15px;
+		justify-content: flex-end;
+		
+	}
+	
+	.text-right {
+		text-align: right;
+	}
+
+	.form-group {
+		position: relative;
+
+		.mdi {
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: $font-size-20;
+			color: $dark-gray;
+		}
+	}
+
+	.form-select {
+		padding-left: 40px;
+	}
+}

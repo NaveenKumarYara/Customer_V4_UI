@@ -94,16 +94,31 @@
 <app-jobs-activities-nav [JobId]="JobId"></app-jobs-activities-nav>
 <app-job-activites-stats></app-job-activites-stats>
 <app-job-activities-summary [JobId]="JobId"></app-job-activities-summary>
-<app-manage-job-filters 
+<app-job-activities-job-filters
   [viewLayout] = "viewLayout"  
   (layoutView) = "layoutView($event)"
+  (newItemEvent)="addItem($event)"
+  [Profiles]="Profiles" 
+  (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
 >
-</app-manage-job-filters>
+
+</app-job-activities-job-filters>
+<div class="sorting-container d-flex align-items-center">
+  <div class="result">
+    Showing  {{jstart==null?1:jstart }} - {{jlast==null?6:jlast}}  out of {{(Profiles|filter: jfilterTerm).length}}  Jobs
+  </div>
+  <div class="sorting">
+    <pagination-controls  (pageChange)="jlistCount($event)"  [autoHide]="true" *ngIf="Profiles.length>0"  (pageChange)="jp = $event"
+    previousLabel="" nextLabel="" id="jfirst">
+    </pagination-controls>
+</div>
+</div>
+<br/>
 
  <ng-container *ngIf="viewLayout == 'grid'">
   <div class="job-listing-grid">
     <div class="row">
-      <ng-container *ngFor="let profile of Profiles">
+      <ng-container *ngFor="let profile of Profiles | filter: jfilterTerm  | paginate: { itemsPerPage: 6, currentPage: jp, id: 'jfirst'}">
         <div class="col-md-4 col-lg-4 job-card" >
           <app-job-card [profile]="profile"
             [panelShow]="panelShow"
@@ -138,12 +153,13 @@
       </div>
     </div>
     <div class="table-row">
-      <ng-container *ngFor="let profile of Profiles">
+      <ng-container *ngFor="let profile of Profiles| filter: jfilterTerm | paginate: { itemsPerPage: 6, currentPage: jp, id: 'jfirst'}">
       <app-job-list [profile]="profile"></app-job-list>
       </ng-container>
     </div>
   </div>
 </ng-container> 
+
 
 <app-slidepanel 
   class="slide-panel"

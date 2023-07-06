@@ -7,7 +7,23 @@
 		margin-bottom: 20px;
   }
 }
+.sorting-container {
+	@include flex-direction(column);
+	justify-content: center;
 
+	.sorting {
+		margin-left: 0;
+	}
+
+	@media only screen and (min-width: 768px) {
+		@include flex-direction(row);
+		justify-content: flex-start;
+
+		.sorting {
+			margin-left: auto;
+		}
+	}
+}
 .title {
 	flex: 0 0 100%;
 	max-width: 100%;

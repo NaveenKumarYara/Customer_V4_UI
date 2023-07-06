@@ -45,6 +45,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 import { JobShareComponent } from './job-share/job-share.component';
 import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component';
+import { FilterSearchResultComponent } from './job-activities/job-activities-filters/job-activities-filter-search-result/job-activities-filter-search-result.component';
+import { QuickSearchComponent } from './job-activities/job-activities-filters/job-activities-quick-search/job-activities-quick-search.component';
+import { JobFiltersComponent } from './job-activities/job-activities-filters/job-activities-filters.component';
 
 @NgModule({
 	declarations: [
@@ -55,6 +58,9 @@ import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component
 	SlidepanelComponent,
 	ManageAdvanceFilterComponent,
 	ManageQuickSearchComponent,
+	FilterSearchResultComponent,
+	QuickSearchComponent,
+	JobFiltersComponent,
 	ManageFilterSearchResultComponent,
 	JobActivitiesComponent,
 	JobActivitesStatsComponent,

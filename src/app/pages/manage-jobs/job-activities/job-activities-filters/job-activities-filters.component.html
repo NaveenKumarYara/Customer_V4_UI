@@ -1,0 +1,75 @@
+<div class="filter-section">
+	<div class="d-flex flex-wrap">
+		<div class="navigation-col">
+			<button class="btn btn-icon" (click)="filterHandler()" [ngClass]="advanceFilter?'active':''">
+				<span class="mdi mdi-tune-vertical"></span>
+			</button>
+			<button class="btn btn-icon" (click)="quickHandler()" [ngClass]="quickSearch?'active':''">
+				<span class="mdi mdi-feature-search-outline"></span>
+			</button>
+			<div class="toogle-layout">
+				<button class="btn btn-icon" [ngClass]="viewLayout=='grid'?'active':''" (click)="layoutSwitch('grid')">
+					<span class="mdi mdi-view-grid-outline"></span>
+				</button>
+				<button class="btn btn-icon" [ngClass]="viewLayout=='table'?'active':''" (click)="layoutSwitch('table')">
+					<span class="mdi mdi-menu"></span>
+				</button>
+			</div>
+		</div>
+		<div class="search-col">
+			<div class="row">
+				<div class="col-sm-12 form-col">
+					<div class="row">
+						<div class="col-sm-6 col-md-4 col-lg-4 sort-sub-col">
+							<select   class="form-select" id="view" name="view" 
+							#mySelect
+							(change)='onOptionsSelected(mySelect.value)'>
+								<option  default [value]="0">Highest Matching</option>
+								<option  [value]="1" >Least Matching</option>
+								<option  [value]="2" >Experience</option>							
+							</select>
+						</div>
+						<div class="col-sm-6 col-md-8 col-lg-8 search-sub-col">
+							<input type="text" placeholder="Search Job title, location, Job Id ..."  #newItem (input)="addNewItem(newItem.value)" class="form-control">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6 button-col">
+					<button class="btn btn-with-icon" (click)="saveClick()">
+						<span class="mdi mdi-content-save-outline"></span>
+						Save Search
+					</button>
+					<button class="btn btn-with-icon">
+						<span class="mdi mdi-format-list-text"></span>
+						Search List
+					</button>
+					<button class="btn btn-with-icon" (click)="download(Profiles)">
+						
+						<span class="mdi mdi-file-arrow-up-down-outline"></span>
+						Export
+					</button>
+					<button class="btn btn-with-icon" #clearItem (click)="addclearItem(clearItem.value)">
+						<span class="mdi mdi-close-circle-outline"></span>
+						Clear
+					</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<ng-container *ngIf="advanceFilter">
+	<app-manage-advance-filter [advanceFilter]="advanceFilter"
+		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
+		
+</ng-container>
+
+<ng-container *ngIf="quickSearch">
+	<app-manage-quick-search [quickSearch]="quickSearch"
+	(quickHideHandler)="quickHideHandler()"></app-manage-quick-search>
+</ng-container>
+
+<ng-container *ngIf="saveSearch">
+	<app-manage-filter-search-result></app-manage-filter-search-result>
+</ng-container>
