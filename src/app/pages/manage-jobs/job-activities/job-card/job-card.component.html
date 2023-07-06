@@ -321,18 +321,25 @@
     <div class="skills-cols">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
-          <div class="skills-col">
-            <ng-container *ngFor="let skill of profile?.PrimarySkill.split(',');let s = index">
-              <div class="skill-container" *ngIf="s<3">
-                <h3 placement="bottom" ngbTooltip="{{ skill.split('|')[0] }}">{{ skill.split("|")[0] }}</h3>
-                <h4 placement="top" ngbTooltip="Exp : {{ skill?.split('|')[1] }}.{{ skill?.split('|')[2]
-              }} years">Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
-                  }} years</h4>
-                <div class="rating">
-                  <ngb-rating [(rate)]="skill.split('|')[3] "  aria-readonly="true" [max]="5"></ngb-rating>
+          <div class="skills-col" >
+            <ng-container *ngIf="profile?.PrimarySkills != null && profile?.PrimarySkills != ''; else noSkillTemplate">
+              <ng-container *ngFor="let skill of profile?.PrimarySkill.split(',');let s = index">
+                <div class="skill-container" *ngIf="s<3">
+                  <h3 placement="bottom" ngbTooltip="{{ skill.split('|')[0] }}">{{ skill.split("|")[0] }}</h3>
+                  <h4 placement="top" ngbTooltip="Exp : {{ skill?.split('|')[1] }}.{{ skill?.split('|')[2]
+                }} years">Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
+                    }} years</h4>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="skill.split('|')[3] "  aria-readonly="true" [max]="5"></ngb-rating>
+                  </div>
                 </div>
+              </ng-container>   
+            </ng-container>
+            <ng-template #noSkillTemplate>
+              <div class="no-skills text-center">
+                <h5>No skills added</h5>
               </div>
-            </ng-container>      
+            </ng-template>
           </div>
         </ng-template>
       </owl-carousel-o>
