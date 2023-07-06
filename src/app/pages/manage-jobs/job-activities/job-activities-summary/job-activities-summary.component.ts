@@ -12,6 +12,21 @@ export class JobActivitiesSummaryComponent implements OnInit {
   isChecked: boolean = false;
   JobDetail: any;
   @Input() JobId:any;
+  Industry:any = 'All Applicants';;
+  Industries:any
+  = [
+    {id: 1, name: 'All Applicants'},
+    // {id: 2, name: 'In-Progress'},
+    {id: 3, name: 'Applied Profiles'},
+    {id: 4, name: 'Invited profiles' },
+    {id: 5, name: 'Uploaded Profiles' },
+    {id: 6, name: 'Social Media'},
+    {id: 7, name: 'Freelancer'},
+    {id: 8, name: 'Job Boards'},
+    {id: 9, name: 'Agencies' },
+    {id: 10, name: 'Customer Data' },
+    {id: 11, name: 'Others'}
+];
   public barChartLegend = false;
   public barChartPlugins = [];
 
@@ -39,6 +54,31 @@ export class JobActivitiesSummaryComponent implements OnInit {
   public barChartType = 'bar';
   constructor(private _service : ApiService,private _location: Location) {
 
+   }
+
+   MySort(val: string)
+   {
+     this.Industry = val;
+     if(val === "All Applicants")
+     {
+       
+     }
+     else if(val === "Invited profiles")
+     {
+      
+     }
+     else if(val === "Uploaded Profiles")
+     {
+     
+     }
+     else if(val === "Applied Profiles")
+     {
+      
+     }
+     else
+     {
+      
+     }
    }
 
   ngOnInit(): void {
