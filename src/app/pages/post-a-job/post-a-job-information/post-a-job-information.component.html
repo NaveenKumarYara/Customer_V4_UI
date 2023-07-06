@@ -1,0 +1,137 @@
+<div class="form-section-title">
+  <h3>Job Information</h3>
+</div>
+<div class="row">
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Business Domain <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-earth"></span>
+      <select class="form-select">
+        <option value="Select Domain">Select Domain</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Category <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-tag-outline"></span>
+      <select class="form-select">
+        <option value="Select Domain">Select Category</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Job Title <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-tag-outline"></span>
+      <select class="form-select">
+        <option value="Select Domain">Select Title</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">No of Openings <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-seat-outline"></span>
+      <select class="form-select">
+        <option value="1">1</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Job Type <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-briefcase-variant-outline"></span>
+      <select class="form-select">
+        <option value="Full Time">Full Time</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Start Date <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-calendar-blank-outline"  (click)="d.toggle()"></span>
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        name="dp"
+        ngbDatepicker
+        #d="ngbDatepicker"
+      />
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">End Date <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-calendar-blank-outline"  (click)="e.toggle()"></span>
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        name="dp"
+        ngbDatepicker
+        #e="ngbDatepicker"
+      />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 single-col form-col">
+    <label class="form-label">Job Description<sup>*</sup></label>
+  </div>
+  <div class="col-sm-12 form-col">
+    <ckeditor  
+      [config]="config"
+      data="<p>Hello, world!</p>">
+    </ckeditor>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 single-col">
+    <div class="file-upload">
+      <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
+      <input type="file" name="myfile" />
+    </div>
+    <div class="description">
+      <span class="mdi mdi-information-outline"></span>
+      Upload .doc, .docx, .pdf, .txt file only
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Job Owner<sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-account-circle-outline"></span>
+      <select class="form-select">
+        <option value="Select Domain">Type and Select</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Job Assign <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-account-arrow-right-outline"></span>
+      <select class="form-select">
+        <option value="Select Domain">Select Category</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 form-col">
+    <label class="form-label">Work Authorization <sup>*</sup></label>
+    <div class="form-group">
+      <span class="mdi mdi-badge-account-outline"></span>
+      <select class="form-select">
+        <option value="Select Domain">Select Title</option>
+      </select>
+    </div>
+  </div>
+</div>

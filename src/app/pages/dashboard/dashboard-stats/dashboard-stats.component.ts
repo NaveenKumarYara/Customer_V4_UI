@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
@@ -8,8 +8,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./dashboard-stats.component.scss']
 })
 export class DashboardStatsComponent implements OnInit {
-  
-  customOptions: OwlOptions = {
+
+  customOptions: OwlOptions  = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -18,6 +18,7 @@ export class DashboardStatsComponent implements OnInit {
     navSpeed: 700,
     center:false,
     margin: 20,
+
     navText: ['<span class="mdi mdi-chevron-left"></span>', '<span class="mdi mdi-chevron-right"></span>'],
     responsive: {
       0: {
@@ -39,6 +40,7 @@ export class DashboardStatsComponent implements OnInit {
   constructor() { }
  
   ngOnInit(): void {
+    
   }
   
 }

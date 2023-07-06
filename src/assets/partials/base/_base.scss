@@ -215,6 +215,12 @@ body {
 	}
 }
 
+.form-select {
+	option {
+		padding-left: 16px;
+	}
+}
+
 @media screen and (min-width:600px) and (max-width:800px){
 	html{
 		font-size:12px;
@@ -516,6 +522,19 @@ body {
 		margin-bottom: 20px;
 	}
 
+	.form-col {
+		margin-bottom: 20px;
+	}
+
+	.form-label {
+		display: block;
+		margin-bottom: 15px;
+
+		sup {
+			color: $red;
+		}
+	}
+
 	.label-col {
 		label {
 			margin-bottom: 15px;
@@ -598,6 +617,7 @@ body {
 			color: $dark-gray;
 			left: 10px;
 			top: 5px;
+			z-index: 10;
 
 			@media only screen and (min-width: 768px) {
 				left: 15px;
@@ -1011,5 +1031,35 @@ body {
 		background-color: $white;
 		padding: 4px 10px;
 		width: auto;
+	}
+}
+
+.multiselect-dropdown {
+	.dropdown-btn {
+		padding-left: 40px !important;
+		display: flex !important;
+		@include align-items(center);
+		height: 48px;
+		gap: 2px;
+		background-color: $white;
+	}
+
+	.selected-item {
+		background-color: $blue !important;
+		border-radius: 4px !important;
+		border-color: $blue !important;
+		color: $white !important;
+		margin: 0 !important;
+	}
+
+	.dropdown-multiselect__caret {
+		height: 48px !important;
+	}
+}
+
+.ngb-dp-header {
+	.form-select {
+		border-radius: 4px !important;
+		padding: 4px 20px 4px 10px !important;
 	}
 }

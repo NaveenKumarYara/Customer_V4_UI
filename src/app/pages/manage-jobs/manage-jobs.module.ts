@@ -48,6 +48,7 @@ import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component
 import { FilterSearchResultComponent } from './job-activities/job-activities-filters/job-activities-filter-search-result/job-activities-filter-search-result.component';
 import { QuickSearchComponent } from './job-activities/job-activities-filters/job-activities-quick-search/job-activities-quick-search.component';
 import { JobFiltersComponent } from './job-activities/job-activities-filters/job-activities-filters.component';
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 
 @NgModule({
 	declarations: [
@@ -68,18 +69,18 @@ import { JobFiltersComponent } from './job-activities/job-activities-filters/job
 	JobsActivitiesNavComponent,
 	JobCardComponent,
 	JobActivitiesSummaryComponent,
-  JobListComponent,
-  JobStatusComponent,
-  JobReviewComponent,
+	JobListComponent,
+	JobStatusComponent,
+	JobReviewComponent,
 	SidepanelCardsComponent,
- 	JobNotesComponent,
-   ScheduleInterviewComponent,
-   JobDocumentsComponent,
-	 JobCommunicationComponent,
-   ScheduleInterviewExternalComponent,
-   CandidateDocumentComponent,
-   JobShareComponent,
-   ViewEditJobsComponent
+	JobNotesComponent,
+	ScheduleInterviewComponent,
+	JobDocumentsComponent,
+	JobCommunicationComponent,
+	ScheduleInterviewExternalComponent,
+	CandidateDocumentComponent,
+	JobShareComponent,
+	ViewEditJobsComponent
 	],
 	imports: [
 	 CommonModule,
@@ -97,6 +98,7 @@ import { JobFiltersComponent } from './job-activities/job-activities-filters/job
 	 NgbCollapseModule,
 	 CKEditorModule,
 	 NgChartsModule,
+	 NgMultiSelectDropDownModule.forRoot(),
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,
@@ -106,10 +108,9 @@ import { JobFiltersComponent } from './job-activities/job-activities-filters/job
 		animationDuration: 300,
 		titleFontSize: '16',
 		space: -5
-		
 	  }),
 	  NgxPaginationModule,
-		NgbAccordionModule
+		NgbAccordionModule,
 	],
 	providers:[SettingsHttpService,SettingsService],
 	exports: [
