@@ -91,6 +91,10 @@ getNewCandidates(params:any): Observable<any> {
       debounceTime(1000), map(res => res));
   }
 
+  GetProfileService(url:string,params:any){
+    return this.http.get(this.settingsService.settings.ProfilebaseUrl + url +params)
+  }
+
   downloadFile(data: any, filename = 'data') {
     let csvData = this.ConvertToCSV(data, ['JobTitle', 'JobId', 'ClientName', 'JobStatus', 'PostedDate', 'Assignee', 'JobPriority', 'TotalApplicants', 'ShortListedCount', 'InterviewedCount', 'Hired', 'NumberOfVacancies', 'JobLocations']);
     console.log(csvData)

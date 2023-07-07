@@ -24,13 +24,16 @@ export class ManageLoadJobsComponent implements OnInit {
   jobCard: boolean = false;
   select: any;
   showJobForm: any = '';
+  selectedJob: any = null;
 
   layoutView(name:string) {
    this.viewLayout = name;
   }
 
-  panelHandler(name: string) {
-    this.panelShow = name;
+  panelHandler(event: {panelName: string, job: any}) {
+    this.panelShow = event.panelName;
+    this.selectedJob = event.job;
+    console.log('selectedJob', event);
   }
 
   panelCloseHandler() {

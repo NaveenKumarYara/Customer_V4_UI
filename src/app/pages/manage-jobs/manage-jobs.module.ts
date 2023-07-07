@@ -45,6 +45,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 import { JobShareComponent } from './job-share/job-share.component';
 import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component';
+import { FormsModule } from '@angular/forms';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 @NgModule({
 	declarations: [
@@ -91,6 +93,8 @@ import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component
 	 NgbCollapseModule,
 	 CKEditorModule,
 	 NgChartsModule,
+	 FormsModule,
+	 NgxUploaderModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

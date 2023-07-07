@@ -151,7 +151,7 @@
     <div class="slide-heding d-flex align-items-center">
       <h3>Job Notes</h3>
     </div>
-    <app-sidepanel-cards></app-sidepanel-cards>
+    <app-sidepanel-cards [job]="selectedJob"></app-sidepanel-cards>
     <div class="form-actions">
       <ng-container *ngIf="showJobForm == 'false'">
         <button class="btn btn-info" (click)="showJobFormHandler()">Add Job Notes</button>
@@ -163,7 +163,7 @@
     </div>
   </div>
   <div class="slide-container">
-    <app-job-notes [showJobForm]="showJobForm"></app-job-notes>
+    <app-job-notes [job]="selectedJob" [showJobForm]="showJobForm"></app-job-notes>
   </div>  
 </app-slidepanel>
 <app-slidepanel 
@@ -174,7 +174,7 @@
   <div class="slide-heding d-flex align-items-center">
     <h3>Job Documents</h3>
   </div>
-  <app-sidepanel-cards
+  <app-sidepanel-cards [job]="selectedJob"
     [jobCard] = "false"
   ></app-sidepanel-cards>
   <div class="form-actions">

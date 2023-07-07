@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class ManageJobcardComponent implements OnInit {
   @Input() job: any;
   @Input() panelShow: any = '';
-  @Output() panelHandler = new EventEmitter<string>(); 
+  @Output() panelHandler = new EventEmitter<{panelName:string, job: any}>(); 
   
   constructor(private _service : ApiService,private route:Router) { }
 
@@ -21,7 +21,7 @@ export class ManageJobcardComponent implements OnInit {
   
   panelClick(name: string) {
     console.log(name);
-    this.panelHandler.emit(name);
+    this.panelHandler.emit({panelName: name, job: this.job});
   }
 
 }

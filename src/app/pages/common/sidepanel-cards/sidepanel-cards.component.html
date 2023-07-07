@@ -4,43 +4,58 @@
       <div class="job-card">
         <div class="col-container">
           <div class="top-container">
-            <span class="status active">Screening</span>
-            <span class="priority">
+            <span class="status active" *ngIf="job?.JobStatus != 'InActive'">{{job?.JobStatus}}</span>
+            <span class="status inactive" *ngIf="job?.JobStatus == 'InActive'">{{job?.JobStatus}}</span>
+            <span class="priority" *ngIf="job?.JobPriority == 'Low'">
               <span class="mdi mdi-arrow-down-thick"></span>
-              Lower
+              {{job?.JobPriority}}
+            </span>
+            <span class="priority high" *ngIf="job?.JobPriority == 'High'">
+              <span class="mdi mdi-arrow-up-thick"></span>
+              {{job?.JobPriority}}
+            </span>
+            <span class="priority medium" *ngIf="job?.JobPriority == 'Medium'">
+              <span class="mdi mdi-arrow-left-right-bold"></span>
+              {{job?.JobPriority}}
             </span>
             <div class="profile-info">
               <div class="profile-thumb">
                 <img src="../../../../assets/images/default-company-small.jpg" alt="">
               </div>
-              <h3>Salesforce Develover</h3>
+              <h3>{{job?.JobTitle}}</h3>
               <div class="profile-summary">
                 <h4>
                   <span class="mdi mdi-briefcase-outline"></span>
-                  Exp  - <strong>Req 8 Years</strong>
+                  Exp  - <strong>{{job?.MaxExperience}} Years</strong>
                 </h4>
                 <h4>
                   <span class="mdi mdi-seat-outline"></span>
-                  <strong>5</strong> Position
+                  <strong>{{job?.NumberOfVacancies}}</strong> Position
                 </h4>
               </div>
             </div>
           </div>
           <div class="middle-container">
             <div class="top-section">
-              <h3>Google</h3>
-              <span class="id"> <strong>Job Ref</strong>: 1003757 </span>
+              <h3>{{job?.ClientName ?? 'Client: Not Provided'}}</h3>
+              <span class="id"> <strong>Job Ref: </strong>{{job?.JobPositionId}}</span>
             </div>
             <div class="top-bottom-section">
               <ul>
-                <li><span class="highlight">Arytic ID:  1003757</span></li>
+                <li><span class="highlight">Arytic ID:  {{job?.JobId}}</span></li>
                 <li>
                   <span class="mdi mdi-map-marker-outline"></span>
-                  Austin
+                  <span placement="top" ngbTooltip="{{job?.JobLocations.split('|')}}">
+                    <ng-container *ngFor="let location of job?.JobLocations.split('|');let j = index">	
+                      <span *ngIf="j<1" class="location-trim">
+                        {{location}}
+                      </span>
+                    </ng-container>
+                  </span>
                 </li>
                 <li>
                   <span class="mdi mdi-calendar-blank-outline"></span>
-                  Mar 14, 2023
+                  {{job?.PostedDate | date:'mediumDate'}}
                 </li>
               </ul>
             </div>
