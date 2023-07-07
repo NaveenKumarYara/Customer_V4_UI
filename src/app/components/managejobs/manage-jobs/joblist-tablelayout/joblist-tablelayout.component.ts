@@ -6,11 +6,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ManageJobService } from '../../managejobs.service';
 // import { ApiService } from '../../../../shared/services/api.service/api.service';
 import {deactivate} from '../../models/deactivate';
-import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
+import {LoadJoblistComponent, ParentComponentApi} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
 import {ShareJobComponent} from '../../../jobdetails/view-jobdetails/share-job/sharejob.component';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+
 declare var $: any;
 
 @Component({
@@ -24,6 +25,7 @@ export class JoblistTablelayoutComponent implements OnInit {
   @Input() job: Jobs;
   @Input() index: number;
   @Input() joblist: JobDetails;
+  @Input() parentApi: ParentComponentApi;
   jobId: any;
   clients: any;
   dept: any;
@@ -77,6 +79,18 @@ export class JoblistTablelayoutComponent implements OnInit {
   
   }
 
+  changeJobStatus(job, val) {
+    this.alertService.clear();
+    const search = '';
+    if (val === true) {
+     $('#Inactive').replaceWith('#Active');
+
+    } else if (val === false) {
+      $('#Active').replaceWith('#Inactive');
+    }
+    this.parentApi.callchangeJobStatus(job,val);
+}
+
   titleCaseWord(word: string) {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
@@ -91,19 +105,19 @@ export class JoblistTablelayoutComponent implements OnInit {
     window.open(url, "_blank");
     //this.router.navigateByUrl('app-view-jobdetails');
   }
-  changeJobStatus(job, val) {
-    this.alertService.clear();
-    const search = '';
-    this.deactivate.jobId = job.JobId;
-    this.deactivate.customerId = this.customerId;
-    this.deactivate.isActive = val;
-      this.appService.deactivateJob(this.deactivate)
-      .subscribe(
-      data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId, search);
-    },
-      error => console.log(error));
-}
+
+  ViewJobdetailsModel(jobId) {
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    localStorage.setItem('vjobId', JSON.stringify(jobId));
+    const url = '/app-view-jobdetails';
+    window.open(url, "_blank");
+    //this.router.navigateByUrl('app-view-jobdetails');
+
+  }
+
 
 // GetCustomerClients()
 // {

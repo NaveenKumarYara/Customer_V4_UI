@@ -14,6 +14,7 @@ import { AppService } from '../../../../app.service';
 declare var $: any;
 import * as introJs from 'intro.js/intro.js';
 import { OnDestroy } from '@angular/core/public_api';
+import { deactivate } from '../../models/deactivate';
 @Component({
   selector: 'app-manage-load-joblist',
   templateUrl: './load-joblist.component.html',
@@ -25,6 +26,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
   sub: any;
   customer: any;
   customerId: any;
+  deactivate = new deactivate();
   userId: any;
   searchString:string='';
   viewBy:any;
@@ -426,6 +428,17 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
         //this.defaultValue = '0';
       this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
       },
+      callchangeJobStatus:(job, val)=> {
+        this.deactivate.jobId = job.JobId;
+        this.deactivate.customerId = this.customerId;
+        this.deactivate.isActive = val;
+          this.appService.deactivateJob(this.deactivate)
+          .subscribe(
+          data => {
+            this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
+        },
+          error => console.log(error));
+      },
       callSearchMethod : (searchString) => {
         this.spinner.show();
        // this.parentMethod(name);
@@ -494,6 +507,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
 
 export interface ParentComponentApi {
   callMethod: (val) => void;
+  callchangeJobStatus:(job, val) => void;
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
   Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,profileStatus,skills,departments,titles,education,isfiltered,Users) => void;

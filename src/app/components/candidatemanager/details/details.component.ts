@@ -262,7 +262,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	selectedDomains: any;
 	searchJobValue: any;
 	searchJob = new Subject<string>();
-	activeJobs: any[];
+	activeJobs: any[]=[];
 	selectedSkillCount: number;
 	selectedDomainCount: number;
 	selectedProfileCount: number;
@@ -539,6 +539,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.getSkills();
 		this.getDomains();
 		this.getCandidates();	
+		this.getActiveJobs();
 		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 		// 	.subscribe(res => {
 		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -715,8 +716,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 			--this.selectedIndex;
 		}
 	}
-	applySidePanel() {
-		this.getActiveJobs();
+	applySidePanel() {	
 		this.applyJobSidePanelShow = true;
 	}
 
@@ -1119,7 +1119,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	}
 	getActiveJobs() {
 		//debugger;
-		this.candidatesLoading = true;
+		//this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		if (this.searchJobValue === undefined) {
