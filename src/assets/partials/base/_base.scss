@@ -526,6 +526,14 @@ body {
 		margin-bottom: 20px;
 	}
 
+	h4 {
+		font-size: $font-size-18;
+		text-transform: uppercase;
+		font-weight: 700;
+		margin: 0;
+		color: $dark-gray;
+	}
+
 	.form-label {
 		display: block;
 		margin-bottom: 15px;

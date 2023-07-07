@@ -1,3 +1,6 @@
+@import  './../utils/variables';
+@import './../utils/mixins';
+
 .with-sidebar {
   #main {
     &.expanded {
@@ -135,5 +138,40 @@
 
   @media only screen and (min-width: 1024px) {
     padding: 0 60px;
+  }
+}
+
+
+.tabbing-radios {
+  display: inline-flex;
+  border-radius: 6px;
+  overflow: hidden;
+  background: $white;
+  border: 1px solid $stroke-gray;
+
+  label {
+    position: relative;
+
+    input[type="radio"] {
+      position: absolute;
+      left: -999em;
+
+      + .checkmark {
+        font-size: $font-size-14;
+        text-transform: uppercase;
+        color: $dark-gray;
+        line-height: 1.25;
+        padding: 13px 30px;
+        display: block;
+      }
+
+      &:checked {
+        + .checkmark {
+          background-color: $blue;
+          color: $white;
+          box-shadow: 0px 4px 8px 0px rgba(144, 164, 173, 0.40) inset;
+        }
+      }
+    }
   }
 }

@@ -3,23 +3,33 @@
     <div class="tab-navigation">
       <ul>
         <li class="active">
-          <a href="#">Job Information</a>
+          <a href="#section-one">Job Information</a>
         </li>
         <li>
-          <a href="#">Client Information</a>
+          <a href="#three">Client Information</a>
         </li>
         <li>
           <a href="#">Local & Skills</a>
         </li>
         <li>
-          <a href="#">Additional & Skills</a>
+          <a href="#section-four">Additional & Skills</a>
         </li>
       </ul>
     </div>
     <div class="form-container">
       <div class="form-container-box">
-        <app-post-a-job-information></app-post-a-job-information>
-        <app-post-a-job-client-information></app-post-a-job-client-information>
+        <div class="section" id="section-one">
+          <app-post-a-job-information></app-post-a-job-information>
+        </div>
+        <div class="section" id="section-two">
+          <app-post-a-job-client-information></app-post-a-job-client-information>
+        </div>
+        <div class="section" id="section-three">
+          <app-post-a-job-skills></app-post-a-job-skills>
+        </div>
+        <div class="section" id="section-four">
+          <app-post-a-job-additional></app-post-a-job-additional>
+        </div>
       </div>
     </div>
   </div>

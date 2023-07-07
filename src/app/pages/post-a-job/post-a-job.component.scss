@@ -8,13 +8,27 @@
     margin-top: 30px;
     border: 1px solid $stroke-gray;
     padding: 30px;
+    overflow: hidden;
 
     @media only screen and (min-width: 1024px) {
-      padding: 40px 50px;
+      padding: 40px 50px 0;
     }
   }
 
   @media only screen and (min-width: 1024px) {
     padding: 0 80px;
   }
+}
+
+#section-two,
+#section-four {
+  background-color: $light-bg;
+  margin-left: -50px;
+  margin-right: -50px;
+  margin-bottom: 40px;
+  padding: 40px 50px;
+}
+
+#section-four {
+  margin-bottom: 0;
 }

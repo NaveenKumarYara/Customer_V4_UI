@@ -8,12 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common'
 import { CKEditorModule } from 'ckeditor4-angular';
 import { PostAJobClientInformationComponent } from './post-a-job-client-information/post-a-job-client-information.component';
+import { PostAJobAdditionalComponent } from './post-a-job-additional/post-a-job-additional.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.component';
 
 @NgModule({
 	declarations: [
     PostAJobComponent,
     PostAJobInformationComponent,
-    PostAJobClientInformationComponent
+    PostAJobClientInformationComponent,
+    PostAJobAdditionalComponent,
+    PostAJobSkillsComponent
 	],
 	imports: [
 		CommonModule,
@@ -22,7 +27,8 @@ import { PostAJobClientInformationComponent } from './post-a-job-client-informat
 		NgbDatepickerModule,
 		FormsModule,
 		JsonPipe,
-		CKEditorModule
+		CKEditorModule,
+		NgxSliderModule
 	],
 	exports: [
     PostAJobComponent
