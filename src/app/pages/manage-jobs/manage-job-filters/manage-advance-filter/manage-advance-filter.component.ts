@@ -43,7 +43,7 @@ export class ManageAdvanceFilterComponent implements OnInit {
     textField: 'item_text',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 1,
+    itemsShowLimit: 2,
     allowSearchFilter: true
   };
   
