@@ -7,11 +7,11 @@
     <ul [ngClass]="otherOption?'other-show':'other-hide'">
       <li *ngFor="let item of items; let i = index" 
       [ngClass]="{'active': selectedItem === i}"
-      [value]="item.value" 
-      (click)='selectedItem = i;'>
+      [value]="item.jobStatus" 
+      (click)='selectedItem = i;changeStatus(item.jobStatus)'>
         <a href="javascript:void(0)">
           <span class="mdi mdi-check" *ngIf="selectedItem === i"></span>
-          {{item.value}}
+          {{item.jobStatus}}
         </a>
       </li>
     </ul>
@@ -19,5 +19,5 @@
       <span class="mdi mdi-chevron-down"></span>
     </button>
   </div>
-  <button class="btn btn-outlined-default btn-sm">Clear</button> 
+  <button class="btn btn-outlined-default btn-sm" (click)="clear('All Jobs')">Clear</button> 
 </div>

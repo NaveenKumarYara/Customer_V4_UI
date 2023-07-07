@@ -1,6 +1,6 @@
 <h1>Manage Jobs</h1>
 <app-manage-job-filters (newItemEvent)="addItem($event)"
-  [viewLayout] = "viewLayout"    [Jobs]="Jobs"   
+  [viewLayout] = "viewLayout"    [Jobs]="Jobs"     (quickchanged)="onquickChange($event)" 
   (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
   (layoutView) = "layoutView($event)"
 >

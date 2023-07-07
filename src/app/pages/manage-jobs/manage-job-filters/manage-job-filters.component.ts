@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class ManageJobFiltersComponent implements OnInit {
   advanceFilter:boolean = false;
   quickSearch:boolean = false;
+  items :any = [];
   saveSearch = false;
   filterList = {
     Country : ['India', 'USA', 'Japan', ''],
@@ -20,6 +21,7 @@ export class ManageJobFiltersComponent implements OnInit {
   @ViewChild('newItem') fullNameInput: any; 
   @ViewChild('mySelect') fmySelectInput: any; 
   @Output() changed = new EventEmitter<string>();
+  @Output() quickchanged = new EventEmitter<string>();
   @Output() newItemEvent = new EventEmitter<string>();
   @Output() clearItemEvent = new EventEmitter<string>();
   @Input() filterTerm: any ='';
@@ -28,8 +30,17 @@ export class ManageJobFiltersComponent implements OnInit {
   @Output() layoutView = new EventEmitter<string>();
 
   constructor(private _service : ApiService) {
+    this.GetJobStatus();
    } 
   ngOnInit(): void {
+  }
+
+  GetJobStatus()
+  {
+    this._service.GetJobStatus().subscribe((response:any) => {
+
+      this.items = response.jobstatus;
+    })
   }
  
   download(job:any){
@@ -79,6 +90,13 @@ filterChange(appliedfilters: any) {
   quickHideHandler() {
     this.quickSearch = false;
   }
+
+
+  quicksort(val: any)
+  {
+     this.quickchanged.emit(val);
+  }
+  
 
   layoutSwitch(name: string){
     this.layoutView.emit(name);

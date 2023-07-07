@@ -1,5 +1,7 @@
 {
     "EmployerjobsUrl": "${Employerjobs_URL}",
     "IdentitybaseUrl": "${Identity_URL}",
-    "JobbaseUrl": "${Jobs_URL}"
+    "JobbaseUrl": "${Jobs_URL}",
+    "ProfilebaseUrl": "${ProfileAPI_URL}",
+    "MasterbaseUrl":"${MasterAPI_URL}"
 }

@@ -35,6 +35,11 @@ export class ApiService {
       debounceTime(1000), map(res => res));
   }
 
+  GetJobStatus() {
+    return this.http.get(this.settingsService.settings.MasterbaseUrl + '/api/GetJobStatus', this.httpOptions).pipe(
+      debounceTime(1000), map(res => res));
+  }
+
 
    // Start-- Section to call the API here related JobAPI
 //---------------------------------------------------------------------

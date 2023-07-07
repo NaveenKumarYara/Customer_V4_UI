@@ -24,6 +24,7 @@ export class ManageLoadJobsComponent implements OnInit {
   jobCard: boolean = false;
   select: any;
   showJobForm: any = '';
+  MainJobs: any=[];
 
   layoutView(name:string) {
    this.viewLayout = name;
@@ -85,6 +86,19 @@ export class ManageLoadJobsComponent implements OnInit {
       })
       }
   }
+
+
+  onquickChange(selected: any) {
+    if(selected != 'All Jobs')
+    {
+      this.addItem(selected);
+    }
+    else
+    {
+      this.addItem('');
+    }
+    
+  }
  
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
@@ -131,7 +145,7 @@ export class ManageLoadJobsComponent implements OnInit {
 		params = params.append("CustomerId", CustomerId);
 		params = params.append("UserId", UserId);
     this._service.GetEmployerService("/api/GetCustomerJobs?", params).subscribe((response) => { 
-
+      this.MainJobs = response;
       //console.log(response);
 			this.Jobs = response;
       //this.Jobs.sort((a: { PostedDate: any; }, b: { PostedDate: any; }) => (b.PostedDate as any) - (a.PostedDate as any));
