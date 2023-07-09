@@ -1,12 +1,12 @@
-<div class="dashboard-total-jobs">
-  <h3>Jobs</h3>
+<div class="dashboard-users-kpis">
+  <h3>Applicants by status</h3>
   <div class="row">
     <div class="col-md-3 col-lg-3 col">
       <div class="col-container">
         <span class="icon icon-01">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.Openings || 0}}</h4>
-          <h6>Open</h6>
+          <h4>25</h4>
+          <h6>Admin</h6>
         </div>
       </div>
     </div>
@@ -14,8 +14,8 @@
       <div class="col-container">
         <span class="icon icon-02">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.Screening || 0}}</h4>
-          <h6>Screening</h6>
+          <h4>08</h4>
+          <h6>Account Manager</h6>
         </div>
       </div>
     </div>
@@ -23,8 +23,8 @@
       <div class="col-container">
         <span class="icon icon-03">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.ShortListed || 0}}</h4>
-          <h6>Shortlisting</h6>
+          <h4>10</h4>
+          <h6>Reporting Manager</h6>
         </div>
       </div>
     </div>
@@ -32,8 +32,8 @@
       <div class="col-container">
         <span class="icon icon-04">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.Interviews || 0}}</h4>
-          <h6>Interviewing</h6>
+          <h4>20</h4>
+          <h6>Lead Recruiter</h6>
         </div>
       </div>
     </div>
@@ -41,8 +41,8 @@
       <div class="col-container">
         <span class="icon icon-05">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.Hired || 0}}</h4>
-          <h6>Hired</h6>
+          <h4>05</h4>
+          <h6>Recruiter</h6>
         </div>
       </div>
     </div>
@@ -50,67 +50,19 @@
       <div class="col-container"> 
         <span class="icon icon-06">Icon</span>
         <div class="info">
-          <h4>{{AdminStats?.Freezed || 0}}</h4>
-          <h6>Freezed</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-lg-3 col">
-      <div class="col-container">
-        <span class="icon icon-07">Icon</span>
-        <div class="info">
-          <h4>{{AdminStats?.Hold|| 0}}</h4>
-          <h6>Hold</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-lg-3 col">
-      <div class="col-container">
-        <span class="icon icon-07">Icon</span>
-        <div class="info">
-          <h4>{{AdminStats?.Filled|| 0}}</h4>
-          <h6>Filled</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-lg-3 col">
-      <div class="col-container">
-        <span class="icon icon-08">Icon</span>
-        <div class="info">
-          <h4>{{AdminStats?.Expired || 0}}</h4>
-          <h6>Expired</h6>
+          <h4>30</h4>
+          <h6>Skill Evaluator</h6>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="dashboard-chart-container">
   <div class="row">
-    <div class="col-md-5 col-lg-5 left-col">
-      <div class="col-container">
-        <div class="container-box">
-          <div class="top-container">
-            <h3>Job Weekly Report</h3>
-            <div class="form-group">
-              <select class="form-select">
-                <option value="This Week">This Week</option>
-              </select>
-            </div>
-          </div>
-          <canvas baseChart
-            [data]="barChartData"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [type]="'bar'"
-          >
-          </canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-7 col-lg-7 table-cols">
+    <div class="col-md-12 col-lg-12 table-cols">
       <div class="top-container">
-        <h3>Weekly Status of Jobs</h3>
+        <h3>Team Member status based on applicant status</h3>
         <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Week</option>
@@ -121,31 +73,28 @@
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">
-              Client
+              Team Member
             </div>
             <div class="table-col">
-              Open
+              Uploaded
             </div>
             <div class="table-col">
-              Screening
+              Applied
             </div>
             <div class="table-col">
-              Shortlisting
+              Shortlisted
             </div>
             <div class="table-col">
-              Interviewing
+              Interviewed
             </div>
             <div class="table-col">
-              Hiring
+              Screened
             </div>
             <div class="table-col">
-              Freezed
+              Hired
             </div>
             <div class="table-col">
-              Filled
-            </div>
-            <div class="table-col">
-              Expired
+              Rejected
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -173,9 +122,6 @@
             <div class="table-col">
               1
             </div>
-            <div class="table-col">
-              1
-            </div>
           </div>
           <div class="table-row table-col-row">
             <div class="table-col name-col">
@@ -192,9 +138,6 @@
             </div>
             <div class="table-col">
               39
-            </div>
-            <div class="table-col">
-              1
             </div>
             <div class="table-col">
               1
@@ -231,9 +174,6 @@
             <div class="table-col">
               1
             </div>
-            <div class="table-col">
-              1
-            </div>
           </div>
           <div class="table-row table-col-row">
             <div class="table-col name-col">
@@ -260,9 +200,6 @@
             <div class="table-col">
               1
             </div>
-            <div class="table-col">
-              1
-            </div>
           </div>
         </div>
       </div>
@@ -275,24 +212,35 @@
     </div>
   </div>
 </div>
-<div class="dashboard-total-jobs-listing">
-  <div class="row">
-    <div class="col-md-6 col-lg-6 left-col" >
-      <h4>Top Jobs</h4>
-      <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-      </div>
+
+<div class="dashboard-listing-columns">
+  <div class="top-container">
+    <h3>Applicant Hotlist</h3>
+    <div class="form-group">
+      <select class="form-select">
+        <option value="This Week">This Week</option>
+      </select>
     </div>
-    <div class="col-md-6 col-lg-6 right-col">
-      <h4>Recent Jobs</h4>
-      <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
+  </div>
+  <div class="candidate-cards">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
       </div>
     </div>
   </div>

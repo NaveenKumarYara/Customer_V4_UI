@@ -141,7 +141,6 @@
   }
 }
 
-
 .tabbing-radios {
   display: inline-flex;
   border-radius: 6px;
@@ -175,3 +174,26 @@
     }
   }
 }
+
+.mCSB_scrollTools {
+  width: 8px !important;
+
+  .mCSB_draggerContainer {
+    background-color: rgba(144, 164, 173, 0.30);
+  }
+
+  .mCSB_dragger {
+    .mCSB_dragger_bar {
+      width: 8px !important;
+      border-radius: 0 !important;
+      background-color: $darker-green !important;
+    }
+  }
+}
+
+.mCS-dark.mCSB_scrollTools {
+  .mCSB_draggerRail {
+    background-color: transparent !important;
+  }
+}
+

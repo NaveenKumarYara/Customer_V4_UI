@@ -2,6 +2,13 @@
 @import '../../../../assets/partials/utils/mixins';
 
 .dashboard-kpis {
+  h4 {
+    font-size: $font-size-22;
+    font-weight: 700;
+    color: $dark-gray;
+    margin-bottom: 15px;
+  }
+  
   .col-container {
     background-color: $white;
     border-radius: 8px;

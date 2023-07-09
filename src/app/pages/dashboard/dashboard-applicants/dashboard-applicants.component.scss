@@ -1,7 +1,7 @@
 @import '../../../../assets/partials/utils/variables';
 @import '../../../../assets/partials/utils/mixins';
 
-.dashboard-total-jobs {
+.dashboard-applicants-kpis {
   h3 {
     font-size: $font-size-20;
     margin: 0 0 20px;
@@ -378,9 +378,9 @@
     text-align: center;
 
     @media only screen and (min-width: 1320px) {
-      flex: 0 0 10.625%;
-      max-width: 10.625%;
-      width: 10.625%;
+      flex: 0 0 12%;
+      max-width: 12%;
+      width: 12%;
       display: block;
     }
 
@@ -427,20 +427,38 @@
   height: 440px;
 }
 
-.dashboard-total-jobs-listing {
-  h4 {
-    font-size: $font-size-22;
-    font-weight: 600;
-    color: $dark-gray;
-    margin-bottom: 20px;
+.dashboard-listing-columns {
+  .top-container {
+    text-align: left;
+    position: relative;
+    @include flexbox();
+    @include align-items(center);
+    margin-bottom: 15px;
+
+    h3 {
+      font-size: $font-size-16;
+      color: $darkest-blue;
+      font-weight: 600;
+      margin-bottom: 0;
+  
+      @media only screen and (min-width: 1170px) {
+        font-size: $font-size-20;
+      }
+    }
+
+    .form-group {
+      margin-left: auto;
+    }
+
+    .form-select {
+      height: 36px;
+      padding: 6px 30px 6px 10px;
+    }
   }
 
-  app-dashboard-job-card {
-    display: block;
-    margin-top: 20px;
-
-    &:first-child {
-      margin-top: 0;
+  .candidate-cards {
+    .col {
+      margin-bottom: 30px;
     }
   }
 }

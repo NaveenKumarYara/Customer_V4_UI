@@ -1,0 +1,240 @@
+<div class="dashboard-chart-container">
+  <div class="row">
+    <div class="col-md-5 col-lg-5 left-col">
+      <div class="col-container">
+        <div class="container-box">
+          <div class="top-container">
+            <h3>Job Weekly Report</h3>
+            <div class="form-group">
+              <select class="form-select">
+                <option value="This Week">This Week</option>
+              </select>
+            </div>
+          </div>
+          <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-lg-7 table-cols">
+      <div class="top-container">
+        <h3>Team Member status based on applicant status</h3>
+        <div class="form-group">
+          <select class="form-select">
+            <option value="This Week">This Week</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-box-container">
+        <div class="table-container">
+          <div class="table-row table-header-row">
+            <div class="table-col name-col">
+              Client Name
+            </div>
+            <div class="table-col email-col">
+              Email Id
+            </div>
+            <div class="table-col phone-col">
+              Phone
+            </div>
+            <div class="table-col">
+              POC
+            </div>
+            <div class="table-col">
+              Jobs
+            </div>
+            <div class="table-col">
+              Filled
+            </div>
+            <div class="table-col">
+              Success Ratio
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             TFS
+            </div>
+            <div class="table-col email-col">
+              Arytic123@gmail.com
+            </div>
+            <div class="table-col phone-col">
+              +91 9876543210
+            </div>
+            <div class="table-col">
+              50
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              25
+            </div>
+            <div class="table-col">
+              50%
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-container d-flex justify-content-end">
+        <a href="#" class="btn btn-link">
+          Full View
+          <span class="mdi mdi-fullscreen"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-listing-columns">
+  <div class="top-container">
+    <h3>Top Clients</h3>
+    <div class="form-group">
+      <select class="form-select">
+        <option value="This Week">This Week</option>
+      </select>
+    </div>
+  </div>
+  <div class="candidate-cards">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-6 col-lg-6 col">
+        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+      </div>
+    </div>
+  </div>
+</div>

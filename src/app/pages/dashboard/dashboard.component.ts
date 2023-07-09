@@ -11,13 +11,18 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 export class DashboardComponent implements OnInit {
   customer:any;
   AdminStats:any=[];
+  tabName: any = '';
   constructor(private _service : ApiService) { 
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerStats(this.customer.CustomerId);
   }
   
   ngOnInit(): void {
-    
+    this.tabName = 'Jobs';
+  }
+
+  tabbingClickHandler(name: any) {
+    this.tabName = name;
   }
  
 

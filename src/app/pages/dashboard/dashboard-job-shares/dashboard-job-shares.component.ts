@@ -1,14 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
-
 @Component({
-  selector: 'app-dashboard-total-jobs',
-  templateUrl: './dashboard-total-jobs.component.html',
-  styleUrls: ['./dashboard-total-jobs.component.scss']
+  selector: 'app-dashboard-job-shares',
+  templateUrl: './dashboard-job-shares.component.html',
+  styleUrls: ['./dashboard-job-shares.component.scss']
 })
-
-export class DashboardTotalJobsComponent implements OnInit {
-  @Input() AdminStats: any ='';
+export class DashboardJobSharesComponent implements OnInit {
   public barChartLegend = false;
   public barChartPlugins = [];
 
@@ -35,11 +32,9 @@ export class DashboardTotalJobsComponent implements OnInit {
   }
   public barChartType = 'bar';
 
-
   constructor() { }
 
   ngOnInit(): void {
-   
   }
 
 }

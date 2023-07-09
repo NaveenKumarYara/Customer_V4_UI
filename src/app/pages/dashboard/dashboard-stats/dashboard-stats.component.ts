@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
@@ -37,6 +37,8 @@ export class DashboardStatsComponent implements OnInit {
     nav: true
   }
   @Input() AdminStats: any ='';
+  @Input() tabName: any = ''; // decorate the property with @Input();
+  @Output("tabbingClickHandler") tabbingClickHandler: EventEmitter<any> = new EventEmitter();
   constructor() { }
  
   ngOnInit(): void {

@@ -1,46 +1,47 @@
 <div class="dashboard-stats">
+  <h4>Select the entity here</h4>
   <owl-carousel-o [options]="customOptions" (initialized)="AdminStats" >
     <ng-template carouselSlide>
-      <div class="col-container active">
+      <div class="col-container" [ngClass]="tabName == 'Jobs'?'active':''" (click)="this.tabbingClickHandler.emit('Jobs');">
         <span class="icon icon-01">
           Icon
         </span>
         <div class="info">
-          <h4>Jobs</h4>
           <h6>{{AdminStats?.Jobs || 0}}</h6>
+          <h4>Jobs</h4>
         </div>
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container">
+      <div class="col-container" [ngClass]="tabName == 'Applicants'?'active':''" (click)="this.tabbingClickHandler.emit('Applicants');">
         <span class="icon icon-02">
           Icon
         </span>
         <div class="info">
-          <h4>Applicants</h4>
           <h6>{{AdminStats?.TotalApplicants || 0}}</h6>
+          <h4>Applicants</h4>
         </div>
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container">
+      <div class="col-container" [ngClass]="tabName == 'Users'?'active':''" (click)="this.tabbingClickHandler.emit('Users');">
         <span class="icon icon-03">
           Icon
         </span>
         <div class="info">
-          <h4>Team Members</h4>
           <h6>{{AdminStats?.TeamMembers || 0}}</h6>
+          <h4>Users</h4>
         </div>
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container">
+      <div class="col-container" [ngClass]="tabName == 'Clients'?'active':''" (click)="this.tabbingClickHandler.emit('Clients');">
         <span class="icon icon-04">
           Icon
         </span>
         <div class="info">
-          <h4>Clients</h4>
           <h6>{{AdminStats?.Clients || 0}}</h6>
+          <h4>Clients</h4>
         </div>
       </div>
     </ng-template>
@@ -50,41 +51,19 @@
           Icon
         </span>
         <div class="info">
-          <h4>Vendors</h4>
           <h6>{{AdminStats?.Vendors || 0}}</h6>
+          <h4>Vendors</h4>
         </div>
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container">
-        <span class="icon icon-06">
+      <div class="col-container" [ngClass]="tabName == 'Job Shares'?'active':''" (click)="this.tabbingClickHandler.emit('Job Shares');">
+        <span class="icon icon-02">
           Icon
         </span>
         <div class="info">
-          <h4>Job Views</h4>
-          <h6>{{AdminStats?.JobsViews || 0}}</h6>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="col-container">
-        <span class="icon icon-06">
-          Icon
-        </span>
-        <div class="info">
-          <h4>Job Shares</h4>
           <h6>{{AdminStats?.JobShares || 0}}</h6>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="col-container">
-        <span class="icon icon-06">
-          Icon
-        </span>
-        <div class="info">
-          <h4>Job Ratings</h4>
-          <h6>{{AdminStats?.Ratings || 0}}</h6>
+          <h4>Job Shares</h4>
         </div>
       </div>
     </ng-template>

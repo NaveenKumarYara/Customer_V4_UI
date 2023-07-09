@@ -1,7 +1,7 @@
 @import '../../../../assets/partials/utils/variables';
 @import '../../../../assets/partials/utils/mixins';
 
-.dashboard-total-jobs {
+.dashboard-share-kpis {
   h3 {
     font-size: $font-size-20;
     margin: 0 0 20px;
@@ -141,11 +141,15 @@
     border-radius: 18px;
     background: $white;
     box-shadow: 0px 3px 6px rgba(110, 129, 158, 0.14);
-    height: calc(100% - 34px);
     padding: 20px;
     @include flexbox();
     @include align-items(center);
     @include flex-direction(column);
+
+    canvas {
+      height: 400px;
+      width: 100%;
+    }
 
     .container-box {
       width: 100%;
@@ -280,16 +284,6 @@
         }
       }
     }
-    
-    @media only screen and (min-width: 1023px) {
-      flex: 0 0 55%;
-      max-width: 55%;
-    } 
-
-    @media only screen and (min-width: 1280px) {
-      flex: 0 0 66.6667%;
-      max-width: 66.6667%;
-    }
   }
 
   .left-col {
@@ -334,17 +328,6 @@
         }
       }
     }
-
-    @media only screen and (min-width: 1023px) {
-      flex: 0 0 45%;
-      max-width: 45%; 
-      margin-bottom: 0;
-    }
-
-    @media only screen and (min-width: 1280px) {
-      flex: 0 0 33.33%;
-      max-width: 33.33%;
-    }
   }
 }
 
@@ -378,13 +361,27 @@
     text-align: center;
 
     @media only screen and (min-width: 1320px) {
-      flex: 0 0 10.625%;
-      max-width: 10.625%;
-      width: 10.625%;
+      flex: 0 0 11%;
+      max-width: 11%;
+      width: 11%;
       display: block;
     }
 
-    &.name-col {
+    &.name-col,
+    &.phone-col {
+      flex: 0 0 204px;
+      max-width: 204px;
+      width: 204px;
+      text-align: left;
+      
+      @media only screen and (min-width: 1320px) {
+        flex: 0 0 15%;
+        max-width: 15%;
+        width: 15%;
+      }
+    }
+
+    &.application-col {
       flex: 0 0 204px;
       max-width: 204px;
       width: 204px;
@@ -421,26 +418,4 @@
 .table-box-container {
   width: 100%;
   overflow: auto;
-}
-
-.custom-scroll {
-  height: 440px;
-}
-
-.dashboard-total-jobs-listing {
-  h4 {
-    font-size: $font-size-22;
-    font-weight: 600;
-    color: $dark-gray;
-    margin-bottom: 20px;
-  }
-
-  app-dashboard-job-card {
-    display: block;
-    margin-top: 20px;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
 }
