@@ -1,1 +1,353 @@
-<p>dashboard-vendors works!</p>
+<div class="dashboard-vendors">
+    <h3>Total Jobs: <span>450</span></h3>
+    <div class="row">
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-01">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Openings || 0}}</h4>
+            <h6>Open</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-02">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Screening || 0}}</h4>
+            <h6>Screening</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-03">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.ShortListed || 0}}</h4>
+            <h6>Shortlisting</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-04">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Interviews || 0}}</h4>
+            <h6>Interviewing</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-05">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Hired || 0}}</h4>
+            <h6>Hired</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container"> 
+          <span class="icon icon-06">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Freezed || 0}}</h4>
+            <h6>Freezed</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-07">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Hold|| 0}}</h4>
+            <h6>Hold</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-07">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Filled|| 0}}</h4>
+            <h6>Filled</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <div class="col-container">
+          <span class="icon icon-08">Icon</span>
+          <div class="info">
+            <h4>{{AdminStats?.Expired || 0}}</h4>
+            <h6>Expired</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3>Applicants by status</h3>
+  <div class="row">
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-01">Icon</span>
+        <div class="info">
+          <h4>25</h4>
+          <h6>Submitted</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-02">Icon</span>
+        <div class="info">
+          <h4>08</h4>
+          <h6>Applied</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-03">Icon</span>
+        <div class="info">
+          <h4>10</h4>
+          <h6>Screened</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-04">Icon</span>
+        <div class="info">
+          <h4>20</h4>
+          <h6>Shortlisted</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-05">Icon</span>
+        <div class="info">
+          <h4>05</h4>
+          <h6>Interviewed</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container"> 
+        <span class="icon icon-06">Icon</span>
+        <div class="info">
+          <h4>30</h4>
+          <h6>Hired</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col">
+      <div class="col-container">
+        <span class="icon icon-07">Icon</span>
+        <div class="info">
+          <h4>4</h4>
+          <h6>Rejected</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-md-6 col-lg-6 table-cols ">
+      <div class="top-container">
+        <h3>Revenue Generated: <span>$9000</span></h3>  
+      </div>
+      <div class="table-box-container">
+        <div class="table-container">
+          <div class="table-row table-header-row">
+            <div class="table-col name-col">
+              Client Name
+            </div>
+            <div class="table-col candidate-col">
+             Candidates
+            </div>
+            <div class="table-col position-col">
+              Job Positions
+            </div>
+            <div class="table-col">
+              Revenue
+            </div>
+           
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+             Accenture
+            </div>
+            <div class="table-col candidate-col">
+              24
+            </div>
+            <div class="table-col position-col">
+              15
+            </div>
+            <div class="table-col">
+              $5000
+            </div>
+            
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+                Accenture
+               </div>
+               <div class="table-col candidate-col ">
+                 24
+               </div>
+               <div class="table-col position-col">
+                 15
+               </div>
+               <div class="table-col">
+                 $5000
+               </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+                Accenture
+               </div>
+               <div class="table-col candidate-col">
+                 24
+               </div>
+               <div class="table-col position-col">
+                 15
+               </div>
+               <div class="table-col">
+                 $5000
+               </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+                Accenture
+               </div>
+               <div class="table-col candidate-col">
+                 24
+               </div>
+               <div class="table-col position-col">
+                 15
+               </div>
+               <div class="table-col">
+                 $5000
+               </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+                Accenture
+               </div>
+               <div class="table-col candidate-col">
+                 24
+               </div>
+               <div class="table-col position-col">
+                 15
+               </div>
+               <div class="table-col">
+                 $5000
+               </div>
+          </div>
+          <div class="table-row table-col-row">
+            <div class="table-col name-col">
+                Accenture
+               </div>
+               <div class="table-col candidate-col">
+                 24
+               </div>
+               <div class="table-col position-col">
+                 15
+               </div>
+               <div class="table-col">
+                 $5000
+               </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-6 table-cols ">
+        <div class="top-container">
+          <h3>Candidate Hotlist</h3>  
+        </div>
+        <div class="table-box-container">
+          <div class="table-container">
+            <div class="table-row table-header-row">
+            
+              <div class="table-col name-col">
+               Candidate
+              </div>
+              <div class="table-col position-col">
+                Experience
+              </div>
+              <div class="table-col name-col">
+                Skills
+              </div>
+             
+            </div>
+            <div class="table-row table-col-row">
+              <div class="table-col name-col">
+               Rama Krishna
+              </div>
+              <div class="table-col position-col">
+                2
+              </div>
+              <div class="table-col name-col">
+                C, C++, Java
+              </div>
+          
+              
+            </div>
+            <div class="table-row table-col-row">
+                <div class="table-col name-col">
+                    Rama Krishna
+                   </div>
+                   <div class="table-col position-col">
+                     2
+                   </div>
+                   <div class="table-col name-col">
+                     C, C++, Java
+                   </div>
+            </div>
+            <div class="table-row table-col-row">
+                <div class="table-col name-col">
+                    Rama Krishna
+                   </div>
+                   <div class="table-col position-col">
+                     2
+                   </div>
+                   <div class="table-col name-col">
+                     C, C++, Java
+                   </div>
+            </div>
+            <div class="table-row table-col-row">
+                <div class="table-col name-col">
+                    Rama Krishna
+                   </div>
+                   <div class="table-col position-col">
+                     2
+                   </div>
+                   <div class="table-col name-col">
+                     C, C++, Java
+                   </div>
+            </div>
+            <div class="table-row table-col-row">
+                <div class="table-col name-col">
+                    Rama Krishna
+                   </div>
+                   <div class="table-col position-col">
+                     2
+                   </div>
+                   <div class="table-col name-col">
+                     C, C++, Java
+                   </div>
+            </div>
+            <div class="table-row table-col-row">
+                <div class="table-col name-col">
+                    Rama Krishna
+                   </div>
+                   <div class="table-col position-col">
+                     2
+                   </div>
+                   <div class="table-col name-col">
+                     C, C++, Java
+                   </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>

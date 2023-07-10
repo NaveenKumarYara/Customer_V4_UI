@@ -46,7 +46,7 @@
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container">
+      <div class="col-container" [ngClass]="tabName == 'Vendors'?'active':''" (click)="this.tabbingClickHandler.emit('Vendors');">
         <span class="icon icon-05">
           Icon
         </span>
