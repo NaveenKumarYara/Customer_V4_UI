@@ -151,6 +151,10 @@
           white-space: nowrap;
           margin: 0 0 8px;
           padding-bottom: 3px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
   
           a {
             color: $darker-gray;
@@ -332,7 +336,6 @@
     text-overflow: ellipsis;
   }
 
-  
   .col-container {
     .top-container {
       .priority {
@@ -371,6 +374,8 @@
 
         @media only screen and (min-width: 991px) {
           padding-left: 0;
+          padding-right: 20px;
+          margin-left: auto;
         }
       }
 

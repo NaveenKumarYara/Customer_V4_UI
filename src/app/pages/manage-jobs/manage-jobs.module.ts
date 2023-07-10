@@ -49,6 +49,7 @@ import { FilterSearchResultComponent } from './job-activities/job-activities-fil
 import { QuickSearchComponent } from './job-activities/job-activities-filters/job-activities-quick-search/job-activities-quick-search.component';
 import { JobFiltersComponent } from './job-activities/job-activities-filters/job-activities-filters.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { JobShareProfileComponent } from './job-share-profile/job-share-profile.component';
 
 @NgModule({
 	declarations: [
@@ -80,7 +81,8 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 	ScheduleInterviewExternalComponent,
 	CandidateDocumentComponent,
 	JobShareComponent,
-	ViewEditJobsComponent
+	ViewEditJobsComponent,
+ JobShareProfileComponent
 	],
 	imports: [
 	 CommonModule,

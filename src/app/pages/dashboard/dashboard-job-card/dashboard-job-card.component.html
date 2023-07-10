@@ -11,7 +11,7 @@
           <img src="../../../../assets/images/default-company-small.jpg" alt="">
         </div>
         <h3>Salesforce Develover</h3>
-        <div class="profile-summary">
+        <div class="profile-summary" *ngIf="cardProfileSummary">
           <h4>
             <span class="mdi mdi-briefcase-outline"></span>
             Exp  - <strong>Req 8 Years</strong>
@@ -26,20 +26,23 @@
     <div class="middle-container">
       <div class="top-section">
         <h3>Google</h3>
-        <span class="id"> <strong>Job Ref</strong>: 1003757 </span>
+        <span class="id" *ngIf="cardJobId"> 
+          <strong>Job Ref</strong>: 1003757 
+        </span>
       </div>
-      <div class="top-bottom-section">
+      <div class="top-bottom-section" *ngIf="cardNav">
         <ul>
-          <li><span class="highlight">Arytic ID:  1003757</span></li>
-          <li>
+          <li *ngIf="cardAryticId"><span class="highlight">Arytic ID:  1003757</span></li>
+          <li *ngIf="cardLocation">
             <span class="mdi mdi-map-marker-outline"></span>
             Austin
           </li>
-          <li>
+          <li *ngIf="cardDate">
             <span class="mdi mdi-calendar-blank-outline"></span>
             Mar 14, 2023
           </li>
         </ul>
+        <p *ngIf="cardInterviewStatus" class="interview-status">Interviewing for 1 day</p>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   customer:any;
   AdminStats:any=[];
   tabName: any = '';
+  cardProfileSummary: boolean = false;
   constructor(private _service : ApiService) { 
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerStats(this.customer.CustomerId);

@@ -1,0 +1,46 @@
+<div class="form-container">  
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>From</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Email Address">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>To</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Email Address">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>Subject</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" placeholder="Enter Subject Here">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <label>Text Enter to Add Comment</label>
+    </div>
+    <div class="col-sm-12">
+      <ckeditor  
+        [config]="config"
+        data="<p>Hello, world!</p>">
+      </ckeditor>
+    </div>
+  </div>
+</div>

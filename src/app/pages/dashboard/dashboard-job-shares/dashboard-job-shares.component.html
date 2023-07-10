@@ -68,6 +68,7 @@
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"
             [type]="'bar'"
+            [height]="300"
           >
           </canvas>
         </div>
@@ -82,7 +83,7 @@
           </select>
         </div>
       </div>
-      <div class="table-box-container">
+      <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">

@@ -262,3 +262,26 @@
     </app-candidate-document>
   </div>
 </app-slidepanel>
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='share-profile'?'show':''"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Share Profile</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "true"
+    >
+    </app-sidepanel-cards>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-outlined-default">Clear</button>
+    <button class="btn btn-info">Save</button>
+  </div>
+  <div class="slide-container">
+    <app-job-share-profile></app-job-share-profile>
+  </div>
+</app-slidepanel>

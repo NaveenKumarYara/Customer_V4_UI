@@ -7,6 +7,11 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
   styleUrls: ['./dashboard-applicants.component.scss']
 })
 export class DashboardApplicantsComponent implements OnInit {
+  cardMatching: boolean = false;
+  cardID: boolean = false;
+  cardExp: boolean = false;
+  cardMatchingTitle: any = '';
+  
   public barChartLegend = false;
   public barChartPlugins = [];
 

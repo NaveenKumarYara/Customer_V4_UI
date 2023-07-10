@@ -86,6 +86,7 @@
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"
             [type]="'bar'"
+            [height]="'200'"
           >
           </canvas>
         </div>
@@ -100,7 +101,7 @@
           </select>
         </div>
       </div>
-      <div class="table-box-container">
+      <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">
@@ -256,22 +257,52 @@
   <div class="candidate-cards">
     <div class="row">
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
       <div class="col-md-6 col-lg-6 col">
-        <app-dashboard-candidate-card></app-dashboard-candidate-card>
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
       </div>
     </div>
   </div>

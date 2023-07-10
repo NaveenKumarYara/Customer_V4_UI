@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-candidate-card',
@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-candidate-card.component.scss']
 })
 export class DashboardCandidateCardComponent implements OnInit {
-
+  @Input() cardMatching: boolean = false;
+  @Input() cardID: boolean = false;
+  @Input() cardExp: boolean = false;
+  @Input() cardMatchingTitle: any = '';
+  @Input() cardAssigned: boolean = false;
+  @Input() cardClosed: boolean = false;
+  
   constructor() { }
 
   ngOnInit(): void {

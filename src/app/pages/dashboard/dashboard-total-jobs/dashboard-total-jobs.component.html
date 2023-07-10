@@ -24,7 +24,7 @@
         <span class="icon icon-03">Icon</span>
         <div class="info">
           <h4>{{AdminStats?.ShortListed || 0}}</h4>
-          <h6>Shortlisting</h6>
+          <h6>Shortlisted</h6>
         </div>
       </div>
     </div>
@@ -103,6 +103,7 @@
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"
             [type]="'bar'"
+            [height]="'200'"
           >
           </canvas>
         </div>
@@ -117,7 +118,7 @@
           </select>
         </div>
       </div>
-      <div class="table-box-container">
+      <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">
@@ -146,6 +147,9 @@
             </div>
             <div class="table-col">
               Expired
+            </div>
+            <div class="table-col">
+              Hold
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -176,6 +180,9 @@
             <div class="table-col">
               1
             </div>
+            <div class="table-col">
+              0
+            </div>
           </div>
           <div class="table-row table-col-row">
             <div class="table-col name-col">
@@ -204,6 +211,9 @@
             </div>
             <div class="table-col">
               1
+            </div>
+            <div class="table-col">
+              0
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -234,6 +244,9 @@
             <div class="table-col">
               1
             </div>
+            <div class="table-col">
+              0
+            </div>
           </div>
           <div class="table-row table-col-row">
             <div class="table-col name-col">
@@ -263,6 +276,9 @@
             <div class="table-col">
               1
             </div>
+            <div class="table-col">
+              0
+            </div>
           </div>
         </div>
       </div>
@@ -280,19 +296,55 @@
     <div class="col-md-6 col-lg-6 left-col" >
       <h4>Top Jobs</h4>
       <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardInterviewStatus] = true
+        >
+        </app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardInterviewStatus] = true
+        >
+        </app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardInterviewStatus] = true
+        >
+        </app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardInterviewStatus] = true
+        >
+        </app-dashboard-job-card>
       </div>
     </div>
     <div class="col-md-6 col-lg-6 right-col">
       <h4>Recent Jobs</h4>
       <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
-        <app-dashboard-job-card></app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardDate]= true
+        ></app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardDate]= true
+        ></app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardDate]= true
+        ></app-dashboard-job-card>
+        <app-dashboard-job-card
+          [cardNav]= true
+          [cardLocation]= true
+          [cardDate]= true
+        ></app-dashboard-job-card>
       </div>
     </div>
   </div>
