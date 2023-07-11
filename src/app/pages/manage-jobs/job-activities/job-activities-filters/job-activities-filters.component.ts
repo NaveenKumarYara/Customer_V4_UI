@@ -17,6 +17,7 @@ export class JobFiltersComponent implements OnInit {
     Jobtitles:['Java Developer','.Net Developer','Full-Stack Developer']
     //here you can add as many filters as you want.
     }; 
+    
   @ViewChild('newItem') fullNameInput: any; 
   @ViewChild('mySelect') fmySelectInput: any; 
   @Output() changed = new EventEmitter<string>();
