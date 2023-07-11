@@ -1,3 +1,20 @@
+<div class="slide-static-section">
+  <div class="slide-heding d-flex align-items-center">
+    <h3>Job Notes</h3>
+  </div>
+  <app-sidepanel-cards [job]="job"></app-sidepanel-cards>
+  <div class="form-actions">
+    <ng-container *ngIf="showJobForm == 'false'">
+      <button class="btn btn-info" (click)="showJobFormHandler()">Add Job Notes</button>
+    </ng-container>
+    <ng-container *ngIf="showJobForm == 'true'">
+      <button class="btn btn-outlined-default" (click)="showJobFormHideHandler()">Clear</button>
+      <button class="btn btn-info" (click)="saveClicked()">Save</button>
+    </ng-container>
+  </div>
+</div>
+<div class="slide-container">
+  
 <div class="job-notes">
   <ng-container *ngIf="showJobForm == 'true'">
     <h4 class="mr-bottom-40">Add New Job Notes</h4>
@@ -11,12 +28,13 @@
         <div class="col-md-8 col-lg-8 input-col">
           <div class="form-group">
             <span class="mdi mdi-information-outline"></span>
-            <select class="form-select">
-              <option value="Select Application Status">Select Application Status</option>
-              <option value="Email">Email</option>
-              <option value="general">General</option>
-              <option value="requestInformation">Request For Information</option>
-              <option value="interviewRelated">Interview Related</option>
+            <select name="OtherInfo" class="form-select" [(ngModel)]="savenote.OtherInfo">
+              <!-- <option  value="" disabled >Select Application Status</option> -->
+              <option  value="Email">Email</option>
+              <option   value="General">General</option>
+              <option  value="Request for information">Request For Information</option>
+              <option   value="Interview Related">Interview Related</option>
+              <option   value="Other">Other</option>
             </select>
           </div>
         </div>
@@ -45,13 +63,12 @@
           </div>
           <div class="checkbox-list">
             <ul>
-              <li *ngFor = "let selectedMember of teammemberslist">
+              <li *ngFor = "let selectedMember of teammemberslist; let i=index">
                 <label>
-                  <input type="checkbox">
                   <span class="checkmark">
                     {{selectedMember.FirstName}}
                   </span>
-                  <span class="mdi mdi-close-thick"></span>
+                  <span class="mdi mdi-close-thick" (click)="deleteTeammember(i)"></span>
                 </label>
               </li>
         
@@ -65,6 +82,7 @@
         </div>
         <div class="col-sm-12">
           <ckeditor  
+          (change)="onEditorChange($event)"
           [(ngModel)]="selectedComments"
             [config]="config"
             data="<p>Hello, world!</p>">
@@ -74,12 +92,15 @@
       <div class="row">
         <div class="col-sm-12 single-col">
           <div class="file-upload">
-            <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
-            <input type="file" name="myfile" />
+            <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload documents</button>
+            <input type="file" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
           </div>
           <div class="description">
             <span class="mdi mdi-information-outline"></span>
             Upload .doc, .docx, .pdf, .txt file only
+          </div>
+          <div *ngFor="let item of files">
+              <span>{{item.name}}</span>
           </div>
         </div>
       </div>
@@ -87,7 +108,7 @@
   </ng-container>
   <h4>List of Notes</h4>
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
-    <ngb-panel id="custom-panel-1">
+    <ngb-panel [id]="'custom-panel-'+i" *ngFor="let notes of JobNotes ; let i =index">
       <ng-template ngbPanelHeader let-opened="opened">
         <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
           <button ngbPanelToggle class="btn btn-link p-0">
@@ -95,65 +116,38 @@
               <span class="mdi mdi-file-edit-outline"></span>
             </span>
             <div class="info">
-              General
-              <span class="date">Mar 27, 2023 </span>
+              {{notes.Others}}
+              <span class="date">{{notes.CreatedOn|date}}</span>
             </div>
           </button>
-          <button class="btn btn-icon">
+          <!-- <button class="btn btn-icon">
             <span class="mdi mdi-trash-can-outline"></span>
-          </button>
+          </button> -->
         </div>
       </ng-template>
       <ng-template ngbPanelContent>
         <div class="accordion-information">
-          <h6>I am Interested in these position.</h6>
-          <div class="name">By Kim Karnika</div>
+          <div [innerHtml]="notes.CustomerComment"></div>
+          <div class="name">By {{notes.FirstName}} {{notes.LastName}}</div>
           <div class="file-listing">
-            <div class="file-row">
-              <span class="mdi mdi-link-variant"></span>
-              Screenshot 2023-06-07.png
-              <div class="buttons">
-                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
-                <a href="#"><span class="mdi mdi-progress-download"></span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="custom-panel-2">
-      <ng-template ngbPanelHeader let-opened="opened">
-        <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
-          <button ngbPanelToggle class="btn btn-link p-0">
-            <span class="icon">
-              <span class="mdi mdi-file-edit-outline"></span>
-            </span>
-            <div class="info">
-              General
-              <span class="date">Mar 27, 2023 </span>
-            </div>
-          </button>
-          <button class="btn btn-icon">
-            <span class="mdi mdi-trash-can-outline"></span>
-          </button>
-        </div>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <div class="accordion-information">
-          <h6>I am Interested in these position.</h6>
-          <div class="name">By Kim Karnika</div>
-          <div class="file-listing">
-            <div class="file-row">
-              <span class="mdi mdi-link-variant"></span>
-              Screenshot 2023-06-07.png
-              <div class="buttons">
-                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
-                <a href="#"><span class="mdi mdi-progress-download"></span></a>
-              </div>
+            <div class="file-row" *ngFor="let attachNew of notes.attachmentsNew">
+              <ng-container *ngFor="let attach of attachNew.Attaches">
+                <span class="mdi mdi-link-variant"></span>
+                {{attach.aDocName}}
+                <div class="buttons">
+                  <a target="NotesDocViewer" [href]="notesDocViewerUrl+attach.aDocName"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                  <a ><span class="mdi mdi-progress-download" (click)="DownloadDocument(attach?.aDocName)"></span></a>
+                </div>
+              </ng-container>
             </div>
           </div>
         </div>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
+  <div class="noDataMessage" *ngIf = "JobNotes?.length == 0">
+    <div>No Notes Available</div>
+  </div>
 </div>
+
+</div> 
