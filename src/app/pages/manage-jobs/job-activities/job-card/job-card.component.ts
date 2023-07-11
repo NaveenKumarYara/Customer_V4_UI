@@ -41,27 +41,24 @@ export class JobCardComponent implements OnInit {
   };  
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
     center:false,
-    margin: 20,
+    margin: 0,
     navText: ['<span class="mdi mdi-chevron-left"></span>', '<span class="mdi mdi-chevron-right"></span>'],
     responsive: {
-      0: {
-        items: 1
-      },
       400: {
-        items: 1
+        items: 2
       },
       740: {
-        items: 1
+        items: 2
       },
       940: {
-        items:1
+        items: 3
       }
     },
     nav: true

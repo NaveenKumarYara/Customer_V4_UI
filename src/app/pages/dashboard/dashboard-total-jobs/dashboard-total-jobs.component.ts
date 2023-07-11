@@ -39,7 +39,7 @@ export class DashboardTotalJobsComponent implements OnInit {
 
   public barChartOptions: any = {
     scaleShowVerticalLines: true,
-    responsive: true,
+    responsive: true
   }
   public barChartType = 'bar';
 
