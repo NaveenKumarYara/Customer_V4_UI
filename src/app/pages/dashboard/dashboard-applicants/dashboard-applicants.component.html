@@ -5,7 +5,7 @@
       <div class="col-container">
         <span class="icon icon-01">Icon</span>
         <div class="info">
-          <h4>25</h4>
+          <h4>{{ProfileStats?.Submitted || 0}}</h4>
           <h6>Submitted</h6>
         </div>
       </div>
@@ -14,7 +14,7 @@
       <div class="col-container">
         <span class="icon icon-02">Icon</span>
         <div class="info">
-          <h4>08</h4>
+          <h4>{{ProfileStats?.Applicants || 0}}</h4>
           <h6>Applied</h6>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="col-container">
         <span class="icon icon-03">Icon</span>
         <div class="info">
-          <h4>10</h4>
+          <h4>{{ProfileStats?.Screened || 0}}</h4>
           <h6>Screened</h6>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="col-container">
         <span class="icon icon-04">Icon</span>
         <div class="info">
-          <h4>20</h4>
+          <h4>{{ProfileStats?.Shortlisted || 0}}</h4>
           <h6>Shortlisted</h6>
         </div>
       </div>
@@ -41,7 +41,7 @@
       <div class="col-container">
         <span class="icon icon-05">Icon</span>
         <div class="info">
-          <h4>05</h4>
+          <h4>{{ProfileStats?.Interviewed || 0}}</h4>
           <h6>Interviewed</h6>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div class="col-container"> 
         <span class="icon icon-06">Icon</span>
         <div class="info">
-          <h4>30</h4>
+          <h4>{{ProfileStats?.Hired || 0}}</h4>
           <h6>Hired</h6>
         </div>
       </div>
@@ -59,7 +59,7 @@
       <div class="col-container">
         <span class="icon icon-07">Icon</span>
         <div class="info">
-          <h4>4</h4>
+          <h4>{{ProfileStats?.Rejected || 0}}</h4>
           <h6>Rejected</h6>
         </div>
       </div>
@@ -73,10 +73,10 @@
       <div class="col-container">
         <div class="container-box">
           <div class="top-container">
-            <h3>Applicants Weekly Report</h3>
+            <h3>Applicants Year Report</h3>
             <div class="form-group">
               <select class="form-select">
-                <option value="This Week">This Week</option>
+                <option value="This Week">This Year</option>
               </select>
             </div>
           </div>
@@ -94,10 +94,10 @@
     </div>
     <div class="col-md-7 col-lg-7 table-cols">
       <div class="top-container">
-        <h3>Applicant Weekly Report based on source</h3>
+        <h3>Applicant Year Report based on source</h3>
         <div class="form-group">
           <select class="form-select">
-            <option value="This Week">This Week</option>
+            <option value="This Week">This Year</option>
           </select>
         </div>
       </div>

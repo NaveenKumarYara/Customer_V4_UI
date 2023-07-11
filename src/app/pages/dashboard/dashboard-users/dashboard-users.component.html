@@ -5,7 +5,7 @@
       <div class="col-container">
         <span class="icon icon-01">Icon</span>
         <div class="info">
-          <h4>25</h4>
+          <h4>{{UserStats?.Admin || 0}}</h4>
           <h6>Admin</h6>
         </div>
       </div>
@@ -14,7 +14,7 @@
       <div class="col-container">
         <span class="icon icon-02">Icon</span>
         <div class="info">
-          <h4>08</h4>
+          <h4>{{UserStats?.['Account Manager'] || 0}}</h4>
           <h6>Account Manager</h6>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="col-container">
         <span class="icon icon-03">Icon</span>
         <div class="info">
-          <h4>10</h4>
+          <h4>{{UserStats?.['Reporting Manager'] || 0}}</h4>
           <h6>Reporting Manager</h6>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="col-container">
         <span class="icon icon-04">Icon</span>
         <div class="info">
-          <h4>20</h4>
+          <h4>{{UserStats?.['Lead Recruiter'] || 0}}</h4>
           <h6>Lead Recruiter</h6>
         </div>
       </div>
@@ -41,7 +41,7 @@
       <div class="col-container">
         <span class="icon icon-05">Icon</span>
         <div class="info">
-          <h4>05</h4>
+          <h4>{{UserStats?.Recruiter || 0}}</h4>
           <h6>Recruiter</h6>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div class="col-container"> 
         <span class="icon icon-06">Icon</span>
         <div class="info">
-          <h4>30</h4>
+          <h4>{{UserStats?.['Skill Evaluator']  || 0}}</h4>
           <h6>Skill Evaluator</h6>
         </div>
       </div>

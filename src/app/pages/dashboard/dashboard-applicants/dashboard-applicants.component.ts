@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 
 @Component({
@@ -11,7 +11,7 @@ export class DashboardApplicantsComponent implements OnInit {
   cardID: boolean = false;
   cardExp: boolean = false;
   cardMatchingTitle: any = '';
-  
+  @Input() ProfileStats: any = ' ';
   public barChartLegend = false;
   public barChartPlugins = [];
 

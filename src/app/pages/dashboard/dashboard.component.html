@@ -9,8 +9,8 @@
   >
   </app-dashboard-stats>
   <app-dashboard-total-jobs [AdminStats]="AdminStats" *ngIf="tabName == 'Jobs'"></app-dashboard-total-jobs>
-  <app-dashboard-applicants *ngIf="tabName == 'Applicants'"></app-dashboard-applicants>
-  <app-dashboard-users *ngIf="tabName == 'Users'"></app-dashboard-users>
+  <app-dashboard-applicants [ProfileStats]="ProfileStats" *ngIf="tabName == 'Applicants'"></app-dashboard-applicants>
+  <app-dashboard-users [UserStats]="UserStats" *ngIf="tabName == 'Users'"></app-dashboard-users>
   <app-dashboard-clients *ngIf="tabName == 'Clients'"></app-dashboard-clients>
   <app-dashboard-vendors *ngIf="tabName == 'Vendors'"></app-dashboard-vendors>
   <app-dashboard-job-shares *ngIf="tabName == 'Job Shares'"></app-dashboard-job-shares>
