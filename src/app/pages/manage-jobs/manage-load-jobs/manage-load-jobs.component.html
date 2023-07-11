@@ -148,38 +148,21 @@
   [panelTitle]="'Job Notes'"
   (panelCloseHandler) ="panelCloseHandler()"
 >
-  <div class="slide-static-section">
-    <div class="slide-heding d-flex align-items-center">
-      <h3>Job Notes</h3>
-    </div>
-    <app-sidepanel-cards></app-sidepanel-cards>
-    <div class="form-actions">
-      <ng-container *ngIf="showJobForm == 'false'">
-        <button class="btn btn-info" (click)="showJobFormHandler()">Add Job Notes</button>
-      </ng-container>
-      <ng-container *ngIf="showJobForm == 'true'">
-        <button class="btn btn-outlined-default" (click)="showJobFormHideHandler()">Clear</button>
-        <button class="btn btn-info">Save</button>
-      </ng-container>
-    </div>
-  </div>
-  <div class="slide-container">
-    <app-job-notes [showJobForm]="showJobForm"></app-job-notes>
-  </div>  
+  <app-job-notes [job]="selectedJob"></app-job-notes> 
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
   [ngClass]="panelShow=='documents'?'show':''"
   (panelCloseHandler) ="panelCloseHandler()"
 >
-  <div class="slide-heding d-flex align-items-center">
+  <!-- <div class="slide-heding d-flex align-items-center">
     <h3>Job Documents</h3>
   </div>
-  <app-sidepanel-cards
+  <app-sidepanel-cards [job]="selectedJob"
     [jobCard] = "false"
   ></app-sidepanel-cards>
   <div class="form-actions">
     <button class="btn btn-info">Add Job Documents</button>
-  </div>
-  <app-job-documents></app-job-documents>
+  </div> -->
+  <app-job-documents  [job]="selectedJob" ></app-job-documents>
 </app-slidepanel>

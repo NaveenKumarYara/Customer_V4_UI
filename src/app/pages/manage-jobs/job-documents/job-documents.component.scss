@@ -69,7 +69,7 @@ h4 {
 
       .document-name {
         position: relative;
-        padding-left: 30px;
+        // padding-left: 30px;
 
         &.no-padding {
           padding-left: 0;
@@ -132,10 +132,18 @@ h4 {
 }
 
 .form-actions {
-  padding-top: 0;
-  border-top: 0;
+  padding-top: 20px;
+  border-top: 1 px solid;
 }
 
 .listing-table {
   margin-top: 20px;
+}
+.partition{
+  padding-bottom: 5%;
+  border-bottom: 1px solid black;
+}
+.table-col.full-width-col {
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
 }

@@ -35,9 +35,47 @@ export class ApiService {
       debounceTime(1000), map(res => res));
   }
 
+
   GetJobStatus() {
     return this.http.get(this.settingsService.settings.MasterbaseUrl + '/api/GetJobStatus', this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
+    }
+
+  GetProfileNotesNew(jobID:any,cid:any){
+    return this.http.get(this.settingsService.settings.ProfilebaseUrl +'/api/GetProfileNotesNew?profileId=0&jobId='+jobID+'&cid='+cid)
+  }
+
+  byteStorage(body: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/form-data')
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/ProfileAttachmentsNew', body, {headers});
+  }
+
+  InsertCustomerDocuments(body: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/form-data')
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/InsertCustomerDocuments', body, {headers});
+  }
+
+  InsertProfileNotesNew(body: any) {
+    let request = '';
+    let headers = new HttpHeaders();
+
+    headers.set('Content-Type', 'application/json; charset=UTF-8');
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Methods', ' GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', ' Origin, Content-Type, X-Auth-Token');
+    headers.set('X-Frame-Options', 'http://facebook.com/');
+    headers.set('x-access-token', '');
+    if (body) {
+      request = JSON.stringify(body);
+    }
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/InsertProfileNotesNew', request, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    });
   }
 
 
@@ -95,6 +133,15 @@ getNewCandidates(params:any): Observable<any> {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + url + prams, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
   }
+
+  GetProfileService(url:string,params:any){
+    return this.http.get(this.settingsService.settings.ProfilebaseUrl + url +params)
+  }
+
+  DeleteService(url:any, prams:any) {
+    return this.http.delete(this.settingsService.settings.ProfilebaseUrl + url +prams)
+  }
+
 
   downloadFile(data: any, filename = 'data') {
     let csvData = this.ConvertToCSV(data, ['JobTitle', 'JobId', 'ClientName', 'JobStatus', 'PostedDate', 'Assignee', 'JobPriority', 'TotalApplicants', 'ShortListedCount', 'InterviewedCount', 'Hired', 'NumberOfVacancies', 'JobLocations']);

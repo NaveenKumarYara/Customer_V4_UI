@@ -118,3 +118,27 @@
 .mr-bottom-40 {
   margin-bottom: 40px !important;
 }
+
+// ng-select {
+//   .ng-select-container {
+//     border: 0;
+//   }
+// }
+::ng-deep .ng-select-container {
+  height: 50px !important;
+  font-size: 0.8em!important;
+}
+
+.checkbox-list ul li label .checkmark {
+  background-color: #fff;
+  padding: 4px 24px 4px 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  position: relative;
+  box-shadow: 0px 3px 6px rgba(144, 164, 173, 0.14)
+}
+.noDataMessage{
+  text-align: center;
+  margin: 10%;
+  font-weight: bold;
+}

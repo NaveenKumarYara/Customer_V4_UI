@@ -50,6 +50,8 @@ import { QuickSearchComponent } from './job-activities/job-activities-filters/jo
 import { JobFiltersComponent } from './job-activities/job-activities-filters/job-activities-filters.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobShareProfileComponent } from './job-share-profile/job-share-profile.component';
+import { FormsModule } from '@angular/forms';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 @NgModule({
 	declarations: [
@@ -101,6 +103,8 @@ import { JobShareProfileComponent } from './job-share-profile/job-share-profile.
 	 CKEditorModule,
 	 NgChartsModule,
 	 NgMultiSelectDropDownModule.forRoot(),
+	 FormsModule,
+	 NgxUploaderModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

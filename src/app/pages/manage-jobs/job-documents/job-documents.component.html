@@ -1,11 +1,37 @@
+<!-- <div class="slide-heding d-flex align-items-center">
+    <h3>Job Documents</h3>
+  </div>
+  <app-sidepanel-cards [job]="job"
+    [jobCard] = "false"
+  ></app-sidepanel-cards>
+  <div class="form-actions">
+    <button class="btn btn-info">Add Job Documents</button>
+  </div> -->
+
+  <div class="slide-static-section">
+	<div class="slide-heding d-flex align-items-center">
+	  <h3>Job Documents</h3>
+	</div>
+	<app-sidepanel-cards [job]="job"  [jobCard] = "false"></app-sidepanel-cards>
+	<div class="form-actions">
+	  <ng-container *ngIf="showJobForm == 'false'">
+		<button class="btn btn-info" (click)="showJobFormHandler()">Add Job Documents</button>
+	  </ng-container>
+	  <ng-container *ngIf="showJobForm == 'true'">
+		<button class="btn btn-outlined-default" (click)="showJobFormHideHandler()">Clear</button>
+		<button class="btn btn-info" (click)="processResumes()" >Save</button>
+	  </ng-container>
+	</div>
+  </div>
 <div class="job-documents">
-	<div class="form-container">
+	<div class="form-container" *ngIf="showJobForm == 'true'">
 		<div class="row">
 			<div class="col-sm-12 single-col">
 				<div class="file-upload">
-					<button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
-					<input type="file" name="myfile" />
+					<button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload documents</button>
+					<input type="file" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
 				</div>
+				
 				<div class="description">
 					<span class="mdi mdi-information-outline"></span>
 					Upload .doc, .docx, .pdf, .txt file only
@@ -13,8 +39,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="listing-table">
-		<h4>List of Documents</h4>
+	<div class="listing-table partition" *ngIf="showJobForm == 'true' && files.length > 0">
+		<!-- <h4>Upload Queue</h4> -->
 		<div class="table-box-container">
 			<div class="table-container">
 				<div class="table-row table-header-row">
@@ -31,30 +57,30 @@
 						Actions
 					</div>
 				</div>
-				<div class="table-row table-col-row">
+				<div class="table-row table-col-row" *ngFor="let file of files; let i = index">
 					<div class="table-col name-col">
 						<div class="document-name no-padding">
-							<span class="text-ellipsis">Documents.docx</span>
-							<a href="#" class="btn btn-edit">
-							<span class="mdi mdi-circle-edit-outline"></span>
-							</a>
+							<span class="text-ellipsis">{{file.name}}</span>
+							<!-- <a href="#" class="btn btn-edit">
+							<span class="mdi mdi-circle-edit-outline"></span> -->
+							<!-- </a> -->
 						</div>
 					</div>
 					<div class="table-col">
-						.doc
+						{{file.type}}
 					</div>
 					<div class="table-col">
-						4 MB
+						{{formatBytes(file.size)}}
 					</div>
 					<div class="table-col">
 						<ul class="action-nav">
 							<li>
-								<a href="#"><span class="mdi mdi-delete-outline"></span></a>
+								<a ><span class="mdi mdi-delete-outline"(click)="deleteDoc(i)"></span></a>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="table-row table-col-row">
+				<!-- <div class="table-row table-col-row">
 					<div class="table-col name-col">
 						<div class="document-name no-padding">
 							<span class="text-ellipsis">Documents.pdf</span>
@@ -76,17 +102,17 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
-		<div class="form-actions">
+		<!-- <div class="form-actions">
 			<button class="btn btn-outlined-default">Clear</button>
 			<button class="btn btn-info">Save</button>
-		</div>
+		</div> -->
 	</div>
-	<div class="listing-table">
+	<div class="listing-table ">
 		<h4>List of Documents</h4>
-		<div class="table-box-container">
+		<div class="table-box-container" >
 			<div class="table-container">
 				<div class="table-row table-header-row">
 					<div class="table-col name-col">
@@ -96,13 +122,51 @@
 						Type
 					</div>
 					<div class="table-col">
-						Size
+						<!-- Size -->
 					</div>
 					<div class="table-col">
 						Actions
 					</div>
 				</div>
-				<div class="table-row table-col-row">
+				<div class="table-row table-col-row" *ngFor = "let jobdoc of JobDocuments">
+					<div class="table-col name-col">
+						<div class="document-name">
+							<!-- <div >
+								<label>
+								<input type="checkbox">
+								<span class="checkmark"></span>
+								</label>
+							</div> -->
+							<span >{{jobdoc.DocName}}</span>
+							<!-- <a href="#" class="btn btn-edit">
+							<span class="mdi mdi-circle-edit-outline"></span> -->
+							<!-- </a> -->
+						</div>
+					</div>
+					<div class="table-col">
+						{{jobdoc.type}}
+					</div>
+					<div class="table-col">
+					
+					</div>
+					<div class="table-col">
+						<ul class="action-nav">
+							<li>
+								<a target="NotesDocViewer" [href]="notesDocViewerUrl+jobdoc.DocName"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+							</li>
+							<li>
+								<a ><span class="mdi mdi-tray-arrow-down"(click)="DownloadDocument(jobdoc?.DocName)"></span></a>
+							</li>
+							<li>
+								<a ><span class="mdi mdi-delete-outline"(click)="DelDocument(jobdoc?.Id)"></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="table-row table-col-row" *ngIf = "JobDocuments?.length == 0">
+					<div class="table-col full-width-col">No Documents Uploaded</div>
+				</div>
+				<!-- <div class="table-row table-col-row">
 					<div class="table-col name-col">
 						<div class="document-name">
 							<div class="custom-checkbox green">
@@ -136,42 +200,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
-				<div class="table-row table-col-row">
-					<div class="table-col name-col">
-						<div class="document-name">
-							<div class="custom-checkbox green">
-								<label>
-								<input type="checkbox">
-								<span class="checkmark"></span>
-								</label>
-							</div>
-							<span class="text-ellipsis">1099 Form.doc</span>
-							<a href="#" class="btn btn-edit">
-							<span class="mdi mdi-circle-edit-outline"></span>
-							</a>
-						</div>
-					</div>
-					<div class="table-col">
-						.doc
-					</div>
-					<div class="table-col">
-						4 MB
-					</div>
-					<div class="table-col">
-						<ul class="action-nav">
-							<li>
-								<a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
-							</li>
-							<li>
-								<a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
-							</li>
-							<li>
-								<a href="#"><span class="mdi mdi-delete-outline"></span></a>
-							</li>
-						</ul>
-					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
