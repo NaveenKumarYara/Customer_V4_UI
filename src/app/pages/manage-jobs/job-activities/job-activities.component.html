@@ -78,7 +78,7 @@
   [viewLayout] = "viewLayout"  
   (layoutView) = "layoutView($event)"
   (newItemEvent)="addItem($event)"
-  [Profiles]="Profiles" 
+  [Profiles]="Profiles" (quickchanged)="onquickChange($event)" 
   (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
 >
 

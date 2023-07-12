@@ -17,7 +17,8 @@ export class JobFiltersComponent implements OnInit {
     Jobtitles:['Java Developer','.Net Developer','Full-Stack Developer']
     //here you can add as many filters as you want.
     }; 
-    
+    items :any = [];
+    @Output() quickchanged = new EventEmitter<string>();
   @ViewChild('newItem') fullNameInput: any; 
   @ViewChild('mySelect') fmySelectInput: any; 
   @Output() changed = new EventEmitter<string>();
@@ -31,6 +32,7 @@ export class JobFiltersComponent implements OnInit {
   constructor(private _service : ApiService) {
    } 
   ngOnInit(): void {
+    this.GetJobProfileStatus();
   }
  
   download(job:any){
@@ -38,6 +40,20 @@ export class JobFiltersComponent implements OnInit {
   }
   onOptionsSelected(value:string){
     this.changed.emit(value);
+}
+
+quicksort(val: any)
+{
+   this.quickchanged.emit(val);
+}
+
+
+GetJobProfileStatus()
+{
+  this._service.GetJobProfileStatus().subscribe((response:any) => {
+
+    this.items = response;
+  })
 }
 
 filterChange(appliedfilters: any) {

@@ -40,6 +40,12 @@ export class ApiService {
       debounceTime(1000), map(res => res));
   }
 
+  
+  GetJobProfileStatus() {
+    return this.http.get(this.settingsService.settings.EmployerjobsUrl + '/api/GetJobProfileStatusList', this.httpOptions).pipe(
+      debounceTime(1000), map(res => res));
+  }
+
 
    // Start-- Section to call the API here related JobAPI
 //---------------------------------------------------------------------

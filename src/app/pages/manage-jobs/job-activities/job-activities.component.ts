@@ -107,6 +107,18 @@ export class JobActivitiesComponent implements OnInit {
   
   }
 
+  onquickChange(selected: any) {
+    if(selected != 'All')
+    {
+      this.addItem(selected);
+    }
+    else
+    {
+      this.addItem('');
+    }
+    
+  }
+
   jlistCount(count:any) {
     this.jstart = count;
     

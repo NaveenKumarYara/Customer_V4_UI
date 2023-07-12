@@ -23,8 +23,8 @@
 
 	.close-btn {
 		position: absolute;
-		right: 20px;
-		top: 20px;
+		right: 4px;
+		top: 1px;
 	}
 
 	ul {
@@ -147,7 +147,7 @@
 		@media only screen and (min-width: 1280px) {
 			li {
 				width: auto;
-				white-space: normal;
+				white-space: nowrap;
 				overflow: inherit;
 			}
 		}
