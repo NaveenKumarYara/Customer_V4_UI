@@ -589,24 +589,24 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
         this.appService.recrutingList=this.suggestManagers;
         if(this.JobIds&&this.JobIds.length>0)
         {
-          this.report.UserId=this.userId;
-          this.report.CustomerId=this.customerId;
-          this.report.JobId=Number(e);
-          const ids = this.suggestManagers.map(o => o.UserId)
-          const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1))
-          this.report.HiringManager=filtered.map(x=>x.UserId).toString();
-          this.appService.RecrutingTeam(this.report).subscribe(
-            data => {
-              if(data=0)
-              {
-            console.log(data);
-                
-              }
-            });
+          
           this.JobIds.forEach((e)=>
           {
             
-     
+            this.report.UserId=this.userId;
+            this.report.CustomerId=this.customerId;
+            this.report.JobId=Number(e);
+            const ids = this.suggestManagers.map(o => o.UserId)
+            const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1))
+            this.report.HiringManager=filtered.map(x=>x.UserId).toString();
+            this.appService.RecrutingTeam(this.report).subscribe(
+              data => {
+                if(data=0)
+                {
+              console.log(data);
+                  
+                }
+              });
             this.GetJobAssigned(e);
           })
           
