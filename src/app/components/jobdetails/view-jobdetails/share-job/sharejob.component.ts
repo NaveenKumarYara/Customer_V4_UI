@@ -788,7 +788,6 @@ getStringifiedAssets(assets: mailtoAsset[]) {
       this.Sharing.FromuserId = this.customerUser;
       this.Sharing.CustomerId = this.customerId;
       this.Sharing.ToUserId = "";
-      this.Sharing.JobCard = this.Image;
       // this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
       this.Sharing.JobId = this.data.JobId;
       this.Sharing.FromEmail = this.customer.Email;
@@ -841,7 +840,6 @@ export class JobShare {
   ToUserId: string;
   ToEmailID: string;
   JobId: number;
-  JobCard:string;
   AppLink: string;
   Comments: string;
   ToUserName: string;
