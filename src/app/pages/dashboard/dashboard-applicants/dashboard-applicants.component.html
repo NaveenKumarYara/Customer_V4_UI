@@ -234,17 +234,75 @@
           </div>
         </div>
       </div>
-      <div class="bottom-container d-flex justify-content-end">
+      <!-- <div class="bottom-container d-flex justify-content-end">
         <a href="#" class="btn btn-link">
           Full View
           <span class="mdi mdi-fullscreen"></span>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
 
 <div class="dashboard-listing-columns">
+        <div class="col-md-12 col-lg-12 table-cols">
+         <div class="container-box">
+          <div class="top-container">
+            <h3>Applicants Hotlist</h3>
+          </div>
+         </div>
+         <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">
+         <div class="table-container">
+          <div class="table-row table-header-row">
+          <div class="table-col1 name-col">
+          <strong>
+            Name
+          </strong> 
+          </div>
+          <div class="table-col1">
+            <strong>
+           Role
+            </strong>
+          </div>
+          <div class="table-col1">
+            <strong>
+            Experience
+            </strong>
+          </div>
+          <div class="table-col1">
+            <strong>
+            #Applicant Id
+            </strong>
+          </div>
+          <div class="table-col1">
+            <strong>
+           Jobs
+            </strong>
+          </div>
+         
+          </div>
+          <div class="table-row table-col-row" *ngFor="let job of topApplicants;let i = index">
+          <div class="table-col1 name-col">
+            <span class="text-ellipsis">  {{job?.FirstName | titlecase}}     {{job?.LastName | titlecase}}</span>
+          </div>
+          <div class="table-col1">
+            {{job?.ProfileTitle}}
+          </div>
+          <div class="table-col1">
+            {{job?.TotalExperience}}
+          </div>
+          <div class="table-col1">
+            {{job?.ProfileId}}
+          </div>
+          <div class="table-col1">
+            {{job?.JobCount}}
+          </div>
+         
+          </div>
+      </div>  
+</div>
+
+<!-- <div class="dashboard-listing-columns hidden">
   <div class="top-container">
     <h3>Applicant Hotlist</h3>
     <div class="form-group">
@@ -305,4 +363,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
