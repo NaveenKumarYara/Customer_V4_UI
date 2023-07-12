@@ -59,6 +59,9 @@ export class JobCardComponent implements OnInit {
       },
       940: {
         items: 3
+      },
+      1240: {
+        items: 3
       }
     },
     nav: true
