@@ -103,14 +103,10 @@ export class dLoginComponent {
   }
 
   Resend() {
-    this.resendEmail.ClientLogo = ' ';
-    this.resendEmail.ApplicationName = 'Arytic';
-    this._service
-      .PostService(
-        this.resendEmail,
-        "EmailAPI/api/RegisterCustomer"
-      )
-      .subscribe(
+    this.resendEmail.clientLogo = ' ';
+    this.resendEmail.applicationName = 'Arytic';
+    this.resendEmail.fromID = 'donotreply@arytic.com';
+    this.appService.ResendEmail(this.resendEmail).subscribe(
         (ta) => {
           this.toastr.success("Activation link sent to Email!", "Success!", {
             position: "bottom-left",
@@ -165,9 +161,9 @@ export class dLoginComponent {
 
                     if (data.IsActive == false) {
                       this.ResendMail = true;
-                      this.resendEmail.AppLink = this.settingsService.settings.customerLogin + ';Uid=' + data.UserId;
-                      this.resendEmail.ToEmailId = this.loginform.value.Email;
-                      this.resendEmail.FullName = data.FirstName + ' ' + data.LastName;
+                      this.resendEmail.appLink = this.settingsService.settings.customerLogin + ';Uid=' + data.UserId;
+                      this.resendEmail.toEmailId = this.loginform.value.Email;
+                      this.resendEmail.fullName = data.FirstName + ' ' + data.LastName;
                       this.loading = false;
                       this.toastr.error('Please activate the link to login!', 'Oops!');
                       setTimeout(() => {
@@ -433,9 +429,10 @@ export class dLoginComponent {
 }
 
 export class EmailInputsNewUserReg {
-  public FullName: string;
-  public ToEmailId: string;
-  public AppLink: string;
-  public ApplicationName: string;
-  public ClientLogo: string;
+  fullName: string
+  toEmailId: string
+  applicationName: string
+  appLink: string
+  clientLogo: string
+  fromID: string
 }

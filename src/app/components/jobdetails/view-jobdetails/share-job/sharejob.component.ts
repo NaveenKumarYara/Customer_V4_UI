@@ -41,7 +41,7 @@ export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
   mailtoHeader = "mailto:?";
   subjectProp = "subject=";
-  do = new doc();
+  do = new Doc();
   bodyProp = "body=";
   amp = "&amp;";
   breakStr = "%0D%0A";
@@ -762,13 +762,15 @@ getStringifiedAssets(assets: mailtoAsset[]) {
 
   uploadFile(data: FormData, fileName) {
     this._service.byteStorage(data, 'ProfileAPI/api/ProfileAttachmentsNew').subscribe(data => {
-      this.do = new doc();
+      this.do = new Doc();
       let re = /\#/gi;
-      this.do.DocUrl = data;
-      this.do.DocName = fileName;
-      this.do.JobId = 0;
-      this.do.DocUrl = this.do.DocUrl.replaceAll(re, "%23");
-      this.do.ProfileId = 0;
+      //this.do.docUrl = data;
+      let docre:any;
+      docre = data;
+      this.do.docName = fileName!=undefined?fileName:'';
+      this.do.jobId = 0;
+      this.do.docUrl = docre.replaceAll(re, "%23")!=undefined?docre:'';
+      this.do.profileId = 0;
       this.dos.push(this.do);
 
       if (this.uploader.queue.length === this.dos.length) {
@@ -783,23 +785,30 @@ getStringifiedAssets(assets: mailtoAsset[]) {
       // let emails = this.emailList.map(x => x.value);
       // var ctr = 0;
       // emails.forEach(element => {
-      this.Sharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-      this.Sharing.ToEmailID = this.emailList.map(x => x.value).toString();
-      this.Sharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-      this.Sharing.ShareId = 0;
-      this.Sharing.FromuserId = this.customerUser;
-      this.Sharing.CustomerId = this.customerId;
-      this.Sharing.ToUserId = "";
+      this.Sharing.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
+      this.Sharing.toEmailId = this.emailList.map(x => x.value).toString();
+      this.Sharing.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
+      this.Sharing.jobCard= this.Image;
+      this.Sharing.fromUserId = this.customerUser;
+      this.Sharing.customerId = this.customerId;
+      this.Sharing.fromID = this.fromId;
+      this.Sharing.shareId =0;
+      this.Sharing.toUserId = 0;
+      this.Sharing.position = '';
+      this.Sharing.clientName ='';
+      this.Sharing.clientLogo ='';
+      // this.Sharing.customerId = this.customerId;
+      // this.Sharing.toUserId = 0;
       // this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
-      this.Sharing.JobId = this.data.JobId;
-      this.Sharing.FromEmail = this.customer.Email;
-      this.Sharing.ToUserName = this.customer.FirstName + ' ' + this.customer.LastName;
-      this.Sharing.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
-      this.Sharing.Comments = this.selectedComments;
-      this.Sharing.Subject = this.subject;
-      this.Sharing.Docs = this.dos;
+      this.Sharing.jobId = this.data.JobId;
+      // this.Sharing.fullName = this.customer.Email;
+      this.Sharing.applicationName = this.subject;
+      this.Sharing.fullName = this.customer.FirstName + ' ' + this.customer.LastName;
+      this.Sharing.appLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
+      this.Sharing.text = this.selectedComments;
+      this.Sharing.docs = this.dos;
       this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
-        if (data === 0) {
+        if (data === 0 || data === null) {
           // ctr++; 
           // if (ctr === emails.length) {
           this.uploader.clearQueue();
@@ -836,28 +845,31 @@ getStringifiedAssets(assets: mailtoAsset[]) {
 }
 
 export class JobShare {
-  ShareId: number;
-  FromuserId: number;
-  CustomerId: number;
-  ToUserId: string;
-  ToEmailID: string;
-  JobId: number;
-  AppLink: string;
-  Comments: string;
-  ToUserName: string;
-  FromEmail: string;
-  CCEmailAddress: string;
-  BCCEmailAddress: string;
-  Subject: string;
-  Docs: any;
-  readonly modules: ReadonlyArray<{}> = []
+  shareId: number
+  fromUserId: number
+  customerId: number
+  toUserId: number
+  fullName: string
+  jobId: number
+  appLink: string
+  applicationName: string
+  clientLogo: string
+  position: string
+  clientName: string
+  text: string
+  toEmailId: string
+  ccEmailAddress: string
+  bccEmailAddress: string
+  fromID: string
+  docs: Doc[]
+  jobCard: string
 }
 
-export class doc {
-  DocUrl: any;
-  ProfileId: number;
-  JobId: number;
-  DocName: any;
+export class Doc {
+  docUrl: string
+  profileId: number
+  jobId: number
+  docName: string
 }
 
 export class InviteInfo {
