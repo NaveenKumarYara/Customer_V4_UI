@@ -13,6 +13,7 @@ import { SettingsService } from '../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services';
 declare var $: any;
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -76,6 +77,7 @@ export class ShareJobComponent implements OnInit {
   referLink: any;
   whatsapp: any;
   subject: string;
+  public Editor = ClassicEditor;
   whatsappform: FormGroup;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];

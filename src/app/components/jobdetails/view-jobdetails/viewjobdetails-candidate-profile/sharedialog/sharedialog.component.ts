@@ -18,7 +18,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, FormA
 import { ApiService } from '../../../../../shared/services';
 import { Item } from 'angular2-multiselect-dropdown';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -75,6 +75,7 @@ export class SharedialogComponent implements OnInit{
   customerUser: number;
   @Input() shareUrl: string;
   navUrl: string;
+  public Editor = ClassicEditor;
   selectedUserName: number;
   selectedComments: any;
   isChecked:boolean = false;

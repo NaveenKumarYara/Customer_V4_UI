@@ -56,7 +56,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { RatingModule } from 'ng-starrating';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { QRCodeModule } from 'angularx-qrcode';
-import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';

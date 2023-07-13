@@ -28,7 +28,7 @@
   <div class="clearfix">&nbsp;</div>
   <!-- <div *ngIf="hasCompleteDescription"> -->
   <div>
-    <ckeditor  [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
+    <ckeditor   [editor]="Editor" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
  
     <!-- <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
        -->

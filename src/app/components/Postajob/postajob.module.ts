@@ -41,7 +41,7 @@ import { InterviewTypeComponent } from "./Createajob/Step3/interviewtype.compone
 import { ReportingManagerComponent } from "./Createajob/Step3/reportingmanager.component";
 import { recriuterComponent } from "./Createajob/Step3/recriuter.component";
 import { TeammembersComponent } from "./Createajob/Step3/teammembers.component";
-import { CKEditorModule } from "ckeditor4-angular";
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
