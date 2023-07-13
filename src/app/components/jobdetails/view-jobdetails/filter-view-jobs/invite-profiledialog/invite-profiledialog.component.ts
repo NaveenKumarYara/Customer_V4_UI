@@ -8,6 +8,7 @@ import { GetInviteList } from '../../../../../../models/GetCompanyBenefit';
 import { AnimationStyleMetadata } from '@angular/core/src/animation/dsl';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -21,6 +22,7 @@ export class InviteProfiledialogComponent implements OnInit {
   inviteinfo = new InviteInfo();
   inviteform: FormGroup;
   customer: any;
+  public Editor = ClassicEditor;
   body: string;
   loading = false;
   isChecked: boolean = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../../../app.service';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-jobdescription',
   templateUrl: './jobdescription.component.html',
@@ -9,6 +9,7 @@ import { AppService } from '../../../../../app.service';
 export class JobdescriptionComponent implements OnInit {
 hasCompleteDescription: boolean=false;
 jobDescription: string;
+public Editor = ClassicEditor;
 hasCompleteDescriptionList: any;
 constructor( private appService: AppService) {
 
