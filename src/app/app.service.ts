@@ -1798,6 +1798,17 @@ export class AppService {
       });
   }
 
+
+  ResendEmail(body) {
+    return this.http
+      .post(this.settingsService.settings.ResendEmail, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
   RecrutingTeam(body) {
     return this.http
       .post(this.settingsService.settings.SaveRecruiterTeamList, body)

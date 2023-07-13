@@ -5,7 +5,9 @@ export class Settings {
   RefralbaseUrl: string;
   JobbaseUrl: string;
   SharingbaseUrl: string;
+  ResendEmail:string;
   EmailbaseUrl: string;
+  Emailv1baseUrl:string;
   GetInviteList: string;
   jobTitleEndpoint: string;
   getskillsEndpoint: string;

@@ -324,7 +324,7 @@ export class SharedialogComponent implements OnInit{
   
   return this._service.GetService('IdentityAPI/api/GetSmartCard?jobId='+  this.data.jobId + '&profileId=',this.data.ProfileId)
   .subscribe(res => {
-         this.profileSharing.Image = res;
+         this.profileSharing.image = res;
          this.Image=res;
          this.CompanyName='Profile Details Preview';
          this.Title=this.data.Title.toUpperCase();
@@ -532,23 +532,24 @@ export class SharedialogComponent implements OnInit{
     // let emails = this.emailList.map(x => x.value);
     // var ctr = 0;
     // emails.forEach(element => {
-    this.profileSharing.FromUser = this.titleCase(this.customer.FirstName) +'  '+ this.titleCase(this.customer.LastName);
-      this.profileSharing.InviteFriendId = 0;
-      this.profileSharing.FromuserId = this.customerUser;
-      this.profileSharing.ToUserId = "0";
+    this.profileSharing.fromUser = this.titleCase(this.customer.FirstName) +'  '+ this.titleCase(this.customer.LastName);
+      this.profileSharing.toUserId = 0;
+      this.profileSharing.inviteFriendId = 0;
+      this.profileSharing.fromUserId = this.customerUser;
+      this.profileSharing.toUserId = 0;
       // this.profileSharing.ToEmailId = this.EmailId;
-      this.profileSharing.Subject = this.subject;
-      this.profileSharing.ApplicationName = (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' ' + '-Arytic';
-      this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
-      this.profileSharing.Comments = this.selectedComments;
-      this.profileSharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-      this.profileSharing.ToEmailId = this.emailList.map(x => x.value).toString();
-      this.profileSharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-      this.profileSharing.FromEmail = this.fromId;
+      this.profileSharing.subject = this.subject + (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' '+ '-Arytic'; ;
+      this.profileSharing.applicationName = '';
+      this.profileSharing.appLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
+      this.profileSharing.comments = this.selectedComments;
+      this.profileSharing.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
+      this.profileSharing.toEmailID = this.emailList.map(x => x.value).toString();
+      this.profileSharing.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
+      this.profileSharing.fromEmail = this.fromId;
 
-
+        debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
-          if (data === 0) {
+          if (data === 0 || data === null) {
             // ctr++; 
             // //this.inviteform.reset();
             // if (ctr === emails.length) {
@@ -587,20 +588,19 @@ export class SharedialogComponent implements OnInit{
 }
 
 export class ProfileShare {
-  InviteFriendId: number;
-  FromuserId: number;
-  ToUserId: string;
-  Comments: string;
-  AppLink: string;
-  ToEmailId: string;
-  FromEmailId: string;
-  FromUser:string;
-  Image:string;
-  ApplicationName: string;
-  CCEmailAddress: string;
-  BCCEmailAddress: string;
-  Subject: string;
-  FromEmail:string;
+  toEmailID: string
+  fromUserId: number
+  toUserId: number
+  subject: string
+  appLink: string
+  comments: string
+  fromEmail: string
+  fromUser: string
+  image: string
+  inviteFriendId: number
+  applicationName: string
+  ccEmailAddress: string
+  bccEmailAddress: string
   readonly modules: ReadonlyArray<{}> = []
 }
 
