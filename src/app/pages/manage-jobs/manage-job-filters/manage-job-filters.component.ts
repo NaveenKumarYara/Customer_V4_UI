@@ -27,18 +27,20 @@ export class ManageJobFiltersComponent implements OnInit {
   @Input() filterTerm: any ='';
   @Input() Jobs: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
+  @Input() customer: any;
   @Output() layoutView = new EventEmitter<string>();
+  @Output() advancedFiltersApplied = new EventEmitter<any>();
 
   constructor(private _service : ApiService) {
     this.GetJobStatus();
-   } 
+  } 
+
   ngOnInit(): void {
   }
 
   GetJobStatus()
   {
     this._service.GetJobStatus().subscribe((response:any) => {
-
       this.items = response.jobstatus;
     })
   }
@@ -46,23 +48,24 @@ export class ManageJobFiltersComponent implements OnInit {
   download(job:any){
     this._service.downloadFile(job, 'MyJobs');
   }
+
   onOptionsSelected(value:string){
     this.changed.emit(value);
-}
+  }
 
-filterChange(appliedfilters: any) {
-  console.log(appliedfilters);
-  /*let you have selected India as country and IT sector.
-
-  you will get an object here i.e.
-
- { appliedFilterValues: {country: "India",sector: "IT"}
- isFilter: true
- }
-  */
+  filterChange(appliedfilters: any) {
+    console.log("appliedfilters", appliedfilters);
+    /*let you have selected India as country and IT sector.
   
-  //now do your awesome filtering work here.
-}
+    you will get an object here i.e.
+  
+   { appliedFilterValues: {country: "India",sector: "IT"}
+   isFilter: true
+   }
+    */
+
+    //now do your awesome filtering work here.
+  }
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
@@ -104,5 +107,10 @@ filterChange(appliedfilters: any) {
   
   saveClick() {
     this.saveSearch = !this.saveSearch;
+  }
+
+  advancedFiltersAppliedInternal(filters: any) {
+    console.log('appliedFilters', filters);
+    this.advancedFiltersApplied.emit(filters);
   }
 }

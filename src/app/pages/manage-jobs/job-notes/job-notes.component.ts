@@ -151,7 +151,7 @@ export class JobNotesComponent implements OnInit {
   addTeammembers() {
     if (this.teammemberslist.filter((v: any) => v.UserId == this.selectedUserName).length == 0)
       this.teammemberslist.push(...this.customercontacts.filter((v: any) => v.UserId === this.selectedUserName))
-
+    this.selectedUserName = null
   }
   onEditorChange(event: any) {
     // Access the changed content
