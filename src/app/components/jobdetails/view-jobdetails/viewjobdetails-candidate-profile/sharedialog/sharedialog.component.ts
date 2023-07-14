@@ -539,15 +539,13 @@ export class SharedialogComponent implements OnInit{
       this.profileSharing.toUserId = 0;
       // this.profileSharing.ToEmailId = this.EmailId;
       this.profileSharing.subject = this.subject + (this.data.JobTitle != undefined ? this.data.JobTitle: ' ')+' '+ ' #' +this.data.jobId + ' '+ '-Arytic'; ;
-      this.profileSharing.applicationName = '';
+      this.profileSharing.applicationName = this.subject;
       this.profileSharing.appLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
       this.profileSharing.comments = this.selectedComments;
       this.profileSharing.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
       this.profileSharing.toEmailID = this.emailList.map(x => x.value).toString();
       this.profileSharing.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
       this.profileSharing.fromEmail = this.fromId;
-
-        debugger
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
           if (data === 0 || data === null) {
             // ctr++; 
