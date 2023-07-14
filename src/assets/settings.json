@@ -48,7 +48,7 @@
   "CustomerAppprofile": "https://customer-dev001.arytic.com/profileview",
   "InviteContact": "https://emailapiv1-dev001.arytic.com/api/EmailInviteContact",
   "ProfileShareInvite": "https://emailapiv1-dev001.arytic.com/api/ProfileShare",
-  "StartConversation": "https://emailapi-dev001.arytic.com/api/SendEmailConversation",
+  "StartConversation": "https://emailapiv1-dev001.arytic.com/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "https://profileapi-dev001.arytic.com/api/UpdateProfileStatus",
   "signUp": "https://identityapi-dev001.arytic.com/api/CustomerRegistration",
   "postjob": "https://jobsapi-dev001.arytic.com/api/InsertJobUpdated",
