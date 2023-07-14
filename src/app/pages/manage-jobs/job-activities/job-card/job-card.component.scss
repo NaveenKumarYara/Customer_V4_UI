@@ -128,7 +128,7 @@
       border-radius: 4px 0 0 4px;
       background-color: $light-green;
       font-size: 10px;
-      color: $dark-green;
+      color: $medium-green;
       text-transform: uppercase;
       position: absolute;
       right: 0;
@@ -318,7 +318,9 @@
     }
   } 
   .skills-grid {
-    
+    .skills-cols {
+      padding: 0 15px;
+    }
     h4 {
       font-size: $font-size-14;
       font-weight: 600;
@@ -330,17 +332,16 @@
     .skills-col {
       @include flexbox();
       @include flex-wrap(wrap);
-      gap: 10px;
-      padding: 0 20px 0 30px;
-      margin: 0 -10px 20px;
+      padding: 0 5px;
+      margin: 0 0 0px;
 
       .skill-container {
-        flex: 0 0 calc(33.33% - 10px);
         border: 1px solid $stroke-gray;
         border-radius: 8px;
         @include shadowTwo();
         overflow: hidden;
-        max-width: calc(33.33% - 10px);
+        flex: 0 0 100%;
+        max-width: 100%;
         padding: 10px 0 0;
 
         .rating {
@@ -550,6 +551,7 @@
       &:not(:first-child) {
         &::before {
           width: 22px;
+          display: none;
           height: 1px;
           background-color: $dark-gray;
           position: absolute;
@@ -618,6 +620,10 @@
     &.icon-culture {
       background-position: -232px -301px;
     }
+
+    &.icon-wfh {
+      background-position: -560px -219px;
+    }
   } 
 
   ul {
@@ -653,6 +659,9 @@
           }
           &.icon-culture {
             background-position: -232px -352px;
+          }
+          &.icon-wfh {
+            background-position: -560px -270px;
           }
         }
       }
@@ -703,5 +712,49 @@
 
   .right-chart-col {
     border-left: 1px solid $stroke-gray;
+  }
+}
+
+.custom-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -60px;
+
+  input[type="checkbox"] {
+    + .checkmark {
+      border-top: 60px solid $white;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      background-color: transparent;
+
+      &:before {
+        left: -9px;
+        top: -30px;
+      }
+    }
+
+    &:checked {
+      + .checkmark {
+        border-top-color: $blue;
+
+        &:after {
+          left: -7px;
+          top: -40px;
+        }
+      }
+    }
+  }
+}
+
+.no-skills {
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $medium-gray;
   }
 }

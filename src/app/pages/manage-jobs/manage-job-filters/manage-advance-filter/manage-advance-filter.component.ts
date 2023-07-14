@@ -222,8 +222,8 @@ export class ManageAdvanceFilterComponent implements OnInit {
     client: [],
     immigrationStatus: [],
     domain: [],
-    experience: {min: -1, max: -1},
-    salaryRange: {min: -1, max: -1},
+    experience: {min: 0, max: 100},
+    salaryRange: {min: 0, max: 400000},
     jobStatus: [],
     priority: []
   };
@@ -381,7 +381,6 @@ export class ManageAdvanceFilterComponent implements OnInit {
 
   cancelClicked() {
     this.appliedFilters = {...this.clearedFilters};
-    this.filtersApplied.emit(this.appliedFilters);
     this.selectedSkills = [];
     this.selectedLocations = [];
     this.selectedEmploymentTypes=[];
@@ -393,18 +392,10 @@ export class ManageAdvanceFilterComponent implements OnInit {
     this.selectedJobStatus = [];
     this.selectedPriorities =[]
     this.selectedJobTitles = [];
-    
-  
     this.selectedMinExperience = 0;
     this.selectedMaxExperience = 100;
     this.selectedMinSalary = 0;
     this.selectedMaxSalary = 400000;
-
-
-
-
-
-
-  
+    this.applyClick();
   }
 }

@@ -37,18 +37,18 @@
           </a>
         </li>
         <li>
+          <a href="#" placement="top" ngbTooltip="Change Job Status">
+            <span class="mdi mdi-list-status"></span>
+          </a>
+        </li>
+        <li>
           <a href="#" placement="top" ngbTooltip="Upload Resume">
             <span class="mdi mdi-tray-arrow-up"></span>
           </a>
         </li>
         <li>
-          <a href="#" placement="top" ngbTooltip="Job Share">
-            <span class="mdi mdi-share-all-outline"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" placement="top" ngbTooltip="Job Email">
-            <span class="mdi mdi-email-arrow-right-outline"></span>
+          <a href="#" placement="top" ngbTooltip="Share job / Invite Candidate">
+            <span class="mdi mdi-share-variant-outline"></span>
           </a>
         </li>
         <li>
@@ -59,26 +59,6 @@
         <li>
           <a href="#" placement="top" ngbTooltip="Job Documents">
             <span class="mdi mdi-folder-outline"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" placement="top" ngbTooltip="Add Candidate">
-            <span class="mdi mdi-account-star-outline"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" placement="top" ngbTooltip="Add Job">
-            <span class="mdi mdi-briefcase-plus-outline"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" placement="top" ngbTooltip="Add Team Member">
-            <span class="mdi mdi-email-plus-outline"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#" placement="top" ngbTooltip="Add Contact">
-            <span class="mdi mdi-account-multiple-plus-outline"></span>
           </a>
         </li>
         <li>
@@ -98,7 +78,7 @@
   [viewLayout] = "viewLayout"  
   (layoutView) = "layoutView($event)"
   (newItemEvent)="addItem($event)"
-  [Profiles]="Profiles" 
+  [Profiles]="Profiles" (quickchanged)="onquickChange($event)" 
   (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
 >
 

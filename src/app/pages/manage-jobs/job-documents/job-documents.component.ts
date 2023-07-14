@@ -45,7 +45,7 @@ export class JobDocumentsComponent implements OnInit {
   Swal = require('sweetalert2');
 
 
-  notesDocViewerUrl = 'https://docs.google.com/viewerng/viewer?url='+this.settingsService.settings.IdentitybaseUrl+'/home/EsolvitResumes?id=';
+  notesDocViewerUrl = 'https://docs.google.com/viewerng/viewer?url='+this.settingsService.settings.IdentitybaseUrl+'/home/WhitePapers?id=';
   formDAtaList: any =[];
   
   constructor(private fb: FormBuilder, private apiService: ApiService,private settingsService: SettingsService) { 

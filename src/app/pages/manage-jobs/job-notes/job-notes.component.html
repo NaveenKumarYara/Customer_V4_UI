@@ -92,7 +92,7 @@
         <div class="col-sm-12 single-col">
           <div class="file-upload">
             <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload documents</button>
-            <input type="file" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
+            <input type="file" accept=".doc,.docx,.pdf,.txt" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
           </div>
           <div class="description">
             <span class="mdi mdi-information-outline"></span>
@@ -128,7 +128,7 @@
         <div class="accordion-information">
           <div [innerHtml]="notes.CustomerComment"></div>
           <div class="name">By {{notes.FirstName}} {{notes.LastName}}</div>
-          <div class="file-listing">
+          <div class="file-listing" *ngIf = "notes.attachmentsNew[0].DocName != 'No Attachements'">
             <div class="file-row" *ngFor="let attachNew of notes.attachmentsNew">
               <ng-container *ngFor="let attach of attachNew.Attaches">
                 <span class="mdi mdi-link-variant"></span>

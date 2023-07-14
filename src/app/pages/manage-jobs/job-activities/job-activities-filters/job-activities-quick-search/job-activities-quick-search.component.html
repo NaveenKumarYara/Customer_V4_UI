@@ -2,24 +2,22 @@
   <button  class="close-btn" (click)="this.quickHideHandler.emit()">
     <span class="mdi mdi-close-circle-outline"></span>
   </button>
-  <h4>Job Status1233</h4>
+  <h4>Applicant Status</h4>
   <div class="dropdown-list">
     <ul [ngClass]="otherOption?'other-show':'other-hide'">
-      <li class="active">
-        <a href="#">
-          <span class="mdi mdi-check"></span>All Jobs
+      <li *ngFor="let item of items; let i = index" 
+      [ngClass]="{'active': selectedItem === i}"
+      [value]="item.ReferralStatus" 
+      (click)='selectedItem = i;changeStatus(item.ReferralStatus)'>
+        <a href="javascript:void(0)">
+          <span class="mdi mdi-check" *ngIf="selectedItem === i"></span>
+          {{item.ReferralStatus}}
         </a>
       </li>
-      <li><a href="#">Inactive Jobs</a></li>
-      <li><a href="#">Filled Jobs</a></li>
-      <li><a href="#">Shortlisted Jobs</a></li>
-      <li><a href="#">Shortlisted Jobs</a></li>
-      <li><a href="#">Interviewing Jobs</a></li>
-      <li><a href="#">Active Jobs</a></li>
     </ul>
     <button class="btn btn-toogle" (click)="dropHandler()">
       <span class="mdi mdi-chevron-down"></span>
     </button>
   </div>
-  <button class="btn btn-outlined-default btn-sm">Clear</button> 
+  <button class="btn btn-outlined-default btn-sm" (click)="clear('All')">Clear</button> 
 </div>

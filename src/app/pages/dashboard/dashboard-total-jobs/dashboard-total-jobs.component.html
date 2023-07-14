@@ -103,7 +103,6 @@
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"
             [type]="'bar'"
-            [height]="'200'"
           >
           </canvas>
         </div>
@@ -293,7 +292,8 @@
 </div>
 <div class="dashboard-total-jobs-listing">
   <div class="row">
-    <div class="col-md-6 col-lg-6 left-col" >
+    <app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>
+    <!-- <div class="col-md-6 col-lg-6 left-col" >
       <h4>Top Jobs</h4>
       <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
         <app-dashboard-job-card
@@ -321,6 +321,7 @@
         >
         </app-dashboard-job-card>
       </div>
+      <app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>
     </div>
     <div class="col-md-6 col-lg-6 right-col">
       <h4>Recent Jobs</h4>
@@ -346,6 +347,6 @@
           [cardDate]= true
         ></app-dashboard-job-card>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

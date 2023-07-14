@@ -9,7 +9,7 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
   providers: [ApiService]
 })
 export class JobActivitiesSummaryComponent implements OnInit {
-  isChecked: boolean = false;
+  isChecked: boolean = true;
   JobDetail: any;
   @Input() JobId:any;
   Industry:any = 'All Applicants';;

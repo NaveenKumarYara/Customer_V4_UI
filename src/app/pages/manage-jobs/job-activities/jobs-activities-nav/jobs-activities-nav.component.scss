@@ -47,8 +47,16 @@
     background-position: -24px -301px;
   }
 
+  &.icon-skills-01 {
+    background-position: -560px -109px;
+  }
+
   &.icon-job {
     background-position: -76px -301px;
+  }
+
+  &.icon-job-01 {
+    background-position: -612px -109px;
   }
 
   &.icon-team {
@@ -59,8 +67,20 @@
     background-position: -180px -301px;
   }
 
+  &.icon-personality-01 {
+    background-position: -716px -109px;
+  }
+
   &.icon-culture {
     background-position: -232px -301px;
+  }
+
+  &.icon-culture-01 {
+    background-position: -768px -109px;
+  }
+
+  &.icon-wfh {
+    background-position: -560px -219px;
   }
 }
 
@@ -96,8 +116,14 @@
           &.icon-skills {
             background-position: -24px -352px;
           }
+          &.icon-skills-01 {
+            background-position: -560px -160px;
+          }
           &.icon-job {
             background-position: -76px -352px;
+          }
+          &.icon-job-01 {
+            background-position: -612px -160px;
           }
           &.icon-team {
             background-position: -128px -352px;
@@ -105,8 +131,17 @@
           &.icon-personality {
             background-position: -180px -352px;
           }
+          &.icon-personality-01 {
+            background-position: -716px -160px;
+          }
           &.icon-culture {
             background-position: -232px -352px;
+          }
+          &.icon-culture-01 {
+            background-position: -768px -160px;
+          }
+          &.icon-wfh {
+            background-position: -560px -270px;
           }
         }
       }

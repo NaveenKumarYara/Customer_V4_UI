@@ -413,11 +413,11 @@ body {
 		.owl-theme {
 			.owl-nav  {
 				.owl-next {
-					right: -2px;
+					right: -16px;
 				}
 	
 				.owl-prev {
-					left: -2px;
+					left: -16px;
 				}
 			}
 		}
@@ -893,7 +893,7 @@ body {
 					background: $white;
 					height: 18px;
 					border: 1px solid $stroke-gray;
-					border-radius: 3px;
+					border-radius: 50%;
 					position: absolute;
 					left: 5px;
 					top: 50%;
