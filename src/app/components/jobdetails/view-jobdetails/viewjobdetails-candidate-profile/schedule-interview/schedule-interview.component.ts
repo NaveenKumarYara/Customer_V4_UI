@@ -651,10 +651,11 @@ SendStatusEmail()
   } 
   else if (this.processSelection === 3) {
     this.status.interviewType = "Video-Conference";
-    this.status.interviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!';     
+    this.status.interviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!'; 
+
    } 
   //this.status.ToEmailID = this.data.Email;
-    
+  this.status.modeOfInterview = this.savenote.OtherInfo; 
   //this.status.appLink = this.settingsService.settings.CandidateLogin;
   this.status.fromEmail = this.customer.Email;
   this.status.toEmailId = 'developer.arytic@gmail.com';
@@ -666,18 +667,17 @@ SendStatusEmail()
   //this.status.signature = '';
   //this.status.name = this.customer.FirstName + ' ' + this.customer.LastName;
   this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
- debugger
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
-     this.toastr.success('Email Sent to Candidate','Success');
-        setTimeout(() => {          
-            this.toastr.dismissToast; 
+    //  this.toastr.success('Email Sent to Candidate','Success');
+    //     setTimeout(() => {          
+    //         this.toastr.dismissToast; 
            
             this.schIntw = new ScheduleInterview();
             this.SaveNotes();
             //this.dialogRef.close();
-          }, 3000);
+          // }, 3000);
          
        } 
                   
@@ -898,6 +898,7 @@ export class JobInterviewStatus
   companyName: string
   updatedBy: string
   date: string
+  modeOfInterview:string;
   interviewType: string
   jobLocation: string
   interviewDetails: string

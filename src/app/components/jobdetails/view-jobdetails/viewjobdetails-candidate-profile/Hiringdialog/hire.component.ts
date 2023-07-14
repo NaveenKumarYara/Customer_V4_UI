@@ -280,20 +280,24 @@ gotit(na) {
    }
    SendStatusEmail()
    {
-     this.status.AppLink = this.settingsService.settings.CandidateLogin;
-     this.status.JobStatus = 'Hired';
-     this.status.FromEmail = this.customer.Email;
-     this.status.ToEmailID = this.data.Email;
-     this.status.FullName = this.data.FullName;
-     this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
-     this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+    this.status.appLink = this.settingsService.settings.CandidateLogin;
+    this.status.jobStatus = 'Hired';
+    this.status.fromEmail = this.customer.Email;
+    this.status.toEmailId = this.data.Email;
+    this.status.fullName = this.data.FullName;
+    this.status.jobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+    this.status.jobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+    this.status.jobId = this.data.jobId.toString();
+    this.status.applicationName = 'Arytic';
+    this.status.updatedBy = this.customer.FirstName + ' ' + this.customer.LastName;
+    this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
      this.appService.SendJobStatus(this.status)
      .subscribe(
      status => {
-        this.toastr.success('Email Sent','Success');
-           setTimeout(() => {          
-               this.toastr.dismissToast; 
-             }, 3000);
+        // this.toastr.success('Email Sent','Success');
+        //    setTimeout(() => {          
+        //        this.toastr.dismissToast; 
+        //      }, 3000);
             
           } 
                      
@@ -565,10 +569,10 @@ this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subsc
       this.Check();
       this.PopulateJobdetail();
       this.SaveNotes();
-      this.toastr.success('Email Sent','Success');
-      setTimeout(() => {          
-          this.toastr.dismissToast; 
-        }, 3000);
+      // this.toastr.success('Email Sent','Success');
+      // setTimeout(() => {          
+      //     this.toastr.dismissToast; 
+      //   }, 3000);
       this.eventStat.emit(null);
       //this.dialogRef.close();
       console.log(res);
@@ -599,13 +603,17 @@ export class Notes{
 
 export class JobStatus
 {
-    public FullName :string
-    public AppLink :string
-    public JobStatus :string
-    public ToEmailID :string
-    public JobLocation :string
-    public  FromEmail :string
-    public JobTitle :string
+  fullName: string
+  appLink: string
+  jobStatus: string
+  toEmailId: string
+  jobLocation: string
+  companyName: string
+  applicationName: string
+  fromEmail: string
+  jobId: string
+  jobTitle: string
+  updatedBy: string
 }
 
 export class contactInfo

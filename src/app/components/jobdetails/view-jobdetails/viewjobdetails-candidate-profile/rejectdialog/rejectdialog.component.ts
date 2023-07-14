@@ -178,11 +178,11 @@ export class RejectdialogComponent implements OnInit {
   this._service.PostService(this.emailNote,'EmailApi/api/EmailForFeedback').subscribe(
     check=>
     {
-          this.toastr.success('Email sent successfully','Success');
-          setTimeout(() => {
-            this.toastr.dismissToast;
+          // this.toastr.success('Email sent successfully','Success');
+          // setTimeout(() => {
+          //   this.toastr.dismissToast;
             this.emailNote = new SendNoteEmail();
-        }, 3000);
+      //  }, 3000);
     }
   )
 }
@@ -268,6 +268,8 @@ export class RejectdialogComponent implements OnInit {
   this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
 
     this.appService.SendJobStatus(this.status).subscribe((status) => {
+      this.eventStat.emit(null);
+      this.SaveNotes();
     //   this.toastr.success("Email Sent", "Success");
     //   setTimeout(() => {
     //     this.toastr.dismissToast;
