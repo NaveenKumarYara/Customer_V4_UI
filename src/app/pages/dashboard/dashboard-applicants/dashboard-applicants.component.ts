@@ -19,6 +19,7 @@ export class DashboardApplicantsComponent implements OnInit {
   cardMatchingTitle: any = '';
   customer:any;
   topApplicants:any=[];
+  topApplicantsSource:any=[];
   AppliedJobs:any=[];
   @Input() ProfileStats: any = ' ';
   public barChartLegend = false;
@@ -51,10 +52,12 @@ export class DashboardApplicantsComponent implements OnInit {
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerTopProfiles();
+    this.getProfileStatsChartData();
+    this. GetCustomerTopJobsBySource();
   }
 
   ngOnInit(): void {
-   this.getProfileStatsChartData();
+ 
 
   }
 
@@ -67,6 +70,17 @@ export class DashboardApplicantsComponent implements OnInit {
  
     });
   }
+
+  GetCustomerTopJobsBySource()
+  {
+    let params = new HttpParams();
+		params = params.append("CustomerId", this.customer.CustomerId);
+    this._service.GetEmployerService("/api/GetCustomerAdminApplicantsStatsBySource?", params).subscribe((response:any) => { 
+      this.topApplicantsSource =  response;
+    });
+  }
+
+
   getProfileStatsChartData(){
     return this._service.GetEmployerService('/api/GetAdminProfileStatsByWeek?CustomerId=',this.customer.CustomerId).subscribe(v=>{
       console.log("profileStats",v)
