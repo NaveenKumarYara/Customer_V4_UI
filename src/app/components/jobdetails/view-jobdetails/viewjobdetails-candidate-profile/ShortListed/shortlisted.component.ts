@@ -247,11 +247,13 @@ onItemDeleted(index){
      this.appService.SendJobStatus(this.status)
      .subscribe(
      status => {
+      this.eventStat.emit(null);
+      this.SaveNotes();
         // this.toastr.success('Email Sent','Success');
         //    setTimeout(() => {          
         //        this.toastr.dismissToast; 
         //        //this.eventStat.emit(null);
-        //        this.SaveNotes();
+        //      
         //        //this.dialogRef.close();   
         //      }, 3000);
             
