@@ -14,6 +14,7 @@ export class DashboardUsersComponent implements OnInit {
   @Input() UserStats: any ='';
   customer:any;
   topUsers:any=[];
+  topUsersStats:any=[];
   cardID: boolean = false;
   cardExp: boolean = false;
   cardMatchingTitle: any = '';
@@ -50,6 +51,9 @@ export class DashboardUsersComponent implements OnInit {
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerTopUsers();
+    this.GetUsersStats();
+    this.GetCustomerTopUserStats();
+
   }
 
   ngOnInit(): void {
@@ -61,6 +65,22 @@ export class DashboardUsersComponent implements OnInit {
     this._service.GetEmployerService("/api/GetAdminUsersLists?", params).subscribe((response:any) => { 
       this.topUsers =  response;
  
+    });
+  }
+
+  GetCustomerTopUserStats()
+  {
+    let params = new HttpParams();
+		params = params.append("CustomerId", this.customer.CustomerId);
+    this._service.GetEmployerService("/api/GetUsersRolesAppliedStats?", params).subscribe((response:any) => { 
+      this.topUsersStats =  response;
+    });
+  }
+
+  GetUsersStats()
+  {
+    this._service.GetEmployerService("/api/GetAdminUsersStats?CustomerId=", this.customer.CustomerId).subscribe((response:any) => { 
+      this.UserStats =  response[0];
     });
   }
 }

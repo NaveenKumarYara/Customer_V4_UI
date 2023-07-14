@@ -76,7 +76,7 @@
             <h3>Overall Application Report</h3>
             <div class="form-group">
               <select class="form-select">
-                <option value="This Week">This Year</option>
+                <option value="This Week">This Week</option>
               </select>
             </div>
           </div>
@@ -131,110 +131,33 @@
               Rejected
             </div>
           </div>
-          <div class="table-row table-col-row">
+          <div class="table-row table-col-row" *ngFor="let job of topApplicantsSource;let j = index">
             <div class="table-col name-col">
-              <span class="text-ellipsis">Telsa</span>
+              <span class="text-ellipsis"> {{job?.DataSource}}</span>
             </div>
             <div class="table-col">
-              1
+              {{job?.Uploaded}}
             </div>
             <div class="table-col">
-              0
+              {{job?.Applied}}
             </div>
             <div class="table-col">
-              2
+              {{job?.Shortlisted}}
             </div>
             <div class="table-col">
-              3
+              {{job?.Interviewed}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Screened}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Hired}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Rejected}}
             </div>
           </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">Quinnax</span>
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              2
-            </div>
-            <div class="table-col">
-              3
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
+     
         </div>
       </div>
       <div class="bottom-container d-flex justify-content-end">

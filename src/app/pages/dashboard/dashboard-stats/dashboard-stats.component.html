@@ -35,7 +35,8 @@
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container" [ngClass]="tabName == 'Clients'?'active':''" (click)="this.tabbingClickHandler.emit('Clients');">
+      <!-- <div class="col-container" [ngClass]="tabName == 'Clients'?'active':''" (click)="this.tabbingClickHandler.emit('Clients');"> -->
+        <div class="col-container" [ngClass]="tabName == 'Clients'?'active':''">
         <span class="icon icon-04">
           Icon
         </span>
@@ -46,7 +47,8 @@
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container" [ngClass]="tabName == 'Vendors'?'active':''" (click)="this.tabbingClickHandler.emit('Vendors');">
+      <div class="col-container" [ngClass]="tabName == 'Vendors'?'active':''">
+      <!-- <div class="col-container" [ngClass]="tabName == 'Vendors'?'active':''" (click)="this.tabbingClickHandler.emit('Vendors');"> -->
         <span class="icon icon-05">
           Icon
         </span>
@@ -57,7 +59,8 @@
       </div>
     </ng-template>
     <ng-template carouselSlide>
-      <div class="col-container" [ngClass]="tabName == 'Job Shares'?'active':''" (click)="this.tabbingClickHandler.emit('Job Shares');">
+      <div class="col-container" [ngClass]="tabName == 'Job Shares'?'active':''">
+      <!-- <div class="col-container" [ngClass]="tabName == 'Job Shares'?'active':''" (click)="this.tabbingClickHandler.emit('Job Shares');"> -->
         <span class="icon icon-02">
           Icon
         </span>

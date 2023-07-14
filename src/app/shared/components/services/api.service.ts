@@ -77,6 +77,16 @@ export class ApiService {
       })
     });
   }
+  GetProfileService(url:string,params:any){
+    return this.http.get(this.settingsService.settings.ProfilebaseUrl + url +params)
+  }
+
+  postProfileService(url:string,params:any){
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + url ,params)
+  }
+
+
+ 
 
   
   GetJobProfileStatus() {
@@ -123,25 +133,40 @@ getNewCandidates(params:any): Observable<any> {
       }));
   }
 
-
-
-
-
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('customer');
     this.router.navigate(['login']);
   }
 
+  getAllJobTitle(searchText: string){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetJobTitles?jobtitle='+searchText)
+  }
+  getAllCityes(searchText: string){
+    return this.http.get(this.settingsService.settings.ProfilebaseUrl+'/api/GetGoogleLocations?location='+searchText)
+  }
 
+  GetAllCompanies(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetAllCompanyNames')
+  }
+
+  getAllSkills(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetSkill')
+  }
+  
+  getAllDomain(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetDomainName')
+  }
 
   GetEmployerService(url: string, prams: any) {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + url + prams, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
   }
 
-  GetProfileService(url:string,params:any){
-    return this.http.get(this.settingsService.settings.ProfilebaseUrl + url +params)
+ 
+
+  getJobStatus(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetJobStatus')
   }
 
   DeleteService(url:any, prams:any) {

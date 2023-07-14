@@ -19,16 +19,17 @@ export class DashboardApplicantsComponent implements OnInit {
   cardMatchingTitle: any = '';
   customer:any;
   topApplicants:any=[];
+  topApplicantsSource:any=[];
   AppliedJobs:any=[];
   @Input() ProfileStats: any = ' ';
   public barChartLegend = false;
   public barChartPlugins = [];
 
   public barChartData: ChartConfiguration<'bar'>['data'] = {
-  labels: [ '2006', '2007', '2008', '2009', '2010', '2011', '2012' ],
+  labels: [],
   datasets: [
     { 
-      data: [ 65, 59, 80, 81, 56, 55, 40 ], 
+      data: [], 
       label: 'Series A',
       barPercentage: 0.5,
       barThickness: 20,
@@ -46,13 +47,18 @@ export class DashboardApplicantsComponent implements OnInit {
     responsive: true,
   }
   public barChartType = 'bar';
+  profileStats:any = [];
 
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerTopProfiles();
+    this.getProfileStatsChartData();
+    this. GetCustomerTopJobsBySource();
   }
 
   ngOnInit(): void {
+ 
+
   }
 
   GetCustomerTopProfiles()
@@ -62,6 +68,40 @@ export class DashboardApplicantsComponent implements OnInit {
     this._service.GetEmployerService("/api/GetAdminProfileHotList?", params).subscribe((response:any) => { 
       this.topApplicants =  response;
     });
+  }
+
+  GetCustomerTopJobsBySource()
+  {
+    let params = new HttpParams();
+		params = params.append("CustomerId", this.customer.CustomerId);
+    this._service.GetEmployerService("/api/GetCustomerAdminApplicantsStatsBySource?", params).subscribe((response:any) => { 
+      this.topApplicantsSource =  response;
+    });
+  }
+
+
+  getProfileStatsChartData(){
+    return this._service.GetEmployerService('/api/GetAdminProfileStatsByWeek?CustomerId=',this.customer.CustomerId).subscribe(v=>{
+      console.log("profileStats",v)
+      this.profileStats = v;
+      if (this.profileStats.length == 0) return;
+      this.barChartData = {
+        labels: Object.keys(this.profileStats[0]),
+        datasets: [
+          { 
+            data: Object.values(this.profileStats[0]), 
+            label: 'Series A',
+            barPercentage: 0.5,
+            barThickness: 20,
+            maxBarThickness: 15,
+            minBarLength: 2,
+            backgroundColor:['#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA'],
+            hoverBackgroundColor: '#fbc849',
+            borderRadius: 20
+          }
+        ]
+      };
+    })
   }
 
   GetCustomerJobsForApplied(ProfileId:any)

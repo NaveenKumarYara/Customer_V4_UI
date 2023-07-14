@@ -1,14 +1,20 @@
 <h1>Manage Jobs</h1>
-<app-manage-job-filters (newItemEvent)="addItem($event)"
-  [viewLayout] = "viewLayout"    [Jobs]="Jobs"     (quickchanged)="onquickChange($event)" 
-  (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
+<app-manage-job-filters 
+  [customer]="customer"
+  (newItemEvent)="addItem($event)"
+  [viewLayout] = "viewLayout"  
+  [Jobs]="Jobs"   
+  (quickchanged)="onquickChange($event)" 
+  (changed)="onChange($event)"  
+  (clearItemEvent)="clearAll($event)"
   (layoutView) = "layoutView($event)"
+  (advancedFiltersApplied) = "advancedFiltersApplied($event)"
 >
 </app-manage-job-filters>
 
 <div class="sorting-container d-flex align-items-center">
   <div class="result">
-    Showing  {{start==null?1:start }} - {{last==null?6:last}}  out of {{(Jobs|filter: filterTerm).length}}   Jobs
+    Showing  {{start == null ? 1 : start }} -  {{last == null ? 6 : last}}  out of {{filteredJobs.length}}   Jobs
   </div>
   <div class="sorting">
     <pagination-controls  (pageChange)="listCount($event)"  [autoHide]="true" *ngIf="Jobs.length>0"  (pageChange)="p = $event"
@@ -19,7 +25,7 @@
 <ng-container *ngIf="viewLayout == 'grid'">
   <div class="manage-listing-grid">
     <div class="row">
-      <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of Jobs   | filter: filterTerm | paginate: { itemsPerPage: 6, currentPage: p, id: 'first' }; let i=index">
+      <div class="col-md-4 col-lg-4 job-card" *ngFor="let job of filteredJobs | paginate: { itemsPerPage: 6, currentPage: p, id: 'first' }; let i=index">
         <app-manage-jobcard 
           [job]="job" 
           [panelShow]="panelShow"
@@ -69,7 +75,6 @@
         >
       </app-manage-job-list>
     </div>
-  
   </div>
 </ng-container>
 
