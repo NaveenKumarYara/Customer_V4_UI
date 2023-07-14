@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.tabName = 'Jobs';
+    this.tabName = 'Job Shares';
   }
 
   tabbingClickHandler(name: any) {

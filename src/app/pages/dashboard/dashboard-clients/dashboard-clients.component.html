@@ -17,9 +17,14 @@
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"
             [type]="'bar'"
-            height="300"
           >
           </canvas>
+          <div class="bottom-container d-flex justify-content-center">
+            <a href="#" class="btn btn-link">
+              Full View
+              <span class="mdi mdi-fullscreen"></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -36,25 +41,34 @@
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">
-              Client Name
+              Client
             </div>
             <div class="table-col email-col">
-              Email Id
+              Open
             </div>
             <div class="table-col phone-col">
-              Phone
+              Screening
             </div>
             <div class="table-col">
-              POC
+              Shortlisting
             </div>
             <div class="table-col">
-              Jobs
+              Interviewing
             </div>
             <div class="table-col">
-              Filled
+              Hiring
             </div>
             <div class="table-col">
-              Success Ratio
+              Freezed
+            </div>
+            <div class="table-col">
+              Filed
+            </div>
+            <div class="table-col">
+              Hold
+            </div>
+            <div class="table-col">
+              Expired
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -62,22 +76,31 @@
              TFS
             </div>
             <div class="table-col email-col">
-              Arytic123@gmail.com
+              3
             </div>
             <div class="table-col phone-col">
-              +91 9876543210
-            </div>
-            <div class="table-col">
               50
             </div>
             <div class="table-col">
-              25
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
             <div class="table-col">
               25
             </div>
             <div class="table-col">
-              50%
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -85,22 +108,31 @@
              TFS
             </div>
             <div class="table-col email-col">
-              Arytic123@gmail.com
+              3
             </div>
             <div class="table-col phone-col">
-              +91 9876543210
-            </div>
-            <div class="table-col">
               50
             </div>
             <div class="table-col">
-              25
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
             <div class="table-col">
               25
             </div>
             <div class="table-col">
-              50%
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -108,22 +140,31 @@
              TFS
             </div>
             <div class="table-col email-col">
-              Arytic123@gmail.com
+              3
             </div>
             <div class="table-col phone-col">
-              +91 9876543210
-            </div>
-            <div class="table-col">
               50
             </div>
             <div class="table-col">
-              25
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
             <div class="table-col">
               25
             </div>
             <div class="table-col">
-              50%
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -131,68 +172,31 @@
              TFS
             </div>
             <div class="table-col email-col">
-              Arytic123@gmail.com
+              3
             </div>
             <div class="table-col phone-col">
-              +91 9876543210
-            </div>
-            <div class="table-col">
               50
             </div>
             <div class="table-col">
-              25
+              3
+            </div>
+            <div class="table-col">
+              3
+            </div>
+            <div class="table-col">
+              3
             </div>
             <div class="table-col">
               25
             </div>
             <div class="table-col">
-              50%
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-             TFS
-            </div>
-            <div class="table-col email-col">
-              Arytic123@gmail.com
-            </div>
-            <div class="table-col phone-col">
-              +91 9876543210
+              3
             </div>
             <div class="table-col">
-              50
+              3
             </div>
             <div class="table-col">
-              25
-            </div>
-            <div class="table-col">
-              25
-            </div>
-            <div class="table-col">
-              50%
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-             TFS
-            </div>
-            <div class="table-col email-col">
-              Arytic123@gmail.com
-            </div>
-            <div class="table-col phone-col">
-              +91 9876543210
-            </div>
-            <div class="table-col">
-              50
-            </div>
-            <div class="table-col">
-              25
-            </div>
-            <div class="table-col">
-              25
-            </div>
-            <div class="table-col">
-              50%
+              3
             </div>
           </div>
         </div>
@@ -218,60 +222,77 @@
   </div>
   <div class="candidate-cards">
     <div class="row">
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
           [cardClosed] = true
           [cardAssigned]= true
+          [cardStatus] = false
+          [cardPriority] = false
         >
         </app-dashboard-candidate-card>
       </div>
     </div>
+  </div>
+  <div class="bottom-container d-flex justify-content-end">
+    <a href="#" class="btn btn-link">
+      Show More
+    </a>
   </div>
 </div>

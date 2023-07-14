@@ -9,13 +9,14 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
 
 export class DashboardTotalJobsComponent implements OnInit {
   @Input() AdminStats: any ='';
-  cardProfileSummary: boolean = false;
+  cardExp: boolean = false;
   cardJobId: boolean = false;
   cardAryticId: boolean = false;
   cardNav: boolean = false;
   cardInterviewStatus: boolean = false;
   cardLocation: boolean = false;
   cardDate: boolean = false;
+  cardJobPositions: boolean = false;
 
   public barChartLegend = false;
   public barChartPlugins = [];

@@ -250,37 +250,6 @@
       }
     }
 
-    .bottom-container {
-      margin-top: 10px;
-
-      .btn {
-        &.btn-link {
-          font-size: 0;
-          font-weight: 600;
-          color: $blue;
-          padding: 0;
-          margin-left: auto;
-          text-decoration: none;
-
-          .mdi {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1;
-            position: relative;
-            top: -2px;
-
-            @media only screen and (min-width: 768px) {
-              display: none;
-            }
-          }
-
-          @media only screen and (min-width: 768px) {
-            font-size: $font-size-16;
-          }
-        }
-      }
-    }
-    
     @media only screen and (min-width: 1023px) {
       flex: 0 0 55%;
       max-width: 55%;
@@ -444,4 +413,75 @@
       margin-top: 0;
     }
   }
+
+  .top-container {
+    text-align: left;
+    position: relative;
+    @include flexbox();
+    @include align-items(center);
+    margin-bottom: 15px;
+
+    h3 {
+      font-size: $font-size-16;
+      color: $darkest-blue;
+      font-weight: 600;
+      margin-bottom: 0;
+  
+      @media only screen and (min-width: 1170px) {
+        font-size: $font-size-20;
+      }
+    }
+
+    .form-group {
+      margin-left: auto;
+    }
+
+    .form-select {
+      height: 36px;
+      padding: 6px 30px 6px 10px;
+    }
+  }
+
+  .col {
+    margin-bottom: 30px;
+  }
+}
+
+.bottom-container {
+  margin-top: 10px;
+
+  .btn {
+    &.btn-link {
+      font-size: 0;
+      text-decoration: underline;
+      font-weight: 600;
+      color: $blue;
+      padding: 0;
+      color: $blue;
+      
+      .mdi {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        position: relative;
+        top: -2px;
+
+        @media only screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        font-size: $font-size-16;
+      }
+    }
+  }
+
+  &.xs {
+    margin-top: 0;
+  }
+}
+
+.xs-margin {
+  margin-top: 20px;
 }

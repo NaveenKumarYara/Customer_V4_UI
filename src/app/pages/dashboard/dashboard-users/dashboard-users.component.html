@@ -60,9 +60,40 @@
 
 <div class="dashboard-chart-container">
   <div class="row">
-    <div class="col-md-12 col-lg-12 table-cols">
+    <div class="col-md-5 col-lg-5 left-col">
+      <div class="col-container">
+        <div class="container-box">
+          <div class="top-container">
+            <h3>Overall Users Report</h3>
+            <div class="form-group">
+              <select class="form-select">
+                <option value="This Week">This Week</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [type]="'bar'"
+            >
+            </canvas>
+          </div>
+          <div class="bottom-container d-flex justify-content-center">
+            <a href="#" class="btn btn-link">
+              Full View
+              <span class="mdi mdi-fullscreen"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-lg-7 table-cols">
       <div class="top-container">
-        <h3>Team Member status based on applicant status</h3>
+        <h3>Status of user based on job status</h3>
         <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Week</option>
@@ -213,62 +244,56 @@
   </div>
 </div>
 
+
+<!--OLD HTML Code-->
+<!-- <div class="col-md-12 col-lg-12 table-cols">
+  <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
+    <div class="table-container">
+      <div class="table-row table-header-row">
+        <div class="table-col name-col">
+          Team Member
+        </div>
+        <div class="table-col">
+         Email
+        </div>
+        <div class="table-col">
+          Role
+        </div>
+      </div>
+      <div class="table-row table-col-row" *ngFor="let job of topUsers;let i = index">
+        <div class="table-col name-col">
+          <span class="text-ellipsis">{{job?.FirstName | titlecase}}     {{job?.LastName | titlecase}}</span>
+        </div>
+        <div class="table-col">
+          {{job?.Email}}
+        </div>
+        <div class="table-col">
+          {{job?.RoleName}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-container d-flex justify-content-end">
+    <a href="#" class="btn btn-link">
+      Full View
+      <span class="mdi mdi-fullscreen"></span>
+    </a>
+  </div>
+</div> -->
+<!--OLD HTML code-->
+
 <div class="dashboard-listing-columns">
-  <!-- <div class="top-container">
+  <div class="top-container">
     <h3>Top Performances</h3>
     <div class="form-group">
       <select class="form-select">
         <option value="This Week">This Week</option>
-      </select> 
+      </select>
     </div>
-  </div> -->
-  <div class="col-md-12 col-lg-12 table-cols">
-    <div class="top-container">
-      <h3>Top Performances</h3>
-     
-    </div>
-    <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
-      <div class="table-container">
-        <div class="table-row table-header-row">
-          <div class="table-col name-col">
-            Team Member
-          </div>
-          <div class="table-col">
-           Email
-          </div>
-          <div class="table-col">
-            Role
-          </div>
-         
-  
-        
-        </div>
-        <div class="table-row table-col-row" *ngFor="let job of topUsers;let i = index">
-          <div class="table-col name-col">
-            <span class="text-ellipsis">{{job?.FirstName | titlecase}}     {{job?.LastName | titlecase}}</span>
-          </div>
-          <div class="table-col">
-            {{job?.Email}}
-          </div>
-          <div class="table-col">
-            {{job?.RoleName}}
-          </div>
-          
-       
-        </div>
-  
-      </div>
-    </div>
-    <!-- <div class="bottom-container d-flex justify-content-end">
-      <a href="#" class="btn btn-link">
-        Full View
-        <span class="mdi mdi-fullscreen"></span>
-      </a>
-    </div> -->
   </div>
-  <!-- <div class="candidate-cards">
+  <div class="candidate-cards">
     <div class="row">
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -277,7 +302,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -286,7 +311,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -295,7 +320,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -304,7 +329,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -313,7 +338,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardMatching] = true
           [cardMatchingTitle]="'Success Ratio'"
@@ -323,5 +348,10 @@
         </app-dashboard-candidate-card>
       </div>
     </div>
-  </div> -->
+  </div>
+  <div class="bottom-container d-flex justify-content-end">
+    <a href="#" class="btn btn-link">
+      Show More
+    </a>
+  </div>
 </div>

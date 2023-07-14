@@ -61,7 +61,6 @@ export class DashboardApplicantsComponent implements OnInit {
 		params = params.append("CustomerId", this.customer.CustomerId);
     this._service.GetEmployerService("/api/GetAdminProfileHotList?", params).subscribe((response:any) => { 
       this.topApplicants =  response;
- 
     });
   }
 

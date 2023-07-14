@@ -97,20 +97,29 @@
               </select>
             </div>
           </div>
-          <canvas baseChart
-            [data]="barChartData"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [type]="'bar'"
-          >
-          </canvas>
+
+          <div class="chart-container">
+            <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [type]="'bar'"
+            >
+            </canvas>
+          </div>
+          <div class="bottom-container d-flex justify-content-center">
+            <a href="#" class="btn btn-link">
+              Full View
+              <span class="mdi mdi-fullscreen"></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-7 col-lg-7 table-cols">
       <div class="top-container">
-        <h3>Weekly Status of Jobs</h3>
+        <h3>Status of Jobs based on Clients</h3>
         <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Week</option>
@@ -145,10 +154,10 @@
               Filled
             </div>
             <div class="table-col">
-              Expired
+              Hold
             </div>
             <div class="table-col">
-              Hold
+              Expired
             </div>
           </div>
           <div class="table-row table-col-row">
@@ -290,63 +299,155 @@
     </div>
   </div>
 </div>
+<!--<app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>-->
 <div class="dashboard-total-jobs-listing">
-  <div class="row">
-    <app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>
-    <!-- <div class="col-md-6 col-lg-6 left-col" >
-      <h4>Top Jobs</h4>
-      <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardInterviewStatus] = true
-        >
-        </app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardInterviewStatus] = true
-        >
-        </app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardInterviewStatus] = true
-        >
-        </app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardInterviewStatus] = true
-        >
-        </app-dashboard-job-card>
-      </div>
-      <app-dashboard-top-performing-jobs></app-dashboard-top-performing-jobs>
+  <div class="top-container">
+    <h3>Top Jobs</h3>
+    <div class="form-group">
+      <select class="form-select">
+        <option value="This Week">This Week</option>
+      </select>
     </div>
-    <div class="col-md-6 col-lg-6 right-col">
-      <h4>Recent Jobs</h4>
-      <div class="custom-scroll"  malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">   
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardDate]= true
-        ></app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardDate]= true
-        ></app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardDate]= true
-        ></app-dashboard-job-card>
-        <app-dashboard-job-card
-          [cardNav]= true
-          [cardLocation]= true
-          [cardDate]= true
-        ></app-dashboard-job-card>
-      </div>
-    </div> -->
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+  </div>
+  <div class="bottom-container d-flex justify-content-end">
+    <a href="#" class="btn btn-link">Show More</a>
+  </div>
+</div>
+
+<div class="dashboard-total-jobs-listing xs-margin">
+  <div class="top-container">
+    <h3>Recent Jobs</h3>
+    <div class="form-group">
+      <select class="form-select">
+        <option value="This Week">This Week</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+    <div class="col-md-4 col-lg-4 col">
+      <app-dashboard-job-card
+        [cardNav]= true
+        [cardExp] = true
+        [cardLocation]= true
+        [cardJobId] = true
+        [cardAryticId] = true
+      >
+      </app-dashboard-job-card>
+    </div>
+  </div>
+  <div class="bottom-container d-flex justify-content-end">
+    <a href="#" class="btn btn-link">Show More</a>
   </div>
 </div>

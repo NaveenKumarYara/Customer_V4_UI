@@ -52,6 +52,7 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobShareProfileComponent } from './job-share-profile/job-share-profile.component';
 import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
+import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
 
 @NgModule({
 	declarations: [
@@ -84,7 +85,8 @@ import { NgxUploaderModule } from 'ngx-uploader';
 	CandidateDocumentComponent,
 	JobShareComponent,
 	ViewEditJobsComponent,
- JobShareProfileComponent
+  JobShareProfileComponent,
+  JobStatusChangeComponent
 	],
 	imports: [
 	 CommonModule,

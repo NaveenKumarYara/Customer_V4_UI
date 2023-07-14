@@ -21,17 +21,6 @@
     box-shadow: 0 3px 6px rgba(110, 129, 158, 0.14);
     position: relative;
     cursor: pointer;
-
-    &::before {
-      content: "";
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      background-color: $dark-green;
-      border-radius: 50%;
-      width: 10px;
-      height: 10px;
-    }
   }
 
   .info {
@@ -98,7 +87,14 @@
       border-color: $dark-green;
 
       &::before {
-        background: $dark-green;
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        background-color: $dark-green;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
       }
 
       .info {

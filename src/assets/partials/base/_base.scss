@@ -879,7 +879,8 @@ body {
 			transform: translateY(-50%);
 		}
 
-		input[type="checkbox"] {
+		input[type="checkbox"],
+		input[type="radio"] {
 			position: absolute;
 			left: -999em;
 

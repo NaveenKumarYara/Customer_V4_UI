@@ -12,7 +12,9 @@ export class DashboardCandidateCardComponent implements OnInit {
   @Input() cardMatchingTitle: any = '';
   @Input() cardAssigned: boolean = false;
   @Input() cardClosed: boolean = false;
-  
+  @Input() cardStatus: boolean = true;
+  @Input() cardPriority: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {

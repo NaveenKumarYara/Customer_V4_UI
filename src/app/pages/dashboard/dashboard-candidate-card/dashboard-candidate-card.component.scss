@@ -14,7 +14,7 @@
   
     .top-container{
       background-color: $light-bg;
-      padding: 50px 20px 20px;
+      padding: 50px 20px 15px;
       position: relative;
   
       .status {
@@ -206,9 +206,10 @@
         
 
         h3 {
-          font-size: $font-size-16;
+          font-size: $font-size-14;
           color: $dark-gray;
           margin: 0;
+          font-weight: 400;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -359,6 +360,11 @@
         }
       }
 
+      .left-container {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
       .right-container {
         font-size: 12px;
         font-weight: 600;
@@ -366,16 +372,14 @@
         @include flexbox();
         @include align-items(center);
         @include justify-content(center);
+        flex: 0 0 100%;
+        max-width: 100%;
 
         @media only screen and (min-width: 768px) {
           @include justify-content(flex-start);
           padding-left: 96px;
-        }
-
-        @media only screen and (min-width: 991px) {
-          padding-left: 0;
-          padding-right: 20px;
-          margin-left: auto;
+          margin-top: -12px;
+          margin-bottom: 16px;
         }
       }
 
