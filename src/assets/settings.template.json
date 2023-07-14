@@ -47,7 +47,7 @@
     "SendJobInterviewer": "${Email_URL}/api/SendJobInterviewer",
     "ProfileShareInvite": "${EmailV1_URL}/api/ProfileShare",
     "CustomerRequestRefernce": "${Email_URL}/api/CustomerRequestedRef",
-    "StartConversation": "${Email_URL}/api/SendEmailConversation",
+    "StartConversation": "${EmailV1_URL}/api/SendEmailConversation",
     "UpdateStatusOnEmailConversation": "${Profile_URL}/api/UpdateProfileStatus",
     "signUp": "${Identity_URL}/api/CustomerRegistration",
     "postjob": "${Jobs_URL}/api/InsertJobUpdated",

@@ -733,26 +733,27 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 		this.isSendingEmail = true;
 		//this.spinner.show();
-		this.conversation.FullName = this.SName;
-		this.conversation.Subject = this.subject;
-		this.conversation.CCEmailAddress = this.ccEmailAddress;
-		this.conversation.Body = this.body;
-        this.conversation.ToEmailID = this.ToEmailID;
+		this.conversation.fullName = this.SName;
+		this.conversation.subject = this.subject;
+		this.conversation.ccEmailAddress = this.ccEmailAddress;
+		this.conversation.body = this.body;
+        this.conversation.toEmailID = this.ToEmailID;
 
 		// if(){
         if(this.mailbox == false)
 		{
-			this.conversation.AppLink = this.settingsService.settings.CandidateSignUp;
-			this.conversation.UserCheck =   'Yes I will Join';
+			this.conversation.appLink = this.settingsService.settings.CandidateSignUp;
+			this.conversation.userCheck =   'Yes I will Join';
 		}
 	   else
 	   {
-		this.conversation.AppLink = this.settingsService.settings.CandidateLogin;
-		this.conversation.UserCheck =  'Login';
+		this.conversation.appLink = this.settingsService.settings.CandidateLogin;
+		this.conversation.userCheck =  'Login';
 	   }
+	   this.conversation.applicationName = 'Arytic';
 		this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 	
-		  if (data === 0) {
+		  if (data === 0 || data === null) {
 			//this.spinner.hide();
 			this.isSendingEmail = false;
 			this.toastr.success('Mail Sent', 'Success');
@@ -760,10 +761,10 @@ export class DetailsComponent implements OnInit,OnDestroy {
 			  this.toastr.dismissToast;
 			}, 2000);
 			this.shareESidepanel = false;
-			this.conversation.FullName = '';
-			this.conversation.Subject = '';
-			this.conversation.Body = '';
-			this.conversation.ToEmailID = '';
+			this.conversation.fullName = '';
+			this.conversation.subject = '';
+			this.conversation.body = '';
+			this.conversation.toEmailID = '';
 			this.SName = '';
 			this.mailbox = false;
 		  }
@@ -1219,11 +1220,11 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		for (var index: number; index < selectedCandidates.length; index++) {
 			let conversation = new StartConversation();
 			let data = selectedCandidates[index];
-			conversation.FullName = data.firstname + data.lastname;
-			conversation.Subject = this.subject;
-			conversation.ToEmailID = data.email;
-			conversation.Body = this.body;
-			conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + data.ccpid;
+			conversation.fullName = data.firstname + data.lastname;
+			conversation.subject = this.subject;
+			conversation.toEmailID = data.email;
+			conversation.body = this.body;
+			conversation.appLink = this.settingsService.settings.CandidateLogin + ';lid=' + data.ccpid;
 		}
 		return conversations;
 	}
