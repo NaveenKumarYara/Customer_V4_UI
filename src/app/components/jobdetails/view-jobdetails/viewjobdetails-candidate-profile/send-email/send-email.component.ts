@@ -11,6 +11,7 @@ import { CustomerSubscription } from '../../../../../../models/CustomerSubscript
 import { GetSubscriptionDetails } from '../../../../../../models/GetSubscriptionDetails';
 import { FormGroup, AbstractControl, Validators, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -24,6 +25,7 @@ export class SendEmailComponent implements OnInit {
   conversation = new StartConversation();
   emailUpdate = new EmailUpdateStatus();
   subject: string;
+  public Editor = ClassicEditor;
   isChecked: boolean = false;
   ccEmailAddress: string;
   ToEmailID: string;
