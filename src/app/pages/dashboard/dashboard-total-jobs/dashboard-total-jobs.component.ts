@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { ApiService } from 'src/app/shared/components/services/api.service';
@@ -14,6 +15,7 @@ export class DashboardTotalJobsComponent implements OnInit {
   cardProfileSummary: boolean = false;
   cardJobId: boolean = false;
   cardAryticId: boolean = false;
+  topJobsCLients:any=[];
   cardNav: boolean = false;
   cardInterviewStatus: boolean = false;
   cardLocation: boolean = false;
@@ -55,9 +57,19 @@ export class DashboardTotalJobsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   console.log("Res",this.customer.CustomerId)
-   this.getJobsChartData()
-   this.getUserStatsChartData()
+   console.log("Res",this.customer.CustomerId);
+   this.GetCustomerTopJobsByClients();
+   this.getJobsChartData();
+   this.getUserStatsChartData();
+  }
+
+  GetCustomerTopJobsByClients()
+  {
+    let params = new HttpParams();
+		params = params.append("CustomerId", this.customer.CustomerId);
+    this.apiService.GetEmployerService("/api/GetAdminJobStatsForClients?", params).subscribe((response:any) => { 
+      this.topJobsCLients =  response;
+    });
   }
 
   getJobsChartData(){
@@ -89,5 +101,7 @@ export class DashboardTotalJobsComponent implements OnInit {
       console.log("usersCharts",v)
     })
   }
+
+
 
 }
