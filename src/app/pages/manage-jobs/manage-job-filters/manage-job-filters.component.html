@@ -62,8 +62,12 @@
 </div>
 
 <ng-container *ngIf="advanceFilter">
-	<app-manage-advance-filter [advanceFilter]="advanceFilter"
-		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
+	<app-manage-advance-filter 
+		[customer] = "customer"
+		[advanceFilter]="advanceFilter"
+		(filtersApplied)="advancedFiltersAppliedInternal($event)"
+		(filterHideHandler)="filterHideHandler()">
+</app-manage-advance-filter>
 		
 </ng-container>
 

@@ -17,7 +17,7 @@ export class ManageJobListComponent implements OnInit {
   @Input() collapsing = true;
   public isCollapsed = false;
   @Input() panelShow: any = '';
-  @Output() panelHandler = new EventEmitter<string>(); 
+  @Output() panelHandler = new EventEmitter<{panelName: string, job: any}>(); 
 
   constructor() {
     this.showRow = 0;
@@ -50,6 +50,6 @@ export class ManageJobListComponent implements OnInit {
   }
 
   panelClick(name: string) {
-    this.panelHandler.emit(name);
+    this.panelHandler.emit({panelName: name, job: this.ljob});
   }
 }

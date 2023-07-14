@@ -21,6 +21,8 @@ export class DashboardUsersComponent implements OnInit {
   constructor(private _service : ApiService) {
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerTopUsers();
+    this.GetUsersStats(this.customer.CustomerId);
+
   }
 
   ngOnInit(): void {
@@ -32,6 +34,13 @@ export class DashboardUsersComponent implements OnInit {
     this._service.GetEmployerService("/api/GetAdminUsersLists?", params).subscribe((response:any) => { 
       this.topUsers =  response;
  
+    });
+  }
+
+  GetUsersStats(CustomerId: any)
+  {
+    this._service.GetEmployerService("/api/GetAdminUsersStats?CustomerId=", CustomerId).subscribe((response:any) => { 
+      this.UserStats =  response[0];
     });
   }
 }

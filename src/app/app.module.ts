@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxUploaderModule } from 'ngx-uploader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -25,7 +25,8 @@ import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
     Ng2SearchPipeModule,
     // NgSelectModule,
     FindACandidateModule,
-    PostAJobModule
+    PostAJobModule,
+    NgxUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
