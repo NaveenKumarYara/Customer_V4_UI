@@ -151,7 +151,7 @@ export class JobNotesComponent implements OnInit {
   addTeammembers() {
     if (this.teammemberslist.filter((v: any) => v.UserId == this.selectedUserName).length == 0)
       this.teammemberslist.push(...this.customercontacts.filter((v: any) => v.UserId === this.selectedUserName))
-
+    this.selectedUserName = null
   }
   onEditorChange(event: any) {
     // Access the changed content
@@ -200,7 +200,7 @@ export class JobNotesComponent implements OnInit {
     console.log("data",d)
     console.log("JobNotes",this.JobNotes)
  
-    let fileDat = this.JobNotes.find((x:any)=>x.attachmentsNew[0].Attaches[0].aDocName === d);
+    let fileDat = this.JobNotes.find((x:any)=>(x.attachmentsNew[0].Attaches) && (x.attachmentsNew[0].Attaches[0].aDocName === d));
     let fileExt:any;
     console.log("dddddddd",fileDat)
 
@@ -246,7 +246,12 @@ export class JobNotesComponent implements OnInit {
       // };
       // this.uploadInput.emit(event);
     } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-      this.files.push(output.file);
+      console.log("ext",output.file.name.split('.').pop())
+      // DocName.split('.').pop()
+      const ext = output.file.name.split('.').pop()
+      if(ext === 'doc' ||ext === 'docx' || ext === 'pdf'||ext === 'txt'){
+        this.files.push(output.file);
+      }
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       // update current data in files array for uploading file
       const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
