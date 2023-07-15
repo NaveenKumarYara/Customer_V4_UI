@@ -12,6 +12,7 @@ export class PostAJobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.sectionActive = 'section-one';
   }
 
   scrollTo(className: string):void {

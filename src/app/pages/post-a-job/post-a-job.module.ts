@@ -11,6 +11,7 @@ import { PostAJobClientInformationComponent } from './post-a-job-client-informat
 import { PostAJobAdditionalComponent } from './post-a-job-additional/post-a-job-additional.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.component';
+import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/post-a-job-salary-location.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.c
     PostAJobInformationComponent,
     PostAJobClientInformationComponent,
     PostAJobAdditionalComponent,
-    PostAJobSkillsComponent
+    PostAJobSkillsComponent,
+    PostAJobSalaryLocationComponent
 	],
 	imports: [
 		CommonModule,

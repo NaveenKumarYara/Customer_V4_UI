@@ -20,15 +20,18 @@
   }
 }
 
-#section-two,
-#section-four {
+.section {
+  padding: 60px 0 30px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.section-two,
+.section-four {
   background-color: $light-bg;
   margin-left: -50px;
   margin-right: -50px;
-  margin-bottom: 40px;
-  padding: 40px 50px;
-}
-
-#section-four {
-  margin-bottom: 0;
+  padding: 60px 50px 30px;
 }

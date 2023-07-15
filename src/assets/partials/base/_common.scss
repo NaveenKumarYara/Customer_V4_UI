@@ -89,6 +89,10 @@
 }
 
 .tab-navigation {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+
   ul {
     @include no-style();
     @include flexbox();
@@ -103,8 +107,8 @@
     }
 
     li {
-      flex: 0 0 25%;
-      max-width: 25%;
+      flex: 0 0 20%;
+      max-width: 20%;
       @include flexbox();
       @include align-items(center);
       @include justify-content(center);
