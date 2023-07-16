@@ -464,7 +464,8 @@ body {
 }
 
 .slide-panel {
-	.slide-close {
+	.slide-close,
+	.btn-card {
 		width: 36px;
 		height: 36px;
 		border-radius: 50%;
@@ -476,6 +477,15 @@ body {
 		top: 50%;
 		transform: translateY(-50%);
 		border: 1px solid $stroke-gray;
+
+		&:hover {
+			background-color: $blue;
+			border-color: $blue;
+			
+			.mdi {
+				color: $white;
+			}
+		}
 
 		.mdi {
 			line-height: 1;
@@ -489,8 +499,13 @@ body {
 	}
 	
 	&.show {
-		.slide-close {
+		.slide-close,
+		.btn-card {
 			display: block;
+		}
+
+		.btn-card {
+			margin-top: -70px;
 		}
 	}
 }

@@ -8,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostAJobComponent implements OnInit {
   sectionActive: any;
-
+  showCard: boolean = false;
+  currentRate = 3;
+  public isCollapsed = false;
+  
   constructor() { }
 
   ngOnInit(): void {
     this.sectionActive = 'section-one';
+  }
+
+  showCardHandler() {
+    this.showCard = !this.showCard;
   }
 
   scrollTo(className: string):void {

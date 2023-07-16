@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import  { SharedModule } from './../../shared/shared.module'
 import  { PostAJobComponent  } from  './post-a-job.component';
 import { PostAJobInformationComponent } from './post-a-job-information/post-a-job-information.component';
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct,NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common'
 import { CKEditorModule } from 'ckeditor4-angular';
@@ -13,14 +13,14 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.component';
 import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/post-a-job-salary-location.component';
 
-@NgModule({
+@NgModule({	
 	declarations: [
     PostAJobComponent,
     PostAJobInformationComponent,
     PostAJobClientInformationComponent,
     PostAJobAdditionalComponent,
     PostAJobSkillsComponent,
-    PostAJobSalaryLocationComponent
+    PostAJobSalaryLocationComponent,
 	],
 	imports: [
 		CommonModule,
@@ -30,7 +30,8 @@ import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/po
 		FormsModule,
 		JsonPipe,
 		CKEditorModule,
-		NgxSliderModule
+		NgxSliderModule,
+		NgbRatingModule
 	],
 	exports: [
     PostAJobComponent

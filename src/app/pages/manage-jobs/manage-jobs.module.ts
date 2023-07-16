@@ -29,7 +29,7 @@ import { JobActivitiesSummaryComponent } from './job-activities/job-activities-s
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { JobListComponent } from './job-activities/job-list/job-list.component';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { JobStatusComponent } from './job-status/job-status.component';
@@ -107,6 +107,7 @@ import  { JobStatusChangeComponent } from './job-status-change/job-status-change
 	 NgMultiSelectDropDownModule.forRoot(),
 	 FormsModule,
 	 NgxUploaderModule,
+	 NgbDatepickerModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

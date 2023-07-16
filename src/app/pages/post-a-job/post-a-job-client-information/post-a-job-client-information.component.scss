@@ -40,3 +40,30 @@
     margin: 0;
   }
 }
+
+.btn-with-icon {
+  width: 48px;
+  padding: 0;
+  border-radius: 4px 0 0 4px;
+  box-shadow: none;
+  background-color: $light-bg;
+
+  .mdi {
+    margin-right: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+  }
+}
+
+.input-group-btn {
+  &:last-child {
+    .btn-with-icon {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}

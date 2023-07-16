@@ -42,7 +42,7 @@
     <h4>Verification Required</h4>
   </div>
 
-  <div class="col-md-4 col-lg-4 form-col">
+  <div class="col-md-6 col-lg-6 form-col">
     <label class="form-label">Verification Options <sup>*</sup></label>
     <div class="form-group">
       <span class="mdi mdi-book-open-page-variant-outline"></span>
@@ -58,13 +58,88 @@
 
   <div class="col-md-6 col-lg-6 form-col">
     <label class="form-label">Skills Creteria <sup>*</sup></label>
+    <div class="slider-box-with-percentage">
+      <div class="custom-slider">
+        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+      </div>
+      <div class="percentage">60%</div>
+    </div>
+    <div class="custom-checkbox-list">
+      <ul>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Skills Name</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Skills Expereience</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-6 form-col">
+    <label class="form-label">Job Creteria <sup>*</sup></label>
+    <div class="slider-box-with-percentage">
+      <div class="custom-slider">
+        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+      </div>
+      <div class="percentage">60%</div>
+    </div>
+    <div class="custom-checkbox-list">
+      <ul>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Toltal Expereience</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Job Title</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Domain</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-6 form-col">
+    <label class="form-label">Team Creteria <sup>*</sup></label>
     <div class="custom-slider">
       <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
     </div>
   </div>
 
   <div class="col-md-6 col-lg-6 form-col">
-    <label class="form-label">Job Creteria <sup>*</sup></label>
+    <label class="form-label">Personality Creteria <sup>*</sup></label>
+    <div class="custom-slider">
+      <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-6 form-col">
+    <label class="form-label">Culture Creteria <sup>*</sup></label>
     <div class="custom-slider">
       <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
     </div>
@@ -141,6 +216,56 @@
       [config]="config"
       data="<p>Hello, world!</p>">
     </ckeditor>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 single-col">
+    <label class="form-label">Publish Jobs <sup>*</sup></label>
+    <div class="custom-checkbox-list">
+      <ul>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Job Boards</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">My Vendors</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Arytic Partners</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Arytic Recruiters</span>
+            </label>
+          </div>
+        </li>
+        <li>
+          <div class="custom-checkbox">
+            <label>
+              <input type="checkbox">
+              <span class="checkmark">Add if anything needed</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 

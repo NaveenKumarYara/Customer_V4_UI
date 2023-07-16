@@ -219,3 +219,60 @@
   }
 }
 
+.quick-results {
+  ul {
+		@include no-style();
+		@include inline-flex();
+		@include flex-wrap(wrap);
+		gap: 10px;
+   
+		li {
+			background: $white;
+			border: 1px solid $stroke-gray;
+			border-radius: 4px;
+			position: relative;
+			color: $dark-gray;
+			font-size: $font-size-14;
+			padding: 4px 26px 4px 10px;
+			@include shadowTwo();
+			
+			.mdi {
+				font-size: $font-size-14;
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+		@media only screen and  (min-width: 767px) {
+			li {
+				padding: 4px 36px 4px 10px;
+			}
+		}
+	}
+}
+
+.show-card {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include align-items(flex-start);
+
+  .form-box {
+    flex: 0 0 calc(100% - 420px);
+    padding-right: 30px;
+    max-width: calc(100% - 420px);
+  }
+
+  .form-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .card-box {
+    display: block !important;
+    flex: 0 0 400px;
+    max-width: 400px;  
+  }
+}
+
