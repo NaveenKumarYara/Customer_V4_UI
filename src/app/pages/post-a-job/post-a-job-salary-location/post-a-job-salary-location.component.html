@@ -68,21 +68,31 @@
 
   <div class="col-md-4 col-lg-4 form-col">
     <label class="form-label">Relocation <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-map-marker-outline"></span>
-      <select class="form-select">
-        <option value="Select Relocation">Select</option>
-      </select>
+    <div class="tabbing-radios">
+      <label>
+        <input type="radio" name="relocation" checked>
+        <span class="checkmark">Yes</span>
+      </label>
+      <label>
+        <input type="radio" name="relocation">
+        <span class="checkmark">No</span>
+      </label>
     </div>
   </div>
 
   <div class="col-md-4 col-lg-4 form-col">
     <label class="form-label">Work Remotely <sup>*</sup></label>
     <div class="form-group">
-      <span class="mdi mdi-home-outline"></span>
-      <select class="form-select">
-        <option value="Select Work">Select</option>
-      </select>
+      <div class="tabbing-radios">
+        <label>
+          <input type="radio" name="work-remote" checked>
+          <span class="checkmark">Yes</span>
+        </label>
+        <label>
+          <input type="radio" name="work-remote">
+          <span class="checkmark">No</span>
+        </label>
+      </div>
     </div>
   </div>
 </div>

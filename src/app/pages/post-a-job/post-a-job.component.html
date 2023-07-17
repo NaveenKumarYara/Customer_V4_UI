@@ -4,13 +4,14 @@
       <h1>Post A Job</h1>
       <div class="buttons">
         <button class="btn btn-outlined-default">Cancel</button>
-        <button class="btn btn-primary">Post A Job</button>
+        <button class="btn btn-info">Save</button>
+        <button class="btn btn-primary">Post</button>
       </div>
     </div>
     <div class="tab-navigation">
       <ul>
         <li [ngClass]="sectionActive == 'section-one'?'active':''">
-          <a href="javascript:void(0)" uniScrollItem="section1">Personal Details</a>
+          <a href="javascript:void(0)" (click)="scrollTo('section-one')">Position Details</a>
         </li>
         <li [ngClass]="sectionActive == 'section-two'?'active':''">
           <a href="javascript:void(0)" (click)="scrollTo('section-two')">Client Information</a>
@@ -19,10 +20,10 @@
           <a href="javascript:void(0)" (click)="scrollTo('section-three')">Salary & Location</a>
         </li>
         <li [ngClass]="sectionActive == 'section-four'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-four')">Local & Skills</a>
+          <a href="javascript:void(0)" (click)="scrollTo('section-four')">Skills</a>
         </li>
         <li [ngClass]="sectionActive == 'section-five'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-five')">Additional & Skills</a>
+          <a href="javascript:void(0)" (click)="scrollTo('section-five')">Additional Details</a>
         </li>
       </ul>
     </div>
@@ -303,11 +304,5 @@
         </div>
       </div>
     </div>
-    <div class="post-job-footer-section">
-    <div class="buttons">
-      <button class="btn btn-outlined-default">Cancel</button>
-      <button class="btn btn-primary">Post A Job</button>
-    </div>
-  </div>
   </div>
 <app-footer></app-footer>
