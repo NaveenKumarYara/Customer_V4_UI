@@ -298,7 +298,7 @@ export class ManageLoadJobsComponent implements OnInit {
 
     // Job Status Filter
     if (this.advancedFilters.jobStatus.length > 0) {
-      returnVal = this.advancedFilters.jobStatus.map((v: any) => v.jobStatus).indexOf(job.JobStatus) > -1;
+      returnVal = this.advancedFilters.jobStatus.map((v: any) => v.jobStatus.toLowerCase()).indexOf(job.JobStatus.toLowerCase()) > -1;
     }
     if (!returnVal) return false;
     // Priority Filter
