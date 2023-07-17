@@ -53,9 +53,9 @@ export class ManageAdvanceFilterComponent implements OnInit {
     singleSelection: false,
     idField: 'JobTitle',
     textField: 'JobTitle',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 2,
+    // selectAllText: 'Select All',
+    // unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 1,
     allowSearchFilter: true,
     searchPlaceholderText: 'Type the Job Title...',
     clearSearchFilter: false,
@@ -397,5 +397,9 @@ export class ManageAdvanceFilterComponent implements OnInit {
     this.selectedMinSalary = 0;
     this.selectedMaxSalary = 400000;
     this.applyClick();
+    this.filterHideHandler.emit();
+  }
+  onDdeSelectAll(d:any){
+console.log("ddd",d)
   }
 }
