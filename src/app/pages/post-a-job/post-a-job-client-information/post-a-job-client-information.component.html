@@ -12,13 +12,24 @@
     </div>
   </div>
 
-  <div class="col-md-4 col-lg-4 form-col">
+  <div class="col-md-4 col-lg-4 form-col no-form-col">
     <label class="form-label">Client Bill Rate <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <select class="form-select">
-        <option value="Select Domain">Select Category</option>
-      </select>
+    <div class="row">
+      <div class="col-md-3 col-lg-3 form-sub-col">
+        <select class="form-select">
+          <option value="$">$</option>
+          <option value="$">RS</option>
+        </select>
+      </div>
+      <div class="col-md-4 col-lg-4 form-sub-col">
+       <input type="text" class="form-control">
+      </div>
+      <div class="col-md-5 col-lg-5 form-sub-col">
+        <select class="form-select">
+          <option value="$">Per Hour</option>
+          <option value="$">Per Month</option>
+        </select>
+      </div>
     </div>
   </div>
 

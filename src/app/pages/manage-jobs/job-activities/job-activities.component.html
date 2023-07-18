@@ -222,9 +222,8 @@
       [jobCard] = "true"
     >
     </app-sidepanel-cards>
-    <div class="form-actions d-flex align-items-center">
-      <h4>{{ isDocumentType ? 'Other Documents': 'Resume Documents'}}</h4> 
-      <div class="toogle-container ml-auto">
+    <div class="form-actions d-flex document-form-actions">      
+      <div class="toogle-container">
         Resume
         <label class="toggle" for="typeView">
           <input class="toggle__input" name="" (change)="documentType()" type="checkbox" id="typeView">
@@ -232,6 +231,7 @@
         </label>
         Other Documents
       </div>
+      <h4>{{ isDocumentType ? 'Other Documents': 'Resume Documents'}}</h4> 
     </div>
   </div>
   <div class="slide-container">

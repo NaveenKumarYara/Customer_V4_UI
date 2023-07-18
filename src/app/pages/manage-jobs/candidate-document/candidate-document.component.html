@@ -1,6 +1,6 @@
 <div class="job-documents">
 	<ng-container *ngIf="!isDocumentType">
-    <div class="form-container">
+    <!-- <div class="form-container">
       <div class="row">
         <div class="col-sm-12 single-col">
           <div class="file-upload">
@@ -12,22 +12,24 @@
             <input type="file" name="myfile" />
           </div>
           <div class="description">
-           
             <span class="mdi mdi-information-outline"></span>
             Upload .doc, .docx, .pdf, .txt file only
           </div>
         </div>
       </div>
-    </div>
-    <div class="listing-table">
+    </div> -->
+    <div class="listing-table resume-listing-table">
       <div class="table-box-container">
         <div class="table-container">
           <div class="table-row table-header-row">
             <div class="table-col name-col">
-              Document Name
+              Replace Name
             </div>
             <div class="table-col">
               Type
+            </div>
+            <div class="table-col select-col">
+              Resume Source
             </div>
             <div class="table-col">
               Size
@@ -39,20 +41,31 @@
           <div class="table-row table-col-row">
             <div class="table-col name-col">
               <div class="document-name no-padding">
-                <span class="text-ellipsis">Resume Name.docx</span>
-                <a href="#" class="btn btn-edit">
-                <span class="mdi mdi-circle-edit-outline"></span>
-                </a>
+                <span class="text-ellipsis">1099 Form.doc</span>
               </div>
             </div>
             <div class="table-col">
-              3.5 MB
+              .doc
+            </div>
+            <div class="table-col select-col">
+              <select class="form-select">
+                <option value="Naukri">Naukri</option>
+              </select>
             </div>
             <div class="table-col">
-              Bullhorn
+              4 MB
             </div>
             <div class="table-col">
               <ul class="action-nav">
+                <li>
+                  <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="mdi mdi-note-outline"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+                </li>
                 <li>
                   <a href="#"><span class="mdi mdi-delete-outline"></span></a>
                 </li>
@@ -65,7 +78,7 @@
   </ng-container>
   <ng-container *ngIf="isDocumentType">
     <div class="job-documents">
-      <div class="form-container">
+      <!-- <div class="form-container">
         <div class="row">
           <div class="col-sm-12 single-col">
             <div class="file-upload">
@@ -152,7 +165,7 @@
           <button class="btn btn-outlined-default">Clear</button>
           <button class="btn btn-info">Save</button>
         </div>
-      </div>
+      </div> -->
       <div class="listing-table">
         <h4>List of Documents</h4>
         <div class="table-box-container">
@@ -174,16 +187,7 @@
             <div class="table-row table-col-row">
               <div class="table-col name-col">
                 <div class="document-name">
-                  <div class="custom-checkbox green">
-                    <label>
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    </label>
-                  </div>
                   <span class="text-ellipsis">1099 Form.doc</span>
-                  <a href="#" class="btn btn-edit">
-                  <span class="mdi mdi-circle-edit-outline"></span>
-                  </a>
                 </div>
               </div>
               <div class="table-col">
@@ -199,9 +203,6 @@
                   </li>
                   <li>
                     <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
-                  </li>
-                  <li>
-                    <a href="#"><span class="mdi mdi-delete-outline"></span></a>
                   </li>
                 </ul>
               </div>
@@ -209,16 +210,7 @@
             <div class="table-row table-col-row">
               <div class="table-col name-col">
                 <div class="document-name">
-                  <div class="custom-checkbox green">
-                    <label>
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    </label>
-                  </div>
                   <span class="text-ellipsis">1099 Form.doc</span>
-                  <a href="#" class="btn btn-edit">
-                  <span class="mdi mdi-circle-edit-outline"></span>
-                  </a>
                 </div>
               </div>
               <div class="table-col">
@@ -234,9 +226,6 @@
                   </li>
                   <li>
                     <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
-                  </li>
-                  <li>
-                    <a href="#"><span class="mdi mdi-delete-outline"></span></a>
                   </li>
                 </ul>
               </div>

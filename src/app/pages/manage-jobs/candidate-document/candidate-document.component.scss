@@ -69,7 +69,6 @@ h4 {
 
       .document-name {
         position: relative;
-        padding-left: 30px;
 
         &.no-padding {
           padding-left: 0;
@@ -138,4 +137,53 @@ h4 {
 
 .listing-table {
   margin-top: 20px;
+}
+
+.resume-listing-table {
+  .action-nav {
+    gap: 0;
+  }
+
+  .table-col {
+    flex: 0 0 204px;
+    max-width: 204px;
+    width: 204px;
+
+    @media only screen and (min-width: 1320px) {
+      flex: 0 0 15%;
+      max-width: 15%;
+      width: 15%;
+    }
+
+    &.name-col {
+      flex: 0 0 204px;
+      max-width: 204px;
+      width: 204px;
+
+      @media only screen and (min-width: 1320px) {
+        flex: 0 0 30%;
+        max-width: 30%;
+        width: 30%;
+      }
+    }
+
+    &.select-col {
+      flex: 0 0 204px;
+      max-width: 204px;
+      width: 204px;
+      
+      .form-select {
+        height: 36px;
+        width: auto;
+        display: inline-block;
+        padding-right: 36px;
+      }
+
+      @media only screen and (min-width: 1320px) {
+        flex: 0 0 25%;
+        max-width: 25%;
+        width: 25%;
+      }
+    }
+  }
 }

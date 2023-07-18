@@ -31,6 +31,10 @@
       <div class="form-container-box">
         <button class="btn btn-card" (click)="showCardHandler()">
           <span class="mdi mdi-cards-variant"></span>
+          <div class="circle" style="animation-delay: -3s"></div>
+          <div class="circle" style="animation-delay: -2s"></div>
+          <div class="circle" style="animation-delay: -1s"></div>
+          <div class="circle" style="animation-delay: 0s"></div>
         </button>
         <div [ngClass]="showCard?'show-card':''">
           <div class="form-box">

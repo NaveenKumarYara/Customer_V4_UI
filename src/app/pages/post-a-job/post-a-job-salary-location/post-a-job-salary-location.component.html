@@ -2,19 +2,32 @@
   <h3>Salary & Location</h3>
 </div>
 <div class="row">
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Minimum <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <input type="text" class="form-control" placeholder="Minimum">
-    </div>
-  </div>
+  <div class="col-md-8 col-lg-8 form-col no-margin">
+    <label class="form-label">Salary - min and max  <sup>*</sup></label>
+    <div class="row sub-row">
+      <div class="col-md-4 col-lg-4 form-col">
+        <div class="form-group">
+          <span class="mdi mdi-clock-outline"></span>
+          <select class="form-select">
+            <option value="Per Hour">Per Hour</option>
+            <option value="Per Day">Per Day</option>
+          </select>
+        </div>
+      </div>
 
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Maximum <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <input type="text" class="form-control" placeholder="Maximum">
+      <div class="col-md-4 col-lg-4 form-col">
+        <div class="form-group">
+          <span class="mdi mdi-currency-usd"></span>
+          <input type="text" class="form-control" placeholder="Minimum">
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <div class="form-group">
+          <span class="mdi mdi-currency-usd"></span>
+          <input type="text" class="form-control" placeholder="Maximum">
+        </div>
+      </div>
     </div>
   </div>
 
@@ -67,7 +80,7 @@
   </div>
 
   <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Relocation <sup>*</sup></label>
+    <label class="form-label">Are you willing to relocate? <sup>*</sup></label>
     <div class="tabbing-radios">
       <label>
         <input type="radio" name="relocation" checked>

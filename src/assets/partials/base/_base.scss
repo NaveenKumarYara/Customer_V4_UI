@@ -532,9 +532,20 @@ body {
 }
 
 .form-container {
+
+	.no-form-col {
+		.form-sub-col {
+			padding: 0 8px;
+		}
+	}
+
 	.row {
 		@include align-items(flex-start);
 		margin-bottom: 20px;
+
+		.sub-row {
+			margin-bottom: 0 !important;
+		}
 	}
 
 	.form-col {
@@ -1087,4 +1098,8 @@ body {
 		border-radius: 4px !important;
 		padding: 4px 20px 4px 10px !important;
 	}
+}
+
+.no-margin {
+	margin-bottom: 0 !important;
 }
