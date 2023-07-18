@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SidepanelCardsComponent implements OnInit {
   @Input() jobCard: boolean = false;
   @Input() job: any = null;
+  @Input() profile :any = null
   constructor() { }
 
   ngOnInit(): void {

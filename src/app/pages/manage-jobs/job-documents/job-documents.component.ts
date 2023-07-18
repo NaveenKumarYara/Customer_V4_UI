@@ -87,6 +87,7 @@ export class JobDocumentsComponent implements OnInit {
 
   processResumes() {
     
+  
     if (this.files.length > 0) {
       for (let i = 0; i < this.files.length; i++) {
         let fileItem = this.files[i];
@@ -132,6 +133,15 @@ export class JobDocumentsComponent implements OnInit {
         this.uploadFile(data);
       }
     }
+    // if(this.files.length > 5){
+    //   this.Swal(
+    //     {
+    //       title: 'Already % .","!Oh no"',
+    //       showConfirmButton: true,
+    //       timer: 3000,
+    //       type: "error"
+    //     });
+    // }
   }
 
   uploadFile(data: FormData) {
@@ -171,7 +181,10 @@ export class JobDocumentsComponent implements OnInit {
       // };
       // this.uploadInput.emit(event);
     } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-      this.files.push(output.file);
+      const ext = output.file.name.split('.').pop()
+      if(ext === 'doc' ||ext === 'docx' || ext === 'pdf'||ext === 'txt'){
+        this.files.push(output.file);
+      }
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       // update current data in files array for uploading file
       const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);

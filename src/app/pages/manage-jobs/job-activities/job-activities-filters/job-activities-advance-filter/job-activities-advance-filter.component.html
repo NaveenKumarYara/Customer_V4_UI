@@ -7,27 +7,44 @@
 			<label>Job Title</label>
 			<div class="form-group">
 				<span class="mdi mdi-briefcase-variant-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Job Title'"
+				[settings]="jobTitlesDropdownSettings"
+				[data]="jobTitles"
+				[(ngModel)]="selectedJobTitles"
+				(onFilterChange)="onJobTitleFilterChange($event)"
+				(onSelect)="onjobTitleItemSelect($event)"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Skills</label>
+			<label>Application Status</label>
 			<div class="form-group">
 				<span class="mdi mdi-star-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Job Title'"
+				[settings]="jobTitlesDropdownSettings"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Location</label>
+			<label>Profile Matching</label>
 			<div class="form-group">
-				<span class="mdi mdi-map-marker-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<span class="mdi mdi-briefcase-variant-outline"></span>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Profile Matching'"
+				[settings]="jobTitlesDropdownSettings"
+				[data]="jobTitles"
+				[(ngModel)]="selectedJobTitles"
+				(onFilterChange)="onJobTitleFilterChange($event)"
+				(onSelect)="onjobTitleItemSelect($event)"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">

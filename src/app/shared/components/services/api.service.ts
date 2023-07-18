@@ -25,6 +25,10 @@ export class ApiService {
     }),
   };
 
+  ProfileShareInvite(body: any) {
+    return this.http.post(this.settingsService.settings.ProfileShareInviteUrl, body);
+  }
+
   validateCheckemail(email: string): Observable<any> {
     return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/CheckEmailExist?email=' + email, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
@@ -33,6 +37,10 @@ export class ApiService {
   GetJobMatching(JobId: number) {
     return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/GetMatchingWeightage?jobId=' + JobId, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
+  }
+
+  GetIdentityAPI(url: string) {
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl + url, this.httpOptions);
   }
 
 

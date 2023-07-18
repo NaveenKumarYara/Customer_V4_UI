@@ -60,9 +60,8 @@
 </div>
 
 <ng-container *ngIf="advanceFilter">
-	<app-manage-advance-filter [advanceFilter]="advanceFilter"
-		(filterHideHandler)="filterHideHandler()"></app-manage-advance-filter>
-		
+	<app-job-activities-advance-filter [advanceFilter]="advanceFilter"
+		(filterHideHandler)="filterHideHandler()"></app-job-activities-advance-filter>	
 </ng-container>
 
 <ng-container *ngIf="quickSearch">
