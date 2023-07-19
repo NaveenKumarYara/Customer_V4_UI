@@ -53,6 +53,7 @@ h1  {
 	}
 }
 
+
 .title-section {
   margin-bottom: 30px;
   h1 {
@@ -805,7 +806,90 @@ h1  {
       }
     }
   }
+  .kpi-section{
+    padding: 5px 20px 15px;
+    margin: 0 0 0px;
+    background-color: $light-bg;
+    border-bottom: 1px solid $stroke-gray;
+    border-top: 1px solid $stroke-gray;
+    ul {
+      @include no-style();
+      @include flexbox();
+      @include justify-content(center);
+      gap: 10px;
+      margin-top: 10px;
 
+      li {
+        text-align: center;
+        border-left: 1px solid $stroke-gray;
+        padding-left: 14px;
+        flex:0 0 25%;
+        max-width: 25%;
+        &:first-child {
+          padding-left: 0;
+          border-left: 0;
+          flex:0 0 20%;
+          max-width: 20%;
+        }
+
+        &:last-child {
+        
+          border-left: 0;
+          border-top: 1px solid $stroke-gray;
+          padding-top: 10px;
+
+          @media only screen and (min-width: 991px) {
+            flex: 0 0 auto;
+            max-width: inherit;
+            border-left: 1px solid $stroke-gray;
+            border-top: 0;
+            padding-top: 0;
+          }
+        }
+        h4 {
+          font-size: 10px;
+          color: $dark-gray;
+          text-transform: uppercase;
+          font-weight: 600;
+
+          span {
+            display: block;
+            font-size: 8px;
+            font-weight: 400;
+            text-transform: none;
+          }
+        }
+
+        .progress-circle {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          circle-progress {
+            display: block;
+            width: 40px;
+            height: 40px; 
+            margin: 0 auto;
+          }
+
+          h4 {
+            text-transform: none;
+            font-size: $font-size-14;
+
+            strong {
+              display: block;
+              font-weight: 600;
+            }
+
+            @media (min-width: 1600px) {
+              font-size: $font-size-16;
+            }
+          }
+        }
+
+      }
+    }
+  }
   .bottom-section {
     padding: 20px;
     margin: 0 0 20px;

@@ -108,34 +108,42 @@
                     </ul>
                   </div>
                 </div>
-                <div class="kpi-grid">
-                
+                <div class="kpi-section">
                   <ul>
                     <li>
-                      <div class="col-container">
-                        <span class="icon icon-01">Icon</span>
-                        <h5>JOB TYPE</h5>
-                      </div>
+                      <img src="../../../../assets/images/curve-icon-work.svg" alt="">
+                      <h4>Full Time</h4>
                     </li>
                     <li>
-                      <div class="col-container">
-                        <span class="icon icon-02">Icon</span>
-                        <h5>$75/hour</h5>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="col-container">
-                        <span class="kpi-val">60%</span>
-                        <h5>JOb Completenss</h5>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="col-container">
-                        <span class="kpi-val">WA</span>
-                        <h5>Work Autherization</h5>
-                      </div>
+                      <img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
+                      <h4>
+                        $100 Hourly
+                      </h4>
                     </li>
                    
+                    <li>
+                      <div class="progress-circle">
+                        <circle-progress
+                        [percent]="60"
+                        [radius]="20"
+                        [outerStrokeWidth]="4"
+                        [innerStrokeWidth]="2"
+                        [outerStrokeColor]="'#6262FF'"
+                        [innerStrokeColor]="'#C0C0C0'"
+                        [animationDuration]="0"
+                        [responsive] = true
+                        [showSubtitle] = false
+                        ></circle-progress>
+                      </div>
+                      <h4>Job Completeness</h4>
+                    </li>
+                    <li>
+                      <img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
+                      <h4>
+                        Work <br/>Autherization
+                      </h4>
+                    </li>
+                    
                   </ul>
                 </div>
           

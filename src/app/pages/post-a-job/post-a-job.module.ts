@@ -12,7 +12,7 @@ import { PostAJobAdditionalComponent } from './post-a-job-additional/post-a-job-
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.component';
 import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/post-a-job-salary-location.component';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 @NgModule({	
 	declarations: [
     PostAJobComponent,
@@ -31,7 +31,17 @@ import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/po
 		JsonPipe,
 		CKEditorModule,
 		NgxSliderModule,
-		NgbRatingModule
+		NgbRatingModule,
+		NgCircleProgressModule.forRoot({
+			radius: 100,
+			outerStrokeWidth: 16,
+			innerStrokeWidth: 8,
+			outerStrokeColor: "#78C000",
+			innerStrokeColor: "#C7E596",
+			animationDuration: 300,
+			titleFontSize: '16',
+			space: -5
+		  })
 	],
 	exports: [
     PostAJobComponent
