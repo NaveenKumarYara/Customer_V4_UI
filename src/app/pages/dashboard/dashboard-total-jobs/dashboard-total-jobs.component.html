@@ -91,11 +91,11 @@
         <div class="container-box">
           <div class="top-container">
             <h3>Job Weekly Report</h3>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <select class="form-select">
                 <option value="This Week">This Week</option>
               </select>
-            </div>
+            </div> -->
           </div>
           <canvas baseChart
             [data]="barChartData"
@@ -110,12 +110,12 @@
     </div>
     <div class="col-md-7 col-lg-7 table-cols">
       <div class="top-container">
-        <h3>Weekly Status of Jobs</h3>
-        <div class="form-group">
+        <h3>Status of Jobs based on Clients</h3>
+        <!-- <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Week</option>
           </select>
-        </div>
+        </div> -->
       </div>
       <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
@@ -151,142 +151,47 @@
               Hold
             </div>
           </div>
-          <div class="table-row table-col-row">
+          <div class="table-row table-col-row" *ngFor="let job of topJobsCLients;let i = index">
             <div class="table-col name-col">
-              <span class="text-ellipsis">Telsa</span>
+              <span class="text-ellipsis">    {{job?.Code}}</span>
             </div>
             <div class="table-col">
-              1
+              {{job?.Openings}}
             </div>
             <div class="table-col">
-              0
+              {{job?.Screening}}
             </div>
             <div class="table-col">
-              2
+              {{job?.ShortListed}}
             </div>
             <div class="table-col">
-              3
+              {{job?.Interviews}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Hired}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Freezed}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Filled}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Expired}}
             </div>
             <div class="table-col">
-              0
+              {{job?.Hold || 0}}
             </div>
           </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              0
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">Quinnax</span>
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              2
-            </div>
-            <div class="table-col">
-              3
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              0
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              0
-            </div>
-          </div>
+   
         </div>
       </div>
-      <div class="bottom-container d-flex justify-content-end">
+      <!-- <div class="bottom-container d-flex justify-content-end">
         <a href="#" class="btn btn-link">
           Full View
           <span class="mdi mdi-fullscreen"></span>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

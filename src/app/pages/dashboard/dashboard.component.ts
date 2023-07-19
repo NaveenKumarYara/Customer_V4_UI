@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(private _service : ApiService) { 
     this.customer = JSON.parse(localStorage.getItem('customer')||'');
     this.GetCustomerStats(this.customer.CustomerId);
+    this.GetApplicantsStats(this.customer.CustomerId);
   }
   
   ngOnInit(): void {

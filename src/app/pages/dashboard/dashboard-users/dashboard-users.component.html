@@ -63,11 +63,11 @@
     <div class="col-md-12 col-lg-12 table-cols">
       <div class="top-container">
         <h3>Team Member status based on applicant status</h3>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Week</option>
           </select>
-        </div>
+        </div> -->
       </div>
       <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
@@ -97,118 +97,41 @@
               Rejected
             </div>
           </div>
-          <div class="table-row table-col-row">
+          <div class="table-row table-col-row" *ngFor="let job of topUsersStats;let j = index">
             <div class="table-col name-col">
-              <span class="text-ellipsis">Telsa</span>
+              <span class="text-ellipsis">{{job?.FullName | titlecase}} - {{job?.RoleName}}</span>
             </div>
             <div class="table-col">
-              1
+              {{job?.Uploaded}}
             </div>
             <div class="table-col">
-              0
+              {{job?.Applied}}
             </div>
             <div class="table-col">
-              2
+              {{job?.Shortlisted}}
             </div>
             <div class="table-col">
-              3
+              {{job?.Interviewed}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Screened}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Hired}}
             </div>
             <div class="table-col">
-              1
+              {{job?.Rejected}}
             </div>
           </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">Quinnax</span>
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              2
-            </div>
-            <div class="table-col">
-              3
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
-          <div class="table-row table-col-row">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">AFS</span>
-            </div>
-            <div class="table-col">
-              17
-            </div>
-            <div class="table-col">
-              10
-            </div>
-            <div class="table-col">
-              -
-            </div>
-            <div class="table-col">
-              39
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-            <div class="table-col">
-              1
-            </div>
-          </div>
+     
         </div>
       </div>
-      <div class="bottom-container d-flex justify-content-end">
+      <!-- <div class="bottom-container d-flex justify-content-end">
         <a href="#" class="btn btn-link">
           Full View
           <span class="mdi mdi-fullscreen"></span>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
