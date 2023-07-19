@@ -28,6 +28,7 @@ export class JobFiltersComponent implements OnInit {
   @Input() Profiles: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Output() layoutView = new EventEmitter<string>();
+  // @Output("filterHideHandler") filterHideHandler: EventEmitter<any> = new EventEmitter();s
 
   constructor(private _service : ApiService) {
    } 

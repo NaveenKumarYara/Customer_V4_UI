@@ -9,8 +9,9 @@ import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js'
 })
 export class JobCardComponent implements OnInit {
   @Input() panelShow: any = '';
-  @Output() panelHandler = new EventEmitter<string>(); 
+  @Output() panelHandler = new EventEmitter<{panelName:string, profile: any}>(); 
   @Input() profile : any;
+  @Input() JobDetail : any;
   currentRate = 3;
 
   public chart = {
@@ -73,7 +74,7 @@ export class JobCardComponent implements OnInit {
   }
 
   panelClick(name: string) {
-    this.panelHandler.emit(name);
+    this.panelHandler.emit({panelName: name, profile: this.profile});
   }
 
 }

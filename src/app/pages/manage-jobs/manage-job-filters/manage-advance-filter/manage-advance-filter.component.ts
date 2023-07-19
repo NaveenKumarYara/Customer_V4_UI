@@ -13,8 +13,8 @@ export class ManageAdvanceFilterComponent implements OnInit {
 
   experienceSliderOptions: Options = {
     floor: 0,
-    ceil: 100,
-    step: 10,
+    ceil: 40,
+    step: 1,
     showTicks: true
   };
   salarySliderOptions: Options = {
@@ -53,9 +53,9 @@ export class ManageAdvanceFilterComponent implements OnInit {
     singleSelection: false,
     idField: 'JobTitle',
     textField: 'JobTitle',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 2,
+    // selectAllText: 'Select All',
+    // unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 1,
     allowSearchFilter: true,
     searchPlaceholderText: 'Type the Job Title...',
     clearSearchFilter: false,
@@ -222,7 +222,7 @@ export class ManageAdvanceFilterComponent implements OnInit {
     client: [],
     immigrationStatus: [],
     domain: [],
-    experience: {min: 0, max: 100},
+    experience: {min: 0, max: 40},
     salaryRange: {min: 0, max: 400000},
     jobStatus: [],
     priority: []
@@ -241,7 +241,7 @@ export class ManageAdvanceFilterComponent implements OnInit {
   selectedImmigrationStatus = [];
   selectedDomains = [];
   selectedMinExperience = 0;
-  selectedMaxExperience = 90;
+  selectedMaxExperience = 30;
   selectedMinSalary = 0;
   selectedMaxSalary = 400000;
   selectedJobStatus = [];
@@ -393,9 +393,13 @@ export class ManageAdvanceFilterComponent implements OnInit {
     this.selectedPriorities =[]
     this.selectedJobTitles = [];
     this.selectedMinExperience = 0;
-    this.selectedMaxExperience = 100;
+    this.selectedMaxExperience = 40;
     this.selectedMinSalary = 0;
     this.selectedMaxSalary = 400000;
     this.applyClick();
+    // this.filterHideHandler.emit();
+  }
+  onDdeSelectAll(d:any){
+console.log("ddd",d)
   }
 }

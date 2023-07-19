@@ -42,7 +42,7 @@ import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
 import { JobCommunicationComponent } from './job-communication/job-communication.component';
 import { NgChartsModule } from 'ng2-charts';
-import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
+// import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 import { JobShareComponent } from './job-share/job-share.component';
 import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component';
 import { FilterSearchResultComponent } from './job-activities/job-activities-filters/job-activities-filter-search-result/job-activities-filter-search-result.component';
@@ -52,6 +52,8 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobShareProfileComponent } from './job-share-profile/job-share-profile.component';
 import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
+import { AdvanceFilterComponent } from './job-activities/job-activities-filters/job-activities-advance-filter/job-activities-advance-filter.component';
+import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 
 @NgModule({
 	declarations: [
@@ -84,7 +86,9 @@ import { NgxUploaderModule } from 'ngx-uploader';
 	CandidateDocumentComponent,
 	JobShareComponent,
 	ViewEditJobsComponent,
- JobShareProfileComponent
+ JobShareProfileComponent,
+ AdvanceFilterComponent,
+ CandidateDocumentComponent
 	],
 	imports: [
 	 CommonModule,

@@ -29,7 +29,7 @@
 			<div class="col-sm-12 single-col">
 				<div class="file-upload">
 					<button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload documents</button>
-					<input type="file" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
+					<input type="file"  accept=".doc,.docx,.pdf,.txt" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple />
 				</div>
 				
 				<div class="description">

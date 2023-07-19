@@ -175,6 +175,10 @@ export class ManageLoadJobsComponent implements OnInit {
     this.filteredJobs = this.Jobs.filter((v: any) => this.applyFiltersOnAJob(v));
   }
 
+  advancedFilterOpenStatusChanged(opened: boolean): void {
+    this.isAdvancedFilterApplied = opened;
+  }
+
   applyFiltersOnAJob(job: any): any {
     if (!this.isAdvancedFilterApplied) {
       if (this.filterTerm)
@@ -185,6 +189,7 @@ export class ManageLoadJobsComponent implements OnInit {
   }
 
   applyAdvancedFiltersOnAJob(job: any): boolean {
+    if (!this.advancedFilters) return true;
     let returnVal = true;
     if (this.advancedFilters.jobTitle.length > 0) {
       returnVal = this.advancedFilters.jobTitle.map((v: any) => v.JobTitle).indexOf(job.JobTitle) > -1;
@@ -298,7 +303,7 @@ export class ManageLoadJobsComponent implements OnInit {
 
     // Job Status Filter
     if (this.advancedFilters.jobStatus.length > 0) {
-      returnVal = this.advancedFilters.jobStatus.map((v: any) => v.jobStatus).indexOf(job.JobStatus) > -1;
+      returnVal = this.advancedFilters.jobStatus.map((v: any) => v.jobStatus.toLowerCase()).indexOf(job.JobStatus.toLowerCase()) > -1;
     }
     if (!returnVal) return false;
     // Priority Filter

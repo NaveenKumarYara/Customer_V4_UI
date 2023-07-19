@@ -43,3 +43,56 @@
     }
   }
 }
+ .inline-navigation  {
+  margin-bottom: 10px;
+}
+
+.inline-navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+
+.inline-navigation li {
+  display: inline-block;
+}
+
+.inline-navigation .btn-link {
+  color: #6e819e;
+  text-transform: uppercase;
+  padding: 0;
+  text-decoration: underline;
+}
+.chip {
+  display: inline-block;
+  padding: 8px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  border-radius: 16px;
+  background-color: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkbox-list.share-profile-email-list {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  ul {
+    li {
+      background: #ccc;
+      padding: 4px;
+      border-radius: 5px;
+      label {
+        .mdi{
+          &.mdi-close-thick {
+            position: unset;
+            transform: unset;
+            line-height: unset;
+            font-size: unset;
+          }
+        }
+      }
+    }
+  }
+}

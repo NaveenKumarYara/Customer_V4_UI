@@ -9,6 +9,7 @@
   (clearItemEvent)="clearAll($event)"
   (layoutView) = "layoutView($event)"
   (advancedFiltersApplied) = "advancedFiltersApplied($event)"
+  (advancedFilterOpenStatus) = "advancedFilterOpenStatusChanged($event)"
 >
 </app-manage-job-filters>
 
@@ -151,8 +152,7 @@
   class="slide-panel"
   [ngClass]="panelShow=='notes'?'show':''"
   [panelTitle]="'Job Notes'"
-  (panelCloseHandler) ="panelCloseHandler()"
->
+  (panelCloseHandler) ="panelCloseHandler()">
   <app-job-notes [job]="selectedJob"></app-job-notes> 
 </app-slidepanel>
 <app-slidepanel 

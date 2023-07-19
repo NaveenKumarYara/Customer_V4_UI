@@ -15,6 +15,7 @@ export class JobActivitiesComponent implements OnInit {
   JobDetail: any;
   panelTitle:any = '';
   panelShow: any = '';
+  profile :any = ''
   JobId: any;
   jp:number = 1;
   jfilterTerm: string='';
@@ -158,8 +159,10 @@ export class JobActivitiesComponent implements OnInit {
     });
   }
 
-  panelHandler(name: string) {
-    this.panelShow = name;
+  panelHandler(event:{panelName:string,profile:any}) {
+    this.panelShow = event.panelName;
+    this.profile = event.profile
+    console.log("profile",this.profile)
   }
 
   layoutView(name:string){
