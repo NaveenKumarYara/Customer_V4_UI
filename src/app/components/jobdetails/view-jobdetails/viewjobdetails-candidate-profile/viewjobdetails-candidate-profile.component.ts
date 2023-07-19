@@ -841,7 +841,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           this.requestRef.userName = profile.FirstName;
           this.requestRef.customerId= this.customer.CustomerId.toString();
           this.requestRef.userId= this.customer.UserId.toString();
-          this.requestRef.applicationName = 'arytic';
+          this.requestRef.applicationName = 'Arytic';
           this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
           this.requestRef.comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
           this.requestRef.userName = profile.FirstName;
