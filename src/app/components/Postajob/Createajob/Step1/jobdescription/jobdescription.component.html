@@ -28,8 +28,8 @@
   <div class="clearfix">&nbsp;</div>
   <!-- <div *ngIf="hasCompleteDescription"> -->
   <div>
-    <ckeditor   [editor]="Editor" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
- 
+    <!-- <ckeditor   [editor]="Editor" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor> -->
+    <app-ngx-editor [placeholder]="'Enter Description here...'" [spellcheck]="true" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></app-ngx-editor>
     <!-- <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
        -->
   <small class="text-danger" *ngIf="hasCompleteDescription==true && jobDescription==''">          <!-- valdiateExperience(minExperience,maxExperience) -->

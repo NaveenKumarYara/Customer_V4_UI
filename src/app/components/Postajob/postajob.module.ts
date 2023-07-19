@@ -57,12 +57,14 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { FileUploadModule } from "ng2-file-upload";
 import { NgxDocViewerModule } from "ngx-doc-viewer";
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     NgxDocViewerModule,
+    NgxEditorModule,
     ReactiveFormsModule,
     CKEditorModule,
     MatDialogModule,

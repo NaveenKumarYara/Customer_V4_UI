@@ -1630,7 +1630,8 @@
 								</div>
 							</div> -->
 							<div class="form-group">
-								<ckeditor   [editor]="Editor"[(ngModel)]="selectedComments" name="body" cols="30" rows="40"></ckeditor>
+								<app-ngx-editor [placeholder]="'Enter Description here...'" [spellcheck]="true" [(ngModel)]="selectedComments"></app-ngx-editor>
+								<!-- <ckeditor   [editor]="Editor"[(ngModel)]="selectedComments" name="body" cols="30" rows="40"></ckeditor> -->
 							  </div>
 							<div class="form-group">
 								<div class="upload-border" >
