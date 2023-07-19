@@ -44,6 +44,7 @@ export class Settings {
   // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
   Login: string;
   ForgotPassword: string;
+  CForgotPassword: string;
   ResetPassword: string;
   CustomerTokenLogin: string;
   CustomerAppLogin: string;

@@ -1693,15 +1693,16 @@ export class GetQuestionnarieResponse {
 }
 
 export class RequestRefernce {
-  public ToEmailID: string;
-  public CustomerId: number;
-  public UserId: number;
-  public ProfileId: number;
-  public UserName: string;
-  public AppLink: string;
-  public FromEmail: string;
-  public CompanyName: string;
-  public Comment: string;
+  customerId: string
+  userId: string
+  profileId: string
+  userName: string
+  appLink: string
+  toEmailID: string
+  applicationName: string
+  companyName: string
+  comment: string
+  fromEmail: string
 }
 
 

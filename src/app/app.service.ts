@@ -1827,6 +1827,15 @@ export class AppService {
       });
   }
 
+  CForgotPassword(body) {
+    return this.http
+      .post(this.settingsService.settings.CForgotPassword, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   ActivateCustomerUser(body) {
     return this.http
       .post(this.settingsService.settings.ActivateCustomerUser, body)

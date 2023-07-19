@@ -183,15 +183,19 @@ getPaginatorData(event){
   Request()
  {
 
-  this.requestRef.CustomerId= this.customer.CustomerId;
-  this.requestRef.UserId= this.customer.UserId;
-  this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
-  this.requestRef.FromEmail = this.customer.Email;
-  this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
-  this.requestRef.ProfileId = this.data.ProfileId;
-  this.requestRef.ToEmailID = this.data.Email;
-  this.requestRef.UserName = this.data.FirstName;
+  this.requestRef.customerId= this.customer.CustomerId;
+  this.requestRef.userId= this.customer.UserId;
+  this.requestRef.appLink = this.settingsService.settings.CandidateLogin;
+  this.requestRef.fromEmail = this.customer.Email;
+  this.requestRef.comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
+  this.requestRef.profileId = this.data.ProfileId;
+  this.requestRef.companyName = this.customer.ComapanyName;
+  this.requestRef.toEmailID = this.data.Email;
+  this.requestRef.userName = this.data.FirstName;
+  this.requestRef.applicationName = 'Arytic';
+  debugger
   this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
+    debugger
     this.CommentProfile = undefined;
     this.requestRef = new RequestRefernce();
     let message = 'Requested Reference!';
@@ -302,14 +306,15 @@ export class GetQuestionnarieResponse {
 
 export class RequestRefernce
 {
-   public  ToEmailID: string;
-   public  CustomerId:number;
-   public  UserId:number;
-   public  ProfileId:number;
-   public  UserName: string;
-   public  AppLink: string;
-   public  FromEmail: string;
-   public  CompanyName: string;
-   public  Comment: string;
+  customerId: string
+  userId: string
+  profileId: string
+  userName: string
+  appLink: string
+  toEmailID: string
+  applicationName: string
+  companyName: string
+  comment: string
+  fromEmail: string
 }
 
