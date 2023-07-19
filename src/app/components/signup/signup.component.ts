@@ -1373,11 +1373,12 @@ GetEmailValidate() {
 
   Email(userId)
   {
-    this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
-    this.info.ToEmailId = this.signUpform.value.ContactEmail;
-    this.info.ApplicationName = 'Arytic';
-    this.info.AppLink = this.settingsService.settings.customerLogin+';Uid='+userId + ';Pid=' + this.planId; 
-    this.info.ClientLogo = '';
+    this.info.fullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
+    this.info.toEmailId = this.signUpform.value.ContactEmail;
+    this.info.fromID = 'donotreply@arytic.com';
+    this.info.applicationName = 'Arytic';
+    this.info.appLink = this.settingsService.settings.customerLogin+';Uid='+userId + ';Pid=' + this.planId; 
+    this.info.clientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {
         this.toastr.success('Please check your Mail to Activate','Success');
@@ -1543,12 +1544,12 @@ configurePassword() {
 
 export class Register
 {
-
-   FullName: string;
-   ToEmailId: string;
-   ApplicationName: string;
-   AppLink: string;
-   ClientLogo: string;
+  fullName: string
+  toEmailId: string
+  applicationName: string
+  appLink: string
+  clientLogo: string
+  fromID: string
    }
 
 

@@ -42,6 +42,7 @@ import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.comp
 import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
 import { CdocumentManagerComponent } from "../../../Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
 import { DatasourceComponent } from "./Datasource/datasource/datasource.component";
+import { Profile } from "../../models/SearchProfileDeatils";
 const html2canvas: any = _html2canvas;
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
@@ -833,14 +834,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         cancelButtonText: 'No'
       }).then((result) => {
         if (result.value === true) {
-          this.requestRef.CustomerId = this.customer.CustomerId;
-          this.requestRef.UserId = this.customer.UserId;
-          this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-          this.requestRef.FromEmail = this.customer.Email;
-          this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
-          this.requestRef.ProfileId = profile.ProfileId;
-          this.requestRef.ToEmailID = profile.Email;
-          this.requestRef.UserName = profile.FirstName;
+          this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          this.requestRef.fromEmail = this.customer.Email;
+          this.requestRef.profileId = profile.ProfileId.toString();
+          this.requestRef.toEmailID = profile.Email;
+          this.requestRef.userName = profile.FirstName;
+          this.requestRef.customerId= this.customer.CustomerId.toString();
+          this.requestRef.userId= this.customer.UserId.toString();
+          this.requestRef.applicationName = 'arytic';
+          this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          this.requestRef.comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
+          this.requestRef.userName = profile.FirstName;
+          this.requestRef.companyName = profile.CompanyName;
           this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
             this.CommentProfile = undefined;
             this.requestRef = new RequestRefernce();
@@ -2119,15 +2124,16 @@ export class addon {
 }
 
 export class RequestRefernce {
-  public ToEmailID: string;
-  public CustomerId: number;
-  public UserId: number;
-  public ProfileId: number;
-  public UserName: string;
-  public AppLink: string;
-  public FromEmail: string;
-  public CompanyName: string;
-  public Comment: string;
+  customerId: string
+  userId: string
+  profileId: string
+  userName: string
+  appLink: string
+  toEmailID: string
+  applicationName: string
+  companyName: string
+  comment: string
+  fromEmail: string
 }
 
 export class JobStatus {
