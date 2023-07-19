@@ -218,10 +218,10 @@
       </div>
     </div> -->
     <div class="form-group">
-   
-      <ckeditor  [editor]="Editor"  [(ngModel)]="body" name="body" cols="30" rows="40">
+      <app-ngx-editor [placeholder]="'Enter Description here...'" [spellcheck]="true" [(ngModel)]="body" ></app-ngx-editor>
+      <!-- <ckeditor  [editor]="Editor"  [(ngModel)]="body" name="body" cols="30" rows="40">
        
-      </ckeditor>
+      </ckeditor> -->
   
     </div>
     <!-- <div class="form-group" *ngIf="isChecked == true">

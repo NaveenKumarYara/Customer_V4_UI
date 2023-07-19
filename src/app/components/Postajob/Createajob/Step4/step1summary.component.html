@@ -37,7 +37,8 @@
 
 
     <h6 class="data">
-      <ckeditor   [editor]="Editor" [(ngModel)]="completeDescription" readOnly="true"></ckeditor>
+      <!-- <ckeditor   [editor]="Editor" [(ngModel)]="completeDescription" readOnly="true"></ckeditor> -->
+      <app-ngx-editor [placeholder]="'Enter Description here...'" [spellcheck]="true" [(ngModel)]="completeDescription" ></app-ngx-editor>
     </h6>
   </div>
 

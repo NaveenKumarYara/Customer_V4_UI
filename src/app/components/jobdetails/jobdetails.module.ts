@@ -82,6 +82,7 @@ import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofil
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgxEditorModule } from 'ngx-editor';
 import { ConfirmationDialog } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/ConfirmationDialog.component';
 import { DatasourceComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Datasource/datasource/datasource.component';
 setTheme('bs3');
@@ -94,6 +95,7 @@ setTheme('bs3');
     ToastModule.forRoot(),
     NgbTooltipModule,
     BrowserModule,
+    NgxEditorModule,
     // routing,
     RouterModule,
     TagInputModule,

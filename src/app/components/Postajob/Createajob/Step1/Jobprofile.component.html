@@ -391,8 +391,8 @@
   </div>
   <div class="clearfix">&nbsp;</div>
   <div *ngIf="hasCompleteDescription">
-    <ckeditor [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
-
+    <!-- <ckeditor [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor> -->
+    <app-ngx-editor [placeholder]="'Enter Description here...'" [spellcheck]="true"  [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" ></app-ngx-editor>
     <!-- <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
        -->
     <small class="text-danger" *ngIf="hasCompleteDescription==true && jobDescription==''">
