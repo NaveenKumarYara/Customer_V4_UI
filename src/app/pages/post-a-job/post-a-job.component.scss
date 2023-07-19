@@ -10,7 +10,6 @@
     margin-top: 30px;
     border: 1px solid $stroke-gray;
     padding: 30px;
-    overflow: hidden;
 
     @media only screen and (min-width: 1024px) {
       padding: 40px 50px 0;
@@ -70,27 +69,30 @@ h1  {
     gap: 15px;
   }
 }
-.post-job-footer-section{
 
-    margin-bottom: 30px;
+.post-job-footer-section{
+  margin-bottom: 30px;
+  @include flexbox();
+  @include align-items(center);
+
+  .buttons {
+    margin-left: auto;
     @include flexbox();
     @include align-items(center);
-  
-    .buttons {
-      margin-left: auto;
-      @include flexbox();
-      @include align-items(center);
-      gap: 15px;
-      margin-top:20px;
-    }
-  
+    gap: 15px;
+    margin-top:20px;
+  }
 }
 
 .card-box { 
   display: none;
+  position: sticky;
+  top: 0;
 }
 
 .job-card {
+  margin-bottom: 40px;
+  
   .col-container {
     border: 1px solid $stroke-gray;
     border-radius: 8px;
@@ -1288,12 +1290,12 @@ h1  {
   .mdi {
     position: relative;
     z-index: 10;
-    color: $white;
+    color: $dark-green;
   }
 
   .circle {
     border-radius: 50%;
-    background-color: #66dab5;
+    background-color: $white;
     width: 48px;
     height: 48px;
     position: absolute;
@@ -1301,12 +1303,22 @@ h1  {
     top: 0;
     animation: scaleIn 4s infinite cubic-bezier(.36,.11,.89,.32);
   }
+
+  &.active {
+    .circle {
+      background-color: $dark-green;
+    }
+
+    .mdi {
+      color: $white;
+    }
+  }
 }
 
 @keyframes scaleIn {
   0% {
     transform: scale(.5,.5);
-    opacity: .5;
+    opacity: .75;
   }
   100% {
     transform: scale(2.5,2.5);

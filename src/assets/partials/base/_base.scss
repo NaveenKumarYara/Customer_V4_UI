@@ -488,7 +488,7 @@ body {
 		}
 
 		.mdi {
-			line-height: 1;
+			line-height: 1.5;
 		}
 
 		@media only screen and (min-width: 768px) {
@@ -506,6 +506,15 @@ body {
 
 		.btn-card {
 			margin-top: -70px;
+
+			&.active {
+				background-color: $blue;
+				border-color: $blue;
+				
+				.mdi {
+					color: $white;
+				}
+			}
 		}
 	}
 }

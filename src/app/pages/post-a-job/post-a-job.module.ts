@@ -13,6 +13,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.component';
 import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/post-a-job-salary-location.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { SpyDirective, SpyTargetDirective, SpyTargetContainerDirective } from '@thejlifex/ngx-scroll-spy';
+
 @NgModule({	
 	declarations: [
     PostAJobComponent,
@@ -32,6 +34,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 		CKEditorModule,
 		NgxSliderModule,
 		NgbRatingModule,
+		SpyDirective,
+    SpyTargetDirective,
+    SpyTargetContainerDirective,
 		NgCircleProgressModule.forRoot({
 			radius: 100,
 			outerStrokeWidth: 16,
@@ -41,7 +46,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 			animationDuration: 300,
 			titleFontSize: '16',
 			space: -5
-		  })
+		})
 	],
 	exports: [
     PostAJobComponent

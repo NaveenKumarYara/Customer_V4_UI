@@ -2,7 +2,7 @@
   <div class="form-box">
     <div class="row">
       <div class="col-md-12 col-lg-12 form-col">
-        <h4>Personal Details</h4>
+        <h4>Job Information</h4>
       </div>
     </div>
   
@@ -31,9 +31,7 @@
         <label class="form-label">Job Title <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-briefcase-outline"></span>
-          <select class="form-select">
-            <option value="Select Domain">Select Title</option>
-          </select>
+          <input type="text" class="form-control" placeholder="Job Title">
         </div>
       </div>
     
@@ -150,6 +148,16 @@
           </select>
         </div>
       </div>
+
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Work Authorization <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-badge-account-alert-outline"></span>
+          <select class="form-select">
+            <option value="Select Domain">Type and Select</option>
+          </select>
+        </div>
+      </div>
     </div>
   
     <div class="row">
@@ -168,31 +176,17 @@
           </select>
         </div>
       </div>
-  
-      <div class="col-md-4 col-lg-4 form-col">
-        <label class="form-label">Client Contact-Phone <sup>*</sup></label>
-        <div class="form-group">
-          <span class="mdi mdi-phone-in-talk-outline"></span>
-          <input type="text" class="form-control" placeholder="+91">
-        </div>
-      </div>
-    
-      <div class="col-md-4 col-lg-4 form-col">
-        <label class="form-label">Reporting Person <sup>*</sup></label>
-        <div class="form-group">
-          <span class="mdi mdi-chart-pie-outline"></span>
-          <input type="text" class="form-control" placeholder="Person Name">
-        </div>
-      </div>
-  
+
       <div class="col-md-4 col-lg-4 form-col">
         <label class="form-label">Client Bill Rate <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-currency-usd"></span>
-          <input type="text" class="form-control" placeholder="Email">
+          <select class="form-select">
+            <option value="Type Here">Type Here</option>
+          </select>
         </div>
       </div>
-    
+      
       <div class="col-md-4 col-lg-4 form-col">
         <label class="form-label">Has Agreement Been Signed? <sup>*</sup></label>
         <div class="tabbing-radios">
@@ -204,6 +198,22 @@
             <input type="radio" name="agreement-sign">
             <span class="checkmark">No</span>
           </label>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Client Contact-Email <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-email-variant"></span>
+          <input type="text" class="form-control" placeholder="Email">
+        </div>
+      </div>
+
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Client Contact-Phone <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-phone-in-talk-outline"></span>
+          <input type="text" class="form-control" placeholder="+91">
         </div>
       </div>
     
@@ -228,14 +238,10 @@
   
     <div class="row">
       <div class="col-md-12 col-lg-12 form-col">
-        <h4>Local Skills</h4>
+        <h4>Salary</h4>
       </div>
   
-      <div class="col-md-12 col-lg-12 form-col">
-        <h4>Salary Information</h4>
-      </div>
-  
-      <div class="col-md-6 col-lg-6 form-col">
+      <div class="col-md-4 col-lg-4 form-col">
         <label class="form-label">Minimum <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-currency-usd"></span>
@@ -243,53 +249,114 @@
         </div>
       </div>
     
-      <div class="col-md-6 col-lg-6 form-col">
+      <div class="col-md-4 col-lg-4 form-col">
         <label class="form-label">Maximum <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-currency-usd"></span>
           <input type="text" class="form-control" placeholder="Maximum">
         </div>
       </div>
+
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Salary Based Contract Type <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-currency-usd"></span>
+          <input type="text" class="form-control" placeholder="Enter Here">
+        </div>
+      </div>
   
       <div class="col-md-12 col-lg-12 form-col">
         <h4>Location</h4>
       </div>
-  
+
       <div class="col-md-4 col-lg-4 form-col">
-        <label class="form-label">Location <sup>*</sup></label>
+        <label class="form-label">Country <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-earth"></span>
-          <input type="text" class="form-control" placeholder="Location">
+          <select class="form-select">
+            <option value="Select State">Select</option>
+          </select>
         </div>
       </div>
   
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">State <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-earth"></span>
+          <select class="form-select">
+            <option value="Select State">Select</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">City <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-earth"></span>
+          <select class="form-select">
+            <option value="Select City">Select</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Zipcode <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-earth"></span>
+          <select class="form-select">
+            <option value="Select Zipcode">Select</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Are you willing to relocate? <sup>*</sup></label>
+        <div class="tabbing-radios">
+          <label>
+            <input type="radio" name="relocation" checked>
+            <span class="checkmark">Yes</span>
+          </label>
+          <label>
+            <input type="radio" name="relocation">
+            <span class="checkmark">No</span>
+          </label>
+        </div>
+      </div>
+    
       <div class="col-md-4 col-lg-4 form-col">
         <label class="form-label">Work Remotely <sup>*</sup></label>
         <div class="form-group">
-          <span class="mdi mdi-home-variant-outline"></span>
-          <input type="text" class="form-control" placeholder="Work Remotely">
+          <div class="tabbing-radios">
+            <label>
+              <input type="radio" name="work-remote" checked>
+              <span class="checkmark">Yes</span>
+            </label>
+            <label>
+              <input type="radio" name="work-remote">
+              <span class="checkmark">No</span>
+            </label>
+          </div>
         </div>
       </div>
-  
-      <div class="col-md-4 col-lg-4 form-col">
-        <label class="form-label">Relocation</label>
-        <div class="form-group">
-          <span class="mdi mdi-earth"></span>
-          <input type="text" class="form-control" placeholder="Relocation">
-        </div>
-      </div>
-  
-      <div class="col-md-12 col-lg-12 form-col">
-        <h4>Skills</h4>
-      </div>
-  
-      <div class="col-md-12 col-lg-12 form-col">
+      <div class="col-md-6 col-lg-6 form-col">
         <label class="form-label">Primary Skills <sup>*</sup></label>
-        <div class="form-group margin-bottom-20">
-          <span class="mdi mdi-star-outline"></span>
-          <select class="form-select">
-            <option value="Type & Select">Type & Select</option>
-          </select>
+        <div class="row">
+          <div class="col-md-8 col-lg-8 form-sub-col">
+            <div class="form-group">
+              <span class="mdi mdi-star-outline"></span>
+              <select class="form-select">
+                <option value="Select or type to add new">Select or type to add new</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-4 form-sub-col">
+            <div class="form-group">
+              <span class="mdi mdi-star-outline"></span>
+              <select class="form-select">
+                <option value="Exp">Exp</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="quick-results">
           <ul>
@@ -299,13 +366,25 @@
         </div>
       </div>
     
-      <div class="col-md-12 col-lg-12 form-col">
+      <div class="col-md-6 col-lg-6 form-col">
         <label class="form-label">Secondary Skills <sup>*</sup></label>
-        <div class="form-group margin-bottom-20">
-          <span class="mdi mdi-progress-star"></span>
-          <select class="form-select">
-            <option value="Type & Select">Type & Select</option>
-          </select>
+        <div class="row">
+          <div class="col-md-8 col-lg-8 form-sub-col">
+            <div class="form-group">
+              <span class="mdi mdi-progress-star"></span>
+              <select class="form-select">
+                <option value="Select or type to add new">Select or type to add new</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-4 form-sub-col">
+            <div class="form-group">
+              <span class="mdi mdi-star-outline"></span>
+              <select class="form-select">
+                <option value="Exp">Exp</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="quick-results">
           <ul>
@@ -315,7 +394,7 @@
           </ul>
         </div>
       </div>
-  
+    
       <div class="col-md-6 col-lg-6 form-col">
         <label class="form-label">Education Degree <sup>*</sup></label>
         <div class="form-group  margin-bottom-20">
@@ -346,7 +425,201 @@
           </ul>
         </div>
       </div>
-  
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">List of Key Responsibilities <sup>*</sup></label>
+        <div class="form-group margin-bottom-20">
+          <span class="mdi mdi-cog-sync-outline"></span>
+          <select class="form-select">
+            <option value="Select or type to add new">Select or type to add new</option>
+          </select>
+        </div>
+        <div class="quick-results">
+          <ul>
+            <li>C <span class="mdi mdi-close-thick"></span></li>
+            <li>C++ <span class="mdi mdi-close-thick"></span></li>
+            <li>Java <span class="mdi mdi-close-thick"></span></li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Languages <sup>*</sup></label>
+        <div class="form-group margin-bottom-20">
+          <span class="mdi mdi-web"></span>
+          <select class="form-select">
+            <option value="Select or type to add new">Select or type to add new</option>
+          </select>
+        </div>
+        <div class="quick-results">
+          <ul>
+            <li>Telegu <span class="mdi mdi-close-thick"></span></li>
+            <li>English <span class="mdi mdi-close-thick"></span></li>
+            <li>Tamil <span class="mdi mdi-close-thick"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 form-col">
+        <h4>Interview Details</h4>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Interview Type <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-seat-outline"></span>
+          <select class="form-select">
+            <option value="Select the interview">Select the interview</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Interview Round <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-seat-outline"></span>
+          <select class="form-select">
+            <option value="Select the interview round">Select the interview round</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-4 col-lg-4 form-col">
+        <label class="form-label">Select the Interviewer <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-seat-outline"></span>
+          <select class="form-select">
+            <option value="Select ">Select</option>
+          </select>
+        </div>
+      </div>
+     
+    
+      <div class="col-md-12 col-lg-12 form-col">
+        <h4>Verification Required</h4>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Verification Options <sup>*</sup></label>
+        <div class="form-group">
+          <span class="mdi mdi-book-open-page-variant-outline"></span>
+          <select class="form-select">
+            <option value="Type & Select">Type & Select</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="col-md-12 col-lg-12 form-col">
+        <h4>Profile Matching Creteria</h4>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Skills Creteria <sup>*</sup></label>
+        <div class="slider-box-with-percentage">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+          </div>
+          <div class="percentage">60%</div>
+        </div>
+        <div class="custom-checkbox-list">
+          <ul>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Skills Name</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Skills Expereience</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Job Creteria <sup>*</sup></label>
+        <div class="slider-box-with-percentage">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+          </div>
+          <div class="percentage">60%</div>
+        </div>
+        <div class="custom-checkbox-list">
+          <ul>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Toltal Expereience</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Job Title</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Domain</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Team Creteria <sup>*</sup></label>
+        <div class="custom-slider">
+          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Personality Creteria <sup>*</sup></label>
+        <div class="custom-slider">
+          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-lg-6 form-col">
+        <label class="form-label">Culture Creteria <sup>*</sup></label>
+        <div class="custom-slider">
+          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+        </div>
+      </div>
+    
+      <div class="col-md-12 col-lg-12 form-col">
+        <h4>Video Sizzle of The Job</h4>
+      </div>
+      
+      <div class="col-sm-12 single-col">
+      
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Upload or record the video sizzle for the job</label>
+          <input class="form-control upload-file" type="file" >
+        </div>
+        <!-- <div class="file-upload">
+          <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Upload or Record</button>
+          <input type="file" name="myfile" />
+        </div> -->
+      </div> 
+    
       <div class="col-md-12 col-lg-12 form-col">
         <h4>Email Notifications</h4>
       </div>
@@ -356,7 +629,7 @@
         <div class="form-group">
           <span class="mdi mdi-account-circle-outline"></span>
           <select class="form-select">
-            <option value="Type & Select">Type & Select</option>
+            <option value="Select">Select</option>
           </select>
         </div>
       </div>
@@ -370,13 +643,13 @@
           </select>
         </div>
       </div>
-  
+    
       <div class="col-md-12 col-lg-12 form-col">
-        <h4>Additional Skills</h4>
+        <h4>Other Details</h4>
       </div>
-  
+    
       <div class="col-md-6 col-lg-6 form-col">
-        <label class="form-label">Internal Users <sup>*</sup></label>
+        <label class="form-label">Turn around Time <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-account-circle-outline"></span>
           <select class="form-select">
@@ -386,7 +659,7 @@
       </div>
     
       <div class="col-md-6 col-lg-6 form-col">
-        <label class="form-label">Selected Groups <sup>*</sup></label>
+        <label class="form-label">Screening Questions <sup>*</sup></label>
         <div class="form-group">
           <span class="mdi mdi-account-group-outline"></span>
           <select class="form-select">
@@ -394,17 +667,8 @@
           </select>
         </div>
       </div>
-  
-      <div class="col-sm-12 single-col form-col">
-        <label>Job Description<sup>*</sup></label>
-      </div>
-      <div class="col-sm-12 form-col">
-        <ckeditor  
-          [config]="config"
-          data="<p>Hello, world!</p>">
-        </ckeditor>
-      </div>
     </div>
+    
   </div>
   <div class="card-box">
     <div class="job-card">
@@ -412,28 +676,25 @@
         <div class="top-container">
           <span class="status active">
             <span class="status-info">
-              Applied
+              JOB STATUS
             </span>
           </span>
           <span class="priority">
-            <span class="priority-info">Resume Source</span>
+            <span class="priority-info">JOB PRIORITY</span>
           </span>
           <div class="profile-info">
             <div class="profile-thumb">
-              <img src="../../../assets/images/default-profile-thumb.png" alt="">
+              <img src="../../../assets/images/default-company-small.jpg" alt="">
             </div>
             <h3>
               <span class="text-trim" placement="top" ngbTooltip="Swetha Ramadugu">
-                Swetha Ramadugu
+                Salesforce Developer
               </span>
             </h3>
-            <h4>
-              <span class="text-trim" placement="top" ngbTooltip="Yet to provide">Yet to provide</span>
-            </h4>
             <div class="profile-summary">
               <h4>
                 <span class="mdi mdi-briefcase-outline"></span>
-                Exp - <strong>5 Years</strong> 
+                Exp Req- <strong>5 Years</strong> 
               </h4>
               <h4>
                 <span class="mdi mdi-seat-outline"></span>
@@ -445,7 +706,7 @@
   
         <div class="middle-container">
           <div class="top-section">
-            <h3> Client: Not Provided </h3>
+            <h3> Client: <span  placement="top" ngbTooltip="Accenture Federal">Accenture Federal</span> </h3><div class="job-ref">Job Ref: <span>1357</span></div>
           </div>
           <div class="top-bottom-section">
             <ul>
@@ -462,6 +723,44 @@
               </li>
             </ul>
           </div>
+        </div>
+        <div class="kpi-section">
+          <ul>
+            <li>
+              <img src="../../../../assets/images/curve-icon-work.svg" alt="">
+              <h4>Full Time</h4>
+            </li>
+            <li>
+              <img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
+              <h4>
+                $100 Hourly
+              </h4>
+            </li>
+           
+            <li>
+              <div class="progress-circle">
+                <circle-progress
+                [percent]="60"
+                [radius]="20"
+                [outerStrokeWidth]="4"
+                [innerStrokeWidth]="2"
+                [outerStrokeColor]="'#6262FF'"
+                [innerStrokeColor]="'#C0C0C0'"
+                [animationDuration]="0"
+                [responsive] = true
+                [showSubtitle] = false
+                ></circle-progress>
+              </div>
+              <h4>Job Completeness</h4>
+            </li>
+            <li>
+              <img src="../../../../assets/images/icon-work-authorization.svg" alt="">
+              <h4>
+                Work <br/>Autherization
+              </h4>
+            </li>
+            
+          </ul>
         </div>
   
         <div class="skills-grid">
@@ -481,6 +780,27 @@
             </div>
           </div>
           <div class="skills-col">
+            <div class="skill-container">
+              <span class="mdi mdi-star-outline"></span>
+              <div class="skill-info">
+                <h3>SQL</h3>
+                <h4>Exp: 5.8 Years</h4>
+              </div>
+            </div>
+            <div class="skill-container">
+              <span class="mdi mdi-star-outline"></span>
+              <div class="skill-info">
+                <h3>SQL</h3>
+                <h4>Exp: 5.8 Years</h4>
+              </div>
+            </div>
+            <div class="skill-container">
+              <span class="mdi mdi-star-outline"></span>
+              <div class="skill-info">
+                <h3>SQL</h3>
+                <h4>Exp: 5.8 Years</h4>
+              </div>
+            </div>
             <div class="skill-container">
               <span class="mdi mdi-star-outline"></span>
               <div class="skill-info">
@@ -608,35 +928,8 @@
         </div>
       </div>
     </div>
-    <div class="review-listing">
-      <div class="job-card">
-        <div class="col-container">
-          <div class="top-container">
-            <div class="profile-info">
-              <div class="profile-thumb">
-                <img src="../../../../assets/images/default-company-small.jpg" alt="">
-              </div>
-              <h3>John Doe</h3>
-              <div class="right-info">
-                <div class="rating">
-                  <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="middle-container">
-            <div class="top-section">
-              <h3>Technology Analyst </h3>
-            </div>
-            <div class="top-bottom-section">
-              Pellentesque habitant morbi tristique senectus et netus. Pellentesque habitant
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-<button class="btn btn-card" (click)="showCardHandler()">
+<button class="btn btn-card" [ngClass]="showCard?'active':''" (click)="showCardHandler()">
   <span class="mdi mdi-cards-variant"></span>
 </button>
