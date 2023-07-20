@@ -3,5 +3,6 @@
     "IdentitybaseUrl": "${Identity_URL}",
     "JobbaseUrl": "${Jobs_URL}",
     "ProfilebaseUrl": "${ProfileAPI_URL}",
-    "MasterbaseUrl":"${MasterAPI_URL}"
+    "MasterbaseUrl":"${MasterAPI_URL}",
+    "PricingBaseUrl":"${PricingBaseUrl}"
 }

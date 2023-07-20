@@ -207,7 +207,7 @@ export class JobShareProfileComponent implements OnInit {
             title: 'Mail Sent Successfully',
             showConfirmButton: true,
             timer: 3000,
-            type: "Success"
+            type: "success"
           });
         console.log('Mail Sent Successfully', 'Success');
       }
