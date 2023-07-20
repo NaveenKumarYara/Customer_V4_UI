@@ -1,6 +1,6 @@
 <div class="form-actions">
   <button class="btn btn-outlined-default">Clear</button>
-  <button class="btn btn-info" (click)="shareProfile()">Save</button>
+  <button class="btn btn-info" (click)="shareProfile()">Share</button>
 </div>
 <div class="form-container">  
   <div class="row">
@@ -114,12 +114,14 @@
   </div>
   <div class="row">
     <div class="col-sm-12 single-col">
-      <label>Text Enter to Add Comment</label>
+      <label>Comments</label>
     </div>
     <div class="col-sm-12">
       <ckeditor  
         [config]="config"
-        [data]="contentField">
+        [data]="defaultContent"
+        [(ngModel)]="contentField"
+        >
       </ckeditor>
     </div>
   </div>

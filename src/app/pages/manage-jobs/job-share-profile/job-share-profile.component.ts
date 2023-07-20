@@ -186,16 +186,18 @@ export class JobShareProfileComponent implements OnInit {
     this.profileSharing.FromEmail = this.fromEmail;
 
     console.log('requestData', this.profileSharing);
-    this.apiService.ProfileShareInvite(this.profileSharing).subscribe((data: any) => {
-      if (data === 0) {
+    if(this.toEmailList.size > 0){
+      this.apiService.ProfileShareInvite(this.profileSharing).subscribe((data: any) => {
         this.toEmailField = '';
         this.ccEmailField = '';
         this.bCCEmailField = '';
         this.toEmailList = new Set();
         this.ccEmailList = new Set();
         this.bCCEmailList = new Set();
+        let profileImage = this.profileSharing.Image;
         this.profileSharing = new ProfileShare();
-        this.contentField = "";
+        this.profileSharing.Image = profileImage;
+        this.contentField = this.defaultContent;
        
         // this.toastr.success('Mail sent successfully', 'Success');
         // setTimeout(() => {
@@ -210,11 +212,13 @@ export class JobShareProfileComponent implements OnInit {
             type: "success"
           });
         console.log('Mail Sent Successfully', 'Success');
-      }
+      
    
     }, error => {
       console.log('error:', JSON.stringify(error));
     });
+    }
+  
   }
 
 }
