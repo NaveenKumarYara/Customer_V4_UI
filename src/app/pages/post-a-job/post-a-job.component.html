@@ -10,20 +10,19 @@
     </div>
     <div class="tab-navigation">
       <ul>
-        <li [ngClass]="sectionActive == 'section-one'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-one')">Position Details</a>
-        </li>
-        <li [ngClass]="sectionActive == 'section-two'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-two')">Client Information</a>
-        </li>
-        <li [ngClass]="sectionActive == 'section-three'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-three')">Salary & Location</a>
-        </li>
-        <li [ngClass]="sectionActive == 'section-four'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-four')">Skills</a>
-        </li>
-        <li [ngClass]="sectionActive == 'section-five'?'active':''">
-          <a href="javascript:void(0)" (click)="scrollTo('section-five')">Additional Details</a>
+        <li
+          class="nav-item"
+          *ngFor="let item of navBar.items"
+        >
+          <a
+            href="javascript:void(0)"
+            spy
+            [spyTargetId]="item.fragment"
+            [spyActiveClass]="navBar.spyActiveClass"
+            (click)="scrollTo(item.fragment)"
+          >
+            {{ item.name }}
+          </a>
         </li>
       </ul>
     </div>
@@ -38,19 +37,19 @@
         </button>
         <div [ngClass]="showCard?'show-card':''">
           <div class="form-box">
-            <div class="section section-one">
+            <div class="section section-one" spyTarget [spyTargetId]="'section-one'">
               <app-post-a-job-information></app-post-a-job-information>
             </div>
-            <div class="section section-two">
+            <div class="section section-two" spyTarget [spyTargetId]="'section-two'">
               <app-post-a-job-client-information></app-post-a-job-client-information>
             </div>
-            <div class="section section-three">
+            <div class="section section-three" spyTarget [spyTargetId]="'section-three'">
               <app-post-a-job-salary-location></app-post-a-job-salary-location>
             </div>
-            <div class="section section-four">
+            <div class="section section-four" spyTarget [spyTargetId]="'section-four'">
               <app-post-a-job-skills></app-post-a-job-skills>
             </div>
-            <div class="section section-five">
+            <div class="section section-five" spyTarget [spyTargetId]="'section-five'">
               <app-post-a-job-additional></app-post-a-job-additional>
             </div>
           </div>

@@ -11,6 +11,35 @@ export class PostAJobComponent implements OnInit {
   showCard: boolean = false;
   currentRate = 3;
   public isCollapsed = false;
+
+  navBar = {
+    title: 'Navbar',
+    spyTargetContainerId: 'navbar',
+    spyActiveClass: 'active',
+    items: [
+      {
+        name: 'Position Details',
+        fragment: 'section-one'
+      },
+      {
+        name: 'Client Information',
+        fragment: 'section-two'
+      },
+      {
+        name: 'Salary & Location',
+        fragment: 'section-three'
+      },
+      {
+        name: 'Skills',
+        fragment: 'section-four'
+      },
+      {
+        name: 'Additional Details',
+        fragment: 'section-five'
+      }
+    ]
+  };
+
   
   constructor() { }
 

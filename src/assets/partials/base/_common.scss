@@ -125,6 +125,12 @@
         max-width: 100%;
         border-radius: 8px;
 
+        &.active {
+          background-color: $blue;
+          color: $white;
+          box-shadow: 0px 4px 8px 0px rgba(144, 164, 173, 0.40) inset;
+        }
+
         @media only screen and (min-width: 1024px) {
           border-radius: 32px;
         }

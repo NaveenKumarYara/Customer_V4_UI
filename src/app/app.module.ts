@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FindACandidateModule } from './pages/find-a-candidate/find-a-candidate.module';
 import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
+import { CandidateProfileModule } from './pages/candidate-profile/candidate-profile.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
     // NgSelectModule,
     FindACandidateModule,
     PostAJobModule,
-    NgxUploaderModule
+    NgxUploaderModule,
+    CandidateProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
