@@ -397,7 +397,7 @@ export class ManageAdvanceFilterComponent implements OnInit {
     this.selectedMinSalary = 0;
     this.selectedMaxSalary = 400000;
     this.applyClick();
-    // this.filterHideHandler.emit();
+    this.filterHideHandler.emit();
   }
   onDdeSelectAll(d:any){
 console.log("ddd",d)
