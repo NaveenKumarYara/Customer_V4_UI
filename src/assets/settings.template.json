@@ -4,5 +4,6 @@
     "JobbaseUrl": "${Jobs_URL}",
     "ProfilebaseUrl": "${ProfileAPI_URL}",
     "MasterbaseUrl":"${MasterAPI_URL}",
-    "PricingBaseUrl":"${PricingBaseUrl}"
+    "PricingBaseUrl":"${PricingBaseUrl}",
+    "EmailV1APIBaseUrl":"${EmailV1APIBaseUrl}"
 }

@@ -53,6 +53,10 @@ export class ApiService {
     return this.http.get(this.settingsService.settings.ProfilebaseUrl +'/api/GetProfileNotesNew?profileId=0&jobId='+jobID+'&cid='+cid)
   }
 
+  // GetprofileNotes(jobID:any,cid:any){
+  //   return this.http.get(this.settingsService.settings.ProfilebaseUrl + '')
+  // }
+
   byteStorage(body: any): Observable<any> {
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/form-data')
@@ -91,6 +95,12 @@ export class ApiService {
 
   postProfileService(url:string,params:any){
     return this.http.post(this.settingsService.settings.ProfilebaseUrl + url ,params)
+  }
+  postEmailService(url:string,params:any){
+    return this.http.post(this.settingsService.settings.EmailV1APIBaseUrl + url ,params)
+  }
+  SaveProfileNote(url:string,params:any) {
+    return this.http.post(this.settingsService.settings.IdentitybaseUrl+ url ,params)
   }
 
 
@@ -165,6 +175,9 @@ getNewCandidates(params:any): Observable<any> {
   getAllDomain(){
     return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetDomainName')
   }
+  getAllCertifications(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetAllCertifications')
+  }
 
   GetEmployerService(url: string, prams: any) {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + url + prams, this.httpOptions).pipe(
@@ -175,6 +188,10 @@ getNewCandidates(params:any): Observable<any> {
 
   getJobStatus(){
     return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetJobStatus')
+  }
+
+  getSourceType(){
+    return this.http.get(this.settingsService.settings.PricingBaseUrl+'api/BillingHistory/GetCustomerSubscription')
   }
 
   DeleteService(url:any, prams:any) {

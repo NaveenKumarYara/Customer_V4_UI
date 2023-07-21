@@ -1,3 +1,29 @@
+
+<div class="form-actions d-flex align-items-center">
+  <div class="toogle-container">
+    Notes
+    <label class="toggle" for="toogleView">
+      <input class="toggle__input" name="" (change)="changeView();" type="checkbox" id="toogleView">
+      <div class="toggle__fill"></div>
+    </label>
+    Feedback
+  </div>
+
+  <ng-container *ngIf="isChecked == false && showNoteForm == false">
+    <button class="btn btn-info" (click)="showNoteFormHandler()">Add New Notes</button>
+  </ng-container>
+  <ng-container *ngIf="isChecked == false && showNoteForm == true">
+    <button class="btn btn-info" (click)="hideNoteFormhandler()"[disabled]="selectedComments === undefined || selectedComments === ''" >Save</button>
+  </ng-container>
+  <ng-container *ngIf="isChecked == true && showFeedbackForm == false">
+    <button class="btn btn-info" (click)="showFeedbackFormHandler()">Add Feedback</button>
+  </ng-container>
+  <ng-container *ngIf="isChecked == true && showFeedbackForm == true">
+    <button class="btn btn-info" (click)="hideFeedbackFormhandler()">Save</button>
+  </ng-container>
+
+</div>
+
 <ng-container *ngIf="isChecked == false">
   <div class="job-notes">
     <ng-container *ngIf="showNoteForm == true">
@@ -12,87 +38,107 @@
           <div class="col-md-8 col-lg-8 input-col">
             <div class="form-group">
               <span class="mdi mdi-information-outline"></span>
-              <select class="form-select">
-                <option value="Select Application Status">Select Application Status</option>
+              <select name="OtherInfo" class="form-select" [(ngModel)]="savenote.OtherInfo">
+                <!-- <option  value="" disabled >Select Application Status</option> -->
+                <option  value="Email">Email</option>
+                <option   value="General">General</option>
+                <option  value="Request for information">Request For Information</option>
+                <option   value="Interview Related">Interview Related</option>
+                <option   value="Other">Other</option>
               </select>
             </div>
           </div>
         </div>
+        <div class="row ">
+          <div class="col-md-3 w-auto">
+            <label class="radio checkbox">
+              <input type="checkbox" class="radio-input" name="team" [checked]="true" (click)="toggleShow1()">
+              <span class="radio-btn wh-22 ml-0 checkmark"></span>
+              <span>Team Member</span>
+
+            </label>
+          </div>
+          <div class="col-md-3 w-auto">
+            <label class="radio checkbox">
+              <input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()">
+              <span class="radio-btn wh-22 ml-0 checkmark"></span>
+              <span>Candidate</span>
+            </label>
+          </div>
+        </div>
+
+        <ng-container *ngIf="isShown2">
+          <div class="form-row">
+            <label>
+              Candidate Email : {{checkemail}}
+            </label>
+          </div>						
+      </ng-container>
+      <div class="row">
+
+      </div>
         <div class="row">
-          <div class="col-sm-12 single-col">
+          <div class="col-sm-12 single-col" *ngIf="isShown1">
             <label>Add Team Members</label>
           </div>
-          <div class="col-sm-12">
+          <div class="col-sm-12" *ngIf="isShown1">
             <div class="input-group">
               <div class="form-group">
-                <span class="mdi mdi-account-multiple-outline"></span>
-                <select class="form-select">
-                  <option value="Select Team Member">Select Team Member</option>
-                </select>
+                <!-- <span class="mdi mdi-account-multiple-outline"></span> -->
+                <ng-select class="ng-select-single" [items]="customercontacts" name="team"
+												placeholder="Add Team Members" bindLabel="FirstName"
+												bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" 
+												id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+												#TMemb="ngModel">
+											</ng-select>
               </div>
-              <button class="btn btn-icon"><span class="mdi mdi-plus"></span></button>
+              <button class="btn btn-icon"><span class="mdi mdi-plus" (click)="addTeammembers()"></span></button>
             </div>
             <div class="checkbox-list">
               <ul>
-                <li>
+                <li *ngFor = "let selectedMember of teammemberslist; let i=index">
                   <label>
-                    <input type="checkbox">
                     <span class="checkmark">
-                      Jhon Doe
+                      {{selectedMember.FirstName}}
                     </span>
-                    <span class="mdi mdi-close-thick"></span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox">
-                    <span class="checkmark">
-                      Pawan Bothra
-                    </span>
-                    <span class="mdi mdi-close-thick"></span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox">
-                    <span class="checkmark">
-                      Kinjal Mehta
-                    </span>
-                    <span class="mdi mdi-close-thick"></span>
+                    <span class="mdi mdi-close-thick" (click)="deleteTeammember(i)"></span>
                   </label>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+       
         <div class="row">
           <div class="col-sm-12 single-col">
             <label>Notes</label>
           </div>
           <div class="col-sm-12">
             <ckeditor  
+            (change)="onEditorChange($event)"
               [config]="config"
-              data="<p>Hello, world!</p>">
+              [(ngModel)]="selectedComments"
+              data="<p>Note</p>">
             </ckeditor>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-12 single-col">
             <div class="file-upload">
               <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
-              <input type="file" name="myfile" />
+              <input type="file" accept=".doc,.docx,.pdf,.txt" name="myfile"ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple/>
             </div>
             <div class="description">
               <span class="mdi mdi-information-outline"></span>
               Upload .doc, .docx, .pdf, .txt file only
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </ng-container>
     <h4>List of Notes</h4>
     <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
-      <ngb-panel id="custom-panel-1">
+      <ngb-panel [id]="'custom-panel-'+i" *ngFor = "let list of profileNotesList; let i = index">
         <ng-template ngbPanelHeader let-opened="opened">
           <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
             <button ngbPanelToggle class="btn btn-link p-0">
@@ -100,18 +146,18 @@
                 <span class="mdi mdi-file-edit-outline"></span>
               </span>
               <div class="info">
-                General
+                {{list.Others}}
                 <span class="date">Mar 27, 2023 </span>
               </div>
             </button>
           </div>
         </ng-template>
-        <ng-template ngbPanelContent>
-          <div class="accordion-information">
-            <h6>I am Interested in these position.</h6>
-            <div class="name">By Kim Karnika</div>
+        <ng-template ngbPanelContent >
+          <div class="accordion-information" style="float: left;">
+            <div [innerHtml]="list.CustomerComment" ></div>
+            <div class="name">{{list.FirstName}} {{list.LastName}}</div>
             <div class="file-listing">
-              <div class="file-row">
+              <div class="file-row" *ngIf = "list.attachments.length>0">
                 <span class="mdi mdi-link-variant"></span>
                 Screenshot 2023-06-07.png
                 <div class="buttons">
@@ -122,9 +168,10 @@
               </div>
             </div>
           </div>
+          <a><span class="mdi mdi-delete-outline"  style="float: right;" (click)="deleteNotes(list?.NotesId)"></span></a>
         </ng-template>
       </ngb-panel>
-      <ngb-panel id="custom-panel-2">
+      <!-- <ngb-panel id="custom-panel-2">
         <ng-template ngbPanelHeader let-opened="opened">
           <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
             <button ngbPanelToggle class="btn btn-link p-0">
@@ -221,8 +268,11 @@
             </div>
           </div>
         </ng-template>
-      </ngb-panel>
+      </ngb-panel> -->
     </ngb-accordion>
+    <div class="noDataMessage" *ngIf = "profileNotesList?.length == 0">
+      <div>No Notes Available</div>
+    </div>
   </div>
 </ng-container>
 
