@@ -6,5 +6,7 @@ export class Settings {
   ProfilebaseUrl:string= "https://profileapi-dev001.arytic.com";
   MasterbaseUrl:string="https://masterapi-dev001.arytic.com";
   CustomerAppprofileUrl: string = "https://customer-dev001.arytic.com/profileview";
-  ProfileShareInviteUrl: string = "https://emailapi-dev001.arytic.com/api/ProfileShare";
+  ProfileShareInviteUrl: string = "https://emailapiv1-dev001.arytic.com/api/ProfileShare";
+  PricingBaseUrl:string="https://pricingapi-dev001.arytic.com/";
+  EmailV1APIBaseUrl:string ="https://emailapiv1-dev001.arytic.com"
 }
