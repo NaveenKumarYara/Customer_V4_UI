@@ -15,3 +15,15 @@ h1  {
 		font-size: $font-size-30;
 	}
 }
+
+.tab-navigation {
+	width: 768px;
+	margin: 0 auto 24px;
+
+	ul {
+		li {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+	}
+}

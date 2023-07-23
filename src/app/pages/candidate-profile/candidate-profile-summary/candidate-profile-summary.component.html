@@ -1,28 +1,151 @@
 <div class="profile-summary-section">
   <div class="row">
-    <div class="col-md-6 col-lg-6 profile-col">
+    <div class="col-md-6 col-lg-6 profile-col col">
       <div class="col-container">
         <div class="row sub-row">
           <div class="col-md-6 col-lg-6 left-col">
-            &nbsp;
+            <div class="profile-summary">
+              <div class="profile-image">
+                <img src="../../../../assets/images/profile-big.png" alt="">
+                <button class="btn btn-edit">
+                  <span class="mdi mdi-pencil-outline"></span>
+                </button>
+              </div>
+              <div class="profile-info">
+                <h4>Sandhya Khan</h4>
+                <h5>Software Architect</h5>
+                <div class="total-experience">
+                  Total Experience
+                  <strong>8 Years</strong>
+                </div>
+              </div>
+            </div>
           </div>
-
           <div class="col-md-6 col-lg-6 right-col">
-            &nbsp;
+            <div class="profile-section">
+              <div class="info-listing">
+                <ul>
+                  <li>
+                    <span class="mdi mdi-email-variant"></span>
+                    <a href="mailto:test15@gmail.com">test15@gmail.com</a>
+                  </li>
+                  <li>
+                    <span class="mdi mdi-phone-outline"></span>
+                    (876) 543-4567
+                  </li>
+                  <li>
+                    <span class="mdi mdi-map-marker-outline"></span>
+                    San Antonio, Austin Texas
+                  </li>
+                </ul>
+              </div>
+              <div class="social">
+                <strong>Social Links:</strong>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <span class="mdi mdi-facebook"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="mdi mdi-twitter"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="mdi mdi-linkedin"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="mdi mdi-skype"></span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="file-upload">
+                <button class="btn">
+                  <span class="mdi mdi-tray-arrow-up"></span>
+                  Upload File Here
+                </button>
+                <input type="file" name="myfile" />
+              </div>
+              <div class="buttons">
+                <button class="btn btn-info">Public Profile</button>
+                <button class="btn btn-outlined-default">Cancel</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-3 col-lg-3 progress-col">
+    <div class="col-md-3 col-lg-3 progress-col col">
       <div class="col-container">
-        &nbsp;
+        <div class="inner-container">
+          <div class="progress-circle">
+            <circle-progress
+            [percent]="70"
+            [radius]="40"
+            [outerStrokeWidth]="6"
+            [innerStrokeWidth]="3"
+            [outerStrokeColor]="'#6262FF'"
+            [innerStrokeColor]="'#C0C0C0'"
+            [animationDuration]="0"
+            [responsive] = true
+            [showSubtitle] = false
+            ></circle-progress>
+          </div>
+          <h4>Project Manager</h4>
+          <span class="status active">Active</span>
+        </div>
+        <div class="arytic-check">
+          <h4>Artyic Check</h4>
+          <div class="navigation">
+            <ul>
+              <li>
+                <span class="icon icon-culture">Icon</span>
+                <h6>Reference</h6>
+              </li>
+              <li class="active">
+                <span class="icon icon-job">Icon</span>
+                <h6>Employment</h6>
+              </li>
+              <li>
+                <span class="icon icon-personality">Icon</span>
+                <h6>Background</h6>
+              </li>
+              <li class="active">
+                <span class="icon icon-skills">Icon</span>
+                <h6>Skills</h6>
+              </li>
+              
+              <li>
+                <span class="icon icon-wfh">Icon</span>
+                <h6>WFH</h6>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-3 col-lg-3 video-col">
+    <div class="col-md-3 col-lg-3 video-col col">
       <div class="col-container">
-        &nbsp;
+        <div class="col-box">
+          <div class="file-upload">
+            <button class="btn">
+              <span class="mdi mdi-video-wireless-outline"></span>
+            </button>
+            <input type="file" name="myfile" />
+          </div>
+          <h4>Upload File Here</h4>
+          <button class="btn btn-link">
+            <span class="mdi mdi-progress-download"></span>
+            Download Resume
+          </button>
+        </div>
       </div>
     </div>
   </div>

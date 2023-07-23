@@ -39,14 +39,17 @@ export class DashboardTotalJobsComponent implements OnInit {
         minBarLength: 2,
         backgroundColor:['#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA'],
         hoverBackgroundColor: '#fbc849',
-        borderRadius: 20
+        borderRadius: 20,
+        
+        
       }
     ]
   };
 
   public barChartOptions: any = {
     scaleShowVerticalLines: true,
-    responsive: true
+    responsive: true,
+    
   }
   public barChartType = 'bar';
   customer: any;
@@ -80,6 +83,7 @@ export class DashboardTotalJobsComponent implements OnInit {
       if (this.jobsData.length == 0) return;
       this.barChartData = {
         labels: Object.keys(this.jobsData[0]),
+        
         datasets: [
           { 
             data: Object.values(this.jobsData[0]), 
@@ -90,9 +94,11 @@ export class DashboardTotalJobsComponent implements OnInit {
             minBarLength: 2,
             backgroundColor:['#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA','#F6DEA7','#CFC8EA'],
             hoverBackgroundColor: '#fbc849',
-            borderRadius: 20
+            borderRadius: 20,
+            
           }
-        ]
+        ],
+        
       };
     })
   }

@@ -131,32 +131,35 @@
               Rejected
             </div>
           </div>
-          <div class="table-row table-col-row" *ngFor="let job of topApplicantsSource;let j = index">
-            <div class="table-col name-col">
-              <span class="text-ellipsis"> {{job?.DataSource}}</span>
+          <ng-container  *ngFor="let job of topApplicantsSource;let j = index">
+            <div class="table-row table-col-row" *ngIf="j < 4">
+              <div class="table-col name-col">
+                <span class="text-ellipsis"> {{job?.DataSource}}</span>
+              </div>
+              <div class="table-col">
+                {{job?.Uploaded}}
+              </div>
+              <div class="table-col">
+                {{job?.Applied}}
+              </div>
+              <div class="table-col">
+                {{job?.Shortlisted}}
+              </div>
+              <div class="table-col">
+                {{job?.Interviewed}}
+              </div>
+              <div class="table-col">
+                {{job?.Screened}}
+              </div>
+              <div class="table-col">
+                {{job?.Hired}}
+              </div>
+              <div class="table-col">
+                {{job?.Rejected}}
+              </div>
             </div>
-            <div class="table-col">
-              {{job?.Uploaded}}
-            </div>
-            <div class="table-col">
-              {{job?.Applied}}
-            </div>
-            <div class="table-col">
-              {{job?.Shortlisted}}
-            </div>
-            <div class="table-col">
-              {{job?.Interviewed}}
-            </div>
-            <div class="table-col">
-              {{job?.Screened}}
-            </div>
-            <div class="table-col">
-              {{job?.Hired}}
-            </div>
-            <div class="table-col">
-              {{job?.Rejected}}
-            </div>
-          </div>
+          </ng-container>
+          
      
         </div>
       </div>

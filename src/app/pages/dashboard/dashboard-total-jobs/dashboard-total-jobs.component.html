@@ -160,38 +160,40 @@
               Expired
             </div>
           </div>
-          <div class="table-row table-col-row" *ngFor="let job of topJobsCLients;let i = index">
-            <div class="table-col name-col">
-              <span class="text-ellipsis">    {{job?.Code}}</span>
+          <ng-container *ngFor="let job of topJobsCLients;let i = index">
+            <div class="table-row table-col-row" *ngIf="i < 4">
+              <div class="table-col name-col">
+                <span class="text-ellipsis"> {{job?.Code}}</span>
+              </div>
+              <div class="table-col">
+                {{job?.Openings}}
+              </div>
+              <div class="table-col">
+                {{job?.Screening}}
+              </div>
+              <div class="table-col">
+                {{job?.ShortListed}}
+              </div>
+              <div class="table-col">
+                {{job?.Interviews}}
+              </div>
+              <div class="table-col">
+                {{job?.Hired}}
+              </div>
+              <div class="table-col">
+                {{job?.Freezed}}
+              </div>
+              <div class="table-col">
+                {{job?.Filled}}
+              </div>
+              <div class="table-col">
+                {{job?.Expired}}
+              </div>
+              <div class="table-col">
+                {{job?.Hold || 0}}
+              </div>
             </div>
-            <div class="table-col">
-              {{job?.Openings}}
-            </div>
-            <div class="table-col">
-              {{job?.Screening}}
-            </div>
-            <div class="table-col">
-              {{job?.ShortListed}}
-            </div>
-            <div class="table-col">
-              {{job?.Interviews}}
-            </div>
-            <div class="table-col">
-              {{job?.Hired}}
-            </div>
-            <div class="table-col">
-              {{job?.Freezed}}
-            </div>
-            <div class="table-col">
-              {{job?.Filled}}
-            </div>
-            <div class="table-col">
-              {{job?.Expired}}
-            </div>
-            <div class="table-col">
-              {{job?.Hold || 0}}
-            </div>
-          </div>
+          </ng-container>
    
         </div>
       </div>

@@ -264,59 +264,94 @@
     }
 
     .middle-section {
-      padding:40px 20px 10px;
+      padding:20px 20px 0 96px;
+    }
+  } 
 
-      .grid-cols {
-        @include flexbox();
-        @include flex-wrap(wrap);
+  .grid-cols {
+    @include flexbox();
+    @include flex-wrap(wrap);
+
+    .mdi {
+      font-size: $font-size-18;
+      position: absolute;
+      left: 0;
+      line-height: 1;
+      color: $medium-gray;
+      top: 1px;
+    }
+
+    .grid-col {
+      position: relative;
+      padding-left: 30px;
+      font-size: $font-size-14;
+      color: $dark-gray;
+      flex: 0 0 50%;
+      max-width: 50%;
+
+      &:last-child {
+        border-left: 1px solid $stroke-gray;
+        padding-left: 40px;
 
         .mdi {
-          font-size: $font-size-18;
-          position: absolute;
-          left: 0;
-          line-height: 1;
-          color: $medium-gray;
-          top: 1px;
-        }
-
-        .grid-col {
-          position: relative;
-          padding-left: 30px;
-          font-size: $font-size-14;
-          color: $dark-gray;
-          flex: 0 0 50%;
-          max-width: 50%;
-
-          &:last-child {
-            border-left: 1px solid $stroke-gray;
-            padding-left: 40px;
-
-            .mdi {
-              left: 15px;
-            }
-          }
-        }
-
-        .text-trim {
-          width: calc(100% - 10px);
-          max-width: 250px;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-          display: block;
-        }
-
-        a {
-          color: $dark-gray;
-          text-decoration: none;
-        }
-
-        &:first-child {
-          margin-bottom: 10px;
+          left: 15px;
         }
       }
     }
-  } 
+
+    .text-trim {
+      width: calc(100% - 10px);
+      max-width: 250px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+    }
+
+    a {
+      color: $dark-gray;
+      text-decoration: none;
+    }
+
+    &:first-child {
+      margin-bottom: 10px;
+    }
+
+    &.xs-grid-cols {
+      line-height: 1 !important;
+
+      .mdi {
+        top: -2px;
+      }
+
+      .grid-col {
+        .text-trim {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+
+  .middle-section {
+    .grid-cols {
+      gap: 10px;
+      .grid-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        &:last-child {
+          border-left: 0;
+          padding-left: 30px;
+
+          .mdi {
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
   .skills-grid {
     .skills-cols {
       padding: 0 15px;
