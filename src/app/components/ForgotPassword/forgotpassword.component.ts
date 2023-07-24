@@ -65,6 +65,7 @@ Login()
       .subscribe(
       data => {
         this.result = data;
+        debugger
         if(this.result.UserId>0&&this.result.CustomerId>0)
         {
 
@@ -95,12 +96,13 @@ Login()
 
   SendEmail(uID)
   {
-    this.cforgot.appLink= this.settingsService.settings.Arytic+';pid='+uID;
+    this.cforgot.appLink= this.settingsService.settings.Arytic +';pid='+uID;
     this.cforgot.applicationName = "Arytic";
     this.cforgot.clientLogo = " ";
     this.cforgot.fromID = "donotreply@arytic.com";
-    this.cforgot.fullName = " ";
+    this.cforgot.fullName = this.Forgotform.value.EmailId.split('@')[0];
     this.cforgot.toEmailId = this.Forgotform.value.EmailId;
+    debugger
     this.appService.CForgotPassword(this.cforgot)
     .subscribe(
     data => {

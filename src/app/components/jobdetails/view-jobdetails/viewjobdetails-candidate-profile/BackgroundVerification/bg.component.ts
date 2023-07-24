@@ -109,7 +109,7 @@ export class backgrounddialogComponent {
 
   BgVerIficationEmail()
   {
-    this.bgverificatione.fromEmail = this.customer.Email;
+    this.bgverificatione.fromEmail = 'info@arytic.com';
     this.bgverificatione.toEmailID = this.customer.Email;
     this.bgverificatione.admin = this.customer.Email;
     this.bgverificatione.candidate = this.data.Name;
@@ -117,7 +117,7 @@ export class backgrounddialogComponent {
     this.bgverificatione.jobId = this.data.JobId;
     this.bgverificatione.comment = 'Requested Drug Test and Few Background Verification Process...' ;
     this.bgverificatione.applicationName ='Arytic';
-    this.bgverificatione.appLink = ' ';
+    this.bgverificatione.appLink = "https://arytic.com/";
     this.bgverificatione.customerName = this.customer.FirstName;
     this.bgverificatione.education= this.bgverification.Education;
     this.bgverificatione.employment = this.bgverification.Employment;
@@ -128,9 +128,9 @@ export class backgrounddialogComponent {
     this.bgverificatione.criminalOptionSelected = this.bgverification.CriminalOptionSelected;
     this.bgverificatione.drugTest = this.bgverification.DrugTest;
     this.bgverificatione.drugOptionSelected = this.bgverification.DrugOptionSelected;
-
-    debugger
-    return this.appService.SendProfileBGVerfication(this.bgverification)
+    this.bgverificatione.profileId = this.data.ProfileId;
+    this.bgverificatione.customerUserId = this.data.CuserId;
+    return this.appService.SendProfileBGVerfication(this.bgverificatione)
     .subscribe(data => {
       this.bgverificatione = new BackgroundVerificationEmail();
       this.bgverification = new BackgroundVerification();
