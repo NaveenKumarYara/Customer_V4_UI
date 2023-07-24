@@ -641,21 +641,23 @@ SendStatusEmail()
   this.status.date = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString() +'@'+ this.time.hour + ':' + this.time.minute;
   this.status.jobStatus = 'Scheduled Interview';
   if (this.processSelection === 1) {
-    this.status.interviewType = "In-Person";
+    this.status.modeOfInterview = "In-Person";
     this.status.interviewDetails = "Face2Face";
   
   } else if (this.processSelection === 2) {
-    this.status.interviewType = "Phone";
+    this.status.modeOfInterview = "Phone";
     this.status.interviewDetails =  this.phoneNumber;
   
   } 
   else if (this.processSelection === 3) {
-    this.status.interviewType = "Video-Conference";
+    this.status.modeOfInterview = "Video-Conference";
+    // this.status.modeOfInterview = this.savenote.OtherInfo; 
+
     this.status.interviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!'; 
 
    } 
   //this.status.ToEmailID = this.data.Email;
-  this.status.modeOfInterview = this.savenote.OtherInfo; 
+    this.status.interviewType = this.savenote.OtherInfo; 
   //this.status.appLink = this.settingsService.settings.CandidateLogin;
   this.status.fromEmail = this.customer.Email;
   this.status.toEmailId = 'developer.arytic@gmail.com';
