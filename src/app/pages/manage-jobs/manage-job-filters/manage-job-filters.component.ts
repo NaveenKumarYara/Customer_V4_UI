@@ -81,11 +81,13 @@ export class ManageJobFiltersComponent implements OnInit {
 
   filterHandler() {
     this.advanceFilter = !this.advanceFilter;
+    this.quickSearch = !this.advanceFilter;
     this.advancedFiltersAppliedInternal(null);
     this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
 
   filterHideHandler() {
+    this.quickSearch = false;
     this.advanceFilter = false;
     this.advancedFiltersAppliedInternal(null);
     this.advancedFilterOpenStatus.emit(this.advanceFilter);

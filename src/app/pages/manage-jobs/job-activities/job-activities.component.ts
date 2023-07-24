@@ -165,6 +165,8 @@ export class JobActivitiesComponent implements OnInit {
     console.log("profile",this.profile)
   }
 
+  
+
   layoutView(name:string){
     this.viewLayout = name;
   }

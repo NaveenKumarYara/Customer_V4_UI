@@ -56,6 +56,7 @@ import { AdvanceFilterComponent } from './job-activities/job-activities-filters/
 import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 
 @NgModule({
+	
 	declarations: [
 	ManageJobsComponent,
 	PaginationComponent,
