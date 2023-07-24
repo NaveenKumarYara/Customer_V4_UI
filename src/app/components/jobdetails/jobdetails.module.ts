@@ -74,7 +74,7 @@ import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { SendnotificationdialogNcomponentComponent } from './view-jobdetails/viewjobdetails-candidate-profile/JobNotes/sendnotificationdialog-ncomponent/sendnotificationdialog-ncomponent.component';
-import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TagInputModule } from 'ngx-chips';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
@@ -82,6 +82,7 @@ import { EditprofileComponent } from './view-jobdetails/edit-profiles/editprofil
 import { AshareJobComponentComponent } from './view-jobdetails/Assign-Job/ashare-job-component/ashare-job-component.component';
 import { EditprofileCmComponent } from './view-jobdetails/editprofile-cm/editprofile-cm.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgxEditorModule } from 'ngx-editor';
 import { ConfirmationDialog } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/ConfirmationDialog.component';
 import { DatasourceComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Datasource/datasource/datasource.component';
 setTheme('bs3');
@@ -94,6 +95,7 @@ setTheme('bs3');
     ToastModule.forRoot(),
     NgbTooltipModule,
     BrowserModule,
+    NgxEditorModule,
     // routing,
     RouterModule,
     TagInputModule,

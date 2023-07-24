@@ -5,7 +5,9 @@ export class Settings {
   RefralbaseUrl: string;
   JobbaseUrl: string;
   SharingbaseUrl: string;
+  ResendEmail:string;
   EmailbaseUrl: string;
+  Emailv1baseUrl:string;
   GetInviteList: string;
   jobTitleEndpoint: string;
   getskillsEndpoint: string;
@@ -16,6 +18,8 @@ export class Settings {
   JobShareInvite: string;
   DeleteCandidateProfile:string;
   AJobShareInvite:string;
+  IdentityV1baseUrl:string;
+  SendProfileBGVerfication:string;
   CustomerInterviewAccept: string;
   // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
   SuggestJobTitleEndPoint: string;
@@ -41,6 +45,7 @@ export class Settings {
   // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
   Login: string;
   ForgotPassword: string;
+  CForgotPassword: string;
   ResetPassword: string;
   CustomerTokenLogin: string;
   CustomerAppLogin: string;

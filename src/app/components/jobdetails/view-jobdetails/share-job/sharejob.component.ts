@@ -13,11 +13,13 @@ import { SettingsService } from '../../../../../settings/settings.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services';
 declare var $: any;
-import { DomSanitizer } from "@angular/platform-browser";
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 // import { copyImageToClipboard } from 'copy-image-clipboard'
 const URL = 'http://localhost:4800/fileupload/';
 export interface mailtoAsset {
@@ -39,7 +41,7 @@ export class ShareJobComponent implements OnInit {
   managersList: Observable<CustomerUsers[]>;
   mailtoHeader = "mailto:?";
   subjectProp = "subject=";
-  do = new doc();
+  do = new Doc();
   bodyProp = "body=";
   amp = "&amp;";
   breakStr = "%0D%0A";
@@ -75,6 +77,7 @@ export class ShareJobComponent implements OnInit {
   referLink: any;
   whatsapp: any;
   subject: string;
+  public Editor = ClassicEditor;
   whatsappform: FormGroup;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -131,7 +134,7 @@ export class ShareJobComponent implements OnInit {
   defaultComments: any;
   jobdetailscustomer = new GetJobDetailCustomer();
 
-  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer, 
+  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer, private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private fb: FormBuilder, 
     private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, 
     private toastr: ToastsManager, private settingsService: SettingsService) 
@@ -331,22 +334,59 @@ export class ShareJobComponent implements OnInit {
     });
   }
 
-  getStringifiedAssets(assets: mailtoAsset[]) {
-    let subject = this.Title + '  had shared the job to you';
 
-    let str = "";
-    assets.forEach(asset => {
-      asset.Id = 'JobId: #' + this.data.JobId;
-      asset.Title = 'Job Title: ' + this.jobdetailscustomer.JobInfo.JobTitle;
-      asset.Location = 'Job Location: ' + this.jobdetailscustomer.JobLocation[0].CityName;
-      asset.Link = 'Job Link: ' + this.referLink;
-      str = str + this.breakStr + this.joinLines(asset.Id) + this.breakStr + this.joinLines(asset.Title) + this.breakStr + this.joinLines(asset.Location) + this.breakStr + this.joinLines(asset.Link) + this.breakStr;
-    })
 
-    const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
-    //return this.sanitizer.bypassSecurityTrustUrl(url)
-    window.location.href = url;
-  }
+// Function to encode the image URL as base64
+
+
+// Usage:
+
+openMailWithImage() {
+  const imageSrc = this.Image; // Replace with the path to your image
+  const attachmentName = 'image.png';
+
+  // Convert the image source to a base64 data URL
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    const base64data = reader.result as string;
+    const safeImageUrl: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(base64data);
+
+    // Generate the mailto link
+    
+    const mailto = `mailto:''?subject=Email with Image&body=Please see the attached image.%0D%0A%0D%0A`;
+    const attachment = `data:image/png;base64,${encodeURIComponent(base64data)}`;
+
+    // Open the mail client with the mailto link
+    window.location.href = `${mailto}attachment=${attachmentName};name=${attachment}`;
+  };
+
+  // Read the image file
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', imageSrc);
+  xhr.responseType = 'blob';
+  xhr.onload = () => {
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.send();
+}
+
+
+getStringifiedAssets(assets: mailtoAsset[]) {
+  let subject = this.Title + '  had shared the job to you';
+
+  let str = "";
+  assets.forEach(asset => {
+    asset.Id = 'JobId: #' + this.data.JobId;
+    asset.Title = 'Job Title: ' + this.jobdetailscustomer.JobInfo.JobTitle;
+    asset.Location = 'Job Location: ' + this.jobdetailscustomer.JobLocation[0].CityName;
+    asset.Link = 'Job Link: ' + this.referLink;
+    str = str + this.breakStr + this.joinLines(asset.Id) + this.breakStr + this.joinLines(asset.Title) + this.breakStr + this.joinLines(asset.Location) + this.breakStr + this.joinLines(asset.Link) + this.breakStr;
+  })
+
+  const url = `${this.mailtoHeader}${this.subjectProp}${subject}&${this.bodyProp}${str}${this.footer}`;
+  //return this.sanitizer.bypassSecurityTrustUrl(url)
+  window.location.href = url;
+}
 
   joinLines(lines: string) {
     return lines + this.breakStr;
@@ -722,13 +762,15 @@ export class ShareJobComponent implements OnInit {
 
   uploadFile(data: FormData, fileName) {
     this._service.byteStorage(data, 'ProfileAPI/api/ProfileAttachmentsNew').subscribe(data => {
-      this.do = new doc();
+      this.do = new Doc();
       let re = /\#/gi;
-      this.do.DocUrl = data;
-      this.do.DocName = fileName;
-      this.do.JobId = 0;
-      this.do.DocUrl = this.do.DocUrl.replaceAll(re, "%23");
-      this.do.ProfileId = 0;
+      //this.do.docUrl = data;
+      let docre:any;
+      docre = data;
+      this.do.docName = fileName!=undefined?fileName:'';
+      this.do.jobId = 0;
+      this.do.docUrl = docre.replaceAll(re, "%23")!=undefined?docre:'';
+      this.do.profileId = 0;
       this.dos.push(this.do);
 
       if (this.uploader.queue.length === this.dos.length) {
@@ -743,23 +785,30 @@ export class ShareJobComponent implements OnInit {
       // let emails = this.emailList.map(x => x.value);
       // var ctr = 0;
       // emails.forEach(element => {
-      this.Sharing.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-      this.Sharing.ToEmailID = this.emailList.map(x => x.value).toString();
-      this.Sharing.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-      this.Sharing.ShareId = 0;
-      this.Sharing.FromuserId = this.customerUser;
-      this.Sharing.CustomerId = this.customerId;
-      this.Sharing.ToUserId = "";
+      this.Sharing.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
+      this.Sharing.toEmailId = this.emailList.map(x => x.value).toString();
+      this.Sharing.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
+      this.Sharing.jobCard= this.Image;
+      this.Sharing.fromUserId = this.customerUser;
+      this.Sharing.customerId = this.customerId;
+      this.Sharing.fromID = this.fromId;
+      this.Sharing.shareId =0;
+      this.Sharing.toUserId = 0;
+      this.Sharing.position = '';
+      this.Sharing.clientName ='';
+      this.Sharing.clientLogo ='';
+      // this.Sharing.customerId = this.customerId;
+      // this.Sharing.toUserId = 0;
       // this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
-      this.Sharing.JobId = this.data.JobId;
-      this.Sharing.FromEmail = this.customer.Email;
-      this.Sharing.ToUserName = this.customer.FirstName + ' ' + this.customer.LastName;
-      this.Sharing.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
-      this.Sharing.Comments = this.selectedComments;
-      this.Sharing.Subject = this.subject;
-      this.Sharing.Docs = this.dos;
+      this.Sharing.jobId = this.data.JobId;
+      // this.Sharing.fullName = this.customer.Email;
+      this.Sharing.applicationName = this.subject;
+      this.Sharing.fullName = this.customer.FirstName + ' ' + this.customer.LastName;
+      this.Sharing.appLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
+      this.Sharing.text = this.selectedComments;
+      this.Sharing.docs = this.dos;
       this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
-        if (data === 0) {
+        if (data === 0 || data === null) {
           // ctr++; 
           // if (ctr === emails.length) {
           this.uploader.clearQueue();
@@ -796,28 +845,31 @@ export class ShareJobComponent implements OnInit {
 }
 
 export class JobShare {
-  ShareId: number;
-  FromuserId: number;
-  CustomerId: number;
-  ToUserId: string;
-  ToEmailID: string;
-  JobId: number;
-  AppLink: string;
-  Comments: string;
-  ToUserName: string;
-  FromEmail: string;
-  CCEmailAddress: string;
-  BCCEmailAddress: string;
-  Subject: string;
-  Docs: any;
-  readonly modules: ReadonlyArray<{}> = []
+  shareId: number
+  fromUserId: number
+  customerId: number
+  toUserId: number
+  fullName: string
+  jobId: number
+  appLink: string
+  applicationName: string
+  clientLogo: string
+  position: string
+  clientName: string
+  text: string
+  toEmailId: string
+  ccEmailAddress: string
+  bccEmailAddress: string
+  fromID: string
+  docs: Doc[]
+  jobCard: string
 }
 
-export class doc {
-  DocUrl: any;
-  ProfileId: number;
-  JobId: number;
-  DocName: any;
+export class Doc {
+  docUrl: string
+  profileId: number
+  jobId: number
+  docName: string
 }
 
 export class InviteInfo {

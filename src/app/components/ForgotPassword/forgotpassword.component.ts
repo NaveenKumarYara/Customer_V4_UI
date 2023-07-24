@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { SettingsService } from '../../../settings/settings.service';
 declare var $: any; 
 @Component({
   
@@ -18,12 +19,13 @@ export class ForgotComponent {
   Forgotform: any;
   customerId:any;
   companyLogo:any;
+  cforgot = new cforgot();
   password:any;
   email:any;
   result :any;
   userId:any;
   constructor( private route: ActivatedRoute, private toastr:ToastsManager,private _vcr: ViewContainerRef,
-      private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
+      private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService, private settingsService: SettingsService) {
         this.toastr.setRootViewContainerRef(_vcr);
   }
 
@@ -63,18 +65,14 @@ Login()
       .subscribe(
       data => {
         this.result = data;
+        debugger
         if(this.result.UserId>0&&this.result.CustomerId>0)
         {
+
           this.appService.ForgotPassword(this.Forgotform.value)
           .subscribe(
           data => {
-             this.toastr.success('Please check your email to reset the password');
-                setTimeout(() => {
-                    this.alertService.clear();
-                    this.toastr.dismissToast;
-                    this.Login();    
-                  }, 3000);
-                 
+                 this.SendEmail(data);
                } 
               
           );
@@ -96,6 +94,27 @@ Login()
 
   }
 
+  SendEmail(uID)
+  {
+    this.cforgot.appLink= this.settingsService.settings.Arytic +';pid='+uID;
+    this.cforgot.applicationName = "Arytic";
+    this.cforgot.clientLogo = " ";
+    this.cforgot.fromID = "donotreply@arytic.com";
+    this.cforgot.fullName = this.Forgotform.value.EmailId.split('@')[0];
+    this.cforgot.toEmailId = this.Forgotform.value.EmailId;
+    debugger
+    this.appService.CForgotPassword(this.cforgot)
+    .subscribe(
+    data => {
+      this.toastr.success('Please check your email to reset the password');
+      setTimeout(() => {
+          this.alertService.clear();
+          this.toastr.dismissToast;
+          this.Login();    
+        }, 3000);
+       
+    })
+  }
 
   ngOnInit() {
     this.Forgotform = this.fb.group({
@@ -103,5 +122,15 @@ Login()
     });
    
   }
+}
+
+export class cforgot
+{
+  fullName: string
+  appLink: string
+  toEmailId: string
+  applicationName: string
+  clientLogo: string
+  fromID: string
 }
 

@@ -103,7 +103,7 @@ export class RejectdialogComponent implements OnInit {
       this.jobdetailscustomer = res;
       this.eventStat.emit(null);
       //this.SaveNotes();
-      if(this.isShown1!=false&&this.isShown2!=false)
+      if(this.isShown2==true)
       {
       this.SendStatusEmail();
       }
@@ -178,11 +178,11 @@ export class RejectdialogComponent implements OnInit {
   this._service.PostService(this.emailNote,'EmailApi/api/EmailForFeedback').subscribe(
     check=>
     {
-          this.toastr.success('Email sent successfully','Success');
-          setTimeout(() => {
-            this.toastr.dismissToast;
+          // this.toastr.success('Email sent successfully','Success');
+          // setTimeout(() => {
+          //   this.toastr.dismissToast;
             this.emailNote = new SendNoteEmail();
-        }, 3000);
+      //  }, 3000);
     }
   )
 }
@@ -253,23 +253,31 @@ export class RejectdialogComponent implements OnInit {
   }
 
   SendStatusEmail() {
-    this.status.AppLink = this.settingsService.settings.CandidateLogin;
-    this.status.JobStatus = "Rejected";
-    this.status.FromEmail = this.customer.Email;
-    this.status.ToEmailID = this.data.Email;
-    this.status.FullName = this.data.FullName;
-    this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
-    this.status.JobLocation =
-      this.jobdetailscustomer.JobLocation[0].CityName;
+  //this.status.ToEmailID = this.data.Email;
+    
+  this.status.appLink = this.settingsService.settings.CandidateLogin;
+  this.status.jobStatus = "Rejected";
+  this.status.fromEmail = this.customer.Email;
+  this.status.toEmailId = this.data.Email;
+  this.status.fullName = this.data.FullName;
+  this.status.jobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.status.jobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+  this.status.jobId = this.data.jobId.toString();
+  this.status.applicationName = 'Arytic';
+  this.status.updatedBy = this.customer.FirstName + ' ' + this.customer.LastName;
+  this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
 
     this.appService.SendJobStatus(this.status).subscribe((status) => {
-      this.toastr.success("Email Sent", "Success");
-      setTimeout(() => {
-        this.toastr.dismissToast;
-        this.eventStat.emit(null);
-        this.SaveNotes();
-        //this.dialogRef.close();
-      }, 3000);
+      this.eventStat.emit(null);
+      this.SaveNotes();
+    //   this.toastr.success("Email Sent", "Success");
+    //   setTimeout(() => {
+    //     this.toastr.dismissToast;
+    //     this.eventStat.emit(null);
+    //     this.SaveNotes();
+    //     //this.dialogRef.close();
+    //   }, 3000);
+    // });
     });
   }
 
@@ -290,6 +298,9 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = " ";
       this.savenote.Doc = this.data.CUserId.toString() + "," + this.customer.UserId.toString();
+      this.SendEmail();
+      this.selectedComments = "";
+      this.EmailId = " ";
     }
 
     if (this.isShown1 == true && this.isShown2 == true) {
@@ -297,6 +308,9 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = this.savenote.OtherInfo;
       this.savenote.Doc =this.teammemberslist.map((x) => x.UserId).toString() + "," +this.data.CUserId.toString() +"," +this.customer.UserId.toString();
+      this.SendEmail();
+      this.selectedComments = "";
+      this.EmailId = " ";
     }
     if(this.isShown1==false&&this.isShown2==false)
     {
@@ -381,12 +395,7 @@ export class RejectdialogComponent implements OnInit {
      
     
      });
-     if(this.isShown2=true)
-  {
-    this.SendEmail();
-    this.selectedComments = "";
-    this.EmailId = " ";
-  } 
+
    }
   uploadMultiple() {
     for (let i = 0; i < this.uploader.queue.length; i++) {
@@ -450,13 +459,17 @@ export class RejectdialogComponent implements OnInit {
 }
 
 export class JobStatus {
-  public FullName: string;
-  public AppLink: string;
-  public JobStatus: string;
-  public ToEmailID: string;
-  public JobLocation: string;
-  public FromEmail: string;
-  public JobTitle: string;
+  fullName: string
+  appLink: string
+  jobStatus: string
+  toEmailId: string
+  jobLocation: string
+  companyName: string
+  updatedBy: string
+  applicationName: string
+  fromEmail: string
+  jobId: string
+  jobTitle: string
 }
 
 export class Notes {

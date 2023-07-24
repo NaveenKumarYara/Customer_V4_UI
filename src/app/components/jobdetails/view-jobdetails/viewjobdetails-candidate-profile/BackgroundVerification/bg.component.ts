@@ -25,6 +25,7 @@ export class backgrounddialogComponent {
     @Input() statusid: number;
     @Output() eventStat = new EventEmitter();
     bgverification = new BackgroundVerification();
+    bgverificatione = new BackgroundVerificationEmail();
     showRes : boolean = false;
     ShowVer : boolean = false;
     showone : boolean = false;
@@ -106,6 +107,36 @@ export class backgrounddialogComponent {
   )
   }
 
+  BgVerIficationEmail()
+  {
+    this.bgverificatione.fromEmail = 'info@arytic.com';
+    this.bgverificatione.toEmailID = this.customer.Email;
+    this.bgverificatione.admin = this.customer.Email;
+    this.bgverificatione.candidate = this.data.Name;
+    this.bgverificatione.custUserName = this.customer.FirstName +' ' + this.customer.LastName;
+    this.bgverificatione.jobId = this.data.JobId;
+    this.bgverificatione.comment = 'Requested Drug Test and Few Background Verification Process...' ;
+    this.bgverificatione.applicationName ='Arytic';
+    this.bgverificatione.appLink = "https://arytic.com/";
+    this.bgverificatione.customerName = this.customer.FirstName;
+    this.bgverificatione.education= this.bgverification.Education;
+    this.bgverificatione.employment = this.bgverification.Employment;
+    this.bgverificatione.certification=this.bgverification.Certification;
+    this.bgverificatione.price = this.bgverification.Price;
+    this.bgverificatione.reference = this.bgverification.Reference;
+    this.bgverificatione.criminalOption =this.bgverification.CriminalOption;
+    this.bgverificatione.criminalOptionSelected = this.bgverification.CriminalOptionSelected;
+    this.bgverificatione.drugTest = this.bgverification.DrugTest;
+    this.bgverificatione.drugOptionSelected = this.bgverification.DrugOptionSelected;
+    this.bgverificatione.profileId = this.data.ProfileId;
+    this.bgverificatione.customerUserId = this.data.CuserId;
+    return this.appService.SendProfileBGVerfication(this.bgverificatione)
+    .subscribe(data => {
+      this.bgverificatione = new BackgroundVerificationEmail();
+      this.bgverification = new BackgroundVerification();
+    });
+  }
+
   SaveBgVerIfication()
   {
     this.bgverification.FromEmail = this.customer.Email;
@@ -116,10 +147,11 @@ export class backgrounddialogComponent {
     this.bgverification.JobId = this.data.JobId;
     this.bgverification.Comment = 'Requested Drug Test and Few Background Verification Process...' ;
     //debugger
-    return this._service.PostService(this.bgverification, 'EmailAPI/api/BackGroundVerification')
+    return this._service.PostService(this.bgverification, 'IdentityAPI/api/SaveBackGroundVerification')
     .subscribe(data => {
       if(data >=0)
       {
+      this.BgVerIficationEmail();
       this.toastr.success('Processing Request', 'Success');
       this.eventStat.emit(null);
       return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
@@ -271,6 +303,33 @@ export class BackgroundVerification
   Comment: string;
   Admin: string;
   Candidate: string;
+
+}
+
+
+export class BackgroundVerificationEmail
+{
+  customerUserId: number
+  profileId: number
+  jobId: number
+  criminalOption: boolean
+  criminalOptionSelected: number
+  drugOptionSelected: number
+  drugTest: boolean=false
+  employment: boolean=false
+  education: boolean=false
+  certification: boolean=false
+  reference: boolean=false
+  price: string
+  toEmailID: string
+  fromEmail: string
+  custUserName: string
+  comment: string
+  admin: string
+  candidate: string
+  customerName: string
+  applicationName: string
+  appLink: string
 
 }
 

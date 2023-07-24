@@ -152,6 +152,10 @@
         <!--Clear Filters-->
         <a href="javascript:void(0)">Clear All</a>
     </div>
+   <br/>
+    <button class="btn btn-border pull-right">
+        <a href="javascript:void(0)" (click)="MyJobsExport()"> <i class="fa fa-arrow-up"></i> Export to CSV </a>
+    </button>
 </div>
 <div class="clearfix">&nbsp;</div>
 <!-- <div>
@@ -160,11 +164,12 @@
 
 
 
+
 <div id="grid-view" class="grid grid-view-custom tab-pane fade in active" *ngIf="id==1">
     <div class="col-md-12"  data-step="7" data-title="Step 7" data-intro="A detailed view of posted jobs can be found here." data-position='top'>
         <div class="row grid-custom-row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 grid-custom-col" *ngFor="let job of joblist.Jobs; let i=index">
-                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">
+                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i" [parentApi]="getParentApi()">
                 </app-manage-joblist-gridlayout>
             </div>
         </div>
@@ -197,7 +202,7 @@
         <div id="list-view">
             <ul class="job-list">
                 <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
-                    <app-manage-joblist-tablelayout [job]="job" [joblist]="joblist" [index]="i">
+                    <app-manage-joblist-tablelayout [job]="job" [joblist]="joblist" [index]="i" [parentApi]="getParentApi()">
                     </app-manage-joblist-tablelayout>
                 </li>
             </ul>

@@ -14,6 +14,7 @@ import { AppService } from '../../../../app.service';
 declare var $: any;
 import * as introJs from 'intro.js/intro.js';
 import { OnDestroy } from '@angular/core/public_api';
+import { deactivate } from '../../models/deactivate';
 @Component({
   selector: 'app-manage-load-joblist',
   templateUrl: './load-joblist.component.html',
@@ -25,6 +26,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
   sub: any;
   customer: any;
   customerId: any;
+  deactivate = new deactivate();
   userId: any;
   searchString:string='';
   viewBy:any;
@@ -168,6 +170,57 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
     this.sortBy = 0;
     this.searchString = undefined;
     this.tClose();
+  }
+
+
+
+  MyJobsExport()
+  {
+    
+    let Name = this.customer.FirstName + ' ' + 'Jobs';
+    this.downloadFile(this.joblist.Jobs,Name);
+
+  }
+
+  downloadFile(data: any, filename) {
+    debugger
+    let csvData = this.ConvertToCSV(data, [ 'JobTitle', 'JobId', 'ClientName','PostedOn', 'JobStatus', 'TotalApplicants',  'HiringLeaderName']);
+    console.log(csvData)
+    let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+    let dwldLink = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+    let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+      dwldLink.setAttribute("target", "_blank");
+    }
+    dwldLink.setAttribute("href", url);
+    dwldLink.setAttribute("download", filename + ".csv");
+    dwldLink.style.visibility = "hidden";
+    document.body.appendChild(dwldLink);
+    dwldLink.click();
+    document.body.removeChild(dwldLink);
+  }
+
+  ConvertToCSV(objArray: any, headerList: any) {
+    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    let str = '';
+    let row = 'S.No,';
+
+    for (let index in headerList) {
+      row += headerList[index] + ',';
+    }
+    row = row.slice(0, -1);
+    str += row + '\r\n';
+    for (let i = 0; i < array.length; i++) {
+      let line = (i + 1) + '';
+      for (let index in headerList) {
+        let head = headerList[index];
+
+        line += ',' + array[i][head];
+      }
+      str += line + '\r\n';
+    }
+    return str;
   }
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 
@@ -375,6 +428,17 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
         //this.defaultValue = '0';
       this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
       },
+      callchangeJobStatus:(job, val)=> {
+        this.deactivate.jobId = job.JobId;
+        this.deactivate.customerId = this.customerId;
+        this.deactivate.isActive = val;
+          this.appService.deactivateJob(this.deactivate)
+          .subscribe(
+          data => {
+            this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
+        },
+          error => console.log(error));
+      },
       callSearchMethod : (searchString) => {
         this.spinner.show();
        // this.parentMethod(name);
@@ -443,6 +507,7 @@ export class LoadJoblistComponent implements OnInit,OnDestroy {
 
 export interface ParentComponentApi {
   callMethod: (val) => void;
+  callchangeJobStatus:(job, val) => void;
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
   Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,profileStatus,skills,departments,titles,education,isfiltered,Users) => void;

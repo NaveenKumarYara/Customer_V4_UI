@@ -14374,7 +14374,7 @@ a.ui-button:active,
 }
 
 .page--manage-jobs .card .status.InActive {
-	background-color: #FBD57C;
+	background-color: #c7c52b;
 }
 
 .page--manage-jobs .card .status.hired {
@@ -14396,7 +14396,7 @@ a.ui-button:active,
 }
 
 .page--manage-jobs .card .status.rejected {
-	background-color: #FFBCBC;
+	background-color: #f24434;;
 }
 
 .page--manage-jobs .status.applied {
@@ -14428,7 +14428,7 @@ a.ui-button:active,
 }
 
 .page--manage-jobs .status.Uploaded {
-	background-color: #66dab5;
+	background-color: #eb9175;;
 }
 
 .page--manage-jobs .card .stats {
@@ -22810,7 +22810,7 @@ a:hover {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	z-index: 2;
-	height: 25px;
+	height: 35px;
 	line-height: 1;
 	background-color: #e34f4f;
 	color: #fff;
@@ -22831,7 +22831,7 @@ a:hover {
 
 .p-rel .error1 {
 	top: -20px;
-	right: -15px;
+	right: 40px;
 }
 
 .error1:after,

@@ -636,38 +636,50 @@ PopulateJobdetail () {
 
 SendStatusEmail()
 {
-  this.status.AppLink = this.settingsService.settings.CandidateLogin;
-  this.status.Date = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString() +'@'+ this.time.hour + ':' + this.time.minute;
-  this.status.JobStatus = 'Scheduled Interview';
+  this.status.applink= this.settingsService.settings.CandidateLogin;
+  this.status.updatedBy = this.customer.FirstName + ' ' + this.customer.LastName;
+  this.status.date = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString() +'@'+ this.time.hour + ':' + this.time.minute;
+  this.status.jobStatus = 'Scheduled Interview';
   if (this.processSelection === 1) {
-    this.status.InterviewType = "In-Person";
-    this.status.InterviewDetails = "Face2Face";
+    this.status.modeOfInterview = "In-Person";
+    this.status.interviewDetails = "Face2Face";
   
   } else if (this.processSelection === 2) {
-    this.status.InterviewType = "Phone";
-    this.status.InterviewDetails =  this.phoneNumber;
+    this.status.modeOfInterview = "Phone";
+    this.status.interviewDetails =  this.phoneNumber;
   
   } 
   else if (this.processSelection === 3) {
-    this.status.InterviewType = "Video-Conference";
-    this.status.InterviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!';     
+    this.status.modeOfInterview = "Video-Conference";
+    // this.status.modeOfInterview = this.savenote.OtherInfo; 
+
+    this.status.interviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!'; 
+
    } 
-  this.status.FromEmail = this.customer.Email;
-  this.status.ToEmailID = this.data.Email;
-  this.status.FullName = this.data.FullName;
-  this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
-  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+  //this.status.ToEmailID = this.data.Email;
+    this.status.interviewType = this.savenote.OtherInfo; 
+  //this.status.appLink = this.settingsService.settings.CandidateLogin;
+  this.status.fromEmail = this.customer.Email;
+  this.status.toEmailId = 'developer.arytic@gmail.com';
+  this.status.fullName = this.data.FullName;
+  this.status.jobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.status.jobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
+  this.status.jobId = this.data.jobId.toString();
+  this.status.applicationName = 'Arytic';
+  //this.status.signature = '';
+  //this.status.name = this.customer.FirstName + ' ' + this.customer.LastName;
+  this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
-     this.toastr.success('Email Sent to Candidate','Success');
-        setTimeout(() => {          
-            this.toastr.dismissToast; 
+    //  this.toastr.success('Email Sent to Candidate','Success');
+    //     setTimeout(() => {          
+    //         this.toastr.dismissToast; 
            
             this.schIntw = new ScheduleInterview();
             this.SaveNotes();
             //this.dialogRef.close();
-          }, 3000);
+          // }, 3000);
          
        } 
                   
@@ -881,16 +893,21 @@ export class ScheduleInterview {
 
 export class JobInterviewStatus
 {
-    public FullName :string
-    public AppLink :string
-    public JobStatus :string
-    public ToEmailID :string
-    public InterviewType :string
-    public InterviewDetails :string
-    public JobLocation :string
-    public Date :string
-    public  FromEmail :string
-    public JobTitle :string
+  fullName: string
+  jobId: string
+  jobTitle: string
+  jobStatus: string
+  companyName: string
+  updatedBy: string
+  date: string
+  modeOfInterview:string;
+  interviewType: string
+  jobLocation: string
+  interviewDetails: string
+  toEmailId: string
+  applink: string
+  fromEmail: string
+  applicationName: string
 }
 
 export class CJobInterviewStatus

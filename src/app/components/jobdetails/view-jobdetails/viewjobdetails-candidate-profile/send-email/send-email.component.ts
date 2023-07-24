@@ -11,6 +11,7 @@ import { CustomerSubscription } from '../../../../../../models/CustomerSubscript
 import { GetSubscriptionDetails } from '../../../../../../models/GetSubscriptionDetails';
 import { FormGroup, AbstractControl, Validators, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -24,6 +25,7 @@ export class SendEmailComponent implements OnInit {
   conversation = new StartConversation();
   emailUpdate = new EmailUpdateStatus();
   subject: string;
+  public Editor = ClassicEditor;
   isChecked: boolean = false;
   ccEmailAddress: string;
   ToEmailID: string;
@@ -263,56 +265,56 @@ export class SendEmailComponent implements OnInit {
 
     this.isSendingEmail = true;
     //this.spinner.show();
-    this.conversation.FromID = this.customerName.Email;
-    this.conversation.FullName = this.data.firstname + this.data.lastname;
-    this.conversation.Subject = this.subject;
-    this.conversation.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-    this.conversation.ToEmailID = this.emailList.map(x => x.value).toString();
-    this.conversation.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-    this.conversation.Body = this.body;
+    this.conversation.fromID = this.customerName.Email;
+    this.conversation.fullName = this.data.firstname + this.data.lastname;
+    this.conversation.subject = this.subject;
+    this.conversation.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
+    this.conversation.toEmailID = this.emailList.map(x => x.value).toString();
+    this.conversation.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
+    this.conversation.body = this.body;
+    this.conversation.applicationName = 'Arytic';
     // if(){
     if (this.data.profileUpload === false || this.data.profileUpload === undefined) {
       if (this.UserId > 0) {
-        this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
+        this.conversation.appLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
       }
       else {
         if (this.sdetails.planId != "enterprise" || this.sdetails.planId === undefined) {
-          this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp + ';sid=' + this.data.ccpid + ';jId=' + this.data.jobId;
+          this.conversation.appLink = this.settingsService.settings.NewCandidateSignUp + ';sid=' + this.data.ccpid + ';jId=' + this.data.jobId;
         }
         else
         {
-          this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId + ';sid=' + this.data.ccpid;
+          this.conversation.appLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId + ';sid=' + this.data.ccpid;
         }
       }
     }
     if (this.data.profileUpload === true) {
       if (this.sdetails.planId != "enterprise" || this.sdetails.planId === undefined) {
         if (this.UserId > 0) {
-          this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
+          this.conversation.appLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
         }
         else {
-          this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp + ';sid=' + this.data.ccpid + ';jId=' + this.data.jobId;
+          this.conversation.appLink = this.settingsService.settings.NewCandidateSignUp + ';sid=' + this.data.ccpid + ';jId=' + this.data.jobId;
         }
 
       }
       if (this.sdetails.planId === "enterprise") {
         if (this.UserId > 0) {
-          this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
+          this.conversation.appLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid;
         }
         else {
-          this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId + ';sid=' + this.data.ccpid;
+          this.conversation.appLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId + ';sid=' + this.data.ccpid;
         }
       }
 
 
 
     }
-    this.conversation.UserCheck = this.data.userId > 0 ? 'Login' : 'Yes I will Join';
+    this.conversation.userCheck = this.data.userId > 0 ? 'Login' : 'Yes I will Join';
     // }
-
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 
-      if (data === 0) {
+      if (data === 0 || data === null)  {
         this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
         });
 
@@ -324,10 +326,10 @@ export class SendEmailComponent implements OnInit {
         setTimeout(() => {
           this.toastr.dismissToast;
         }, 3000);
-        this.conversation.FullName = '';
-        this.conversation.Subject = '';
-        this.conversation.Body = '';
-        this.conversation.ToEmailID = '';
+        this.conversation.fullName = '';
+        this.conversation.subject = '';
+        this.conversation.body = '';
+        this.conversation.toEmailID = '';
         this.mailbox = false;
       }
     
@@ -356,16 +358,16 @@ export class SendEmailComponent implements OnInit {
 }
 
 export class StartConversation {
-  FullName: string;
-  Subject: string;
-  Body: string;
-  ToEmailID: string;
-  FromID: string;
-  ApplicationName: string;
-  AppLink: string;
-  UserCheck: string;
-  CCEmailAddress: string;
-  BCCEmailAddress: string;
+  fullName: string
+  subject: string
+  toEmailID: string
+  applicationName: string
+  appLink: string
+  body: string
+  userCheck: string
+  fromID: string
+  ccEmailAddress: string
+  bccEmailAddress: string
 }
 export class EmailUpdateStatus {
   JobResponseId: number;

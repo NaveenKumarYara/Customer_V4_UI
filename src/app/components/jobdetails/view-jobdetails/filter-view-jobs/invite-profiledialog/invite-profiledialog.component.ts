@@ -8,6 +8,7 @@ import { GetInviteList } from '../../../../../../models/GetCompanyBenefit';
 import { AnimationStyleMetadata } from '@angular/core/src/animation/dsl';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -21,6 +22,7 @@ export class InviteProfiledialogComponent implements OnInit {
   inviteinfo = new InviteInfo();
   inviteform: FormGroup;
   customer: any;
+  public Editor = ClassicEditor;
   body: string;
   loading = false;
   isChecked: boolean = false;
@@ -223,26 +225,27 @@ export class InviteProfiledialogComponent implements OnInit {
     { 
 
     this.startedInvite = true;
-    this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
+    this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.jobId = this.data.jobId;
-    this.inviteinfo.userName = this.customer.FirstName;
-    this.inviteinfo.fullName = this.customer.FirstName +' '+this.customer.LastName ;
+    this.inviteinfo.fullName = this.customer.FirstName +' '+ this.customer.LastName;
     this.inviteinfo.statusId = 0;
-    // this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
-    this.inviteinfo.ApplicationName = 'Arytic';
-    this.inviteinfo.CandFullName = 'New User';
-    this.inviteinfo.CustFullName = this.customer.FirstName;
-    this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.CCEmailAddress = this.ccemailList.map(x => x.value).toString();
-    this.inviteinfo.ToEmailId =  this.emailList.map(x => x.value).toString();
-    this.inviteinfo.BCCEmailAddress = this.bccemailList.map(x => x.value).toString();
-    this.inviteinfo.Body = this.selectedComments;
-    this.inviteinfo.FromID = this.fromId;
-    this.inviteinfo.Subject = this.subject;
-    this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
+	this.inviteinfo.jobCard = ' ';
+    this.inviteinfo.custFullName = this.customer.FirstName;
+    this.inviteinfo.candFullName = '';
+	this.inviteinfo.appLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
+    this.inviteinfo.applicationName = this.subject;
+	this.inviteinfo.position = '';
+    this.inviteinfo.clientLogo = '';
+	this.inviteinfo.clientName ='';
+	this.inviteinfo.body = this.selectedComments;
+    this.inviteinfo.ccEmailAddress = this.ccemailList.map(x => x.value).toString();
+    this.inviteinfo.toEmailId =  this.emailList.map(x => x.value).toString();
+    this.inviteinfo.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
+    this.inviteinfo.fromID = this.fromId;
+    debugger
       this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
-        if (data === 0) {
+        if (data === 0 || data === null) {
 
           this.startedInvite = false;
           this.dialogRef.close();
@@ -271,22 +274,23 @@ export class InviteProfiledialogComponent implements OnInit {
 
 
 export class InviteInfo {
-  customerId: number;
-  userId: number;
-  jobId: number;
-  fullName: string;
-  userName: string;
-  statusId: number;
-  CustFullName: string;
-  CandFullName: string;
-  AppLink: string;
-  ToEmailId: string;
-  ApplicationName: string;
-  ClientLogo: string;
-  CCEmailAddress: string;
-  BCCEmailAddress: string;
-  Subject: string;
-  Body: string;
-  FromID: string;
+  userId: number=0;
+  customerId: number=0;
+  jobId: number=0;
+  fullName: string='';
+  statusId: number=0;
+  jobCard: string='';
+  custFullName: string='';
+  candFullName: string='';
+  appLink: string='';
+  position: string='';
+  clientName: string='';
+  body: string='';
+  toEmailId: string='';
+  applicationName: string='';
+  clientLogo: string='';
+  ccEmailAddress: string='';
+  bccEmailAddress: string='';
+  fromID: string='';
   readonly modules: ReadonlyArray<{}> = [];
 }

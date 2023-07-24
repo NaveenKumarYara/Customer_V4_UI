@@ -33,7 +33,7 @@
 
                             <!--Company Type-->
                             <div class="row spt-2">
-                                <div class="form-group col-md-6 padding-right">
+                                <div class="form-group col-md-4 padding-right">
                                     <div class="p-rel">
                                         <input type="text" class="form-control" formControlName="ContactFirstName"
                                             placeholder="First Name *" minlength=3 maxlength=15
@@ -55,7 +55,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 padding-left">
+                                <div class="form-group col-md-4 padding-left">
+                                    <div class="p-rel">
+                                        <input type="text" class="form-control" formControlName="ContactMiddleName"
+                                            minlength=1 maxlength=15 placeholder="Middle Name *"
+                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 96 && event.charCode <= 122)"
+                                            >
+                                        <div *ngIf="signUpform.controls['ContactMiddleName'].invalid && (signUpform.controls['ContactMiddleName'].dirty || signUpform.controls['ContactMiddleName'].touched)"
+                                            class="error1">                                
+                                            <div *ngIf="signUpform.controls['ContactMiddleName'].errors.minlength">
+                                                Minimum 1 Characters
+                                            </div>
+                                            <div *ngIf="signUpform.controls['ContactMiddleName'].errors.maxlength">
+                                                Maximum 15 Characters
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group col-md-4 padding-left">
                                     <div class="p-rel">
                                         <input type="text" class="form-control" formControlName="ContactLastName"
                                             minlength=3 maxlength=15 placeholder="Last Name *"

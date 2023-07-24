@@ -41,7 +41,7 @@ import { InterviewTypeComponent } from "./Createajob/Step3/interviewtype.compone
 import { ReportingManagerComponent } from "./Createajob/Step3/reportingmanager.component";
 import { recriuterComponent } from "./Createajob/Step3/recriuter.component";
 import { TeammembersComponent } from "./Createajob/Step3/teammembers.component";
-import { CKEditorModule } from "ckeditor4-angular";
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
@@ -57,12 +57,14 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { FileUploadModule } from "ng2-file-upload";
 import { NgxDocViewerModule } from "ngx-doc-viewer";
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     NgxDocViewerModule,
+    NgxEditorModule,
     ReactiveFormsModule,
     CKEditorModule,
     MatDialogModule,

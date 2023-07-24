@@ -329,6 +329,10 @@ export class ApiService {
         this.settingsService.settings.EmailbaseUrl
       )
       .replace(
+        new RegExp("EmailV1API", "gi"),
+        this.settingsService.settings.Emailv1baseUrl
+      )
+      .replace(
         new RegExp("QuestionAPI", "gi"),
         this.settingsService.settings.QuestionbaseUrl
       )

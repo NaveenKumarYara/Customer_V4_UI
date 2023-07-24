@@ -42,6 +42,7 @@ import { UploadProfilesComponent } from "../upload-profiles/upload-profiles.comp
 import { EditprofileComponent } from "../edit-profiles/editprofile/editprofile.component";
 import { CdocumentManagerComponent } from "../../../Postajob/document-manager/Candidatedocuments/cdocument-manager/cdocument-manager.component";
 import { DatasourceComponent } from "./Datasource/datasource/datasource.component";
+import { Profile } from "../../models/SearchProfileDeatils";
 const html2canvas: any = _html2canvas;
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
@@ -267,6 +268,54 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     } else {
       this.visibleIndex = ind;
     }
+  }
+
+  export()
+  {
+    
+    let Name = this.jobdetailscustomer.JobInfo.JobTitle +' - '+  this.customer.FirstName ;
+    this.downloadFile(this.jobdetailsprofiles.Profile,Name);
+
+  }
+
+  downloadFile(data: any, filename) {
+    let csvData = this.ConvertToCSV(data, [ 'FirstName', 'LastName', 'Email','ProfileTitle', 'JobStatus', 'MatchingPercentage',  'MobileCountryCodeId', 'MobilePhone', 'CreatedOn']);
+    console.log(csvData)
+    let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+    let dwldLink = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+    let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+      dwldLink.setAttribute("target", "_blank");
+    }
+    dwldLink.setAttribute("href", url);
+    dwldLink.setAttribute("download", filename + ".csv");
+    dwldLink.style.visibility = "hidden";
+    document.body.appendChild(dwldLink);
+    dwldLink.click();
+    document.body.removeChild(dwldLink);
+  }
+
+  ConvertToCSV(objArray: any, headerList: any) {
+    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    let str = '';
+    let row = 'S.No,';
+
+    for (let index in headerList) {
+      row += headerList[index] + ',';
+    }
+    row = row.slice(0, -1);
+    str += row + '\r\n';
+    for (let i = 0; i < array.length; i++) {
+      let line = (i + 1) + '';
+      for (let index in headerList) {
+        let head = headerList[index];
+
+        line += ',' + array[i][head];
+      }
+      str += line + '\r\n';
+    }
+    return str;
   }
 
   download(url, name) {
@@ -785,14 +834,19 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         cancelButtonText: 'No'
       }).then((result) => {
         if (result.value === true) {
-          this.requestRef.CustomerId = this.customer.CustomerId;
-          this.requestRef.UserId = this.customer.UserId;
-          this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-          this.requestRef.FromEmail = this.customer.Email;
-          this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
-          this.requestRef.ProfileId = profile.ProfileId;
-          this.requestRef.ToEmailID = profile.Email;
-          this.requestRef.UserName = profile.FirstName;
+          this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          this.requestRef.fromID = this.customer.Email;
+          this.requestRef.jobId = this.jobdetailscustomer.JobInfo.JobId;
+          this.requestRef.referenceType = "2";
+          //this.requestRef.profileId = profile.ProfileId.toString();
+          this.requestRef.toEmailId = profile.Email;
+          this.requestRef.candFullName = profile.FirstName;
+          this.requestRef.refereeFullName = this.customer.FirstName + ' ' + this.customer.LastName;
+          this.requestRef.jobTitle= this.jobdetailscustomer.JobInfo.JobTitle;
+          this.requestRef.clientLogo= ' ';
+          this.requestRef.applicationName = 'Arytic';
+          this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          this.requestRef.comments = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
           this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
             this.CommentProfile = undefined;
             this.requestRef = new RequestRefernce();
@@ -824,6 +878,20 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     Email,
     FirstName,
     LastName) {
+      if(Email.includes('@noemail.com'))
+      {
+        swal(
+          {
+            
+            title: 'Please add valid email to request ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            confirmButtonText: 'ok.',
+          });
+      }
+      else
+      {
     swal(
       {
         
@@ -873,6 +941,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
         }
       })
+    }
   }
 
 
@@ -885,23 +954,39 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     ResponseStatusId,
     CCPID,
     UserId,IsUploaded) {
-    swal(
+      if(Email.includes('@noemail.com'))
       {
-        
-        title: 'Hey would you like to resend email to ' + FirstName + ' ' + LastName,
-        showConfirmButton: true,
-        showCancelButton: true,
-        type: "info",
-        confirmButtonColor: '#66dab5',
-        cancelButtonColor: '#FF0000',
-        confirmButtonText: 'Yes,Proceed.',
-        cancelButtonText: 'No'
-      }).then((result) => {
-        if (result.value === true) {
-             this.OpenSendEmailDialog(NoEmail,Email,FirstName,LastName,JobResponseId,ProfileId,ResponseStatusId,CCPID,UserId,IsUploaded);
+        swal(
+          {
+            
+            title: 'Please add valid email to request ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            confirmButtonText: 'ok.',
+          });
+      }
+      else
+      {
+        swal(
+          {
+            
+            title: 'Hey would you like to resend email to ' + FirstName + ' ' + LastName,
+            showConfirmButton: true,
+            showCancelButton: true,
+            type: "info",
+            confirmButtonColor: '#66dab5',
+            cancelButtonColor: '#FF0000',
+            confirmButtonText: 'Yes,Proceed.',
+            cancelButtonText: 'No'
+          }).then((result) => {
+            if (result.value === true) {
+                 this.OpenSendEmailDialog(NoEmail,Email,FirstName,LastName,JobResponseId,ProfileId,ResponseStatusId,CCPID,UserId,IsUploaded);
+    
+            }
+          })
+      }
 
-        }
-      })
   }
 
   RequestAchivement(profile) {
@@ -1252,6 +1337,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;  
+          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -1713,8 +1799,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.ProfileId = profileId;
     this.iconHide = true;
     this.profileFlipVideo.VideoProfile = videoProfile;
-    this.profileFlipVideo.VideoSizzle = videoSizzle;
+    this.profileFlipVideo.VideoSizzle = this.settingsService.settings.IdentityV1baseUrl + videoSizzle;
     // $('.matching-details').removeClass('open');
+    debugger
     // $('#matchingDetails-' + profileId).toggleClass('open');
     if (profileOrSizzle === true) {
       if (this.profileFlipVideo.VideoSizzle == null && this.profileFlipVideo.VideoProfile != null) {
@@ -2038,15 +2125,17 @@ export class addon {
 }
 
 export class RequestRefernce {
-  public ToEmailID: string;
-  public CustomerId: number;
-  public UserId: number;
-  public ProfileId: number;
-  public UserName: string;
-  public AppLink: string;
-  public FromEmail: string;
-  public CompanyName: string;
-  public Comment: string;
+  refereeFullName: string
+  candFullName: string
+  referenceType: string
+  comments: string
+  jobTitle: string
+  jobId: number
+  appLink: string
+  toEmailId: string
+  applicationName: string
+  clientLogo: string
+  fromID: string
 }
 
 export class JobStatus {

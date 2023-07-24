@@ -262,7 +262,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	selectedDomains: any;
 	searchJobValue: any;
 	searchJob = new Subject<string>();
-	activeJobs: any[];
+	activeJobs: any[]=[];
 	selectedSkillCount: number;
 	selectedDomainCount: number;
 	selectedProfileCount: number;
@@ -539,6 +539,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		this.getSkills();
 		this.getDomains();
 		this.getCandidates();	
+		this.getActiveJobs();
 		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 		// 	.subscribe(res => {
 		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -715,8 +716,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 			--this.selectedIndex;
 		}
 	}
-	applySidePanel() {
-		this.getActiveJobs();
+	applySidePanel() {	
 		this.applyJobSidePanelShow = true;
 	}
 
@@ -733,26 +733,27 @@ export class DetailsComponent implements OnInit,OnDestroy {
 
 		this.isSendingEmail = true;
 		//this.spinner.show();
-		this.conversation.FullName = this.SName;
-		this.conversation.Subject = this.subject;
-		this.conversation.CCEmailAddress = this.ccEmailAddress;
-		this.conversation.Body = this.body;
-        this.conversation.ToEmailID = this.ToEmailID;
+		this.conversation.fullName = this.SName;
+		this.conversation.subject = this.subject;
+		this.conversation.ccEmailAddress = this.ccEmailAddress;
+		this.conversation.body = this.body;
+        this.conversation.toEmailID = this.ToEmailID;
 
 		// if(){
         if(this.mailbox == false)
 		{
-			this.conversation.AppLink = this.settingsService.settings.CandidateSignUp;
-			this.conversation.UserCheck =   'Yes I will Join';
+			this.conversation.appLink = this.settingsService.settings.CandidateSignUp;
+			this.conversation.userCheck =   'Yes I will Join';
 		}
 	   else
 	   {
-		this.conversation.AppLink = this.settingsService.settings.CandidateLogin;
-		this.conversation.UserCheck =  'Login';
+		this.conversation.appLink = this.settingsService.settings.CandidateLogin;
+		this.conversation.userCheck =  'Login';
 	   }
+	   this.conversation.applicationName = 'Arytic';
 		this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 	
-		  if (data === 0) {
+		  if (data === 0 || data === null) {
 			//this.spinner.hide();
 			this.isSendingEmail = false;
 			this.toastr.success('Mail Sent', 'Success');
@@ -760,10 +761,10 @@ export class DetailsComponent implements OnInit,OnDestroy {
 			  this.toastr.dismissToast;
 			}, 2000);
 			this.shareESidepanel = false;
-			this.conversation.FullName = '';
-			this.conversation.Subject = '';
-			this.conversation.Body = '';
-			this.conversation.ToEmailID = '';
+			this.conversation.fullName = '';
+			this.conversation.subject = '';
+			this.conversation.body = '';
+			this.conversation.toEmailID = '';
 			this.SName = '';
 			this.mailbox = false;
 		  }
@@ -795,6 +796,53 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		
 		this.ToEmailID = Email;
 	}
+	MyCProfilesExport()
+	{
+		let Name = this.customer.FirstName + ' ' + 'Profiles';
+		this.downloadFile(this.candidates,Name);
+	
+	  }
+	
+	  downloadFile(data: any, filename) {
+		let csvData = this.ConvertToCSV(data, [ 'fullName', 'email', 'contactNumber','jobTitleName','company','locations']);
+		console.log(csvData)
+		let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+		let dwldLink = document.createElement("a");
+		let url = URL.createObjectURL(blob);
+		let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+		if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+		  dwldLink.setAttribute("target", "_blank");
+		}
+		dwldLink.setAttribute("href", url);
+		dwldLink.setAttribute("download", filename + ".csv");
+		dwldLink.style.visibility = "hidden";
+		document.body.appendChild(dwldLink);
+		dwldLink.click();
+		document.body.removeChild(dwldLink);
+	  }
+	
+	  ConvertToCSV(objArray: any, headerList: any) {
+		let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+		let str = '';
+		let row = 'S.No,';
+	
+		for (let index in headerList) {
+		  row += headerList[index] + ',';
+		}
+		row = row.slice(0, -1);
+		str += row + '\r\n';
+		for (let i = 0; i < array.length; i++) {
+		  let line = (i + 1) + '';
+		  for (let index in headerList) {
+			let head = headerList[index];
+	
+			line += ',' + array[i][head];
+		  }
+		  str += line + '\r\n';
+		}
+		return str;
+	  }
+	
 
 	hideApplySidePanel() {
 		this.applyJobSidePanelShow = false;
@@ -1072,7 +1120,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	}
 	getActiveJobs() {
 		//debugger;
-		this.candidatesLoading = true;
+		//this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		if (this.searchJobValue === undefined) {
@@ -1172,11 +1220,11 @@ export class DetailsComponent implements OnInit,OnDestroy {
 		for (var index: number; index < selectedCandidates.length; index++) {
 			let conversation = new StartConversation();
 			let data = selectedCandidates[index];
-			conversation.FullName = data.firstname + data.lastname;
-			conversation.Subject = this.subject;
-			conversation.ToEmailID = data.email;
-			conversation.Body = this.body;
-			conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + data.ccpid;
+			conversation.fullName = data.firstname + data.lastname;
+			conversation.subject = this.subject;
+			conversation.toEmailID = data.email;
+			conversation.body = this.body;
+			conversation.appLink = this.settingsService.settings.CandidateLogin + ';lid=' + data.ccpid;
 		}
 		return conversations;
 	}

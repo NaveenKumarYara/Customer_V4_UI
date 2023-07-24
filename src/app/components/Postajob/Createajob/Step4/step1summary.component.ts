@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { jobImmigrationData } from '../../models/jobPostInfo';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-steps-step4-step1summary',
   templateUrl: './step1summary.component.html',
@@ -9,6 +10,7 @@ import { jobImmigrationData } from '../../models/jobPostInfo';
 export class Step1SummaryComponent implements OnInit {
 
 jobCategoryId: number;
+public Editor = ClassicEditor;
 jobCategory: string;
 jobTitle = '';
 minExp: number;

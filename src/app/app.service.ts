@@ -1300,6 +1300,15 @@ export class AppService {
       });
   }
 
+  SendProfileBGVerfication(body) {
+    return this.http
+      .post(this.settingsService.settings.SendProfileBGVerfication, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
 
   getPersonTypes() {
     return this.personTypes.slice();
@@ -1798,6 +1807,17 @@ export class AppService {
       });
   }
 
+
+  ResendEmail(body) {
+    return this.http
+      .post(this.settingsService.settings.ResendEmail, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
   RecrutingTeam(body) {
     return this.http
       .post(this.settingsService.settings.SaveRecruiterTeamList, body)
@@ -1810,6 +1830,15 @@ export class AppService {
   ForgotPassword(body) {
     return this.http
       .post(this.settingsService.settings.ForgotPassword, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  CForgotPassword(body) {
+    return this.http
+      .post(this.settingsService.settings.CForgotPassword, body)
       .map((res: Response) => res)
       .catch((error: any) => {
         return Observable.throw(error.json());
