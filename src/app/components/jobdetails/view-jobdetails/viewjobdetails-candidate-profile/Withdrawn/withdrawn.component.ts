@@ -232,7 +232,7 @@ onItemDeleted(index){
       //this.status.ToEmailID = this.data.Email;
     
       this.status.appLink = this.settingsService.settings.CandidateLogin;
-      this.status.jobStatus = 'WithDrawn';
+      this.status.jobStatus = 'Withdrawn';
       this.status.fromEmail = this.customer.Email;
       this.status.toEmailId = this.data.Email;
       this.status.fullName = this.data.FullName;

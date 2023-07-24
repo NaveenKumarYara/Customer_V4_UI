@@ -8,6 +8,7 @@
     "EmailbaseUrl": "${Email_URL}",
     "Emailv1baseUrl":"${EmailV1_URL}",
     "ResendEmail":"${EmailV1_URL}/api/RegisterCustomer",
+    "SendProfileBGVerfication": "${EmailV1_URL}/api/BackGroundVerification",
     "EmployerbaseUrl":"${EmployerV1baseUrl}",
     "jobTitleEndpoint": "${Jobs_URL}/api/GetJobTitles",
     "getskillsEndpoint": "${Profile_URL}/api/GetSkills",

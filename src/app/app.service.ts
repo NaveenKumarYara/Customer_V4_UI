@@ -1300,6 +1300,15 @@ export class AppService {
       });
   }
 
+  SendProfileBGVerfication(body) {
+    return this.http
+      .post(this.settingsService.settings.SendProfileBGVerfication, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
 
   getPersonTypes() {
     return this.personTypes.slice();

@@ -835,17 +835,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       }).then((result) => {
         if (result.value === true) {
           this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-          this.requestRef.fromEmail = this.customer.Email;
-          this.requestRef.profileId = profile.ProfileId.toString();
-          this.requestRef.toEmailID = profile.Email;
-          this.requestRef.userName = profile.FirstName;
-          this.requestRef.customerId= this.customer.CustomerId.toString();
-          this.requestRef.userId= this.customer.UserId.toString();
+          this.requestRef.fromID = this.customer.Email;
+          this.requestRef.jobId = this.jobdetailscustomer.JobInfo.JobId;
+          this.requestRef.referenceType = "2";
+          //this.requestRef.profileId = profile.ProfileId.toString();
+          this.requestRef.toEmailId = profile.Email;
+          this.requestRef.candFullName = profile.FirstName;
+          this.requestRef.refereeFullName = this.customer.FirstName + ' ' + this.customer.LastName;
+          this.requestRef.jobTitle= this.jobdetailscustomer.JobInfo.JobTitle;
+          this.requestRef.clientLogo= ' ';
           this.requestRef.applicationName = 'Arytic';
           this.requestRef.appLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-          this.requestRef.comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
-          this.requestRef.userName = profile.FirstName;
-          this.requestRef.companyName = profile.CompanyName;
+          this.requestRef.comments = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
           this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
             this.CommentProfile = undefined;
             this.requestRef = new RequestRefernce();
@@ -2124,16 +2125,17 @@ export class addon {
 }
 
 export class RequestRefernce {
-  customerId: string
-  userId: string
-  profileId: string
-  userName: string
+  refereeFullName: string
+  candFullName: string
+  referenceType: string
+  comments: string
+  jobTitle: string
+  jobId: number
   appLink: string
-  toEmailID: string
+  toEmailId: string
   applicationName: string
-  companyName: string
-  comment: string
-  fromEmail: string
+  clientLogo: string
+  fromID: string
 }
 
 export class JobStatus {
