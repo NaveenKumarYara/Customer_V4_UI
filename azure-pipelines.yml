@@ -1,10 +1,5 @@
 trigger:
-- main
-
-variables: 
-  USERNAME: $(DOCKER_USERNAME)
-  PASSWORD: $(DOCKER_PASSWORD)
-  BUILDID: $(Build.BuildNumber)
+- master
 
 pool:
   vmImage: ubuntu-latest
@@ -15,6 +10,6 @@ steps:
   inputs:
     filePath: 'build.sh'
   env:
-    D_USERNAME: $(USERNAME)
-    D_PASSWORD: $(PASSWORD)
-    BUILD_ID: $(BUILDID)
+    D_USERNAME: $(DOCKER_USERNAME)
+    D_PASSWORD: $(DOCKER_PASSWORD)
+    BUILD_ID: $(Build.BuildNumber)
