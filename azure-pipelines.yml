@@ -4,12 +4,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+- group: ACR_CRED
+
 steps:
 - task: Bash@3
   displayName: 'Build docker image'
   inputs:
     filePath: 'build.sh'
   env:
-    D_USERNAME: $(DOCKER_USERNAME)
-    D_PASSWORD: $(DOCKER_PASSWORD)
+    D_USERNAME: $(ACR_USERNAME)
+    D_PASSWORD: $(ACR_PASSWORD)
     BUILD_ID: $(Build.BuildNumber)
