@@ -1431,7 +1431,9 @@
 		<div class="row flex flex-wrap flex-align-start">
 			<div class="col-sm-12 col-md-4 left-card">
 				<img src="{{Image}}" alt="">
+
 				<br/>
+				
 				<div class="input-group">
 					<span class="input-group-btn">
 						<button class="btn btn-secondary copy-btn" id="cnbtnCpy" (click)="writeClipImg()"
@@ -1444,6 +1446,18 @@
 				 <!-- <i class="fa fa-clipboard" aria-hidden="true" (click)="writeClipImg()">Copy Job Card</i> -->
 				</div>
 				 <br/>
+			
+					<qrcode #qrCode [qrdata]="referLink" [size]="126" [level]="'M'"></qrcode>
+				 
+				
+				 <br/>
+				 <span class="input-group-btn">
+					<button class="btn btn-secondary copy-btn" (click)="downloadQrCode()"
+						type="button">
+					<span class="hidden-xs btn-sm">Download QR Code</span>
+					</button>
+					</span>		
+			
 				 <!-- <div class="input-group">
 					<span class="input-group-btn">				
 						<button class="btn btn-secondary copy-btn" id="ecnbtnCpy" (click)="openMailWithImage()"
