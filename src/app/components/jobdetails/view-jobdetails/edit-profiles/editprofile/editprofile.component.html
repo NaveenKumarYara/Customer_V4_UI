@@ -1269,7 +1269,7 @@
                         </ng-container>
                         <ng-container *ngIf="editPersonalDetails">
                           <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) === 'noemail'">
-                            <input type="text" formControlName="Email" value=" "
+                            <input type="text" formControlName="Email" value=" " placeholder="Email"
                               class="form-control">
                           </div>
                           <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">

@@ -1593,7 +1593,7 @@ Job = {
         'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
         'FirstName': [pro.FirstName, Validators.nullValidator],
         'LastName': [pro.LastName, Validators.nullValidator],
-        'Email': ['yet to provide',[Validators.required, Validators.email]],
+        'Email': [undefined,[Validators.required, Validators.email]],
         'MobilePhone': [pro.MobilePhone, Validators.nullValidator],
         'Address1': [' ', Validators.nullValidator],
         'CityName': ['', Validators.nullValidator],
