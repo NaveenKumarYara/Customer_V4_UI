@@ -1,0 +1,35 @@
+<div class="top-container">
+  <h4>Software Engineer</h4>
+  <span class="date">Jan 2023</span>
+</div>
+<div class="tab-navigation">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false">
+    <li [ngbNavItem]="1" [destroyOnHide]="true">
+      <a ngbNavLink>Description</a>
+      <ng-template ngbNavContent>
+        <p>10+ years of IT/Business Solutions exp. in analysis, design, development & implementation of cost - effective, high quality, high-performance and innovative technology solutions.</p>
+
+        <p>Expertise in analysis, design & development of custom solutions or applications using Microsoft technology stack. Development level exp. in Microsoft Azure Web App, API App, Logic App, Web Jobs, Azure Functions, Creation</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Key Responsibilities</a>
+      <ng-template ngbNavContent>
+        Key Responsibilities
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Skills</a>
+      <ng-template ngbNavContent>
+        Skills
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>Key Achievements</a>
+      <ng-template ngbNavContent>
+        Key Achievements
+      </ng-template>
+    </li>
+  </ul>
+</div>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

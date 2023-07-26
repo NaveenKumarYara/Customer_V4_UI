@@ -1,5 +1,145 @@
 <div class="candidate-profile-detail">
   <div class="row">
+    <div class="col-sm-6 summary-col">
+      <div class="col-container">
+        <div class="top-container">
+          <h4>Summary</h4>
+          <button class="btn btn-plus">
+            <span class="mdi mdi-pencil-outline"></span>
+          </button>
+        </div>
+        <div class="middle-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">
+          <p>10+ years of IT/Business Solutions exp. in analysis, design, development &  implementation of cost - effective, high quality, high-performance and innovative technology solutions.</p>
+          <p>Expertise in analysis, design & development of custom solutions or applications using Microsoft technology stack. Development level exp. in Microsoft Azure Web App, API App, Logic App, Web Jobs, Azure Functions, Creation</p>
+          <p>10+ years of IT/Business Solutions exp. in analysis, design, development &  implementation of cost - effective, high quality, high-performance and innovative technology solutions.</p>
+        </div>
+        <a href="#" class="btn btn-link">Show More <span class="mdi mdi-plus-circle-outline"></span></a>
+      </div>
+    </div>
+    <div class="col-sm-6 summary-col">
+      <div class="col-container">
+        <div class="top-container">
+          <h4>Overall Skills</h4>
+          <button class="btn btn-plus">
+            <span class="mdi mdi-pencil-outline"></span>
+          </button>
+        </div>
+        <div class="middle-container">
+          <ngx-slick-carousel class="carousel" 
+            #slickModal="slick-carousel" 
+            [config]="slideConfig" 
+           >
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+            <div ngxSlickItem>
+              <div class="skill-container">
+                <div class="skill-info">
+                  <h3>SQL</h3>
+                  <h4>Exp:  5.8 Years</h4>
+                </div>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-6 chart-col">
+      <div class="col-container">
+        <h4>Skills Charts</h4>
+        <div class="chart-container">
+          <canvas baseChart style="width: inherit; height: inherit"
+            [type]="'line'"
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-6 arytic-check-col">
+      <div class="col-container">
+        <h4>Arytic Check</h4>
+      </div>
+    </div>
+    <app-candidate-experience></app-candidate-experience>
     <div class="col-md-4 col-lg-4 col education-col">
       <div class="col-container">
         <div class="top-container">
@@ -75,7 +215,7 @@
     <div class="col-md-4 col-lg-4 col domain-col">
       <div class="col-container">
         <div class="top-container">
-          <h4>Certifications</h4>
+          <h4>Domains</h4>
           <button class="btn btn-plus">
             <span class="mdi mdi-plus-circle-outline"></span>
           </button>

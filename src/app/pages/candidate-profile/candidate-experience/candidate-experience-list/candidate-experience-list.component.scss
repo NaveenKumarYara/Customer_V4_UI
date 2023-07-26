@@ -1,0 +1,32 @@
+@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../assets/partials/utils/mixins';
+
+.professional-expereince-listing {
+  margin-top: 20px;
+
+  .tab-navigation {
+    padding: 0;
+    border: 1px solid $stroke-gray;
+    position: relative;
+  }
+}
+
+.top-container {
+  @include flexbox();
+  @include align-items(center);
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+  h4 {
+    font-size: $font-size-18;
+    color: $dark-gray;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .date {
+    margin-left: auto;
+    font-size: $font-size-12;
+    color: $medium-gray;
+  }
+}

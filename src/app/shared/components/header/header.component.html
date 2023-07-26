@@ -21,9 +21,9 @@
         <img src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}" alt=""/>
       </div>
 			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-				<button ngbDropdownItem>
+				<a ngbDropdownItem [routerLink]="['/candidate-profile']">
           {{customer.FirstName | titlecase}} {{customer?.LastName | titlecase}}
-        </button>
+        </a>
 				<button ngbDropdownItem (click)="logout()">
           Logout
         </button>

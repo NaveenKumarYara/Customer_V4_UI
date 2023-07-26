@@ -9,6 +9,12 @@ import { NgIf } from '@angular/common';
 import { CandidateProfileDetailComponent } from './candidate-profile-detail/candidate-profile-detail.component';
 import { CandidateJobHistoryComponent } from './candidate-job-history/candidate-job-history.component';
 import { CandidateDocumentsComponent } from './candidate-documents/candidate-documents.component';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { NgChartsModule } from 'ng2-charts';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { CandidateExperienceComponent } from './candidate-experience/candidate-experience.component';
+import { CandidateExperienceListComponent } from './candidate-experience/candidate-experience-list/candidate-experience-list.component';
 
 @NgModule({	
 	declarations: [
@@ -16,7 +22,9 @@ import { CandidateDocumentsComponent } from './candidate-documents/candidate-doc
     CandidateProfileSummaryComponent,
     CandidateProfileDetailComponent,
     CandidateJobHistoryComponent,
-    CandidateDocumentsComponent
+    CandidateDocumentsComponent,
+    CandidateExperienceComponent,
+    CandidateExperienceListComponent
 	],
 	imports: [
 		CommonModule,
@@ -24,6 +32,10 @@ import { CandidateDocumentsComponent } from './candidate-documents/candidate-doc
 		NgbNavModule,
 		NgIf,
 		NgbAlertModule,
+		NgChartsModule,
+		SlickCarouselModule,
+		NgbRatingModule,
+		MalihuScrollbarModule.forRoot(),
 		NgCircleProgressModule.forRoot({
 			radius: 100,
 			outerStrokeWidth: 16,

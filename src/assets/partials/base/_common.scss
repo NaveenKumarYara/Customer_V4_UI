@@ -282,3 +282,29 @@
   }
 }
 
+.slick-slider {
+  .slick-track {
+    @include flexbox();
+    gap: 10px;
+  }
+}
+
+.professional-experience-section {
+  .tab-content {
+    padding: 20px;
+  }
+  .professional-expereince-listing {
+    .tab-navigation {
+      padding: 0;
+      ul {
+        border: 1px solid $stroke-gray;
+        position: relative;
+
+        li {
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+      }
+    }
+  }
+}

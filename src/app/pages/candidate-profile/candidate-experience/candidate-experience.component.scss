@@ -1,0 +1,26 @@
+@import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
+
+
+.professional-experience-section{
+  margin-top: 30px;
+
+  h4 {
+    font-size: $font-size-22;
+    font-weight: 600;
+    color: $dark-gray;
+    margin: 0 0 20px;
+  }
+
+  .exprience-row {
+    background-color: $white;
+    border: 1px solid $stroke-gray;
+    border-radius: 6px;
+    padding: 20px;
+    @include shadowTwo();
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}
