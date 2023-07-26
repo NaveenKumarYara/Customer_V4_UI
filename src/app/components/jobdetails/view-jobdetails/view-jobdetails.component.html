@@ -37,7 +37,7 @@
 							</svg>
 
 							<h5 class="client">
-								{{jobdetailsbasicinfo?.ClientName != null ? jobdetailsbasicinfo?.ClientName : ''}}
+								{{jobdetailsbasicinfo?.ClientName!= null ? jobdetailsbasicinfo?.ClientName: 'Not Yet Provided'}}
 							</h5>
 							<h5 class="ml-1"
 								[ngClass]="{'jobdepartments': jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}"
@@ -617,14 +617,21 @@
 								</svg>
 							</a>  -->
 							<h4 class="cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
-								{{jobdetailsbasicinfo?.JobTitle}}</h4>							
+								{{jobdetailsbasicinfo?.JobTitle}}
+                                
+								
+							</h4>							
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus}}</span>
+					
 							<!-- <span class="edit-btn cursor-pointer" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'&& jobdetailsbasicinfo?.JobStatus != 'Filled'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</span> -->
+
+							
 							<span class="edit-btn cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()" tooltip="Click here to view/edit job" placement="top">
 								<img src="../../../../assets/images/editorview.png" alt="" width="18"/>
 							</span>
+						
 						</div>
 					
 						<ul>
@@ -656,10 +663,16 @@
 									</ng-container>
 								</ng-container>
 								</span>			
-							</li>						
+							</li>		
+										
 							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
 							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>		
 							<li> <i class="fa fa-users"></i> No. of positions: {{jobdetailsbasicinfo?.NumberOfVacancies}}  </li>
+							<li class="client">
+								<span>
+									<i class="fa fa-graduation-cap"></i>{{jobdetailsbasicinfo?.ClientName!= null ? jobdetailsbasicinfo?.ClientName: 'Not Yet Provided'}}
+								</span>	
+							</li>
 						</ul>
 
 					

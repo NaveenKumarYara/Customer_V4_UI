@@ -905,6 +905,7 @@ export class ViewJobdetailsComponent implements OnInit,OnDestroy {
   populateJobsBasicInfo() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
+      debugger
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
@@ -915,6 +916,7 @@ export class ViewJobdetailsComponent implements OnInit,OnDestroy {
   populateJobsBasicInfoChange() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res;
+      debugger
         this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(0);
