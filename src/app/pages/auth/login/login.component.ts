@@ -26,6 +26,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  //   login1(username: string, password: string) {
+  //     return this.http.post<any>('/api/authenticate', { username: username, password: password })
+  //         .map((user: { token: any; }) => {
+  //             // login successful if there's a jwt token in the response
+  //             if (user && user.token) {
+  //                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+  //                 localStorage.setItem('currentUser', JSON.stringify(user));
+  //             }
+
+  //             return user;
+  //         });
+  // }
 
   login() {
     this.submitted = true;
