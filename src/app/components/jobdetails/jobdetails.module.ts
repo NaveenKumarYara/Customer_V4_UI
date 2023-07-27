@@ -96,6 +96,7 @@ setTheme('bs3');
     NgbTooltipModule,
     BrowserModule,
     NgxEditorModule,
+    QRCodeModule,
     // routing,
     RouterModule,
     TagInputModule,

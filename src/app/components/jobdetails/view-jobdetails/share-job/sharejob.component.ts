@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -19,6 +19,8 @@ import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import swal from 'sweetalert2';
+import * as _html2canvas from "html2canvas";
+const html2canvas: any = _html2canvas;
 import { HttpClient } from '@angular/common/http';
 // import { copyImageToClipboard } from 'copy-image-clipboard'
 const URL = 'http://localhost:4800/fileupload/';
@@ -85,6 +87,7 @@ export class ShareJobComponent implements OnInit {
   userIds: any;
   emaiIds: any;
   inviteform: FormGroup;
+  @ViewChild('qrCode') qrCodeElement: ElementRef;
   Sharing = new JobShare();
   customer: any;
   uploader: FileUploader = new FileUploader({}); //Empty options to avoid having a target URL
@@ -133,6 +136,7 @@ export class ShareJobComponent implements OnInit {
   activeAny: string;
   defaultComments: any;
   jobdetailscustomer = new GetJobDetailCustomer();
+  ImageUrl: any;
 
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, private sanitizer: DomSanitizer, private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private fb: FormBuilder, 
@@ -298,6 +302,20 @@ export class ShareJobComponent implements OnInit {
       this.ccemailList.splice(this.ccemailList.indexOf(data), 1);
     }
     this.ccrulesForm.controls['CCemails'].setErrors({ 'incorrectEmail': false });
+  }
+
+
+
+  downloadQrCode() {
+    const qrCodeDiv = this.qrCodeElement.nativeElement;
+    html2canvas(qrCodeDiv).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+
+      const a = document.createElement('a');
+      a.href = imgData;
+      a.download = 'Qrcode.png';
+      a.click();
+    });
   }
 
   removeEmailbc(data: any): void {
