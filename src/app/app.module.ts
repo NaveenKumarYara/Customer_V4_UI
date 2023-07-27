@@ -11,6 +11,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FindACandidateModule } from './pages/find-a-candidate/find-a-candidate.module';
 import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
 import { CandidateProfileModule } from './pages/candidate-profile/candidate-profile.module';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CandidateProfileModule } from './pages/candidate-profile/candidate-prof
     FindACandidateModule,
     PostAJobModule,
     NgxUploaderModule,
-    CandidateProfileModule
+    CandidateProfileModule,
+    NgIdleKeepaliveModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
