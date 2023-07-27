@@ -136,7 +136,10 @@
     </div>
     <div class="col-md-6 col-lg-6 arytic-check-col">
       <div class="col-container">
-        <h4>Arytic Check</h4>
+        <h4>Arytic Fit</h4>
+        <div class="chart-container">
+          <canvas baseChart style="width: inherit; height: inherit" [type]="'radar'" [data]="radarChartData" [options]="radarChartOptions" [legend]="radarChartLegend"></canvas>
+        </div>
       </div>
     </div>
     <app-candidate-experience></app-candidate-experience>

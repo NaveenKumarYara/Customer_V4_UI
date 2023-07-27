@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartConfiguration, ChartOptions, ChartEvent } from 'chart.js';
+import { ChartConfiguration, ChartOptions, ChartEvent, Chart } from 'chart.js';
 
 @Component({
   selector: 'app-candidate-profile-detail',
@@ -8,6 +8,44 @@ import { ChartConfiguration, ChartOptions, ChartEvent } from 'chart.js';
 })
 export class CandidateProfileDetailComponent implements OnInit {
   currentRate = 3;
+  /*Radar Chart -----------*/
+  public radarChartData: ChartConfiguration<'radar'>['data'] = {
+    labels: [
+      'Job Fit',
+    'Background Fit',
+    'WFH',
+    'Personlity Fit',
+    'Skill Fit',
+    'Team Fit'
+    ],
+    datasets:  [{
+      label: 'My First Dataset',
+      data: [65, 59, 90, 81, 56, 55],
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      pointBackgroundColor: 'rgb(255, 99, 132)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(255, 99, 132)'
+    }, {
+      label: 'My Second Dataset',
+      data: [28, 48, 40, 19, 96, 27],
+      fill: true,
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgb(54, 162, 235)',
+      pointBackgroundColor: 'rgb(54, 162, 235)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(54, 162, 235)'
+    }]
+  };
+  public radarChartOptions: ChartOptions<'radar'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+   
+  };
+  public radarChartLegend = false;
   /*Line Chart
   ---------------------------------------------------*/
   public lineChartData: ChartConfiguration<'line'>['data'] = {
@@ -35,6 +73,7 @@ export class CandidateProfileDetailComponent implements OnInit {
     aspectRatio: 1|2
   };
   public lineChartLegend = false;
+  
 
   slideConfig = {
     rows: 2,

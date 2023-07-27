@@ -66,8 +66,8 @@
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
-			<h3 placement="top" ngbTooltip="{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}">
-        <span class="text-trim">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
+			<h3 [routerLink]="['/candidate-profile']" placement="top" ngbTooltip="{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}">
+        <span class="text-trim pointer">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
       </h3>
       <h4 placement="top" ngbTooltip="{{profile?.ProfileTitle}}">
         <span class="text-trim">{{profile?.ProfileTitle}}</span>
@@ -264,7 +264,7 @@
       <div class="col-md-6 col-lg-6 left-chart-col">
         <div class="box-container">
           <h4>
-            Arytic Check
+            Arytic Fit
           </h4>
           <div class="">
             <canvas baseChart

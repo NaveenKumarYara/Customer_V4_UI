@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidateExperienceListComponent implements OnInit {
   active = 1;
+  currentRate = 3;
   constructor() { }
 
   ngOnInit(): void {
