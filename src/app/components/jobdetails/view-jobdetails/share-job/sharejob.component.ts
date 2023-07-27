@@ -313,7 +313,7 @@ export class ShareJobComponent implements OnInit {
 
       const a = document.createElement('a');
       a.href = imgData;
-      a.download = 'Qrcode.png';
+      a.download =   this.data.JobId + '-' + 'JobCard.png' ;
       a.click();
     });
   }

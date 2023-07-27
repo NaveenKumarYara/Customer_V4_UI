@@ -1446,8 +1446,10 @@
 				 <!-- <i class="fa fa-clipboard" aria-hidden="true" (click)="writeClipImg()">Copy Job Card</i> -->
 				</div>
 				 <br/>
-			
-					<qrcode #qrCode [qrdata]="referLink" [size]="126" [level]="'M'"></qrcode>
+			        <span  #qrCode >
+						<qrcode [qrdata]="referLink" [size]="126" [level]="'M'"></qrcode>
+					</span>
+				
 				 
 				
 				 <br/>
