@@ -1,9 +1,10 @@
 <app-header></app-header>
+{{ slickReinit }}
   <div id="main-content">
     <div class="profile-section">
       <app-candidate-profile-summary></app-candidate-profile-summary>
       <div class="tab-navigation">
-        <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false">
+        <ul ngbNav #nav="ngbNav" (navChange)="onNavChange($event)" [(activeId)]="active" [destroyOnHide]="true">
           <li [ngbNavItem]="1" [destroyOnHide]="true">
             <a ngbNavLink>Candidate Profile</a>
             <ng-template ngbNavContent>

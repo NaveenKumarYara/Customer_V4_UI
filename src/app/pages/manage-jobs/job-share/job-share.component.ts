@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-job-share',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-share.component.scss']
 })
 export class JobShareComponent implements OnInit {
-
+  @Input() isShareType: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

@@ -135,7 +135,7 @@
     <div class="toogle-container">
       Share Job
       <label class="toggle" for="shareOption">
-        <input class="toggle__input" name="" type="checkbox" id="shareOption">
+        <input class="toggle__input" name="" type="checkbox" (change)="shareType()" id="shareOption">
         <div class="toggle__fill"></div>
       </label>
       Invite Candidate
@@ -145,7 +145,7 @@
   </div>
 </div>
 <div class="slide-container">
-  <app-job-share></app-job-share>
+  <app-job-share [isShareType]="isShareType"></app-job-share>
 </div>  
 </app-slidepanel>
 

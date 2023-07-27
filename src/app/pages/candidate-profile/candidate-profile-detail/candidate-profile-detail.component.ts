@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartEvent, Chart } from 'chart.js';
+import { SlickCarouselComponent } from "ngx-slick-carousel";
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-candidate-profile-detail',
@@ -8,6 +10,7 @@ import { ChartConfiguration, ChartOptions, ChartEvent, Chart } from 'chart.js';
 })
 export class CandidateProfileDetailComponent implements OnInit {
   currentRate = 3;
+
   /*Radar Chart -----------*/
   public radarChartData: ChartConfiguration<'radar'>['data'] = {
     labels: [
@@ -85,10 +88,11 @@ export class CandidateProfileDetailComponent implements OnInit {
 		slidesToScroll: 4
   };
   
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
     
   }
 
+  ngOnInit(): void {
+  
+  }
 }
