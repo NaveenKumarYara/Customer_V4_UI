@@ -11,6 +11,16 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FindACandidateModule } from './pages/find-a-candidate/find-a-candidate.module';
 import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
 import { CandidateProfileModule } from './pages/candidate-profile/candidate-profile.module';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { NgxSpinnerModule } from 'ngx-spinner';
+// import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+// import { JwtInterceptor } from 'src/settings/Jwt.interceptor';
+// import { ErrorInterceptor } from 'src/settings/Error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -28,9 +38,21 @@ import { CandidateProfileModule } from './pages/candidate-profile/candidate-prof
     FindACandidateModule,
     PostAJobModule,
     NgxUploaderModule,
-    CandidateProfileModule
+    CandidateProfileModule,
+    NgIdleKeepaliveModule.forRoot(),
+    NgxSpinnerModule,
+    
+    CommonModule,  
+    FormsModule, HttpClientModule,BrowserAnimationsModule,
+    // MatProgressSpinnerModule
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    // {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+  ],
+  bootstrap: [AppComponent],
+ 
+
 })
 export class AppModule { }
