@@ -81,7 +81,7 @@ export class ManageJobFiltersComponent implements OnInit {
 
   filterHandler() {
     this.advanceFilter = !this.advanceFilter;
-    this.quickSearch = !this.advanceFilter;
+    this.quickSearch = false;
     this.advancedFiltersAppliedInternal(null);
     this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
@@ -95,6 +95,10 @@ export class ManageJobFiltersComponent implements OnInit {
 
   quickHandler() {
     this.quickSearch = !this.quickSearch;
+    if (this.advanceFilter) {
+      this.advanceFilter = false;
+      this.advancedFilterOpenStatus.emit(this.advanceFilter);
+    }
   }
 
   quickHideHandler() {

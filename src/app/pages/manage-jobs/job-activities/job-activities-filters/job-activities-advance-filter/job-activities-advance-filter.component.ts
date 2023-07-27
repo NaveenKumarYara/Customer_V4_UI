@@ -10,11 +10,9 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
 })
 export class AdvanceFilterComponent implements OnInit {
   selectedMinExperience = 0;
-  selectedMaxExperience = 30;
-  jobMinValue = 0
-  jobMaxValue = 40
-  skillMinValue = 0
-  skillMaxValue = 60
+  selectedMaxExperience = 40;
+  selectedJobValue = 40;
+  selectedSkillValue = 60
   experienceSliderOptions: Options = {
     floor: 0,
     ceil: 40,
@@ -36,6 +34,8 @@ export class AdvanceFilterComponent implements OnInit {
   selectedSourceType = [];
   selectedDomain = [];
   selectedCertifications = [];
+  // selectedJobValue :any;
+  // selectedSkillValue:any
 
   
 
@@ -56,14 +56,14 @@ export class AdvanceFilterComponent implements OnInit {
     singleSelection: true,
     idField: 'jobStatusId',
     textField: 'jobStatus',
-    itemsShowLimit: 2,
+    itemsShowLimit: 1,
     allowSearchFilter: true
   };
   profileMatchingDropdownSettings:IDropdownSettings = {
     singleSelection: true,
     idField: 'id',
     textField: 'value',
-    itemsShowLimit: 2,
+    itemsShowLimit: 1,
     allowSearchFilter: true
   };
 
@@ -71,7 +71,7 @@ export class AdvanceFilterComponent implements OnInit {
     singleSelection: true,
     idField: 'certificationnameid',
     textField: 'certificationname',
-    itemsShowLimit: 2,
+    itemsShowLimit: 1,
     allowSearchFilter: true
   };
   domainDropdownSettings:IDropdownSettings = {
@@ -80,7 +80,7 @@ export class AdvanceFilterComponent implements OnInit {
     textField: 'DomainName',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 2,
+    itemsShowLimit: 1,
     allowSearchFilter: true
   };
 
@@ -88,7 +88,15 @@ export class AdvanceFilterComponent implements OnInit {
     singleSelection: true,
     idField: 'id',
     textField: 'value',
-    itemsShowLimit: 2,
+    itemsShowLimit: 1,
+    allowSearchFilter: true
+  };
+
+ sourceTypeDropdownSettings:IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
+    itemsShowLimit: 1,
     allowSearchFilter: true
   };
 
@@ -98,11 +106,15 @@ export class AdvanceFilterComponent implements OnInit {
     {id:3,value:'Below 60%'},
   ]
   profileType = [
+    
     {id:1,value:'Private'},
     {id:2,value:'Public'}
   ]
+  
 
+  
   sourceType = [
+    
     { name: 'Arytic partners', id: '1', group:''},
     { name: 'Arytic profiles', id: '2', group:''},
     { name: 'Arytic recruiters', id: '3', group:''},
@@ -138,23 +150,22 @@ export class AdvanceFilterComponent implements OnInit {
   @Input() advanceFilter = false; // decorate the property with @Input();
   @Output("filterHideHandler") filterHideHandler: EventEmitter<any> = new EventEmitter();
   @Output("filtersApplied") filtersApplied: EventEmitter<any> = new EventEmitter();
+  
   jobStatus: any;
   domainList: any;
   certificationList: any;
   clearedFilters = {
     jobTitle: [],
-    skills: [],
-    location: [],
-    employmentType: [],
-    customerUsers: [],
-    lastPosted: null,
-    client: [],
-    immigrationStatus: [],
-    domain: [],
+    applicationStatus: [],
+    profileMatching: [],
+    profileType: [],
+    sourcType: [],
     experience: {min: 0, max: 40},
-    salaryRange: {min: 0, max: 400000},
-    jobStatus: [],
-    priority: []
+    jobFit: 40,
+    skillFit:60,
+    domain: [],
+    certification: [],
+ 
   };
 
   appliedFilters = {...this.clearedFilters};
@@ -173,10 +184,10 @@ export class AdvanceFilterComponent implements OnInit {
 
     console.log('Low value:', event.value[0]);
     console.log('High value:', event);
-    this.skillMaxValue = 100 - event.value
+    this.selectedSkillValue = 100 - event.value
   }
   onSlider2Change(event:any){
-    this.jobMaxValue = 100 -event.value
+    this.selectedJobValue = 100 -event.value
   }
 
   onJobTitleFilterChange(event: any) {
@@ -220,24 +231,37 @@ export class AdvanceFilterComponent implements OnInit {
     })
   }
   applyClick() {
-    // this.appliedFilters.jobTitle = this.selectedJobTitles;
-    // this.appliedFilters.skills = this.selectedSkills;
-    // this.appliedFilters.location = this.selectedLocations;
-    // this.appliedFilters.employmentType = this.selectedEmploymentTypes;
-    // this.appliedFilters.customerUsers = this.selectedCustomerUsers;
-    // this.appliedFilters.lastPosted = this.selectedLastPosted.length > 0 ? this.selectedLastPosted[0] : null;
-    // this.appliedFilters.client = this.selectedClients;
-    // this.appliedFilters.immigrationStatus = this.selectedImmigrationStatus;
-    // this.appliedFilters.domain = this.selectedDomains;
-    // this.appliedFilters.experience.max = this.selectedMaxExperience;
-    // this.appliedFilters.experience.min = this.selectedMinExperience;
-    // this.appliedFilters.salaryRange.max = this.selectedMaxSalary;
-    // this.appliedFilters.salaryRange.min = this.selectedMinSalary;
-    // this.appliedFilters.jobStatus = this.selectedJobStatus;
-    // this.appliedFilters.priority = this.selectedPriorities;
+    this.appliedFilters.jobTitle = this.selectedJobTitles
+    this.appliedFilters.applicationStatus = this.selectedApplicationStatus
+    this.appliedFilters.profileMatching = this.selectedProfileMatchings
+    this.appliedFilters.profileType = this.selectedProfileType
+    this.appliedFilters.sourcType = this.selectedSourceType
+    this.appliedFilters.experience.max = this.selectedMaxExperience
+    this.appliedFilters.experience.min = this.selectedMinExperience
+    this.appliedFilters.jobFit = this.selectedJobValue
+    this.appliedFilters.skillFit = this.selectedSkillValue
+    this.appliedFilters.domain = this.selectedDomain
+    this.appliedFilters.certification = this.selectedCertifications
 
     console.log("AdvancedFilters Applied", this.appliedFilters);
     this.filtersApplied.emit(this.appliedFilters);
+  }
+  cancelClicked() {
+    this.appliedFilters = {...this.clearedFilters};
+    this.selectedJobTitles = [];
+    this.selectedApplicationStatus = [];
+    this.selectedProfileMatchings=[];
+    this.selectedProfileType=[];
+    this.selectedSourceType = [];
+    this.selectedJobValue =-1
+    this.selectedSkillValue = -1
+    this.selectedDomain =[];
+    this.selectedCertifications = [];
+    this.selectedMinExperience = 0;
+    this.selectedMaxExperience = 40;
+  
+    this.applyClick();
+    this.filterHideHandler.emit();
   }
 
   

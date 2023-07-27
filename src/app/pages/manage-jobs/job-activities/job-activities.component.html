@@ -67,7 +67,7 @@
           </a>
         </li> -->
         <li>
-          <a href="javascript:void(0)" placement="top" ngbTooltip="Reviews" (click)="panelHandler({panelName: 'job-review', profile: null})" >
+          <a href="javascript:void(0)" placement="top" ngbTooltip="Reviews" (click)="panelHandler({panelName: 'job-review', profile: JobDetail})" >
             <span class="mdi mdi-star-outline"></span>
           </a>
         </li>
@@ -85,13 +85,15 @@
   (newItemEvent)="addItem($event)"
   [Profiles]="Profiles" (quickchanged)="onquickChange($event)" 
   (changed)="onChange($event)"  (clearItemEvent)="clearAll($event)"
+  (advancedFiltersApplied) = "advancedFiltersApplied($event)"
+  (advancedFilterOpenStatus) = "advancedFilterOpenStatusChanged($event)"
   
 >
 
 </app-job-activities-job-filters>
 <div class="sorting-container d-flex align-items-center">
   <div class="result">
-    Showing  {{jstart==null?1:jstart }} - {{jlast==null?6:jlast}}  out of {{(Profiles|filter: jfilterTerm).length}}  Jobs
+    Showing  {{jstart==null?1:jstart }} - {{jlast==null?6:jlast}}  out of {{filteredJobs.length}}  Jobs
   </div>
   <div class="sorting">
     <pagination-controls  (pageChange)="jlistCount($event)"  [autoHide]="true" *ngIf="Profiles.length>0"  (pageChange)="jp = $event"
@@ -104,7 +106,7 @@
  <ng-container *ngIf="viewLayout == 'grid'">
   <div class="job-listing-grid">
     <div class="row">
-      <ng-container *ngFor="let profile of Profiles | filter: jfilterTerm  | paginate: { itemsPerPage: 6, currentPage: jp, id: 'jfirst'}">
+      <ng-container *ngFor="let profile of filteredJobs | paginate: { itemsPerPage: 6, currentPage: jp, id: 'jfirst'}; let i=index">
         <div class="col-md-4 col-lg-4 job-card" >
           <app-job-card [profile]="profile"
             [panelShow]="panelShow"
@@ -157,13 +159,13 @@
     <div class="slide-heding d-flex align-items-center">
       <h3>Job Review</h3>
     </div>
-    <app-sidepanel-cards></app-sidepanel-cards>
+    <app-sidepanel-cards [job] ="JobDetail"></app-sidepanel-cards>
     <div class="form-actions">
      &nbsp;
     </div>
   </div>
   <div class="slide-container">
-    <app-job-review></app-job-review>
+    <app-job-review  [job] ="JobDetail"></app-job-review>
   </div>
 </app-slidepanel>
 

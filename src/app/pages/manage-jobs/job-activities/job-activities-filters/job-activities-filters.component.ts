@@ -28,6 +28,8 @@ export class JobFiltersComponent implements OnInit {
   @Input() Profiles: any ='';
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Output() layoutView = new EventEmitter<string>();
+  @Output()  advancedFiltersApplied= new EventEmitter<any>();
+  @Output() advancedFilterOpenStatus = new EventEmitter<boolean>();
   // @Output("filterHideHandler") filterHideHandler: EventEmitter<any> = new EventEmitter();s
 
   constructor(private _service : ApiService) {
@@ -84,18 +86,34 @@ filterChange(appliedfilters: any) {
 
   filterHandler() {
     this.advanceFilter = !this.advanceFilter;
+    this.quickSearch = false;
+    this.advancedFiltersAppliedInternal(null);
+    this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
 
   filterHideHandler() {
+    this.quickSearch = false;
     this.advanceFilter = false;
+    this.advancedFiltersAppliedInternal(null);
+    this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
 
   quickHandler() {
-    this.quickSearch = !this.quickSearch;
+    this.quickSearch = !this.quickSearch;  
+    // this.advancedFiltersAppliedInternal(null);
+    if (this.advanceFilter) {
+      this.advanceFilter = false;
+      this.advancedFilterOpenStatus.emit(this.advanceFilter);
+    }
+
   }
 
   quickHideHandler() {
     this.quickSearch = false;
+    // this.advanceFilter = !this.advanceFilter; 
+    // this.advancedFiltersAppliedInternal(null);
+    // this.advancedFilterOpenStatus.emit(this.advanceFilter);
+
   }
 
   layoutSwitch(name: string){
@@ -105,4 +123,10 @@ filterChange(appliedfilters: any) {
   saveClick() {
     this.saveSearch = !this.saveSearch;
   }
+
+  advancedFiltersAppliedInternal(filters: any) {
+    console.log('appliedFilters', filters);
+    this.advancedFiltersApplied.emit(filters);
+  }
+
 }

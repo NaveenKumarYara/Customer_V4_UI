@@ -70,7 +70,7 @@
 				<ng-multiselect-dropdown
 				class="custom-multiselect"
 				[placeholder]="'Select'"
-				[settings]="jobTitlesDropdownSettings"
+				[settings]="sourceTypeDropdownSettings"
 				[(ngModel)]="selectedSourceType"
 				[data]="sourceType"
 			>
@@ -86,13 +86,13 @@
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
 			<label>Job Fit <span class="sub-label">(In percentage)</span></label>
 			<div class="custom-slider">
-				<ngx-slider [(value)]="jobMaxValue"  (userChange)="onSlider1Change($event)" [options]="skillSet"></ngx-slider>
+				<ngx-slider [(value)]="selectedJobValue"  (userChange)="onSlider1Change($event)" [options]="skillSet"></ngx-slider>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
 			<label>Skill Fit <span class="sub-label">(In percentage)</span></label>
 			<div class="custom-slider">
-				<ngx-slider [(value)]="skillMaxValue"  (userChange)="onSlider2Change($event)"   [options]="skillSet"></ngx-slider>
+				<ngx-slider [(value)]="selectedSkillValue"  (userChange)="onSlider2Change($event)"   [options]="skillSet"></ngx-slider>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
@@ -125,8 +125,8 @@
 			</div>
 		</div>
 		<div class="col-sm-12 button-col text-right">
-			<button class="btn btn-info">Apply</button>
-			<button class="btn btn-outlined-default">Cancel</button>
+			<button class="btn btn-info" (click)="applyClick()">Apply</button>
+			<button class="btn btn-outlined-default" (click)="cancelClicked()">Cancel</button>
 		</div>
 	</div>
 </div> 

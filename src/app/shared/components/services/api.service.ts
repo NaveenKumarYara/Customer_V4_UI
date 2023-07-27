@@ -62,6 +62,22 @@ export class ApiService {
     headers.set('Content-Type', 'application/form-data')
     return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/ProfileAttachmentsNew', body, {headers});
   }
+  
+
+  PostService(body: any, Url: string) {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Headers', ' Origin, Content-Type, X-Auth-Token');
+    headers.set('X-Frame-Options', 'http://facebook.com/');
+    return this.http.post(this.settingsService.settings.IdentitybaseUrl +"/api/InsertProfileFeedback", body, { headers: headers });
+  }
+
+  byteStorage2(body: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/form-data')
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/InsertProfileAttachments', body, {headers});
+  }
 
   InsertCustomerDocuments(body: any): Observable<any> {
     let headers = new HttpHeaders();
@@ -103,10 +119,6 @@ export class ApiService {
     return this.http.post(this.settingsService.settings.IdentitybaseUrl+ url ,params)
   }
 
-
- 
-
-  
   GetJobProfileStatus() {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + '/api/GetJobProfileStatusList', this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
@@ -119,6 +131,10 @@ export class ApiService {
 getJobApi<T>(apiUrl:string):Observable<T>{
   let url=`${this.settingsService.settings.JobbaseUrl}${apiUrl}`
   return this.http.get<T>(url);
+}
+
+getComments(url:string,params:any){
+  return this.http.get(this.settingsService.settings.JobbaseUrl+url , params)
 }
 //----------------------------------------------------------------
   // End -- JobAPI Realted Intigration section 
