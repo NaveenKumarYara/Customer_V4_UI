@@ -15,7 +15,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateExperienceComponent } from './candidate-experience/candidate-experience.component';
 import { CandidateExperienceListComponent } from './candidate-experience/candidate-experience-list/candidate-experience-list.component';
-
+import { CandidateExperienceDetailComponent } from './candidate-experience/candidate-experience-detail/candidate-experience-detail.component';
 @NgModule({	
 	declarations: [
     CandidateProfileComponent,
@@ -24,7 +24,8 @@ import { CandidateExperienceListComponent } from './candidate-experience/candida
     CandidateJobHistoryComponent,
     CandidateDocumentsComponent,
     CandidateExperienceComponent,
-    CandidateExperienceListComponent
+    CandidateExperienceListComponent,
+		CandidateExperienceDetailComponent
 	],
 	imports: [
 		CommonModule,

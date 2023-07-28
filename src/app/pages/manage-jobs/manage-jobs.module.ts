@@ -53,6 +53,7 @@ import { JobShareProfileComponent } from './job-share-profile/job-share-profile.
 import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
 import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
+import { UploadResumeComponent } from './upload-resume/upload-resume.component';
 
 @NgModule({
 	declarations: [
@@ -86,7 +87,8 @@ import  { JobStatusChangeComponent } from './job-status-change/job-status-change
 	JobShareComponent,
 	ViewEditJobsComponent,
   JobShareProfileComponent,
-  JobStatusChangeComponent
+  JobStatusChangeComponent,
+  UploadResumeComponent
 	],
 	imports: [
 	 CommonModule,
