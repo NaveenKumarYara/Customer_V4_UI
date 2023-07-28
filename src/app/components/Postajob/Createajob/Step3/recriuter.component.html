@@ -211,7 +211,7 @@
       </div>
       <div class="job-title-suggestions">
         <div class="checkbox" *ngFor="let  managers of suggestManagers; let i = index">
-          <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
+          <label><span class="box" (click)="delete(managers?.UserId)">{{managers?.FirstName}}  x </span>  </label>
         </div>
       </div>
     </div>
