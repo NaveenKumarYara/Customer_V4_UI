@@ -371,49 +371,48 @@ export class recriuterComponent implements OnInit, OnDestroy {
   //     )
   //   );
   // }
+  delete(userId: number) {
+    let index = this.suggestManagers.findIndex((manager) => manager.UserId === userId);
+    while (index !== -1) {
+      this.suggestManagers.splice(index, 1);
+      this.sslist.splice(index,1);
+      index = this.suggestManagers.findIndex((manager) => manager.UserId === userId);
+    }
+    this.appService.recrutingList = this.suggestManagers;
+  
+    if (this.JobIds && this.JobIds.length > 0) {
+      this.JobIds.forEach((e) => {
+        this.report.UserId = this.userId;
+        this.report.CustomerId = this.customerId;
+        this.report.JobId = Number(e);
+        this.report.HiringManager = this.suggestManagers.map((x) => x.UserId).toString();
 
-  delete(index)
-  {
-    this.sslist.splice(index,1);
-    this.suggestManagers.splice(index,1);
-    this.appService.recrutingList=this.suggestManagers;
-    if(this.JobIds&&this.JobIds.length>0)
-    {
-      this.JobIds.forEach((e)=>
-      {
-        
-        this.report.UserId=this.userId;
-        this.report.CustomerId=this.customerId;
-        this.report.JobId=Number(e);
-        this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-        this.GetJobAssigned(e);
         this.appService.RecrutingTeam(this.report).subscribe(
-          data => {
-            if(data=0)
-            {
+          (data) => {
+            if (data === 0) {
               console.log("added");
             }
-          });
-      }
-      )
-    }
-    else
-    {
+          }
+        );
+        this.GetJobAssigned(e);
+      });
+    } else {
       const res = localStorage.getItem('jobId');
-      this.report.UserId=this.userId;
-      this.report.CustomerId=this.customerId;
-      this.report.JobId=parseInt(res, 10);
-      this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-      this.GetJobAssigned(res);
+      this.report.UserId = this.userId;
+      this.report.CustomerId = this.customerId;
+      this.report.JobId = parseInt(res, 10);
+      this.report.HiringManager = this.suggestManagers.map((x) => x.UserId).toString();
       this.appService.RecrutingTeam(this.report).subscribe(
-        data => {
-          if(data=0)
-          {
+        (data) => {
+          if (data === 0) {
             console.log("added");
           }
-        });  
+        }
+      );
+      this.GetJobAssigned(Number(res));
     }
   }
+  
 
 
   GetReferralStatus()
@@ -427,51 +426,48 @@ export class recriuterComponent implements OnInit, OnDestroy {
   }
 
 
-  GetJobAssigned(jobId)
-  {
-    const ids = this.suggestManagers.map(o => o.UserId)
-    const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1));
+  GetJobAssigned(jobId: number) {
+    const ids = this.suggestManagers.map(o => o.UserId);
+    const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
     this.suggestManagers = filtered;
-    this.suggestManagers.forEach(y=>{
-      debugger
-      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + jobId)
-      .subscribe(
-        dat => {
-          this.remanagers.filter(z=>{
-          if(z.UserId == y.UserId)
-          {
-            this.job.ToEmailID = z.Email
+  
+    this.suggestManagers.forEach(manager => {
+      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=' , manager.UserId + '&jobId=' + jobId)
+        .subscribe(data => {
+          const assignedManager = this.remanagers.find(z => z.UserId === manager.UserId);
+          if (assignedManager) {
+            this.job.ToEmailID = assignedManager.Email;
           }
+  
+          this.job.FullName = data.FirstName + ' ' + data.LastName;
+          this.job.Body = data.FirstName + ' ' + data.LastName + ' Assigned @' + data.JobTitle + ' position for you. Please go through the details!';
+  
+          this._service.PostService(this.job, 'EmailApi/api/EmailForAssignJob').subscribe(() => {
+            this.job = new SendNoteEmail();
           });
-         this.job.FullName = dat.FirstName+dat.LastName;
-         this.job.Body = dat.FirstName + dat.LastName + ' Assigned  @' + dat.JobTitle +  '  position for you go through the details!';
-         debugger
-         this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
-          check=>
-          {
-                  this.job = new SendNoteEmail();                 
-          }
-        )
         });
-    })
-   
+    });
   }
+  
+
+
 
 
 
 
   suggestedManager1() {
-    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
-        //debugger
-      this.remanagers=res;
-            this.suggestManagers= this.appService.recrutingList;
-            this.remanagers = this.remanagers.filter((i) => {
-              if(i.FirstName !="Invited"   && i.IsRemove!=true)
-      {
-        return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
-      }                      
-     });
-      // this.discResult.forEach(cc => cc.checked = false);
+    this.appService.getCustomerallContacts(this.customerId).subscribe(res => {
+      this.remanagers = res.filter((i) => i.FirstName !== "Invited" && !i.IsRemove);
+      
+      this.suggestManagers = this.appService.recrutingList;
+      
+      this.remanagers.forEach((manager) => {
+        manager.FirstName = `${manager.FirstName} ${manager.LastName} - ${manager.RoleName}`;
+      });
+  
+      // Now this.remanagers array contains objects with 'FullName' property.
+  
+      // You can use the 'this.remanagers' array as per your requirement.
     });
   }
 
@@ -566,75 +562,65 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
   // //   }
     }
 
-    Add()
-    {
-            this.flag=false;
-            if(this.selectManager!=undefined)
-            {
-              if(this.suggestManagers.length>0)
-              {
-                this.sslist = this.suggestManagers;
-                this.sslist.push(this.selectedManager);
-              }
-             
-              if(this.suggestManagers.length==0)
-              {
-                this.sslist.push(this.selectedManager);
-              }
-        //this.sslist.push(this.selectedManager);
-        //this.slist.push(this.selectedManager);
-        this.suggestManagers=this.sslist;
-        this.selectManager='';
-        this.selectManager=null;
-        this.appService.recrutingList=this.suggestManagers;
-        if(this.JobIds&&this.JobIds.length>0)
-        {
-          
-          this.JobIds.forEach((e)=>
-          {
-            
-            this.report.UserId=this.userId;
-            this.report.CustomerId=this.customerId;
-            this.report.JobId=Number(e);
-            const ids = this.suggestManagers.map(o => o.UserId)
-            const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1))
-            this.report.HiringManager=filtered.map(x=>x.UserId).toString();
+    Add() {
+      this.flag = false;
+      if (this.selectManager !== undefined) {
+        if (this.suggestManagers.length > 0) {
+          // Instead of wrapping the existing suggestManagers and selectedManager in an array,
+          // we will concatenate them using the spread operator.
+          this.sslist = [...this.suggestManagers, this.selectedManager];
+        } else {
+          this.sslist.push(this.selectedManager);
+        }
+    
+        this.suggestManagers = this.sslist;
+        this.selectManager = null;
+        this.appService.recrutingList = this.suggestManagers;
+    
+        this.suggestManagers = this.sslist;
+        this.selectManager = null;
+        this.appService.recrutingList = this.suggestManagers;
+    
+        if (this.JobIds && this.JobIds.length > 0) {
+          this.JobIds.forEach(jobId => {
+            this.report.UserId = this.userId;
+            this.report.CustomerId = this.customerId;
+            this.report.JobId = Number(jobId);
+            const ids = this.suggestManagers.map(o => o.UserId);
+            const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
+            this.report.HiringManager = filtered.map(x => x.UserId).toString();
+
             this.appService.RecrutingTeam(this.report).subscribe(
               data => {
-                if(data=0)
-                {
-              console.log(data);
-                  
+                if (data === 0) {
+                  console.log(data);
                 }
-              });
-            this.GetJobAssigned(e);
-          })
-          
-        
-           
-         
-        }
-        else
-        {
+              }
+            );
+            this.GetJobAssigned(jobId);
+          });
+        } else {
           const res = localStorage.getItem('jobId');
-          this.report.UserId=this.userId;
-          this.report.CustomerId=this.customerId;
-          this.report.JobId=parseInt(res, 10);
-          const ids = this.suggestManagers.map(o => o.UserId)
-          const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1));
-          this.report.HiringManager=filtered.map(x=>x.UserId).toString();
-          this.GetJobAssigned(res);
+          this.report.UserId = this.userId;
+          this.report.CustomerId = this.customerId;
+          this.report.JobId = parseInt(res, 10);
+          const ids = this.suggestManagers.map(o => o.UserId);
+          const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
+          this.report.HiringManager = filtered.map(x => x.UserId).toString();
+          this.GetJobAssigned(Number(res));
+
           this.appService.RecrutingTeam(this.report).subscribe(
             data => {
-              if(data=0)
-              {
-                console.log("added");
+              if (data === 0) {
+                console.log('added');
               }
-            });  
+            }
+          );
         }
-      }        
+      }
     }
-
+    
+    
  
     PopulateRoles(val)
     {
