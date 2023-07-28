@@ -53,6 +53,8 @@ import { JobShareProfileComponent } from './job-share-profile/job-share-profile.
 import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
 import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from 'src/app/shared/interceptors/spinner-interceptor';
 
 @NgModule({
 	declarations: [
@@ -121,7 +123,8 @@ import  { JobStatusChangeComponent } from './job-status-change/job-status-change
 	  NgxPaginationModule,
 		NgbAccordionModule,
 	],
-	providers:[SettingsHttpService,SettingsService],
+	providers:[SettingsHttpService,SettingsService,
+		{ provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true }],
 	exports: [
     ManageJobsComponent
 	]

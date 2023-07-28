@@ -6,6 +6,11 @@
     *ngIf="url !== '/register' && url !== '/' && url !== '/login'"
   ></app-sidebar>
   <div id="main" [ngClass]="menuOpen?'expanded':''">
-    <router-outlet></router-outlet>
+    <router-outlet>
+      
+  
+    </router-outlet>
   </div>
 </div>
+<!-- <button type="button" class="btn btn-sm btn-primary" (click)="showSpinner()">Show Spinner</button> -->
+<ngx-spinner size="medium" [type]="typeSelected"></ngx-spinner>

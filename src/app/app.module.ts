@@ -12,6 +12,10 @@ import { FindACandidateModule } from './pages/find-a-candidate/find-a-candidate.
 import  { PostAJobModule } from './pages/post-a-job/post-a-job.module';
 import { CandidateProfileModule } from './pages/candidate-profile/candidate-profile.module';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from './shared/interceptors/spinner-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -30,9 +34,12 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
     PostAJobModule,
     NgxUploaderModule,
     CandidateProfileModule,
+    NgxSpinnerModule,
     NgIdleKeepaliveModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+  { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

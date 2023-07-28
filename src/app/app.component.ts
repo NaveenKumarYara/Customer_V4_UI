@@ -4,6 +4,7 @@ import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { environment } from 'src/environments/environment';
 import { Keepalive } from '@ng-idle/keepalive';
 import { ApiService } from './shared/components/services/api.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { ApiService } from './shared/components/services/api.service';
 })
 
 export class AppComponent {
+  typeSelected: string;
   title = 'Customer-app';
   menuOpen: boolean = false;
   public url: any;
@@ -20,7 +22,9 @@ export class AppComponent {
   // childModal: any;
   lastPing: Date | undefined;
   
-  constructor(private router: Router, private idle:Idle, private keepalive: Keepalive, private _service:ApiService) { 
+  constructor(private router: Router, private idle:Idle, private keepalive: Keepalive, private _service:ApiService
+    ,private spinnerService: NgxSpinnerService) { 
+      this.typeSelected = 'ball-fussion';
     idle.setIdle(environment.idleTimeOut);
     idle.setTimeout(environment.idleTimeOut);
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
@@ -74,5 +78,15 @@ export class AppComponent {
   hasRoute(route: string) {
     return this.router.url.includes(route);
   }
+
+
+  // public showSpinner(): void {
+  //   this.spinnerService.show();
+
+  //   setTimeout(() => {
+  //     this.spinnerService.hide();
+  //   }, 5000); // 5 seconds
+  // }
+
 
 }
