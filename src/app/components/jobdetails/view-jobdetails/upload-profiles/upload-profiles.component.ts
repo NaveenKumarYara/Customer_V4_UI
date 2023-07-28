@@ -319,6 +319,11 @@ Job = {
 
 
         this.Percentweightage = data;
+        if(this.matchingParameterData.Skillfit_Total>this.Percentweightage.SkillFit)
+        {
+          this.Percentweightage.SkillFit = this.matchingParameterData.SkillFit;
+        }
+ 
         this.roleweight = Math.round(data.JobFit / 3);
         this.expweight = Math.round(data.JobFit - this.roleweight);
       }
@@ -1212,126 +1217,111 @@ onItemSelect(itemVal): any {
  
 // }
 
+// Assuming the following variables are defined in the class or component:
+// data: { jobId: number };
+// matchingParameterDetails: any;
+// matchingParameterData: any;
+// roleweight: number;
+// expweight: number;
+// profileDetails: any;
+// jobdetailscustomer: any;
+
 
 GetMatchingPercentage(profileId): any {
   this.GetJobMatching(this.data.jobId);
-   this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId,this.data.jobId).subscribe((res) => {
-     this.matchingParameterDetails = res;
-     this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
-     let rolefit = this.matchingParameterDetails.Role;
-     if(rolefit>0)
-     {
-       rolefit = this.matchingParameterDetails.Role/10;
-     }
-     else
-     {
-       rolefit = this.matchingParameterDetails.Role;
-     }
+  this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.data.jobId).subscribe((res) => {
+    this.matchingParameterDetails = res;
 
-     if(rolefit >this.roleweight)
-     {
+    // Optional chaining (?) to handle potential undefined 'TotalExperience'
+    const totalExperience = this.profileDetails && this.profileDetails.TotalExperience ? this.profileDetails.TotalExperience : 0;
+    this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total || 0;
+    this.matchingParameterData.Role = (this.matchingParameterDetails.Role || 0) / 10;
+
+    if (this.matchingParameterData.Role > this.roleweight) {
       this.matchingParameterData.Role = this.roleweight;
-     }
-     else if(rolefit< this.roleweight)
-     {
-       this.matchingParameterData.Role = rolefit;
-     }
-     
-   
-     let expFit = this.matchingParameterDetails.Jobfit_Total -  this.matchingParameterData.Role/10;
-     if(expFit>this.expweight)
-     {
-       this.matchingParameterData.JobFit = this.expweight;
-     }
-     else  if(expFit<this.expweight)
-     {
-      if(this.profileDetails.TotalExperience!=null && this.profileDetails.TotalExperience!=undefined)
-      {
-        if( Number(this.profileDetails.TotalExperience) >  Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12) )
-        {
-         this.matchingParameterData.JobFit = this.expweight;
-        }
-        else
-        {
-         this.matchingParameterData.JobFit = expFit;
-        }
-       
-      }
-      else
-      {
-       this.matchingParameterData.JobFit = expFit;
-      }
-     }
+    }
 
-     let jobmFit = this.roleweight + this.expweight;
-     if(jobmFit == this.matchingParameterData.Jobfit_Total)
-     {
+    let expFit = this.matchingParameterData.Jobfit_Total - this.matchingParameterData.Role;
+
+    if (expFit > this.expweight) {
+      this.matchingParameterData.JobFit = this.expweight;
+    } else if (expFit < this.expweight) {
+      if (totalExperience != null && totalExperience > Number(this.jobdetailscustomer.JobInfo.MaxExperience / 12)) {
+        this.matchingParameterData.JobFit = this.expweight;
+      } else {
+        this.matchingParameterData.JobFit = expFit;
+      }
+    }
+
+    let jobmFit = this.roleweight + this.expweight;
+    if (jobmFit === this.matchingParameterData.Jobfit_Total) {
       this.matchingParameterData.Role = this.roleweight;
-     }
-    
-    //this.matchingParameterData.Role = this.matchingParameterDetails.Role;
+    }
 
-   
-     this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
-     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
-     this.matchingParameterData.Personalityfit = this.matchingParameterDetails.Personalityfit;
-     this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
-     this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
+    this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total || 0;
+    this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total || 0;
+    this.matchingParameterData.Personalityfit = this.matchingParameterDetails.Personalityfit || 0;
+    this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit || 0;
+    this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit || 0;
+  });
 
-     //this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
-     //debugger
-   });
-   return this.matchingParameterDetails;
-  
- }
+  return this.matchingParameterDetails;
+}
 
 
 
  GetCandidateSkillFitResult(ProfileId,jobId) {
-  this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', ProfileId + '&jobId=' + jobId)
-    .subscribe(
-      data3 => {
-        
-        let unique_c = [];
-        data3.forEach((c) => {
-          if (!unique_c.includes(c)) {
-            unique_c.push(c);
+  this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=' , ProfileId + '&jobId=' + jobId)
+      .subscribe(
+        (data3: SkillFitData[]) => {
+          const unique_c: SkillFitData[] = [];
+          const existingSkills: string[] = [];
+
+          data3.forEach((c) => {
+            if (!existingSkills.includes(c.SkillName)) {
+              existingSkills.push(c.SkillName);
+              unique_c.push(c);
+            }
+          });
+
+          this.skillfitcheck = unique_c;
+
+          if (unique_c.length > 0) {
+            this.Skill.labels = [];
+            this.Skill.datasets[0].data = [];
+            this.Skill.datasets[0].backgroundColor = [];
+
+            unique_c.forEach((a) => {
+              const color = '#' + ('000000' + Math.floor(0x1000000 * Math.random()).toString(16)).slice(-6);
+              this.Skill.datasets[0].backgroundColor.push(color);
+              this.Skill.labels.push(a.SkillName);
+              this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+            });
           }
-        });
-        this.skillfitcheck = unique_c  ;
-        if (unique_c.length > 0) {
-          this.Skill.labels=[];
-          this.Skill.datasets[0].data=[];
-          unique_c.forEach((a) => {
-            var color = Math.floor(0x1000000 * Math.random()).toString(16);
-            var r = '#' + ('000000' + color).slice(-6);
-            this.Skill.datasets[0].backgroundColor.push(r);
-            this.Skill.labels.push(a.SkillName);
-            this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));          
-          })
-        }    
-      })
+        },
+        (error) => {
+          // Handle error here if necessary
+        }
+      );
 }
 
 GetCandidateJobFitResult(Pid) {
-  this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', Pid + '&jobId=' + this.data.jobId)
-    .subscribe(
-      data2 => {
-        if (data2 != null) {
-          var exp;
-          if (data2.ExperienceFit == null) {
-            exp = 0;
-          }
-          else {
-            exp = data2.ExperienceFit;
-          }
-        }  
+  this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=' , Pid + '&jobId=' + this.data.jobId)
+  .subscribe(
+    (data2: any) => {
+      if (data2 != null) {
+        const exp = data2.ExperienceFit != null ? data2.ExperienceFit : 0;
+
         this.Job.datasets[0].data = [exp, data2.RoleFit, data2.JobHopping, data2.Education];
 
-        this.FitDetails = data2.JobFit;
 
-      })
+        this.FitDetails = data2.JobFit;
+      }
+    },
+
+  );
 }
+
 
 getColor(arr, i) {
   return arr[i];
@@ -2242,4 +2232,9 @@ export class KeyRole {
   public KeyResponsebilityId: number;
   public KeyMinExperienceId: number;
   public KeyMaxExperienceId: number;
+}
+
+interface SkillFitData {
+  SkillName: string;
+  SkillFit: number;
 }
