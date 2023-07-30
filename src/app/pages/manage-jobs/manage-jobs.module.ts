@@ -54,7 +54,11 @@ import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
 import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
 import { UploadResumeComponent } from './upload-resume/upload-resume.component';
-
+import { JobProfileMatchComponent } from './job-profile-match/job-profile-match.component';
+import { AdvanceFilterComponent } from './job-activities/job-activities-filters/job-activities-advance-filter/job-activities-advance-filter.component';
+import { UploadFormComponent } from './upload-resume/upload-form/upload-form.component';
+import { UploadArtyticScanComponent } from './upload-resume/upload-artytic-scan/upload-artytic-scan.component';
+import { UploadPreviewComponent } from './upload-resume/upload-preview/upload-preview.component';
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -88,7 +92,12 @@ import { UploadResumeComponent } from './upload-resume/upload-resume.component';
 	ViewEditJobsComponent,
   JobShareProfileComponent,
   JobStatusChangeComponent,
-  UploadResumeComponent
+  UploadResumeComponent,
+  JobProfileMatchComponent,
+	AdvanceFilterComponent,
+ UploadFormComponent,
+ UploadArtyticScanComponent,
+ UploadPreviewComponent
 	],
 	imports: [
 	 CommonModule,

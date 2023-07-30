@@ -1,0 +1,114 @@
+<div class="profile-matcing-section">
+  <div class="top-container">
+    <h4>Profile Matching Criteria</h4>
+    <h5>Select the profile matching criteria you want to consider to get the right candidate for this job.</h5>
+  </div>
+  <div class="slider-section">
+    <div class="big-slider custom-slider">
+      <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">Skill Criteria</div>
+      <div class="col-md-8 col-md-8">
+        <div class="progress-col">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="skillMin" [(highValue)]="skillMax" [options]="skillsOptions"></ngx-slider>
+          </div>
+          <span class="percentage">60%</span>
+        </div>
+        <div class="custom-checkbox-list">
+          <ul>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Skill Name</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Skill Experience</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">Job Criteria</div>
+      <div class="col-md-8 col-md-8">
+        <div class="progress-col">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="jobMin" [(highValue)]="jobMax" [options]="jobOptions"></ngx-slider>
+          </div>
+          <span class="percentage">40%</span>
+        </div>
+        <div class="custom-checkbox-list">
+          <ul>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Total Experience</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Job Title</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="custom-checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkmark">Domain</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">Personality Fit</div>
+      <div class="col-md-8 col-md-8">
+        <div class="progress-col">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="personalMin" [(highValue)]="personalMax" [options]="personalOptions"></ngx-slider>
+          </div>
+          <span class="percentage">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">Culture Fit</div>
+      <div class="col-md-8 col-md-8">
+        <div class="progress-col">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="cultureMin" [(highValue)]="cultureMax" [options]="cultureOptions"></ngx-slider>
+          </div>
+          <span class="percentage">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 label-col">Team Fit</div>
+      <div class="col-md-8 col-md-8">
+        <div class="progress-col">
+          <div class="custom-slider">
+            <ngx-slider [(value)]="teamMin"  [(highValue)]="teamMax" [options]="teamOptions"></ngx-slider>
+          </div>
+          <span class="percentage">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
