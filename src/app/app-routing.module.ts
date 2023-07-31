@@ -5,6 +5,7 @@ import  { ManageJobsComponent } from './pages/manage-jobs/manage-jobs.component'
 import { FindACandidateComponent } from './pages/find-a-candidate/find-a-candidate.component';
 import { ScheduleInterviewExternalComponent } from './pages/manage-jobs/schedule-interview-external/schedule-interview-external.component';
 import  { PostAJobComponent  } from './pages/post-a-job/post-a-job.component';
+import { CandidateProfileComponent } from './pages/candidate-profile/candidate-profile.component';
 
 const routes: Routes = [
   // -------------------- Auth Routes --------------------
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path:'post-a-job',
     component: PostAJobComponent
+  },
+  {
+    path:'candidate-profile',
+    component: CandidateProfileComponent
   }
 ];
 

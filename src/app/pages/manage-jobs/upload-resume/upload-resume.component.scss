@@ -1,0 +1,43 @@
+@import '../../../../assets/partials/utils/variables';
+@import '../../../../assets/partials/utils/mixins';
+
+.form-container {
+  width: 800px;
+  margin: 40px auto 0;
+}
+
+.progress-section {
+  padding: 20px;
+  border-radius: 32px;
+  border: 1px solid $stroke-gray;
+
+  .row {
+    margin: 0;
+    justify-content: center;
+    border-top: 1px solid $stroke-gray;
+    padding-top: 15px;
+
+    .col {
+      h4 {
+        text-align: center;
+      }
+      
+    }
+  }
+
+  h4 {
+    font-size: $font-size-13;
+    font-weight: 400;
+    color: $medium-gray;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+.form-steps {
+  .form-step {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}

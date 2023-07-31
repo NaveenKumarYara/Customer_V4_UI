@@ -250,35 +250,14 @@
       }
     }
 
-    .bottom-container {
-      margin-top: 10px;
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 55%;
+      max-width: 55%;
+    } 
 
-      .btn {
-        &.btn-link {
-          font-size: 0;
-          font-weight: 600;
-          color: $blue;
-          padding: 0;
-          margin-left: auto;
-          text-decoration: none;
-
-          .mdi {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1;
-            position: relative;
-            top: -2px;
-
-            @media only screen and (min-width: 768px) {
-              display: none;
-            }
-          }
-
-          @media only screen and (min-width: 768px) {
-            font-size: $font-size-16;
-          }
-        }
-      }
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 66.6667%;
+      max-width: 66.6667%;
     }
   }
 
@@ -341,7 +320,7 @@
 .table-container {
   display: table;
   table-layout: fixed;
- 
+  
   @media only screen and (min-width: 1320px) {
     display: block;
   }
@@ -353,6 +332,7 @@
   background-color: rgba($white,0.20);
   display: table-row;
   color: $dark-gray;
+  width: 1170px;
   font-size: $font-size-14;
 
   &:not(:first-child) {
@@ -368,9 +348,9 @@
     text-align: center;
 
     @media only screen and (min-width: 1320px) {
-      flex: 0 0 12%;
-      max-width: 12%;
-      width: 12%;
+      flex: 0 0 10%;
+      max-width: 10%;
+      width: 10%;
       display: block;
     }
 
@@ -381,9 +361,9 @@
       text-align: left;
       
       @media only screen and (min-width: 1320px) {
-        flex: 0 0 15%;
-        max-width: 15%;
-        width: 15%;
+        flex: 0 0 12%;
+        max-width: 12%;
+        width: 12%;
       }
     }
   }
@@ -404,7 +384,7 @@
 
   @media only screen and (min-width: 1320px) {
     @include flexbox();
-    @include flex-wrap(wrap);
+    @include flex-wrap(nowrap);
   }
 }
 
@@ -447,4 +427,43 @@
       margin-bottom: 30px;
     }
   }
+}
+
+.bottom-container {
+  margin-top: 10px;
+
+  .btn {
+    &.btn-link {
+      font-size: 0;
+      text-decoration: underline;
+      font-weight: 600;
+      color: $blue;
+      padding: 0;
+      color: $blue;
+      
+      .mdi {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        position: relative;
+        top: -2px;
+
+        @media only screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        font-size: $font-size-16;
+      }
+    }
+  }
+
+  &.xs {
+    margin-top: 0;
+  }
+}
+
+.xs-margin {
+  margin-top: 20px;
 }

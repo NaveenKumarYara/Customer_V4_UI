@@ -7,6 +7,17 @@ import { ChartConfiguration, ChartOptions } from 'chart.js';
   styleUrls: ['./dashboard-clients.component.scss']
 })
 export class DashboardClientsComponent implements OnInit {
+  cardExp: boolean = false;
+  cardJobId: boolean = false;
+  cardAryticId: boolean = false;
+  cardNav: boolean = false;
+  cardInterviewStatus: boolean = false;
+  cardLocation: boolean = false;
+  cardDate: boolean = false;
+  cardJobPositions: boolean = false;
+  cardStatus: boolean = true;
+  cardPriority: boolean = true;
+  
   public barChartLegend = false;
   public barChartPlugins = [];
 

@@ -1,10 +1,10 @@
 <div class="job-card">
   <div class="col-container">
     <div class="top-container">
-      <span class="status active">
+      <span class="status active" *ngIf="cardStatus">
         Uploaded <span class="mdi mdi-information-outline"></span>
       </span>
-      <span class="priority">
+      <span class="priority" *ngIf="cardPriority">
         Candidate Info
       </span>
       <div class="profile-info">
@@ -23,7 +23,7 @@
     <div class="middle-container">
       <div class="left-container">
         <div class="top-section">
-          <h3>Software Architect 1 </h3>
+          <h3><strong>Job Applied - </strong>Software Architect 1 </h3>
         </div>
         <div class="top-bottom-section">
           <ul>

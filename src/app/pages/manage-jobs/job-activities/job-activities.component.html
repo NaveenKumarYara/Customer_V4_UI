@@ -42,7 +42,7 @@
           </a>
         </li>
         <li>
-          <a href="#" placement="top" ngbTooltip="Upload Resume">
+          <a href="javascript:void(0)" placement="top" (click)="panelHandler('job-upload-resume')" ngbTooltip="Upload Resume">
             <span class="mdi mdi-tray-arrow-up"></span>
           </a>
         </li>
@@ -212,9 +212,8 @@
       [profile] ="profile"
     >
     </app-sidepanel-cards>
-    <div class="form-actions d-flex align-items-center">
-      <h4>{{ isDocumentType ? 'Other Documents': 'Resume Documents'}}</h4> 
-      <div class="toogle-container ml-auto">
+    <div class="form-actions d-flex document-form-actions">      
+      <div class="toogle-container">
         Resume
         <label class="toggle" for="typeView">
           <input class="toggle__input" name="" (change)="documentType()" type="checkbox" id="typeView">
@@ -222,6 +221,7 @@
         </label>
         Other Documents
       </div>
+      <h4>{{ isDocumentType ? 'Other Documents': 'Resume Documents'}}</h4> 
     </div>
   </div>
   <div class="slide-container">
@@ -253,5 +253,71 @@
 
   <div class="slide-container">
     <app-job-share-profile [job]="JobDetail" [profile] ="profile"></app-job-share-profile>
+  </div>
+</app-slidepanel>
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='job-change-application'?'show':''"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Change Application Status</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "true"
+    >
+    </app-sidepanel-cards>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-outlined-default">Clear</button>
+    <button class="btn btn-info">Schedule</button>
+  </div>
+  <div class="slide-container">
+    <app-job-status-change></app-job-status-change>
+  </div>
+</app-slidepanel>
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='job-upload-resume'?'show':''"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Upload Reume</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "true"
+    >
+    </app-sidepanel-cards>
+    <div class="form-actions">
+      <button class="btn btn-outlined-default">Clear</button>
+      <button class="btn btn-info">Save</button>
+    </div>
+  </div>
+  <div class="slide-container">
+    <app-upload-resume></app-upload-resume>
+  </div>
+</app-slidepanel>
+
+<app-slidepanel 
+  class="slide-panel"
+  [ngClass]="panelShow=='profile-matching'?'show':''"
+  (panelCloseHandler) ="panelCloseHandler()"
+>
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>Profile Matching Criteria</h3>
+    </div>
+    <app-sidepanel-cards></app-sidepanel-cards>
+    <div class="form-actions">
+      <button class="btn btn-outlined-default">Clear</button>
+      <button class="btn btn-info">Save</button>
+    </div>
+  </div>
+  <div class="slide-container">
+    <app-job-profile-match></app-job-profile-match>
   </div>
 </app-slidepanel>

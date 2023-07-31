@@ -89,6 +89,10 @@
 }
 
 .tab-navigation {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+
   ul {
     @include no-style();
     @include flexbox();
@@ -103,8 +107,8 @@
     }
 
     li {
-      flex: 0 0 25%;
-      max-width: 25%;
+      flex: 0 0 20%;
+      max-width: 20%;
       @include flexbox();
       @include align-items(center);
       @include justify-content(center);
@@ -120,6 +124,12 @@
         flex: 0 0 100%;
         max-width: 100%;
         border-radius: 8px;
+
+        &.active {
+          background-color: $blue;
+          color: $white;
+          box-shadow: 0px 4px 8px 0px rgba(144, 164, 173, 0.40) inset;
+        }
 
         @media only screen and (min-width: 1024px) {
           border-radius: 32px;
@@ -215,3 +225,123 @@
   }
 }
 
+.quick-results {
+  ul {
+		@include no-style();
+		@include inline-flex();
+		@include flex-wrap(wrap);
+		gap: 10px;
+   
+		li {
+			background: $white;
+			border: 1px solid $stroke-gray;
+			border-radius: 4px;
+			position: relative;
+			color: $dark-gray;
+			font-size: $font-size-14;
+			padding: 4px 26px 4px 10px;
+			@include shadowTwo();
+			
+			.mdi {
+				font-size: $font-size-14;
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+		@media only screen and  (min-width: 767px) {
+			li {
+				padding: 4px 36px 4px 10px;
+			}
+		}
+	}
+}
+
+.show-card {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include align-items(flex-start);
+
+  .form-box {
+    flex: 0 0 calc(100% - 420px);
+    padding-right: 30px;
+    max-width: calc(100% - 420px);
+  }
+
+  .form-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .card-box {
+    display: block !important;
+    flex: 0 0 400px;
+    max-width: 400px;  
+  }
+}
+
+.slick-slider {
+  .slick-track {
+    @include flexbox();
+    gap: 10px;
+  }
+}
+
+.professional-experience-section {
+  .tab-content {
+    padding: 20px;
+  }
+  .professional-expereince-listing {
+    .tab-navigation {
+      padding: 0;
+      ul {
+        border: 1px solid $stroke-gray;
+        position: relative;
+
+        li {
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+      }
+    }
+  }
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.three-grid-container {
+  .grid-row {
+    gap: 15px 0;
+  }
+
+  h4 {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $stroke-gray;
+  }
+
+  .col-container {
+    border: 1px solid $stroke-gray;
+    border-radius: 6px;
+    background-color: $white;
+    height: 100%;
+    padding: 10px 15px;
+    cursor: pointer;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    font-weight: 600;
+    font-size: $font-size-15;
+    color: $dark-gray;
+    @include shadowTwo();
+
+    .mdi {
+      font-size: $font-size-20;
+      margin-right: 10px;
+    }
+  }
+}

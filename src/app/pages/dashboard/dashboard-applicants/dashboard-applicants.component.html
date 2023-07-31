@@ -73,12 +73,12 @@
       <div class="col-container">
         <div class="container-box">
           <div class="top-container">
-            <h3>Applicants Report</h3>
-            <!-- <div class="form-group">
+            <h3>Overall Application Report</h3>
+            <div class="form-group">
               <select class="form-select">
                 <option value="This Week">This Week</option>
               </select>
-            </div> -->
+            </div>
           </div>
           <canvas baseChart
             [data]="barChartData"
@@ -88,17 +88,20 @@
             [type]="'bar'"
           >
           </canvas>
+          <div class="bottom-container d-flex justify-content-center">
+            <a href="#" class="btn btn-link">Full View</a>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-7 col-lg-7 table-cols">
       <div class="top-container">
-        <h3>Applicants Report based on source</h3>
-        <!-- <div class="form-group">
+        <h3>Status of Applicants based on Source</h3>
+        <div class="form-group">
           <select class="form-select">
             <option value="This Week">This Year</option>
           </select>
-        </div> -->
+        </div>
       </div>
       <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'x', theme: 'dark' }">
         <div class="table-container">
@@ -128,106 +131,111 @@
               Rejected
             </div>
           </div>
-          <div class="table-row table-col-row" *ngFor="let job of topApplicantsSource;let j = index">
-            <div class="table-col name-col">
-              <span class="text-ellipsis"> {{job?.DataSource}}</span>
+          <ng-container  *ngFor="let job of topApplicantsSource;let j = index">
+            <div class="table-row table-col-row" *ngIf="j < 4">
+              <div class="table-col name-col">
+                <span class="text-ellipsis"> {{job?.DataSource}}</span>
+              </div>
+              <div class="table-col">
+                {{job?.Uploaded}}
+              </div>
+              <div class="table-col">
+                {{job?.Applied}}
+              </div>
+              <div class="table-col">
+                {{job?.Shortlisted}}
+              </div>
+              <div class="table-col">
+                {{job?.Interviewed}}
+              </div>
+              <div class="table-col">
+                {{job?.Screened}}
+              </div>
+              <div class="table-col">
+                {{job?.Hired}}
+              </div>
+              <div class="table-col">
+                {{job?.Rejected}}
+              </div>
             </div>
-            <div class="table-col">
-              {{job?.Uploaded}}
-            </div>
-            <div class="table-col">
-              {{job?.Applied}}
-            </div>
-            <div class="table-col">
-              {{job?.Shortlisted}}
-            </div>
-            <div class="table-col">
-              {{job?.Interviewed}}
-            </div>
-            <div class="table-col">
-              {{job?.Screened}}
-            </div>
-            <div class="table-col">
-              {{job?.Hired}}
-            </div>
-            <div class="table-col">
-              {{job?.Rejected}}
-            </div>
-          </div>
+          </ng-container>
+          
      
         </div>
       </div>
-      <!-- <div class="bottom-container d-flex justify-content-end">
+      <div class="bottom-container d-flex justify-content-end">
         <a href="#" class="btn btn-link">
           Full View
           <span class="mdi mdi-fullscreen"></span>
         </a>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
 
-<div class="dashboard-listing-columns">
-        <div class="col-md-12 col-lg-12 table-cols">
-         <div class="container-box">
-          <div class="top-container">
-            <h3>Applicants Hotlist</h3>
-          </div>
-         </div>
-         <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">
-         <div class="table-container">
-          <div class="table-row table-header-row">
-          <div class="table-col1 name-col">
-          <strong>
-            Name
-          </strong> 
-          </div>
-          <div class="table-col1">
-            <strong>
-           Role
-            </strong>
-          </div>
-          <div class="table-col1">
-            <strong>
-            Experience
-            </strong>
-          </div>
-          <div class="table-col1">
-            <strong>
-            #Applicant Id
-            </strong>
-          </div>
-          <div class="table-col1">
-            <strong>
-           Jobs
-            </strong>
-          </div>
-         
-          </div>
-          <div class="table-row table-col-row" *ngFor="let job of topApplicants;let i = index">
-          <div class="table-col1 name-col">
-            <span class="text-ellipsis">  {{job?.FirstName | titlecase}}     {{job?.LastName | titlecase}}</span>
-          </div>
-          <div class="table-col1">
-            {{job?.ProfileTitle}}
-          </div>
-          <div class="table-col1">
-            {{job?.TotalExperience}}
-          </div>
-          <div class="table-col1">
-            {{job?.ProfileId}}
-          </div>
-          <div class="table-col1">
-            {{job?.JobCount}}
-          </div>
-         
-          </div>
-      </div>  
-</div>
 
-<!-- <div class="dashboard-listing-columns hidden">
+<!--Old HTML Table Binding-->
+<!--<div class="dashboard-listing-columns">
+  <div class="col-md-12 col-lg-12 table-cols">
+  <div class="container-box">
+    <div class="top-container">
+      <h3>Applicants Hotlist</h3>
+    </div>
+  </div>
+  <div class="table-box-container" malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'dark' }">
+    <div class="table-container">
+      <div class="table-row table-header-row">
+        <div class="table-col1 name-col">
+          <strong>
+          Name
+          </strong> 
+        </div>
+        <div class="table-col1">
+          <strong>
+          Role
+          </strong>
+        </div>
+        <div class="table-col1">
+          <strong>
+          Experience
+          </strong>
+        </div>
+        <div class="table-col1">
+          <strong>
+          #Applicant Id
+          </strong>
+        </div>
+        <div class="table-col1">
+          <strong>
+          Jobs
+          </strong>
+        </div>
+      </div>
+      <div class="table-row table-col-row" *ngFor="let job of topApplicants;let i = index">
+        <div class="table-col1 name-col">
+          <span class="text-ellipsis">  {{job?.FirstName | titlecase}}     {{job?.LastName | titlecase}}</span>
+        </div>
+        <div class="table-col1">
+          {{job?.ProfileTitle}}
+        </div>
+        <div class="table-col1">
+          {{job?.TotalExperience}}
+        </div>
+        <div class="table-col1">
+          {{job?.ProfileId}}
+        </div>
+        <div class="table-col1">
+          {{job?.JobCount}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+<!--Old HTML Table Binding-->
+
+<div class="dashboard-listing-columns">
   <div class="top-container">
-    <h3>Applicant Hotlist</h3>
+    <h3>Top Hotlist</h3>
     <div class="form-group">
       <select class="form-select">
         <option value="This Week">This Week</option>
@@ -236,7 +244,7 @@
   </div>
   <div class="candidate-cards">
     <div class="row">
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -244,7 +252,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -252,7 +260,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -260,7 +268,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -268,7 +276,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -276,7 +284,7 @@
         >
         </app-dashboard-candidate-card>
       </div>
-      <div class="col-md-6 col-lg-6 col">
+      <div class="col-md-4 col-lg-4 col">
         <app-dashboard-candidate-card
           [cardID] = true
           [cardMatching]= true
@@ -286,4 +294,79 @@
       </div>
     </div>
   </div>
-</div> -->
+  <div class="bottom-container xs d-flex justify-content-end">
+    <a href="#" class="btn btn-link">
+      Show More
+      <span class="mdi mdi-fullscreen"></span>
+    </a>
+  </div>
+</div>
+
+<div class="dashboard-listing-columns xs-margin">
+  <div class="top-container">
+    <h3>Recent Applicants</h3>
+    <div class="form-group">
+      <select class="form-select">
+        <option value="This Week">This Week</option>
+      </select>
+    </div>
+  </div>
+  <div class="candidate-cards">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+      <div class="col-md-4 col-lg-4 col">
+        <app-dashboard-candidate-card
+          [cardID] = true
+          [cardMatching]= true
+          [cardMatchingTitle] = "'Average Matching Score'"
+        >
+        </app-dashboard-candidate-card>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-container xs d-flex justify-content-end">
+    <a href="#" class="btn btn-link">
+      Show More
+      <span class="mdi mdi-fullscreen"></span>
+    </a>
+  </div>
+</div>

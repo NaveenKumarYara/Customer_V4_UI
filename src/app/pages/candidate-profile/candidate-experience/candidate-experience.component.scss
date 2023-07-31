@@ -1,0 +1,28 @@
+@import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
+
+.candidate-experience-section {
+  padding: 40px 0;
+
+  app-candidate-experience-list {
+    display: block;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 27px;
+      border-radius: 50%;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      background-color: $stroke-gray;
+    }
+
+    &:after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}

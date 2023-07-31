@@ -131,6 +131,15 @@ body {
 			color: red;
 		}
 
+		&[disabled] {
+			.ngx-slider-selection {
+				background-color: $medium-gray;
+			}
+			.ngx-slider-pointer {
+				background-color: $medium-gray;
+			}
+		}
+
 		.ngx-slider-tick {
 			width: 1px;
 			height: 15px;
@@ -464,7 +473,8 @@ body {
 }
 
 .slide-panel {
-	.slide-close {
+	.slide-close,
+	.btn-card {
 		width: 36px;
 		height: 36px;
 		border-radius: 50%;
@@ -477,8 +487,17 @@ body {
 		transform: translateY(-50%);
 		border: 1px solid $stroke-gray;
 
+		&:hover {
+			background-color: $blue;
+			border-color: $blue;
+			
+			.mdi {
+				color: $white;
+			}
+		}
+
 		.mdi {
-			line-height: 1;
+			line-height: 1.5;
 		}
 
 		@media only screen and (min-width: 768px) {
@@ -489,8 +508,22 @@ body {
 	}
 	
 	&.show {
-		.slide-close {
+		.slide-close,
+		.btn-card {
 			display: block;
+		}
+
+		.btn-card {
+			margin-top: -70px;
+
+			&.active {
+				background-color: $blue;
+				border-color: $blue;
+				
+				.mdi {
+					color: $white;
+				}
+			}
 		}
 	}
 }
@@ -517,9 +550,20 @@ body {
 }
 
 .form-container {
+
+	.no-form-col {
+		.form-sub-col {
+			padding: 0 8px;
+		}
+	}
+
 	.row {
 		@include align-items(flex-start);
 		margin-bottom: 20px;
+
+		.sub-row {
+			margin-bottom: 0 !important;
+		}
 	}
 
 	.form-col {
@@ -879,7 +923,8 @@ body {
 			transform: translateY(-50%);
 		}
 
-		input[type="checkbox"] {
+		input[type="checkbox"],
+		input[type="radio"] {
 			position: absolute;
 			left: -999em;
 
@@ -974,7 +1019,7 @@ body {
 	position: static;
 	top: 0;
 	background-color: $white;
-	z-index: 100;
+	z-index: 200;
 
 	@media only screen and (min-width: 1170px) {
 		position: sticky;
@@ -1071,4 +1116,8 @@ body {
 		border-radius: 4px !important;
 		padding: 4px 20px 4px 10px !important;
 	}
+}
+
+.no-margin {
+	margin-bottom: 0 !important;
 }

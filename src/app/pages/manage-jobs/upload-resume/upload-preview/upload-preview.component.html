@@ -1,0 +1,222 @@
+<div class="job-card">
+  <div class="col-container">
+    <div class="top-container">
+      <div class="custom-checkbox">
+        <label>
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <span class="status active">
+        <span class="status-info">
+          Active
+        </span>
+      </span>
+      <span class="priority">
+        <span class="priority-info">
+          Resume Source
+        </span>
+      </span>
+     
+      <div class="profile-info">
+        <div class="profile-thumb">
+          <img src="../../../../assets/images/default-profile-thumb.png" alt="">
+        </div>
+        <h3>
+          <span class="text-trim pointer">Swetha Ramadugu</span>
+        </h3>
+        <h4 placement="top" ngbTooltip="Manager 4 Years">
+          <span class="text-trim">Manager 4 Years</span>
+        </h4>
+        <div class="grid-cols xs-grid-cols">
+          <div class="grid-col">
+            <span class="mdi mdi-map-marker-outline"></span>
+            <span class="text-trim" placement="top" ngbTooltip="Austin, Texas">
+              Austin, Texas
+            </span>
+          </div>
+          <div class="grid-col">
+            <span class="mdi mdi-briefcase-outline"></span>
+            <span class="text-trim" placement="top" ngbTooltip="5 Yrs">
+              5 Yrs
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="middle-container">
+      <div class="middle-section">
+        
+        <div class="grid-cols">
+          <div class="grid-col">
+            <span class="mdi mdi-email-arrow-right-outline"></span>
+            <a href="mailto:swetha026@gmail.com ">
+              <span class="text-trim" placement="top" ngbTooltip="swetha026@gmail.com">
+                swetha026@gmail.com 
+              </span>
+            </a>
+          </div>
+          <div class="grid-col">
+            <span class="mdi mdi-phone-classic"></span>
+            <span class="text-trim" placement="top" ngbTooltip="9338838388">
+              9338838388 
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="process-section">
+        <h4>Application Status</h4>  
+          <ng-container>
+            <ul>
+              <li>
+                <span class="icon icon-submitted">Icon</span>
+                <h6>Submitted</h6>
+              </li>
+              <li>
+                <span class="icon icon-screening">Icon</span>
+                <h6>Screening</h6>
+              </li>
+              <li>
+                <span class="icon icon-shortlisted">Icon</span>
+                <h6>Shortlisted</h6>
+              </li>
+              <li>
+                <span class="icon icon-interview">Icon</span>
+                <h6>Interview</h6>
+              </li>
+              <li>
+                <span class="icon icon-hired">Icon</span>
+                <h6>Hired</h6>
+              </li>
+            </ul>
+          </ng-container>
+      </div>
+    </div>
+    <div class="card-chart-section">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 left-chart-col">
+          <div class="box-container">
+            <h4>
+              Arytic Fit
+            </h4>
+            <div class="">
+              <canvas baseChart
+              chartType="radar"
+              [datasets]="chart.datasets"
+              [labels]="chart.labels"
+              [options]="chart.options">
+            </canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 right-chart-col">
+          <div class="box-container">
+            <h4>
+              Profile Matching
+            </h4>
+            <div class="progress-circle">
+              <circle-progress
+              [percent]="60"
+              [radius]="30"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="2"
+              [outerStrokeColor]="'#6262FF'"
+              [innerStrokeColor]="'#C0C0C0'"
+              [animationDuration]="0"
+              [responsive] = true
+              [showSubtitle] = false
+              ></circle-progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <h4>Arytic Certified</h4>
+      <ul>
+        <li class="active">
+          <span class="icon icon-skills">Icon</span>
+          <h6>Skills Fit</h6>
+        </li>
+        <li class="active">
+          <span class="icon icon-job">Icon</span>
+          <h6>Job Fit</h6>
+        </li>
+        <li>
+          <span class="icon icon-team">Icon</span>
+          <h6>Team Fit</h6>
+        </li>
+        <li>
+          <span class="icon icon-personality">Icon</span>
+          <h6>Personality Fit</h6>
+        </li>
+        <li>
+          <span class="icon icon-culture">Icon</span>
+          <h6>Culture Fit</h6>
+        </li>
+      </ul>
+    </div>
+    <div class="skills-grid">
+      <h4>Skills</h4>
+      <div class="skills-cols">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <div class="skills-col">
+              <div class="skill-container">
+                <h3>UX</h3>
+                <h4>Exp : 4 years</h4>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" aria-readonly="true" [max]="5"></ngb-rating>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="skills-col">
+              <div class="skill-container">
+                <h3>UX</h3>
+                <h4>Exp : 4 years</h4>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" aria-readonly="true" [max]="5"></ngb-rating>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="skills-col">
+              <div class="skill-container">
+                <h3>UX</h3>
+                <h4>Exp : 4 years</h4>
+                <div class="rating">
+                  <ngb-rating [(rate)]="currentRate" aria-readonly="true" [max]="5"></ngb-rating>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="bottom-container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 left-col">
+          <div class="profile-section">
+            <img src="../../../../assets/images/default-company-small.jpg" alt="">
+            <div class="profile-summary">
+              <h4>Uploaded By</h4>
+              <h5>Wework pvt ltd</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 right-col">
+          <div class="profile-section">
+            <img src="../../../../assets/images/default-profile-thumb.png" alt="">
+            <div class="profile-summary">
+              <h4>Uploaded on</h4>
+              <h5>Jul 13, 2023</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

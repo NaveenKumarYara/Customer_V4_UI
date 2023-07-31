@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SettingsHttpService } from 'src/settings/settings.http.service';
 import { SettingsService } from 'src/settings/settings.service';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SettingsService } from 'src/settings/settings.service';
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbDropdownModule
   ],
   exports: [
     HeaderComponent,

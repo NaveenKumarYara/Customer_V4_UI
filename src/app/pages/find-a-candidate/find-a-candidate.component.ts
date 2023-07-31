@@ -23,7 +23,7 @@ export class FindACandidateComponent implements OnInit {
   np:number = 1;
   CandidateDetails:any;
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,

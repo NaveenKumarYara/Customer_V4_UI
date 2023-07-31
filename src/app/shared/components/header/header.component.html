@@ -1,23 +1,33 @@
 <header id="header" class="d-flex align-items-center">
-  <a href="javascript:void(0)" id="logo">
-    <img src="../../../../assets/images/logo.png" alt="Arytic"/>
-  </a>
-  <div class="right-col ml-auto">
-    <!-- <div class="form-search">
+  <div class="left-col">
+    <a href="javascript:void(0)" id="logo">
+      <img src="../../../../assets/images/logo.png" alt="Arytic"/>
+    </a>
+    <div class="form-search">
+      <span class="mdi mdi-magnify"></span>
       <input type="text" class="form-control" placeholder="Search Here...">
-    </div> -->
-    <!-- <a href="#" class="btn-notification">
+    </div>
+  </div>
+  <div class="right-col ml-auto">
+    <select class="form-select">
+      <option value="Add">Add</option>
+    </select>
+    <a href="#" class="btn-notification">
       <span class="mdi mdi-bell-badge-outline"></span>
       <em>10</em>
-    </a> -->
-    <div class="profile-nav">
-
-    <img src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}" alt=""/>
-      
-     
-    </div>
-   {{customer.FirstName | titlecase}} {{customer?.LastName | titlecase}}
-    <br/>
-    <a href="javascript:void(0)" (click)="logout()">Logout</a>
+    </a>
+    <div ngbDropdown class="d-inline-block">
+      <div class="profile-nav" id="dropdownBasic1" ngbDropdownToggle>
+        <img src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}" alt=""/>
+      </div>
+			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+				<a ngbDropdownItem [routerLink]="['/candidate-profile']">
+          {{customer.FirstName | titlecase}} {{customer?.LastName | titlecase}}
+        </a>
+				<button ngbDropdownItem (click)="logout()">
+          Logout
+        </button>
+			</div>
+		</div>
   </div>
 </header>

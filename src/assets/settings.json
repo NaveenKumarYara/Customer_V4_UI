@@ -5,5 +5,5 @@
     "ProfilebaseUrl": "https://profileapi-dev001.arytic.com",
     "MasterbaseUrl":"https://masterapi-dev001.arytic.com",
     "PricingBaseUrl":"https://pricingapi-dev001.arytic.com",
-    "EmailV1APIBaseUrl":"https://emailapiv1-dev001.arytic.com",
+    "EmailV1APIBaseUrl":"https://emailapiv1-dev001.arytic.com"
 }

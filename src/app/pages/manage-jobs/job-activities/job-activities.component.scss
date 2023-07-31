@@ -386,3 +386,15 @@
   left: -8px;
   top: 4px;
 }
+
+.form-actions {
+	&.document-form-actions {
+		@include flex-direction(column);
+		padding: 30px 40px 0;
+		@include align-items(flex-start);
+
+		.toogle-container {
+			margin-left: 0;
+		}
+	}
+}

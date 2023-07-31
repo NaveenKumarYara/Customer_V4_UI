@@ -4,8 +4,8 @@
     [viewLayout] = "viewLayout"
     (layoutView) = "layoutView($event)"
     (newfItemEvent)="addfItem($event)"
-   [candidates]="candidates"   
-  (fchanged)="onfChange($event)"  (clearfItemEvent)="clearAll($event)"
+    [candidates]="candidates"   
+    (fchanged)="onfChange($event)"  (clearfItemEvent)="clearAll($event)"
   >
   </app-find-a-candidate-filter>
   <div class="sorting-container d-flex align-items-center">
@@ -32,17 +32,16 @@
         </div>
         </div>
         <div class="col-md-4 col-lg-4 right-col" *ngIf="showCardCarousel">
-        <div class="card-actions d-flex align-items-end justify-content-end">
-          <button class="btn close-btn" (click)="showCardCarouselHideHandler()">
-            <span class="mdi mdi-close-circle-outline"></span>
-          </button>
-        </div>
-        <owl-carousel-o [options]="customOptions">
-          <ng-template carouselSlide>
-            <app-find-a-candidate-card [CandidateDetails]="CandidateDetails"></app-find-a-candidate-card>
-          </ng-template>
-        
-        </owl-carousel-o>
+          <div class="card-actions d-flex align-items-end justify-content-end">
+            <button class="btn close-btn" (click)="showCardCarouselHideHandler()">
+              <span class="mdi mdi-close-circle-outline"></span>
+            </button>
+          </div>
+          <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide>
+              <app-find-a-candidate-card [CandidateDetails]="CandidateDetails"></app-find-a-candidate-card>
+            </ng-template>
+          </owl-carousel-o>
         </div>
       </div>
     </div>

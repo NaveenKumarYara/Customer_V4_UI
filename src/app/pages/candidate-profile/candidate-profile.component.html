@@ -1,0 +1,31 @@
+<app-header></app-header>
+<!-- {{ slickReinit }} -->
+  <div id="main-content">
+    <div class="profile-section">
+      <app-candidate-profile-summary></app-candidate-profile-summary>
+      <div class="tab-navigation">
+        <ul ngbNav #nav="ngbNav" (navChange)="onNavChange($event)" [(activeId)]="active" [destroyOnHide]="true">
+          <li [ngbNavItem]="1" [destroyOnHide]="true">
+            <a ngbNavLink>Candidate Profile</a>
+            <ng-template ngbNavContent>
+              <app-candidate-profile-detail></app-candidate-profile-detail>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Job History</a>
+            <ng-template ngbNavContent>
+              <app-candidate-job-history></app-candidate-job-history>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Documents</a>
+            <ng-template ngbNavContent let-active>
+              <app-candidate-documents></app-candidate-documents>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+<app-footer></app-footer>

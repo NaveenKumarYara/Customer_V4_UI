@@ -141,15 +141,11 @@
     border-radius: 18px;
     background: $white;
     box-shadow: 0px 3px 6px rgba(110, 129, 158, 0.14);
+    height: calc(100% - 34px);
     padding: 20px;
     @include flexbox();
     @include align-items(center);
     @include flex-direction(column);
-
-    canvas {
-      height: 400px;
-      width: 100%;
-    }
 
     .container-box {
       width: 100%;
@@ -254,35 +250,14 @@
       }
     }
 
-    .bottom-container {
-      margin-top: 10px;
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 55%;
+      max-width: 55%;
+    } 
 
-      .btn {
-        &.btn-link {
-          font-size: 0;
-          font-weight: 600;
-          color: $blue;
-          padding: 0;
-          margin-left: auto;
-          text-decoration: none;
-
-          .mdi {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1;
-            position: relative;
-            top: -2px;
-
-            @media only screen and (min-width: 768px) {
-              display: none;
-            }
-          }
-
-          @media only screen and (min-width: 768px) {
-            font-size: $font-size-16;
-          }
-        }
-      }
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 66.6667%;
+      max-width: 66.6667%;
     }
   }
 
@@ -328,13 +303,24 @@
         }
       }
     }
+
+    @media only screen and (min-width: 1023px) {
+      flex: 0 0 45%;
+      max-width: 45%; 
+      margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 1280px) {
+      flex: 0 0 33.33%;
+      max-width: 33.33%;
+    }
   }
 }
 
 .table-container {
   display: table;
   table-layout: fixed;
- 
+  
   @media only screen and (min-width: 1320px) {
     display: block;
   }
@@ -346,6 +332,7 @@
   background-color: rgba($white,0.20);
   display: table-row;
   color: $dark-gray;
+  width: 1170px;
   font-size: $font-size-14;
 
   &:not(:first-child) {
@@ -361,36 +348,22 @@
     text-align: center;
 
     @media only screen and (min-width: 1320px) {
-      flex: 0 0 11%;
-      max-width: 11%;
-      width: 11%;
+      flex: 0 0 10%;
+      max-width: 10%;
+      width: 10%;
       display: block;
     }
 
-    &.name-col,
-    &.phone-col {
+    &.name-col {
       flex: 0 0 204px;
       max-width: 204px;
       width: 204px;
       text-align: left;
       
       @media only screen and (min-width: 1320px) {
-        flex: 0 0 15%;
-        max-width: 15%;
-        width: 15%;
-      }
-    }
-
-    &.application-col {
-      flex: 0 0 204px;
-      max-width: 204px;
-      width: 204px;
-      text-align: left;
-      
-      @media only screen and (min-width: 1320px) {
-        flex: 0 0 15%;
-        max-width: 15%;
-        width: 15%;
+        flex: 0 0 12%;
+        max-width: 12%;
+        width: 12%;
       }
     }
   }
@@ -411,11 +384,51 @@
 
   @media only screen and (min-width: 1320px) {
     @include flexbox();
-    @include flex-wrap(wrap);
+    @include flex-wrap(nowrap);
   }
 }
 
 .table-box-container {
   width: 100%;
   overflow: auto;
+}
+
+.bottom-container {
+  margin-top: 10px;
+
+  .btn {
+    &.btn-link {
+      font-size: 0;
+      font-weight: 600;
+      color: $blue;
+      padding: 0;
+      text-decoration: none;
+      color: $blue;
+      text-decoration: none;
+
+      .mdi {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        position: relative;
+        top: -2px;
+
+        @media only screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        font-size: $font-size-16;
+      }
+    }
+  }
+
+  &.xs {
+    margin-top: 0;
+  }
+}
+
+.xs-margin {
+  margin-top: 20px;
 }

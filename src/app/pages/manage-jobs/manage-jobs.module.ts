@@ -29,7 +29,7 @@ import { JobActivitiesSummaryComponent } from './job-activities/job-activities-s
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { JobListComponent } from './job-activities/job-list/job-list.component';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericListFilterModule } from 'generic-list-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { JobStatusComponent } from './job-status/job-status.component';
@@ -55,6 +55,12 @@ import { NgxUploaderModule } from 'ngx-uploader';
 import { AdvanceFilterComponent } from './job-activities/job-activities-filters/job-activities-advance-filter/job-activities-advance-filter.component';
 import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 
+import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
+import { UploadResumeComponent } from './upload-resume/upload-resume.component';
+import { JobProfileMatchComponent } from './job-profile-match/job-profile-match.component';
+import { UploadFormComponent } from './upload-resume/upload-form/upload-form.component';
+import { UploadArtyticScanComponent } from './upload-resume/upload-artytic-scan/upload-artytic-scan.component';
+import { UploadPreviewComponent } from './upload-resume/upload-preview/upload-preview.component';
 @NgModule({
 	
 	declarations: [
@@ -89,7 +95,15 @@ import { CandidateDocumentComponent } from './candidate-document/candidate-docum
 	ViewEditJobsComponent,
  JobShareProfileComponent,
  AdvanceFilterComponent,
- CandidateDocumentComponent
+ CandidateDocumentComponent,
+  JobShareProfileComponent,
+  JobStatusChangeComponent,
+  UploadResumeComponent,
+  JobProfileMatchComponent,
+	AdvanceFilterComponent,
+ UploadFormComponent,
+ UploadArtyticScanComponent,
+ UploadPreviewComponent
 	],
 	imports: [
 	 CommonModule,
@@ -110,6 +124,7 @@ import { CandidateDocumentComponent } from './candidate-document/candidate-docum
 	 NgMultiSelectDropDownModule.forRoot(),
 	 FormsModule,
 	 NgxUploaderModule,
+	 NgbDatepickerModule,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

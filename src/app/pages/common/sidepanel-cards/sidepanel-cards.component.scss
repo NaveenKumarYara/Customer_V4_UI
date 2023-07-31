@@ -21,7 +21,7 @@
         position: absolute;
         left: 0;
         top: 20px;
-        width: 108px;
+        // width: 108px;
         text-align: center;
         font-size: 12px;
         border-radius: 0 4px 4px 0;
@@ -227,6 +227,7 @@
           @media only screen and (min-width: 991px) {
             flex: 0 0 100px;
             max-width: 100px;
+            
           }
         }
 
