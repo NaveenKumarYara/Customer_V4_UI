@@ -96,13 +96,12 @@ Login()
 
   SendEmail(uID)
   {
-    this.cforgot.appLink= this.settingsService.settings.Arytic +';pid='+uID;
+    this.cforgot.appLink= this.settingsService.settings.Arytic +'/ResetPassword;pid='+uID;
     this.cforgot.applicationName = "Arytic";
-    this.cforgot.clientLogo = " ";
+    this.cforgot.clientLogo = "";
     this.cforgot.fromID = "donotreply@arytic.com";
     this.cforgot.fullName = this.Forgotform.value.EmailId.split('@')[0];
     this.cforgot.toEmailId = this.Forgotform.value.EmailId;
-    debugger
     this.appService.CForgotPassword(this.cforgot)
     .subscribe(
     data => {
