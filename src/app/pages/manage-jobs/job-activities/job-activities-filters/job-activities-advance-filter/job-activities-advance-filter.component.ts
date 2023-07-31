@@ -54,8 +54,8 @@ export class AdvanceFilterComponent implements OnInit {
 
   statusDropdownSettings:IDropdownSettings = {
     singleSelection: true,
-    idField: 'jobStatusId',
-    textField: 'jobStatus',
+    idField: 'id',
+    textField: 'value',
     itemsShowLimit: 1,
     allowSearchFilter: true
   };
@@ -106,9 +106,20 @@ export class AdvanceFilterComponent implements OnInit {
     {id:3,value:'Below 60%'},
   ]
   profileType = [
-    
+    {id:0,value:'All'},
     {id:1,value:'Private'},
     {id:2,value:'Public'}
+  ]
+
+  ApplicationStatus = [
+    {id:0,value:'Hired'},
+    {id:1,value:'Uploaded'},
+    {id:7,value:'Withdrawn'},
+    {id:2,value:'Applied'},
+    {id:3,value:'Screening'},
+    {id:4,value:'Shortlisting'},
+    {id:5,value:'Scheduled Interview'},
+    {id:6,value:'Waiting for Response'},
   ]
   
 

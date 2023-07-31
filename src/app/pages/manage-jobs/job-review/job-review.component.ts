@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/shared/components/services/api.service';
   styleUrls: ['./job-review.component.scss']
 })
 export class JobReviewComponent implements OnInit {
-  currentRate = 3;
+  currentRate = 0;
 _job: any = null
   public isCollapsed = false;
   reviewsList: any;

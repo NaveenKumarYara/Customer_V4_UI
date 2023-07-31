@@ -90,14 +90,14 @@ export class JobActivitiesComponent implements OnInit {
 
     if (this.advancedFilters.applicationStatus.length > 0) {
       // returnVal = this.advancedFilters.profileType.map((v: any) => v.value).indexOf(job?.ProfileType) > -1;
-      returnVal = this.advancedFilters.applicationStatus.filter((v: any) => (job?.JobStatus || '').toLowerCase().includes(v.jobStatus.toLowerCase())).length > 0;
+      returnVal = this.advancedFilters.applicationStatus.filter((v: any) => (job?.JobStatus || '').toLowerCase().includes(v.value.toLowerCase())).length > 0;
       
     }
     if (!returnVal) return false;
 
 
-    if (this.advancedFilters.sourceType?.length > 0) {
-      returnVal = this.advancedFilters.sourceType.filter((v: any) => (job?.sourceType || '').toLowerCase().includes(v.name.toLowerCase())).length > 0;
+    if (this.advancedFilters.sourcType.length > 0) {
+      returnVal = this.advancedFilters.sourcType.filter((v: any) => (job?.DataSource || '').toLowerCase().includes(v.name.toLowerCase())).length > 0;
     }
     if (!returnVal) return false;
 
@@ -114,7 +114,7 @@ export class JobActivitiesComponent implements OnInit {
     // console.log("matching",matchingCondition,job.MatchingPercentage,(matchingCondition  =='100% - 80%'),(job.MatchingPercentage > 80),"-",(matchingCondition  =='80% - 60%'),(job.MatchingPercentage > 60),"-",(matchingCondition  =='Below 60%'),( job.MatchingPercentage <= 60 ))
 
     if (this.advancedFilters.profileMatching.length > 0) {
-      let matchingCondition = this.advancedFilters.profileMatching[0].value;
+      let matchingCondition = this.advancedFilters?.profileMatching[0].value;
 
       if(matchingCondition  =='100% - 80%'){
        returnVal =  (job.MatchingPercentage > 80);
@@ -125,18 +125,31 @@ export class JobActivitiesComponent implements OnInit {
       else if(matchingCondition  =='Below 60%'){
        returnVal = ( job.MatchingPercentage <= 60 );
       }
-      // .map((v: any) => v.value.toLowerCase()).indexOf(job.JobStatus.JobStatus()) > -1;
-      // MatchingPercentage
     }
     if (!returnVal) return false;
 
-    if (this.advancedFilters.domain.length > 0) {
-      returnVal = this.advancedFilters.DomainName.filter((v: any) => (job?.DomainName || '').toLowerCase().includes(v.DomainName.toLowerCase())).length > 0;
+    if (this.advancedFilters?.domain.length > 0) {
+      returnVal = this.advancedFilters?.DomainName.filter((v: any) => (job?.DomainName || '').toLowerCase().includes(v.DomainName.toLowerCase())).length > 0;
     }
     if (!returnVal) return false;
 
     if (this.advancedFilters.certification.length > 0) {
       returnVal = this.advancedFilters.certification.filter((v: any) => (job?.CertificationName || '').toLowerCase().includes(v.certificationname.toLowerCase())).length > 0;
+    }
+    if (!returnVal) return false;
+
+    if (this.advancedFilters.profileType[0]?.value == "Private") {
+      returnVal = (job.CompanyName !=  null)
+    }
+    if (!returnVal) return false;
+
+    if (this.advancedFilters.profileType[0]?.value == "Public") {
+      returnVal = (job.CompanyName ==  null)
+    }
+    if (!returnVal) return false;
+
+    if (this.advancedFilters.profileType[0]?.value == "All") {
+      returnVal = (job.CompanyName ==  null ||job.CompanyName !=  null )
     }
     if (!returnVal) return false;
 

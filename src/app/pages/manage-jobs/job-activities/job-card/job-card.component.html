@@ -56,9 +56,14 @@
         {{profile?.JobStatus  | titlecase}}
       </span>
     </span>
-    <span class="priority">
+    <span class="priority" *ngIf="profile?.DataSource != null">
       <span class="priority-info">
-        Resume Source
+       {{profile?.DataSource}}
+      </span>
+    </span>
+    <span class="priority" *ngIf="profile?.DataSource == null">
+      <span class="priority-info">
+       Self
       </span>
     </span>
    

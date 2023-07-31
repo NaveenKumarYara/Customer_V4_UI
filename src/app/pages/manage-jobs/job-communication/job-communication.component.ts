@@ -29,6 +29,7 @@ export class JobCommunicationComponent implements OnInit {
   @Input() isChecked: boolean = false;
   @Input() showNoteForm: boolean = false;
   @Input() showFeedbackForm: boolean = false;
+  
   Swal = require('sweetalert2');
   options!: UploaderOptions;
   formData!: FormData;
@@ -71,8 +72,10 @@ export class JobCommunicationComponent implements OnInit {
     this.checkemail = this.profile?.Email;
     this.grtProfileNotes();
     this.getFeedBack()
-
-
+  }
+  onFirstDivScroll(event: Event) {
+    // Prevent default scroll behavior of the first div
+    event.preventDefault();
   }
 
   selectedUserName: any | undefined
@@ -632,7 +635,7 @@ export class JobCommunicationComponent implements OnInit {
     this.feedback.customerUserId = this.customer.UserId;
     if (this.isShown3 == true && this.isShown4 == false) {
       this.feedback.toUserId =
-        this.feedBackTeammemberslist.map((x: any) => x.UserId).toString() + "," + this.customer.UserId.toString();
+      this.feedBackTeammemberslist.map((x: any) => x.UserId).toString() + "," + this.customer.UserId.toString();
       this.feedback.isCandidate = false;
       this.feedback.OtherInfo = this.feedback.OtherInfo;
       this.feedback.Doc = "";
@@ -685,10 +688,7 @@ export class JobCommunicationComponent implements OnInit {
                 timer: 3000,
                 type: "success"
               })
-              // this.feedback.FeedbackOption = ""
             this.getFeedBack();
-            //this.selectedComments = "";
-            //this.EmailId = " ";
             this.NId.push(status);
 
 
@@ -798,8 +798,8 @@ export class JobCommunicationComponent implements OnInit {
   SendFeedbackEmail() {
     this.emailNote.fullName = this.job.FirstName + " " + this.job.LastName;
     this.emailNote.body =this.selectedFeedBackComments
-    this.emailNote.toEmailId = "pridhvi.esolvit@gmail.com";
-    this.emailNote.customerName = "A & T"
+    this.emailNote.toEmailId = this.profile.Email ;
+    this.emailNote.customerName = this.customer.FirstName + ' '+this.customer.LastName
     this.emailNote.jobId = this.job.JobId
     this.emailNote.jobTitle = this.job.JobTitle
     this.emailNote.applicationName = "Arytic"

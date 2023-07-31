@@ -192,6 +192,19 @@
     }
   
     .middle-container {
+      .left-container {
+        display: inline-block;
+        width: 65%;
+        max-width: 65%;
+      }
+      .right-container {
+        display: inline-block;
+        width: 35%;
+        max-width: 35%;
+        .progress-circle {
+          display: inline-block;
+        }
+      }
       .top-section {
         padding:15px 20px 6px 20px;
         @include flex();
@@ -392,3 +405,5 @@
      margin-bottom: 30px;
    }
  }
+
+ 
