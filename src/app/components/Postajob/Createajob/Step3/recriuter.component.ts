@@ -436,13 +436,20 @@ export class recriuterComponent implements OnInit, OnDestroy {
         .subscribe(data => {
           const assignedManager = this.remanagers.find(z => z.UserId === manager.UserId);
           if (assignedManager) {
-            this.job.ToEmailID = assignedManager.Email;
+            this.job.toEmailID = assignedManager.Email;
           }
   
-          this.job.FullName = data.FirstName + ' ' + data.LastName;
-          this.job.Body = data.FirstName + ' ' + data.LastName + ' Assigned @' + data.JobTitle + ' position for you. Please go through the details!';
-  
-          this._service.PostService(this.job, 'EmailApi/api/EmailForAssignJob').subscribe(() => {
+          this.job.fullName = data.FirstName + ' ' + data.LastName;
+          this.job.body = data.FirstName + ' ' + data.LastName + ' Assigned @' + data.JobTitle + ' position for you. Please go through the details!';
+          this.job.appLink ="https://customer.arytic.com";
+          this.job.applicationName = "Arytic";
+          this.job.assignedMemberName = this.customer.FirstName + ' ' + this.customer.LastName;
+          this.job.fromEmail = this.customer.Email;
+          this.appService.currentjobtitle.subscribe((data) => {
+            this.job.jobTitle =  data; 
+          });
+          
+          this._service.PostService(this.job, 'EmailV1Api/api/EmailForAssignJob').subscribe(() => {
             this.job = new SendNoteEmail();
           });
         });
@@ -716,9 +723,14 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
 
 export class SendNoteEmail
 {
-  public FullName :string
-  public Body :string
-  public ToEmailID :string
+  fullName: string
+  assignedMemberName: string
+  jobTitle: string
+  body: string
+  appLink: string
+  toEmailID: string
+  applicationName: string
+  fromEmail: string
 }
 
 export class SaveJobProcess
