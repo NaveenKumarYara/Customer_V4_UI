@@ -596,17 +596,22 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
             this.report.CustomerId = this.customerId;
             this.report.JobId = Number(jobId);
             const ids = this.suggestManagers.map(o => o.UserId);
-            const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
-            this.report.HiringManager = filtered.map(x => x.UserId).toString();
+            //const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
+            //this.report.HiringManager = filtered.map(x => x.UserId).toString();
+            ids.forEach(c=>
+              {
+              this.report.HiringManager = c.toString();
 
-            this.appService.RecrutingTeam(this.report).subscribe(
-              data => {
-                if (data === 0) {
-                  console.log(data);
-                }
-              }
-            );
-            this.GetJobAssigned(jobId);
+                this.appService.RecrutingTeam(this.report).subscribe(
+                  data => {
+                    if (data === 0) {
+                      console.log(data);
+                    }
+                  }
+                );
+                this.GetJobAssigned(jobId);
+              })
+           
           });
         } else {
           const res = localStorage.getItem('jobId');
@@ -615,18 +620,24 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
           this.report.JobId = parseInt(res, 10);
           const ids = this.suggestManagers.map(o => o.UserId);
           const filtered = this.suggestManagers.filter(({ UserId }, index) => !ids.includes(UserId, index + 1));
-          this.report.HiringManager = filtered.map(x => x.UserId).toString();
-          this.GetJobAssigned(Number(res));
+          
+          //this.report.HiringManager = filtered.map(x => x.UserId).toString();
+         
 
-          this.appService.RecrutingTeam(this.report).subscribe(
-            data => {
-              if (data === 0) {
-                console.log('added');
-              }
-            }
-          );
+             ids.forEach(c=>
+              {
+              this.report.HiringManager = c.toString();
+              this.appService.RecrutingTeam(this.report).subscribe(
+                data => {
+                  if (data === 0) {
+                    console.log(data);
+                  }
+                }
+              );
+              this.GetJobAssigned(Number(res));
+            })
+          }
         }
-      }
     }
     
     
