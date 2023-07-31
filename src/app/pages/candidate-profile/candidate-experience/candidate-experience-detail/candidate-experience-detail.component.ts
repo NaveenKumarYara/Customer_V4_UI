@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SlickCarouselComponent } from "ngx-slick-carousel";
 
 @Component({
   selector: 'app-candidate-experience-detail',
@@ -8,6 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class CandidateExperienceDetailComponent implements OnInit {
   currentRate = 3;
   constructor() { }
+
+  slideConfig = {
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4
+  };
 
   ngOnInit(): void {
   }

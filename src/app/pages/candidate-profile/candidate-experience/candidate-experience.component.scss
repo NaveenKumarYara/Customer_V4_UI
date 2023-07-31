@@ -4,8 +4,36 @@
 .candidate-experience-section {
   padding: 40px 0;
 
+  .row {
+    @include align-items(flex-start);
+  }
+
   app-candidate-experience-list {
     display: block;
+    position: relative;
+    margin-top: 10px;
+
+    &:first-child {
+      margin-top: 0;
+    } 
+  }
+}
+
+.history-col {
+  position: relative;
+
+  &:before {
+    content: "";
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed $stroke-gray;
+    position: absolute;
+    left: 42px;
+    top: 0;
+  }
+
+  .history-container {
+    @include no-style();
     position: relative;
 
     &:before,

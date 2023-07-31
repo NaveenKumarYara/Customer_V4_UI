@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-candidate-experience-list',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class CandidateExperienceListComponent implements OnInit {
   active = 1;
   currentRate = 3;
+  @Input() index: any;
+  @Input() tabActive: any;
   constructor() { }
 
   ngOnInit(): void {

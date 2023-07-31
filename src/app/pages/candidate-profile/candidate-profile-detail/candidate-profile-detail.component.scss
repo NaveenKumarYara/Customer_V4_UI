@@ -392,3 +392,28 @@
     text-transform: none;
   }
 }
+
+.btn {
+  &.btn-plus {
+    width: 32px;
+    height: 32px;
+    border: 1px solid $stroke-gray;
+    border-radius: 50%;
+    @include shadowTwo();
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+
+    .mdi {
+      font-size: $font-size-18;
+    }
+
+    &:hover {
+      background-color: $blue;
+
+      .mdi {
+        color: $white !important;
+      }
+    }
+  }
+}

@@ -345,3 +345,38 @@
     }
   }
 }
+
+.slick-prev,
+.slick-next {
+  left: -15px !important;
+  &::before {
+    content: "\F0141" !important;
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons" !important;
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    color: $medium-gray !important;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.slick-next {
+  right: -15px !important;
+  left: auto !important;
+  &:before {
+    content: '\F0142' !important;
+  }
+}
+
+app-candidate-experience-list {
+  &:nth-child(even)  {
+    li {
+      .year {
+        &:before {
+          background-color: $dark-gray !important;
+        }
+      }
+    }
+  }
+}

@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidate-experience.component.scss']
 })
 export class CandidateExperienceComponent implements OnInit {
+  tabActive: any;
+  index: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.tabActive = 1;
+  }
+
+  tabClickHandler(name: any) {
+    this.tabActive = name;
   }
 
 }

@@ -8,7 +8,7 @@
   </div>
   <div class="container-box key-container-box">
     <div class="row flex">
-      <div class="col-sm-9 col key-left-col">
+      <div class="col-sm-12 col key-left-col">
         <h4 class="main-title">Key Responsibility</h4>
         <ul>
           <li>
@@ -32,15 +32,10 @@
               <span class="mdi mdi-star-outline"></span>
             </div>
           </li>
-        </ul>
-      </div>
-      <div class="col-sm-3 col key-right-col">
-        <h4 class="main-title">Key Achievements</h4>
-        <ul>
           <li>
             <div class="card-box">
               <span class="mdi mdi-checkbox-marked-circle-outline"></span>
-              Ui Design
+              jQuery
               <span class="mdi mdi-star-outline"></span>
             </div>
           </li>
@@ -54,8 +49,11 @@
         <div class="skills-container">
           <div class="skills-listing">
             <h4 class="main-title">Skills</h4>
-            <div class="row">
-              <div class="col-md-3 col-lg-3 col">
+            <ngx-slick-carousel class="carousel" 
+              #slickModal="slick-carousel"
+              [config]="slideConfig" 
+            >
+              <div ngxSlickItem>
                 <div class="skill-container">
                   <div class="skill-info">
                     <h3>SQL</h3>
@@ -66,7 +64,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-lg-3 col">
+              <div ngxSlickItem>
                 <div class="skill-container">
                   <div class="skill-info">
                     <h3>SQL</h3>
@@ -77,7 +75,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-lg-3 col">
+              <div ngxSlickItem>
                 <div class="skill-container">
                   <div class="skill-info">
                     <h3>SQL</h3>
@@ -88,7 +86,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-lg-3 col">
+              <div ngxSlickItem>
                 <div class="skill-container">
                   <div class="skill-info">
                     <h3>SQL</h3>
@@ -99,9 +97,90 @@
                   </div>
                 </div>
               </div>
-            </div>
+              <div ngxSlickItem>
+                <div class="skill-container">
+                  <div class="skill-info">
+                    <h3>SQL</h3>
+                    <h4>Exp:  5.8 Years</h4>
+                  </div>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                  </div>
+                </div>
+              </div>
+              <div ngxSlickItem>
+                <div class="skill-container">
+                  <div class="skill-info">
+                    <h3>SQL</h3>
+                    <h4>Exp:  5.8 Years</h4>
+                  </div>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                  </div>
+                </div>
+              </div>
+              <div ngxSlickItem>
+                <div class="skill-container">
+                  <div class="skill-info">
+                    <h3>SQL</h3>
+                    <h4>Exp:  5.8 Years</h4>
+                  </div>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                  </div>
+                </div>
+              </div>
+              <div ngxSlickItem>
+                <div class="skill-container">
+                  <div class="skill-info">
+                    <h3>SQL</h3>
+                    <h4>Exp:  5.8 Years</h4>
+                  </div>
+                  <div class="rating">
+                    <ngb-rating [(rate)]="currentRate" [max] = 5></ngb-rating>
+                  </div>
+                </div>
+              </div>
+            </ngx-slick-carousel>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-box key-container-box">
+    <div class="row flex">
+      <div class="col-sm-12 col key-left-col">
+        <h4 class="main-title">Key Achievements</h4>
+        <ul>
+          <li>
+            <div class="card-box">
+              <span class="mdi mdi-checkbox-marked-circle-outline"></span>
+              Ui Design
+              <span class="mdi mdi-star-outline"></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-box">
+              <span class="mdi mdi-checkbox-marked-circle-outline"></span>
+              HTML
+              <span class="mdi mdi-star-outline"></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-box">
+              <span class="mdi mdi-checkbox-marked-circle-outline"></span>
+              CSS3
+              <span class="mdi mdi-star-outline"></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-box">
+              <span class="mdi mdi-checkbox-marked-circle-outline"></span>
+              jQuery
+              <span class="mdi mdi-star-outline"></span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

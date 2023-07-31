@@ -1,10 +1,20 @@
 <div class="candidate-experience-section">
   <div class="row">
     <div class="col-sm-4 history-col">
-      <app-candidate-experience-list></app-candidate-experience-list>
+      <ul class="history-container">
+        <app-candidate-experience-list [tabActive]="tabActive" [index] = "'1'" (click)="tabClickHandler(1)"></app-candidate-experience-list>
+        <app-candidate-experience-list [tabActive]="tabActive" [index] = "'2'" (click)="tabClickHandler(2)"></app-candidate-experience-list>
+        <app-candidate-experience-list [tabActive]="tabActive" [index] = "'3'" (click)="tabClickHandler(3)"></app-candidate-experience-list>
+        <app-candidate-experience-list [tabActive]="tabActive" [index] = "'4'" (click)="tabClickHandler(4)"></app-candidate-experience-list>
+        <app-candidate-experience-list [tabActive]="tabActive" [index] = "'5'" (click)="tabClickHandler(5)"></app-candidate-experience-list>
+      </ul>
     </div>
     <div class="col-sm-8 experience-detail-col">
-      <app-candidate-experience-detail></app-candidate-experience-detail>
+      <app-candidate-experience-detail *ngIf="tabActive == 1"></app-candidate-experience-detail>
+      <app-candidate-experience-detail *ngIf="tabActive == 2"></app-candidate-experience-detail>
+      <app-candidate-experience-detail *ngIf="tabActive == 3"></app-candidate-experience-detail>
+      <app-candidate-experience-detail *ngIf="tabActive == 4"></app-candidate-experience-detail>
+      <app-candidate-experience-detail *ngIf="tabActive == 5"></app-candidate-experience-detail>
     </div>
   </div>
 </div>

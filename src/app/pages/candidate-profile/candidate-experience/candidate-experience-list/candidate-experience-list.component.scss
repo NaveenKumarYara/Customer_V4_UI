@@ -1,178 +1,168 @@
 @import './../../../../../assets/partials/utils/variables';
 @import './../../../../../assets/partials/utils/mixins';
 
-.history-container {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+li {
   position: relative;
+  padding-left: 77px;
+  margin: 15px 0 0;
+  cursor: pointer;
 
-  &:before {
-    content: "";
-    width: 1px;
-    height: 100%;
-    border-left: 1px dashed $stroke-gray;
-    position: absolute;
-    left: 30px;
-    top: 0;
+  &:first-child {
+    margin-top: 0;
   }
 
-  li {
-    position: relative;
-    padding-left: 77px;
-    margin: 20px 0 0;
-
-    &.sub-history {
-      padding-left: 0;
-
-      .info-box {
-        border: 0;
-        box-shadow: none;
-
-        &:before {
-          display: none;
-        }
-      }
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .year {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      margin-top: -30px;
-      width: 60px;
-      height: 60px;
-      background: #fff;
-      border: 1px solid #dcdcdc;
-      box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
-      display: block;
-      text-align: center;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &.sub-history .year {
-      font-size: 0;
-      width: 20px;
-      height: 20px;
-      left: 20px;
-      margin-top: -10px;
-    }
-
-    .year {
-      &:before {
-        content: "";
-        width: 48px;
-        height: 48px;
-        background: #66a1ff;
-        border-radius: 50%;
-        position: absolute;
-      }
-
-      span {
-        position: relative;
-        z-index: 10;
-        color: #fff;
-      }
-    }
-
-    &.sub-history .year:before {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #fff;
-    }
-
-    &:nth-child(even) .year:before {
-      background-color: #6a7e9c;
-    }
+  &.sub-history {
+    padding-left: 0;
 
     .info-box {
-      background-color: #fff;
-      position: relative;
-      box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
-      border: 1px dashed #ccc;
-      border-radius: 8px;
-      padding: 5px 15px 15px 15px;
-      left: -10px;
-
-      h5 {
-        margin: 10px 0 5px;
-        font-weight: 600;
-        color: #6e819e;
-        font-size: 14px;
-      }
-
-      p {
-        &:first-child {
-          justify-content: flex-end;
-          font-size: 10px;
-          margin: 0px;
-          display: flex;
-        }
-
-        font-size: 12px;
-        margin: 0 0 5px;
-        color: #9eabc0;
-
-        &:last-child {
-          margin: 0;
-        }
-      }
+      border: 0;
+      box-shadow: none;
 
       &:before {
-        width: 10px;
-        height: 1px;
-        background: #dcdcdc;
-        position: absolute;
-        left: 0;
-        top: 0;
-        content: "";
-        left: -10px;
-        top: 50%;
+        display: none;
       }
-
-      .mdi-briefcase-variant-outline {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        color: $dark-gray;
-        font-size: $font-size-20;
-      }
-    }
-
-    &.beginner .info-box {
-      border-right: 4px solid #66dab5;
-    }
-
-    &.good .info-box {
-      border-right: 4px solid #afc8f1;
-    }
-
-    &.professional .info-box {
-      border-right: 4px solid #66a1ff;
-    }
-
-    &.master .info-box {
-      border-right: 4px solid #2e7dfb;
     }
   }
 
-  .location {
-    font-size: 12px;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-    .mdi {
-      font-size: $font-size-16;
-      color: $dark-gray;
-      margin-right: 5px;
-      display: inline-block;
+  .year {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -30px;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
+    display: block;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.sub-history .year {
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+    left: 20px;
+    margin-top: -10px;
+  }
+
+  .year {
+    &:before {
+      content: "";
+      width: 48px;
+      height: 48px;
+      background: $blue;
+      border-radius: 50%;
+      position: absolute;
     }
+
+    span {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+    }
+  }
+
+  &.sub-history .year:before {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+  }
+
+  .info-box {
+    background-color: #fff;
+    position: relative;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 5px 15px 15px 15px;
+    left: -10px;
+
+    h5 {
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #6e819e;
+      font-size: 14px;
+    }
+
+    p {
+      &:first-child {
+        justify-content: flex-end;
+        font-size: 10px;
+        margin: 0px;
+        display: flex;
+      }
+
+      font-size: 12px;
+      margin: 0 0 5px;
+      color: #9eabc0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    &:before {
+      width: 10px;
+      height: 1px;
+      background: #dcdcdc;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: "";
+      left: -10px;
+      top: 50%;
+    }
+
+    .mdi-briefcase-variant-outline {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      color: $dark-gray;
+      font-size: $font-size-20;
+    }
+  }
+
+  &.active {
+    .info-box {
+      border-right: 4px solid $blue;
+    }
+  }
+
+  // &.beginner .info-box {
+  //   border-right: 4px solid #66dab5;
+  // }
+
+  // &.good .info-box {
+  //   border-right: 4px solid #afc8f1;
+  // }
+
+  // &.professional .info-box {
+  //   border-right: 4px solid #66a1ff;
+  // }
+
+  // &.master .info-box {
+  //   border-right: 4px solid #2e7dfb;
+  // }
+}
+
+.location {
+  font-size: 12px;
+
+  .mdi {
+    font-size: $font-size-16;
+    color: $dark-gray;
+    margin-right: 5px;
+    display: inline-block;
   }
 }
