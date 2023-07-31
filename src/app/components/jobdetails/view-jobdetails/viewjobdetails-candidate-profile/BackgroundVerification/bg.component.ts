@@ -130,10 +130,8 @@ export class backgrounddialogComponent {
     this.bgverificatione.drugOptionSelected = this.bgverification.DrugOptionSelected;
     this.bgverificatione.profileId = this.data.ProfileId;
     this.bgverificatione.customerUserId = this.data.CuserId;
-    debugger
     return this.appService.SendProfileBGVerfication(this.bgverificatione)
     .subscribe(data => {
-      debugger
       this.bgverificatione = new BackgroundVerificationEmail();
       this.bgverification = new BackgroundVerification();
     });
