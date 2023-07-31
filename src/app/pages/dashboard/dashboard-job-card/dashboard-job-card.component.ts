@@ -6,13 +6,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dashboard-job-card.component.scss']
 })
 export class DashboardJobCardComponent implements OnInit {
-  @Input() cardProfileSummary: boolean = false;
+  @Input() cardExp: boolean = false;
   @Input() cardJobId: boolean = false;
   @Input() cardAryticId: boolean = false;
   @Input() cardNav: boolean = false
   @Input() cardInterviewStatus: boolean = false
   @Input() cardLocation: boolean = false;
   @Input() cardDate: boolean = false;
+  @Input() cardJobPositions: boolean = false;
 
   constructor() { }
 

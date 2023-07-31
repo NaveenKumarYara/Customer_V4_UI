@@ -1,0 +1,456 @@
+@import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
+
+.profile-summary-section {
+  margin: 0 0 30px;
+  
+  .row {
+    margin: 0;
+  }
+
+  .col {
+    padding: 0 8px;
+  }
+
+  .col-container {
+    border: 1px solid $stroke-gray;
+    border-radius: 6px;
+    @include shadowTwo();
+    background-color: $white;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .profile-summary {
+    .profile-image {
+      position: relative;
+      border: 1px solid $stroke-gray;
+      @include shadowTwo();
+      width: 124px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+
+      .btn {
+        &.btn-edit {
+          width: 48px;
+          height: 48px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          border: 1px solid $stroke-gray;
+          @include shadowTwo();
+          @include flexbox();
+          @include align-items(center);
+          @include justify-content(center);
+          border-radius: 50%;
+          background-color: $white;
+
+          .mdi {
+            color: $blue;
+          }
+
+          &:hover {
+            background-color: $blue;
+            border-color: $blue;
+
+            .mdi {
+              color: $white;
+            }
+          }
+        }
+      }
+
+      img {
+        width: 120px;
+        height: 120px;
+        border: 14px solid $white;
+        border-radius: 50%;
+      }
+
+      .btn-edit {
+        position: absolute;
+      }
+    }
+
+    h4 {
+      font-size: $font-size-20;
+      color: $blue;
+      font-weight: 700;
+    }
+
+    h5 {
+      font-size: $font-size-15;
+      color: $dark-gray;
+      display: inline-block;
+      padding: 7px 10px;
+      border: 1px solid $stroke-gray;
+      border-radius: 6px;
+      background-color: $white;
+    }
+
+    .total-experience {
+      font-size: $font-size-12;
+      color: $dark-gray;
+      @include flexbox();
+      @include align-items(center);
+      gap: 10px;
+
+      strong {
+        display: inline-block;
+        padding: 4px 10px;
+        background: $blue;
+        color: $white;
+        border-radius: 6px
+      }
+    }
+  }
+
+  .profile-section {
+    .info-listing {
+      ul {
+        @include no-style();
+
+        li {
+          position: relative;
+          padding-left: 46px;
+          min-height: 32px;
+          color: $dark-gray;
+          @include flexbox();
+          @include align-items(center);
+          font-size: $font-size-14;
+
+          a {
+            color: $dark-gray;
+            text-decoration: none;
+          }
+          
+          &:not(:first-child) {
+            margin-top: 10px;
+          }
+
+          .mdi {
+            width: 32px;
+            height: 32px;
+            border: 1px solid $stroke-gray;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            left: 0;
+            color: $medium-gray;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: $font-size-16;
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+          }
+        }
+      }
+    }
+    .social {
+      @include flexbox();
+      @include align-items(center);
+      font-size: $font-size-14;
+      color: $dark-gray;
+      padding: 10px 0;
+      border-top: 1px solid $stroke-gray;
+      border-bottom: 1px solid $stroke-gray;
+      margin: 15px -20px;
+      @include justify-content(center);
+
+      ul {
+        @include no-style();
+        @include flexbox();
+        margin-left: 10px;
+        gap: 5px;
+
+        li {
+          a {
+            @include flexbox();
+            @include align-items(center);
+            @include justify-content(center);
+            width: 32px;
+            height: 32px;
+            border: 1px solid $stroke-gray;
+            background-color: $white;
+            border-radius: 50%;
+
+            .mdi {
+              font-size: $font-size-18;
+              color: $medium-gray;
+            }
+          }
+        }
+      }
+    }
+    .file-upload {
+      height: 36px;
+      margin-bottom: 15px;
+     
+      .btn {
+        height: 36px;
+        @include flexbox();
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        font-size: $font-size-12;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding: 0 10px;
+      }
+    }
+    .buttons {
+      @include flexbox();
+      @include flex-wrap(wrap);
+      @include justify-content(space-between);
+
+      .btn {
+        &.btn-info {
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+
+  .profile-col {
+    padding-left: 0;
+    
+    .left-col {
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      text-align: center;
+      border-right: 1px solid $stroke-gray;
+      @include flex-direction(column);
+      background-color: rgba($color: $light-green, $alpha: 0.3);
+    }
+    
+    .row {
+      margin: 0;
+      height: 100%;
+    }
+
+    .right-col {
+      padding: 15px 20px;
+    }
+
+    .col-container {
+      padding: 0;
+    }
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    display: block;
+    margin: 0 auto;
+    text-indent: -999em;
+    background: url(../../../../assets/images/sprites.svg) 0 0 no-repeat;
+  
+    &.icon-skills {
+      background-position: -24px -301px;
+    }
+  
+    &.icon-skills-01 {
+      background-position: -560px -109px;
+    }
+  
+    &.icon-job {
+      background-position: -76px -301px;
+    }
+  
+    &.icon-job-01 {
+      background-position: -612px -109px;
+    }
+  
+    &.icon-team {
+      background-position: -128px -301px;
+    }
+  
+    &.icon-personality {
+      background-position: -180px -301px;
+    }
+  
+    &.icon-personality-01 {
+      background-position: -716px -109px;
+    }
+  
+    &.icon-culture {
+      background-position: -232px -301px;
+    }
+  
+    &.icon-culture-01 {
+      background-position: -768px -109px;
+    }
+  
+    &.icon-wfh {
+      background-position: -560px -219px;
+    }
+  }
+
+  .navigation {
+    ul {
+      @include no-style();
+      @include flex();
+      @include flex-wrap(wrap);
+      @include justify-content(center);
+      gap: 5px;
+  
+      li {
+        text-align: center;
+        position: relative;
+  
+        .number {
+          display: block;
+          text-align: center;
+          font-size: 8px;
+          font-weight: 700;
+          margin-top: 2px;
+         }
+  
+        h6 {
+          font-size: 7px;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin: 10px 0 0;
+          color: $dark-gray;
+        }
+  
+        &.active {
+          .icon {
+            &.icon-skills {
+              background-position: -24px -352px;
+            }
+            &.icon-skills-01 {
+              background-position: -560px -160px;
+            }
+            &.icon-job {
+              background-position: -76px -352px;
+            }
+            &.icon-job-01 {
+              background-position: -612px -160px;
+            }
+            &.icon-team {
+              background-position: -128px -352px;
+            }
+            &.icon-personality {
+              background-position: -180px -352px;
+            }
+            &.icon-personality-01 {
+              background-position: -716px -160px;
+            }
+            &.icon-culture {
+              background-position: -232px -352px;
+            }
+            &.icon-culture-01 {
+              background-position: -768px -160px;
+            }
+            &.icon-wfh {
+              background-position: -560px -270px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .progress-col {
+    .col-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-circle {
+      width: 106px;
+    }
+
+    h4 {
+      font-size: $font-size-18;
+      color: $dark-gray;
+      font-weight: 600;
+    }
+
+    .status {
+      width: 108px;
+      height: 30px;
+      background-color: $dark-green;
+      color: $white;
+      text-transform: uppercase;
+      font-size: $font-size-12;
+      border-radius: 4px;
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+    }
+
+    .inner-container {
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      @include flex-direction(column);
+    }
+
+    .arytic-check {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background-color: rgba(225, 247, 239, 0.3);
+
+      h4 {
+        font-size: $font-size-14;
+        text-align: center;
+      }
+    }
+  }
+
+  .video-col {
+    .col-container {
+      position: relative;
+    }
+
+    .col-box {
+      @include flexbox();
+      @include align-items(center);
+      @include flex-direction(column);
+    }
+
+    .file-upload {
+      width: 100%;
+      
+      .mdi {
+        color: $blue;
+        font-size: $font-size-36;
+      }
+    }
+    
+    h4 {
+      font-size: $font-size-14;
+      font-weight: 600;
+      margin: 0;
+      color: $dark-gray;
+      text-transform: uppercase;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .btn {
+      &.btn-link {
+        text-transform: none;
+        font-size: $font-size-16;
+        font-weight: 600;
+        color: $blue;
+        text-decoration: none;
+        @include flexbox();
+        @include align-items(center);
+        gap: 10px;
+        position: absolute;
+        bottom: 20px;
+
+        .mdi {
+          font-size: $font-size-20;
+        }
+      }
+    }
+  }
+}

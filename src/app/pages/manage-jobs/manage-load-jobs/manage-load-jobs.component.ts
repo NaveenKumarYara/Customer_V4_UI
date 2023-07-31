@@ -29,7 +29,7 @@ export class ManageLoadJobsComponent implements OnInit {
   isAdvancedFilterApplied = false;
   advancedFilters: any = {};
   filteredJobs = [];
-
+  isShareType: boolean = false;
   layoutView(name:string) {
    this.viewLayout = name;
   }
@@ -43,6 +43,12 @@ export class ManageLoadJobsComponent implements OnInit {
   panelCloseHandler() {
     this.panelShow = '';
   }
+
+
+  shareType() {
+    this.isShareType = !this.isShareType;
+  }
+
 
   clearAll(select:any) {
     select = 0;

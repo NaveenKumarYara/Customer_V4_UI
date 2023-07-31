@@ -1,0 +1,248 @@
+<div class="container-box">
+  <div class="toogle-container">
+    Resume
+    <label class="toggle" for="typeDocument">
+      <input class="toggle__input" name="" type="checkbox" (change)="changeHandler()" id="typeDocument">
+      <div class="toggle__fill"></div>
+    </label>
+    Other Documents
+  </div>
+  <h4>{{ isDocumentType ? 'Other Documents': 'Resume'}}</h4>
+  <div class="listing-table resume-listing-table" *ngIf="!isDocumentType">
+    <div class="table-box-container">
+      <div class="table-container">
+        <div class="table-row table-header-row">
+          <div class="table-col name-col">
+            Replace Name
+          </div>
+          <div class="table-col">
+            Type
+          </div>
+          <div class="table-col select-col">
+            Resume Source
+          </div>
+          <div class="table-col">
+            Size
+          </div>
+          <div class="table-col">
+            Actions
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name no-padding">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col select-col">
+            <select class="form-select">
+              <option value="Naukri">Naukri</option>
+            </select>
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-note-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name no-padding">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col select-col">
+            <select class="form-select">
+              <option value="Naukri">Naukri</option>
+            </select>
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-note-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name no-padding">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col select-col">
+            <select class="form-select">
+              <option value="Naukri">Naukri</option>
+            </select>
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-note-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-delete-outline"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="listing-table"  *ngIf="isDocumentType">
+    <div class="table-box-container">
+      <div class="table-container">
+        <div class="table-row table-header-row">
+          <div class="table-col name-col">
+            Document Name
+          </div>
+          <div class="table-col">
+            Type
+          </div>
+          <div class="table-col">
+            Size
+          </div>
+          <div class="table-col">
+            Actions
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row table-col-row">
+          <div class="table-col name-col">
+            <div class="document-name">
+              <span class="text-ellipsis">1099 Form.doc</span>
+            </div>
+          </div>
+          <div class="table-col">
+            .doc
+          </div>
+          <div class="table-col">
+            4 MB
+          </div>
+          <div class="table-col">
+            <ul class="action-nav">
+              <li>
+                <a href="#"><span class="mdi mdi-eye-arrow-right-outline"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="mdi mdi-tray-arrow-down"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

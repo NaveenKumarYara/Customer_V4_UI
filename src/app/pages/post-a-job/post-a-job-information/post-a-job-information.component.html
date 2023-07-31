@@ -1,5 +1,5 @@
 <div class="form-section-title">
-  <h3>Job Information</h3>
+  <h3>Position Details</h3>
 </div>
 <div class="row">
   <div class="col-md-4 col-lg-4 form-col">
@@ -25,7 +25,7 @@
   <div class="col-md-4 col-lg-4 form-col">
     <label class="form-label">Job Title <sup>*</sup></label>
     <div class="form-group">
-      <span class="mdi mdi-tag-outline"></span>
+      <span class="mdi mdi-briefcase-outline"></span>
       <select class="form-select">
         <option value="Select Domain">Select Title</option>
       </select>
@@ -73,25 +73,27 @@
   <div class="col-md-4 col-lg-4 form-col">
     <label class="form-label">Start Date <sup>*</sup></label>
     <div class="form-group">
-      <span class="mdi mdi-calendar-blank-outline"  (click)="d.toggle()"></span>
+      <span class="mdi mdi-calendar-blank-outline" (click)="d.toggle()"></span>
       <input
         class="form-control"
         placeholder="yyyy-mm-dd"
         name="dp"
         ngbDatepicker
+        (click)="d.toggle()"
         #d="ngbDatepicker"
       />
     </div>
   </div>
 
   <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">End Date <sup>*</sup></label>
+    <label class="form-label">Due Date <sup>*</sup></label>
     <div class="form-group">
-      <span class="mdi mdi-calendar-blank-outline"  (click)="e.toggle()"></span>
+      <span class="mdi mdi-calendar-blank-outline" (click)="e.toggle()"></span>
       <input
         class="form-control"
         placeholder="yyyy-mm-dd"
         name="dp"
+        (click)="e.toggle()"
         ngbDatepicker
         #e="ngbDatepicker"
       />
@@ -100,7 +102,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12 single-col form-col">
-    <label class="form-label">Job Description<sup>*</sup></label>
+    <label>Job Description<sup>*</sup></label>
   </div>
   <div class="col-sm-12 form-col">
     <ckeditor  
@@ -128,7 +130,7 @@
     <div class="form-group">
       <span class="mdi mdi-account-circle-outline"></span>
       <select class="form-select">
-        <option value="Select Domain">Type and Select</option>
+        <option value="Select from team members">Select from team members</option>
       </select>
     </div>
   </div>
@@ -138,7 +140,7 @@
     <div class="form-group">
       <span class="mdi mdi-account-arrow-right-outline"></span>
       <select class="form-select">
-        <option value="Select Domain">Select Category</option>
+        <option value="Select from team members">Select from team members</option>
       </select>
     </div>
   </div>
@@ -148,7 +150,7 @@
     <div class="form-group">
       <span class="mdi mdi-badge-account-outline"></span>
       <select class="form-select">
-        <option value="Select Domain">Select Title</option>
+        <option value="Select">Select</option>
       </select>
     </div>
   </div>

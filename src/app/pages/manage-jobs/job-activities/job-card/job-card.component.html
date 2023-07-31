@@ -7,12 +7,12 @@
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)" placement="start" ngbTooltip="Change Application Status">
+			<a href="javascript:void(0)" placement="start" (click)="panelClick('job-change-application')" ngbTooltip="Change Application Status">
 				<span class="mdi mdi-list-status"></span>
 			</a>
 		</li>
 		<li>
-			<a href="javascript:void(0)" placement="start" ngbTooltip="Bookmark">
+			<a href="javascript:void(0)" placement="start" (click)="panelClick('profile-matching')" ngbTooltip="Bookmark">
         <span class="mdi mdi-bookmark-outline"></span>
 			</a>
 		</li>
@@ -66,17 +66,13 @@
 			<div class="profile-thumb">
 				<img src="../../../../assets/images/default-profile-thumb.png" alt="">
 			</div>
-			<h3 placement="top" ngbTooltip="{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}">
-        <span class="text-trim">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
+			<h3 [routerLink]="['/candidate-profile']" placement="top" ngbTooltip="{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}">
+        <span class="text-trim pointer">{{profile?.FirstName  | titlecase}} {{profile?.LastName  | titlecase}}</span>
       </h3>
       <h4 placement="top" ngbTooltip="{{profile?.ProfileTitle}}">
         <span class="text-trim">{{profile?.ProfileTitle}}</span>
       </h4>
-		</div>
-  </div>
-  <div class="middle-container">
-    <div class="middle-section">
-      <div class="grid-cols">
+      <div class="grid-cols xs-grid-cols">
         <div class="grid-col">
           <span class="mdi mdi-map-marker-outline"></span>
           <span class="text-trim" placement="top" ngbTooltip="{{profile?.CurrentLocation || 'Yet to provide'}}">
@@ -90,6 +86,11 @@
           </span>
         </div>
       </div>
+		</div>
+  </div>
+  <div class="middle-container">
+    <div class="middle-section">
+      
       <div class="grid-cols">
         <div class="grid-col">
           <span class="mdi mdi-email-arrow-right-outline"></span>
@@ -263,7 +264,7 @@
       <div class="col-md-6 col-lg-6 left-chart-col">
         <div class="box-container">
           <h4>
-            Arytic Check
+            Arytic Fit
           </h4>
           <div class="">
             <canvas baseChart

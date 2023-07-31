@@ -1,0 +1,137 @@
+@import './../../../../assets/partials/utils/variables';
+@import './../../../../assets/partials/utils/mixins';
+
+.profile-matcing-section {
+  width: 768px;
+  margin: 40px auto 0;
+
+  .top-container {
+    margin-bottom: 24px;
+
+    h4 {
+      font-size: $font-size-18;
+      font-weight: 600;
+      color: $dark-gray;
+      margin: 0 0 15px;
+      text-align: center
+    }
+
+    h5 {
+      font-size: $font-size-14;
+      font-weight: 400;
+      margin: 0;
+      color: $dark-gray;
+      text-align: center;
+    }
+  }
+}
+
+.progress-col {
+  @include flexbox();
+  @include align-items(center);
+  margin-bottom: 10px;
+  @include flex-wrap(wrap);
+
+  .custom-slider {
+    flex: 0 0 calc(100% - 68px);
+    max-width: calc(100% - 68px);
+  }
+
+  .percentage {
+    flex: 0 0 50px;
+    max-width: 50px;
+    height: 50px;
+    margin-left: auto;
+    border: 1px solid $stroke-gray;
+    background-color: $white;
+    border-radius: 50%;
+    @include shadowOne();
+    color: $dark-green;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+  }
+}
+
+.slider-section {
+  .row {
+    @include align-items(center);
+    margin-top: 40px;
+
+    .label-col {
+      font-size: $font-size-16;
+      font-weight: 600;
+      color: $dark-gray;
+    }
+  }
+}
+
+.custom-checkbox-list {
+  ul {
+    @include no-style();
+    @include flexbox();
+    @include flex-wrap(wrap);
+    gap: 10px;
+  }
+
+  .custom-checkbox {
+    label {
+      font-size: $font-size-16 !important;
+      width: auto !important;
+      height: auto !important;
+      font-weight: 600;
+
+      input[type="checkbox"] {
+        + .checkmark {
+          width: auto;
+          height: auto;
+          border-radius: 0;
+          padding-left: 40px;
+
+          &:before {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid $stroke-gray;
+          }
+
+          &:after {
+            left: 9px;
+            top: -1px;
+          }
+        }
+
+        &:checked {
+          + .checkmark{
+            background-color: transparent;
+            color: $dark-gray;
+  
+            &:before {
+              background: $dark-green;
+              border-color: $dark-green;
+              @include shadowOne();
+            }
+
+            &:after {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  li {
+    &:first-child {
+      .custom-checkbox {
+        input[type="checkbox"] {
+          + .checkmark {
+            &:after {
+              left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

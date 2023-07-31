@@ -1,34 +1,317 @@
 <app-header></app-header>
   <div id="main-content">
+    <div class="title-section">
+      <h1>Post A Job</h1>
+      <div class="buttons">
+        <button class="btn btn-outlined-default">Cancel</button>
+        <button class="btn btn-info">Save</button>
+        <button class="btn btn-primary">Post</button>
+      </div>
+    </div>
     <div class="tab-navigation">
       <ul>
-        <li class="active">
-          <a href="#section-one">Job Information</a>
-        </li>
-        <li>
-          <a href="#three">Client Information</a>
-        </li>
-        <li>
-          <a href="#">Local & Skills</a>
-        </li>
-        <li>
-          <a href="#section-four">Additional & Skills</a>
+        <li
+          class="nav-item"
+          *ngFor="let item of navBar.items"
+        >
+          <a
+            href="javascript:void(0)"
+            spy
+            [spyTargetId]="item.fragment"
+            [spyActiveClass]="navBar.spyActiveClass"
+            (click)="scrollTo(item.fragment)"
+          >
+            {{ item.name }}
+          </a>
         </li>
       </ul>
     </div>
     <div class="form-container">
       <div class="form-container-box">
-        <div class="section" id="section-one">
-          <app-post-a-job-information></app-post-a-job-information>
-        </div>
-        <div class="section" id="section-two">
-          <app-post-a-job-client-information></app-post-a-job-client-information>
-        </div>
-        <div class="section" id="section-three">
-          <app-post-a-job-skills></app-post-a-job-skills>
-        </div>
-        <div class="section" id="section-four">
-          <app-post-a-job-additional></app-post-a-job-additional>
+        <button class="btn btn-card" [ngClass]="showCard?'active':''" (click)="showCardHandler()">
+          <span class="mdi mdi-cards-variant"></span>
+          <div class="circle" style="animation-delay: -3s"></div>
+          <div class="circle" style="animation-delay: -2s"></div>
+          <div class="circle" style="animation-delay: -1s"></div>
+          <div class="circle" style="animation-delay: 0s"></div>
+        </button>
+        <div [ngClass]="showCard?'show-card':''">
+          <div class="form-box">
+            <div class="section section-one" spyTarget [spyTargetId]="'section-one'">
+              <app-post-a-job-information></app-post-a-job-information>
+            </div>
+            <div class="section section-two" spyTarget [spyTargetId]="'section-two'">
+              <app-post-a-job-client-information></app-post-a-job-client-information>
+            </div>
+            <div class="section section-three" spyTarget [spyTargetId]="'section-three'">
+              <app-post-a-job-salary-location></app-post-a-job-salary-location>
+            </div>
+            <div class="section section-four" spyTarget [spyTargetId]="'section-four'">
+              <app-post-a-job-skills></app-post-a-job-skills>
+            </div>
+            <div class="section section-five" spyTarget [spyTargetId]="'section-five'">
+              <app-post-a-job-additional></app-post-a-job-additional>
+            </div>
+          </div>
+          <div class="card-box">
+            <div class="job-card">
+              <div class="col-container">
+                <div class="top-container">
+                  <span class="status active">
+                    <span class="status-info">
+                      JOB STATUS
+                    </span>
+                  </span>
+                  <span class="priority">
+                    <span class="priority-info">JOB PRIORITY</span>
+                  </span>
+                  <div class="profile-info">
+                    <div class="profile-thumb">
+                      <img src="../../../assets/images/default-company-small.jpg" alt="">
+                    </div>
+                    <h3>
+                      <span class="text-trim" placement="top" ngbTooltip="Swetha Ramadugu">
+                        Salesforce Developer
+                      </span>
+                    </h3>
+                    <div class="profile-summary">
+                      <h4>
+                        <span class="mdi mdi-briefcase-outline"></span>
+                        Exp Req- <strong>5 Years</strong> 
+                      </h4>
+                      <h4>
+                        <span class="mdi mdi-seat-outline"></span>
+                        <strong>1</strong> Position
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="middle-container">
+                  <div class="top-section">
+                    <h3> Client: <span  placement="top" ngbTooltip="Accenture Federal">Accenture Federal</span> </h3><div class="job-ref">Job Ref: <span>1357</span></div>
+                  </div>
+                  <div class="top-bottom-section">
+                    <ul>
+                      <li>
+                        <span class="highlight">Arytic ID: 1004094</span>
+                      </li>
+                      <li>
+                        <span class="mdi mdi-map-marker-outline"></span>
+                        <span class="location-trim" placement="top" ngbTooltip="Remote">Remote</span>
+                      </li>
+                      <li>
+                        <span class="mdi mdi-calendar-blank-outline"></span>
+                        Jul 7, 2023
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="kpi-section">
+                  <ul>
+                    <li>
+                      <img src="../../../../assets/images/curve-icon-work.svg" alt="">
+                      <h4>Full Time</h4>
+                    </li>
+                    <li>
+                      <img src="../../../../assets/images/curve-icon-dollar.svg" alt="">
+                      <h4>
+                        $100 Hourly
+                      </h4>
+                    </li>
+                   
+                    <li>
+                      <div class="progress-circle">
+                        <circle-progress
+                        [percent]="60"
+                        [radius]="20"
+                        [outerStrokeWidth]="4"
+                        [innerStrokeWidth]="2"
+                        [outerStrokeColor]="'#6262FF'"
+                        [innerStrokeColor]="'#C0C0C0'"
+                        [animationDuration]="0"
+                        [responsive] = true
+                        [showSubtitle] = false
+                        ></circle-progress>
+                      </div>
+                      <h4>Job Completeness</h4>
+                    </li>
+                    <li>
+                      <img src="../../../../assets/images/icon-work-authorization.svg" alt="">
+                      <h4>
+                        Work <br/>Autherization
+                      </h4>
+                    </li>
+                    
+                  </ul>
+                </div>
+          
+                <div class="skills-grid">
+                  <div class="top-grid-section">
+                    <h4>Skills</h4>
+                    <div class="legend-list">
+                      <ul>
+                        <li>
+                          <span class="box"></span>
+                          <em>Mandatory</em>
+                        </li>
+                        <li>
+                          <span class="box blue"></span>
+                          <em>Optional</em>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="skills-col">
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-star-outline"></span>
+                      <div class="skill-info">
+                        <h3>SQL</h3>
+                        <h4>Exp: 5.8 Years</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="top-grid-section">
+                    <h4>Key Responsibilities</h4>
+                    <div class="legend-list">
+                      <ul>
+                        <li>
+                          <span class="box"></span>
+                          <em>0-2</em>
+                        </li>
+                        <li>
+                          <span class="box medium-blue"></span>
+                          <em>3-6</em>
+                        </li>
+                        <li>
+                          <span class="box orange"></span>
+                          <em>7-10</em>
+                        </li>
+                        <li>
+                          <span class="box blue"></span>
+                          <em>10+</em>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="skills-col">
+                    <div class="skill-container">
+                      <span class="mdi mdi-briefcase-outline"></span>
+                      <div class="skill-info">
+                        <h3>Project Name</h3>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-briefcase-outline"></span>
+                      <div class="skill-info">
+                        <h3>Project Name</h3>
+                      </div>
+                    </div>
+                    <div class="skill-container">
+                      <span class="mdi mdi-briefcase-outline"></span>
+                      <div class="skill-info">
+                        <h3>Project Name</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          
+                <div class="verification-grid">
+                  <h4>Verification</h4>
+                  <ul>
+                    <li>
+                      <div class="col-container">
+                        <span class="icon icon-01">Icon</span>
+                        <h5>Reference</h5>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col-container">
+                        <span class="icon icon-02">Icon</span>
+                        <h5>Employment</h5>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col-container">
+                        <span class="icon icon-03">Icon</span>
+                        <h5>Background</h5>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col-container">
+                        <span class="icon icon-04">Icon</span>
+                        <h5>Skills</h5>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col-container">
+                        <span class="icon icon-05">Icon</span>
+                        <h5>WFH</h5>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+          
+                <div class="bottom-container">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 left-col">
+                      <div class="profile-section">
+                        <img src="../../../../assets/images/default-profile-thumb.png" alt="">
+                        <div class="profile-summary">
+                          <h4>Kim Karnika</h4>
+                          <h5>Admin</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 right-col">
+                      <div class="profile-section">
+                        <img src="../../../../assets/images/default-profile-thumb.png" alt="">
+                        <div class="profile-summary">
+                          <h4>Kim Karnika</h4>
+                          <h5>Admin</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

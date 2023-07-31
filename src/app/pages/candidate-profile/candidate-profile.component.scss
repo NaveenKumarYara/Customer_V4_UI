@@ -1,0 +1,30 @@
+@import './../../../assets/partials/utils/variables';
+@import './../../../assets/partials/utils/mixins';
+
+h1  {
+  font-size: $font-size-22;
+	color: $darkest-blue;
+	font-weight: 600;
+	margin: 0 0 30px;
+
+	@media only screen and (min-width : 568px) {
+		font-size: $font-size-24;
+	}
+
+	@media only screen and (min-width: 1023px) {
+		font-size: $font-size-30;
+	}
+}
+
+.tab-navigation {
+	width: 768px;
+	margin: 0 auto 24px;
+	position: relative;
+
+	ul {
+		li {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+	}
+}

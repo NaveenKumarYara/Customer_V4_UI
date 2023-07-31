@@ -53,11 +53,11 @@
               </select> -->
               
               <ng-select class="ng-select-single" [items]="customercontacts" name="team"
-												placeholder="Add Team Members" bindLabel="FirstName"
-												bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" 
-												id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
-												#TMemb="ngModel">
-											</ng-select>
+              placeholder="Add Team Members" bindLabel="FirstName"
+              bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" 
+              id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+              #TMemb="ngModel">
+            </ng-select>
             </div>
             <button class="btn btn-icon" (click)="addTeammembers()" ><span class="mdi mdi-plus"></span></button>
           </div>

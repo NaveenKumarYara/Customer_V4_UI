@@ -12,21 +12,32 @@
     </div>
   </div>
 
-  <div class="col-md-4 col-lg-4 form-col">
+  <div class="col-md-4 col-lg-4 form-col no-form-col">
     <label class="form-label">Client Bill Rate <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <select class="form-select">
-        <option value="Select Domain">Select Category</option>
-      </select>
+    <div class="row">
+      <div class="col-md-3 col-lg-3 form-sub-col">
+        <select class="form-select">
+          <option value="$">$</option>
+          <option value="$">RS</option>
+        </select>
+      </div>
+      <div class="col-md-4 col-lg-4 form-sub-col">
+       <input type="text" class="form-control">
+      </div>
+      <div class="col-md-5 col-lg-5 form-sub-col">
+        <select class="form-select">
+          <option value="$">Per Hour</option>
+          <option value="$">Per Month</option>
+        </select>
+      </div>
     </div>
   </div>
 
   <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Has Agreement Been Signed? <sup>*</sup></label>
+    <label class="form-label">Has an agreement been signed ? <sup>*</sup></label>
     <div class="tabbing-radios">
       <label>
-        <input type="radio" name="agreement-sign">
+        <input type="radio" name="agreement-sign" checked>
         <span class="checkmark">Yes</span>
       </label>
       <label>
@@ -52,95 +63,21 @@
     </div>
   </div>
 
-  <div class="col-md-12 col-lg-12 form-col">
-    <h4>Salary</h4>
-  </div>
-
   <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Minimum <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <input type="text" class="form-control" placeholder="Minimum">
+    <label class="form-label">Maximum Allowed Submission<sup>*</sup></label>
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-with-icon">
+          <span class="mdi mdi-minus-thick"></span>
+        </button>
+      </span>
+      <input type="text" class="form-control text-center" value="10" min="1" max="100">
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-with-icon" data-type="plus" data-field="">
+          <span class="mdi mdi-plus-thick"></span>
+        </button>
+      </span>
     </div>
   </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Maximum <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <input type="text" class="form-control" placeholder="Maximum">
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Salary Based on Contract Type <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-currency-usd"></span>
-      <input type="text" class="form-control" placeholder="Salary Amount">
-    </div>
-  </div>
-
-  <div class="col-md-12 col-lg-12 form-col">
-    <h4>Location</h4>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Country <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-earth"></span>
-      <select class="form-select">
-        <option value="Select Country">Select</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">State <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-earth"></span>
-      <select class="form-select">
-        <option value="Select State">Select</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">City <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-earth"></span>
-      <select class="form-select">
-        <option value="Select City">Select</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Zipcode <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-earth"></span>
-      <select class="form-select">
-        <option value="Select Zipcode">Select</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Relocation <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-map-marker-outline"></span>
-      <select class="form-select">
-        <option value="Select Relocation">Select</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-4 form-col">
-    <label class="form-label">Work Remotely <sup>*</sup></label>
-    <div class="form-group">
-      <span class="mdi mdi-home-outline"></span>
-      <select class="form-select">
-        <option value="Select Work">Select</option>
-      </select>
-    </div>
-  </div>
+  
 </div>

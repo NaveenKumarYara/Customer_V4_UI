@@ -85,10 +85,20 @@
   [panelTitle]="'Change Applicant Status'"
   (panelCloseHandler) ="panelCloseHandler()"
   >
-  <app-view-edit-jobs></app-view-edit-jobs>
-<!-- <app-sidepanel-cards></app-sidepanel-cards> -->
-  <!-- <app-schedule-interview></app-schedule-interview> -->
-
+  <div class="slide-static-section">
+    <div class="slide-heding d-flex align-items-center">
+      <h3>View / Edit Jobs</h3>
+    </div>
+    <app-sidepanel-cards
+      [jobCard] = "false"
+    ></app-sidepanel-cards>
+    <div class="form-actions">
+      <button class="btn btn-info">Edit</button>
+    </div>
+  </div>
+  <div class="slide-container">
+    <app-view-edit-jobs></app-view-edit-jobs>
+  </div>
 </app-slidepanel>
 <app-slidepanel 
   class="slide-panel"
@@ -126,7 +136,7 @@
     <div class="toogle-container">
       Share Job
       <label class="toggle" for="shareOption">
-        <input class="toggle__input" name="" type="checkbox" id="shareOption">
+        <input class="toggle__input" name="" type="checkbox" (change)="shareType()" id="shareOption">
         <div class="toggle__fill"></div>
       </label>
       Invite Candidate
@@ -136,7 +146,7 @@
   </div>
 </div>
 <div class="slide-container">
-  <app-job-share></app-job-share>
+  <app-job-share [isShareType]="isShareType"></app-job-share>
 </div>  
 </app-slidepanel>
 

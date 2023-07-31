@@ -11,12 +11,12 @@
           <img src="../../../../assets/images/default-company-small.jpg" alt="">
         </div>
         <h3>Salesforce Develover</h3>
-        <div class="profile-summary" *ngIf="cardProfileSummary">
-          <h4>
+        <div class="profile-summary">
+          <h4 *ngIf="cardExp">
             <span class="mdi mdi-briefcase-outline"></span>
             Exp  - <strong>Req 8 Years</strong>
           </h4>
-          <h4>
+          <h4 *ngIf="cardJobPositions">
             <span class="mdi mdi-seat-outline"></span>
             <strong>5</strong> Position
           </h4>
