@@ -27,7 +27,7 @@
                 </ul>
               </div>
               <ul class="inline__listing">
-                <li>{{jobdetailscustomer?.JobInfo?.CompanyName}}</li>
+                <li><i class="fa fa-graduation-cap"></i> {{jobdetailscustomer?.JobInfo?.ClientName || 'Yet to provide'}}</li>
                 <li>
                   <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 0">
                     <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">

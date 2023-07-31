@@ -618,9 +618,10 @@
 							</a>  -->
 							<h4 class="cursor-pointer" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId);ttClose()">
 								{{jobdetailsbasicinfo?.JobTitle}}
-                                
-								
-							</h4>							
+                           
+							</h4>
+							<br/>
+													
 							<span class="status {{jobdetailsbasicinfo?.JobStatus}}">{{ jobdetailsbasicinfo?.JobStatus}}</span>
 					
 							<!-- <span class="edit-btn cursor-pointer" *ngIf="jobdetailsbasicinfo?.JobStatus != 'Freezed'&& jobdetailsbasicinfo?.JobStatus != 'Filled'" (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">
@@ -633,6 +634,10 @@
 							</span>
 						
 						</div>
+
+						<span>
+							<i class="fa fa-graduation-cap"></i>{{jobdetailsbasicinfo?.ClientName!= null ? jobdetailsbasicinfo?.ClientName: 'Not Yet Provided'}}
+						</span>
 					
 						<ul>
 							<li><span class="highlight"><strong>Arytic Job Id</strong>: {{jobdetailsbasicinfo?.JobId}}</span></li>
@@ -668,11 +673,11 @@
 							<li class="calendar">{{ jobdetailsbasicinfo?.PostedOn }}</li>
 							<li class="view">{{jobdetailsbasicinfo?.TotalViewCount}} Views</li>		
 							<li> <i class="fa fa-users"></i> No. of positions: {{jobdetailsbasicinfo?.NumberOfVacancies}}  </li>
-							<li class="client">
+							<!-- <li class="client">
 								<span>
 									<i class="fa fa-graduation-cap"></i>{{jobdetailsbasicinfo?.ClientName!= null ? jobdetailsbasicinfo?.ClientName: 'Not Yet Provided'}}
 								</span>	
-							</li>
+							</li> -->
 						</ul>
 
 					
