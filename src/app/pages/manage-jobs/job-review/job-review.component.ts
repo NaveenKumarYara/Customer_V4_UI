@@ -59,6 +59,7 @@ _job: any = null
   console.log('job')
 
   }
+  
 
 
   getReviews(){
@@ -72,7 +73,7 @@ _job: any = null
     //   console.log("reviews",this.reviewsList)
     // })
 
-    let getComments='/api/GetJobComments?jobId='+1003744;
+    let getComments='/api/GetJobComments?jobId='+this.job.JobId;
     this.ApiService.getJobApi(getComments).subscribe((res: any) => {
       // debugger;
       this.reviewsList = res;
