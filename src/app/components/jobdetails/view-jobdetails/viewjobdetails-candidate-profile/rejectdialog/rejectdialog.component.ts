@@ -101,12 +101,7 @@ export class RejectdialogComponent implements OnInit {
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe((res) => {
       this.jobdetailscustomer = res;
-      this.eventStat.emit(null);
-      //this.SaveNotes();
-      if(this.isShown2==true)
-      {
-      this.SendStatusEmail();
-      }
+    
     });
   }
 
@@ -114,6 +109,7 @@ export class RejectdialogComponent implements OnInit {
     this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
+    this.PopulateJobdetail();
     this.matching = this.data.Matching;
     this.AddUser = true;
     this.info = 1;
@@ -170,19 +166,43 @@ export class RejectdialogComponent implements OnInit {
     this.isShown2 = !this.isShown2;
   }
 
-  SendEmail()
-{
-  this.emailNote.FullName = this.data.FullName;
-  this.emailNote.Body =this.Comment;
-  this.emailNote.ToEmailID = this.data.Email;
-  this._service.PostService(this.emailNote,'EmailApi/api/EmailForFeedback').subscribe(
-    check=>
-    {
-          // this.toastr.success('Email sent successfully','Success');
-          // setTimeout(() => {
-          //   this.toastr.dismissToast;
-            this.emailNote = new SendNoteEmail();
+//   SendEmail()
+// {
+//   this.emailNote.FullName = this.data.FullName;
+//   this.emailNote.Body =this.Comment;
+//   this.emailNote.ToEmailID = this.data.Email;
+//   this._service.PostService(this.emailNote,'EmailApi/api/EmailForFeedback').subscribe(
+//     check=>
+//     {
+//           // this.toastr.success('Email sent successfully','Success');
+//           // setTimeout(() => {
+//           //   this.toastr.dismissToast;
+//             this.emailNote = new SendNoteEmail();
+//       //  }, 3000);
+//     }
+//   )
+// }
+
+SendEmail() {
+  this.emailNote.fullName = this.data.FullName;
+  this.emailNote.body =this.Comment;
+  this.emailNote.toEmailId = this.data.Email;
+  this.emailNote.customerName = this.customer.FirstName + ' ' + this.customer.LastName; 
+  this.emailNote.jobId = this.data.jobId;
+  this.emailNote.jobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.emailNote.applicationName = "Arytic";
+  // this.emailNote.body ="Arytic" 
+  this.emailNote.fromID = "info@arytic.com"
+  this.emailNote.signature =  "Arytic";
+  this._service.PostService(this.emailNote,'EmailV1API/api/FeedbackEmail').subscribe(
+    check => {
+      // this.toastr.success('Email sent successfully','Success');
+      // setTimeout(() => {
+      //   this.toastr.dismissToast;
+      this.emailNote = new SendNoteEmail();
       //  }, 3000);
+      //this.getFeedBack();
+
     }
   )
 }
@@ -451,7 +471,13 @@ export class RejectdialogComponent implements OnInit {
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe((res) => {
-      this.PopulateJobdetail();
+      // this.PopulateJobdetail();
+      this.eventStat.emit(null);
+      //this.SaveNotes();
+      if(this.isShown2==true)
+      {
+      this.SendStatusEmail();
+      }
       //this.SaveNotes();
       console.log(res);
     });
@@ -497,7 +523,13 @@ export class contactInfo {
 
 export class SendNoteEmail
 {
-  public FullName :string
-  public Body :string
-  public ToEmailID :string
+  public fullName: string
+  public customerName: string
+  public jobId: string
+  public jobTitle: string
+  public applicationName: string
+  public body: string
+  public signature: string
+  public toEmailId: string
+  public fromID: string
 }
