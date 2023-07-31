@@ -1,4 +1,4 @@
-<div class="form-actions d-flex align-items-center">
+<div class="form-actions d-flex align-items-center" >
   <div class="toogle-container">
     Notes
     <label class="toggle" for="toogleView">
@@ -436,5 +436,8 @@
         </ng-template>
       </ngb-panel>
     </ngb-accordion>
+    <div class="noDataMessage" *ngIf="feedbackList?.length == 0">
+      <div>No Feedback Available</div>
+    </div>
   </div>
 </ng-container>

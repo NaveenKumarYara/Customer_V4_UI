@@ -92,6 +92,7 @@ filterChange(appliedfilters: any) {
   }
 
   filterHideHandler() {
+    console.log("wwwwww")
     this.quickSearch = false;
     this.advanceFilter = false;
     this.advancedFiltersAppliedInternal(null);

@@ -32,7 +32,7 @@
 							</select>
 						</div>
 						<div class="col-sm-6 col-md-8 col-lg-8 search-sub-col">
-							<input type="text" placeholder="Search Job title, location, Job Id ..."  #newItem (input)="addNewItem(newItem.value)" class="form-control">
+							<input type="text" placeholder="Search Job title, location, Job Id ..."  #newItem (input)="addNewItem(newItem.value)" (focus)="filterHideHandler()" class="form-control">
 						</div>
 					</div>
 				</div>

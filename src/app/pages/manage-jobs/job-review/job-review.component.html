@@ -1,12 +1,12 @@
 <div class="rating-section">
   <div class="top-container">
-    <h4>Overall Rating <strong>3</strong> out of 5</h4>
+    <h4>Overall Rating <strong>{{reviewsList[0].CommentsCount}}</strong> out of 5</h4>
     <div class="rating">
       <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
     </div>
-    <span class="review-count">150 Reviews</span>  
+    <span class="review-count">{{reviewsList[0].CommentsCount}} Reviews</span>  
 
-    <div class="sorting">
+    <!-- <div class="sorting">
       <div class="form-group">
         <span class="mdi mdi-swap-vertical"></span>
         <select class="form-select">
@@ -19,7 +19,7 @@
           <option value="Sort">Sort</option>
         </select>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="review-listing">
     <div class="job-card" *ngFor="let list of reviewsList">
@@ -31,7 +31,7 @@
             </div>
             <h3>{{list.FirstName}} {{list.LastName}}</h3>
             <div class="right-info">
-              <span class="period">10 Days AGO</span>
+              <!-- <span class="period">10 Days AGO</span> -->
               <div class="rating">
                 <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
               </div>
@@ -45,17 +45,17 @@
           </div>
           <div class="top-bottom-section">
             {{list.CommentText}}
-            <button class="btn btn-arrow" 
+            <!-- <button class="btn btn-arrow" 
               (click)="isCollapsed = ! isCollapsed"
               [attr.aria-expanded]="!isCollapsed"
               aria-controls="collapseExample"
             >
               <span class="mdi mdi-chevron-down"></span>
-            </button>
+            </button> -->
 
-            <div class="show-more-info"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+            <!-- <div class="show-more-info"  #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
               Pellentesque habitant morbi tristique senectus et netus.  Pellentesque habitant morbi tristique senectus et netus. 
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
