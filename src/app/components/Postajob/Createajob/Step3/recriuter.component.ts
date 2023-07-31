@@ -16,7 +16,8 @@ import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../shared/services/api.service';
 import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
-import { SettingsService } from '../../../../shared/services';
+import { SettingsService } from '../../../../../settings/settings.service';
+
 declare var $: any;
 
 @Component({
