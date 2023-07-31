@@ -70,7 +70,7 @@ PUpload: File;
 docFile:string;
 edit:any;
 emailNote = new SendNoteEmail();
-cemailNote = new SendNoteEmailCandidate();
+cemailNote = new SendNoteEmailCandidatev1();
 job = new SendNoteEmail();
 public file_srcs: string[] = [];
 public debug_size_before: string[] = [];
@@ -545,47 +545,84 @@ SendCandidateEmail()
   this.cemailNote.FullName = this.data.FullName;
   this.cemailNote.ToEmailID = this.data.Email;
   this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
-  this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
+  this.cemailNote.Body = this.selectedComments;
+  this.cemailNote.FromID = this.customer.Email;
+  this.cemailNote.Docs = [];
+  this.cemailNote.JobTitle = this.data.JobTitle;
+  this.cemailNote.JobId = this.data.jobId;
+  this.cemailNote.ApplicationName = 'Arytic';
+  this.cemailNote.SenderName = this.customer.FirstName;
+  this.cemailNote.TouserId = this.customer.UserId;
+  this.cemailNote.NotesId = 0;
+  this._service.PostService(this.cemailNote,'EmailV1API/api/EmailForNotesNewU').subscribe(
     check=>
     {
   
          
-            this.cemailNote = new SendNoteEmailCandidate();
+            this.cemailNote = new SendNoteEmailCandidatev1();
        
     }
   )
 }
 
-SendEmail()
-{
-    this.teammemberslist.forEach(x=>
-      {
-        if(x.UserId != this.customer.UserId)
-        {
+// SendEmailold()
+// {
+//     this.teammemberslist.forEach(x=>
+//       {
+//         if(x.UserId != this.customer.UserId)
+//         {
 
-          this.cemailNote.Body = this.selectedComments;
-          this.cemailNote.FullName = x.FirstName.split('-')[0];
-          this.cemailNote.ToEmailID = x.Email;
-          this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
-            this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
-              check=>
-              {
+//           this.cemailNote.Body = this.selectedComments;
+//           this.cemailNote.FullName = x.FirstName.split('-')[0];
+//           this.cemailNote.ToEmailID = x.Email;
+//           this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+//             this._service.PostService(this.cemailNote,'EmailApi/api/EmailForNotes').subscribe(
+//               check=>
+//               {
             
                    
-                      this.cemailNote = new SendNoteEmailCandidate();
+//                       this.cemailNote = new SendNoteEmailCandidate();
                  
-              }
-            )
-        }
+//               }
+//             )
+//         }
   
   
-      }
+//       }
       
-      );
+//       );
   
    
   
 
+// }
+
+SendEmail() {
+  this.teammemberslist.forEach((x: any) => {
+    if (x.UserId != this.customer.UserId) {
+
+      this.cemailNote.Body = this.selectedComments;
+      this.cemailNote.FullName = x.FirstName.split('-')[0];
+      this.cemailNote.ToEmailID = x.Email;
+      this.cemailNote.FromID = "donotreply@arytic.com";
+      this.cemailNote.Docs = [];
+      this.cemailNote.JobTitle = this.data.JobTitle;
+      this.cemailNote.JobId = this.data.jobId;
+      this.cemailNote.ApplicationName = 'Arytic';
+      this.cemailNote.SenderName = this.customer.FirstName;
+      this.cemailNote.TouserId = this.customer.UserId;
+      this.cemailNote.NotesId = 0;
+      this.cemailNote.Subject = 'Arytic - ' + this.customer.FirstName +' '+ this.customer.LastName +' ' +'added note- #' + ' '+this.data.jobId + ' ' +  this.data.JobTitle  ;
+      debugger
+      this._service.PostService(this.cemailNote,'EmailV1API/api/EmailForNotesNewU').subscribe(
+        check => {
+
+          this.cemailNote = new SendNoteEmailCandidatev1();
+
+        }
+      )
+    }
+  });
 }
 
 
@@ -701,6 +738,21 @@ export class SendNoteEmail
   public NotesId:number
   public ToUserId:number
   public Subject:string
+}
+
+export class SendNoteEmailCandidatev1 {
+  public FullName: string
+  public Body: string
+  public ToEmailID: string
+  public Subject: string
+  public FromID: string
+  public Docs:any
+  public JobTitle: string
+  public ApplicationName: string
+  public SenderName: string
+  public TouserId: number
+  public NotesId: number
+  public JobId: number
 }
 
 
