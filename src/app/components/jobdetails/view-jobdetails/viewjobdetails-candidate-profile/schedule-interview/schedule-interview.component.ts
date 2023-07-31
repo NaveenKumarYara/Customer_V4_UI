@@ -654,7 +654,7 @@ SendStatusEmail()
     // this.status.modeOfInterview = this.savenote.OtherInfo; 
 
     this.status.interviewDetails =  this.skypeId!=undefined?this.skypeId:'No details provided!'; 
-
+   this.status.url = this.skypeId!=undefined?this.skypeId:'No details provided!';
    } 
   //this.status.ToEmailID = this.data.Email;
     this.status.interviewType = this.savenote.OtherInfo; 
@@ -666,6 +666,7 @@ SendStatusEmail()
   this.status.jobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
   this.status.jobId = this.data.jobId.toString();
   this.status.applicationName = 'Arytic';
+
   //this.status.signature = '';
   //this.status.name = this.customer.FirstName + ' ' + this.customer.LastName;
   this.status.companyName = this.jobdetailscustomer.JobInfo.CompanyName;
@@ -908,6 +909,7 @@ export class JobInterviewStatus
   applink: string
   fromEmail: string
   applicationName: string
+  url: string
 }
 
 export class CJobInterviewStatus
