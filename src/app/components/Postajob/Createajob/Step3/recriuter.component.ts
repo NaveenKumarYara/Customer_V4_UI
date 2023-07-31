@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../shared/services/api.service';
 import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
+import { SettingsService } from '../../../../shared/services';
 declare var $: any;
 
 @Component({
@@ -95,7 +96,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
  // private subscription: Subscription;
 
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder,private _service:ApiService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute,private fb: FormBuilder,private _service:ApiService,private settingsService: SettingsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -441,7 +442,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   
           this.job.fullName = data.FirstName + ' ' + data.LastName;
           this.job.body = data.FirstName + ' ' + data.LastName + ' Assigned @' + data.JobTitle + ' position for you. Please go through the details!';
-          this.job.appLink ="https://customer.arytic.com";
+          this.job.appLink =this.settingsService.settings.CustomerAppLogin;
           this.job.applicationName = "Arytic";
           this.job.assignedMemberName = this.customer.FirstName + ' ' + this.customer.LastName;
           this.job.fromEmail = this.customer.Email;
