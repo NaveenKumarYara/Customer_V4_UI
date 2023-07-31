@@ -119,11 +119,11 @@ export class backgrounddialogComponent {
     this.bgverificatione.applicationName ='Arytic';
     this.bgverificatione.appLink = "https://arytic.com/";
     this.bgverificatione.customerName = this.customer.FirstName;
-    this.bgverificatione.education= this.bgverification.Education;
-    this.bgverificatione.employment = this.bgverification.Employment;
-    this.bgverificatione.certification=this.bgverification.Certification;
+    this.bgverificatione.education= this.bgverification.Education !=null?this.bgverification.Education: false;
+    this.bgverificatione.employment = this.bgverification.Employment !=null?this.bgverification.Employment: false;
+    this.bgverificatione.certification=this.bgverification.Certification!=null?this.bgverification.Certification: false;
     this.bgverificatione.price = this.bgverification.Price;
-    this.bgverificatione.reference = this.bgverification.Reference;
+    this.bgverificatione.reference = this.bgverification.Reference!=null?this.bgverification.Reference: false;
     this.bgverificatione.criminalOption =this.bgverification.CriminalOption;
     this.bgverificatione.criminalOptionSelected = this.bgverification.CriminalOptionSelected;
     this.bgverificatione.drugTest = this.bgverification.DrugTest;

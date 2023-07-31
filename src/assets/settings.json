@@ -143,7 +143,7 @@
   "NewCandidateSignUp": "https://dev.arytic.co/candidatesignuppublic",
   "CandidateLogin": "https://candidate-dev001.arytic.com/login",
   "JobMatchingParameter": "https://jobsapi-dev001.arytic.com/api/JobSearchMatchingParameters",
-  "Arytic": "https://dev001.arytic.com",
+  "Arytic": "https://dev.arytic.co",
   "QuestionbaseUrl": "https://questionnaireapi-dev001.arytic.com",
   "QuestionResult": "https://questionnaireapi-dev001.arytic.com/api/QuestionnaireResult/GetQuestionnaireGroupResult?",
   "GetPlans": "https://pricingapi-dev001.arytic.com/api/PlanFeature",
