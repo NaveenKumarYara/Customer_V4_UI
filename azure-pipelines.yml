@@ -1,13 +1,11 @@
 trigger:
-- main
-
-variables: 
-  USERNAME: $(DOCKER_USERNAME)
-  PASSWORD: $(DOCKER_PASSWORD)
-  BUILDID: $(Build.BuildNumber)
+- master
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+- group: ACR_CRED
 
 steps:
 - task: Bash@3
@@ -15,6 +13,6 @@ steps:
   inputs:
     filePath: 'build.sh'
   env:
-    D_USERNAME: $(USERNAME)
-    D_PASSWORD: $(PASSWORD)
-    BUILD_ID: $(BUILDID)
+    D_USERNAME: $(ACR_USERNAME)
+    D_PASSWORD: $(ACR_PASSWORD)
+    BUILD_ID: $(Build.BuildNumber)
