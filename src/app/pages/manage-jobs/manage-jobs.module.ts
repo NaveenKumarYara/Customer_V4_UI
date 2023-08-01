@@ -59,6 +59,8 @@ import { AdvanceFilterComponent } from './job-activities/job-activities-filters/
 import { UploadFormComponent } from './upload-resume/upload-form/upload-form.component';
 import { UploadArtyticScanComponent } from './upload-resume/upload-artytic-scan/upload-artytic-scan.component';
 import { UploadPreviewComponent } from './upload-resume/upload-preview/upload-preview.component';
+import { SpyDirective, SpyTargetDirective, SpyTargetContainerDirective } from '@thejlifex/ngx-scroll-spy';
+
 @NgModule({
 	declarations: [
 	ManageJobsComponent,
@@ -119,6 +121,9 @@ import { UploadPreviewComponent } from './upload-resume/upload-preview/upload-pr
 	 FormsModule,
 	 NgxUploaderModule,
 	 NgbDatepickerModule,
+	 SpyDirective,
+	 SpyTargetDirective,
+	 SpyTargetContainerDirective,
 	 NgCircleProgressModule.forRoot({
 		radius: 100,
 		outerStrokeWidth: 16,

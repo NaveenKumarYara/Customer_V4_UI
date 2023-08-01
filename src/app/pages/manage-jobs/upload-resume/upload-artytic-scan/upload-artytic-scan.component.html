@@ -1,10 +1,19 @@
 <div class="tab-navigation">
   <ul>
     <li>
-      <a href="#">Job Fit</a>
-    </li>
+      <a href="javascript:void(0)"
+        spy
+        [spyTargetId]="'section-one'"
+        [spyActiveClass]="'active'"
+        (click)="scrollTo('section-one')" 
+      >Job Fit</a>
     <li>
-      <a href="#">Skill Fit</a>
+      <a href="javascript:void(0)"
+        spy
+        [spyTargetId]="'section-two'"
+        [spyActiveClass]="'active'"
+        (click)="scrollTo('section-two')" 
+      >Skill Fit</a>
     </li>
     <li>
       <a href="#">Team Fit</a>
@@ -17,7 +26,7 @@
     </li>
   </ul>
 </div>
-<div class="section section-one">
+<div class="section section-one" spyTarget [spyTargetId]="'section-one'">
   <div class="top-container">
     <h3>Job Fit</h3>
     <div class="matching-status">
@@ -154,7 +163,7 @@
   </div>
 </div>
 
-<div class="section section-two">
+<div class="section section-two" spyTarget [spyTargetId]="'section-two'">
   <div class="top-container">
     <h3>Skills Fit</h3>
     <div class="matching-status">
