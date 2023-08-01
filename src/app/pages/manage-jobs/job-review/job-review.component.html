@@ -1,10 +1,10 @@
 <div class="rating-section">
   <div class="top-container">
-    <h4>Overall Rating <strong>{{reviewsList[0].CommentsCount}}</strong> out of 5</h4>
+    <h4>Overall Rating <strong>{{reviewsList[0]?.CommentsCount}}</strong> out of 5</h4>
     <div class="rating">
       <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
     </div>
-    <span class="review-count">{{reviewsList[0].CommentsCount}} Reviews</span>  
+    <span class="review-count">{{reviewsList[0]?.CommentsCount}} Reviews</span>  
 
     <!-- <div class="sorting">
       <div class="form-group">
