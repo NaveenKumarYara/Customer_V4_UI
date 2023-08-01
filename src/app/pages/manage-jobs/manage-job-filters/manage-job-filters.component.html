@@ -1,7 +1,7 @@
 <div class="filter-section">
 	<div class="d-flex flex-wrap">
 		<div class="navigation-col">
-			<button class="btn btn-icon" (click)="filterHandler()" [ngClass]="advanceFilter?'active':''">
+			<button class="btn btn-icon" (click)="filterHandler(); newItem.value=''" [ngClass]="advanceFilter?'active':''">
 				<span class="mdi mdi-tune-vertical"></span>
 			</button>
 			<button class="btn btn-icon" (click)="quickHandler()" [ngClass]="quickSearch?'active':''">
@@ -27,12 +27,12 @@
 								<option  default [value]="0">Most applied</option>
 								<option  [value]="1" >Recent jobs</option>
 								<option  [value]="2" >Older jobs</option>	
-								<option  [value]="3" >Arytic ID : Ascending</option>
-								<option  [value]="4" >Arytic ID : Descending</option>						
+								<!-- <option  [value]="3" >Arytic ID : Ascending</option>
+								<option  [value]="4" >Arytic ID : Descending</option>						 -->
 							</select>
 						</div>
 						<div class="col-sm-6 col-md-8 col-lg-8 search-sub-col">
-							<input type="text" placeholder="Search Job title, location, Job Id ..."  #newItem (input)="addNewItem(newItem.value)" class="form-control">
+							<input type="text" placeholder="Search Job title, location, Job Id ..."  #newItem (input)="addNewItem(newItem.value)" (focus)="filterHideHandler()" class="form-control">
 						</div>
 					</div>
 				</div>

@@ -131,6 +131,15 @@ body {
 			color: red;
 		}
 
+		&[disabled] {
+			.ngx-slider-selection {
+				background-color: $medium-gray;
+			}
+			.ngx-slider-pointer {
+				background-color: $medium-gray;
+			}
+		}
+
 		.ngx-slider-tick {
 			width: 1px;
 			height: 15px;
@@ -1010,7 +1019,7 @@ body {
 	position: static;
 	top: 0;
 	background-color: $white;
-	z-index: 100;
+	z-index: 200;
 
 	@media only screen and (min-width: 1170px) {
 		position: sticky;

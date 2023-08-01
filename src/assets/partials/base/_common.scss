@@ -308,3 +308,40 @@
     }
   }
 }
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.three-grid-container {
+  .grid-row {
+    gap: 15px 0;
+  }
+
+  h4 {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $stroke-gray;
+  }
+
+  .col-container {
+    border: 1px solid $stroke-gray;
+    border-radius: 6px;
+    background-color: $white;
+    height: 100%;
+    padding: 10px 15px;
+    cursor: pointer;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    font-weight: 600;
+    font-size: $font-size-15;
+    color: $dark-gray;
+    @include shadowTwo();
+
+    .mdi {
+      font-size: $font-size-20;
+      margin-right: 10px;
+    }
+  }
+}

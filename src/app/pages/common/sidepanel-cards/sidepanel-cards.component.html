@@ -70,7 +70,7 @@
           <div class="col-container">
             <div class="top-container">
               <span class="status active">
-                Uploaded <span class="mdi mdi-information-outline"></span>
+                {{profile?.JobStatus}} <span class="mdi mdi-information-outline"></span>
               </span>
               <span class="priority">
                 Candidate Info
@@ -79,11 +79,11 @@
                 <div class="profile-thumb">
                   <img src="../../../../assets/images/default-profile-thumb.png" alt="">
                 </div>
-                <h3>Akhilesh Chang</h3>
+                <h3>{{profile?.FirstName}} {{profile?.LastName}}</h3>
                 <div class="profile-summary">
                   <h4>
                     <span class="mdi mdi-briefcase-outline"></span>
-                    Exp  - <strong>Req 8 Years</strong>
+                    Exp  - <strong> {{profile?.TotalExperience}} years</strong>
                   </h4>
                 </div>
               </div>
@@ -91,11 +91,11 @@
             <div class="middle-container">
               <div class="left-container">
                 <div class="top-section">
-                  <h3>Software Architect 1 </h3>
+                  <h3>{{profile?.ProfileTitle}} </h3>
                 </div>
                 <div class="top-bottom-section">
                   <ul>
-                    <li><span class="highlight">Application iD: 728743</span></li>
+                    <li><span class="highlight">Application iD: {{profile?.JobResponseId}}</span></li>
                   </ul>
                 </div>
               </div>
@@ -103,7 +103,7 @@
                 Matching
                 <div class="progress-circle">
                   <circle-progress
-                  [percent]="40"
+                  [percent]=profile?.MatchingPercentage
                   [radius]="30"
                   [outerStrokeWidth]="8"
                   [innerStrokeWidth]="4"

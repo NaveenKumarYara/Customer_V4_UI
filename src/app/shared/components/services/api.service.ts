@@ -25,6 +25,10 @@ export class ApiService {
     }),
   };
 
+  ProfileShareInvite(body: any) {
+    return this.http.post(this.settingsService.settings.ProfileShareInviteUrl, body);
+  }
+
   validateCheckemail(email: string): Observable<any> {
     return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/CheckEmailExist?email=' + email, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
@@ -33,6 +37,10 @@ export class ApiService {
   GetJobMatching(JobId: number) {
     return this.http.get(this.settingsService.settings.IdentitybaseUrl + '/api/GetMatchingWeightage?jobId=' + JobId, this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
+  }
+
+  GetIdentityAPI(url: string) {
+    return this.http.get(this.settingsService.settings.IdentitybaseUrl + url, this.httpOptions);
   }
 
 
@@ -45,10 +53,30 @@ export class ApiService {
     return this.http.get(this.settingsService.settings.ProfilebaseUrl +'/api/GetProfileNotesNew?profileId=0&jobId='+jobID+'&cid='+cid)
   }
 
+  // GetprofileNotes(jobID:any,cid:any){
+  //   return this.http.get(this.settingsService.settings.ProfilebaseUrl + '')
+  // }
+
   byteStorage(body: any): Observable<any> {
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/form-data')
     return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/ProfileAttachmentsNew', body, {headers});
+  }
+  
+
+  PostService(body: any, Url: string) {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Headers', ' Origin, Content-Type, X-Auth-Token');
+    headers.set('X-Frame-Options', 'http://facebook.com/');
+    return this.http.post(this.settingsService.settings.IdentitybaseUrl +"/api/InsertProfileFeedback", body, { headers: headers });
+  }
+
+  byteStorage2(body: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/form-data')
+    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/InsertProfileAttachments', body, {headers});
   }
 
   InsertCustomerDocuments(body: any): Observable<any> {
@@ -84,11 +112,13 @@ export class ApiService {
   postProfileService(url:string,params:any){
     return this.http.post(this.settingsService.settings.ProfilebaseUrl + url ,params)
   }
+  postEmailService(url:string,params:any){
+    return this.http.post(this.settingsService.settings.EmailV1APIBaseUrl + url ,params)
+  }
+  SaveProfileNote(url:string,params:any) {
+    return this.http.post(this.settingsService.settings.IdentitybaseUrl+ url ,params)
+  }
 
-
- 
-
-  
   GetJobProfileStatus() {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + '/api/GetJobProfileStatusList', this.httpOptions).pipe(
       debounceTime(1000), map(res => res));
@@ -101,6 +131,10 @@ export class ApiService {
 getJobApi<T>(apiUrl:string):Observable<T>{
   let url=`${this.settingsService.settings.JobbaseUrl}${apiUrl}`
   return this.http.get<T>(url);
+}
+
+getComments(url:string,params:any){
+  return this.http.get(this.settingsService.settings.JobbaseUrl+url , params)
 }
 //----------------------------------------------------------------
   // End -- JobAPI Realted Intigration section 
@@ -157,6 +191,9 @@ getNewCandidates(params:any): Observable<any> {
   getAllDomain(){
     return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetDomainName')
   }
+  getAllCertifications(){
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetAllCertifications')
+  }
 
   GetEmployerService(url: string, prams: any) {
     return this.http.get(this.settingsService.settings.EmployerjobsUrl + url + prams, this.httpOptions).pipe(
@@ -167,6 +204,10 @@ getNewCandidates(params:any): Observable<any> {
 
   getJobStatus(){
     return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetJobStatus')
+  }
+
+  getSourceType(){
+    return this.http.get(this.settingsService.settings.PricingBaseUrl+'api/BillingHistory/GetCustomerSubscription')
   }
 
   DeleteService(url:any, prams:any) {

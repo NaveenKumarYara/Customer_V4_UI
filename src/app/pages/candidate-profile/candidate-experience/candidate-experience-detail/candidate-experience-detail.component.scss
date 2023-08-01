@@ -1,0 +1,136 @@
+@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../assets/partials/utils/mixins';
+
+.col-container  {
+  border: 1px solid $stroke-gray;
+  border-radius: 6px;
+  @include shadowTwo();
+  padding: 20px;
+  background-color: $white;
+
+  .container-box {
+    h4 {
+      &.main-title {
+        font-size: $font-size-18;
+        color: $dark-gray;
+        font-weight: 600;
+        margin: 0 0 15px;
+        border-bottom: 1px solid $stroke-gray;
+        padding-bottom: 15px;
+        position: relative;
+      }
+    }
+
+    .info-box {
+      color: $dark-gray;
+      p {
+        font-size: $font-size-16;
+        margin-top: 10px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.key-container-box {
+  margin-bottom: 20px;
+  ul {
+    @include no-style();
+    @include flexbox();
+    @include flex-wrap(wrap);
+    margin: 0 -10px;
+
+    li {
+      flex: 0 0 33.33%;
+      max-width: 33.33%;
+      padding: 0 10px;
+      font-size: 14px;
+
+      .card-box {
+        border: 1px solid $stroke-gray;
+        border-radius: 6px;
+        padding: 12px 34px 12px 34px;
+        position: relative;
+        @include shadowOne();
+
+        .mdi {
+          font-size: $font-size-20;
+          color: $dark-gray;
+          position: absolute;
+          left: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+
+          &.mdi-star-outline {
+            right: 12px;
+            color:$chatni-dark;
+            left: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .key-right-col {
+    ul {
+      li {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+.skill-container {
+  border: 1px solid $stroke-gray;
+  border-radius: 8px;
+  @include shadowTwo();
+  overflow: hidden;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 10px 0 0;
+
+  .rating {
+    background-color: #F9FCFD;
+    padding: 2px 10px;
+    text-align: center;
+    line-height: 1;
+    color: $dark-green;
+
+    ngb-rating {
+      display: block;
+      position: relative;
+      top: -2px;
+    }
+  }
+  
+  h3 {
+    font-size: $font-size-14;
+    font-weight: 600;
+    color: $dark-gray;
+    padding: 0 10px;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: none;
+  }
+
+  h4 {
+    font-size: 12px;
+    color: $medium-gray;
+    text-align: left;
+    padding: 0 10px;
+    text-transform: none;
+    font-weight: 400;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: none;
+  }
+}

@@ -1,5 +1,7 @@
 @import './../../../../../assets/partials/utils/variables';
-
+ .multiselect-item-checkbox .custom-multiselect{
+	display: none;
+  }
 .advance-filter {
 	border: 1px solid $stroke-gray;
 	border-radius: 4px;

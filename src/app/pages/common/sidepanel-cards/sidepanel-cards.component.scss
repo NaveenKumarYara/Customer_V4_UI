@@ -21,7 +21,7 @@
         position: absolute;
         left: 0;
         top: 20px;
-        width: 108px;
+        // width: 108px;
         text-align: center;
         font-size: 12px;
         border-radius: 0 4px 4px 0;
@@ -192,6 +192,19 @@
     }
   
     .middle-container {
+      .left-container {
+        display: inline-block;
+        width: 65%;
+        max-width: 65%;
+      }
+      .right-container {
+        display: inline-block;
+        width: 35%;
+        max-width: 35%;
+        .progress-circle {
+          display: inline-block;
+        }
+      }
       .top-section {
         padding:15px 20px 6px 20px;
         @include flex();
@@ -227,6 +240,7 @@
           @media only screen and (min-width: 991px) {
             flex: 0 0 100px;
             max-width: 100px;
+            
           }
         }
 
@@ -391,3 +405,5 @@
      margin-bottom: 30px;
    }
  }
+
+ 

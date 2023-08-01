@@ -1,26 +1,28 @@
 @import './../../../../assets/partials/utils/variables';
 @import './../../../../assets/partials/utils/mixins';
 
+.candidate-experience-section {
+  padding: 40px 0;
 
-.professional-experience-section{
-  margin-top: 30px;
+  app-candidate-experience-list {
+    display: block;
+    position: relative;
 
-  h4 {
-    font-size: $font-size-22;
-    font-weight: 600;
-    color: $dark-gray;
-    margin: 0 0 20px;
-  }
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 27px;
+      border-radius: 50%;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      background-color: $stroke-gray;
+    }
 
-  .exprience-row {
-    background-color: $white;
-    border: 1px solid $stroke-gray;
-    border-radius: 6px;
-    padding: 20px;
-    @include shadowTwo();
-
-    &:not(:first-child) {
-      margin-top: 20px;
+    &:after {
+      top: auto;
+      bottom: 0;
     }
   }
 }

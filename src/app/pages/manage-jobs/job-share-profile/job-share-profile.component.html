@@ -1,3 +1,7 @@
+<div class="form-actions" style="position: sticky">
+  <button class="btn btn-outlined-default">Clear</button>
+  <button class="btn btn-info" (click)="shareProfile()">Share</button>
+</div>
 <div class="form-container">  
   <div class="row">
     <div class="col-sm-12 single-col">
@@ -6,10 +10,11 @@
     <div class="col-sm-12">
       <div class="form-group">
         <span class="mdi mdi-email-arrow-right-outline"></span>
-        <input type="text" class="form-control" placeholder="Enter Email Address">
+        <input type="text" class="form-control"  placeholder="From" [(ngModel)]="fromEmail" name="fromEmailField"  disabled readonly>
       </div>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-sm-12 single-col">
       <label>To</label>
@@ -17,7 +22,82 @@
     <div class="col-sm-12">
       <div class="form-group">
         <span class="mdi mdi-email-arrow-right-outline"></span>
-        <input type="text" class="form-control" placeholder="Enter Email Address">
+        <input type="text" class="form-control" 
+                name="toEmail" [(ngModel)]="toEmailField" 
+                (keydown.enter)="addEmail('to', $event)"
+                (blur)="addEmail('to', $event)"
+                placeholder="Enter Email Address">
+        <small id="toEmailErrorMessage" *ngIf="toEmailInvalid" class="form-text text-danger">Invalid Email Address</small>
+      </div>
+      <div class="checkbox-list share-profile-email-list">
+        <ul>
+          <li class="ng-star-inserted" *ngFor="let email of toEmailList;">
+            <label>
+              <span class="checkmark"> {{email}} </span>
+              <span class="mdi mdi-close-thick" (click)="removeEmail('to', email)"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row m-0">
+    <div class="inline-navigation m-0">
+      <ul>
+        <li><button class="btn btn-link" (click)="showClickCC()">CC</button></li>
+        <li><button class="btn btn-link" (click)="showClickBCC()">BCC</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row"  *ngIf="showCC">
+    <div class="col-sm-12 single-col">
+      <label>CC</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" 
+              name="ccEmail" [(ngModel)]="ccEmailField" 
+              (keydown.enter)="addEmail('cc', $event)"
+              (blur)="addEmail('cc', $event)"
+              placeholder="Enter CC Email Address">
+        <small id="ccEmailErrorMessage" *ngIf="ccEmailInvalid" class="form-text text-danger">Invalid Email Address</small>
+      </div>
+      <div class="checkbox-list share-profile-email-list">
+        <ul>
+          <li class="ng-star-inserted" *ngFor="let email of ccEmailList;">
+            <label>
+              <span class="checkmark"> {{email}} </span>
+              <span class="mdi mdi-close-thick" (click)="removeEmail('cc', email)"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row"  *ngIf="showBCC">
+    <div class="col-sm-12 single-col">
+      <label>BCC</label>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <span class="mdi mdi-email-arrow-right-outline"></span>
+        <input type="text" class="form-control" 
+                name="bCCEmail" [(ngModel)]="bCCEmailField" 
+                (keydown.enter)="addEmail('bcc', $event)"
+                (blur)="addEmail('bcc', $event)"
+                placeholder="Enter BCC Email Address">
+        <small id="bccEmailErrorMessage" *ngIf="bCCEmailInvalid" class="form-text text-danger">Invalid Email Address</small>
+      </div>
+      <div class="checkbox-list share-profile-email-list">
+        <ul>
+          <li class="ng-star-inserted" *ngFor="let email of bCCEmailList;">
+            <label>
+              <span class="checkmark"> {{email}} </span>
+              <span class="mdi mdi-close-thick" (click)="removeEmail('bcc', email)"></span>
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -28,18 +108,20 @@
     <div class="col-sm-12">
       <div class="form-group">
         <span class="mdi mdi-email-arrow-right-outline"></span>
-        <input type="text" class="form-control" placeholder="Enter Subject Here">
+        <input type="text" class="form-control" name="subjectText" [(ngModel)]="subjectField" placeholder="Enter Subject Here">
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12 single-col">
-      <label>Text Enter to Add Comment</label>
+      <label>Comments</label>
     </div>
     <div class="col-sm-12">
       <ckeditor  
         [config]="config"
-        data="<p>Hello, world!</p>">
+        [data]="defaultContent"
+        [(ngModel)]="contentField"
+        >
       </ckeditor>
     </div>
   </div>

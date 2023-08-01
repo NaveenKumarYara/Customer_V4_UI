@@ -8,13 +8,13 @@
 			<div class="form-group">
 				<span class="mdi mdi-briefcase-variant-outline"></span>
 				<ng-multiselect-dropdown
+				    class="custom-multiselect"
 					[placeholder]="'Job Title'"
 					[settings]="jobTitlesDropdownSettings"
 					[data]="jobTitles"
 					[(ngModel)]="selectedJobTitles"
 					(onFilterChange)="onJobTitleFilterChange($event)"
 					(onSelect)="onjobTitleItemSelect($event)"
-					(onSelectAll)="onjobTitleSelectAll($event)"
 				>
 				</ng-multiselect-dropdown>
 			</div>

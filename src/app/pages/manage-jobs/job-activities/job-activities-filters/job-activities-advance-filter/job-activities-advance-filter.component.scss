@@ -1,4 +1,4 @@
-@import './../../../../../assets/partials/utils/variables';
+@import './../../../../../../assets/partials/utils/variables';
 
 .advance-filter {
 	border: 1px solid $stroke-gray;
@@ -71,5 +71,9 @@
 
 	.form-select {
 		padding-left: 40px;
+	}
+
+	.multiselect-dropdown {
+		position: unset !important;
 	}
 }

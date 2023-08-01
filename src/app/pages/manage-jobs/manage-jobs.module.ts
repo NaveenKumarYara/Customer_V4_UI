@@ -42,7 +42,7 @@ import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { ScheduleInterviewExternalComponent } from './schedule-interview-external/schedule-interview-external.component';
 import { JobCommunicationComponent } from './job-communication/job-communication.component';
 import { NgChartsModule } from 'ng2-charts';
-import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
+// import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
 import { JobShareComponent } from './job-share/job-share.component';
 import { ViewEditJobsComponent } from './view-edit-jobs/view-edit-jobs.component';
 import { FilterSearchResultComponent } from './job-activities/job-activities-filters/job-activities-filter-search-result/job-activities-filter-search-result.component';
@@ -52,11 +52,19 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobShareProfileComponent } from './job-share-profile/job-share-profile.component';
 import { FormsModule } from '@angular/forms';
 import { NgxUploaderModule } from 'ngx-uploader';
+import { AdvanceFilterComponent } from './job-activities/job-activities-filters/job-activities-advance-filter/job-activities-advance-filter.component';
+import { CandidateDocumentComponent } from './candidate-document/candidate-document.component';
+
 import  { JobStatusChangeComponent } from './job-status-change/job-status-change.component';
+import { UploadResumeComponent } from './upload-resume/upload-resume.component';
+import { JobProfileMatchComponent } from './job-profile-match/job-profile-match.component';
+import { UploadFormComponent } from './upload-resume/upload-form/upload-form.component';
+import { UploadArtyticScanComponent } from './upload-resume/upload-artytic-scan/upload-artytic-scan.component';
+import { UploadPreviewComponent } from './upload-resume/upload-preview/upload-preview.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from 'src/app/shared/interceptors/spinner-interceptor';
-
 @NgModule({
+	
 	declarations: [
 	ManageJobsComponent,
 	PaginationComponent,
@@ -87,8 +95,17 @@ import { SpinnerInterceptor } from 'src/app/shared/interceptors/spinner-intercep
 	CandidateDocumentComponent,
 	JobShareComponent,
 	ViewEditJobsComponent,
+ JobShareProfileComponent,
+ AdvanceFilterComponent,
+ CandidateDocumentComponent,
   JobShareProfileComponent,
-  JobStatusChangeComponent
+  JobStatusChangeComponent,
+  UploadResumeComponent,
+  JobProfileMatchComponent,
+	AdvanceFilterComponent,
+ UploadFormComponent,
+ UploadArtyticScanComponent,
+ UploadPreviewComponent
 	],
 	imports: [
 	 CommonModule,

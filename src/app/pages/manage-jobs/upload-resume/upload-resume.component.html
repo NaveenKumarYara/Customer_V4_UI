@@ -1,0 +1,50 @@
+<div class="form-container">
+
+
+  <div class="row">
+    <div class="col-sm-12 single-col">
+      <div class="file-upload">
+        <button class="btn"><span class="mdi mdi-cloud-upload-outline"></span>Browse and upload job related documents</button>
+        <input type="file" name="myfile" />
+      </div>
+      <div class="description">
+        <span class="mdi mdi-information-outline"></span>
+        Upload .doc, .docx, .pdf, .txt file only
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <div class="row">
+      <div class="col-md-3 col-lg-3 col">
+        <h4>Upload Resume</h4>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <h4>Arytic Scan</h4>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <h4>Edit Profile</h4>
+      </div>
+      <div class="col-md-3 col-lg-3 col">
+        <h4>Preview</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-steps">
+    <div class="form-step">
+      <app-upload-form></app-upload-form>
+    </div>
+    <div class="form-step">
+      <app-upload-artytic-scan></app-upload-artytic-scan>
+    </div>
+    <div class="form-step">
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <app-upload-preview></app-upload-preview>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

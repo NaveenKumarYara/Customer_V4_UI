@@ -430,6 +430,7 @@ export class JobNotesComponent implements OnInit {
         // this.fileUploadForm.reset();
         this.savenote = new Notes();
         this.files=[];
+        this.savenote.OtherInfo = 'General';
         this.teammemberslist=[];
         this.selectedUserName = null;
       

@@ -4,125 +4,129 @@
 	</button>
   <div class="row">
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Job Title</label>
+			<label>Current Job Role</label>
 			<div class="form-group">
 				<span class="mdi mdi-briefcase-variant-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[settings]="jobTitlesDropdownSettings"
+				[data]="jobTitles"
+				[(ngModel)]="selectedJobTitles"
+				(onFilterChange)="onJobTitleFilterChange($event)"
+				(onSelect)="onjobTitleItemSelect($event)"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Skills</label>
+			<label>Application Status</label>
 			<div class="form-group">
-				<span class="mdi mdi-star-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<span class="mdi mdi-list-status"></span>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[(ngModel)]="selectedApplicationStatus"
+				[settings]="statusDropdownSettings"
+				[data]="ApplicationStatus"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Location</label>
+			<label>Profile Matching</label>
 			<div class="form-group">
-				<span class="mdi mdi-map-marker-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<span class="mdi mdi-briefcase-variant-outline"></span>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[(ngModel)]="selectedProfileMatchings"
+				[settings]="profileMatchingDropdownSettings"
+				[data]="profileMatching"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Employment</label>
+			<label>Profile Type</label>
 			<div class="form-group">
 				<span class="mdi mdi-briefcase-outline"></span>
-				<select class="form-select">
-					<option value="Full Time">Full Time</option>
-					<option value="Contract">Contract</option>
-					<option value="Part Time">Part Time</option>
-					<option value="Remote">Remote</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[(ngModel)]="selectedProfileType"
+				[settings]="profileTypeDropdownSettings"
+				[data]="profileType"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		
 		
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Users</label>
+			<label>Source Type</label>
 			<div class="form-group">
 				<span class="mdi mdi-account-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Last posted</label>
-			<div class="form-group">
-				<span class="mdi mdi-clock-time-eight-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Client</label>
-			<div class="form-group">
-				<span class="mdi mdi-account-multiple-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
-			</div>
-		</div>
-		
-		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Immigration status</label>
-			<div class="form-group">
-				<span class="mdi mdi-badge-account-outline"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Domain</label>
-			<div class="form-group">
-				<span class="mdi mdi-earth"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[settings]="sourceTypeDropdownSettings"
+				[(ngModel)]="selectedSourceType"
+				[data]="sourceType"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
 			<label>Experience <span class="sub-label">(In Years)</span></label>
 			<div class="custom-slider">
-				<ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+				<ngx-slider [(value)]="selectedMinExperience" [(highValue)]="selectedMaxExperience"  [options]="experienceSliderOptions"></ngx-slider>
 			</div>
 		</div>
-		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Salary Range <span class="sub-label">(In Dollars)</span></label>
+		<!-- <div class="col-sm-6 col-md-3 col-lg-3 col">
+			<label>Job Fit <span class="sub-label">(In percentage)</span></label>
 			<div class="custom-slider">
-				<ngx-slider [(value)]="salMinValue" [(highValue)]="salMaxValue" [options]="optionsSal"></ngx-slider>
+				<ngx-slider [(value)]="selectedJobValue"  (userChange)="onSlider1Change($event)" [options]="skillSet"></ngx-slider>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Job Status</label>
+			<label>Skill Fit <span class="sub-label">(In percentage)</span></label>
+			<div class="custom-slider">
+				<ngx-slider [(value)]="selectedSkillValue"  (userChange)="onSlider2Change($event)"   [options]="skillSet"></ngx-slider>
+			</div>
+		</div> -->
+		<div class="col-sm-6 col-md-3 col-lg-3 col">
+			<label>Domain</label>
 			<div class="form-group">
 				<span class="mdi mdi-list-status"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[settings]="domainDropdownSettings"
+				[data]="domainList"
+				[(ngModel)]="selectedDomain"
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-3 col">
-			<label>Priority</label>
+			<label>Certifications </label>
 			<div class="form-group">
 				<span class="mdi mdi-priority-high"></span>
-				<select class="form-select">
-					<option value="Select">Select</option>
-				</select>
+				<ng-multiselect-dropdown
+				class="custom-multiselect"
+				[placeholder]="'Select'"
+				[settings]="certificationsDropdownSettings"
+				[data]="certificationList"
+				[(ngModel)]="selectedCertifications"
+
+			>
+			</ng-multiselect-dropdown>
 			</div>
 		</div>
 		<div class="col-sm-12 button-col text-right">
-			<button class="btn btn-info">Apply</button>
-			<button class="btn btn-outlined-default">Cancel</button>
+			<button class="btn btn-info" (click)="applyClick()">Apply</button>
+			<button class="btn btn-outlined-default" (click)="cancelClicked()">Cancel</button>
 		</div>
 	</div>
 </div> 

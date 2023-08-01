@@ -29,7 +29,8 @@ export class ManageJobFiltersComponent implements OnInit {
   @Input() viewLayout = ''; // decorate the property with @Input();
   @Input() customer: any;
   @Output() layoutView = new EventEmitter<string>();
-  @Output() advancedFiltersApplied = new EventEmitter<any>();
+  @Output()  advancedFiltersApplied= new EventEmitter<any>();
+  @Output() advancedFilterOpenStatus = new EventEmitter<boolean>();
 
   constructor(private _service : ApiService) {
     this.GetJobStatus();
@@ -80,14 +81,24 @@ export class ManageJobFiltersComponent implements OnInit {
 
   filterHandler() {
     this.advanceFilter = !this.advanceFilter;
+    this.quickSearch = false;
+    this.advancedFiltersAppliedInternal(null);
+    this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
 
   filterHideHandler() {
+    this.quickSearch = false;
     this.advanceFilter = false;
+    this.advancedFiltersAppliedInternal(null);
+    this.advancedFilterOpenStatus.emit(this.advanceFilter);
   }
 
   quickHandler() {
     this.quickSearch = !this.quickSearch;
+    if (this.advanceFilter) {
+      this.advanceFilter = false;
+      this.advancedFilterOpenStatus.emit(this.advanceFilter);
+    }
   }
 
   quickHideHandler() {
