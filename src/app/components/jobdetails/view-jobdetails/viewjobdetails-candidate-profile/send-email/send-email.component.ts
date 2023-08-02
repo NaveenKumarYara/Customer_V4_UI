@@ -313,8 +313,7 @@ export class SendEmailComponent implements OnInit {
     this.conversation.userCheck = this.data.userId > 0 ? 'Login' : 'Yes I will Join';
     // }
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
-
-      if (data === 0 || data === null)  {
+      if (data === 0 || data === null || data === true) {
         this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
         });
 

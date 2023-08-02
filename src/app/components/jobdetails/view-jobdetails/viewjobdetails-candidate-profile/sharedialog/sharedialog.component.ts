@@ -547,7 +547,7 @@ export class SharedialogComponent implements OnInit{
       this.profileSharing.bccEmailAddress = this.bccemailList.map(x => x.value).toString();
       this.profileSharing.fromEmail = this.fromId;
         this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
-          if (data === 0 || data === null) {
+          if (data === 0 || data === null || data === true) {
             // ctr++; 
             // //this.inviteform.reset();
             // if (ctr === emails.length) {
