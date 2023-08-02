@@ -826,7 +826,7 @@ getStringifiedAssets(assets: mailtoAsset[]) {
       this.Sharing.text = this.selectedComments;
       this.Sharing.docs = this.dos;
       this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
-        if (data === 0 || data === null) {
+        if (data === 0 || data === null || data === true) {
           // ctr++; 
           // if (ctr === emails.length) {
           this.uploader.clearQueue();

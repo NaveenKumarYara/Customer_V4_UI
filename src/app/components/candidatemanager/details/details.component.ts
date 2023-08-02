@@ -753,7 +753,7 @@ export class DetailsComponent implements OnInit,OnDestroy {
 	   this.conversation.applicationName = 'Arytic';
 		this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 	
-		  if (data === 0 || data === null) {
+			if (data === 0 || data === null || data === true) {
 			//this.spinner.hide();
 			this.isSendingEmail = false;
 			this.toastr.success('Mail Sent', 'Success');

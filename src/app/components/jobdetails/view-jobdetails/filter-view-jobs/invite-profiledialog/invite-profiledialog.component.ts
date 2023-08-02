@@ -245,7 +245,7 @@ export class InviteProfiledialogComponent implements OnInit {
     this.inviteinfo.fromID = this.fromId;
     debugger
       this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
-        if (data === 0 || data === null) {
+        if (data === 0 || data === null || data === true) {
 
           this.startedInvite = false;
           this.dialogRef.close();
