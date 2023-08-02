@@ -387,15 +387,19 @@ export class recriuterComponent implements OnInit, OnDestroy {
         this.report.UserId = this.userId;
         this.report.CustomerId = this.customerId;
         this.report.JobId = Number(e);
-        this.report.HiringManager = this.suggestManagers.map((x) => x.UserId).toString();
-
-        this.appService.RecrutingTeam(this.report).subscribe(
-          (data) => {
-            if (data === 0) {
-              console.log("added");
-            }
-          }
-        );
+        const ids = this.suggestManagers.map(o => o.UserId);
+        ids.forEach(c=>
+          {
+          this.report.HiringManager = c.toString();
+            this.appService.RecrutingTeam(this.report).subscribe(
+              data => {
+                if (data === 0) {
+                  console.log(data);
+                }
+              }
+            );
+            //this.GetJobAssigned(jobId);
+          })
         this.GetJobAssigned(e);
       });
     } else {
@@ -403,14 +407,27 @@ export class recriuterComponent implements OnInit, OnDestroy {
       this.report.UserId = this.userId;
       this.report.CustomerId = this.customerId;
       this.report.JobId = parseInt(res, 10);
-      this.report.HiringManager = this.suggestManagers.map((x) => x.UserId).toString();
-      this.appService.RecrutingTeam(this.report).subscribe(
-        (data) => {
-          if (data === 0) {
-            console.log("added");
-          }
-        }
-      );
+      const ids = this.suggestManagers.map(o => o.UserId);
+      ids.forEach(c=>
+        {
+        this.report.HiringManager = c.toString();
+          this.appService.RecrutingTeam(this.report).subscribe(
+            data => {
+              if (data === 0) {
+                console.log(data);
+              }
+            }
+          );
+          //this.GetJobAssigned(jobId);
+        })
+      // this.report.HiringManager = this.suggestManagers.map((x) => x.UserId).toString();
+      // this.appService.RecrutingTeam(this.report).subscribe(
+      //   (data) => {
+      //     if (data === 0) {
+      //       console.log("added");
+      //     }
+      //   }
+      // );
       this.GetJobAssigned(Number(res));
     }
   }
@@ -601,7 +618,6 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
             ids.forEach(c=>
               {
               this.report.HiringManager = c.toString();
-
                 this.appService.RecrutingTeam(this.report).subscribe(
                   data => {
                     if (data === 0) {
@@ -625,7 +641,7 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
          
 
              ids.forEach(c=>
-              {
+              {             
               this.report.HiringManager = c.toString();
               this.appService.RecrutingTeam(this.report).subscribe(
                 data => {
