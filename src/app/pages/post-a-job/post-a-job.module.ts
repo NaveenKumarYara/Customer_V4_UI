@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import  { SharedModule } from './../../shared/shared.module'
 import  { PostAJobComponent  } from  './post-a-job.component';
 import { PostAJobInformationComponent } from './post-a-job-information/post-a-job-information.component';
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct,NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct,NgbDropdownModule,NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common'
 import { CKEditorModule } from 'ckeditor4-angular';
@@ -14,6 +14,8 @@ import { PostAJobSkillsComponent } from './post-a-job-skills/post-a-job-skills.c
 import { PostAJobSalaryLocationComponent } from './post-a-job-salary-location/post-a-job-salary-location.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { SpyDirective, SpyTargetDirective, SpyTargetContainerDirective } from '@thejlifex/ngx-scroll-spy';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({	
 	declarations: [
@@ -28,12 +30,15 @@ import { SpyDirective, SpyTargetDirective, SpyTargetContainerDirective } from '@
 		CommonModule,
 		SharedModule,
 		NgbAlertModule,
+		NgbDropdownModule,
+		NgSelectModule,
 		NgbDatepickerModule,
 		FormsModule,
 		JsonPipe,
 		CKEditorModule,
 		NgxSliderModule,
 		NgbRatingModule,
+		NgMultiSelectDropDownModule.forRoot(),
 		SpyDirective,
     SpyTargetDirective,
     SpyTargetContainerDirective,

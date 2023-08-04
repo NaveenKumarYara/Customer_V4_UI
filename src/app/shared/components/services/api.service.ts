@@ -163,6 +163,23 @@ getNewCandidates(params:any): Observable<any> {
       debounceTime(1000), map(res => res));
   }
 
+
+  GetIndustries() {
+    return this.http.get(this.settingsService.settings.MasterbaseUrl+'/api/GetIndustries')
+  }
+
+  
+
+  AddIndustry(body: any) {
+    return this.http
+      .post(this.settingsService.settings.IdentitybaseUrl + '/api/InsertNewIndustry', body)
+      .pipe(debounceTime(1000), map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('customer', JSON.stringify(user));
+        return user;
+      }));
+  }
+
  
 
   getJobStatus(){
